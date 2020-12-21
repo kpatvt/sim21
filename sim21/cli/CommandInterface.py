@@ -1,11 +1,15 @@
-"""Implements a very simple command driven interface to the simulator"""
+"""
+Implements a very simple command driven interface to the simulator
+TODO Module for testing purposes only, will be removed.
+"""
+
 import sys
 import os
 import time
 import errno
 import traceback
+import warnings
 
-# from sim21.cli.HelperClasses import VersionedOutputFile
 from sim21.thermo.Hypo import *
 from sim21.thermo.ThermoAdmin import ThermoAdmin, ThermoCase, PureCompoundProperty, EnvelopeResults
 
@@ -893,7 +897,8 @@ class CommandInterface(object):
                             rhsObj = CreateObject(self.currentObj, rhsDesc)
 
                         # if we found rhsObj - see if we can get its value and add it to parentObj
-                        # lhsdesc stores the original command of the lhs.  Stores the original port name when moving tower feeds
+                        # lhsdesc stores the original command of the lhs.  Stores the original port name
+                        # when moving tower feeds
                         lhsDesc = PathOf(lhsObj)
                         if rhsObj:
                             if isinstance(rhsObj, CreateObject):
@@ -2619,7 +2624,6 @@ commands = {
     'propertytype': CommandInterface.UpdatePropertyType,
     'maxversions': CommandInterface.MaxCaseVersions,
     'about': CommandInterface.About,
-    'optimizecode': CommandInterface.OptimizeCode,
     'copy': CommandInterface.Copy,
     'cut': CommandInterface.Cut,
     'paste': CommandInterface.Paste
@@ -2650,7 +2654,8 @@ globalBasePath = None
 netServer = None
 
 
-def run():
+def run(inp=sys.stdin, out=sys.stdout, err=sys.stderr):
+    warnings.warn('This commandline interface is for testing only', DeprecationWarning)
     MessageHandler.IgnoreMessage('SolvingOp')
     MessageHandler.IgnoreMessage('DoneSolving')
     MessageHandler.IgnoreMessage('BeforePortDisconnect')
@@ -2688,7 +2693,7 @@ def run():
     interface = CommandInterface()
     while 1:
         try:
-            interface.ProcessCommandStream(sys.stdin, sys.stdout, sys.stdout)
+            interface.ProcessCommandStream(inp, out, err)
             break
         except CallBackException as e:
             interface.infoCallBack.handleMessage('CMDCallBackException', str(e))

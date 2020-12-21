@@ -20,7 +20,7 @@ from sim21.solver.Variables import *
 from sim21.unitop.BaseForReactors import QEXOTHERMIC_ISPOS_PAR, NURXN_PAR, REACTION, COEFF
 from sim21.unitop.BaseForReactors import RXNFFORMULA_PAR, RXNCONV, RXNEXTENT
 
-from sim21.kludges import cmp
+from sim21.support.kludges import cmp
 
 # Particular constants for this unit op
 BALANCEDRXN = 'BalancedRxn'

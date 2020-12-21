@@ -12,7 +12,6 @@ MultiSidedHeatExchangerOp - models a multisided heat exchanger solving simultane
 
 import math
 import operator
-import numpy as np
 
 from sim21.unitop import UnitOperations
 from sim21.unitop import Balance, Tower, Custom
@@ -22,7 +21,7 @@ from sim21.solver import EquationSolver
 from sim21.solver.Error import SimError
 from sim21.solver.Messages import MessageHandler
 from sim21.unitop.PipeSegment import PressureDropModel
-from sim21.kludges import cmp
+from sim21.support.kludges import cmp
 
 VALID_UNIT_OPERATIONS = ['Heater',
                          'Cooler',

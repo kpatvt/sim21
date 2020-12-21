@@ -11,7 +11,7 @@ from sim21.solver.Variables import *
 from sim21.thermo.ThermoAdmin import EnvelopeResults
 from sim21.unitop.Pump import DataSeries
 from sim21.unitop import Stream
-from sim21.kludges import cmp
+from sim21.support.kludges import cmp
 
 THCURVE_INDICATOR = 'TH'
 PHCURVE_INDICATOR = 'PH'
