@@ -32,6 +32,7 @@ Next Steps
 ----------
 
 * Implement basic thermodynamic provider with component database
+* Massive code cleanup (Use snake_case instead of CamelCase, Exception Handling)
 
 Credits
 -------
