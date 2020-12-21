@@ -1,6 +1,7 @@
 import sys
-from ypsim.error import FlashConvergenceError
-from ypsim.thermo.flash.basic import generate_2phase_estimates, basic_flash_temp_press_2phase
+
+from sim21.provider.error import FlashConvergenceError
+from sim21.provider.flash.basic import generate_2phase_estimates, basic_flash_temp_press_2phase
 
 NESTED_ITERATIONS_MAX = 50
 NESTED_PROPERTY_TOLERANCE = 1e-5
@@ -8,6 +9,8 @@ NESTED_PROPERTY_TOLERANCE = 1e-5
 
 def nested_press_prop_2phase(provider, press, prop_type, prop_target, delta_target,
                              feed_comp, start_k_values, start_temp, valid=None):
+    # This function fails horribly for a narrow boiling/single component mixture
+    # since there is a big jump in the property
     if valid is None:
         valid = provider.all_valid_components
 

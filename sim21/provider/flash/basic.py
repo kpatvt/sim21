@@ -2,11 +2,11 @@ from numba import njit
 import numpy as np
 from math import exp
 
-from ypsim.thermo.agg import AggregateByMole
-from ypsim.error import FlashConvergenceError
-from ypsim.thermo.flash.rachford_rice import possible_rr_2phase, solve_rr_2phase, dew_point_rr_2phase, bubble_point_rr_2phase
-from ypsim.thermo.flash.stability import two_phase_stability_test
-
+from sim21.provider.agg import AggregateByMole
+from sim21.provider.error import FlashConvergenceError
+from sim21.provider.flash.rachford_rice import possible_rr_2phase, solve_rr_2phase, dew_point_rr_2phase
+from sim21.provider.flash.rachford_rice import bubble_point_rr_2phase
+from sim21.provider.flash.stability import two_phase_stability_test
 
 __BASIC_TEMP_PRESS_FLASH_ITERATIONS = 30
 __BASIC_TEMP_PRESS_TOLERANCE = 1e-6
