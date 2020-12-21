@@ -26,6 +26,7 @@ Features
 --------
 
 * Updated for Python 3.x and removed major incompatibilities
+* Removed obsolete references and updated to use modern replacements (numpy, scipy)
 
 Next Steps
 ----------

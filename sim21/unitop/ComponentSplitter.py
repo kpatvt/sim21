@@ -72,7 +72,8 @@ class SimpleComponentSplitter(UnitOperations.UnitOperation):
         intercept this to set up splits list
         """
         super(SimpleComponentSplitter, self).ThermoChanged(thCaseObj)
-        if thCaseObj is None: return
+        if thCaseObj is None:
+            return
 
         thAdmin = thCaseObj.thermoAdmin
         provider = thCaseObj.provider

@@ -173,7 +173,8 @@ class IdealCompressorExpander(UnitOperations.UnitOperation):
         dp = dpPort.GetValue()
 
         sign = 1
-        if not self.isCompressor: sign = -1
+        if not self.isCompressor:
+            sign = -1
 
         if pOut is None:
             if dp is not None and pIn is not None:
@@ -436,7 +437,8 @@ class Compressor(UnitOperations.UnitOperation):
 
         # Solve for mole flow if possible
         q = self.GetPort(IN_PORT + 'Q').GetValue()  # J/s
-        if q is None: return
+        if q is None:
+            return
         mf = q * 3.6 / (h1 - h0)  # kmol/h
         inPort.SetPropValue(MOLEFLOW_VAR, mf, CALCULATED_V | PARENT_V)
 
@@ -826,7 +828,8 @@ class Expander(UnitOperations.UnitOperation):
 
         # Solve for mole flow if possible
         q = self.GetPort(OUT_PORT + 'Q').GetValue()  # J/s
-        if q is None: return
+        if q is None:
+            return
         mf = q * 3.6 / (h1 - h0)  # kmol/h
         inPort.SetPropValue(MOLEFLOW_VAR, mf, CALCULATED_V | PARENT_V)
 
@@ -1185,7 +1188,8 @@ class CompressorWithCurve(UnitOperations.UnitOperation):
             super(CompressorWithCurve, self).SetParameterValue(paramName, value)
         elif paramName == IGNORECURVE_PAR:
             # ...ignore the lookuptable and remove any specifications
-            if value == 'None': value = None
+            if value == 'None':
+                value = None
             self.LookupTable.SetParameterValue(IGNORED_PAR, value)
             if value:
                 port = self.GetPort(HEAD_PORT)
@@ -1445,7 +1449,8 @@ class ExpanderWithCurve(UnitOperations.UnitOperation):
             self.ForgetAllCalculations()
         if paramName == IGNORECURVE_PAR:
             # ...ignore the lookuptable and remove any specifications
-            if value == 'None': value = None
+            if value == 'None':
+                value = None
             self.LookupTable.SetParameterValue(IGNORED_PAR, value)
             if value:
                 port = self.GetPort(HEAD_PORT)

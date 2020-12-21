@@ -114,9 +114,12 @@ class OilDict(dict):
 
     def __setitem__(self, key, item):
         """Only specified types, no repetitions of values"""
-        if not isinstance(item, self._allowedType): return
-        if key in self: return
-        if item in list(self.values()): return
+        if not isinstance(item, self._allowedType):
+            return
+        if key in self:
+            return
+        if item in list(self.values()):
+            return
         dict.__setitem__(self, key, item)
 
     def GetType(self):
@@ -380,7 +383,8 @@ class Oil(BasicOilObject):
     def AddObject(self, obj, name):
         if isinstance(obj, Blend):
             thCase = self.GetThermoCase()
-            if thCase is None: return
+            if thCase is None:
+                return
             try:
                 obj.name = name
                 obj.parentObj = self

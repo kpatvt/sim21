@@ -39,8 +39,10 @@ class PortDict(dict):
 
     def __setitem__(self, key, item):
         """Only ports, no repetitions of values"""
-        if not isinstance(item, Port): return
-        if item in list(self.values()): return
+        if not isinstance(item, Port):
+            return
+        if item in list(self.values()):
+            return
         dict.__setitem__(self, key, item)
 
 
@@ -178,7 +180,8 @@ the method 'DeleteObj'
 
     def SetState(self, state):
         """Sets the state of a port (all fixed, all estimated, etc)"""
-        if self.state == state: return
+        if self.state == state:
+            return
         op = self.GetParent()
         if op:
             op.InfoMessage('ChangedPortState', (op.ShortestPortPath(self), state))
@@ -263,7 +266,8 @@ the method 'DeleteObj'
 
     def Disconnect(self, internalCall=False):
         """break connection to other port"""
-        if not self._connection: return
+        if not self._connection:
+            return
 
         parentOp = self._parentOp
 
@@ -412,7 +416,8 @@ the method 'DeleteObj'
                 # Estimate all the fixed props
                 prop._calcStatus &= ~ESTIMATED_V
         self._estimated = 0
-        if needUpdateConn: self.UpdateConnection()
+        if needUpdateConn:
+            self.UpdateConnection()
 
     def UpdateConnection(self):
         """passes any information available through the connection
@@ -489,7 +494,8 @@ the method 'DeleteObj'
         nu = 0
         for i in list(self._properties.values()):
             if i.GetValue() is not None:
-                if type_of is None or i.GetType().calcType & type_of: nu += 1
+                if type_of is None or i.GetType().calcType & type_of:
+                    nu += 1
         return nu
 
     def GetKnownProps(self, type_of=None):
@@ -1177,7 +1183,8 @@ class Port_Material(Port):
         var = propName.split('_', 1)
         if len(var) == 2:
             cmpIdx = self.GetCompoundNumber(var[1])
-            if cmpIdx is None: return None
+            if cmpIdx is None:
+                return None
 
             if var[0] == CMPMASSFRAC_VAR:
                 massCmps = MassCompoundList(self._compounds)
@@ -1189,25 +1196,29 @@ class Port_Material(Port):
                 flow = self.GetPropValue(MOLEFLOW_VAR)
                 if flow is not None:
                     frac = self._compounds.GetValues()[cmpIdx]
-                    if frac is not None: return frac * flow
+                    if frac is not None:
+                        return frac * flow
             elif var[0] == MASSFLOW_VAR:
                 flow = self.GetPropValue(MASSFLOW_VAR)
                 if flow is not None:
                     massCmps = MassCompoundList(self._compounds)
                     frac = massCmps.GetValues()[cmpIdx]
-                    if frac is not None: return frac * flow
+                    if frac is not None:
+                        return frac * flow
             elif var[0] == STDVOLFLOW_VAR:
                 flow = self.GetPropValue(STDVOLFLOW_VAR)
                 if flow is not None:
                     volCmps = StdVolCompoundList(self._compounds)
                     frac = volCmps.GetValues()[cmpIdx]
-                    if frac is not None: return frac * flow
+                    if frac is not None:
+                        return frac * flow
             else:
                 # Just return the proportional value based on mole fraction
                 value = self.GetPropValue(var[0])
                 if value is not None:
                     frac = self._compounds.GetValues()[cmpIdx]
-                    if frac is not None: return frac * value
+                    if frac is not None:
+                        return frac * value
 
         return None
 
@@ -1274,7 +1285,8 @@ class Port_Material(Port):
 
         cmps = self._compounds
         sumFracs = cmps.SumFractions()
-        if not sumFracs: return 0
+        if not sumFracs:
+            return 0
 
         parentOp = self._parentOp
 
@@ -1301,7 +1313,8 @@ class Port_Material(Port):
     def Flash(self, calcStatus=CALCULATED_V, skipCalcFlows=0):
         """ if flash need, call the thermo to do so
         returns 1 if a flash was done, 0 if not"""
-        if not skipCalcFlows: self.CalcFlows(calcStatus)  # just in case this can get H
+        if not skipCalcFlows:
+            self.CalcFlows(calcStatus)  # just in case this can get H
 
         readyToFlash = self.ReadyToFlash()
         alreadyFlashed = self.AlreadyFlashed()
@@ -1327,7 +1340,8 @@ class Port_Material(Port):
                 # Let the error be raised but wrap it as a SimError that notifies of the port that failed
                 raise SimError('FlashFailure', (self.GetPath(), str(e)))
 
-            if self._flashResults is None: return 0
+            if self._flashResults is None:
+                return 0
             self.AssignFlashResults(self._flashResults, calcStatus)
             self.CalcFlows(calcStatus)
             return 1
@@ -1358,7 +1372,8 @@ class Port_Material(Port):
 
         compounds = self._compounds
         nuCmps = len(compounds)
-        if not nuCmps: return None
+        if not nuCmps:
+            return None
 
         parentOp = self._parentOp
         if isForgetting is None:
@@ -1605,7 +1620,8 @@ class Port_Material(Port):
         if hasattr(obj, 'AttachToPort'):
             if self._attachedObj:
                 # disconnect existing connection
-                if obj == self._attachedObj: return
+                if obj == self._attachedObj:
+                    return
                 self.RemoveFromBorrowedIn(self._attachedObj)
                 self._attachedObj.DeleteObject(self)
             # connect to object
@@ -1646,7 +1662,8 @@ class Port_Energy(Port):
     def GetObject(self, description):
         """Get object. Hack to make ENERGY_VAR equivalent to WORK_VAR)"""
         obj = super(Port_Energy, self).GetObject(description)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         if description == WORK_VAR:
             return self.GetObject(ENERGY_VAR)
@@ -1881,7 +1898,8 @@ class Port_Signal(Port):
 
     def Disconnect(self, internalCall=False):
         """break connection to other port"""
-        if not self._connection: return
+        if not self._connection:
+            return
         if self._varType is None:
             self.DeleteProperty()
         super(Port_Signal, self).Disconnect()

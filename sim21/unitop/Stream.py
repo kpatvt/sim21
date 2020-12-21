@@ -143,7 +143,8 @@ class Stream_Material(UnitOperations.UnitOperation):
         return 1
 
     def ValidateOk(self):
-        if self.GetParameterValue(NULIQPH_PAR) <= 0: return 0
+        if self.GetParameterValue(NULIQPH_PAR) <= 0:
+            return 0
         return 1
 
 
@@ -251,7 +252,8 @@ class Stream_Signal(UnitOperations.UnitOperation):
             return 0
         if paramName == SIGTYPE_PAR:
             currName = self.parameters.get(SIGTYPE_PAR, None)
-            if not currName: return 1
+            if not currName:
+                return 1
             currName = currName.split('_', 1)[0]
             validateName = value.split('_', 1)[0]
             equivalent = 1
@@ -262,7 +264,8 @@ class Stream_Signal(UnitOperations.UnitOperation):
             except:
                 # if it failed comparing, then assume they are equivalent
                 pass
-            if equivalent: return 1
+            if equivalent:
+                return 1
 
             # The types are not equivalent. If any port is already connected, then
             # there will be a type conflict, hence, return false

@@ -73,25 +73,29 @@ class LLStage(UnitOperations.UnitOperation):
 
     def Solve(self):
         """Solve"""
-        if not self.ValidateOk(): return None
+        if not self.ValidateOk():
+            return None
 
         flash = self.GetChildUO(FLASH)
         t0 = self.GetPort(IN_PORT + str(0)).GetPropValue(T_VAR)
         t1 = self.GetPort(IN_PORT + str(1)).GetPropValue(T_VAR)
 
-        if t0 is None or t1 is None: return None
+        if t0 is None or t1 is None:
+            return None
         flash.GetPort(IN_PORT).SetPropValue(T_VAR, (t0 + t1) / 2.0, CALCULATED_V | PARENT_V)
 
         p0 = self.GetPort(IN_PORT + str(0)).GetPropValue(P_VAR)
         p1 = self.GetPort(IN_PORT + str(1)).GetPropValue(P_VAR)
-        if p0 is None or p1 is None: return None
+        if p0 is None or p1 is None:
+            return None
         flash.GetPort(IN_PORT).SetPropValue(P_VAR, (p0 + p1) / 2.0, CALCULATED_V | PARENT_V)
 
         return 1
 
     def ValidateOk(self):
         """True if the uo is ready to be calculated"""
-        if not self.GetThermo(): return 0
+        if not self.GetThermo():
+            return 0
         return 1
 
     def AddObject(self, obj, name, validChange=False):
@@ -300,14 +304,16 @@ class LiqLiqEx(Flowsheet.Flowsheet):
         if tempPort is not extPort:
             # Note that it only gets deleted here because it is borrowed
             # (i.e. the real owner of the port still keeps the port)
-            if tempPort: self.DeletePort(tempPort)
+            if tempPort:
+                self.DeletePort(tempPort)
             self.BorrowChildPort(extPort, self.drawTopName)
 
         tempPort = self.GetPort(self.drawBotName)
         if tempPort is not raffPort:
             # Note that it only gets deleted here because it is borrowed
             # (i.e. the real owner of the port still keeps the port)
-            if tempPort: self.DeletePort(tempPort)
+            if tempPort:
+                self.DeletePort(tempPort)
             self.BorrowChildPort(raffPort, self.drawBotName)
 
         self.reconnect = 0
@@ -363,10 +369,12 @@ class LiqLiqEx(Flowsheet.Flowsheet):
         """Solve"""
 
         self.FlashAllPorts()
-        if not self.ValidateOk(): return None
+        if not self.ValidateOk():
+            return None
         self.UpdateFeedIsLessDense()
         fld = self.feedIsLessDense
-        if self.reconnect: self.ConnectInnerPorts()
+        if self.reconnect:
+            self.ConnectInnerPorts()
         super(LiqLiqEx, self).Solve()  # get everything available
 
         # check to see if already solved
@@ -377,7 +385,8 @@ class LiqLiqEx(Flowsheet.Flowsheet):
         ZRaffinate = btmStage.GetPort(self.botPortOutName).GetPropValue(ZFACTOR_VAR)
         if ZExtract is None or ZRaffinate is None:
             # nope - initialize the stages and try again
-            if not self.InitStages(): return None
+            if not self.InitStages():
+                return None
             super(LiqLiqEx, self).Solve()
 
         return 1
@@ -385,22 +394,32 @@ class LiqLiqEx(Flowsheet.Flowsheet):
     def ValidateOk(self):
         """True if the uo is ready to be calculated"""
 
-        if self.IsForgetting(): return 0
-        if self.parentUO and self.parentUO.IsForgetting(): return 0
-        if self.parameters[NUSTAGES_PAR] <= 0: return 0
-        if not self.GetThermo(): return 0
+        if self.IsForgetting():
+            return 0
+        if self.parentUO and self.parentUO.IsForgetting():
+            return 0
+        if self.parameters[NUSTAGES_PAR] <= 0:
+            return 0
+        if not self.GetThermo():
+            return 0
 
         feedPort = self.GetPort(self.feedTopName)
         solvPort = self.GetPort(self.feedBotName)
         nuStages = self.parameters[NUSTAGES_PAR]
 
-        if feedPort.GetNuKnownProps(CANFLASH_PROP) < 2: return 0
-        if feedPort.GetNuKnownProps(EXTENSIVE_PROP) < 1: return 0
-        if not feedPort.GetCompounds().AreValuesReady(): return 0
+        if feedPort.GetNuKnownProps(CANFLASH_PROP) < 2:
+            return 0
+        if feedPort.GetNuKnownProps(EXTENSIVE_PROP) < 1:
+            return 0
+        if not feedPort.GetCompounds().AreValuesReady():
+            return 0
 
-        if solvPort.GetNuKnownProps(CANFLASH_PROP) < 2: return 0
-        if solvPort.GetNuKnownProps(EXTENSIVE_PROP) < 1: return 0
-        if not solvPort.GetCompounds().AreValuesReady(): return 0
+        if solvPort.GetNuKnownProps(CANFLASH_PROP) < 2:
+            return 0
+        if solvPort.GetNuKnownProps(EXTENSIVE_PROP) < 1:
+            return 0
+        if not solvPort.GetCompounds().AreValuesReady():
+            return 0
 
         return 1
 
@@ -411,7 +430,8 @@ class LiqLiqEx(Flowsheet.Flowsheet):
 
         """
         thCaseObj = self.GetThermo()
-        if not thCaseObj: return 0
+        if not thCaseObj:
+            return 0
         nuStages = self.parameters[NUSTAGES_PAR]
         fld = self.feedIsLessDense
 
@@ -553,5 +573,6 @@ class LiqLiqEx(Flowsheet.Flowsheet):
         """
         vals = []
         delta = (bound2 - bound1) / (nuVals - 1)
-        for i in range(nuVals): vals.append(delta * i + bound1)
+        for i in range(nuVals):
+            vals.append(delta * i + bound1)
         return vals

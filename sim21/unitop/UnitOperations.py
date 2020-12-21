@@ -40,9 +40,12 @@ class UnitOperationDict(dict):
 
     def __setitem__(self, key, item):
         """Only unit operations, no repetitions of values"""
-        if not isinstance(item, UnitOperation): return
-        if key in self: return
-        if item in list(self.values()): return
+        if not isinstance(item, UnitOperation):
+            return
+        if key in self:
+            return
+        if item in list(self.values()):
+            return
         dict.__setitem__(self, key, item)
 
 
@@ -380,7 +383,8 @@ class UnitOperation(object):
                 flashProps = thermoAdmin.GetPropNamesCapableOfFlash(provider, thCase)
                 port.SetAsFlashProps(flashProps)
             if cmps:
-                for j in cmps: port.AppendCompound(j)
+                for j in cmps:
+                    port.AppendCompound(j)
             return port
         elif portType & ENE:
             port = Ports.Port_Energy(portType, self, name)
@@ -400,13 +404,17 @@ class UnitOperation(object):
     def GetPort(self, name):
         """return the port named name - counts on unique names"""
         port = self.ports_mat_IN.get(name, None)
-        if port: return port
+        if port:
+            return port
         port = self.ports_mat_OUT.get(name, None)
-        if port: return port
+        if port:
+            return port
         port = self.ports_ene_IN.get(name, None)
-        if port: return port
+        if port:
+            return port
         port = self.ports_ene_OUT.get(name, None)
-        if port: return port
+        if port:
+            return port
         port = self.ports_sig.get(name, None)
         return port
 
@@ -653,9 +661,11 @@ class UnitOperation(object):
 
         """
         uOp = self.GetChildUO(uOpName)
-        if not uOp: return
+        if not uOp:
+            return
         port = uOp.GetPort(portName)
-        if not port: return
+        if not port:
+            return
         port.Disconnect()
 
     def GetAllChildConnections(self, portType=IN | OUT | MAT | ENE | SIG):
@@ -711,7 +721,8 @@ class UnitOperation(object):
         child unit op childName
         """
         uOp = self.GetChildUO(childName)
-        if uOp: uOp.UpdateConnections(portType)
+        if uOp:
+            uOp.UpdateConnections(portType)
 
     def BorrowChildPort(self, port, name):
         """
@@ -751,7 +762,8 @@ class UnitOperation(object):
         """
         if self.parentUO:
             path = self.parentUO.ShortestPortPath(port)
-            if path: return path
+            if path:
+                return path
 
         if port.GetParent() == self:
             return port.GetPath()
@@ -769,14 +781,19 @@ class UnitOperation(object):
 
         portType = port.GetPortType()
         if portType & MAT:
-            if portType & IN: return GetPathOfPortFrom(self, port, self.ports_mat_IN)
-            if portType & OUT: return GetPathOfPortFrom(self, port, self.ports_mat_OUT)
+            if portType & IN:
+                return GetPathOfPortFrom(self, port, self.ports_mat_IN)
+            if portType & OUT:
+                return GetPathOfPortFrom(self, port, self.ports_mat_OUT)
 
         if portType & ENE:
-            if portType & IN: return GetPathOfPortFrom(self, port, self.ports_ene_IN)
-            if portType & OUT: return GetPathOfPortFrom(self, port, self.ports_ene_OUT)
+            if portType & IN:
+                return GetPathOfPortFrom(self, port, self.ports_ene_IN)
+            if portType & OUT:
+                return GetPathOfPortFrom(self, port, self.ports_ene_OUT)
 
-        if portType & SIG: return GetPathOfPortFrom(self, port, self.ports_sig)
+        if portType & SIG:
+            return GetPathOfPortFrom(self, port, self.ports_sig)
 
     def MakingPortConnection(self, myPort, otherPort):
         """
@@ -866,13 +883,17 @@ class UnitOperation(object):
     def NumberLiqPhases(self):
         """ return the number of liquid phases used for this operation"""
         nPhases = self.GetParameterValue(NULIQPH_PAR)
-        if nPhases is not None: return nPhases
+        if nPhases is not None:
+            return nPhases
+
         return 1
 
     def NumberSolidPhases(self):
         """ return the number of solid phases used for this operation"""
         nPhases = self.GetParameterValue(NUSOLPH_PAR)
-        if nPhases is not None: return nPhases
+        if nPhases is not None:
+            return nPhases
+
         return 0
 
     def ShareProperties(self, v, p1, p2):
@@ -998,7 +1019,8 @@ class UnitOperation(object):
     def GetChildName(self, child):
         """ return the name of the child - iterative for now"""
         for name in list(self.chUODict.keys()):
-            if self.chUODict[name] is child: return name
+            if self.chUODict[name] is child:
+                return name
 
     def GetChildUONames(self):
         """Names of the child uos"""
@@ -1018,7 +1040,8 @@ class UnitOperation(object):
         #         the uo to exist somewhere else, so the uo would disappear from the
         #         parent uo, but not from that other instance
         #       Needs to disconnect all the ports before deleting it
-        if name not in self.chUODict: return
+        if name not in self.chUODict:
+            return
         self.chUODict[name].CleanUp()
         del self.chUODict[name]
 
@@ -1153,7 +1176,8 @@ class UnitOperation(object):
 
         for port in self.GetPorts(MAT | IN | OUT):
             # Only operate on ports directly owned (prevents rework and fix to cross conn)
-            if not port.GetParent() is self: continue
+            if not port.GetParent() is self:
+                continue
 
             port.ForgetAllCalculations()
             port.SetAsFlashProps(flashProps)
@@ -1328,7 +1352,8 @@ class UnitOperation(object):
 
     def Solver(self):
         """return the flowsheet solver for this op"""
-        if self.parentUO: return self.parentUO.Solver()
+        if self.parentUO:
+            return self.parentUO.Solver()
 
     def GetTolerance(self):
         if MAXERROR_PAR in self.parameters:
@@ -1376,7 +1401,8 @@ class UnitOperation(object):
 
     def PushResetCalcPort(self, port):
         """add port to stack of calculated to have new cleared"""
-        if self.parentUO: self.parentUO.PushResetCalcPort(port)
+        if self.parentUO:
+            self.parentUO.PushResetCalcPort(port)
 
     def PopResetCalcPort(self):
         """pop port from stack calculated to have new cleared"""
@@ -1387,7 +1413,8 @@ class UnitOperation(object):
 
     def PushResetFixedPort(self, port):
         """add port to stack of fixed to have new cleared"""
-        if self.parentUO: self.parentUO.PushResetFixedPort(port)
+        if self.parentUO:
+            self.parentUO.PushResetFixedPort(port)
 
     def PopResetFixedPort(self):
         """pop port from stack of fixed to have new cleared"""
@@ -1399,7 +1426,8 @@ class UnitOperation(object):
     def PushIterationProperty(self, prop, value):
         """add BasicProperty prop to stack of estimated properties
         that have with new values available"""
-        if self.parentUO: self.parentUO.PushIterationProperty(prop, value)
+        if self.parentUO:
+            self.parentUO.PushIterationProperty(prop, value)
 
     def PopIterationProperty(self):
         """pop BasicProperty prop from stack of estimated properties
@@ -1413,7 +1441,8 @@ class UnitOperation(object):
     def PushConsistencyError(self, prop, value):
         """add BasicProperty prop to the inconsistency list
         value is the conflicting value calculated"""
-        if self.parentUO: self.parentUO.PushConsistencyError(prop, value)
+        if self.parentUO:
+            self.parentUO.PushConsistencyError(prop, value)
 
     def PopConsistencyError(self):
         """pop BasicProperty (prop, value) tuple from list of
@@ -1441,10 +1470,12 @@ class UnitOperation(object):
         return self._pushBlocked
 
     def IsForgetting(self):
-        if self.parentUO: return self.parentUO.IsForgetting()
+        if self.parentUO:
+            return self.parentUO.IsForgetting()
 
     def IsSolving(self):
-        if self.parentUO: return self.parentUO.IsSolving()
+        if self.parentUO:
+            return self.parentUO.IsSolving()
 
     def Forget(self):
         """ called on a forget pass to get rid of any newly calculated values"""
@@ -1601,8 +1632,10 @@ class UnitOperation(object):
             # Can safely point to the same thing as they are global types
             clone.parameterPropertyTypes[paramName] = self.parameterPropertyTypes[paramName]
 
-        if "parameters" in attrNamesToClone: attrNamesToClone.remove("parameters")
-        if "parameterPropertyTypes" in attrNamesToClone: attrNamesToClone.remove("parameterPropertyTypes")
+        if "parameters" in attrNamesToClone:
+            attrNamesToClone.remove("parameters")
+        if "parameterPropertyTypes" in attrNamesToClone:
+            attrNamesToClone.remove("parameterPropertyTypes")
 
         return attrNamesToClone
 
@@ -1619,8 +1652,11 @@ class UnitOperation(object):
             # "inherit" the thermo case
             thCaseObj.LinkUnitOp(clone)
 
-        if "thermoAdmin" in attrNamesToClone: attrNamesToClone.remove("thermoAdmin")
-        if "thCaseObj" in attrNamesToClone: attrNamesToClone.remove("thCaseObj")
+        if "thermoAdmin" in attrNamesToClone:
+            attrNamesToClone.remove("thermoAdmin")
+
+        if "thCaseObj" in attrNamesToClone:
+            attrNamesToClone.remove("thCaseObj")
 
         return attrNamesToClone
 
@@ -1639,7 +1675,9 @@ class UnitOperation(object):
                     raise SimError('FailedCloning', child.GetPath())
             clone._tempCmpNames = None
             clone._tempMapCmps = None
-        if "chUODict" in attrNamesToClone: attrNamesToClone.remove("chUODict")
+
+        if "chUODict" in attrNamesToClone:
+            attrNamesToClone.remove("chUODict")
 
         return attrNamesToClone
 
@@ -1704,11 +1742,16 @@ class UnitOperation(object):
                     if portClone.GetParent() is clone:
                         port.CloneContents(portClone)
 
-        if "ports_mat_IN" in attrNamesToClone:  attrNamesToClone.remove("ports_mat_IN")
-        if "ports_mat_OUT" in attrNamesToClone: attrNamesToClone.remove("ports_mat_OUT")
-        if "ports_ene_IN" in attrNamesToClone:  attrNamesToClone.remove("ports_ene_IN")
-        if "ports_ene_OUT" in attrNamesToClone: attrNamesToClone.remove("ports_ene_OUT")
-        if "ports_sig" in attrNamesToClone:     attrNamesToClone.remove("ports_sig")
+        if "ports_mat_IN" in attrNamesToClone:
+            attrNamesToClone.remove("ports_mat_IN")
+        if "ports_mat_OUT" in attrNamesToClone:
+            attrNamesToClone.remove("ports_mat_OUT")
+        if "ports_ene_IN" in attrNamesToClone:
+            attrNamesToClone.remove("ports_ene_IN")
+        if "ports_ene_OUT" in attrNamesToClone:
+            attrNamesToClone.remove("ports_ene_OUT")
+        if "ports_sig" in attrNamesToClone:
+            attrNamesToClone.remove("ports_sig")
 
         return attrNamesToClone
 
@@ -2051,7 +2094,8 @@ def _SafeClone(item):
 
 def CalculateNonSupportedFlash(unitOp, frac, knownTargetProp, knownFlashProp, iterProp, lastSoln=None, min_val=None,
                                max_val=None):
-    """Complementary method that attempts to calculate flashes that are not supported by the prop pkg
+    """
+    Complementary method that attempts to calculate flashes that are not supported by the prop pkg
     by iterating with supported flashes
 
     thCaseObject - Thermo object of the parent unit op
@@ -2062,7 +2106,6 @@ def CalculateNonSupportedFlash(unitOp, frac, knownTargetProp, knownFlashProp, it
     lastSoln - Value of the last converged solution if available
 
     returns - Tuple with (LastPropValue, ConvergedBoolean)
-
     """
 
     # Main convergence parameters

@@ -124,10 +124,12 @@ class EquationBasedOp(UnitOperations.UnitOperation):
 
         # In case there is something to be done before getting to business
         # Also used to solve stuff that can be solved already even if the whole system of equations is not ready
-        if not self.PrepareForSolve(): return
+        if not self.PrepareForSolve():
+            return
 
         # Check for zero flow. Use this method to whatever there is to solve when there is zero flow
-        if self.IsZeroFlow(): return
+        if self.IsZeroFlow():
+            return
 
         # Do not solve if forgetting
         if self.IsForgetting():
@@ -136,7 +138,8 @@ class EquationBasedOp(UnitOperations.UnitOperation):
         # self.InfoMessage('5', (time.asctime(),))
         # Load known and unknown values. Estimate and initialize the unknowns
         # Return False if can not solve yet
-        if not self.LoadUnknowns(u): return
+        if not self.LoadUnknowns(u):
+            return
 
         # self.InfoMessage('6', (time.asctime(),))
         # Make sure it is not overspecified
@@ -695,7 +698,8 @@ def CreateLinearDistArray(nuVals, bound1, bound2):
         vals = np.zeros(nuVals, dtype=float)
 
     delta = (bound2 - bound1) / (nuVals - 1)
-    for i in range(nuVals): vals[i] = delta * i + bound1
+    for i in range(nuVals):
+        vals[i] = delta * i + bound1
 
     return vals
 
@@ -839,7 +843,8 @@ def RungeKutta4(parent, yInit, odeSettings, yMin=None, yMax=None, yScale=None):
         h = hNext
 
         # Make sure it won't go over
-        if (x + h - xEnd) * (x + h - xInit) > 0.0: h = xEnd - x
+        if (x + h - xEnd) * (x + h - xInit) > 0.0:
+            h = xEnd - x
 
         # Iterate until a proper step size is found
         innerCnt = 0
@@ -935,7 +940,8 @@ def EulerExplicit(parent, yInit, odeSettings, yMin=None, yMax=None, yScale=None)
         h = hNext
 
         # Make sure it won't go over
-        if (x + h - xEnd) * (x + h - xInit) > 0.0: h = xEnd - x
+        if (x + h - xEnd) * (x + h - xInit) > 0.0:
+            h = xEnd - x
 
         # Iterate until a proper step size is found
         innerCnt = 0
@@ -1056,7 +1062,8 @@ def EulerImplicit(parent, yInit, odeSettings, yMin=None, yMax=None, yScale=None)
         h = hNext
 
         # Make sure it won't go over
-        if (x + h - xEnd) * (x + h - xInit) > 0.0: h = xEnd - x
+        if (x + h - xEnd) * (x + h - xInit) > 0.0:
+            h = xEnd - x
 
         # Scale values
         if autoScale:

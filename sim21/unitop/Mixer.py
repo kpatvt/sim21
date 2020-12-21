@@ -40,7 +40,8 @@ class Mixer(UnitOperations.UnitOperation):
         """Set the value of a parameter"""
 
         super(Mixer, self).SetParameterValue(paramName, value)
-        if paramName == NUSTIN_PAR: self.UpdatePortsIn()
+        if paramName == NUSTIN_PAR:
+            self.UpdatePortsIn()
 
     def UpdatePortsIn(self):
         """Update the amount and names of the ports in"""

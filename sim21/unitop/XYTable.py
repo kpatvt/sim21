@@ -59,7 +59,8 @@ class DataSeries(object):
 
     def GetValues(self):
         vals = []
-        for i in range(len(self._myData)): vals.append(self._myData[i])
+        for i in range(len(self._myData)):
+            vals.append(self._myData[i])
         return vals
 
     def GetType(self):
@@ -84,10 +85,12 @@ class DataSeries(object):
         else:
             if idx <= 0:
                 idx1 = 0
-                if not allowExtrap: return self._myData[0]
+                if not allowExtrap:
+                    return self._myData[0]
             elif idx >= n - 1:
                 idx1 = n - 2
-                if not allowExtrap: return self._myData[n - 1]
+                if not allowExtrap:
+                    return self._myData[n - 1]
             else:
                 idx1 = int(idx)
             return self._myData[idx1] + (self._myData[idx1 + 1] - self._myData[idx1]) * (idx - idx1)

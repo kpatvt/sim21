@@ -117,7 +117,8 @@ class Controller(UnitOperations.UnitOperation):
         tol = self.GetTolerance()
         try:
             scaleFactor = self.monitoredPort.GetType().scaleFactor
-            if scaleFactor == -1.0: scaleFactor = 1.0
+            if scaleFactor == -1.0:
+                scaleFactor = 1.0
         except:
             scaleFactor = 1.0
         return tol * scaleFactor
@@ -127,7 +128,8 @@ class Controller(UnitOperations.UnitOperation):
 
         try:
             scaleFactor = self.monitoredPort.GetType().scaleFactor
-            if scaleFactor == -1.0: scaleFactor = 1.0
+            if scaleFactor == -1.0:
+                scaleFactor = 1.0
         except:
             scaleFactor = 1.0
         self.SetParameterValue(MAXERROR_PAR, value / scaleFactor)
@@ -140,7 +142,8 @@ class Controller(UnitOperations.UnitOperation):
 
     def GetObject(self, desc):
         obj = super(Controller, self).GetObject(desc)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         if desc == MAXABSERROR_PAR:
             obj = AbsoluteTolerance(self)
@@ -214,7 +217,8 @@ class Controller(UnitOperations.UnitOperation):
         scaleFactor = inPort.GetType().scaleFactor
         if not scaleFactor:
             return None
-        if scaleFactor < 0.0: scaleFactor = 1.0
+        if scaleFactor < 0.0:
+            scaleFactor = 1.0
 
         err = (dependent - target) / scaleFactor
         self.unitOpMessage = ('ErrorValue', str(err))
@@ -237,7 +241,8 @@ class Controller(UnitOperations.UnitOperation):
         return the minimum scaled appropriately
         """
         minV = self.minPort.GetValue()
-        if minV is None: minV = -largestValue
+        if minV is None:
+            minV = -largestValue
 
         return (minV - self._base) / self._stepSize
 
@@ -246,7 +251,8 @@ class Controller(UnitOperations.UnitOperation):
         return the maximum scaled appropriately
         """
         maxV = self.maxPort.GetValue()
-        if maxV is None: maxV = largestValue
+        if maxV is None:
+            maxV = largestValue
 
         return (maxV - self._base) / self._stepSize
 
@@ -268,9 +274,11 @@ class Controller(UnitOperations.UnitOperation):
             outports = (self.controlledPort, self.minPort, self.maxPort, self.stepsizePort)
 
             if myPort == self.monitoredPort:
-                if not self.targetPort.IsPortConnected(): cleanIn = 1
+                if not self.targetPort.IsPortConnected():
+                    cleanIn = 1
             elif myPort == self.targetPort:
-                if not self.monitoredPort.IsPortConnected(): cleanIn = 1
+                if not self.monitoredPort.IsPortConnected():
+                    cleanIn = 1
             else:
                 if myPort == self.controlledPort:
                     self.NotifyControlledPortChange('BeforeControllerDisconnect', myPort.IsPortConnected())
@@ -374,7 +382,8 @@ class ControllerSolver(object):
         # For bisection
         numABisect = self.numberActiveBisect = len(self.activeControllersBisect)
 
-        if self.numberActive + self.numberActiveBisect == 0: return
+        if self.numberActive + self.numberActiveBisect == 0:
+            return
 
         # For broyden
         maxErr1 = 0.0
@@ -446,7 +455,9 @@ class ControllerSolver(object):
 
         iterations = 0
         maxIter = flowsheet.GetParameterValue(MAXITERCONT_PAR)
-        if not maxIter: maxIter = 1E10  # A very large number
+        if not maxIter:
+            maxIter = 1E10  # A very large number
+
         while iterations < maxIter:  # main loop
             converged = 0
             iterations += 1

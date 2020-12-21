@@ -265,12 +265,15 @@ class PipeSegment(EquationSolver.EquationBasedOp):
             if profile is not None:
                 return profile
             w = self.inPort.GetPropValue(MASSFLOW_VAR)  # kg/h
-            if w is None: return None
+            if w is None:
+                return None
             w /= 3600.0  # kg/s
             massDen = self.GetObject(MASSDEN_VAR)  # kg/m3
-            if not massDen: return None
+            if not massDen:
+                return None
             diam = self.iDiamPort.GetValue()  # m
-            if not diam: return None
+            if not diam:
+                return None
             crossArea = PI * (diam / 2.0) ** 2  # m2
             profile = w / (crossArea * massDen)  # m/s
             self.storedProfiles['Velocity'] = profile
@@ -310,8 +313,10 @@ class PipeSegment(EquationSolver.EquationBasedOp):
 
         # thermo and arrays should be there
         thCaseObj = self.GetThermo()
-        if not thCaseObj: return None
-        if not self.hArray or not self.pArray: return None
+        if not thCaseObj:
+            return None
+        if not self.hArray or not self.pArray:
+            return None
 
         # See if the results are already loaded in the flash results array
         if self.flashResultsArray and len(self.flashResultsArray) == nuSections + 1:
@@ -346,15 +351,18 @@ class PipeSegment(EquationSolver.EquationBasedOp):
 
         # Load the compositions
         fracs = self.inPort.GetCompositionValues()
-        if not fracs or None in fracs: return None
+        if not fracs or None in fracs:
+            return None
         nuCmps = len(fracs)
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
         profile = None
 
         pArr = self.GetObject(P_VAR)
         hArr = self.GetObject(H_VAR)
-        if not pArr: return None
-        if not hArr: return None
+        if not pArr:
+            return None
+        if not hArr:
+            return None
         # Do a flash for what is needed
         if propName != VPFRAC_VAR:
             # Play with fracs to get them in an array with the same fracs for ech segment
@@ -901,7 +909,8 @@ class PipeSegment(EquationSolver.EquationBasedOp):
                 results = thAdmin.Flash(prov, case, cmps, matDict, nuLiqPhases, [H_VAR], nuSolPhases)
                 h0Val = results.bulkProps[0]  # kJ/kmol
                 h0Val /= mw  # kJ/kg
-                if h1Val is None: h1Val = h0Val
+                if h1Val is None:
+                    h1Val = h0Val
                 self.t0Spec = t0
             else:
                 t1 = outPort.GetPropValue(T_VAR)
@@ -912,7 +921,8 @@ class PipeSegment(EquationSolver.EquationBasedOp):
                     results = thAdmin.Flash(prov, case, cmps, matDict, nuLiqPhases, [H_VAR], nuSolPhases)
                     h1Val = results.bulkProps[0]  # kJ/kmol
                     h1Val /= mw  # kJ/kg
-                    if h0Val is None: h0Val = h1Val
+                    if h0Val is None:
+                        h0Val = h1Val
                     self.t1Spec = t1
 
             matDict[T_VAR].SetValue(None, UNKNOWN_V)
@@ -2186,8 +2196,10 @@ class PressureDropModel(PipeObject):
             dPFracLiq = 0.0
 
         # Make sure we have something there
-        if not dPFracGas: return dPFracLiq
-        if not dPFracLiq: return dPFracGas
+        if not dPFracGas:
+            return dPFracLiq
+        if not dPFracLiq:
+            return dPFracGas
 
         chi = math.sqrt(dPFracLiq / dPFracGas)
 

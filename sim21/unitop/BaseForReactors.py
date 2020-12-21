@@ -42,7 +42,8 @@ class ReactionDisplay(object):
         result = 'Reaction = ' + rxn.FormulaString() + '\nOrder = ' + \
                  str(rxn.GetParameterValue(RXNORDER_PAR)) + '\nStoichmetric coefficients:'
         maxLength = 0
-        for cmpName in rxn.cmpNames: maxLength = max(maxLength, len(cmpName))
+        for cmpName in rxn.cmpNames:
+            maxLength = max(maxLength, len(cmpName))
         for i in range(len(rxn.stoichCoeffs)):
             result += '\n   ' + rxn.cmpNames[i] + ' ' * (maxLength - len(rxn.cmpNames[i]) + 2)
             v = rxn.stoichCoeffs[i]
@@ -50,7 +51,8 @@ class ReactionDisplay(object):
                 result += '%f' % v
             else:
                 result += ' %f' % v
-            if i == rxn.baseCompIdx: result += ' (Base Comp)'
+            if i == rxn.baseCompIdx:
+                result += ' (Base Comp)'
         return result
 
     def CleanUp(self):
@@ -146,7 +148,8 @@ class Reaction(UnitOperations.UnitOperation):
     def ParseFormula(self):
         eqnStr = self.parameters[RXNFFORMULA_PAR]
         eqn = eqnStr  # keep a copy of the original equation
-        if eqnStr is None or eqnStr == '': return
+        if eqnStr is None or eqnStr == '':
+            return
 
         # reset all coeffs to zero
         cmpNames = self.GetCompoundNames()
@@ -261,13 +264,17 @@ class Reaction(UnitOperations.UnitOperation):
         self.ParseFormula()
 
     def ValidateOk(self):
-        if self.baseCompIdx < 0: return 0
+        if self.baseCompIdx < 0:
+            return 0
         eqn = self.parameters[RXNFFORMULA_PAR]
-        if eqn is None or eqn == '': return 0
+        if eqn is None or eqn == '':
+            return 0
         cmpNames = self.GetCompoundNames()
-        if len(cmpNames) > 0 and len(self.stoichCoeffs) == 0: return 0
+        if len(cmpNames) > 0 and len(self.stoichCoeffs) == 0:
+            return 0
         if self.rxnConv:
-            if self.rxnConv.GetValue() is None: return 0
+            if self.rxnConv.GetValue() is None:
+                return 0
         return 1
 
     def BalancedRxn(self):
@@ -477,7 +484,9 @@ class ReactorProperty(ReactorVariable):
         self.atInlet = isIn
 
     def ReactorPortName(self):
-        if self.atInlet: return 'Variable%sIn_%s' % (self.varType, self.name)
+        if self.atInlet:
+            return 'Variable%sIn_%s' % (self.varType, self.name)
+
         return 'Variable%sOut_%s' % (self.varType, self.name)
 
     def GetCurrentReactorValue(self):

@@ -671,9 +671,11 @@ class Balance:
 
         # Get some thermo info
         parentOp = xPort._parentOp
-        if parentOp is None: return balanced
+        if parentOp is None:
+            return balanced
         thCaseObj = parentOp.GetThermo()
-        if thCaseObj is None: return balanced
+        if thCaseObj is None:
+            return balanced
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
         refT = parentOp.GetStdVolRefT()
 
@@ -719,7 +721,8 @@ class Balance:
 
         if mode == VOLFLOW_VAR:
             xP = xPort.GetPropValue(P_VAR)
-            if xP is None: return balanced
+            if xP is None:
+                return balanced
             nuSolids = parentOp.NumberSolidPhases()
             propsDict = MaterialPropertyDict()
             xList = CompoundList(None)
@@ -851,7 +854,8 @@ class BalanceOp(UnitOperations.UnitOperation):
         # now outlet material ports
         nuPorts = self.GetNumberPorts(MAT | OUT)
         nuStOut = self.GetParameterValue(NUSTOUT_PAR + S_MAT)
-        if nuStOut is None: return
+        if nuStOut is None:
+            return
 
         for i in range(nuPorts, nuStOut, -1):
             self.DeletePortNamed(OUT_PORT + str(i - 1))
@@ -861,7 +865,8 @@ class BalanceOp(UnitOperations.UnitOperation):
         # inlet energy ports
         nuPorts = self.GetNumberPorts(ENE | IN)
         nuStIn = self.GetParameterValue(NUSTIN_PAR + S_ENE)
-        if nuStIn is None: return
+        if nuStIn is None:
+            return
 
         for i in range(nuPorts, nuStIn, -1):
             self.DeletePortNamed(IN_PORT + 'Q' + str(i - 1))
@@ -871,7 +876,8 @@ class BalanceOp(UnitOperations.UnitOperation):
         # outlet energy ports
         nuPorts = self.GetNumberPorts(ENE | OUT)
         nuStOut = self.GetParameterValue(NUSTOUT_PAR + S_ENE)
-        if nuStOut is None: return
+        if nuStOut is None:
+            return
 
         for i in range(nuPorts, nuStOut, -1):
             self.DeletePortNamed(OUT_PORT + 'Q' + str(i - 1))
@@ -880,7 +886,8 @@ class BalanceOp(UnitOperations.UnitOperation):
 
         # now create the balance
         balanceType = self.GetParameterValue(BALANCETYPE_PAR)
-        if balanceType is None: return
+        if balanceType is None:
+            return
         self._balance = Balance(balanceType)
         for port in self.GetPorts(MAT | ENE | IN | OUT):
             if port.GetPortType() & IN:

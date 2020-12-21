@@ -24,7 +24,8 @@ def TestSimpleFlash():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # Load vals
     flash = Flash.SimpleFlash()
@@ -49,7 +50,8 @@ def TestSimpleFlash():
     for i in portsIn:
         comp = flash.GetCompositionValues(i)
         print('Composition of port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port in "', i, '":')
@@ -63,14 +65,16 @@ def TestSimpleFlash():
         props = port.GetArrPropValue(LNFUG_VAR)  # LNFUG_VAR,
         print('Array of ', LNFUG_VAR, ' of port in "', i, '":')
         if props:
-            for j in range(len(props)): print('ln fug of ', cmpNames[j], ': ', props[j])
+            for j in range(len(props)):
+                print('ln fug of ', cmpNames[j], ': ', props[j])
         print('')
 
     # Print some info out
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port out "', i, '":')
@@ -84,7 +88,8 @@ def TestSimpleFlash():
         props = port.GetArrPropValue(LNFUG_VAR)  # LNFUG_VAR,
         print('Array of ', LNFUG_VAR, ' of port out "', i, '":')
         if props:
-            for j in range(len(props)): print('ln fug of ', cmpNames[j], ': ', props[j])
+            for j in range(len(props)):
+                print('ln fug of ', cmpNames[j], ': ', props[j])
         print('')
 
     print("""Finished SimpleFlash ++++++++++++++++++++++++++++++""")
@@ -103,7 +108,8 @@ def TestSimpleFlash2LPhase():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # Load vals
     flash = Flash.SimpleFlash()
@@ -132,7 +138,8 @@ def TestSimpleFlash2LPhase():
     for i in portsIn:
         comp = flash.GetCompositionValues(i)
         print('Composition of port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port in "', i, '":')
@@ -145,7 +152,8 @@ def TestSimpleFlash2LPhase():
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port out "', i, '":')
@@ -170,7 +178,8 @@ def TestMixAndFlash():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     flowsheet = Flowsheet.Flowsheet()
     flowsheet.SetThermoAdmin(thAdmin)
@@ -210,7 +219,8 @@ def TestMixAndFlash():
     for i in portsIn:
         comp = flash.GetCompositionValues(i)
         print('Composition of port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port in "', i, '":')
@@ -223,7 +233,8 @@ def TestMixAndFlash():
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port out "', i, '":')
@@ -248,7 +259,8 @@ def TestLiqLiqEx():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # Load vals
     lle = LiqLiqExt.LiqLiqEx()
@@ -286,7 +298,8 @@ def TestLiqLiqEx():
     for i in portsIn:
         comp = lle.GetCompositionValues(i)
         print('Composition of port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port in "', i, '":')
@@ -299,7 +312,8 @@ def TestLiqLiqEx():
     for i in portsOut:
         comp = lle.GetCompositionValues(i)
         print('Composition of port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port out "', i, '":')
@@ -324,7 +338,8 @@ def TestHeater():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # Load vals
     heater = Heater.Heater()
@@ -355,7 +370,8 @@ def TestHeater():
     for i in portsIn:
         comp = heater.GetCompositionValues(i)
         print('Composition of port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port in "', i, '":')
@@ -369,7 +385,8 @@ def TestHeater():
     for i in portsOut:
         comp = heater.GetCompositionValues(i)
         print('Composition of port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of port out "', i, '":')
@@ -395,7 +412,8 @@ def TestHeatEx():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # parent flowsheet
     flowsheet = Flowsheet.Flowsheet()
@@ -457,7 +475,8 @@ def TestHeatEx():
         print('')
 
         print('Composition')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
     print("""Finished Heat Exchanger ++++++++++++++++++++++++++++++""")
@@ -476,7 +495,8 @@ def TestFlowsh1():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # Create unit Operations
     stream = Stream.Stream_Material()
@@ -548,7 +568,8 @@ def TestFlowsh1():
     for i in portsIn:
         comp = flash.GetCompositionValues(i)
         print('Composition of port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of flash port in "', i, '":')
@@ -561,7 +582,8 @@ def TestFlowsh1():
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of flash port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of flash port out "', i, '":')
@@ -585,7 +607,8 @@ def TestFlowsh2():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # SetStream
     stream = Stream.Stream_Material()
@@ -657,7 +680,8 @@ def TestFlowsh2():
     for i in portsIn:
         comp = flash.GetCompositionValues(i)
         print('Composition of port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of flash port in "', i, '":')
@@ -670,7 +694,8 @@ def TestFlowsh2():
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of flash port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmpNames[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmpNames[j], ': ', comp[j])
         print('')
 
         print('Some props of flash port out "', i, '":')
@@ -702,7 +727,8 @@ def TestFlowsh2():
     for i in portsIn:
         comp = flash.GetCompositionValues(i)
         print('Composition of flash port in "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmps[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmps[j], ': ', comp[j])
         print('')
 
         print('Some props of flash port in "', i, '":')
@@ -715,7 +741,8 @@ def TestFlowsh2():
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of flash port out "', i, '":')
-        for j in range(len(comp)): print('fraction of ', cmps[j], ': ', comp[j])
+        for j in range(len(comp)):
+            print('fraction of ', cmps[j], ': ', comp[j])
         print('')
 
         print('Some props of flash port out "', i, '":')
@@ -740,7 +767,8 @@ def TestRecycle():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # Create a flowsheet to contain all the units
     flsheet = Flowsheet.Flowsheet()
@@ -814,7 +842,8 @@ def TestRecycle():
     flsheet.Solve()
     print('***************')
     cmps = splitter.GetCompositionValues('Out0')
-    for j in range(len(cmps)): print('fraction of ', cmpNames[j], ': ', cmps[j])
+    for j in range(len(cmps)):
+        print('fraction of ', cmpNames[j], ': ', cmps[j])
     print('***************')
     print('Some properties of splitter Out0')
     print(T_VAR, ': ', splitter.GetPropValue('Out0', T_VAR))
@@ -827,7 +856,8 @@ def TestRecycle():
     flsheet.Solve()
     print('*************** splitter out1')
     cmps = splitter.GetCompositionValues('Out0')
-    for j in range(len(cmps)): print('fraction of ', cmpNames[j], ': ', cmps[j])
+    for j in range(len(cmps)):
+        print('fraction of ', cmpNames[j], ': ', cmps[j])
     print('***************')
     print('Some properties of splitter Out0')
     print(T_VAR, ': ', splitter.GetPropValue('Out0', T_VAR))
@@ -852,7 +882,8 @@ def TestRecycle2():
     provider = providers[0]  # Should be Virt Mat
     thCase = 'myTh'
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     # Create a flowsheet to contain all the units
     flsheet = Flowsheet.Flowsheet()
@@ -936,7 +967,8 @@ def TestRecycle2():
     flsheet.Solve()
     print('***************')
     cmps = splitter.GetCompositionValues('Out0')
-    for j in range(len(cmps)): print('fraction of ', cmpNames[j], ': ', cmps[j])
+    for j in range(len(cmps)):
+        print('fraction of ', cmpNames[j], ': ', cmps[j])
     print('***************')
     print('Some properties of splitter Out0')
     print(T_VAR, ': ', splitter.GetPropValue('Out0', T_VAR))
@@ -963,7 +995,8 @@ def TestRecycle2():
     flsheet.Solve()
     print('*************** splitter out1')
     cmps = splitter.GetCompositionValues('Out0')
-    for j in range(len(cmps)): print('fraction of ', cmpNames[j], ': ', cmps[j])
+    for j in range(len(cmps)):
+        print('fraction of ', cmpNames[j], ': ', cmps[j])
     print('***************')
     print('Some properties of splitter Out0')
     print(T_VAR, ': ', splitter.GetPropValue('Out0', T_VAR))
@@ -989,7 +1022,8 @@ def TestMoleBalance():
     flowSh = Flowsheet.Flowsheet()
     flowSh.SetThermoAdmin(thAdmin)
     flowSh.SetThermo(thermo)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     pIn1 = flowSh.CreatePort(IN | MAT, 'pIn1')
     pIn2 = flowSh.CreatePort(IN | MAT, 'pIn2')
@@ -1130,7 +1164,8 @@ def TestThAdminSaveLoad():
     provider = providers[0]  # Should be Virt Mat
     thCase = "thCase1"
     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-    for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
+    for i in cmpNames:
+        thAdmin.AddCompound(provider, thCase, i)
 
     parentFlowsh = Flowsheet.Flowsheet()
     parentFlowsh.SetThermoAdmin(thAdmin)

@@ -816,7 +816,8 @@ class CommandInterface(object):
             # thAdmin.CleanUp()
             if iszip:
                 # Force for this directory to exist
-                if not os.path.isdir(uncompressToDir): MakeDirs(uncompressToDir)
+                if not os.path.isdir(uncompressToDir):
+                    MakeDirs(uncompressToDir)
 
                 for filePath in fileLst:
                     # For some reason, the zip module returns the file paths
@@ -826,13 +827,15 @@ class CommandInterface(object):
                         fixedPath = filePath.replace('/', '\\')
                     else:
                         fixedPath = filePath
-                    if os.path.isabs(fixedPath): raise CmdError('CMDCouldNotOpenFile', fixedPath)
+                    if os.path.isabs(fixedPath):
+                        raise CmdError('CMDCouldNotOpenFile', fixedPath)
 
                     # Now make sure that the folder exists
                     dirName, fileName = os.path.split(fixedPath)
                     if dirName:
                         dirName = os.path.join(uncompressToDir, dirName)
-                        if not os.path.isdir(dirName): MakeDirs(dirName)
+                        if not os.path.isdir(dirName):
+                            MakeDirs(dirName)
                         fileName = os.path.join(dirName, fileName)
                     else:
                         fileName = os.path.join(uncompressToDir, fileName)
@@ -962,7 +965,7 @@ class CommandInterface(object):
                 # Tokens contains only the "extra" files
                 for name in tokens:
                     levelDown = False
-                    if name[-2:] == "\*" or name[-2:] == "/*":
+                    if name[-2:] == r"\*" or name[-2:] == "/*":
                         levelDown = True
                         name = name[:-2]
                     if os.path.isdir(name):
@@ -1330,13 +1333,15 @@ class CommandInterface(object):
                         fixedPath = filePath.replace('/', '\\')
                     else:
                         fixedPath = filePath
-                    if os.path.isabs(fixedPath): raise CmdError('CMDCouldNotOpenFile', fixedPath)
+                    if os.path.isabs(fixedPath):
+                        raise CmdError('CMDCouldNotOpenFile', fixedPath)
 
                     # Now make sure that the folder exists
                     dirName, fileName = os.path.split(fixedPath)
                     if dirName:
                         dirName = os.path.join(uncompressToDir, dirName)
-                        if not os.path.isdir(dirName): MakeDirs(dirName)
+                        if not os.path.isdir(dirName):
+                            MakeDirs(dirName)
                         fileName = os.path.join(dirName, fileName)
                     else:
                         fileName = os.path.join(uncompressToDir, fileName)
@@ -1387,7 +1392,8 @@ class CommandInterface(object):
         infoCallBack = self.infoCallBack
         oldRoot = self.root
         # find deepest root
-        while oldRoot.GetParent(): oldRoot = oldRoot.GetParent()
+        while oldRoot.GetParent():
+            oldRoot = oldRoot.GetParent()
 
         self.CleanUp()
         out = self.output
@@ -1446,7 +1452,8 @@ class CommandInterface(object):
         Set the properties to be calculated for material ports
         """
         result = ''
-        if not self.thermoAdmin: return
+        if not self.thermoAdmin:
+            return
         providers = self.thermoAdmin.GetAvThermoProviderNames()
 
         # This will apply to all the providers
@@ -2113,7 +2120,8 @@ class CommandInterface(object):
         return the object described by objDesc relative to the startObj
         if the object does not exist return a CreateObject object
         """
-        if len(objDesc) == 0: return startObj
+        if len(objDesc) == 0:
+            return startObj
 
         c = objDesc[0]  # child type designator
         if c == '.':
@@ -2212,7 +2220,8 @@ class CommandInterface(object):
 
         result = obj.type + ': ' + obj.returnMessage
         result += '\nTotal %s points: pointType, P %s, T %s' % (obj.pointCount, unitP.name, unitT.name)
-        if obj.type == 'TH': result += ', H %s' % unitH.name
+        if obj.type == 'TH':
+            result += ', H %s' % unitH.name
         for i in range(obj.pointCount):
             p = unitP.ConvertFromSim42(obj.pValues[i])
             t = unitT.ConvertFromSim42(obj.tValues[i])
@@ -2226,10 +2235,12 @@ class CommandInterface(object):
     def RenderBasicObject(self, obj):
         """produce representation of obj with units"""
         v = obj.GetValue()
-        if v is None: return 'None'
+        if v is None:
+            return 'None'
 
         unit = self.units.GetCurrentUnit(obj.GetType().unitType)
-        if unit: v = unit.ConvertFromSim42(v)
+        if unit:
+            v = unit.ConvertFromSim42(v)
         result = str(v)
 
         status = obj.GetCalcStatus()
@@ -2246,7 +2257,8 @@ class CommandInterface(object):
         else:
             result += ' \t'
 
-        if unit:  result += unit.name
+        if unit:
+            result += unit.name
 
         # if status & NEW_V:
         # result += ' New'
@@ -2259,7 +2271,8 @@ class CommandInterface(object):
             result = '[ ...\n'
             for i in obj:
                 result += self.RenderObject(i)
-                if result[-1] != ']n': result += '\n'
+                if result[-1] != ']n':
+                    result += '\n'
             result += ' ... ]\n'
         elif isinstance(obj, BasicProperty):
             result = obj.GetPath() + '= ' + self.RenderBasicObject(obj)
@@ -2295,7 +2308,8 @@ class CommandInterface(object):
 
             # figure out longest name
             maxLength = 0
-            for propName in props: maxLength = max(maxLength, len(propName))
+            for propName in props:
+                maxLength = max(maxLength, len(propName))
             if isinstance(obj, Ports.Port_Signal):
                 cmpName = ""
                 if hasattr(obj, '_cmpName'):
@@ -2476,7 +2490,8 @@ class CommandInterface(object):
                         obj = parent.__dict__[description]
                     elif '_' + description in parent.__dict__:
                         obj = parent.__dict__['_' + description]
-                if not obj: return None
+                if not obj:
+                    return None
 
             # return specified values
             if last == "key":
@@ -2511,7 +2526,8 @@ class CommandInterface(object):
                     result = obj.GetValue()
                     if last == "convertedValue":
                         unit = self.units.GetCurrentUnit(obj.GetType().unitType)
-                        if unit: result = unit.ConvertFromSim42(result)
+                        if unit:
+                            result = unit.ConvertFromSim42(result)
                 elif hasattr(obj, 'GetValues'):
                     result = obj.GetValues()
                 else:
@@ -2779,7 +2795,8 @@ class CommandInterface(object):
         if hasattr(obj, 'GetContents'):
             for i in obj.GetContents():
                 typeI1 = type(i[1])
-                if i[1] is None: # typeI1 == type(None):
+                if i[1] is None:
+                    # typeI1 == type(None):
                     # no data, return None
                     result.append((str(i[0]), None))
                 elif typeI1 == int or typeI1 == int or typeI1 == float or typeI1 == (str,) or typeI1 == list:
@@ -2823,7 +2840,8 @@ class CommandInterface(object):
 
             unitType = propType.unitType
             typeName = None
-            if unitType: typeName = self.units.GetTypeName(unitType)
+            if unitType:
+                typeName = self.units.GetTypeName(unitType)
             # If getting scale and using T, then use deltaT
             if len(tempLst) > 1:
                 if tempLst[1] == 'Scale' and typeName:
@@ -2861,7 +2879,8 @@ class CommandInterface(object):
 
             unitType = propType.unitType
             typeName = None
-            if unitType: typeName = self.units.GetTypeName(unitType)
+            if unitType:
+                typeName = self.units.GetTypeName(unitType)
             # If setting scale and using T, then use deltaT
             if len(tempLst) > 1:
                 if tempLst[1] == 'Scale' and typeName:
@@ -2885,7 +2904,8 @@ class CommandInterface(object):
 
             else:
                 unit = self.units.GetCurrentUnit(unitType)
-                if unit: val = unit.ConvertToSim42(val)
+                if unit:
+                    val = unit.ConvertToSim42(val)
 
             if len(tempLst) > 1:
                 if tempLst[1] == 'Min':
@@ -2917,7 +2937,8 @@ class CommandInterface(object):
             # scalar
             if not rank:
                 unit = self.units.GetCurrentUnit(types[0].unitType)
-                if unit: vals = unit.ConvertFromSim42(vals)
+                if unit:
+                    vals = unit.ConvertFromSim42(vals)
                 return vals
 
             # vector
@@ -3270,7 +3291,8 @@ def RemoveComments(rawCmd):
     """Removes the comments when the # is not in quotes"""
 
     cmd = rawCmd.strip()
-    if not cmd: return ""
+    if not cmd:
+        return ""
 
     # If there are no quotes, then just remove the comments blindly
     if "'" not in rawCmd and '"' not in rawCmd:

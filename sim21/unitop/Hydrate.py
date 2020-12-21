@@ -52,9 +52,12 @@ class Hydrate(UnitOperations.UnitOperation):
         CompNames = self.GetCompoundNames()
 
         # Validate available info
-        if Press is None: return
-        if not CompNames: return
-        if None in CompValues: return
+        if Press is None:
+            return
+        if not CompNames:
+            return
+        if None in CompValues:
+            return
 
         # This is to assign the available compounds in the stream as the dominant component in Hydrate.py by Hieraki
         if "ETHANE" in CompNames:

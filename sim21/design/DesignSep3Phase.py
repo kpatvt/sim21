@@ -70,7 +70,8 @@ class Separator3Phase(DesignMain):
 
     def LoadInputFromParent(self):
         """Get the input from the parent unit operation (if any)"""
-        if not self.parent: return
+        if not self.parent:
+            return
         vapPort = self.parent.GetPort(V_PORT)
         lliqPort = self.parent.GetPort(L_PORT + '0')
         hliqPort = self.parent.GetPort(L_PORT + '1')

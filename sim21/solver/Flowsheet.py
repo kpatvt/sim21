@@ -95,7 +95,8 @@ class Flowsheet(UnitOperations.UnitOperation):
         (done this way to allow parent value to be used)
         """
         value = super(Flowsheet, self).GetParameterValue(paramName)
-        if value is not None: return value
+        if value is not None:
+            return value
         if paramName == NULIQPH_PAR:
             return 1
 
@@ -379,7 +380,8 @@ class Flowsheet(UnitOperations.UnitOperation):
         PopIterationProperty = self.PopIterationProperty
         InfoMessage = self.InfoMessage
 
-        while PopConsistencyError(): pass
+        while PopConsistencyError():
+            pass
 
         iterations = 0
         jacobian = None
@@ -389,7 +391,8 @@ class Flowsheet(UnitOperations.UnitOperation):
             iterations += 1
             # print iter
             SolverForget()
-            if self.hold: return 1
+            if self.hold:
+                return 1
             try:
                 op = PopSolveOp()
                 while op:
@@ -449,7 +452,8 @@ class Flowsheet(UnitOperations.UnitOperation):
             InfoMessage('RecycleIter', (iterations, maxError, maxErrProp))
 
             if maxError < tolerance and len(self._consistencyErrorStack) == 0:
-                while PopIterationProperty(): pass
+                while PopIterationProperty():
+                    pass
                 break
 
             if iterations + 1 < maxIter:
@@ -736,7 +740,8 @@ def RestorePortConnections(uo):
         if not tempParent:
             break
         topParent = tempParent
-    if not topParent: topParent = uo
+    if not topParent:
+        topParent = uo
 
     for port in uo.GetPorts():
         connPath = port._connection

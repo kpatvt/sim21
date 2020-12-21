@@ -423,14 +423,22 @@ class Stage(object):
         """
         oldNumber = self.number
         self.number = toNumber
-        for o in list(self.liqDraws.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
-        for o in list(self.vapDraws.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
-        for o in list(self.liqClones.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
-        for o in list(self.vapClones.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
-        for o in list(self.feeds.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
-        for o in list(self.qfeeds.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
-        for o in list(self.estimates.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
-        for o in list(self.specs.values()): o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.liqDraws.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.vapDraws.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.liqClones.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.vapClones.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.feeds.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.qfeeds.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.estimates.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
+        for o in list(self.specs.values()):
+            o.ChangeStageNumber(self.tower, oldNumber, self.number)
         if self.waterDraw:
             self.waterDraw.ChangeStageNumber(self.tower, oldNumber, self.number)
 
@@ -444,15 +452,24 @@ class Stage(object):
 
     def GetObject(self, name):
         """returns contained object based on name"""
-        if name in self.feeds: return self.feeds[name]
-        if name in self.qfeeds: return self.qfeeds[name]
-        if name in self.liqDraws: return self.liqDraws[name]
-        if name in self.vapDraws: return self.vapDraws[name]
-        if name in self.liqClones: return self.liqClones[name]
-        if name in self.vapClones: return self.vapClones[name]
-        if name in self.estimates: return self.estimates[name]
-        if name in self.specs: return self.specs[name]
-        if self.waterDraw and self.waterDraw.name == name: return self.waterDraw
+        if name in self.feeds:
+            return self.feeds[name]
+        if name in self.qfeeds:
+            return self.qfeeds[name]
+        if name in self.liqDraws:
+            return self.liqDraws[name]
+        if name in self.vapDraws:
+            return self.vapDraws[name]
+        if name in self.liqClones:
+            return self.liqClones[name]
+        if name in self.vapClones:
+            return self.vapClones[name]
+        if name in self.estimates:
+            return self.estimates[name]
+        if name in self.specs:
+            return self.specs[name]
+        if self.waterDraw and self.waterDraw.name == name:
+            return self.waterDraw
         if self.subCool and self.subCool.name == name:
             return self.subCool
 
@@ -917,7 +934,8 @@ class Stage(object):
         return 1 if stage feeds are ready 0 otherwise
         """
         for feed in list(self.feeds.values()):
-            if not feed.ReadyToSolve(): return 0
+            if not feed.ReadyToSolve():
+                return 0
 
         if self.subCool:
             # Load the value of degrees of subcooling
@@ -1166,7 +1184,8 @@ class StageObject(object):
             tower = self.stage.GetParent()
             oldNumber = self.stage.number
             newNumber = int(obj)
-            if oldNumber == newNumber: return
+            if oldNumber == newNumber:
+                return
             newStage = tower.stages[newNumber]
 
             # Raise error if destiny stage already has an object with the same name
@@ -1266,7 +1285,8 @@ class DegSubCooling(StageObject):
             tower = self.stage.GetParent()
             oldNumber = self.stage.number
             newNumber = int(obj)
-            if oldNumber == newNumber: return
+            if oldNumber == newNumber:
+                return
 
             # Don't let it change stage unless it is to a top stage
             if newNumber != 0:
@@ -1437,7 +1457,8 @@ class Feed(StageObject):
 
         # can't be sure pumpFromDraw is known yet so must check connection
         connection = self.port.GetConnection()
-        if connection and connection.GetParent() == self.stage.tower: return 1
+        if connection and connection.GetParent() == self.stage.tower:
+            return 1
 
         tower = self.stage.tower
         retVal = self.port.AlreadyFlashed() and self.port.GetPropValue(MOLEFLOW_VAR) is not None
@@ -1615,7 +1636,8 @@ class Draw(StageObject):
             tower = self.stage.GetParent()
             oldNumber = self.stage.number
             newNumber = int(obj)
-            if oldNumber == newNumber: return
+            if oldNumber == newNumber:
+                return
             newStage = tower.stages[newNumber]
 
             # Raise error if destiny stage already has an object with the same name
@@ -1669,7 +1691,8 @@ class Draw(StageObject):
 
     def GetObject(self, name):
         obj = StageObject.GetObject(self, name)
-        if obj: return obj
+        if obj:
+            return obj
 
         if name in self.estimates:
             return self.estimates[name]
@@ -1701,7 +1724,8 @@ class Draw(StageObject):
         # check port for known info and create specs as necessary
         moleFlow = self.port.GetPropValue(MOLEFLOW_VAR)
         if moleFlow is not None:
-            if moleFlow <= smallestAllowedFlow: self.zeroFlow = True
+            if moleFlow <= smallestAllowedFlow:
+                self.zeroFlow = True
             spec = PortDrawMoleFlowSpec(self, moleFlow, self.port)
             self.portSpecs.append(spec)
             self.flowSpecType = MOLEFLOW_VAR
@@ -1709,7 +1733,8 @@ class Draw(StageObject):
         else:
             massFlow = self.port.GetPropValue(MASSFLOW_VAR)
             if massFlow is not None:
-                if massFlow <= smallestAllowedFlow: self.zeroFlow = True
+                if massFlow <= smallestAllowedFlow:
+                    self.zeroFlow = True
                 spec = PortDrawMassFlowSpec(self, massFlow, self.port)
                 self.portSpecs.append(spec)
                 self.flowSpecType = MASSFLOW_VAR
@@ -1717,7 +1742,8 @@ class Draw(StageObject):
             else:
                 stdVolFlow = self.port.GetPropValue(STDVOLFLOW_VAR)
                 if stdVolFlow is not None:
-                    if stdVolFlow <= smallestAllowedFlow: self.zeroFlow = True
+                    if stdVolFlow <= smallestAllowedFlow:
+                        self.zeroFlow = True
                     spec = PortDrawStdVolFlowSpec(self, stdVolFlow, self.port)
                     self.portSpecs.append(spec)
                     self.flowSpecType = STDVOLFLOW_VAR
@@ -1725,7 +1751,8 @@ class Draw(StageObject):
                 else:
                     volFlow = self.port.GetPropValue(VOLFLOW_VAR)
                     if volFlow is not None:
-                        if volFlow <= smallestAllowedFlow: self.zeroFlow = True
+                        if volFlow <= smallestAllowedFlow:
+                            self.zeroFlow = True
                         spec = PortDrawVolFlowSpec(self, volFlow, self.port)
                         self.portSpecs.append(spec)
                         self.flowSpecType = VOLFLOW_VAR
@@ -2358,8 +2385,10 @@ class WaterDraw(Draw):
         get damping factor
         """
         self.damping = self.stage.tower.GetParameterValue(WATERDAMPING_PAR)
-        if not self.damping: self.damping = 0.5
-        if not initMode: self.moleFlows = None
+        if not self.damping:
+            self.damping = 0.5
+        if not initMode:
+            self.moleFlows = None
 
         super(WaterDraw, self).Reset()
 
@@ -2531,7 +2560,8 @@ class WaterDraw(Draw):
         """
         return an estimate of energy flow based on stage T and stored H and Cp
         """
-        if not self.flow: return 0.0
+        if not self.flow:
+            return 0.0
 
         tower = self.stage.tower
         stageNo = self.stage.number
@@ -2606,12 +2636,14 @@ class WaterDraw(Draw):
             # Do a check here just as a safety check to see if the last converged results
             # in fact match the current status of the tower.
             # No need to clear in case this fails
-            if not self.convRes: return 0
+            if not self.convRes:
+                return 0
 
             # numCompounds is only updated if a Solve call was first made
             # Make sure this method is always called after the step where
             # Solve updates numCompounds !!
-            if self.stage.tower.numCompounds != len(self.convRes['moleFlows']): return 0
+            if self.stage.tower.numCompounds != len(self.convRes['moleFlows']):
+                return 0
 
             for key in self.convRes:
                 tempDict[key] = self.__dict__[key]
@@ -2740,7 +2772,9 @@ class EnergyFeed(StageObject):
         """
         return true if value was or will be calculated by tower
         """
-        if self.assignedQ is None and self.port.GetValue(): return 0
+        if self.assignedQ is None and self.port.GetValue():
+            return 0
+
         return 1
 
     def Clone(self):
@@ -3633,7 +3667,8 @@ class SpecialPropertySpec(DrawSpec):
 
     def Error(self):
         value = self.GetCurrentTowerValue()
-        if value is None: return 1.0
+        if value is None:
+            return 1.0
         return (value - self.value) / self.scaleFactor
 
     def Clone(self):
@@ -3790,7 +3825,8 @@ class PropertySpecWithSettings(DrawSpec):
 
     def Error(self):
         value = self.GetCurrentTowerValue()
-        if value is None: return 1.0
+        if value is None:
+            return 1.0
         return (value - self.value) / self.scaleFactor
 
     def CleanUp(self):
@@ -3939,7 +3975,8 @@ class PumpAroundReturnTSpec(PumpAroundReturnPropSpec):
             self.model = None
 
     def PropertyFromModel(self, h, p, x):
-        if not self.model: return None
+        if not self.model:
+            return None
         mw = self.parent.stage.tower.mw
         mw = np.add.reduce(x * mw)
         hMass = h / mw
@@ -4014,7 +4051,8 @@ class PumpAroundDTSpec(PumpAroundReturnPropSpec):
             self.model = None
 
     def PropertyFromModel(self, h, p, x):
-        if not self.model: return None
+        if not self.model:
+            return None
         mw = self.parent.stage.tower.mw
         mw = np.add.reduce(x * mw)
         hMass = h / mw
@@ -4366,13 +4404,16 @@ class Tower(UnitOperations.UnitOperation):
             # Do a check here just as a safety check to see if the last converged results
             # in fact match the current status of the tower.
             # No need to clear in case this fails
-            if not self.convRes: return 0
-            if self.numStages != len(self.convRes['T']): return 0
+            if not self.convRes:
+                return 0
+            if self.numStages != len(self.convRes['T']):
+                return 0
 
             # numCompounds is only updated if a Solve call was first made
             # Make sure this method is always called after the step where
             # Solve updates numCompounds !!
-            if self.numCompounds != len(self.convRes['l'][0, :]): return 0
+            if self.numCompounds != len(self.convRes['l'][0, :]):
+                return 0
 
             if self.waterDraws:
                 for wd in self.waterDraws:
@@ -4886,7 +4927,8 @@ class Tower(UnitOperations.UnitOperation):
         minInnerStep = self.GetParameterValue(MININNERSTEP_PAR)
         maxOuterLoops = self.GetParameterValue(MAXOUTERLOOPS_PAR)
         maxInnerLoops = self.GetParameterValue(MAXINNERLOOPS_PAR)
-        if not maxInnerLoops: maxInnerLoops = 50
+        if not maxInnerLoops:
+            maxInnerLoops = 50
 
         self.path = self.GetPath()
         path = self.path
@@ -4928,12 +4970,14 @@ class Tower(UnitOperations.UnitOperation):
                 file.flush()
 
                 baseCmp = self.GetParameterValue('BaseDebugCmp')
-                if not baseCmp: baseCmp = 'WATER'
+                if not baseCmp:
+                    baseCmp = 'WATER'
             # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
         # How often to display the jacobian message
         self.freqJacMsg = self.GetParameterValue(FREQ_JAC_MSG_PAR)
-        if not self.freqJacMsg: self.freqJacMsg = 10
+        if not self.freqJacMsg:
+            self.freqJacMsg = 10
 
         self.dampingFactor = self.GetParameterValue(DAMPINGFACTOR_PAR)
         if self.dampingFactor is None:
@@ -5038,7 +5082,8 @@ class Tower(UnitOperations.UnitOperation):
             while 1:  # outer loop
                 innerLoopCount = 0
                 # outerOldT = np.array(self.T, dtype=float)
-                if self.convRepLevel & 2: outerOldT = np.array(self.T, dtype=float)
+                if self.convRepLevel & 2:
+                    outerOldT = np.array(self.T, dtype=float)
 
                 if self.debug:
                     # DEBUG CODE # # # # # # # # # # # # # # # # # # # # #
@@ -5210,7 +5255,8 @@ class Tower(UnitOperations.UnitOperation):
 
                 # Add the water error to the outer error
                 wError = 0.0
-                for wdraw in self.waterDraws: wError += wdraw.Error()
+                for wdraw in self.waterDraws:
+                    wError += wdraw.Error()
                 outerError += wError
                 self.outerError = outerError
                 if not self.convRepLevel:
@@ -5343,7 +5389,8 @@ class Tower(UnitOperations.UnitOperation):
         """
         vals = []
         delta = (bound2 - bound1) / (nuVals - 1)
-        for i in range(nuVals): vals.append(delta * i + bound1)
+        for i in range(nuVals):
+            vals.append(delta * i + bound1)
         return vals
 
     def SolveFlowMatrix(self, logSFactors):
@@ -5555,7 +5602,8 @@ class Tower(UnitOperations.UnitOperation):
                 # Three phase algorithm from Schuil & Bool paper
                 # "Three phase flash and distillation". 1985
                 for wdraw in self.waterDraws:
-                    if wdraw.liq1Frac is None: continue
+                    if wdraw.liq1Frac is None:
+                        continue
                     nuStage = wdraw.stage.number
                     wx = wdraw.x
                     wLnFug = thAdmin.GetArrayProperty(prov, case, (T_VAR, t[nuStage]), (P_VAR, p[nuStage]),
@@ -5735,7 +5783,8 @@ class Tower(UnitOperations.UnitOperation):
 
         # B parameter is by difference
         oldB = None
-        if self.B is not None: oldB = np.array(self.B)
+        if self.B is not None:
+            oldB = np.array(self.B)
         self.B = np.clip((lnKb1 - lnKb2) / dt, 50., 100000.)
         if self.useOldCode:
             # Old code
@@ -6099,7 +6148,9 @@ class Tower(UnitOperations.UnitOperation):
                 if not waterFree: return self.L
                 return self.L - self.l[:, idxWater]
             else:
-                if not waterFree: return self.V
+                if not waterFree:
+                    return self.V
+
                 return self.V - self.v[:, idxWater]
 
         elif prop == MASSFLOW_VAR:
@@ -6111,10 +6162,12 @@ class Tower(UnitOperations.UnitOperation):
                 moleFracs = frac[i]
                 mwts[i] = thAdmin.GetProperties(prov, case, var1, var2, phase, moleFracs, ('MolecularWeight',))[0]
             if phase == LIQUID_PHASE:
-                if not waterFree: return self.L * mwts
+                if not waterFree:
+                    return self.L * mwts
                 return (self.L - self.l[:, idxWater]) * mwts
             else:
-                if not waterFree: return self.V * mwts
+                if not waterFree:
+                    return self.V * mwts
                 return (self.V - self.v[:, idxWater]) * mwts
 
         elif prop == STDVOLFLOW_VAR:
@@ -6128,10 +6181,12 @@ class Tower(UnitOperations.UnitOperation):
                 stdMolVol[i] = thAdmin.GetProperties(prov, case, var1, var2, LIQUID_PHASE, moleFracs, (STDLIQVOL_VAR,))[
                     0]
             if phase == LIQUID_PHASE:
-                if not waterFree: return self.L * stdMolVol
+                if not waterFree:
+                    return self.L * stdMolVol
                 return (self.L - self.l[:, idxWater]) * stdMolVol
             else:
-                if not waterFree: return self.V * stdMolVol
+                if not waterFree:
+                    return self.V * stdMolVol
                 return (self.V - self.v[:, idxWater]) * stdMolVol
 
         elif prop == VOLFLOW_VAR:
@@ -6162,10 +6217,12 @@ class Tower(UnitOperations.UnitOperation):
             else:
                 pass
             if phase == LIQUID_PHASE:
-                if not waterFree: return self.L * molVol
+                if not waterFree:
+                    return self.L * molVol
                 return (self.L - self.l[:, idxWater]) * molVol
             else:
-                if not waterFree: return self.V * molVol
+                if not waterFree:
+                    return self.V * molVol
                 return (self.V - self.v[:, idxWater]) * molVol
         else:
             thCaseObj = self.GetThermo()
@@ -6681,12 +6738,14 @@ def BuildEfficienciesMatrix(inputString, numberElements, cmpNames, defaultValue=
         usesGenericEff = False
 
         # Split data per compounds and dimension an array with defaul values
-        if inputString[0] == ':': inputString = inputString[1:]
+        if inputString[0] == ':':
+            inputString = inputString[1:]
         cmpDataTokens = inputString.split('@')
         eff = np.ones((numberElements, numCompounds), dtype=float) * defaultValue
         genericEff = None
         for cmpToken in cmpDataTokens:
-            if not cmpToken: continue
+            if not cmpToken:
+                continue
             cmpName, data = cmpToken.split(' ', 1)
             # cmpName = cmpName.strip() ... not needed
             cmpName = re.sub('_', ' ', cmpName)
@@ -6903,7 +6962,8 @@ class ProfileProperty(BasicProperty):
 
         elif calcStatus & CALCULATED_V:
             # ignore attempts to calculate or pass unknown values
-            if value is None: return
+            if value is None:
+                return
 
             # is there already a value
             # Just check tolerance
@@ -7282,7 +7342,8 @@ class InitializeTower(object):
                         tower.specsWModel.append(spec)
 
             # make list of water draws
-            if stage.waterDraw: tower.waterDraws.append(stage.waterDraw)
+            if stage.waterDraw:
+                tower.waterDraws.append(stage.waterDraw)
 
     def SolveP_LoadFinalInfo(self, tower, initMode):
         """Solve for Pressure and could also use the same loop to load more information such

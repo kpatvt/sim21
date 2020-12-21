@@ -116,14 +116,16 @@ class EquationUnit(UnitOperations.UnitOperation):
             # assemble the variables
             x = []
             inPorts = self.GetNumberPorts(SIG)
-            if inPorts == 0: return
+            if inPorts == 0:
+                return
 
             iVar = -1
             for i in range(inPorts):
                 port = self.GetPort(SIG_PORT + str(i))
                 val = port.GetValue()
                 if val is None:
-                    if iVar >= 0: return
+                    if iVar >= 0:
+                        return
                     iVar = i
                     x.append(0.0)  # value not used, set to zero so that x can be eval()
                 else:
@@ -253,7 +255,8 @@ class LookupTable(UnitOperations.UnitOperation):
     def SetSeriesTypes(self, idx):
         nSeries = self.GetParameterValue(NUMBSERIES_PAR)
         typeName = self.GetParameterValue(SERIESTYPE_PAR + str(idx))
-        if typeName is None: return
+        if typeName is None:
+            return
         # set the signal type of my signal port (required for inconsistency check)
         self.GetPort(SIG_PORT + str(idx)).SetSignalType(typeName)
         # tha series themself also keep the datatype for unit conversion
@@ -270,7 +273,8 @@ class LookupTable(UnitOperations.UnitOperation):
         # Factor is to faciltate interpolation between tables
         # it is the factor between the existing value and the new value
         nSeries = self.GetParameterValue(NUMBSERIES_PAR)
-        if tble0 is None: return
+        if tble0 is None:
+            return
 
         # search for first availeble value for lookup
         # search for the last lookup value first
@@ -293,12 +297,14 @@ class LookupTable(UnitOperations.UnitOperation):
                         if tble1 is not None:
                             fromIdx1 = tble1._Series[SERIES_OBJ + str(i)].GetDataIndex(val)
                         break
-        if fromIdx is None: return
+        if fromIdx is None:
+            return
 
         # lookup the table
         self.lookupFromPort = iSeries
         for i in range(nSeries):
-            if i == iSeries: continue
+            if i == iSeries:
+                continue
             allowExtrap = self.GetParameterValue(EXTRAPOLATE_PAR + str(i))
             val = tble0._Series[SERIES_OBJ + str(i)].GetDataValue(fromIdx, allowExtrap)
             if tble1 is not None and factor != 0.0:
@@ -714,7 +720,8 @@ class Pump(UnitOperations.UnitOperation):
 
         # Solve for mole flow if possible
         q = self.GetPort(IN_PORT + 'Q').GetValue()  # J/s
-        if q is None: return
+        if q is None:
+            return
         mf = q * 3.6 / (h1 - h0)  # kmol/h
         inPort.SetPropValue(MOLEFLOW_VAR, mf, CALCULATED_V | PARENT_V)
 
@@ -917,7 +924,8 @@ class PumpWithCurve(UnitOperations.UnitOperation):
 
         if paramName == IGNORECURVE_PAR:
             # ...ignore the lookuptable and remove any specifications
-            if value == 'None': value = None
+            if value == 'None':
+                value = None
             self.LookupTable.SetParameterValue(IGNORED_PAR, value)
             if value:
                 port = self.GetPort(HEAD_PORT)

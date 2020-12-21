@@ -205,17 +205,20 @@ class SpecialProps(UnitOperations.UnitOperation):
 
         self.SolvePorts()
         self.unitOpMessage = ('NoMessage',)
-        if self.IsForgetting(): return
+        if self.IsForgetting():
+            return
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return
+        if not self._thCaseObj:
+            return
         thAdmin, prov, case = self._thCaseObj.thermoAdmin, self._thCaseObj.provider, self._thCaseObj.case
 
         portIn = self.portIn
         P = portIn.GetPropValue(P_VAR)
         fracs = portIn.GetCompositionValues()
-        if None in fracs: return
+        if None in fracs:
+            return
 
         statusOut = ''
         for port in self.GetPorts(SIG):
@@ -227,7 +230,8 @@ class SpecialProps(UnitOperations.UnitOperation):
                     value, status = thAdmin.GetSpecialProperty(prov, case, P, fracs, name)
                     try:
                         value = float(value)
-                        if value != EMPTY_VAL: port.SetValue(value, CALCULATED_V)
+                        if value != EMPTY_VAL:
+                            port.SetValue(value, CALCULATED_V)
                         if status[0:2] != 'OK':
                             statusOut += '%s: %s;\n' % (name, status)
                     except:
@@ -240,7 +244,8 @@ class SpecialProps(UnitOperations.UnitOperation):
                     value, status = thAdmin.GetSpecialProperty(prov, case, T, fracs, name)
                     try:
                         value = float(value)
-                        if value != EMPTY_VAL: port.SetValue(value, CALCULATED_V)
+                        if value != EMPTY_VAL:
+                            port.SetValue(value, CALCULATED_V)
                         if status[0:2] != 'OK':
                             statusOut += '%s: %s;\n' % (name, status)
                     except:
@@ -256,9 +261,11 @@ class SpecialProps(UnitOperations.UnitOperation):
                         values = value.split()
                         value0, value1 = float(values[0]), float(values[1])
                         if name == KINEMATICVISCOSITY_VAR:
-                            if value0 != EMPTY_VAL: port.SetValue(value0, CALCULATED_V)
+                            if value0 != EMPTY_VAL:
+                                port.SetValue(value0, CALCULATED_V)
                         else:
-                            if value1 != EMPTY_VAL: port.SetValue(value1, CALCULATED_V)
+                            if value1 != EMPTY_VAL:
+                                port.SetValue(value1, CALCULATED_V)
                         if status[0:2] != 'OK':
                             statusOut += '%s: %s;\n' % (name, status)
                     except:
@@ -272,11 +279,14 @@ class SpecialProps(UnitOperations.UnitOperation):
                     values = value.split()
                     value0, value1, value2 = float(values[0]), float(values[1]), float(values[2])
                     if name == PARAFFIN_VAR:
-                        if value0 != EMPTY_VAL: port.SetValue(value0, CALCULATED_V)
+                        if value0 != EMPTY_VAL:
+                            port.SetValue(value0, CALCULATED_V)
                     elif name == NAPHTHENE_VAR:
-                        if value1 != EMPTY_VAL: port.SetValue(value1, CALCULATED_V)
+                        if value1 != EMPTY_VAL:
+                            port.SetValue(value1, CALCULATED_V)
                     else:
-                        if value2 != EMPTY_VAL: port.SetValue(value2, CALCULATED_V)
+                        if value2 != EMPTY_VAL:
+                            port.SetValue(value2, CALCULATED_V)
                     if status[0:2] != 'OK':
                         statusOut += '%s: %s;\n' % (name, status)
                 except:
@@ -290,7 +300,8 @@ class SpecialProps(UnitOperations.UnitOperation):
                 value, status = thAdmin.GetSpecialProperty(prov, case, "", fracs, name)
                 try:
                     value = float(value)
-                    if value != EMPTY_VAL: port.SetValue(value, CALCULATED_V)
+                    if value != EMPTY_VAL:
+                        port.SetValue(value, CALCULATED_V)
                     if status[0:2] != 'OK':
                         statusOut += '%s: %s;\n' % (name, status)
                 except:
@@ -303,7 +314,8 @@ class SpecialProps(UnitOperations.UnitOperation):
                     value, status = thAdmin.GetSpecialProperty(prov, case, (T, P), fracs, name)
                     try:
                         value = float(value)
-                        if value != EMPTY_VAL: port.SetValue(value, CALCULATED_V)
+                        if value != EMPTY_VAL:
+                            port.SetValue(value, CALCULATED_V)
                         if status[0:2] != 'OK':
                             statusOut += '%s: %s;\n' % (name, status)
                     except:
@@ -402,7 +414,8 @@ class VectorProps(UnitOperations.UnitOperation):
 
     def Solve(self):
         self.SolvePorts()
-        if self.IsForgetting(): return
+        if self.IsForgetting():
+            return
 
         # Clear results
         for key in list(self.results.keys()):
@@ -410,10 +423,12 @@ class VectorProps(UnitOperations.UnitOperation):
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return
+        if not self._thCaseObj:
+            return
         thAdmin, prov, case = self._thCaseObj.thermoAdmin, self._thCaseObj.provider, self._thCaseObj.case
         fracs = self.portIn.GetCompositionValues()
-        if None in fracs: return
+        if None in fracs:
+            return
         for propName in list(self.results.keys()):
             if propName[:len(BOILINGCURVE_VEC)] == BOILINGCURVE_VEC:
                 option = propName[len(BOILINGCURVE_VEC) + 1:]
@@ -786,7 +801,8 @@ class PropertyTable(UnitOperations.UnitOperation):
     def Solve(self):
         self.SolvePorts()
         self.unitOpMessage = ('NoMessage',)
-        if self.IsForgetting(): return
+        if self.IsForgetting():
+            return
 
         self.fullArray = None
         self.tableXY = None
@@ -794,14 +810,17 @@ class PropertyTable(UnitOperations.UnitOperation):
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return
+        if not self._thCaseObj:
+            return
         thAdmin, prov, case = self._thCaseObj.thermoAdmin, self._thCaseObj.provider, self._thCaseObj.case
         fracs = self.portIn.GetCompositionValues()
-        if None in fracs: return
+        if None in fracs:
+            return
         propX = self.GetParameterValue(XPROP_PAR)
         propY = self.GetParameterValue(YPROP_PAR)
         propZ = self.GetParameterValue(ZPROP_PAR)
-        if not propZ: return
+        if not propZ:
+            return
         propZLst = propZ.split()
         nuZProps = len(propZLst)
 

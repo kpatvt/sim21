@@ -485,7 +485,8 @@ class UnitSystem:
 
     def GetSim42Unit(self, type_id):
         """returns the sim42 property package unit with type typeID"""
-        if type_id is None or self.sim42Set is None: return None
+        if type_id is None or self.sim42Set is None:
+            return None
         return self.units[self.sim42Set[type_id]]
 
     def GetUserDir(self):

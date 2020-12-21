@@ -72,7 +72,8 @@ class Hydrate(UnitOperations.UnitOperation):
             return
 
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return
+        if not self._thCaseObj:
+            return
         thAdmin, prov, case = self._thCaseObj.thermoAdmin, self._thCaseObj.provider, self._thCaseObj.case
         statusOut = ''
         if t:
@@ -83,7 +84,8 @@ class Hydrate(UnitOperations.UnitOperation):
                 value = float(value)
                 if value < 1.0E37 and value != EMPTY_VAL:
                     port.SetValue(value, CALCULATED_V)
-                if status: statusOut += '%s: %s;\n' % (PHYDRATE_PORT, status)
+                if status:
+                    statusOut += '%s: %s;\n' % (PHYDRATE_PORT, status)
             except:
                 statusOut += '%s: %s;\n' % (PHYDRATE_PORT, status)
         if p:
@@ -94,7 +96,8 @@ class Hydrate(UnitOperations.UnitOperation):
                 value = float(value)
                 if value < 1.0E37 and value != EMPTY_VAL:
                     port.SetValue(value, CALCULATED_V)
-                if status: statusOut += '%s: %s;\n' % (THYDRATE_PORT, status)
+                if status:
+                    statusOut += '%s: %s;\n' % (THYDRATE_PORT, status)
             except:
                 statusOut += '%s: %s;\n' % (THYDRATE_PORT, status)
 
@@ -107,8 +110,10 @@ class Hydrate(UnitOperations.UnitOperation):
                     value = 1.0
                 else:
                     value = 0.0
-                if value != str(EMPTY_VAL): port.SetValue(value, CALCULATED_V)
-                if status: statusOut += '%s: %s;\n' % (HYDRATEFORM_PORT, status)
+                if value != str(EMPTY_VAL):
+                    port.SetValue(value, CALCULATED_V)
+                if status:
+                    statusOut += '%s: %s;\n' % (HYDRATEFORM_PORT, status)
             except:
                 statusOut += '%s: %s;\n' % (HYDRATEFORM_PORT, status)
 
@@ -154,14 +159,17 @@ class HydrateCurve(Properties.VectorProps):
         tMax = self.portTMax.GetValue()
         tMin = self.portTMin.GetValue()
         pMax = self.portPMax.GetValue()
-        if None in (tMax, tMin, pMax): return
+        if None in (tMax, tMin, pMax):
+            return
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return
+        if not self._thCaseObj:
+            return
         thAdmin, prov, case = self._thCaseObj.thermoAdmin, self._thCaseObj.provider, self._thCaseObj.case
         fracs = self.portIn.GetCompositionValues()
-        if None in fracs: return
+        if None in fracs:
+            return
         for propName in list(self.results.keys()):
             if propName == 'HYDRATECURVE':
                 option = '%s %s %s' % (tMin, tMax, pMax)

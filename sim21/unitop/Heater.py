@@ -143,11 +143,13 @@ class HeaterCooler(UnitOperations.UnitOperation):
         # f = open(r'C:\temp.out', 'a')
         # f.write('GetObject: ' + self.GetPath() + ' ' + desc + '\n')
         obj = super(HeaterCooler, self).GetObject(desc)
-        if obj: return obj
+        if obj:
+            return obj
 
         prof = self.storedProfiles.get(desc, None)
         nuSegs = self.GetParameterValue(NUSEGMENTS_PAR)
-        if nuSegs is None: nuSegs = 1
+        if nuSegs is None:
+            nuSegs = 1
         # f.write('StoredProfile: ' + str(prof)  + '\n')
         if prof is not None:
             if len(prof) - 1 == nuSegs:
@@ -239,7 +241,8 @@ class HeaterCooler(UnitOperations.UnitOperation):
 
         # Get the thermo
         thCaseObj = self.GetThermo()
-        if not thCaseObj: return None
+        if not thCaseObj:
+            return None
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
 
         # Has to be requesting a supported property
@@ -251,11 +254,13 @@ class HeaterCooler(UnitOperations.UnitOperation):
         # Get the h and p profiles
         hProf = self.GetObject(H_VAR)
         pProf = self.GetObject(P_VAR)
-        if hProf is None or pProf is None: return None
+        if hProf is None or pProf is None:
+            return None
 
         # Get composition
         fracs = self.GetPort(IN_PORT).GetCompositionValues()
-        if not fracs or None in fracs: return None
+        if not fracs or None in fracs:
+            return None
         nuCmps = len(fracs)
 
         # A flash will be performed therefore we should make sure we get as much info in one shot as possible
@@ -576,24 +581,28 @@ class HeatExchanger(UnitOperations.UnitOperation):
 
                         # T1
                         isSpec = True
-                        if T1 is None: T1, isSpec = T2, False
+                        if T1 is None:
+                            T1, isSpec = T2, False
                         unkVar = EquationSolver.SolverVariable('T1', T1, T1, isSpec, 100.0, 0.001, 1E30)
                         u.AddUnknown(unkVar)
 
                         # T2
                         isSpec = True
-                        if T2 is None: T2, isSpec = T1, False
+                        if T2 is None:
+                            T2, isSpec = T1, False
                         unkVar = EquationSolver.SolverVariable('T2', T2, T2, isSpec, 100.0, 0.001, 1E30)
                         u.AddUnknown(unkVar)
 
                         # t1
                         isSpec = True
-                        if t1 is None: t1, isSpec = t2, False
+                        if t1 is None:
+                            t1, isSpec = t2, False
                         unkVar_t1 = EquationSolver.SolverVariable('t1', t1, t1, isSpec, 100.0, 0.001, 1E30)
 
                         # t2
                         isSpec = True
-                        if t2 is None: t2, isSpec = t1, False
+                        if t2 is None:
+                            t2, isSpec = t1, False
                         unkVar_t2 = EquationSolver.SolverVariable('t2', t2, t2, isSpec, 100.0, 0.001, 1E30)
 
                         if isCounterCurrent:
@@ -1259,7 +1268,8 @@ class _Side(EquationSolver.EquationBasedOp):
         T1 = port1.GetLocalValue(T_VAR)
         T2 = port2.GetLocalValue(T_VAR)
         dt = dtPort.GetLocalValue()
-        if None not in (T1, T2, dt): return dt
+        if None not in (T1, T2, dt):
+            return dt
         if dt is not None:
             if T1 is not None:
                 port2.SetPropValue(T_VAR, T1 - dt, CALCULATED_V)
@@ -1285,14 +1295,17 @@ class _Side(EquationSolver.EquationBasedOp):
 
         PIn = self._portIn.GetPropValue(P_VAR)
         POut = self._portOut.GetPropValue(P_VAR)
-        if PIn is None or POut is None: retVal = False
+        if PIn is None or POut is None:
+            retVal = False
 
         cmps = self._portIn.GetCompositionValues()
-        if None in cmps: retVal = False  # All compositions must be known
+        if None in cmps:
+            retVal = False  # All compositions must be known
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: retVal = False
+        if not self._thCaseObj:
+            retVal = False
 
         return retVal
 
@@ -1357,7 +1370,8 @@ class _Side(EquationSolver.EquationBasedOp):
         POut = portOut.GetPropValue(P_VAR)
         HOut = portOut.GetPropValue(H_VAR)
 
-        if None in fracs or None in (PIn, POut): return False
+        if None in fracs or None in (PIn, POut):
+            return False
 
         TArray = np.zeros(nuSegments + 1, dtype=float)
         PArray = np.zeros(nuSegments + 1, dtype=float)
@@ -1444,12 +1458,14 @@ class _Side(EquationSolver.EquationBasedOp):
                     if HIn is not None:
                         isSpecH = True  # It was in the port already
                         HArray[i] = HIn
-                        if TIn: TArray[i] = TIn
+                        if TIn:
+                            TArray[i] = TIn
                 elif i == nuSegments:
                     if HOut is not None:
                         isSpecH = True  # It was in the port already
                         HArray[i] = HOut
-                        if TOut: TArray[i] = TOut
+                        if TOut:
+                            TArray[i] = TOut
                 PArray[i] = PIn + dP * i
 
             else:
@@ -1459,12 +1475,14 @@ class _Side(EquationSolver.EquationBasedOp):
                     if HOut is not None:
                         isSpecH = True  # It was in the port already
                         HArray[i] = HOut
-                        if TOut: TArray[i] = TOut
+                        if TOut:
+                            TArray[i] = TOut
                 elif i == nuSegments:
                     if HIn is not None:
                         isSpecH = True  # It was in the port already
                         HArray[i] = HIn
-                        if TIn: TArray[i] = TIn
+                        if TIn:
+                            TArray[i] = TIn
                 PArray[i] = POut - dP * i
 
             # Initialize Enthalpies
@@ -1816,23 +1834,30 @@ class _Side(EquationSolver.EquationBasedOp):
 
     def GetObject(self, desc):
         obj = super(_Side, self).GetObject(desc)
-        if obj: return obj
+        if obj:
+            return obj
 
         if desc == COUNTER_CURRENT_PAR:
             idx = self._parentOp.GetIndexOfSide(self)
             obj = self._parentOp.GetObject(COUNTER_CURRENT_PAR + str(idx))
             return obj
         elif desc == T_VAR:
-            if not self.TArray: return None
-            if None in self.TArray: return None
+            if not self.TArray:
+                return None
+            if None in self.TArray:
+                return None
             return self.TArray
         elif desc == P_VAR:
-            if not self.PArray: return None
-            if None in self.PArray: return None
+            if not self.PArray:
+                return None
+            if None in self.PArray:
+                return None
             return self.PArray
         elif desc == H_VAR:
-            if not self.HArray: return None
-            if None in self.HArray: return None
+            if not self.HArray:
+                return None
+            if None in self.HArray:
+                return None
             return self.HArray
         elif desc == ENERGY_VAR:
             # Solution algorith uses it in kJ/h !!. Convert to J/s
@@ -1891,7 +1916,8 @@ class _Side(EquationSolver.EquationBasedOp):
 
         # Get the thermo
         thCaseObj = self.GetThermo()
-        if not thCaseObj: return None
+        if not thCaseObj:
+            return None
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
 
         # Has to be requesting a supported property
@@ -1900,11 +1926,13 @@ class _Side(EquationSolver.EquationBasedOp):
                 return None
         profile = None
 
-        if not self.HArray or not self.PArray: return None
+        if not self.HArray or not self.PArray:
+            return None
 
         # Get composition
         fracs = self._portIn.GetCompositionValues()
-        if not fracs or None in fracs: return None
+        if not fracs or None in fracs:
+            return None
         nuCmps = len(fracs)
 
         # A flash will be performed, make sure we get as much info in one shot as possible
@@ -2001,8 +2029,10 @@ class _Side(EquationSolver.EquationBasedOp):
             # Can safely point to the same thing as they are global types
             clone.parameterPropertyTypes[paramName] = self.parameterPropertyTypes[paramName]
 
-        if "parameters" in attrNamesToClone: attrNamesToClone.remove("parameters")
-        if "parameterPropertyTypes" in attrNamesToClone: attrNamesToClone.remove("parameterPropertyTypes")
+        if "parameters" in attrNamesToClone:
+            attrNamesToClone.remove("parameters")
+        if "parameterPropertyTypes" in attrNamesToClone:
+            attrNamesToClone.remove("parameterPropertyTypes")
 
         return attrNamesToClone
 
@@ -2043,7 +2073,8 @@ class _HeatTransfer(EquationSolver.EquationBasedOp):
 
     def GetObject(self, desc):
         obj = super(_HeatTransfer, self).GetObject(desc)
-        if obj: return obj
+        if obj:
+            return obj
 
         if desc == ENERGY_VAR:
             # Solution algorith uses it in kJ/h !!. Return in J/s
@@ -2586,8 +2617,10 @@ class _HeatTransfer(EquationSolver.EquationBasedOp):
             # Can safely point to the same thing as they are global types
             clone.parameterPropertyTypes[paramName] = self.parameterPropertyTypes[paramName]
 
-        if "parameters" in attrNamesToClone: attrNamesToClone.remove("parameters")
-        if "parameterPropertyTypes" in attrNamesToClone: attrNamesToClone.remove("parameterPropertyTypes")
+        if "parameters" in attrNamesToClone:
+            attrNamesToClone.remove("parameters")
+        if "parameterPropertyTypes" in attrNamesToClone:
+            attrNamesToClone.remove("parameterPropertyTypes")
 
         return attrNamesToClone
 
@@ -2714,7 +2747,8 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
 
         if paramName == NUSIDES_PAR:
             nuSides = self.parameters[NUSIDES_PAR]
-            if nuSides != len(self._sides): self.canRestart = False
+            if nuSides != len(self._sides):
+                self.canRestart = False
 
             # Fix for the COUNTER_CURRENT_PAR
             # Add if necessary
@@ -2756,7 +2790,8 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             self.UpdateStructure()
 
         elif paramName == REFERENCE_SIDE_PAR:
-            if valueChanged: self.canRestart = False
+            if valueChanged:
+                self.canRestart = False
             nuSides = self.GetParameterValue(NUSIDES_PAR)
             value = int(value)
             ref = self.parameters[COUNTER_CURRENT_PAR + str(value)]
@@ -2770,7 +2805,8 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             self.UpdateStructure()
 
         elif paramName[:len(COUNTER_CURRENT_PAR)] == COUNTER_CURRENT_PAR:
-            if valueChanged: self.canRestart = False
+            if valueChanged:
+                self.canRestart = False
             # Just for consistency, make sure a bool integer is stored
             self.parameters[paramName] = bool(value)
             self.UpdateStructure()
@@ -3243,7 +3279,8 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
         balVars = self.balanceVars
         mySign = self.sign
 
-        if mNuSide is None: return  # already solved
+        if mNuSide is None:
+            return  # already solved
 
         # Load all the rows that are fully known
         h0 = np.concatenate((balVars[H0_IDX, :mNuSide], balVars[H0_IDX, mNuSide + 1:]))
@@ -3283,7 +3320,8 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
         if self.findPhCh and nuSides > 2:
             self.InfoMessage('CantFindPhCh', (self.GetPath(),), MessageHandler.errorMessage)
             self.findPhCh = False
-        if findPhCh: qPhChLst = []
+        if findPhCh:
+            qPhChLst = []
 
         # Load vectors
         h0Vec = balVars[H0_IDX]
@@ -3864,7 +3902,8 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
 
         # Estimates
         estimates = []
-        if useEst: estimates = list(self.estimates.values())
+        if useEst:
+            estimates = list(self.estimates.values())
         estTInVec = self._estTInVec = []
         estTOutVec = self._estTOutVec = []
         estMFVec = self._estMoleFlowVec = []
@@ -3927,8 +3966,10 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             if isCoCurrent:
                 if h is not None:
                     h0Vec[i] = h
-                    if t is not None: t0Vec[i] = t
-                    if vf is not None: vf0Vec[i] = vf
+                    if t is not None:
+                        t0Vec[i] = t
+                    if vf is not None:
+                        vf0Vec[i] = vf
                 else:
                     mNuSide = i
                     mVarType = H0_IDX
@@ -3943,8 +3984,10 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             else:
                 if h is not None:
                     h1Vec[i] = h
-                    if t is not None: t1Vec[i] = t
-                    if vf is not None: vf1Vec[i] = vf
+                    if t is not None:
+                        t1Vec[i] = t
+                    if vf is not None:
+                        vf1Vec[i] = vf
                 else:
                     mNuSide = i
                     mVarType = H1_IDX
@@ -3992,8 +4035,10 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             if not isCoCurrent:
                 if h is not None:
                     h0Vec[i] = h
-                    if t is not None:  t0Vec[i] = t
-                    if vf is not None: vf0Vec[i] = vf
+                    if t is not None:
+                        t0Vec[i] = t
+                    if vf is not None:
+                        vf0Vec[i] = vf
                 else:
                     mNuSide = i
                     mVarType = H0_IDX
@@ -4008,8 +4053,10 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             else:
                 if h is not None:
                     h1Vec[i] = h
-                    if t is not None:  t1Vec[i] = t
-                    if vf is not None: vf1Vec[i] = vf
+                    if t is not None:
+                        t1Vec[i] = t
+                    if vf is not None:
+                        vf1Vec[i] = vf
                 else:
                     mNuSide = i
                     mVarType = H1_IDX
@@ -4156,9 +4203,11 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             # Load the min and max inlets and all the outlets
             for side in self._sides:
                 outT = side._portOut.GetPropValue(T_VAR)
-                if not outT: return
+                if not outT:
+                    return
                 inT = side._portIn.GetPropValue(T_VAR)
-                if not inT: return
+                if not inT:
+                    return
 
                 outTLst.append(outT)
                 inTLst.append(inT)
@@ -4316,7 +4365,8 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return False
+        if not self._thCaseObj:
+            return False
 
         # See if there are enough specs for solving
         if self.initMode == LASTCONV_INIT:
@@ -4337,18 +4387,23 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
 
         nuSpecs += len(self.activeSpecs)
 
-        if nuSpecs < nuSpecsNeeded: return False
+        if nuSpecs < nuSpecsNeeded:
+            return False
 
-        if not self.LoadMoleFlowEstimates(): return False
+        if not self.LoadMoleFlowEstimates():
+            return False
 
-        if not self.LoadTemperatureEstimates(): return False
+        if not self.LoadTemperatureEstimates():
+            return False
 
         for side in self._sides:
-            if not side.LoadUnknowns(u): return False
+            if not side.LoadUnknowns(u):
+                return False
 
         for hTransfer in self._hTransferList:
             if hTransfer.UseInCalculations():
-                if not hTransfer.LoadUnknowns(u): return False
+                if not hTransfer.LoadUnknowns(u):
+                    return False
 
         if not self.findPhCh and self.GetParameterValue(FINDPH_CHANGE_PAR):
             self.InfoMessage('CantFindPhCh', (self.GetPath(),), MessageHandler.errorMessage)
@@ -4593,11 +4648,14 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             # Do a check here just as a safety check to see if the last converged results
             # in fact match the current status of the tower.
             # No need to clear in case this fails
-            if not self.convRes: return 0
+            if not self.convRes:
+                return 0
             nuSides = len(self._sides)
-            if nuSides != self.convRes['nuSides']: return 0
+            if nuSides != self.convRes['nuSides']:
+                return 0
             nuHTransf = len(self._hTransferList)
-            if nuHTransf != self.convRes['nuHTransf']: return 0
+            if nuHTransf != self.convRes['nuHTransf']:
+                return 0
 
             for i in range(nuSides):
                 side = self._sides[i]
@@ -4723,17 +4781,22 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
 
     def GetObject(self, name):
         obj = super(MultiSidedHeatExchangerOp, self).GetObject(name)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         obj = self.signals.get(name, None)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         obj = self.estimates.get(name, None)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
-        if name == 'HotComposite': return self.hComposite
+        if name == 'HotComposite':
+            return self.hComposite
 
-        if name == 'ColdComposite': return self.cComposite
+        if name == 'ColdComposite':
+            return self.cComposite
 
         if name == CUSTOM_SOLVE_OBJ:
             return self.customSolver
@@ -4847,8 +4910,10 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
             # Can safely point to the same thing as they are global types
             clone.parameterPropertyTypes[paramName] = self.parameterPropertyTypes[paramName]
 
-        if "parameters" in attrNamesToClone: attrNamesToClone.remove("parameters")
-        if "parameterPropertyTypes" in attrNamesToClone: attrNamesToClone.remove("parameterPropertyTypes")
+        if "parameters" in attrNamesToClone:
+            attrNamesToClone.remove("parameters")
+        if "parameterPropertyTypes" in attrNamesToClone:
+            attrNamesToClone.remove("parameterPropertyTypes")
 
         clone.UpdateStructure()
 
@@ -4926,12 +4991,14 @@ class CompositeSide(object):
 
     def GetT_From_Q(self, q, startIn=0):
         """Returns a temperature based on an energy value"""
-        if self.T is None or self.Q is None: return None
+        if self.T is None or self.Q is None:
+            return None
         return self.InterpolateFromVectors(q, self.Q, self.T, startIn)
 
     def GetQ_From_T(self, t, startIn=0):
         """Returns a q based on a temperature"""
-        if self.T is None or self.Q is None: return None
+        if self.T is None or self.Q is None:
+            return None
         return self.InterpolateFromVectors(t, self.T, self.Q, startIn)
 
     def InterpolateFromVectors(self, val, fromVec, mapVec, startIn=0):
@@ -4951,7 +5018,8 @@ class CompositeSide(object):
                     return mapVec[i - 1] + frac * (mapVec[i] - mapVec[i - 1])
 
     def UpdateProfiles(self):
-        if not self.sides: return
+        if not self.sides:
+            return
 
         sides = self.sides
         sides.sort(self.SideCompare)
@@ -5096,9 +5164,12 @@ class CompositeSide(object):
             otherT = other.T
             otherQ = other.Q
 
-            if abs(myQ[-1] - otherQ[-1]) > 1.0E-4: return 0
+            if abs(myQ[-1] - otherQ[-1]) > 1.0E-4:
+                return 0
+
             otherQ[-1] = myQ[-1]
-            if myQ[0] != myQ[0]: return 0
+            if myQ[0] != myQ[0]:
+                return 0
 
             t0 = np.zeros(maxLen, dtype=float)
             q0 = np.zeros(maxLen, dtype=float)
@@ -5132,7 +5203,8 @@ class CompositeSide(object):
                     elif q0Curr > q:
                         q0[idxTo] = q
                         startIn = 0
-                        if idxMine > 0: startIn = idxMine - 1
+                        if idxMine > 0:
+                            startIn = idxMine - 1
                         t0[idxTo] = self.GetT_From_Q(q, startIn)
                         myLastIdx = idxMine
                         break
@@ -5151,7 +5223,8 @@ class CompositeSide(object):
                     elif q1Curr > q:
                         q1[idxTo] = q
                         startIn = 0
-                        if idxOther > 0: startIn = idxOther - 1
+                        if idxOther > 0:
+                            startIn = idxOther - 1
                         t1[idxTo] = other.GetT_From_Q(q, startIn)
                         otherLastIdx = idxOther
                         break
@@ -5167,13 +5240,18 @@ class CompositeSide(object):
             return 0
 
     def GetObject(self, desc):
-        if not self.sides: return None
+        if not self.sides:
+            return None
 
-        if desc == T_VAR: return self.T
-        if desc == ENERGY_VAR + 'Acum': return self.Q
+        if desc == T_VAR:
+            return self.T
+        if desc == ENERGY_VAR + 'Acum':
+            return self.Q
         try:
-            if desc == 'ua': return self.ua
-            if desc == 'lmtd': return self.lmtd
+            if desc == 'ua':
+                return self.ua
+            if desc == 'lmtd':
+                return self.lmtd
         except:
             return None
 

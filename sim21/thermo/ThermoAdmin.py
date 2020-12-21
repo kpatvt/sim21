@@ -51,7 +51,8 @@ class ThermoAdmin(object):
         self.currTypeOfCmpID = 'VMName'  # Could be VM Id, CASN, DIPPR ID, etc.
 
     def CleanUp(self):
-        for i in list(self.thDict.values()): i.CleanUp()
+        for i in list(self.thDict.values()):
+            i.CleanUp()
         self._linkedUOs = []
         self._unsentMsgStack = []
         self.saveInfo = []
@@ -143,7 +144,8 @@ class ThermoAdmin(object):
 
         # Small functions for filtering the required properties that are not supported
         def myFilter(prop):
-            if prop not in suppProps: return 1  # 1 if is not supported
+            if prop not in suppProps:
+                return 1  # 1 if is not supported
             return 0
 
         # By default, set as common properties the required properties from the simulator
@@ -423,7 +425,8 @@ class ThermoAdmin(object):
     def AddCompound(self, provider, thName, cmp):
         """Adds a compound to a  thermo case"""
         selCmps = self.GetSelectedCompoundNames(provider, thName)
-        if cmp in selCmps: return
+        if cmp in selCmps:
+            return
         self.thDict[provider].AddCompound(thName, cmp)
         for uo in self._linkedUOs:
             thCaseObj = uo.GetThermo()

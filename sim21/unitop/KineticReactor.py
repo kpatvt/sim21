@@ -562,7 +562,8 @@ class CSTR(EquationSolver.EquationBasedOp):
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return False
+        if not self._thCaseObj:
+            return False
         thAdmin, prov, case = self._thCaseObj.thermoAdmin, self._thCaseObj.provider, self._thCaseObj.case
 
         # scale factors
@@ -633,10 +634,12 @@ class CSTR(EquationSolver.EquationBasedOp):
 
         # Make sure it can solve
         nuRxn = self.parameters.get(NURXN_PAR, None)
-        if not nuRxn: return None
+        if not nuRxn:
+            return None
 
         cmps = self.inPort.GetCompounds()
-        if not cmps: return None
+        if not cmps:
+            return None
         nuCmps = len(cmps)
 
         # Dimension variables
@@ -645,8 +648,10 @@ class CSTR(EquationSolver.EquationBasedOp):
         # Load variables
         for j in range(nuRxn):
             rxn = self.GetChildUO(REACTION + str(j))
-            if not rxn: return None
-            if not rxn.stoichCoeffs: return None
+            if not rxn:
+                return None
+            if not rxn.stoichCoeffs:
+                return None
             coeffsArr[:, j] = rxn.stoichCoeffs
 
         return coeffsArr
@@ -699,7 +704,8 @@ class CSTR(EquationSolver.EquationBasedOp):
             name = 'InletFlowCmp_%d' % i
             tempUnkVar = EquationSolver.SolverVariable(name, FCmp0[i], FCmp0[i], isSpec, self.scaleFactorF, 0.0)
             unkIdx = u.AddUnknown(tempUnkVar)  # Returns the index where the unk was put
-            if i == 0: self._1stFCmp0Idx = unkIdx
+            if i == 0:
+                self._1stFCmp0Idx = unkIdx
 
         # Load outlet as unknowns
         isSpec = not missingOutlet
@@ -714,7 +720,8 @@ class CSTR(EquationSolver.EquationBasedOp):
                     isSpec = False
             tempUnkVar = EquationSolver.SolverVariable(name, FCmp[i], FCmp[i], isSpec, self.scaleFactorF, 0.0)
             unkIdx = u.AddUnknown(tempUnkVar)  # Returns the index where the unk was put
-            if i == 0: self._1stFCmpIdx = unkIdx
+            if i == 0:
+                self._1stFCmpIdx = unkIdx
 
         # Can not solve
         if T0 is None and T is None:
@@ -845,7 +852,9 @@ class CSTR(EquationSolver.EquationBasedOp):
                 else:
                     unitSet = self._unitSet[i]
 
-                if not unitSet: unitSet = 'sim42'
+                if not unitSet:
+                    unitSet = 'sim42'
+
                 rUnit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[RATERXNVOL_VAR].unitType)
                 if unitSet != 'sim42':
                     unit = S42Glob.unitSystem.GetUnit(unitSet, S42Glob.unitSystem.GetTypeID('GasConstant'))
@@ -966,13 +975,16 @@ class CSTR(EquationSolver.EquationBasedOp):
 
     def GetObject(self, name):
         obj = super(CSTR, self).GetObject(name)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         obj = self.signals.get(name, None)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         obj = self.estimates.get(name, None)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         return None
 
@@ -1245,10 +1257,12 @@ class PFR(EquationSolver.EquationBasedOp):
 
         # Make sure it can solve
         nuRxn = self.parameters.get(NURXN_PAR, None)
-        if not nuRxn: return None
+        if not nuRxn:
+            return None
 
         cmps = self.inPort.GetCompounds()
-        if not cmps: return None
+        if not cmps:
+            return None
         nuCmps = len(cmps)
 
         # Dimension variables
@@ -1257,8 +1271,10 @@ class PFR(EquationSolver.EquationBasedOp):
         # Load variables
         for j in range(nuRxn):
             rxn = self.GetChildUO(REACTION + str(j))
-            if not rxn: return None
-            if not rxn.stoichCoeffs: return None
+            if not rxn:
+                return None
+            if not rxn.stoichCoeffs:
+                return None
             coeffsArr[:, j] = rxn.stoichCoeffs
 
         return coeffsArr
@@ -1347,14 +1363,18 @@ class PFR(EquationSolver.EquationBasedOp):
         # Integrate
 
         ready = self.PrepareForSolve()
-        if not ready: return
+        if not ready:
+            return
 
-        if self.IsZeroFlow(): return
+        if self.IsZeroFlow():
+            return
 
-        if self.IsForgetting(): return
+        if self.IsForgetting():
+            return
 
         self.y0, yMin, yMax, yScale = self.GetInitValsForIntegrator()
-        if not self.y0: return
+        if not self.y0:
+            return
 
         # Dimension arrays
         nuSections = self._nuSections
@@ -1635,16 +1655,20 @@ class PFR(EquationSolver.EquationBasedOp):
         self.solveMode = "DirectIntegration"
 
         F = self.inPort.GetPropValue(MOLEFLOW_VAR)
-        if F is None: return None, None, None, None
+        if F is None:
+            return None, None, None, None
 
         self._inP = self.inPort.GetPropValue(P_VAR)
-        if self._inP is None: return None, None, None, None
+        if self._inP is None:
+            return None, None, None, None
 
         self._inT = self.inPort.GetPropValue(T_VAR)
-        if self._inT is None: return None, None, None, None
+        if self._inT is None:
+            return None, None, None, None
 
         self._inH = self.inPort.GetPropValue(H_VAR)
-        if self._inH is None: return None, None, None, None
+        if self._inH is None:
+            return None, None, None, None
 
         self._totQ = self.enePort.GetValue()  # W
         self.tAmb = self.ambTPort.GetValue()  # K
@@ -1765,7 +1789,8 @@ class PFR(EquationSolver.EquationBasedOp):
                 else:
                     unitSet = self._unitSet[i]
 
-                if not unitSet: unitSet = 'sim42'
+                if not unitSet:
+                    unitSet = 'sim42'
                 rUnit = GetUnit(unitSet, PropTypes[RATERXNVOL_VAR].unitType)
                 if unitSet != 'sim42':
                     unit = GetUnit(unitSet, S42Glob.unitSystem.GetTypeID('GasConstant'))
@@ -1853,7 +1878,8 @@ class PFR(EquationSolver.EquationBasedOp):
 
         if loadResults:
             length = len(self.P) - 1
-            if length < self.stepCount: self.DimensionArrays(length + 31)
+            if length < self.stepCount:
+                self.DimensionArrays(length + 31)
             self.P[self.stepCount] = P
             self.T[self.stepCount] = T
             self.H[self.stepCount] = H
@@ -1911,7 +1937,8 @@ class PFR(EquationSolver.EquationBasedOp):
         z = f / F
 
         # Looking good. Just leave
-        if min(z) >= 0.0: return y
+        if min(z) >= 0.0:
+            return y
 
         Q = y[nuCmps]  # K
         P = y[nuCmps + 1]  # kPa
@@ -1949,7 +1976,8 @@ class PFR(EquationSolver.EquationBasedOp):
                 # the reactions stop occuring
                 deltaf_j = epsilon - lastf[j]
                 deltax = deltaf_j / (a * np.matmul(stoich[j], r) * 3600.0)
-                if mindeltax is None: mindeltax = deltax
+                if mindeltax is None:
+                    mindeltax = deltax
                 if deltax <= mindeltax:
                     mindeltax = deltax
                 else:
@@ -2003,7 +2031,8 @@ class PFR(EquationSolver.EquationBasedOp):
 
         # Get thermo
         self._thCaseObj = self.GetThermo()
-        if not self._thCaseObj: return False
+        if not self._thCaseObj:
+            return False
         thAdmin, prov, case = self._thCaseObj.thermoAdmin, self._thCaseObj.provider, self._thCaseObj.case
 
         self._nuRxn = self.GetParameterValue(NURXN_PAR)
@@ -2205,7 +2234,8 @@ class PFR(EquationSolver.EquationBasedOp):
     def GetObject(self, name):
 
         obj = super(PFR, self).GetObject(name)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         if name == INTEGRATOR_OBJ:
             return self.integrator
@@ -2214,6 +2244,7 @@ class PFR(EquationSolver.EquationBasedOp):
             obj = BasicArrayProperty([T_VAR], self, T_VAR)
             obj.SetValue(self.T)
             return obj
+
         if name == H_VAR:
             obj = BasicArrayProperty([H_VAR], self, H_VAR)
             obj.SetValue(self.H)
@@ -2252,10 +2283,12 @@ class PFR(EquationSolver.EquationBasedOp):
             return obj
 
         obj = self.signals.get(name, None)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         obj = self.estimates.get(name, None)
-        if obj is not None: return obj
+        if obj is not None:
+            return obj
 
         return None
 

@@ -194,13 +194,15 @@ class CrossConnector(UnitOperations.UnitOperation):
                     # common component
                     x = inDict[cmp][1]
                     if x is not None:
-                        if sumIn is not None: sumIn += x
+                        if sumIn is not None:
+                            sumIn += x
                     else:
                         sumIn = None
 
                     x = outDict[cmp][1]
                     if x is not None:
-                        if sumOut is not None: sumOut += x
+                        if sumOut is not None:
+                            sumOut += x
                     else:
                         sumOut = None
 

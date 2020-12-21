@@ -40,7 +40,8 @@ class ReactionDisplay(object):
         result = 'Reaction = ' + rxn.FormulaString() + '\nOrder = ' + \
                  str(rxn.GetParameterValue(RXNORDER_PAR)) + '\nStoichmetric coefficients:'
         maxLength = 0
-        for cmpName in rxn.cmpNames: maxLength = max(maxLength, len(cmpName))
+        for cmpName in rxn.cmpNames:
+            maxLength = max(maxLength, len(cmpName))
         for i in range(len(rxn.stoichCoeffs)):
             result += '\n   ' + rxn.cmpNames[i] + ' ' * (maxLength - len(rxn.cmpNames[i]) + 2)
             v = rxn.stoichCoeffs[i]
@@ -48,7 +49,8 @@ class ReactionDisplay(object):
                 result += '%f' % v
             else:
                 result += ' %f' % v
-            if i == rxn.baseCompIdx: result += ' (Base Comp)'
+            if i == rxn.baseCompIdx:
+                result += ' (Base Comp)'
         return result
 
     def CleanUp(self):
@@ -136,7 +138,8 @@ class ConversionReaction(UnitOperations.UnitOperation):
     def ParseFormula(self):
         eqnStr = self.parameters[RXNFFORMULA_PAR]
         eqn = eqnStr  # keep a copy of the original equation
-        if eqnStr is None or eqnStr == '': return
+        if eqnStr is None or eqnStr == '':
+            return
 
         # reset all coeffs to zero
         cmpNames = self.GetCompoundNames()
@@ -271,13 +274,17 @@ class ConversionReaction(UnitOperations.UnitOperation):
             self.InfoMessage('EqnSyntax', (eqn, self.GetPath()))
 
     def ValidateOk(self):
-        if self.baseCompIdx < 0: return 0
+        if self.baseCompIdx < 0:
+            return 0
         eqn = self.parameters[RXNFFORMULA_PAR]
-        if eqn is None or eqn == '': return 0
+        if eqn is None or eqn == '':
+            return 0
         cmpNames = self.GetCompoundNames()
-        if len(cmpNames) > 0 and len(self.stoichCoeffs) == 0: return 0
+        if len(cmpNames) > 0 and len(self.stoichCoeffs) == 0:
+            return 0
         if self.rxnConv:
-            if self.rxnConv.GetValue() is None: return 0
+            if self.rxnConv.GetValue() is None:
+                return 0
         return 1
 
     def BalancedRxn(self):
@@ -344,7 +351,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
 
         super(IsothermalConvReactor, self).SetParameterValue(paramName, value)
 
-        if paramName == NURXN_PAR: self.UpdateRxnCount()
+        if paramName == NURXN_PAR:
+            self.UpdateRxnCount()
 
     def UpdateRxnCount(self):
         """Update the amount and names of the ports in"""
@@ -407,8 +415,10 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         outPort = self.outPort
         inVal = inPort.GetPropValue(var)
         outVal = outPort.GetPropValue(var)
-        if inVal is not None and outVal is None: outPort.SetPropValue(var, inVal, CALCULATED_V)
-        if outVal is not None and inVal is None: inPort.SetPropValue(var, outVal, CALCULATED_V)
+        if inVal is not None and outVal is None:
+            outPort.SetPropValue(var, inVal, CALCULATED_V)
+        if outVal is not None and inVal is None:
+            inPort.SetPropValue(var, outVal, CALCULATED_V)
 
     def Solve(self):
         # if SIMULTANEOUSRXN_PAR is not defined, assume 1
@@ -436,7 +446,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         return retVal
 
     def SolveSimultaneous(self):
-        if self.IsForgetting(): return 0
+        if self.IsForgetting():
+            return 0
         inPort = self.inPort
         outPort = self.outPort
         # propagate pressure
@@ -449,7 +460,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         self.PropagateValue(T_VAR)
 
         try:
-            if not self.ValidateOk(): return 0
+            if not self.ValidateOk():
+                return 0
             rxns = list(self.chUODict.values())
             xin = inPort.GetCompositionValues()
             self.nc = len(xin)
@@ -535,10 +547,12 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         rxns = list(self.chUODict.values())
         # all reactions must have been defined
         for aRxn in rxns:
-            if not aRxn.ValidateOk(): return 0
+            if not aRxn.ValidateOk():
+                return 0
         # fix 020503, do not check for complete inlet stream,
         # check for inlet composiiton
-        if not self.inPort.GetCompounds().AreValuesReady(): return 0
+        if not self.inPort.GetCompounds().AreValuesReady():
+            return 0
 
         # flow must have been known
         # inPort = self.inPort
@@ -562,7 +576,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
 
     def RxnEnthalpy(self, aPort):
         h = aPort.GetPropValue(H_VAR)
-        if h is None: return None
+        if h is None:
+            return None
         try:
             p = aPort.GetPropValue(P_VAR)
             t = aPort.GetPropValue(T_VAR)
@@ -582,7 +597,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
             return None
 
     def SolveSequential(self):
-        if self.IsForgetting(): return 0
+        if self.IsForgetting():
+            return 0
         inPort = self.inPort
         outPort = self.outPort
 
@@ -596,7 +612,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         self.PropagateValue(T_VAR)
 
         try:
-            if not self.ValidateOk(): return 0
+            if not self.ValidateOk():
+                return 0
             rxns = list(self.chUODict.values())
             xin = inPort.GetCompositionValues()
             self.nc = len(xin)
