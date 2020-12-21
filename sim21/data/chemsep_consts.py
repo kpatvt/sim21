@@ -1,0 +1,2 @@
+# J/kmol-K or m3-Pa/kmol-K
+GAS_CONSTANT = 8.31446261815324e3
