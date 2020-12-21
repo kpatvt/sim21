@@ -135,6 +135,7 @@ class ThermoAdmin(object):
         if not module:
             self.InfoMessage('CouldNotLoadProvider', modName)
             return 0
+
         # The provider name and the module name are the same
         self.thDict[modName] = module.__dict__[className](*args)
 
@@ -159,6 +160,7 @@ class ThermoAdmin(object):
             del self.thDict[modName]
             raise SimError('NoSupportForReqProps', (modName, str(notSupp)))
             # return 0
+
         self.thDict[modName].SetCommonPropertyNames(reqProps)
 
         # Check for required array properties
@@ -170,6 +172,7 @@ class ThermoAdmin(object):
             del self.thDict[modName]
             raise SimError('NoSupportForReqArrProps', (modName, str(notSupp)))
             # return 0
+
         self.thDict[modName].SetCommonArrayPropertyNames(reqProps)
 
         return 1
