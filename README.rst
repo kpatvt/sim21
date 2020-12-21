@@ -14,11 +14,10 @@ sim21
         :alt: Documentation Status
 
 
+Open source simulator for typical process/chemical/refinery engineering applications with rigorous thermodynamics.
+Revival of legacy Sim42 simulator for Python 3 with custom thermodynamics.
 
-
-Open source simulator for typical process/chemical/refinery engineering applications with rigorous thermodynamics
-
-
+* Learn more about legacy `Sim42 <https://web.archive.org/web/20050204025650/http://manual.sim42.org/>`_
 * Free software: MIT license
 * Documentation: https://sim21.readthedocs.io.
 
@@ -26,10 +25,17 @@ Open source simulator for typical process/chemical/refinery engineering applicat
 Features
 --------
 
-* TODO
+* Updated for Python 3.x and removed major incompatibilities
+
+Next Steps
+----------
+
+* Implement basic thermodynamic provider with component database
 
 Credits
 -------
+
+* Kiran Pashikanti <kpatvt@gmail.com>
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
