@@ -27,6 +27,13 @@ Features
 
 * Updated for Python 3.x and removed major incompatibilities
 * Removed obsolete references and updated to use modern replacements (numpy, scipy)
+* Thermodynamics:
+    * Equation of State (EOS)
+        * Peng-Robinson (PR) /Soave-Redlich-Kwong (RK)
+    * IAPWS97 implementation based on `XSteam <https://github.com/KurtJacobson/XSteam>`_
+    * Two-phase flashes for common specifications using inside-out method
+* Builtin database of 400+ common components using `ChemSep <http://www.chemsep.com/>`_ database
+
 
 Next Steps
 ----------
