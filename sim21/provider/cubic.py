@@ -3,6 +3,8 @@ import math
 import numpy as np
 from numba import njit
 from sim21.data.chemsep_consts import GAS_CONSTANT
+from sim21.provider.flash.basic import basic_flash_temp_press_2phase
+from sim21.provider.flash.io import flash_press_prop_2phase
 from sim21.support.roots import solve_cubic_reals, mid
 from sim21.provider.generic import press_derivs, log_phi_derivs, residual_derivs, calc_ig_props
 from sim21.provider.phase import PhaseByMole
@@ -866,8 +868,10 @@ class CubicEos(Provider):
         results = flash_press_prop_2phase(self, press, prop_flash_name, prop_value,
                                           0, frac_value, valid=valid,
                                           previous=previous, start_temp=start_temp)
+
         results.scale(flow_sum_mole=flow_sum_value_mole)
         return results
+
 
     def phase(self, temp, press, n, desired_phase,
               allow_pseudo=True, valid=None, press_comp_derivs=False,

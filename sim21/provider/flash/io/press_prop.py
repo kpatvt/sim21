@@ -1,16 +1,14 @@
 import numpy as np
 from numba import njit
-
-from ypsim.error import FlashConvergenceError
-from ..basic import generate_2phase_results, generate_2phase_estimates
-from .temp_press import calc_log_kb, calc_u
-from .settings import INSIDE_OUT_DAMPING, INSIDE_OUT_INNER_ITERATIONS, \
-    INSIDE_OUT_OUTER_ITERATIONS, INSIDE_OUT_INNER_TOLERANCE, INSIDE_OUT_OUTER_TOLERANCE
-from .temp_press import flash_temp_press_2phase
 from math import exp, log
 
+from .settings import INSIDE_OUT_INNER_ITERATIONS, INSIDE_OUT_INNER_TOLERANCE, INSIDE_OUT_OUTER_ITERATIONS, \
+    INSIDE_OUT_OUTER_TOLERANCE, INSIDE_OUT_DAMPING
+from .temp_press import calc_log_kb, calc_u, flash_temp_press_2phase
+from ..basic import generate_2phase_results, generate_2phase_estimates
 from ..nested import nested_press_prop_2phase
 from ...agg import AggregateByMole
+from ...error import FlashConvergenceError
 
 
 @njit(cache=True)

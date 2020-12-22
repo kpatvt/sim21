@@ -1,10 +1,10 @@
-from ypsim.data.chemsep import pure
-from ypsim.thermo.ceos import PengRobinson, GAS_CONSTANT
 import numpy as np
 import matplotlib.pyplot as plt
-
-from ypsim.thermo.flash.basic import basic_flash_temp_press_2phase
-from ypsim.thermo.flash.io import flash_press_vap_frac_2phase, flash_temp_vap_frac_2phase, flash_press_prop_2phase, \
+from sim21.data.chemsep import pure
+from sim21.data.chemsep_consts import GAS_CONSTANT
+from sim21.provider.cubic import PengRobinson
+from sim21.provider.flash.basic import basic_flash_temp_press_2phase
+from sim21.provider.flash.io import flash_press_vap_frac_2phase, flash_temp_vap_frac_2phase, flash_press_prop_2phase, \
     flash_temp_prop_2phase, flash_prop_vap_frac_2phase
 
 
@@ -230,8 +230,8 @@ def test_flash_prop_vap_frac():
 
 
 def test_all():
-    # press_vs_rho()
-    # rhos_vs_temp()
+    press_vs_rho()
+    rhos_vs_temp()
     test_flash()
     test_cavett_feed()
     test_flash_press_vap_frac()

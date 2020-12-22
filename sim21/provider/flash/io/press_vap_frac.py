@@ -1,8 +1,5 @@
 import numpy as np
 from numba import njit
-
-from ypsim.error import FlashConvergenceError
-from ypsim.num.accel import gdem
 from ..basic import generate_2phase_results, generate_2phase_estimates
 from .temp_press import  calc_log_kb, calc_u
 from .settings import INSIDE_OUT_DAMPING, INSIDE_OUT_INNER_ITERATIONS, INSIDE_OUT_OUTER_ITERATIONS, \
@@ -10,6 +7,7 @@ from .settings import INSIDE_OUT_DAMPING, INSIDE_OUT_INNER_ITERATIONS, INSIDE_OU
 from math import exp, log
 
 from ...agg import AggregateByMole
+from ...error import FlashConvergenceError
 
 
 @njit(cache=True)
@@ -309,8 +307,6 @@ def flash_press_vap_frac_2phase(provider, press, vap_frac, feed_comp, valid=None
                 a_hat, b_hat = x_inf[len(u_hat):]
                 history = []
 
-
-
         temp = temp_calc
         u = u_hat
         a = a_hat
@@ -321,4 +317,4 @@ def flash_press_vap_frac_2phase(provider, press, vap_frac, feed_comp, valid=None
         raise FlashConvergenceError
 
     # Otherwise we can return the solution
-    return AggregateByMole([liq, vap], [1 - vap_frac, vap_frac])
+    return AggregateByMole(provider, [liq, vap], [1 - vap_frac, vap_frac])

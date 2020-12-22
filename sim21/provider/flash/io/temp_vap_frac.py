@@ -1,15 +1,16 @@
 from math import log, exp
-from ..basic import generate_2phase_estimates, generate_2phase_results
-from .temp_press import calc_log_kb, calc_u
-# The formulation for the weighting coefficients is the same for temp_vap_frac flash as well
-from .settings import INSIDE_OUT_DAMPING, INSIDE_OUT_OUTER_ITERATIONS, INSIDE_OUT_OUTER_TOLERANCE
-# The inner loop is the same for temp_vap_frac flash and press_vap_frac flash
-from .press_vap_frac import initial_press_vap_frac_weighting_coeffs, calc_error, solve_model_press_vap_frac_2phase
 import numpy as np
 
-from ...agg import AggregateByMole
-from ....error import FlashConvergenceError
-from ....num.accel import gdem
+# The formulation for the weighting coefficients is the same for temp_vap_frac flash as well
+# The inner loop is the same for temp_vap_frac flash and press_vap_frac flash
+from sim21.provider.agg import AggregateByMole
+from sim21.provider.error import FlashConvergenceError
+from sim21.provider.flash.basic import generate_2phase_results, generate_2phase_estimates
+from sim21.provider.flash.io.press_vap_frac import initial_press_vap_frac_weighting_coeffs, \
+    solve_model_press_vap_frac_2phase, calc_error
+from sim21.provider.flash.io.settings import INSIDE_OUT_OUTER_ITERATIONS, INSIDE_OUT_OUTER_TOLERANCE, INSIDE_OUT_DAMPING
+from sim21.provider.flash.io.temp_press import calc_log_kb, calc_u
+from sim21.support.accel import gdem
 
 
 def update_model_temp_vap_frac_2phase(provider, temp, press, press_star, vap_frac,
@@ -185,5 +186,5 @@ def flash_temp_vap_frac_2phase(provider, temp, vap_frac, feed_comp, valid=None, 
 
     # print('#', outer_iterations, 'press:', press, 'vap_frac:', vap_frac, 'error:', error)
     # Otherwise we can return the solution
-    return AggregateByMole([liq, vap], [1 - vap_frac, vap_frac])
+    return AggregateByMole(provider, [liq, vap], [1 - vap_frac, vap_frac])
 

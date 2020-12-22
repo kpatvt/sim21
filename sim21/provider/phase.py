@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from numpy import ndarray
-# from ypsim.thermo.provider import Provider
+from sim21.provider.base import Provider
 
 
 @dataclass

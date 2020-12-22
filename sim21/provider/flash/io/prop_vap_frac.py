@@ -1,14 +1,15 @@
 import numpy as np
 from numba import njit
-from ..basic import generate_2phase_results, generate_2phase_estimates
-from .temp_press import calc_log_kb, calc_u
-from .settings import INSIDE_OUT_INNER_ITERATIONS, INSIDE_OUT_OUTER_ITERATIONS, INSIDE_OUT_INNER_TOLERANCE, \
-    INSIDE_OUT_OUTER_TOLERANCE
 from math import exp, log
-from .press_prop import initial_press_prop_weighting_coeffs
-from ...agg import AggregateByMole
-from ....error import FlashConvergenceError
-from ....num.accel import gdem
+
+from sim21.provider.agg import AggregateByMole
+from sim21.provider.error import FlashConvergenceError
+from sim21.provider.flash.basic import generate_2phase_results, generate_2phase_estimates
+from sim21.provider.flash.io.press_prop import initial_press_prop_weighting_coeffs
+from sim21.provider.flash.io.settings import INSIDE_OUT_INNER_ITERATIONS, INSIDE_OUT_INNER_TOLERANCE, \
+    INSIDE_OUT_OUTER_ITERATIONS, INSIDE_OUT_OUTER_TOLERANCE
+from sim21.provider.flash.io.temp_press import calc_log_kb, calc_u
+from sim21.support.accel import gdem
 
 
 @njit(cache=True)
@@ -441,5 +442,5 @@ def flash_prop_vap_frac_2phase(provider,
         raise FlashConvergenceError
 
     # Otherwise we can return the solution
-    return AggregateByMole([liq, vap], [1 - vap_frac, vap_frac])
+    return AggregateByMole(provider, [liq, vap], [1 - vap_frac, vap_frac])
 
