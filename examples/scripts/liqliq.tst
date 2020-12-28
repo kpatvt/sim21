@@ -1,4 +1,4 @@
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + n-HEPTANE BENZENE
 # Components with names in them can be entered by using underscores instead

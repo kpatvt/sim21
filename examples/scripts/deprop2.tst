@@ -1,6 +1,6 @@
 # Depeopanizer test with some changes
 units Field
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + Methane Ethane PROPANE
 thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane
@@ -31,7 +31,7 @@ cd ../Stage_19
 l = Tower.LiquidDraw()
 
 l.c3flow = Tower.ComponentMoleFlowSpec()
-l.c3flow + PROPANE 
+l.c3flow + PROPANE
 l.c3flow.Port = 12
 
 reb = Tower.EnergyFeed(1)

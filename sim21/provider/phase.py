@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from numpy import ndarray
+from numpy import ndarray, dot
 from sim21.provider.base import Provider
 
 
@@ -89,3 +89,23 @@ class PhaseByMole:
                            del_press_del_comp=self.del_press_del_comp,
                            del_vol_del_comp=self.del_vol_del_comp,
                            flow_mole=self.flow_mole, flow_sum_mole=self.flow_sum_mole)
+
+    @property
+    def vap_frac_mole(self):
+        if self.identifier == 'vap':
+            return 1.0
+        else:
+            return 0.0
+
+    @property
+    def std_liq_vol_mole(self):
+        return dot(self.provider.std_liq_vol_mole, self.comp_mole)
+
+    @property
+    def visc(self):
+        if self.identifier == 'vap':
+            return self.provider.vap_visc(self.temp, self.comp_mole)
+        elif self.identifier == 'liq':
+            return self.provider.liq_visc(self.temp, self.comp_mole)
+        else:
+            raise NotImplementedError

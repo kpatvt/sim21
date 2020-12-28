@@ -349,6 +349,7 @@ class Flowsheet(UnitOperations.UnitOperation):
                 self.InfoMessage('DoneSolving', self.name)
         finally:
             self._isSolving = 0
+
         if REPORT_TIME:
             self.InfoMessage('InitSolveTime', (time.asctime(), time.time()))
 

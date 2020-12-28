@@ -1,6 +1,6 @@
 # Simple distilation column test
 units SI
-$thermo = VirtualMaterials.Advanced_Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
 
@@ -94,7 +94,7 @@ Efficiencies
 Efficiencies
 
 #/col.Stage_3 + 2
-#Efficiencies 
+#Efficiencies
 
 
 Efficiencies = :-2 .32 4 .18 8 .91 @PROPANE 0 .2 1 .4 2 .6 3-7 .7 @n-BUTANE 1 .3 4-5 .8 6- .4 @CARBON_DIOXIDE -3 .2 4 .6
@@ -111,7 +111,7 @@ TryToSolve = 0
 
 /col.P_Profile.Values
 
-/col.LiquidDraw_0_l.P = 
+/col.LiquidDraw_0_l.P =
 /col.P_Profile.Values
 
 /col.P_Profile.Item0 = 700
@@ -128,15 +128,15 @@ TryToSolve = 1
 /col.LiquidDraw_0_l.P
 /col.P_Profile.Values
 
-/col.P_Profile.Item0 = 
+/col.P_Profile.Item0 =
 cd /col.Stage_2
 . + 2
 cd /col
 /col.LiquidDraw_0_l.P
 /col.P_Profile.Values
 
-/col.LiquidDraw_13_l.P = 
-/col.P_Profile.Item6 = 
+/col.LiquidDraw_13_l.P =
+/col.P_Profile.Item6 =
 /col.LiquidDraw_0_l.P
 /col.LiquidDraw_13_l.P
 /col.P_Profile.Values

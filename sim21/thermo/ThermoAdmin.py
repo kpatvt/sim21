@@ -16,9 +16,10 @@ from sim21.solver.Error import SimError
 from sim21.thermo.ThermoConstants import *
 from sim21.thermo.Hypo import GetSimHypoStrings, GetSimHypoDoubles, GetCompoundPropertyLists
 from sim21.solver.Messages import MessageHandler
+from importlib import import_module
 
-VMModName = 'VirtualMaterials'
-VMClassName = 'ThermoInterface'
+Sim21ThermoModName = 'Sim21Thermo'
+Sim21ThermoClassName = 'ThermoInterface'
 
 IPINFO = 'IPInfo'
 LINKED_OPS_KEY = 'LinkedOps'
@@ -47,7 +48,7 @@ class ThermoAdmin(object):
         self._linkedUOs = []  # Instance of uos that use this thermoadmin
         self.saveInfo = []
         self._unsentMsgStack = []  # Top most unit op stacks messages while an infoCallBack is not available
-        err = self.SetNewThermoProvider(VMModName, VMClassName)
+        err = self.SetNewThermoProvider(Sim21ThermoModName, Sim21ThermoClassName)
         self.currTypeOfCmpID = 'VMName'  # Could be VM Id, CASN, DIPPR ID, etc.
 
     def CleanUp(self):
@@ -179,11 +180,7 @@ class ThermoAdmin(object):
 
     def __ImportModule(self, modName):
         """Imports a module and returns its instance or None if error"""
-        module = None
-        try:
-            module = __import__(modName, globals())
-        finally:
-            return module
+        return import_module('sim21.thermo.{0}'.format(Sim21ThermoModName))
 
     def SupportsProvider(self, provider):
         """True if provider is a valid thermo provider name
@@ -427,6 +424,7 @@ class ThermoAdmin(object):
 
     def AddCompound(self, provider, thName, cmp):
         """Adds a compound to a  thermo case"""
+        cmp = cmp.upper()
         selCmps = self.GetSelectedCompoundNames(provider, thName)
         if cmp in selCmps:
             return
@@ -476,6 +474,9 @@ class ThermoAdmin(object):
         #    idx2 = cmps.index(cmp2Name)
         # idx1 = self.CompoundIndexFromName(provider, thName, cmp1Name)
         # idx2 = self.CompoundIndexFromName(provider, thName, cmp2Name)
+        cmp1Name = cmp1Name.upper()
+        cmp2Name = cmp2Name.upper()
+
         cmps = self.thDict[provider].GetSelectedCompoundNames(thName)
         try:
             if cmp1Name == '$':
@@ -519,6 +520,7 @@ class ThermoAdmin(object):
 
     def DeleteCompound(self, provider, thName, cmp):
         """Removes a compound from a thermo case"""
+        cmp = cmp.upper()
         selCmps = self.GetSelectedCompoundNames(provider, thName)
         if cmp not in selCmps:
             cmp = re.sub(' ', '_', cmp)
@@ -548,7 +550,7 @@ class ThermoAdmin(object):
 
     def GetHypoteticalCompoundNames(self, provider, thName):
         """List of selected compounds for a thermo case"""
-        return self.thDict[provider].GetHypoteticalCompoundNames(thName)
+        return self.thDict[provider].GetHypoCompoundNames(thName)
 
     def GetCompoundPropertyNames(self, provider, propGroup=None):
         """Get the names of the supported properties (of certain groups if desired)"""
@@ -677,9 +679,7 @@ class ThermoAdmin(object):
         """
         return self.thDict[provider].Flash(thName, cmps, properties, liqPhases, propList, self, nuSolids, stdVolRefT)
 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-    # Save and load methods # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # Save and load methods
     def UpdateSaveInfo(self):
         # Call this before saving, so pickle saves the xml string
         """Temporary scheme for saving the prop pkg as a tuple in the list self.saveInfo """

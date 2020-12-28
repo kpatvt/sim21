@@ -1,12 +1,12 @@
 # Demethanizer test (from old Hysim manual)
 units Field
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + Nitrogen Carbon_Dioxide Methane Ethane PROPANE
 thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane
 
 feed = Stream.Stream_Material()
-feed.In.Fraction = 
+feed.In.Fraction =
 feed.In.T = -135.5506
 feed.In.P = 335
 feed.In.MoleFlow = 21.2984

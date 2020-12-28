@@ -1,6 +1,6 @@
 # Two phase flash test
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE WATER
 
@@ -16,7 +16,7 @@ cd ..
 Vap   # Vapour stream
 Liq0  # Liquid stream
 Liq1  # Water stream
-In    
+In
 
 
 #Test copy and paste

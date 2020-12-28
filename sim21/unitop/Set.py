@@ -9,7 +9,7 @@ Set -- Inherits from UnitOperation
 from sim21.unitop import UnitOperations
 from sim21.solver import Error
 from sim21.solver.Variables import *
-from sim21.solver import S42Glob
+from sim21.solver import setup
 from sim21.solver.Ports import *
 from sim21.solver.Messages import MessageHandler
 from sim21.solver.Error import SimError
@@ -84,8 +84,8 @@ class Set(UnitOperations.UnitOperation):
             validateName = value.split('_', 1)[0]
             equivalent = 1
             try:
-                equivalent = S42Glob.unitSystem.IsEquivalentType(PropTypes[currName].unitType,
-                                                                 PropTypes[validateName].unitType)
+                equivalent = setup.unitSystem.IsEquivalentType(PropTypes[currName].unitType,
+                                                               PropTypes[validateName].unitType)
             except:
                 # if it failed comparing, then assume they are equivalent
                 pass

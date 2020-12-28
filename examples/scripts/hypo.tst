@@ -1,4 +1,4 @@
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + methane water 'Carbon dioxide'
 
@@ -15,7 +15,7 @@ LiquidDensity@298 = 980.0
 thermo.hypo1*
 
 strm = Stream.Stream_Material()
-strm.In.Fraction = 0.1 0.2 0.3 0.4 0.0 
+strm.In.Fraction = 0.1 0.2 0.3 0.4 0.0
 strm.In.P = 100
 strm.In.T = 300
 strm.In

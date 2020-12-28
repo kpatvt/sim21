@@ -1,6 +1,6 @@
 # Depropanizer test (from old Hysim manual)
 units SI
-thermo = VirtualMaterials.Peng-Robinson
+thermo = Sim21Thermo.Peng-Robinson
 thermo + propane isobutane n-butane isopentane n-pentane
 thermo + n-hexane n-heptane n-octane
 thermo + n-nonane n-decane

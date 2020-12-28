@@ -7,6 +7,8 @@ QualityCurve -- Class for a single curve in the envelope
 """
 # import numpy as np
 import re
+from functools import cmp_to_key
+
 from sim21.solver.Variables import *
 from sim21.thermo.ThermoAdmin import EnvelopeResults
 from sim21.unitop.Pump import DataSeries
@@ -149,7 +151,7 @@ class PTEnvelope(Stream.Stream_Material):
         result.append((PRESSURESETPOINTS, self.pSet))
         # result.append(('NumQualityCurves', len(self.QualityLines)))
         sortedKeys = list(self.QualityLines.keys())[:]
-        sortedKeys.sort(lambda a, b: cmp(self.QualityLines[a].vapFrac, self.QualityLines[b].vapFrac))
+        sortedKeys.sort(key=cmp_to_key(lambda a, b: cmp(self.QualityLines[a].vapFrac, self.QualityLines[b].vapFrac)))
         result.append((QUALITYCURVES, sortedKeys))
         for key in list(self.QualityLines.keys()):
             result.append((self.QualityLines[key].name, self.QualityLines[key]))
@@ -517,7 +519,7 @@ class THEnvelope(object):
         path = paths[len(paths) - 1]
         result = [(path + 'Object', self.name)]
         sortedKeys = list(self.QualityLines.keys())[:]
-        sortedKeys.sort(lambda a, b: cmp(self.QualityLines[a].vapFrac, self.QualityLines[b].vapFrac))
+        sortedKeys.sort(key=cmp_to_key(lambda a, b: cmp(self.QualityLines[a].vapFrac, self.QualityLines[b].vapFrac)))
         result.append((path + ENTHALPYCURVES, sortedKeys))
         for key in list(self.QualityLines.keys()):
             result.append((self.QualityLines[key].name, self.QualityLines[key]))

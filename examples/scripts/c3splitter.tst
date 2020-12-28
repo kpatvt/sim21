@@ -1,6 +1,6 @@
 # C3 splitter test (from old Hysim manual)
 units Field
-$thermo = VirtualMaterials.SRK
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE PROPYLENE
 

@@ -34,6 +34,13 @@ Features
     * Two-phase flashes for common specifications using inside-out method
 * Builtin database of 400+ common components using `ChemSep <http://www.chemsep.com/>`_ database
 
+Status
+------
+
+* Thermodynamics provider is partially complete
+* Many of the original examples will run largely unmodified
+* Tower model is partially functional (Runs OK for narrow boiling mixtures)
+* Some unusual behavior especially when changing components on the fly
 
 Next Steps
 ----------

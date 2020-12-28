@@ -1,6 +1,6 @@
 # Simple distilation column test
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
 
@@ -167,14 +167,14 @@ degsubcool = Tower.DegSubCooling()
 /stagebalance.OutQ1
 
 
-/col.DegSubCool_0_degsubcool.DT = 
+/col.DegSubCool_0_degsubcool.DT =
 /col.LiquidDraw_0_l.T = 18
 /col.DegSubCool_0_degsubcool
 /bal.OutQ1
 /stagebalance.OutQ1
 
 
-/col.LiquidDraw_0_l.MoleFlow = 
+/col.LiquidDraw_0_l.MoleFlow =
 /col.DegSubCool_0_degsubcool.DT = 2
 /col.DegSubCool_0_degsubcool
 /col.LiquidDraw_0_l
@@ -198,7 +198,7 @@ cd /
 
 
 #Solve with an inconcistency
-/col.LiquidDraw_0_l.T = 
+/col.LiquidDraw_0_l.T =
 /col.LiquidDraw_0_l.MoleFlow = 5
 /col.DegSubCool_0_degsubcool.DT = 1
 /bal.OutQ1
@@ -218,13 +218,13 @@ cd /
 
 
 #Solve fine. A DegSubcooling > 0.0 puts a zero lfow in the vap flow
-/col.VapourDraw_0_vap.MoleFlow = 
+/col.VapourDraw_0_vap.MoleFlow =
 /bal.OutQ1
 /stagebalance.OutQ1
 
 
 # Can not solve because the liquid is subcooled and the vap is > 0.0
-/col.DegSubCool_0_degsubcool.DT = 
+/col.DegSubCool_0_degsubcool.DT =
 /col.LiquidDraw_0_l.T = 18 C
 /col.VapourDraw_0_vap.MoleFlow = 1
 /bal.OutQ1

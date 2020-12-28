@@ -1,6 +1,6 @@
 # Depeopanizer test (from old Hysim manual)
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + propane isobutane n-butane isopentane n-pentane
 thermo + n-hexane n-heptane n-octane
@@ -110,18 +110,18 @@ cd PAReturnCv
 cd /stab
 TryToSolve = 0
 TryToRestart = 0
-/stab.EnergyFeed_10_pd_paQ.Energy = 
+/stab.EnergyFeed_10_pd_paQ.Energy =
 TryToSolve = 1
 /stab.Variable_7_PAReturnT.T = 54.53
 L
 V
 T
-/stab.Variable_7_PAReturnT.T = 
+/stab.Variable_7_PAReturnT.T =
 /stab.Variable_7_PADeltaT.DT = 60
 L
 V
 T
-/stab.Variable_7_PADeltaT.DT = 
+/stab.Variable_7_PADeltaT.DT =
 /stab.Stage_10.pd_paQ.Port.Energy = 1000000
 
 
@@ -186,19 +186,19 @@ cd /stab.Stage_11.l
 StdLiqVolRatio = Tower.StdVolRatioSpec()
 cd StdLiqVolRatio
 . +  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE /  n-PENTANE n-HEXANE n-HEPTANE n-OCTANE
-. -  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE / n-PENTANE n-HEXANE n-HEPTANE n-OCTANE / 
-. +  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE / 
-. -  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE / n-HEXANE n-HEPTANE n-OCTANE / 
+. -  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE / n-PENTANE n-HEXANE n-HEPTANE n-OCTANE /
+. +  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE /
+. -  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE / n-HEXANE n-HEPTANE n-OCTANE /
 . +  n-BUTANE ISOPENTANE n-PENTANE n-HEXANE /  n-HEXANE n-HEPTANE n-OCTANE
 
 cd /stab
-/stab.Variable_0_reflux.Generic = 
+/stab.Variable_0_reflux.Generic =
 /stab.Variable_11_StdLiqVolRatio.Fraction = 0.986
 TryToRestart = 0
 L
 V
 T
-/stab.Variable_11_StdLiqVolRatio.Fraction = 
+/stab.Variable_11_StdLiqVolRatio.Fraction =
 /stab.Variable_0_reflux.Generic = 2
 L
 V

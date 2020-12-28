@@ -24,7 +24,8 @@ import numpy as np
 import copy
 from sim21.solver.Error import SimError
 # from sim21.uom.units import units
-from sim21.solver import S42Glob
+from sim21.solver import setup
+import math
 
 TINIEST_FLOW = 1.0E-40
 
@@ -291,7 +292,7 @@ class PropertyType(object):
         self.name = name
         self.calcType = calcType
         if unitType:
-            unitType = S42Glob.unitSystem.GetTypeID(unitType)
+            unitType = setup.unitSystem.GetTypeID(unitType)
         self.unitType = unitType
         self.scaleFactor = scaleFactor  # Negative, 0.0 or None are ignored in consistency calcs
         self.minValue = minValue
@@ -791,7 +792,7 @@ class BasicProperty(object):
 
     def SetTypeByName(self, typeName):
         """Change the type of a property, but only if it is of an equivalent unit type"""
-        if S42Glob.unitSystem.IsEquivalentType(self._type.unitType, PropTypes[typeName].unitType):
+        if setup.unitSystem.IsEquivalentType(self._type.unitType, PropTypes[typeName].unitType):
             self._type = PropTypes[typeName]
 
     def GetCalcType(self):
@@ -928,7 +929,11 @@ class MaterialPropertyDict(dict):
 
     def __init__(self, dict_values=None, port=None):
         """Init dictionary with basic and common properties."""
-        dict.__init__(self, dict_values)
+
+        dict.__init__(self)
+        if dict_values is not None:
+            for k in dict_values:
+                self[k] = []
 
         for i in GetReqIntensivePropertyNames():
             self[i] = BasicProperty(i, port)
@@ -957,18 +962,20 @@ class MaterialPropertyDict(dict):
         """Returns names of props with self.GetCalcStatus()==FIXED_V"""
         all_vars = []
         for i in list(self.items()):
-            if i[1].GetCalcStatus() & FIXED_V and i[1].GetValue() is not None:
-                if type_of is None or i[1].GetType().calcType & type_of:
-                    all_vars.append(i[0])
+            if i[1] is not None:
+                if i[1].GetCalcStatus() & FIXED_V and i[1].GetValue() is not None:
+                    if type_of is None or i[1].GetType().calcType & type_of:
+                        all_vars.append(i[0])
         return all_vars
 
     def GetNamesOfKnownCalcVars(self, type_of=None):
         """Returns names of props with self.GetCalcStatus()==CALCULATED_V"""
         all_vars = []
         for i in list(self.items()):
-            if i[1].GetCalcStatus() & (CALCULATED_V | PASSED_V) and i[1].GetValue() is not None:
-                if type_of is None or i[1].GetType().calcType & type_of:
-                    all_vars.append(i[0])
+            if i[1] is not None:
+                if i[1].GetCalcStatus() & (CALCULATED_V | PASSED_V) and i[1].GetValue() is not None:
+                    if type_of is None or i[1].GetType().calcType & type_of:
+                        all_vars.append(i[0])
         return all_vars
 
     def GetNamesOfKnownVars(self, type_of=None):
@@ -995,8 +1002,11 @@ class MaterialArrayPropertyDict(dict):
 
     def __init__(self, dict_values=None, port=None):
         """Init dictionary with required properties."""
-        dict.__init__(self, dict_values)
+        dict.__init__(self)
         self._port = port
+        if dict_values is not None:
+            for k in dict_values:
+                self[k] = []
 
         for i in GetReqArrayPropertyNames():
             self[i] = []
@@ -1018,7 +1028,11 @@ class EnergyPropertyDict(dict):
 
     def __init__(self, dict_values=None, port=None, varTypeName=ENERGY_VAR):
         """The only value of the dictionary is varTypeName"""
-        dict.__init__(self, dict_values)
+        dict.__init__(self)
+        if dict_values is not None:
+            for k in dict_values:
+                self[k] = []
+
         self[varTypeName] = BasicProperty(varTypeName, port)
 
     def __setitem__(self, key, item):
@@ -1109,6 +1123,9 @@ class CompoundList(list):
         try:
             # If I can do this, then it is ready
             values = np.array(self.GetValues(), dtype=float)
+            if np.isnan(values).any():
+                return False
+
             return True
         except:
             return 0
@@ -1185,7 +1202,7 @@ class CompoundList(list):
         try:
             vals = np.array(vals, dtype=float)
             total = sum(vals)
-            if total == 0:
+            if total == 0 or math.isnan(total):
                 # all components cannot be zero - set unknown
                 for i in self:
                     i.SetValue(None, FIXED_V)

@@ -24,7 +24,7 @@ s3_Lev1.thermo
 
 
 #Create a thermo case in the root with the same name
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + WATER
 

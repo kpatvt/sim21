@@ -1,5 +1,5 @@
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + propane isobutane n-butane isopentane n-pentane n-hexane
 
@@ -7,7 +7,7 @@ Feed = Stream.Stream_Material()
 Feed.In.T = 20
 Feed.In.P = 3000
 Feed.In.MoleFlow = 100
-Feed.In.Fraction = 1 2 3 4 5 6 
+Feed.In.Fraction = 1 2 3 4 5 6
 
 
 pump = Flowsheet.SubFlowsheet('read mechengpump.sop')

@@ -7,7 +7,7 @@ RefineryProp -- Class for refinery properties
 """
 import numpy as np
 from sim21.solver.Variables import *
-from sim21.solver import S42Glob
+from sim21.solver import setup
 from sim21.unitop import UnitOperations
 
 # Keywords used in the PropertyPackge
@@ -707,7 +707,7 @@ class PropertyTable(UnitOperations.UnitOperation):
                 for value in values:
                     if value in ZAXIS_PROPS:
                         type_of = ZAXIS_PROP_TYPES[ZAXIS_PROPS.index(value)]
-                        zTypes.append(S42Glob.unitSystem.GetTypeID(type_of))
+                        zTypes.append(setup.unitSystem.GetTypeID(type_of))
                         # self.zType = S42Glob.unitSystem.GetTypeID(type)
                     else:
                         zTypes.append(None)

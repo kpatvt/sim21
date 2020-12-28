@@ -11,7 +11,7 @@ Port_Signal -- Signal port. Inherits from Port
 import numpy as np
 import re
 from sim21.solver.Variables import *
-from sim21.solver import S42Glob
+from sim21.solver import setup
 from sim21.solver.Error import SimError
 
 ENERGY_PORT = 'Ene'
@@ -337,7 +337,8 @@ the method 'DeleteObj'
 
     def ForgetAllCalculations(self):
         for prop in list(self._properties.values()):
-            prop.ForgetForStatus(CALCULATED_V)
+            if prop is not None:
+                prop.ForgetForStatus(CALCULATED_V)
         if self._connection is not None:
             self._connection.ForgetAllPassed()
 
@@ -444,6 +445,7 @@ the method 'DeleteObj'
         myProps = self._properties
         connParent = conn._parentOp
         for i in list(myProps.keys()):
+            # print('UpdateConnection:', i)
             myProp = myProps[i]
             if i not in connPropNames:
                 connProps[i] = BasicProperty(myProp.GetType().name, conn)
@@ -493,9 +495,10 @@ the method 'DeleteObj'
         """Number of properties with calcStatus != UNKNOWN_V"""
         nu = 0
         for i in list(self._properties.values()):
-            if i.GetValue() is not None:
-                if type_of is None or i.GetType().calcType & type_of:
-                    nu += 1
+            if i is not None:
+                if i.GetValue() is not None:
+                    if type_of is None or i.GetType().calcType & type_of:
+                        nu += 1
         return nu
 
     def GetKnownProps(self, type_of=None):
@@ -756,8 +759,9 @@ class Port_Material(Port):
             cmp.ForgetForStatus(CALCULATED_V)
         # arrProperties
         for prop in list(self._arrProperties.values()):
-            for cmp in prop:
-                cmp.ForgetForStatus(CALCULATED_V)
+            if prop is not None:
+                for cmp in prop:
+                    cmp.ForgetForStatus(CALCULATED_V)
 
     def ForgetAllPassed(self):
         Port.ForgetAllPassed(self)
@@ -956,11 +960,11 @@ class Port_Material(Port):
         """
         try:
             cmpNames = self._parentOp.GetCompoundNames()
-            return cmpNames.index(cmpName)
+            return cmpNames.index(cmpName.upper())
         except:
             try:
                 cmpNameX = re.sub('_', ' ', cmpName)
-                return cmpNames.index(cmpNameX)
+                return cmpNames.index(cmpNameX.upper())
             except:
                 return None
 
@@ -1023,7 +1027,8 @@ class Port_Material(Port):
 
     def GetArrPropNames(self):
         """Names of the array properties available"""
-        return list(self._arrProperties.keys())
+        a = list(self._arrProperties.keys())
+        return a
 
     def GetArrPropValue(self, propName):
         """List of values of propName"""
@@ -1113,7 +1118,8 @@ class Port_Material(Port):
         # arrProperties
         for name, prop in list(self._arrProperties.items()):
             for i in range(nuAddCmps):
-                prop.append(BasicProperty(name, self))
+                if prop is not None:
+                    prop.append(BasicProperty(name, self))
 
         self._flashResults = None
 
@@ -1162,6 +1168,7 @@ class Port_Material(Port):
 
     def SetCompositionValue(self, cmpName, val, calcStatus):
         """assign value by name - ineffiecient lookup"""
+        cmpName = cmpName.upper()
         cmp = self.GetCompound(cmpName)
         if cmp:
             cmp.SetValue(val, calcStatus)
@@ -1170,6 +1177,7 @@ class Port_Material(Port):
         """
         return mole fraction for cmpName
         """
+        cmpName = cmpName.upper()
         cmp = self.GetCompound(cmpName)
         if cmp:
             return cmp.GetValue()
@@ -1876,7 +1884,7 @@ class Port_Signal(Port):
         equivalent = True
         try:
             if myType.unitType != otherType.unitType:
-                equivalent = S42Glob.unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
+                equivalent = setup.unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
         except:
             # if it failed comparing, then assume they are equivalent
             pass
@@ -1981,7 +1989,7 @@ class Port_Signal(Port):
         equivalent = True
         try:
             if myType.unitType != otherType.unitType:
-                equivalent = S42Glob.unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
+                equivalent = setup.unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
         except:
             # if it failed comparing, then assume they are equivalent
             pass

@@ -1,6 +1,6 @@
 # Create a pre-heater, from heater.tst
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
 
@@ -36,7 +36,7 @@ valueOf preHeater.In.properties.key			# user dictionary
 valueOf preHeater.DeltaP.properties.key                 # dictionary
 
 valueOf preHeater.DeltaP.type
-valueOf preHeater.DeltaP.DP.processValue		#DeltaP is the signal 
+valueOf preHeater.DeltaP.DP.processValue		#DeltaP is the signal
 valueOf preHeater.InQ.Energy.processValue
 valueOf preHeater.InQ.processValue
 valueOf preHeater.In.MoleFlow.processValue

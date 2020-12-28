@@ -1,6 +1,6 @@
 units PureSI
 
-$th = VirtualMaterials.Peng-Robinson
+$th = Sim21Thermo.Peng-Robinson
 / -> $th
 th + WATER
 

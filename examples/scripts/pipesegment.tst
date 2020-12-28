@@ -1,6 +1,6 @@
 clear
 
-$th = VirtualMaterials.Advanced_Peng-Robinson
+$th = Sim21Thermo.Peng-Robinson
 / -> $th
 th + WATER
 
@@ -40,7 +40,7 @@ pipe.Out.P =
 pipe.DeltaP = 10
 pipe.Out
 
-#Back to 
+#Back to
 pipe.In.P =
 pipe.Out.P = 270
 pipe.In
@@ -81,8 +81,8 @@ pipe.Out
 
 
 #ignore kinetic and potential energy calcs
-/pipe.In.T = 
-/pipe.In.P = 
+/pipe.In.T =
+/pipe.In.P =
 /pipe.In.H = -34353.018
 /pipe.In
 /pipe.Out
@@ -103,7 +103,7 @@ paste /
 
 
 #Resolve
-/pipe.In.H = 
+/pipe.In.H =
 /pipe.In.T = 90
 /pipe.Out
 
@@ -121,7 +121,7 @@ IgnoreKineticAndPotential = 0
 
 
 #Solve with T out as a spec
-/pipe.In.MoleFlow = 
+/pipe.In.MoleFlow =
 /pipe.Out.T = 38
 /pipe.Out
 
@@ -143,7 +143,7 @@ IgnoreKineticAndPotential = 0
 
 
 #Different solve scheme
-/pipe.In.T = 
+/pipe.In.T =
 /pipe.In.MoleFlow = 9000
 /pipe.Out
 /pipe.Out
@@ -152,8 +152,8 @@ IgnoreKineticAndPotential = 0
 
 
 #Flip specs around
-/pipe.In.P = 
-/pipe.Out.T = 
+/pipe.In.P =
+/pipe.Out.T =
 /pipe.Out.P = 150
 /pipe.In.T = 90
 /pipe.Out
@@ -195,7 +195,7 @@ NumberSections = 5
 
 
 #Now solve for energy
-/pipe.OutQ.Energy = 
+/pipe.OutQ.Energy =
 /pipe.Out.T = 38
 /pipe.Out
 /pipe.Energy
@@ -216,13 +216,13 @@ NumberSections = 5
 /pipe.Energy
 
 
-/pipe.Out.P = 
+/pipe.Out.P =
 /pipe.In.P = 300
 /pipe.Out
 
 
 #Now spec u and change the energy models (nothing should change since u as a spec implies all u equal)
-/pipe.Out.T = 
+/pipe.Out.T =
 /pipe.U.U = 4.8846261
 /pipe.u
 /pipe.EnergyLossModel = LinearTemperature
@@ -232,7 +232,7 @@ NumberSections = 5
 
 
 #Back to energy spec but change nergy models
-/pipe.U.U = 
+/pipe.U.U =
 /pipe.OutQ.Energy = 9931444.4
 /pipe.Out
 /pipe.Energy

@@ -8,7 +8,7 @@
 # Also note that for now spaces are needed around the operators (= + etc)
 # A further also is that case is always significant
 
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE ISOBUTANE n-BUTANE n-NONANE
 units SI
@@ -96,7 +96,7 @@ paste /innerflowsh
 
 
 #Add a second recycle
-#The "annoying" flag regarding the previously unconverged recycle will keep on coming until 
+#The "annoying" flag regarding the previously unconverged recycle will keep on coming until
 #it is resolved.
 c = Stream.Stream_Material()
 cd c

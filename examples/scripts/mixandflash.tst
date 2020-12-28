@@ -1,5 +1,5 @@
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
 

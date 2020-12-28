@@ -1,6 +1,6 @@
 # Simple compressor test
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + METHANE ETHANE PROPANE n-BUTANE
 comp = Compressor.Compressor()

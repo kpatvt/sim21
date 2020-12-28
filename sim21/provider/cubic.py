@@ -2,9 +2,11 @@ import math
 
 import numpy as np
 from numba import njit
+
+from sim21.data import chemsep
 from sim21.data.chemsep_consts import GAS_CONSTANT
 from sim21.provider.flash.basic import basic_flash_temp_press_2phase
-from sim21.provider.flash.io import flash_press_prop_2phase
+from sim21.provider.flash.io import flash_press_prop_2phase, flash_press_vap_frac_2phase
 from sim21.support.roots import solve_cubic_reals, mid
 from sim21.provider.generic import press_derivs, log_phi_derivs, residual_derivs, calc_ig_props
 from sim21.provider.phase import PhaseByMole
@@ -754,6 +756,26 @@ def estimate_nbp_value(feed_comp, tc_list, valid):
 class CubicEos(Provider):
     def __init__(self, eos, components=None, k_ij=None, l_ij=None):
         super().__init__()
+        self._components = None
+        self.all_comps = None
+        self._id_list = None
+        self._mw_list = None
+        self._tc_list = None
+        self._pc_list = None
+        self._omega_list = None
+        self._ig_temp_ref = None
+        self._ig_press_ref = None
+        self._ig_cp_coeffs = None
+        self._ig_h_form = h = None
+        self._ig_g_form = g = None
+        self._vap_visc = None
+        self._liq_visc = None
+        self._ig_s_form = None
+        self._std_liq_vol = None
+        self._source_k_ij = None
+        self._source_l_ij = None
+        self._k_ij = None
+        self._l_ij = None
         self._eos = eos
         if components:
             c = [i for i in components]
@@ -791,7 +813,12 @@ class CubicEos(Provider):
         self._ig_cp_coeffs = np.array([c.ig_cp_mole_coeffs for c in components])
         self._ig_h_form = h = np.array([c.ig_enthalpy_form_mole for c in components])
         self._ig_g_form = g = np.array([c.ig_gibbs_form_mole for c in components])
+        self._vap_visc = [c.vap_visc for c in components]
+        self._liq_visc = [c.liq_visc for c in components]
         self._ig_s_form = (g - h) / -298.15
+        self._std_liq_vol = np.array([c.std_liq_vol_mole for c in components])
+        self._source_k_ij = k_ij
+        self._source_l_ij = l_ij
         self._k_ij = np.zeros((len(components), len(components)))
         self._l_ij = np.zeros((len(components), len(components)))
         self.update_interactions(k_ij, l_ij)
@@ -799,6 +826,16 @@ class CubicEos(Provider):
     @property
     def mw(self):
         return self._mw_list
+
+    @property
+    def std_liq_vol_mole(self):
+        return self._std_liq_vol
+
+    def vap_visc(self, temp, comp_mole):
+        return np.dot(comp_mole, [comp_visc(temp) for comp_visc in self._vap_visc])
+
+    def liq_visc(self, temp, comp_mole):
+        return np.dot(comp_mole, [comp_visc(temp) for comp_visc in self._liq_visc])
 
     def update_interactions(self, k_ij, l_ij):
         if k_ij is not None:
@@ -872,6 +909,17 @@ class CubicEos(Provider):
         results.scale(flow_sum_mole=flow_sum_value_mole)
         return results
 
+    def flash_press_vap_frac(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value, press,
+                             vap_frac_basis, vap_frac_value, previous, valid):
+
+        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
+                                                                          frac_basis, frac_value)
+        if vap_frac_basis != 'mole':
+            raise NotImplementedError
+
+        results = flash_press_vap_frac_2phase(self, press, vap_frac_value, frac_value_mole, valid=valid, previous=previous)
+        results.scale(flow_sum_mole=flow_sum_value_mole)
+        return results
 
     def phase(self, temp, press, n, desired_phase,
               allow_pseudo=True, valid=None, press_comp_derivs=False,
@@ -975,6 +1023,45 @@ class CubicEos(Provider):
         calc_ig_int_energy = calc_ig_helmholtz + temp * calc_ig_entropy
         vol = GAS_CONSTANT * temp / press
         return vol, calc_mw, calc_ig_cp, calc_ig_enthalpy, calc_ig_entropy, calc_ig_int_energy, calc_ig_gibbs, calc_ig_helmholtz
+
+    def AddCompound(self, compound):
+        # print('AddCompound:', compound)
+        comp_obj = chemsep.pure(compound)
+        if self._components is None:
+            new_components = [comp_obj]
+        else:
+            new_components = self._components[:]
+            new_components.append(comp_obj)
+
+        # This is really inefficient, but it's simple
+        self.setup_components(self._eos, new_components, None, None)
+
+    def GetAvCompoundNames(self):
+        return chemsep.available()
+
+    def DeleteCompound(self, compound):
+        compound = compound.upper()
+        idx = self._id_list.index(compound)
+        new_compounds = self._components[:]
+        new_compounds.pop(idx)
+        self.setup_components(self._eos, new_compounds, None, None)
+
+    def ExchangeCompound(self, cmp1Name, cmp2Name):
+        cmp1Name = cmp1Name.upper()
+        cmp2Name = cmp2Name.upper()
+        idx_1 = self._id_list.index(cmp1Name)
+        idx_2 = self._id_list.index(cmp2Name)
+        new_compounds = self._components[:]
+        new_compounds[idx_1], new_compounds[idx_2] = new_compounds[idx_2], new_compounds[idx_1]
+        self.setup_components(self._eos, new_compounds, None, None)
+
+    def MoveCompound(self, cmp1Name, cmp2Name):
+        cmp1Name = cmp1Name.upper()
+        cmp2Name = cmp2Name.upper()
+        new_compounds = self._components[:]
+        item_1 = new_compounds.pop(self._id_list.index(cmp1Name))
+        new_compounds.insert(self._id_list.index(cmp2Name), item_1)
+        self.setup_components(self._eos, new_compounds, None, None)
 
 
 class SoaveRedlichKwong(CubicEos):

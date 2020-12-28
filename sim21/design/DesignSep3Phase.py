@@ -11,7 +11,7 @@ from sim21.design.Design import PORT_INFO, INLET_INFO, OUTLET_INFO, USESUNIT_INF
 from sim21.design.DesignTools import HNATable, GTable, FinalValue, VesselWeightAndWallThickness, Kvalue
 
 from sim21.solver.Variables import *
-from sim21.solver import S42Glob
+from sim21.solver import setup
 from sim21.unitop import Flash
 
 PI = math.pi
@@ -155,7 +155,7 @@ class Separator3Phase(DesignMain):
             if val is not None and designParam.GetInfoType() & USESUNIT_INFO:
                 unitType = designParam.GetType().unitType
                 if unitType:
-                    unit = S42Glob.unitSystem.GetSim42Unit(unitType)
+                    unit = setup.unitSystem.GetSim42Unit(unitType)
                     val = unit.ConvertToSet(FIELD_UNIT_SET, val)
         finally:
             return val
@@ -167,7 +167,7 @@ class Separator3Phase(DesignMain):
             if val is not None and designParam.GetInfoType() & USESUNIT_INFO:
                 unitType = designParam.GetType().unitType
                 if unitType:
-                    unit = S42Glob.unitSystem.GetSim42Unit(unitType)
+                    unit = setup.unitSystem.GetSim42Unit(unitType)
                     val = unit.ConvertFromSet(FIELD_UNIT_SET, valueInField)
         finally:
             designParam.SetValue(val)

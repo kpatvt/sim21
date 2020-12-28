@@ -3,7 +3,7 @@
 
 units SI
 # set up thermo
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-NONANE
 
@@ -17,7 +17,7 @@ T = 360.15 K
 P = 715
 # Note that flow is not known for the feed stream
 
-# Now create a recycle stream 
+# Now create a recycle stream
 cd /
 recycle = Stream.Stream_Material()
 

@@ -179,6 +179,7 @@ class UnitOperation(object):
 
         if obj is None:
             obj = self.GetDesignObject(name)
+
         return obj
 
     def AddObject(self, obj, name):

@@ -1,6 +1,6 @@
 # Simple flash test
 units SI
-$thermo = VirtualMaterials.Peng-Robinson SimpleSolid
+$thermo = Sim21Thermo.Peng-Robinson SimpleSolid
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE WATER INERTSOLID
 flash = Flash.SimpleFlash()

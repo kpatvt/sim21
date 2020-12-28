@@ -1,28 +1,19 @@
-"""
-Implements a very simple command driven interface to the simulator
-TODO Module for testing purposes only, will be removed.
-"""
+"""Implements a very simple command driven interface to the simulator"""
 
-import sys
-import os
-import time
-import errno
+import sys, os, pickle, time, errno
+import io, zipfile, tempfile
 import traceback
-import warnings
 
 from sim21.thermo.Hypo import *
 from sim21.thermo.ThermoAdmin import ThermoAdmin, ThermoCase, PureCompoundProperty, EnvelopeResults
-
 from sim21.unitop import *
 from sim21.unitop import UnitOperations, Envelope
 from sim21.unitop.UnitOperations import TH_CASE_KEYWORD, TH_ADMIN_KEYWORD
-
 from sim21.design import *
 from sim21.solver import Flowsheet, Ports
-from sim21.solver.Error import CallBackException, SimError, ConsistencyError
+from sim21.solver.Error import CallBackException, ConsistencyError
 from sim21.solver.Variables import *
 from sim21.solver.Messages import MessageHandler
-
 from sim21.uom import units
 from sim21.cli.langs import English
 
@@ -79,11 +70,9 @@ class CommandInterface(object):
      If the rhs is missing the target is emptied or disconnected.
      """
 
-    def __init__(self, baseFlowsheet=None, infoCallBack=None, optimizeCode=0):
+    def __init__(self, baseFlowsheet=None, infoCallBack=None):
         """ create a base flowsheet and other initialization"""
         self.EnsureUnitSystem()
-        # if optimizeCode:
-        #     SetUpCodeOptimization(optimizeCode)
         if not baseFlowsheet:
             # create root flowsheet
             baseFlowsheet = Flowsheet.Flowsheet()
@@ -139,8 +128,14 @@ class CommandInterface(object):
                                      H_VAR, ENERGY_VAR, MOLE_WT, ZFACTOR_VAR]
 
         # modules from which objects can be created - subclasses might want to append to this
-        self.createableModules = ['sim.unitop', 'sim.thermo', 'sim.solver', 'sim.design']
+        self.createableModules = ['sim21.unitop', 'sim21.thermo', 'sim21.solver', 'sim21.design']
         # add localsiminfo packages to createableModules
+        # try:
+        #     for pkg in localsiminfo.packages:
+        #         self.createableModules.append(pkg)
+        # except:
+        #     pass
+
         self.commandInProcess = ''
 
         # Check all the thermo provider versions
@@ -201,10 +196,19 @@ class CommandInterface(object):
         """
         if global variable netServer is defined, then use its open function
         """
-        if mode == 'w' and keepVersions and self.maxCaseVersions != 0:
-            return open(name, mode)
+        if netServer:
+            if mode == 'w' and keepVersions and self.maxCaseVersions != 0:
+                return netServer.open(self.root, name, mode)
+            else:
+                return netServer.open(self.root, name, mode)
         else:
-            return open(name, mode)
+            if mode == 'w' and keepVersions and self.maxCaseVersions != 0:
+                # try:
+                #     return VersionedOutputFile(name, self.maxCaseVersions)
+                # except:
+                return open(name, mode)
+            else:
+                return open(name, mode)
 
     def GetNextTerm(self, text):
         """
@@ -215,8 +219,7 @@ class CommandInterface(object):
             terms = re.split(text[0], text[1:], 1)
         else:
             terms = re.split(r'\s', text, 1)
-        if len(terms) == 0:
-            return '', ''
+        if len(terms) == 0: return '', ''
         if len(terms) == 1:
             return terms[0].strip(), ''
         else:
@@ -239,6 +242,7 @@ class CommandInterface(object):
                     outFile.write(self.currentObj.GetPath() + '> ')
                 else:
                     outFile.write('... ')
+
         return inFile.readline()
 
     def ProcessCommandStream(self, inFile, outFile, errFile=sys.stdout):
@@ -248,6 +252,10 @@ class CommandInterface(object):
         """
         locked = 0
         try:
+            # if globalLock:
+            #     globalLock.acquire()
+            #     locked = 1
+
             savedIn = self.input
             savedOut = self.output
             savedErr = self.errorFile
@@ -276,10 +284,15 @@ class CommandInterface(object):
                 except:
                     pass
 
+                # if globalLock:
+                #     globalLock.release()
+                #     locked = 0
+
                 cmd = cmd.strip()
                 if cmd == 'quit':
                     break
                 cmdResult = self.ProcessCommandString(cmd)
+
                 if cmdResult:
                     try:
                         outFile.write(cmdResult + '\n')
@@ -290,6 +303,8 @@ class CommandInterface(object):
         finally:
             self.input = savedIn
             self.output = savedOut
+            # if locked:
+            #     globalLock.release()
 
     def ProcessCommand(self, rawCmd):
         """parses and acts upon a single command"""
@@ -320,11 +335,11 @@ class CommandInterface(object):
             return ''
 
         if lhsDesc in commands:
-            if lhsDesc not in readOnlyCommands:
+            if not lhsDesc in readOnlyCommands:
                 if self.root and (self.root.IsForgetting() or self.root.IsSolving()):
                     self.root.InfoMessage('CMDCantProcess', (cmd,))
                     return ''
-            if lhsDesc not in ['store', 'export', 'import', 'recall']:
+            if not lhsDesc in ['store', 'export', 'import', 'recall']:
                 remaining = dequote(remaining)
             return commands[lhsDesc](self, remaining)
         else:
@@ -375,14 +390,14 @@ class CommandInterface(object):
                         if not self.root:
                             return retVal  # probably logged out
 
-                        # Don't add this code yet until it is needed#######
+                        ##Don't add this code yet until it is needed#######
                         # Make sure, the forget is done properly in a solver (flowsheet)
                         # remember that self.root can be different from a flowsheet
                         # when running as an initScript.
                         # solver = self.root.Solver()
                         # if solver:
                         #    solver.SolverForget()
-                        # ##################################################
+                        ####################################################
 
                         self.root.SolverForget()  # not solving, but should still forget
                         if cmdResult:
@@ -426,7 +441,8 @@ class CommandInterface(object):
                     return self.Cd(toDesc[3:])
             else:
                 obj = self.GetObject(currentObj, toDesc)
-                if not obj or isinstance(obj, tuple) or not hasattr(obj, 'GetPath') or isinstance(obj, CreateObject):
+                if not obj or type(obj) == type(()) or not hasattr(obj, 'GetPath') \
+                    or isinstance(obj, CreateObject):
                     raise CmdError('CMDCDInvalidObject', toDesc)
 
         self.currentObj = obj
@@ -459,6 +475,7 @@ class CommandInterface(object):
 
     def Read(self, inDesc):
         """Process commands from file inDesc"""
+
         try:
             inFile = self.safeOpen(inDesc, 'r')
         except IOError:
@@ -482,33 +499,917 @@ class CommandInterface(object):
         return ''
 
     def Export(self, remaining):
-        raise NotImplementedError
+
+        # Disect parameters
+        # parameters = remaining.split()
+        parameters = Tokenize(remaining, dequote=True)
+        try:
+            objDesc = parameters[0]
+            path = parameters[1]
+            flag = parameters[2]
+            rest = parameters[3:]
+        except:
+            self.root.InfoMessage('CMDExportObjNotUOp', (remaining,))
+            return
+
+        # First get the object on which stuff will be done
+        if objDesc == '/':
+            obj = self.root
+        elif objDesc[0] == '/':
+            obj = self.GetObject(self.root, objDesc[1:])
+        else:
+            obj = self.GetObject(self.currentObj, objDesc)
+        if not isinstance(obj, UnitOperations.UnitOperation):
+            self.root.InfoMessage('CMDExportObjNotUOp', (objDesc,))
+            return
+
+        # if obj == self.root and flag == 'Full':
+        # objCopy = obj
+        # else:
+        # objCopy = copy.deepcopy(obj)
+
+        if flag == 'Blank':
+            objCopy = copy.deepcopy(obj)
+            objCopy.parentUO = None
+
+            # Delete connections of port being
+            ports = objCopy.GetPorts(IN | OUT | MAT | ENE | SIG)
+            for port in ports:
+                port._connection = None
+
+            # Define a method that clears a unit op
+            def MakeBlank(uo):
+
+                if isinstance(uo, Flowsheet):
+                    # Clear stacks
+                    uo._solveStack = []
+                    uo._forgetStack = []
+                    uo._resetNewCalcStack = []
+                    uo._resetNewFixedStack = []
+                    uo._iterationStack = []
+                    uo._consistencyErrorStack = []
+                    uo._isForgetting = 0
+
+                uo.thermoAdmin = None
+                uo.thCaseObj = None
+                uo._stackStatus = 0
+                uo._pushBlocked = 0
+                ports = uo.GetPorts(IN | OUT | MAT)
+                for port in ports:
+                    port._estimated = 0
+                    port._stackStatus = 0
+                    port._flashResults = None
+                    for prop in list(port._properties.values()):
+                        prop._value = None
+                        prop._calcStatus = UNKNOWN_V
+                    for propLst in list(port._arrProperties.values()):
+                        for prop in propLst:
+                            prop._value = None
+                            prop._calcStatus = UNKNOWN_V
+                    for prop in self._compounds:
+                        prop._value = None
+                        prop._calcStatus = UNKNOWN_V
+
+                ports = uo.GetPorts(IN | OUT | ENE)
+                for port in ports:
+                    port._stackStatus = 0
+                    port._estimated = 0
+                    for prop in list(port._properties.values()):
+                        prop._value = None
+                        prop._calcStatus = UNKNOWN_V
+
+                ports = uo.GetPorts(SIG)
+                for port in ports:
+                    port._estimated = 0
+                    port._stackStatus = 0
+                    port._prop._value = None
+                    port._prop._calcStatus = UNKNOWN_V
+
+            # Walk the method into every child unitop of the copy
+            objCopy.walk(MakeBlank)
+        elif flag == 'Full':
+            objCopy = obj
+            pass
+        else:
+            foreignMod = flag
+            if foreignMod:
+                try:
+                    module = __import__(foreignMod, {}, {})
+                finally:
+                    try:
+                        if rest:
+                            retVal = eval('%s.ExportHandler(self, path, obj, *rest)' % foreignMod)
+                            return retVal
+                        else:
+                            retVal = eval('%s.ExportHandler(self, path, obj)' % foreignMod)
+                            return retVal
+                    except:
+                        self.root.InfoMessage('CMDExportUnkModule', (foreignMod,))
+                        return
+                # try:
+                # if rest:
+                # return module.ExportHandler(self, path, obj, *rest)
+                # else:
+                # return module.ExportHandler(self, path, obj)
+                # except:
+                # self.root.InfoMessage ('CMDExportUndMeth', (foreignMod, 'ExportHandler') )
+                # return
+                return
+            else:
+                self.root.InfoMessage('CMDExportUnkFlag', (flag,))
+                return
+
+        # Now get the file path
+        rlimit = sys.getrecursionlimit()
+        sys.setrecursionlimit(5000)
+        f = self.safeOpen(path, 'w')
+        f.write('REL_%d\n' % Flowsheet.VERSION[0])
+        objCopy.SetInfoCallBack(None)
+        pickle.dump((objCopy, Flowsheet.revertToVersion), f)
+        f.close()
+        sys.setrecursionlimit(rlimit)
+        self.root.InfoMessage('CMDNotifyExport', (objDesc, path, flag))
 
     def Import(self, parameters):
-        raise NotImplementedError
+        """The import command has the following format:
+            import fromPath nameOfObject dirForExtraFiles
+
+            IMPORTANT: the import always imports into the current object
+            and nameOfObject is not a path but only a name. Future implementations
+            might change this but not now
+
+            sample calls are as follows"
+            no quotes. Old format. Only two parameters allowed
+            import C:\mydir\my file name.s42 myobjname
+               imports the file "C:\mydir\my file name.s42" into the object "myobjname"
+
+            with quotes. New way. Quotes can be " or '
+            import "C:\mydir\my file name.s42" "myobjname"
+               imports the file "C:\mydir\my file name.s42" into the object "myobjname"
+
+            import "C:\mydir\my file name.s42" "myobjname" "C:\my appdir"
+               imports the file "C:\mydir\my file name.s42" into the object "myobjname"
+               and if there are extra files, they are put in "C:\my appdir"
+
+        """
+
+        rlimit = sys.getrecursionlimit()
+        sys.setrecursionlimit(10000)
+
+        iszip = False
+        tempFile = ''  # Name of temporary file
+        try:
+
+            # Disect parameters
+
+            fromFile = ''  # Source file
+            uncompressToDir = ''  # Directory where to uncompress files to
+            if '"' in parameters or "'" in parameters:
+                tokens = Tokenize(parameters, ' ', True)
+                fromFile = tokens.pop(0)
+                newObjName = tokens.pop(0)
+                if tokens:
+                    uncompressToDir = tokens.pop(0)
+                    if os.path.isdir(uncompressToDir):
+                        uncompressToDir = os.path.abspath(uncompressToDir)
+                    elif os.path.isfile(uncompressToDir):
+                        uncompressToDir = os.path.abspath(uncompressToDir)
+                        uncompressToDir, dummy = os.path.split(uncompressToDir)
+
+            else:
+                # Old working code. Do not mess with it
+                tokens = parameters.split()
+                fromFile = ''.join(tokens[:-1])
+                newObjName = tokens[-1]
+
+            fromFile = os.path.abspath(fromFile)
+            if not uncompressToDir:
+                uncompressToDir = os.path.abspath(fromFile)
+                uncompressToDir, dummy = os.path.split(uncompressToDir)
+
+            # see if it is a zip file
+            iszip = zipfile.is_zipfile(fromFile)
+
+            # Make sure it can be opened
+            f = self.safeOpen(fromFile, 'r')
+
+            if iszip:
+                f.close()
+
+                # Extract sim42 info into a temporary file
+
+                z = zipfile.ZipFile(fromFile)
+                if z.testzip():
+                    raise CmdError('CMDCouldNotOpenFile', (fromFile,))  # Troubles !!
+                fileLst = z.namelist()
+                idx = fileLst.index(ZIPFILENAME)  # will raise error if not there
+                # Can't pass this message since there is nobody to receive it
+                # self.root.InfoMessage ('CMDExtracting', ZIPFILENAME)
+                try:
+                    # Try creating a temporary file right where the file is being opened
+                    f = self.safeOpen('%s.temp' % fromFile, 'wb', False)
+                    tempFile = '%s.temp' % fromFile
+                except:
+                    try:
+                        # Try a temporary folder
+                        tempFile = tempfile.mktemp()
+                        f = self.safeOpen(tempFile, 'wb', False)
+                    except:
+                        tempFile = ''
+                        f = io.StringIO()
+
+                f.write(z.read(ZIPFILENAME))
+                f.flush()
+                fileLst.pop(idx)
+                if not isinstance(f, io.StringIO):
+                    f.close()
+                    # Open the temporary file for the unpickle part
+                    f = self.safeOpen(tempFile, 'r', False)
+
+            relLine = f.readline()
+            if relLine[:4] == 'REL_':
+                relNumber = int(relLine[4:-1])
+            else:
+                relNumber = 0
+                f.seek(0)
+
+            if relNumber < 5:
+                # check for old DistCol modules
+                f2 = io.StringIO()
+                line = f.readline()
+                while line:
+                    if line == 'csim.unitop.DistCol\n':
+                        f2.write('cNumeric\n')
+                    else:
+                        f2.write(line)
+                    line = f.readline()
+                f.close()
+                f2.seek(0)
+                f = f2
+
+            try:
+                (uo, revertFunction) = pickle.load(f)
+            except ValueError:
+                # Check if the problem was because of a huge float value
+                f.seek(0)
+                relLine = f.readline()
+                if not relLine[:4] == 'REL_':
+                    f.seek(0)
+
+                f2 = io.StringIO()
+                line = f.readline()
+                while line:
+                    check = ''
+                    label = ''
+                    if line[0] == 'F':
+                        label = line[0]
+                        check = line[1:]
+                    elif line[0:2] == 'aF':
+                        label = line[:2]
+                        check = line[2:]
+
+                    if check:
+                        if check == '-1.#INF\n':
+                            f2.write('%s-1.0e308\n' % label)
+                        elif check == '1.#INF\n':
+                            f2.write('%s1.0e308\n' % label)
+                        elif check == '-1.#IND\n':
+                            f2.write('%s0.0\n' % label)
+                        elif check == '1.#IND\n':
+                            f2.write('%s0.0\n' % label)
+                        elif check == '1.#QNAN\n':
+                            f2.write('%s0.0\n' % label)
+                        elif check == '-1.#QNAN\n':
+                            f2.write('%s0.0\n' % label)
+                        else:
+                            idx = check.find('e')
+                            if idx > -1:
+                                try:
+                                    expVal = int(check[idx + 1:-1])
+                                    if expVal > 307:
+                                        f2.write('%s%s+307\n' % (label, check[:idx + 1]))
+                                    elif expVal < -307:
+                                        f2.write('%s%s-307\n' % (label, check[:idx + 1]))
+                                    else:
+                                        f2.write(line)
+                                except:
+                                    f2.write(line)
+                            else:
+                                f2.write(line)
+
+                    else:
+                        f2.write(line)
+                    line = f.readline()
+                f.close()
+                f2.seek(0)
+                relLine = f2.readline()
+                if not relLine[:4] == 'REL_':
+                    f2.seek(0)
+                f = f2
+                (uo, revertFunction) = pickle.load(f)
+
+            f.close()
+
+            # make any necessary changes for different versions
+            if hasattr(uo, 'adjustVersion'):
+                uo.adjustVersion(revertFunction)
+                # Set a temporary callback
+                uo.SetInfoCallBack(self.infoCallBack)
+                # Trigger a solve in case it was needed
+                uo.Solve()
+                uo.SetInfoCallBack(None)
+
+            self.currentObj.AddUnitOperation(uo, newObjName)
+
+            thAdmin = uo.GetThermoAdmin()
+            self.thermoAdmin.MergeThermoAdmin(thAdmin)
+            # thAdmin.CleanUp()
+            if iszip:
+                # Force for this directory to exist
+                if not os.path.isdir(uncompressToDir): MakeDirs(uncompressToDir)
+
+                for filePath in fileLst:
+                    # For some reason, the zip module returns the file paths
+                    # with / instead of being plattform dependant
+                    # This hack fixes it for windows
+                    if '/' in filePath:
+                        fixedPath = filePath.replace('/', '\\')
+                    else:
+                        fixedPath = filePath
+                    if os.path.isabs(fixedPath): raise CmdError('CMDCouldNotOpenFile', fixedPath)
+
+                    # Now make sure that the folder exists
+                    dirName, fileName = os.path.split(fixedPath)
+                    if dirName:
+                        dirName = os.path.join(uncompressToDir, dirName)
+                        if not os.path.isdir(dirName): MakeDirs(dirName)
+                        fileName = os.path.join(dirName, fileName)
+                    else:
+                        fileName = os.path.join(uncompressToDir, fileName)
+
+                    f = self.safeOpen(fileName, 'wb')
+                    self.root.InfoMessage('CMDExtracting', (fixedPath, uncompressToDir))
+                    f.write(z.read(filePath))
+                    f.close()
+                z.close()
+
+
+        except CmdError as e:
+            sys.setrecursionlimit(rlimit)
+            self.root.SetInfoCallBack(self.infoCallBack)
+            if tempFile:
+                try:
+                    os.remove(tempFile)
+                except:
+                    pass
+            sys.setrecursionlimit(rlimit)
+            raise e
+        except Exception as e:
+            sys.setrecursionlimit(rlimit)
+            self.root.SetInfoCallBack(self.infoCallBack)
+            self.root.InfoMessage('CMDRecallError', (fromFile, str(e)))
+            sys.setrecursionlimit(rlimit)
+            raise e
+
+        if tempFile:
+            try:
+                os.remove(tempFile)
+            except:
+                pass
+
+        sys.setrecursionlimit(rlimit)
 
     def MaxCaseVersions(self, maxCaseVersions):
-        raise NotImplementedError
+        """Returns or sets the max amount of versions of each case to keep. A negative
+        value does not delete any version (i.e. backs up everything"""
+
+        # Return the current val
+        if maxCaseVersions == '':
+            return self.maxCaseVersions
+
+        # Update the value
+        else:
+            try:
+                val = maxCaseVersions.split()
+                val = int(val[-1])
+                self.maxCaseVersions = val
+            except:
+                pass
 
     def Store(self, parameters):
-        raise NotImplementedError
+        """pickle the root flowsheet and thermo admin to toFile
+        parameters can be a simple unquoted string with the name of the destiny file
+        or a complex string with tokens separated with spaces and delimited by quotes if
+        necessary. If the last parameter is "z" then it compresses the files together
+        if it is "n" then it just stores without compressing.
+
+        NOTE: "z" and "n" always have to be quoted !
+        NOTE2: " and ' are both accepted quotes
+        NOTE3: if "z" or "n" are not given, the it just stores the file normally
+        Examples:
+        No quotes needed for just one parameter
+        C:\My Files\sim.s42  -> stores the file normally
+
+        Quotes needed for more than one parameter and spaces in the names
+        store "C:\My Files\sim.s42" "n"
+           stores the file normally
+        store "C:\My Files\sim.s42" "z"
+           stores the file compressing it
+        store "C:\My Files\sim.s42" "z"
+           stores the file compressing it
+
+        Quotes not needed if there are no spaces in the parameters
+        store C:\Files\sim.s42 "z"
+           stores the file compressing it
+
+        Groups of files
+        store C:\Files\sim.s42 "C:\P\file 2.txt" 'C:\P\file 3.txt' "z" ->
+            stores all the files together compressing them
+
+        store C:\Files\sim.s42 "C:\P\file 2.txt" 'C:\P\file 3.txt' "n" ->
+            stores all the files together as zip file,but no compression
+
+        store C:\Files\sim.s42 "C:\P\file 2.txt" 'C:\P\file 3.txt' ->
+            stores all the files together as zip file (even though "n" was not given),but no compression
+
+        store "C:\My Files\sim.42" "C:\P\file 2.txt" "C:\folder1\folder2" "z" ->
+            zips the files together including all the files contained in folder2
+            The unzipped structure will be, file 2.txt and folder2 at the same level
+
+
+        """
+        createdTempFile = False
+        try:
+            toFile = parameters
+            dozip = False
+            tokens = []
+
+            # See if the files should get zipped
+            if '"' in parameters or "'" in parameters:
+                tokens = Tokenize(parameters, ' ', True)
+                toFile = tokens.pop(0)
+                if not tokens:
+                    dozip = False
+                else:
+                    dozip = tokens.pop()
+                    if dozip == "z":
+                        dozip = True
+                    elif dozip == "n":
+                        dozip = False
+                    else:
+                        # Not a parameter. Put it back in the list
+                        tokens.append(dozip)
+                        dozip = False
+
+            Flowsheet.rootPathName = toFile
+            if dozip or tokens:
+                # First validation
+                if ZIPFILENAME in tokens or '%s.temp' % toFile in tokens:
+                    raise SimError('CMDCantUseFileName', ('%s, %s' % (ZIPFILENAME, '%s.temp' % toFile)))
+
+                # Validate and build tree structure of extra files
+                fileLstAbs = []  # Find files by absolute paths
+                fileLstRel = []  # Zip files by relative paths
+                # Tokens contains only the "extra" files
+                for name in tokens:
+                    levelDown = False
+                    if name[-2:] == "\*" or name[-2:] == "/*":
+                        levelDown = True
+                        name = name[:-2]
+                    if os.path.isdir(name):
+                        # A directory... get all the files from inside of that directory
+                        #  except those such as __xx
+                        # Only take the name of the folder as the root
+                        # C:\\folder1\\folder2 would only take folder2 for the structure
+                        absPath = os.path.abspath(name)
+                        rootPath, storeFolder = os.path.split(absPath)
+                        tempDir = os.getcwd()
+                        try:
+                            os.chdir(rootPath)
+                            tempLst = []
+                            os.path.walk(storeFolder, AppendFileNames, tempLst)
+                            for fName in tempLst:
+                                # exclude those wirh names starting with __
+                                if fName[:len(storeFolder) + 3] != storeFolder + '\\__':
+                                    # Make sure it can be opened
+                                    f = self.safeOpen(fName, 'r', False)
+                                    f.close()
+                                    relName = fName
+                                    if levelDown:
+                                        if relName[:len(storeFolder)] == storeFolder:
+                                            relName = relName.split('\\', 1)
+                                            if len(relName) > 1:
+                                                relName = relName[1]
+                                            else:
+                                                break
+                                    fileLstRel.append(relName)
+                                    fileLstAbs.append(os.path.join(rootPath, fName))
+                        finally:
+                            os.chdir(tempDir)
+
+                    elif os.path.isfile(name):
+                        # Make sure it can be opened
+                        f = self.safeOpen(name, 'r', False)
+                        f.close()
+                        # Assume loose files always go at the top in hierarchy
+                        fileLstAbs.append(os.path.abspath(name))
+                        fileLstRel.append(os.path.split(name)[1])
+                    else:
+                        raise CmdError('CMDCouldNotOpenFile', name)
+
+                # open and close the file so it makes a backup of it (if maxversions > 0)
+                # This will also raise an error if the file was not meant to be opened
+                f = self.safeOpen(toFile, 'w', True)
+                f.close()
+
+                # open a temporary file for doing the pickle. Do not use the temp files support
+                # because zip only accepts closed valid files
+                f = self.safeOpen('%s.temp' % toFile, 'w', False)
+                createdTempFile = True
+            else:
+                f = self.safeOpen(toFile, 'w', True)
+
+            # This is neede by pickle so it doesn't crash in large simulations
+            rlimit = sys.getrecursionlimit()
+            sys.setrecursionlimit(10000)
+
+            # Prepare for storing
+
+            # Clear info callback
+            self.root.SetInfoCallBack(None)
+
+            # Keep prop types (scaling factors)
+            self.root.PropTypes = PropTypes  # so this instance is stored and recalled
+
+            # Keep unit set if it is not a default one
+            setName = self.units.GetDefaultSet()
+            # Store the surrent set name as an info object
+            infoDict = self.root.info
+            if SIMSTORE_INFO not in infoDict:
+                infoDict[SIMSTORE_INFO] = SimInfoDict(SIMSTORE_INFO, infoDict)
+            storeinfo = infoDict[SIMSTORE_INFO]
+            storeinfo['UnitSetName'] = self.units.GetDefaultSet()
+            if not setName in self.units.GetBaseSetNames():
+                # The set is a custom dictionary.
+                # Store it as a plain dictionary such that we don't pollute the sim42 object
+                unitSet = self.units.GetUnitSet(setName)
+                setAsRawDict = {}
+                setAsRawDict.update(unitSet)
+
+                storeinfo['DefCustomSet'] = (setName, setAsRawDict)
+            else:
+                if 'DefCustomSet' in storeinfo:
+                    del storeinfo['DefCustomSet']
+
+            # Write the info into the file
+            f.write('REL_%d\n' % Flowsheet.VERSION[0])
+            pickle.dump((self.root, Flowsheet.revertToVersion), f)
+            # import gnosis.xml.pickle
+            # gnosis.xml.pickle.dump((self.root, Flowsheet.revertToVersion), f)
+
+            # Recover
+            del self.root.PropTypes
+            self.root.SetInfoCallBack(self.infoCallBack)
+            f.close()
+
+            # now zip files
+            if tokens or dozip:
+                mode = zipfile.ZIP_DEFLATED
+                if not dozip:
+                    # I was given extra files but I don't want to zip them???
+                    # Put them together with zip, but don't compress them
+                    mode = zipfile.ZIP_STORED
+
+                z = zipfile.ZipFile(toFile, 'w', mode)
+                self.root.InfoMessage('CMDCompressing', ZIPFILENAME)
+                z.write('%s.temp' % toFile, ZIPFILENAME)
+                for i in range(len(fileLstAbs)):
+                    self.root.InfoMessage('CMDCompressing', fileLstRel[i])
+                    z.write(fileLstAbs[i], fileLstRel[i])
+                z.close()
+
+            # Leaving
+            sys.setrecursionlimit(rlimit)
+            self.lastStoredPath = toFile
+            self.root.InfoMessage('CMDNotifyStore', toFile)
+
+        finally:
+            try:
+                f.close()
+                if createdTempFile and os.path.isfile('%s.temp' % toFile):
+                    os.remove('%s.temp' % toFile)
+            except:
+                pass
 
     def Recall(self, parameters):
-        raise NotImplementedError
+        """unpickle the root flowsheet from fromFile
+        parameters can be a simple unquoted string with the name/path of the source file.
+
+        parameters could also be a complex string with two tokens separated with
+        spaces and delimited by quotes if necessary. The first token is the name of the
+        source file and the second token (if given) is the path where the extra files
+        (if any) will be put. The extra files can come when the sim42 case was stored as a
+        group of zip files, the uncompressed s42 file itself does not need to be kept anywhere in the disk
+        but the extra files should always be uncompressed and put on the disk.
+
+        In case a second token is not given but the file is a compressed group of multiple files
+        then the extra files will be uncompressed wherever the compressed files resides
+        """
+
+        # get rid of old case
+        oldRoot = self.root
+        self.CleanUp()
+        self.root = oldRoot  # need to have this in case something goes wrong.
+
+        # self.units = units.UnitSystem()
+        self.EnsureUnitSystem()
+
+        rlimit = sys.getrecursionlimit()
+        sys.setrecursionlimit(10000)
+
+        iszip = False
+        tempFile = ''  # Name of temporary file
+        try:
+            fromFile = ''  # Source file
+            uncompressToDir = ''  # Directory where to uncompress files to
+            if '"' in parameters or "'" in parameters:
+                tokens = Tokenize(parameters, ' ', True)
+                fromFile = tokens.pop(0)
+                if tokens:
+                    uncompressToDir = tokens.pop(0)
+                    if os.path.isdir(uncompressToDir):
+                        uncompressToDir = os.path.abspath(uncompressToDir)
+                    elif os.path.isfile(uncompressToDir):
+                        uncompressToDir = os.path.abspath(uncompressToDir)
+                        uncompressToDir, dummy = os.path.split(uncompressToDir)
+                    else:
+                        MakeDirs(uncompressToDir)
+            else:
+                fromFile = parameters
+
+            fromFile = os.path.abspath(fromFile)
+            if not uncompressToDir:
+                uncompressToDir = os.path.abspath(fromFile)
+                uncompressToDir, dummy = os.path.split(uncompressToDir)
+
+            Flowsheet.rootPathName = fromFile
+
+            # see if it is a zip file
+            iszip = zipfile.is_zipfile(fromFile)
+
+            # Make sure it can be opened
+            f = self.safeOpen(fromFile, 'r')
+
+            if iszip:
+                f.close()
+
+                # Extract sim42 info into a temporary file
+
+                z = zipfile.ZipFile(fromFile)
+                if z.testzip():
+                    raise CmdError('CMDCouldNotOpenFile', (fromFile,))  # Troubles !!
+                fileLst = z.namelist()
+                idx = fileLst.index(ZIPFILENAME)  # will raise error if not there
+                # Can't pass this message since there is nobody to receive it
+                # self.root.InfoMessage ('CMDExtracting', ZIPFILENAME)
+                try:
+                    # Try creating a temporary file right where the file is being opened
+                    f = self.safeOpen('%s.temp' % fromFile, 'wb', False)
+                    tempFile = '%s.temp' % fromFile
+                except:
+                    try:
+                        # Try a temporary folder
+                        tempFile = tempfile.mktemp()
+                        f = self.safeOpen(tempFile, 'wb', False)
+                    except:
+                        tempFile = ''
+                        f = io.StringIO()
+
+                f.write(z.read(ZIPFILENAME))
+                f.flush()
+                fileLst.pop(idx)
+                if not isinstance(f, io.StringIO):
+                    f.close()
+                    # Open the temporary file for the unpickle part
+                    f = self.safeOpen(tempFile, 'r', False)
+
+            relLine = f.readline()
+            if relLine[:4] == 'REL_':
+                relNumber = int(relLine[4:-1])
+            else:
+                relNumber = 0
+                f.seek(0)
+
+            if relNumber < 5:
+                # check for old DistCol modules
+                f2 = io.StringIO()
+                line = f.readline()
+                while line:
+                    if line == 'csim.unitop.DistCol\n':
+                        f2.write('cNumeric\n')
+                    else:
+                        f2.write(line)
+                    line = f.readline()
+                f.close()
+                f2.seek(0)
+                f = f2
+
+            self.root = self.currentObj = self.thermoAdmin = None
+            try:
+                (self.root, revertFunction) = pickle.load(f)
+            except ValueError:
+                # Check if the problem was because of a huge float value
+                f.seek(0)
+                relLine = f.readline()
+                if not relLine[:4] == 'REL_':
+                    f.seek(0)
+
+                f2 = io.StringIO()
+                line = f.readline()
+                while line:
+                    check = ''
+                    label = ''
+                    if line[0] == 'F':
+                        label = line[0]
+                        check = line[1:]
+                    elif line[0:2] == 'aF':
+                        label = line[:2]
+                        check = line[2:]
+
+                    if check:
+                        if check == '-1.#INF\n':
+                            f2.write('%s-1.0e308\n' % label)
+                        elif check == '1.#INF\n':
+                            f2.write('%s1.0e308\n' % label)
+                        elif check == '-1.#IND\n':
+                            f2.write('%s0.0\n' % label)
+                        elif check == '1.#IND\n':
+                            f2.write('%s0.0\n' % label)
+                        elif check == '1.#QNAN\n':
+                            f2.write('%s0.0\n' % label)
+                        elif check == '-1.#QNAN\n':
+                            f2.write('%s0.0\n' % label)
+                        else:
+                            idx = check.find('e')
+                            if idx > -1:
+                                try:
+                                    expVal = int(check[idx + 1:-1])
+                                    if expVal > 307:
+                                        f2.write('%s%s+307\n' % (label, check[:idx + 1]))
+                                    elif expVal < -307:
+                                        f2.write('%s%s-307\n' % (label, check[:idx + 1]))
+                                    else:
+                                        f2.write(line)
+                                except:
+                                    f2.write(line)
+                            else:
+                                f2.write(line)
+
+                    else:
+                        f2.write(line)
+                    line = f.readline()
+                f.close()
+                f2.seek(0)
+                relLine = f2.readline()
+                if not relLine[:4] == 'REL_':
+                    f2.seek(0)
+                f = f2
+                (self.root, revertFunction) = pickle.load(f)
+
+            # import gnosis.xml.pickle
+            # gnosis.xml.pickle.setParanoia(0)
+            # (self.root, revertFunction) = gnosis.xml.pickle.load(f)
+            if hasattr(self.root, 'PropTypes'):
+                # replace global PropertyTypes with the stored ones - this affects future cases though
+                # for key in self.root.PropTypes.keys():
+                # PropTypes[key] = self.root.PropTypes[key]
+                PropTypes.update(self.root.PropTypes)
+                # Make sure these guys did not get corrupted
+                for key in (H_VAR, T_VAR, P_VAR):
+                    PropTypes[key].calcType = INTENSIVE_PROP | CANFLASH_PROP
+
+                del self.root.PropTypes
+
+                if self.root.version[0] < 77:
+                    if SURFACETENSION_VAR in PropTypes:
+                        PropTypes[SURFACETENSION_VAR].scaleFactor = -1.0
+                    if SPEEDOFSOUND_VAR in PropTypes:
+                        PropTypes[SPEEDOFSOUND_VAR].scaleFactor = -1.0
+                    if THERMOCONDUCTIVITY_VAR in PropTypes:
+                        PropTypes[THERMOCONDUCTIVITY_VAR].scaleFactor = -1.0
+                    if VISCOSITY_VAR in PropTypes:
+                        PropTypes[VISCOSITY_VAR].scaleFactor = -1.0
+            # f.flush()
+            f.close()
+
+            if netServer:
+                netServer.switchedRoot(oldRoot, self.root)
+
+            # make any necessary changes for different versions
+            # self.root.adjustVersion(revertFunction)
+
+            # the infoCallBack is not saved
+            self.root.SetInfoCallBack(self.infoCallBack)
+
+            # Restore unit set
+            # import wingdbstub
+            infoDict = self.root.info
+            if SIMSTORE_INFO in infoDict:
+                if 'DefCustomSet' in infoDict[SIMSTORE_INFO]:
+                    setName, setAsRawDict = infoDict[SIMSTORE_INFO]['DefCustomSet']
+                    if not setName in self.units.GetSetNames():
+                        # Update the custom UnitSet dictionary with the info from the raw dictionary
+                        tempSet = units.UnitSet()
+                        tempSet.update(setAsRawDict)
+                        self.units.unitSets[setName] = tempSet
+                if 'UnitSetName' in infoDict[SIMSTORE_INFO]:
+                    setName = infoDict[SIMSTORE_INFO]['UnitSetName']
+                    if setName is not None:
+                        self.units.SetDefaultSet(setName)
+
+            # update my members
+            self.thermoAdmin = self.root.GetThermoAdmin()
+            self.currentObj = self.root
+            # the stored case may not have property package yet.
+            if self.thermoAdmin is None:
+                self.thermoAdmin = ThermoAdmin()
+                self.currentObj.SetThermoAdmin(self.thermoAdmin)
+
+            if iszip:
+                for filePath in fileLst:
+                    # For some reason, the zip module returns the file paths
+                    # with / instead of being plattform dependant
+                    # This hack fixes it for windows
+                    if '/' in filePath:
+                        fixedPath = filePath.replace('/', '\\')
+                    else:
+                        fixedPath = filePath
+                    if os.path.isabs(fixedPath): raise CmdError('CMDCouldNotOpenFile', fixedPath)
+
+                    # Now make sure that the folder exists
+                    dirName, fileName = os.path.split(fixedPath)
+                    if dirName:
+                        dirName = os.path.join(uncompressToDir, dirName)
+                        if not os.path.isdir(dirName): MakeDirs(dirName)
+                        fileName = os.path.join(dirName, fileName)
+                    else:
+                        fileName = os.path.join(uncompressToDir, fileName)
+
+                    f = self.safeOpen(fileName, 'wb')
+                    self.root.InfoMessage('CMDExtracting', (fixedPath, uncompressToDir))
+                    f.write(z.read(filePath))
+                    f.close()
+                z.close()
+            self.root.InfoMessage('CMDFinishedRecall', fromFile)
+
+        except CmdError as e:
+            sys.setrecursionlimit(rlimit)
+            self.CleanUp()
+            # self.units = units.UnitSystem()
+            self.EnsureUnitSystem()
+
+            self.currentObj = self.root = Flowsheet.Flowsheet()
+            self.root.name = '/'
+            self.root.SetInfoCallBack(self.infoCallBack)
+            self.thermoAdmin = ThermoAdmin()
+            if tempFile:
+                try:
+                    os.remove(tempFile)
+                except:
+                    pass
+            raise e
+        except Exception as e:
+            self.CleanUp()
+            # self.units = units.UnitSystem()
+            self.EnsureUnitSystem()
+            self.currentObj = self.root = Flowsheet.Flowsheet()
+            self.root.name = '/'
+            self.root.SetInfoCallBack(self.infoCallBack)
+            self.thermoAdmin = ThermoAdmin()
+            self.root.InfoMessage('CMDRecallError', (fromFile, str(e)), MessageHandler.errorMessage)
+
+        if tempFile:
+            try:
+                os.remove(tempFile)
+            except:
+                pass
+
+        sys.setrecursionlimit(rlimit)
 
     def Clear(self, desc=None):
         """reset the flowsheet to a new copy - argument is ignored"""
         infoCallBack = self.infoCallBack
         oldRoot = self.root
         # find deepest root
-        while oldRoot.GetParent():
-            oldRoot = oldRoot.GetParent()
+        while oldRoot.GetParent(): oldRoot = oldRoot.GetParent()
 
         self.CleanUp()
         out = self.output
         InitPropTypes(PropTypes)
         self.__init__(infoCallBack=infoCallBack)
         self.output = out
+        if netServer:
+            netServer.switchedRoot(oldRoot, self.root)
         self.root.InfoMessage('CMDNotifyClear')
 
     def Units(self, unitSet):
@@ -561,8 +1462,7 @@ class CommandInterface(object):
         Set the properties to be calculated for material ports
         """
         result = ''
-        if not self.thermoAdmin:
-            return
+        if not self.thermoAdmin: return
         providers = self.thermoAdmin.GetAvThermoProviderNames()
 
         # This will apply to all the providers
@@ -587,7 +1487,7 @@ class CommandInterface(object):
                         self.root.ForgetAllCalculations()
                 else:
                     for i in self.thermoAdmin.GetCommonPropertyNames(provider):
-                        if i not in usedList:
+                        if not i in usedList:
                             result += i + ' '
                             usedList.append(i)
 
@@ -624,7 +1524,7 @@ class CommandInterface(object):
                 obj = self.GetObject(self.thermoAdmin, objDesc[1:])
             else:
                 obj = self.GetObject(self.currentObj, objDesc)
-            if not obj or isinstance(obj, tuple):
+            if not obj or type(obj) == type(()):
                 raise CmdError('CMDInvalidContentsObject', objDesc)
         result = ''
         if hasattr(obj, 'GetContents'):
@@ -734,7 +1634,6 @@ class CommandInterface(object):
             # Ensure a unique name create, add and add to unitop
             elif isinstance(parent, UnitOperations.UnitOperation):
                 self.root.InfoMessage('CMDObsoleteCommand', (self.commandInProcess, '$thermoname = opTypeDesc'))
-                (provider, pkgName) = re.split(r'\.', opTypeDesc, 1)
                 # Make it a unique global name (at least try to)
                 avThCases = self.thermoAdmin.GetAvThCaseNames(provider)
                 if name in avThCases:
@@ -747,8 +1646,8 @@ class CommandInterface(object):
 
             else:
                 raise CmdError('CMDCouldNotAssign', opTypeDesc)
+                # Obsolete way of creating thermo cases
 
-        # Obsolete way of creating thermo cases
         # is it a thermo provider
         if '.' in opTypeDesc and (isinstance(parent, UnitOperations.UnitOperation) or isinstance(parent, ThermoAdmin)):
             (provider, pkgName) = re.split(r'\.', opTypeDesc, 1)
@@ -799,12 +1698,12 @@ class CommandInterface(object):
         # if s[0] == "'":
         # argStrings.append(s)
         # else:
-        # now double quotes
+        ## now double quotes
         # for s2 in re.findall('".*?"|[^,].*', s):
         # if s2[0] == '"':
         # argStrings.append(s2)
         # else:
-        # unquoted - split on commas
+        ## unquoted - split on commas
         # argStrings.extend(s2.split(','))
 
         # Tokenize here
@@ -848,7 +1747,7 @@ class CommandInterface(object):
                 parentObj = lhsObj.parent
                 createName = lhsObj.description
                 if not rhsDesc:
-                    raise CmdError('CMDUnknownObject', createName)
+                    raise CmdError('CMDUnknownObject', rhsDesc)
 
                 # See if a new property is being created in a material port
                 if isinstance(parentObj, Ports.Port_Material):
@@ -897,8 +1796,7 @@ class CommandInterface(object):
                             rhsObj = CreateObject(self.currentObj, rhsDesc)
 
                         # if we found rhsObj - see if we can get its value and add it to parentObj
-                        # lhsdesc stores the original command of the lhs.  Stores the original port name
-                        # when moving tower feeds
+                        # lhsdesc stores the original command of the lhs.  Stores the original port name when moving tower feeds
                         lhsDesc = PathOf(lhsObj)
                         if rhsObj:
                             if isinstance(rhsObj, CreateObject):
@@ -918,22 +1816,22 @@ class CommandInterface(object):
                 if lhsObj.name[:2] == '__':
                     return
 
-                # Get the obj where the ThermoCase is being set
+                ##Get the obj where the ThermoCase is being set
                 # (lhsDesc, remaining) = self.GetNextTerm( self.commandInProcess )
 
-                # Don't overwrite in the thermo admin
+                ##Don't overwrite in the thermo admin
                 # c = lhsDesc[0]
                 # if c == TH_ADMIN_KEYWORD:
                 # raise CmdError('CMDCouldNotAssign', rhsDesc)
 
-                # Get the parent of the lhsThermoCase
+                ##Get the parent of the lhsThermoCase
                 # parentDesc = string.join(lhsDesc.split('.')[:-1], '.')
                 # if c == '/':
                 # parentObj = self.GetObject(self.root, parentDesc[1:])
                 # else:
                 # parentObj = self.GetObject(self.currentObj, parentDesc)
 
-                # See if the thcase comes from a thermocase
+                ##See if the thcase comes from a thermocase
                 # try:
                 # c = rhsDesc[0]
                 # if c == '/':
@@ -969,16 +1867,16 @@ class CommandInterface(object):
                     if unitType:
                         lastVal = vals[-1]
                         if not lastVal[0] in r'.-+0123456789' and lastVal != 'None':
-                            units_by_name = self.units.UnitsByPartialName(lastVal, unitType)
-                            if len(units_by_name) > 1:
+                            units = self.units.UnitsByPartialName(lastVal, unitType)
+                            if len(units) > 1:
                                 # multiple partial match, get the item with exact match
                                 uLast = lastVal.upper()
-                                units_by_name = [u for u in units_by_name if u.name.upper() == uLast]
-                                if len(units_by_name) != 1:
+                                units = [u for u in units if u.name.upper() == uLast]
+                                if len(units) != 1:
                                     raise CmdError('CMDAmbiguousUnit', lastVal)
-                            elif len(units_by_name) == 0:
+                            elif len(units) == 0:
                                 raise CmdError('CMDUnknownUnit', lastVal)
-                            unit = units_by_name[0]
+                            unit = units[0]
                             vals = vals[:-1]
                         else:
                             unit = self.units.GetCurrentUnit(unitType)
@@ -1034,16 +1932,16 @@ class CommandInterface(object):
                         except:
                             unitType = None
 
-                        units_by_name = self.units.UnitsByPartialName(rhsParts[1], unitType)
-                        if len(units_by_name) > 1:
+                        units = self.units.UnitsByPartialName(rhsParts[1], unitType)
+                        if len(units) > 1:
                             # multiple partial match, get the item with exact match
                             uLast = rhsParts[1].upper()
-                            units_by_name = [u for u in units_by_name if u.name.upper() == uLast]
-                            if len(units_by_name) != 1:
+                            units = [u for u in units if u.name.upper() == uLast]
+                            if len(units) != 1:
                                 raise CmdError('CMDAmbiguousUnit', rhsParts[1])
-                        elif len(units_by_name) == 0:
+                        elif len(units) == 0:
                             raise CmdError('CMDUnknownUnit', rhsParts[1])
-                        unit = units_by_name[0]
+                        unit = units[0]
                     else:
                         if hasattr(lhsObj, 'GetType'):
                             unit = self.units.GetCurrentUnit(lhsObj.GetType().unitType)
@@ -1167,6 +2065,7 @@ class CommandInterface(object):
 
             return
 
+
         elif not isinstance(lhsObj, Ports.Port):
             raise CmdError('CMDConnectNonPort', lhsObj.GetPath())
 
@@ -1181,7 +2080,7 @@ class CommandInterface(object):
         else:
             rhsObj = None
 
-        if isinstance(rhsObj, tuple):
+        if type(rhsObj) == type(()):
             raise CmdError('CMDCannotConnectTo', rhsDesc)
 
         if rhsObj is None:
@@ -1230,8 +2129,7 @@ class CommandInterface(object):
         return the object described by objDesc relative to the startObj
         if the object does not exist return a CreateObject object
         """
-        if len(objDesc) == 0:
-            return startObj
+        if len(objDesc) == 0: return startObj
 
         c = objDesc[0]  # child type designator
         if c == '.':
@@ -1278,7 +2176,7 @@ class CommandInterface(object):
                 except:
                     obj = None
 
-        if obj is not None:
+        if not obj is None:
             if remaining:
                 return self.GetObject(obj, remaining)
             else:
@@ -1330,8 +2228,7 @@ class CommandInterface(object):
 
         result = obj.type + ': ' + obj.returnMessage
         result += '\nTotal %s points: pointType, P %s, T %s' % (obj.pointCount, unitP.name, unitT.name)
-        if obj.type == 'TH':
-            result += ', H %s' % unitH.name
+        if obj.type == 'TH': result += ', H %s' % unitH.name
         for i in range(obj.pointCount):
             p = unitP.ConvertFromSim42(obj.pValues[i])
             t = unitT.ConvertFromSim42(obj.tValues[i])
@@ -1345,12 +2242,10 @@ class CommandInterface(object):
     def RenderBasicObject(self, obj):
         """produce representation of obj with units"""
         v = obj.GetValue()
-        if v is None:
-            return 'None'
+        if v is None: return 'None'
 
         unit = self.units.GetCurrentUnit(obj.GetType().unitType)
-        if unit:
-            v = unit.ConvertFromSim42(v)
+        if unit: v = unit.ConvertFromSim42(v)
         result = str(v)
 
         status = obj.GetCalcStatus()
@@ -1367,8 +2262,7 @@ class CommandInterface(object):
         else:
             result += ' \t'
 
-        if unit:
-            result += unit.name
+        if unit:  result += unit.name
 
         # if status & NEW_V:
         # result += ' New'
@@ -1377,12 +2271,11 @@ class CommandInterface(object):
 
     def RenderObject(self, obj):
         """produce an appropriate string for obj"""
-        if isinstance(obj, list) or isinstance(obj, tuple):
+        if type(obj) == type([]) or type(obj) == type(()):
             result = '[ ...\n'
             for i in obj:
                 result += self.RenderObject(i)
-                if result[-1] != ']n':
-                    result += '\n'
+                if result[-1] != ']n': result += '\n'
             result += ' ... ]\n'
         elif isinstance(obj, BasicProperty):
             result = obj.GetPath() + '= ' + self.RenderBasicObject(obj)
@@ -1418,8 +2311,7 @@ class CommandInterface(object):
 
             # figure out longest name
             maxLength = 0
-            for propName in props:
-                maxLength = max(maxLength, len(propName))
+            for propName in props: maxLength = max(maxLength, len(propName))
             if isinstance(obj, Ports.Port_Signal):
                 cmpName = ""
                 if hasattr(obj, '_cmpName'):
@@ -1433,7 +2325,8 @@ class CommandInterface(object):
                             dispName = '%s_%s' % (propName, cmpName)
                         else:
                             dispName = propName
-                        result += dispName + ' ' * (maxLength - len(dispName) + 3) + '= ' + self.RenderBasicObject(prop) + '\n'
+                        result += dispName + ' ' * (maxLength - len(dispName) + 3) \
+                                  + '= ' + self.RenderBasicObject(prop) + '\n'
                     except:
                         result += propName + ' is invalid\n'
 
@@ -1441,7 +2334,8 @@ class CommandInterface(object):
                 for propName in props:
                     try:
                         prop = obj.GetProperty(propName)
-                        result += propName + ' ' * (maxLength - len(propName) + 3) + '= ' + self.RenderBasicObject(prop) + '\n'
+                        result += propName + ' ' * (maxLength - len(propName) + 3) \
+                                  + '= ' + self.RenderBasicObject(prop) + '\n'
                     except:
                         result += propName + ' is invalid\n'
 
@@ -1506,7 +2400,7 @@ class CommandInterface(object):
 
         elif isinstance(obj, ThermoAdmin):
             providers = obj.GetAvThermoProviderNames()
-            providers = ', '.join(providers)
+            providers = providers.join(', ')
             result = 'Providers: %s' % providers
             for thName, thCase in obj.GetContents():
                 result += '\nThermoCase: %s; PropPkg - %s.%s' % (thName, thCase.provider, thCase.package)
@@ -1600,12 +2494,11 @@ class CommandInterface(object):
                         obj = parent.__dict__[description]
                     elif '_' + description in parent.__dict__:
                         obj = parent.__dict__['_' + description]
-                if not obj:
-                    return None
+                if not obj: return None
 
             # return specified values
             if last == "key":
-                if isinstance(obj, dict):
+                if isinstance(obj, dict) or type(obj) == type({}):
                     result = list(obj.keys())
                     result.sort()
             elif last == "path":
@@ -1636,8 +2529,7 @@ class CommandInterface(object):
                     result = obj.GetValue()
                     if last == "convertedValue":
                         unit = self.units.GetCurrentUnit(obj.GetType().unitType)
-                        if unit:
-                            result = unit.ConvertFromSim42(result)
+                        if unit: result = unit.ConvertFromSim42(result)
                 elif hasattr(obj, 'GetValues'):
                     result = obj.GetValues()
                 else:
@@ -1725,7 +2617,7 @@ class CommandInterface(object):
                 obj = self.GetObject(self.root, objDesc[1:])
             else:
                 obj = self.GetObject(self.currentObj, objDesc)
-            if isinstance(obj, tuple) or isinstance(obj, list) and len(obj) > 0:
+            if type(obj) == type(()) and len(obj) > 0:
                 obj = obj[0]
         if obj is None:
             return
@@ -1745,10 +2637,10 @@ class CommandInterface(object):
             obj.CreatePort(portTypeID, portName)
             obj.PushSolveOp(obj)
 
-    def CompoundValues(self, thCase, cmpName, type_of):
+    def CompoundValues(self, thCase, cmpName, type):
         cmps = self.thermoAdmin.GetSelectedCompoundNames(thCase.provider, thCase.case)
-        if type_of == 'values':
-            if cmpName == '' or cmpName not in cmps:
+        if type == 'values':
+            if cmpName == '' or not cmpName in cmps:
                 return None
             idx = cmps.index(cmpName)
             thKeys = GetSimHypoStrings()
@@ -1763,13 +2655,13 @@ class CommandInterface(object):
                 except:
                     vals.append(None)
             return vals
-        elif type_of == 'keys':
+        elif type == 'keys':
             # returns the string property names followed by the double property names
             thKey = GetSimHypoStrings()
             thKey.extend(GetSimHypoLongs())
             thKey.extend(GetSimHypoDoubles())
             return thKey
-        elif type_of == 'units':
+        elif type == 'units':
             unitTypeIds = []
             strs = GetSimHypoStrings()
             # flag no units for the string properties
@@ -1791,11 +2683,11 @@ class CommandInterface(object):
             return unitTypeIds
         else:
             # single compound property
-            if cmpName == '' or cmpName not in cmps:
+            if cmpName == '' or not cmpName in cmps:
                 return None
             try:
                 idx = cmps.index(cmpName)
-                thProp = str(type_of)
+                thProp = str(type)
                 thVal = self.thermoAdmin.GetSelectedCompoundProperties(thCase.provider, thCase.case, idx, thProp)[0]
             except:
                 thVal = None
@@ -1830,8 +2722,11 @@ class CommandInterface(object):
         """
         if not objDesc:
             objDesc = '.'
+        if netServer:
+            files = netServer.listdir(self.root, objDesc)
+        else:
+            files = os.listdir(objDesc)
 
-        files = os.listdir(objDesc)
         result = ''
         files.sort()
         for file in files:
@@ -1854,19 +2749,34 @@ class CommandInterface(object):
         """
         create the directory name
         """
-        return os.mkdir(name)
+        if netServer:
+            try:
+                return netServer.mkdir(self.root, name)
+            except:
+                return None
+        else:
+            try:
+                return os.mkdir(name)
+            except:
+                return None
 
     def DeleteFile(self, name):
         """
         delete file name
         """
-        return os.remove(name)
+        if netServer:
+            return netServer.remove(self.root, name)
+        else:
+            return os.remove(name)
 
     def DeleteDirectory(self, name):
         """
         delete the file directory name
         """
-        return os.rmdir(name)
+        if netServer:
+            return netServer.rmdir(self.root, name)
+        else:
+            return os.rmdir(name)
 
     def Tree(self, objDesc, level=1):
         try:
@@ -1890,7 +2800,7 @@ class CommandInterface(object):
                 obj = self.GetObject(self.thermoAdmin, objDesc[1:])
             else:
                 obj = self.GetObject(self.currentObj, objDesc)
-            if not obj or isinstance(obj, tuple) or isinstance(obj, list):
+            if not obj or type(obj) == type(()):
                 raise CmdError('CMDInvalidContentsObject', objDesc)
         return self.ObjData(obj, level)
 
@@ -1902,8 +2812,7 @@ class CommandInterface(object):
         if hasattr(obj, 'GetContents'):
             for i in obj.GetContents():
                 typeI1 = type(i[1])
-                if i[1] is None:
-                    # typeI1 == type(None):
+                if typeI1 == type(None):
                     # no data, return None
                     result.append((str(i[0]), None))
                 elif typeI1 == int or typeI1 == int or typeI1 == float or typeI1 == (str,) or typeI1 == list:
@@ -1947,8 +2856,7 @@ class CommandInterface(object):
 
             unitType = propType.unitType
             typeName = None
-            if unitType:
-                typeName = self.units.GetTypeName(unitType)
+            if unitType: typeName = self.units.GetTypeName(unitType)
             # If getting scale and using T, then use deltaT
             if len(tempLst) > 1:
                 if tempLst[1] == 'Scale' and typeName:
@@ -1986,8 +2894,7 @@ class CommandInterface(object):
 
             unitType = propType.unitType
             typeName = None
-            if unitType:
-                typeName = self.units.GetTypeName(unitType)
+            if unitType: typeName = self.units.GetTypeName(unitType)
             # If setting scale and using T, then use deltaT
             if len(tempLst) > 1:
                 if tempLst[1] == 'Scale' and typeName:
@@ -1997,22 +2904,21 @@ class CommandInterface(object):
                         unitType = self.units.GetTypeID('DeltaP')
             if nuTokens > 3:
                 unitName = tokens[3]
-                units_by_name = self.units.UnitsByPartialName(unitName, unitType)
-                if len(units_by_name) > 1:
+                units = self.units.UnitsByPartialName(unitName, unitType)
+                if len(units) > 1:
                     # multiple partial match, get the item with exact match
                     uLast = unitName.upper()
-                    units_by_name = [u for u in units_by_name if u.name.upper() == uLast]
-                    if len(units_by_name) != 1:
+                    units = [u for u in units if u.name.upper() == uLast]
+                    if len(units) != 1:
                         raise CmdError('CMDAmbiguousUnit', unitName)
-                elif len(units_by_name) == 0:
+                elif len(units) == 0:
                     raise CmdError('CMDUnknownUnit', unitName)
-                unit = units_by_name[0]
+                unit = units[0]
                 val = unit.ConvertToSim42(val)
 
             else:
                 unit = self.units.GetCurrentUnit(unitType)
-                if unit:
-                    val = unit.ConvertToSim42(val)
+                if unit: val = unit.ConvertToSim42(val)
 
             if len(tempLst) > 1:
                 if tempLst[1] == 'Min':
@@ -2036,8 +2942,7 @@ class CommandInterface(object):
             # scalar
             if not rank:
                 unit = self.units.GetCurrentUnit(types[0].unitType)
-                if unit:
-                    vals = unit.ConvertFromSim42(vals)
+                if unit: vals = unit.ConvertFromSim42(vals)
                 return vals
 
             # vector
@@ -2077,7 +2982,7 @@ class CommandInterface(object):
                 obj = self.GetObject(self.thermoAdmin, objDesc[1:])
             else:
                 obj = self.GetObject(self.currentObj, objDesc)
-            if not obj or isinstance(obj, tuple):
+            if not obj or type(obj) == type(()):
                 return
         result = ''
 
@@ -2102,9 +3007,7 @@ class CommandInterface(object):
 
     def CanClone(self, op):
         """Validate if a unit op can be cloned"""
-        if isinstance(op, UnitOperations.UnitOperation):
-            return True
-
+        if isinstance(op, UnitOperations.UnitOperation): return True
         return False
 
     def Copy(self, remaining, deleteAfter=0):
@@ -2289,12 +3192,12 @@ def SpecPortFromPort(fromPort_toPort, cli):
     toProps = toPort.GetProperties()
     toPath = toPort.GetPath()
 
-    def SetValueIfPossible(given_prop_name, value):
-        toStat = toProps.get(given_prop_name, None)
+    def SetValueIfPossible(propName, value):
+        toStat = toProps.get(propName, None)
         if toStat:
             toStat = toStat.GetCalcStatus()
         if toStat is None or toStat & FIXED_V or toStat & UNKNOWN_V:
-            toPort.SetPropValue(given_prop_name, value, FIXED_V)
+            toPort.SetPropValue(propName, value, FIXED_V)
             # unit = cli.units.GetCurrentUnit(PropTypes.get(propName, PropTypes[GENERIC_VAR]).unitType)
             # if unit: value = unit.ConvertFromSim42(value)
             # cli.ProcessCommand('%s.%s = %f' %(toPath, propName, value))
@@ -2368,7 +3271,7 @@ def SpecPortFromPort(fromPort_toPort, cli):
                         stay = False
                         SetValueIfPossible(propName, val)
 
-            # Now do the compositions
+                        # Now do the compositions
             cmps = fromPort.GetCompounds()
             toCmps = toPort.GetCompounds()
             cmpNames = toPort.GetCompoundNames()
@@ -2390,11 +3293,10 @@ def RemoveComments(rawCmd):
     """Removes the comments when the # is not in quotes"""
 
     cmd = rawCmd.strip()
-    if not cmd:
-        return ""
+    if not cmd: return ""
 
     # If there are no quotes, then just remove the comments blindly
-    if "'" not in rawCmd and '"' not in rawCmd:
+    if not "'" in rawCmd and not '"' in rawCmd:
         cmd = re.sub('#.*', '', rawCmd)
         return cmd.strip()
 
@@ -2405,7 +3307,7 @@ def RemoveComments(rawCmd):
         # Initialize like this
         fixedLine = line
 
-        if "'" not in line and '"' not in line:
+        if not "'" in line and not '"' in line:
             # No quotes... then just cut right away
             fixedLine = re.sub('#.*', '', line)
 
@@ -2418,20 +3320,20 @@ def RemoveComments(rawCmd):
             for term in re.finditer("#", line):
                 pounds.append(term.span()[0])
 
-            do_quit = False
+            quit = False
             for pound in pounds:
                 isInside = False
                 for start, end in limits:
                     if pound < start:
                         # Cut from there on and finish the line
                         fixedLine = line[:pound]
-                        do_quit = True
+                        quit = True
                         break
                     elif start <= pound <= end:
                         # The # is inside of quotes, just skip this one
                         isInside = True
                         break
-                if do_quit:
+                if quit:
                     break
                 elif not isInside:
                     # This # could not be found anywhere. Just cut it there
@@ -2446,7 +3348,7 @@ def RemoveComments(rawCmd):
     return cmd
 
 
-def Tokenize(rawCmd, defSep=' ', dequote_all=False):
+def Tokenize(rawCmd, defSep=' ', dequote=False):
     """Breaks rawCmd into a list of items depending on how it is quoted.
     Unquoted stuff is separated by defSep
 
@@ -2481,7 +3383,7 @@ def Tokenize(rawCmd, defSep=' ', dequote_all=False):
 
             break
 
-    if dequote_all:
+    if dequote:
         for i in range(len(cmds)):
             cmds[i] = cmds[i].split("'")
             cmds[i] = ''.join(cmds[i])
@@ -2655,7 +3557,6 @@ netServer = None
 
 
 def run(inp=sys.stdin, out=sys.stdout, err=sys.stderr):
-    warnings.warn('This commandline interface is for testing only', DeprecationWarning)
     MessageHandler.IgnoreMessage('SolvingOp')
     MessageHandler.IgnoreMessage('DoneSolving')
     MessageHandler.IgnoreMessage('BeforePortDisconnect')
@@ -2697,7 +3598,9 @@ def run(inp=sys.stdin, out=sys.stdout, err=sys.stderr):
             break
         except CallBackException as e:
             interface.infoCallBack.handleMessage('CMDCallBackException', str(e))
+            # raise
         except Exception as e:
+            # raise
             tb = ''
             for i in traceback.format_tb(sys.exc_info()[2]):
                 tb += i + '\n'
@@ -2708,3 +3611,5 @@ def run(inp=sys.stdin, out=sys.stdout, err=sys.stderr):
 
 if __name__ == '__main__':
     run()
+
+

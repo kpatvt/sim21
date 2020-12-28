@@ -6,7 +6,7 @@ import operator
 import re
 
 from sim21.solver import EquationSolver
-from sim21.solver import S42Glob
+from sim21.solver import setup
 from sim21.solver.Messages import MessageHandler
 from sim21.solver.Variables import *
 from sim21.unitop import PipeSegment  # Import this just to have the same constants
@@ -447,7 +447,7 @@ class CSTR(EquationSolver.EquationBasedOp):
             return False
 
         if paramName == CUSTOM_EQ_UNITSET_PAR:
-            if value not in S42Glob.unitSystem.GetSetNames():
+            if value not in setup.unitSystem.GetSetNames():
                 return False
 
         if paramName == RXNPHASE_PAR:
@@ -609,7 +609,7 @@ class CSTR(EquationSolver.EquationBasedOp):
                     self.InfoMessage('MissingRateExpression', (rxn.GetPath(),))
                     ready = False
                 self._rateExpressions.append(rateExp)
-                unitSet = S42Glob.unitSystem.GetUnitSet(rxn.GetParameterValue(CUSTOM_EQ_UNITSET_PAR))
+                unitSet = setup.unitSystem.GetUnitSet(rxn.GetParameterValue(CUSTOM_EQ_UNITSET_PAR))
                 if i == 0 and allSetsEqual:
                     firstSet = unitSet
                 elif firstSet != unitSet:
@@ -855,26 +855,26 @@ class CSTR(EquationSolver.EquationBasedOp):
                 if not unitSet:
                     unitSet = 'sim42'
 
-                rUnit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[RATERXNVOL_VAR].unitType)
+                rUnit = setup.unitSystem.GetUnit(unitSet, PropTypes[RATERXNVOL_VAR].unitType)
                 if unitSet != 'sim42':
-                    unit = S42Glob.unitSystem.GetUnit(unitSet, S42Glob.unitSystem.GetTypeID('GasConstant'))
+                    unit = setup.unitSystem.GetUnit(unitSet, setup.unitSystem.GetTypeID('GasConstant'))
                     passR = unit.ConvertFromSim42(R)
 
-                    unit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[T_VAR].unitType)
+                    unit = setup.unitSystem.GetUnit(unitSet, PropTypes[T_VAR].unitType)
                     passT = unit.ConvertFromSim42(T)
 
-                    unit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[P_VAR].unitType)
+                    unit = setup.unitSystem.GetUnit(unitSet, PropTypes[P_VAR].unitType)
                     passP = unit.ConvertFromSim42(P)
 
-                    unit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[H_VAR].unitType)
+                    unit = setup.unitSystem.GetUnit(unitSet, PropTypes[H_VAR].unitType)
                     passH = unit.ConvertFromSim42(H)
 
-                    unit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[MOLEFLOW_VAR].unitType)
+                    unit = setup.unitSystem.GetUnit(unitSet, PropTypes[MOLEFLOW_VAR].unitType)
                     passF = unit.ConvertFromSim42(F)
 
                     passMassFlow = passF * MW
 
-                    unit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[VOLFLOW_VAR].unitType)
+                    unit = setup.unitSystem.GetUnit(unitSet, PropTypes[VOLFLOW_VAR].unitType)
                     passVolFlow = unit.ConvertFromSim42(volFlow)
                 else:
                     passR, passT, passP, passH = R, T, P, H
@@ -885,7 +885,7 @@ class CSTR(EquationSolver.EquationBasedOp):
 
                 # Load some info of compounds
                 rxnCmp = {}
-                concUnit = S42Glob.unitSystem.GetUnit(unitSet, PropTypes[CONCENTRATION_VAR].unitType)
+                concUnit = setup.unitSystem.GetUnit(unitSet, PropTypes[CONCENTRATION_VAR].unitType)
                 for c in range(self._nuCmps):
                     cmpInfo = self._cmpInfoHolders[c]
                     cmpInfo.Fraction = z[c]
@@ -1289,7 +1289,7 @@ class PFR(EquationSolver.EquationBasedOp):
                 return False
 
         if paramName == CUSTOM_EQ_UNITSET_PAR:
-            if value not in S42Glob.unitSystem.GetSetNames():
+            if value not in setup.unitSystem.GetSetNames():
                 return False
 
         if paramName == SYSTEMPHASE_PAR:
@@ -1779,7 +1779,7 @@ class PFR(EquationSolver.EquationBasedOp):
         self.myGlobals.update({'glbUnitOp': glbUnitOp, 'glbX': glbX})
         oneSetForAll = not isinstance(self._unitSet, list)
 
-        GetUnit = S42Glob.unitSystem.GetUnit
+        GetUnit = setup.unitSystem.GetUnit
         for i in range(nuRxn):
             if i == 0 or not oneSetForAll:
                 # Do unit conversions for using in the custom equation according to the
@@ -1793,7 +1793,7 @@ class PFR(EquationSolver.EquationBasedOp):
                     unitSet = 'sim42'
                 rUnit = GetUnit(unitSet, PropTypes[RATERXNVOL_VAR].unitType)
                 if unitSet != 'sim42':
-                    unit = GetUnit(unitSet, S42Glob.unitSystem.GetTypeID('GasConstant'))
+                    unit = GetUnit(unitSet, setup.unitSystem.GetTypeID('GasConstant'))
                     passR = unit.ConvertFromSim42(R)
 
                     unit = GetUnit(unitSet, PropTypes[T_VAR].unitType)
@@ -2064,7 +2064,7 @@ class PFR(EquationSolver.EquationBasedOp):
                     self.InfoMessage('MissingRateExpression', (rxn.GetPath(),))
                     ready = False
                 self._rateExpressions.append(rateExp)
-                unitSet = S42Glob.unitSystem.GetUnitSet(rxn.GetParameterValue(CUSTOM_EQ_UNITSET_PAR))
+                unitSet = setup.unitSystem.GetUnitSet(rxn.GetParameterValue(CUSTOM_EQ_UNITSET_PAR))
                 if i == 0 and allSetsEqual:
                     firstSet = unitSet
                 elif firstSet != unitSet:

@@ -21642,7 +21642,7 @@ Processing langs.tst
 >> language Spanish
 >> $thermo = VirtualMaterials.Advanced_Peng-Robinson
 >>  . -> $thermo
-Caso termodin\E1mico conectado a operaci\F3n unitaria. / a /thermo
+Caso termodin�mico conectado a operaci�n unitaria. / a /thermo
 >> cd thermo
 /thermo
 >> /thermo + PROPANE ISOBUTANE n-BUTANE

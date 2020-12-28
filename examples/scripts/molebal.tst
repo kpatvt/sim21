@@ -1,6 +1,6 @@
 # tests multivariable balance solution
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE
 balance = Balance.BalanceOp()

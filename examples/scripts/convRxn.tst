@@ -1,6 +1,6 @@
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
-thermo + HYDROGEN WATER CARBON_MONOXIDE CARBON_DIOXIDE 
+thermo + HYDROGEN WATER CARBON_MONOXIDE CARBON_DIOXIDE
 thermo + METHANE OXYGEN NITROGEN AMMONIA ETHANE PROPANE
 
 units SI
@@ -57,7 +57,7 @@ OutQ = 0.0
 Out
 
 # test 6 : Compae with literature result-----------------------------------------
-# burns 1 mole of C3 with 28 moles of air adibatically 
+# burns 1 mole of C3 with 28 moles of air adibatically
 # literature outlet T = 1878.8 C
 In.Fraction = 0 0 0 0 0 0.202759 0.7628 0 0 0.034482
 In.P = 1 atm

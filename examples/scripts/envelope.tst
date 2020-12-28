@@ -1,6 +1,6 @@
 units SI
 # test 2-phase VL envelope
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + methane propane n-hexane water
 env = Envelope.PTEnvelope()

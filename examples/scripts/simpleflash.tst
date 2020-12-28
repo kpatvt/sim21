@@ -1,6 +1,6 @@
 # Simple flash test
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
 
@@ -54,7 +54,7 @@ flash.In.P = 101.325 kPa
 s.Out
 
 #Remove composition altogether
-flash.In.Fraction = 
+flash.In.Fraction =
 flash.In.State = 0
 s.Out
 

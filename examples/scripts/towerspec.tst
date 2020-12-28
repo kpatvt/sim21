@@ -1,6 +1,6 @@
 # Depeopanizer test (from old Hysim manual)
 units Field
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + Methane Ethane PROPANE
 thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane

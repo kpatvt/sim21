@@ -12,6 +12,7 @@ from sim21.unitop import Balance
 from sim21.solver import Ports
 from sim21.solver.Variables import *
 from sim21.solver.Error import SimError
+from sim21.unitop.Tower import Tower
 
 
 def TestSimpleFlash():
@@ -356,7 +357,7 @@ def TestHeater():
     heater.SetCompositionValue(portsIn[0], "n-BUTANE", 0.25)
     heater.SetCompositionValue(portsIn[0], "ISOBUTANE", 0.25)
     heater.SetCompositionValue(portsIn[0], "n-PENTANE", 0.25)
-    heater.GetPort(portsIn[0]).SetPropValue(H_VAR, -7200, FIXED_V)
+    heater.GetPort(portsIn[0]).SetPropValue(T_VAR, 256.357717014, FIXED_V)
     heater.GetPort(portsIn[0]).SetPropValue(P_VAR, 101.325, FIXED_V)
     heater.GetPort(portsIn[0]).SetPropValue(MOLEFLOW_VAR, 10.0, FIXED_V)
 
@@ -737,7 +738,7 @@ def TestFlowsh2():
         print(MOLEFLOW_VAR, ': ', flash.GetPropValue(i, MOLEFLOW_VAR))
         print('')
 
-        # Print some info out
+    # Print some info out
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of flash port out "', i, '":')
@@ -1065,91 +1066,6 @@ def TestMoleBalance():
     thAdmin.CleanUp()
 
 
-# def TestSimpleExcelDistCol():
-#     print """
-# Init SimpleExcelDistCol ++++++++++++++++++++++++++++++"""
-#     # Set Thermo
-#     pkgName = "Peng-Robinson"
-#     cmpNames = ("PROPANE", "n-BUTANE", "ISOBUTANE", "n-PENTANE")
-#     thAdmin = ThermoAdmin.ThermoAdmin()
-#     ExcelModName = 'ExcelThermo'
-#     ExcelClassName = 'ThermoInterfase'
-#     err = thAdmin .SetNewThermoProvider(ExcelModName, ExcelClassName)
-#     providers = thAdmin.GetAvThermoProviderNames()
-#     provider = providers[1] #Should be the Excel thing
-#     thCase = 'myTh'
-#     thermo = thAdmin.AddPkgFromName(provider, thCase, pkgName)
-#     for i in cmpNames: thAdmin.AddCompound(provider, thCase, i)
-#
-#     # Load vals
-#     distCol = DistCol.SimpleDistCol()
-#     distCol.SetThermoAdmin(thAdmin)
-#     distCol.SetThermo(thermo)
-#     cmps = distCol.GetCompoundNames()
-#     print 'Cmps: ', cmps
-#     portsIn = distCol.GetPortNames(MAT|IN)
-#     print 'Names Ports In: ', portsIn
-#     portsOut = distCol.GetPortNames(MAT|OUT)
-#     print 'Names Ports Out: ', portsOut
-#     distCol.SetParameterValue(R_PAR, 1)
-#     distCol.SetCompositionValue(IN_PORT + str(10), "PROPANE", 0.05)
-#     distCol.SetCompositionValue(IN_PORT + str(10), "n-BUTANE", 0.40)
-#     distCol.SetCompositionValue(IN_PORT + str(10), "ISOBUTANE", 0.40)
-#     distCol.SetCompositionValue(IN_PORT + str(10), "n-PENTANE", 0.15)
-#     distCol.GetPort().SetPropValue(IN_PORT + str(10), T_VAR, 303.15)
-#     distCol.GetPort().SetPropValue(IN_PORT + str(10), P_VAR, 720.0)
-#     distCol.GetPort().SetPropValue(IN_PORT + str(10), MOLEFLOW_VAR, 10.0)
-#
-#     #Specify P and dist flow on top
-#     distCol.GetPort().SetPropValue(L_PORT + str(0), P_VAR, 700.0)
-#     distCol.GetPort().SetPropValue(L_PORT + str(0), MOLEFLOW_VAR, 5.0)
-#
-#     #Specify P on bottom
-#     distCol.GetPort().SetPropValue(L_PORT + str(21), P_VAR, 720.0)
-#
-#     print 'Return value from Solve()', distCol.Solve()
-#     print ''
-#
-#     #Print some info in
-#     comp = distCol.GetCompositionSafe(IN_PORT + str(10))
-#     print 'Composition of port in "', IN_PORT + str(10), '":'
-#     for j in comp: print 'fraction of ', j[0], ': ', j[1].GetValue()
-#     print ''
-#
-#     print 'Some props of port in "', IN_PORT + str(10), '":'
-#     print T_VAR, ': ', distCol.GetPropValue(IN_PORT + str(10), T_VAR)
-#     print H_VAR, ': ', distCol.GetPropValue(IN_PORT + str(10), H_VAR)
-#     print MOLEFLOW_VAR, ': ', distCol.GetPropValue(IN_PORT + str(10), MOLEFLOW_VAR)
-#     print ''
-#
-#     #Print some info out
-#     comp = distCol.GetCompositionSafe(L_PORT + str(0))
-#     print 'Composition of port out "', L_PORT + str(0), '":'
-#     for j in comp: print 'fraction of ', j[0], ': ', j[1].GetValue()
-#     print ''
-#
-#     print 'Some props of port out "', L_PORT + str(0), '":'
-#     print T_VAR, ': ', distCol.GetPropValue(L_PORT + str(0), T_VAR)
-#     print H_VAR, ': ', distCol.GetPropValue(L_PORT + str(0), H_VAR)
-#     print MOLEFLOW_VAR, ': ', distCol.GetPropValue(L_PORT + str(0), MOLEFLOW_VAR)
-#     print ''
-#
-#     comp = distCol.GetCompositionSafe(L_PORT + str(21))
-#     print 'Composition of port out "', L_PORT + str(21), '":'
-#     for j in comp: print 'fraction of ', j[0], ': ', j[1].GetValue()
-#     print ''
-#
-#     print 'Some props of port out "', L_PORT + str(21), '":'
-#     print T_VAR, ': ', distCol.GetPropValue(L_PORT + str(21), T_VAR)
-#     print H_VAR, ': ', distCol.GetPropValue(L_PORT + str(21), H_VAR)
-#     print MOLEFLOW_VAR, ': ', distCol.GetPropValue(L_PORT + str(21), MOLEFLOW_VAR)
-#     print ''
-#
-#     print """Finished SimpleDistCol ++++++++++++++++++++++++++++++
-#     """
-#
-#     distCol.CleanUp()
-
 def TestThAdminSaveLoad():
     print("""Init ThAdminSaveLoad ++++++++++++++++++++++++++++++""")
     # Set Thermo
@@ -1278,22 +1194,20 @@ def PropertiesHandling():
 
 
 # Order --> key: (MethodName, Description)
-TEST_MAP = {10: (TestSimpleFlash, 'Test to a flash'),
-            11: (TestSimpleFlash2LPhase, 'Tests a two liquid phase flash'),
-            20: (TestMixAndFlash, 'Tests the unit op MixAndFlash'),
-            30: (TestLiqLiqEx, 'Tests the Liquid Liquid extraction'),
-            50: (TestHeater, 'Tests the heater'),
-            51: (TestHeatEx, 'Test the heat exchanger'),
-            60: (TestFlowsh1, 'Flowsheet: 2 streams --> mixer --> flash'),
+TEST_MAP = {# 10: (TestSimpleFlash, 'Test to a flash'),
+            # 11: (TestSimpleFlash2LPhase, 'Tests a two liquid phase flash'),
+            # 20: (TestMixAndFlash, 'Tests the unit op MixAndFlash'),
+            # 30: (TestLiqLiqEx, 'Tests the Liquid Liquid extraction'),
+            # 50: (TestHeater, 'Tests the heater'),
+            # 51: (TestHeatEx, 'Test the heat exchanger'),
+            # 60: (TestFlowsh1, 'Flowsheet: 2 streams --> mixer --> flash'),
             61: (TestFlowsh2, 'Flowsheet: 2 streams --> mixer --> flash. Then changes cmps and calc again'),
-            70: (TestRecycle, 'stream --> mixer --> recycle --> flash'),
-            71: (TestRecycle2, 'stream --> mixer --> recycle --> flash with back calc'),
-            80: (TestMoleBalance, 'Tests the mole balance from Balance.Balance'),
-            100: (TestThAdminSaveLoad, 'Tests the save and load methods of thAdmin'),
-            110: (PropertiesHandling, 'Tests setting and getting common and supported properties')}
-
-
-#            90: ('TestSimpleExcelDistCol', 'Tests the mole balance from Balance.Balance') }
+            # 70: (TestRecycle, 'stream --> mixer --> recycle --> flash'),
+            # 71: (TestRecycle2, 'stream --> mixer --> recycle --> flash with back calc'),
+            # 80: (TestMoleBalance, 'Tests the mole balance from Balance.Balance'),
+            # 100: (TestThAdminSaveLoad, 'Tests the save and load methods of thAdmin'),
+            # 110: (PropertiesHandling, 'Tests setting and getting common and supported properties')
+            }
 
 if __name__ == '__main__':
     for test_number in sorted(TEST_MAP.keys()):

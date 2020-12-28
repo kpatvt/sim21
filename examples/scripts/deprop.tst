@@ -1,6 +1,6 @@
 # Depeopanizer test (from old Hysim manual)
 units Field
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + Methane Ethane PROPANE
 thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane
@@ -67,7 +67,7 @@ TryToSolve = 1  # start calculation
 commonproperties + VolumeFlow StdLiqMolarVol
 displayproperties + StdLiqMolarVol StdLiqVolumeFlow
 
-TryToSolve = 1 
+TryToSolve = 1
 TryToRestart = 1
 
 #Delete fractions

@@ -1,6 +1,6 @@
 # Depeopanizer test (from old Hysim manual)
 units Field
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + Propane ISOBUTANE n-BUTANE ISOPENTANE
 
@@ -49,7 +49,7 @@ estT.Port = 120
 cd ..
 
 /liq_prod = Stream.Stream_Material()
-/liq_prod.clone = Stream.ClonePort(1) 
+/liq_prod.clone = Stream.ClonePort(1)
 /liq_prod.In -> Stage_0.l.Port
 
 /btm_prod = Stream.Stream_Material()
@@ -68,13 +68,13 @@ K-100.Out.P = 235.1787
 c4split.Stage_1.vap.Port -> K-100.In
 
 E-100 = Heater.Cooler()
-E-100.DeltaP = 5 
+E-100.DeltaP = 5
 
 K-100.Out -> E-100.In
 E-100.OutQ -> c4split.Stage_39.reb.Port
 
 E-101 = Heater.Cooler()
-E-101.DeltaP = 5 
+E-101.DeltaP = 5
 E-100.Out -> E-101.In
 
 CV-100 = Valve.Valve()

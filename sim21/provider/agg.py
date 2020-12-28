@@ -1,4 +1,5 @@
 import numpy as np
+from sim21.data.chemsep_consts import GAS_CONSTANT
 
 
 def collect_attribute_value(phase_list, phase_mole_fractions, attr_name):
@@ -71,6 +72,9 @@ class AggregateByMole:
 
     def __getitem__(self, item):
         return self._phases[item]
+
+    def frac_mole(self, item):
+        return self._phases_frac_mole[item]
 
     @property
     def k_values_vle(self):
@@ -148,3 +152,12 @@ class AggregateByMole:
             return self.flow_mole * self.provider.mw
         else:
             raise NotImplementedError
+
+    @property
+    def z_factor(self):
+        return self.press*self.vol_mole/(GAS_CONSTANT*self.temp)
+
+    @property
+    def std_liq_vol_mole(self):
+        return np.dot(self.provider.std_liq_vol_mole, self.comp_mole)
+

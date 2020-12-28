@@ -1,5 +1,5 @@
 units SI
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + NITROGEN WATER METHANE ETHANE PROPANE ISOBUTANE CARBON_DIOXIDE HYDROGEN_SULFIDE n-BUTANE
 

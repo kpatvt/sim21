@@ -1,19 +1,19 @@
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
-thermo + BGS-HYDROGEN BGS-WATER BGS-CARBON_MONOXIDE BGS-CARBON_DIOXIDE 
+thermo + BGS-HYDROGEN BGS-WATER BGS-CARBON_MONOXIDE BGS-CARBON_DIOXIDE
 thermo + BGS-METHANE BGS-OXYGEN BGS-NITROGEN AMMONIA BGS-ETHANE BGS-PROPANE
 
 units SI
 
 # A Equilibrum reactor - isothermal, no pressure drop
 #rxn = EquiliReactor.IsothermalEquiliReactor()           #IsothermalEqmReactor()
-rxn = EquiliReactor.EquilibriumReactor()          
+rxn = EquiliReactor.EquilibriumReactor()
 cd /rxn
-In.P = 100 
-In.T = 80 
+In.P = 100
+In.T = 80
 In.MoleFlow = 8 lbmole/h
-In.Fraction = 1 1 1 1 1 1 1 1 0 0 
-DeltaP = 10 
+In.Fraction = 1 1 1 1 1 1 1 1 0 0
+DeltaP = 10
 
 # Test 1 : Testing Outlet T spec  ----------------------------------
 
@@ -25,7 +25,7 @@ Rxn0.EqmConst.Table.Series1  =  7.81e-19 2.17e-9 0.000266 0.049 0.4098 2.679 14.
 Rxn1.EqmConst.Table.Series0  =  366.5 422.04 477.6 505.4 588.7 616.5 727.6 838.7 1088.7 1227.6 1477.6 K
 Rxn1.EqmConst.Table.Series1  =  4523 783.6 206.8 119 31.44 22 7.05 3.13 0.9813 0.647 0.3843
 CalculationOption = 1
-Out.T = 80 
+Out.T = 80
 
 In
 Out
@@ -33,7 +33,7 @@ OutQ
 
 # Test 2 : Testing Outlet Q spec  ----------------------------------
 Out.T = None
-OutQ = 10000 
+OutQ = 10000
 Out
 OutQ
 
@@ -64,7 +64,7 @@ Out
 OutQ
 
 # Test 6 : Given Inlet and Outlet Pressures ----------------------------------
-OutQ = -5150 
+OutQ = -5150
 In.P = None
 In.MoleFlow = 8 lbmole/h
 Out.P = 90

@@ -405,6 +405,7 @@ class UnitSystem:
         """Set the default unit set"""
         given_set = self.unitSets[setName]
         self.defaultSet = given_set
+        return True
 
     def GetDefaultSet(self):
         """Gets the default unit set name"""

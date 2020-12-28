@@ -10,6 +10,7 @@ ConvReactor - General conversion reactor, containing:
               an energy balance
 """
 import re
+from functools import cmp_to_key
 
 from sim21.solver.Messages import MessageHandler
 from sim21.unitop import UnitOperations, Balance, Heater, Sensor, Stream
@@ -632,7 +633,7 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
             self.ProductTotalMole = inPort.GetPropValue(MOLEFLOW_VAR)
 
             # sort the rxns according to reaction order
-            rxns.sort(lambda a, b: cmp(a.GetParameterValue(RXNORDER_PAR), b.GetParameterValue(RXNORDER_PAR)))
+            rxns.sort(key=cmp_to_key(lambda a, b: cmp(a.GetParameterValue(RXNORDER_PAR), b.GetParameterValue(RXNORDER_PAR))))
 
             # react one reaction at a time accoring the the specified reaction order
             for aRxn in rxns:

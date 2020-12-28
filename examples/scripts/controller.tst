@@ -1,6 +1,6 @@
 # hysim 1.5 tutorial problem
 units Field
-$thermo = VirtualMaterials.Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + Methane Ethane Propane
 thermo + isoButane n-Butane isoPentane n-Pentane n-Hexane
@@ -11,7 +11,7 @@ Feed.SignalType = T
 Feed.In.T = 60
 Feed.In.P = 600
 Feed.In.MoleFlow = 144
-Feed.In.Fraction = 70 20 10 9 8 7 6 5 4 3 
+Feed.In.Fraction = 70 20 10 9 8 7 6 5 4 3
 
 # Inlet separator
 Sep = Flash.SimpleFlash()
