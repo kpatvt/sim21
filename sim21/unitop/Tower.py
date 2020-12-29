@@ -12,10 +12,10 @@ import time
 
 import numpy as np
 
-from sim21.solver.Error import SimError
-from sim21.solver.Messages import MessageHandler
-from sim21.solver.Variables import *
-from sim21.unitop import UnitOperations, Properties
+from ..solver.Error import SimError
+from ..solver.Messages import MessageHandler
+from ..solver.Variables import *
+from ..unitop import UnitOperations, Properties
 
 NORMAL_STAGE = 0
 TOP_STAGE = 1
@@ -69,43 +69,48 @@ INIT_TOWER_OBJ = "InitTowerAlgorithm"
 import numba
 
 
-@numba.jit(nopython=True, cache=True)
-def copy_flow_matrix(numStages, flowMatrix, alphaSj, diag, upper):
-    for j in range(numStages):
-        if j > 0:
-            flowMatrix[j][j - 1] = -alphaSj[j - 1]
+# @numba.jit(nopython=True, cache=True)
+# def copy_flow_matrix(numStages, flowMatrix, alphaSj, diag, upper):
+#     for j in range(numStages):
+#         if j > 0:
+#             flowMatrix[j][j - 1] = -alphaSj[j - 1]
+#
+#         flowMatrix[j][j] = diag[j]
+#
+#         if j < numStages - 1:
+#             flowMatrix[j][j + 1] = upper[j]
 
-        flowMatrix[j][j] = diag[j]
 
-        if j < numStages - 1:
-            flowMatrix[j][j + 1] = upper[j]
+# @numba.jit(nopython=True, cache=True)
+# def TDMA(a, b, c, d):
+#     n = len(d)
+#
+#     # w = np.zeros(n, d.dtype)
+#     # g = np.zeros(n, d.dtype)
+#     # p = np.zeros(n, d.dtype)
+#     w = np.empty(n, d.dtype)
+#     g = np.empty(n, d.dtype)
+#     p = np.empty(n, d.dtype)
+#
+#     w[0] = c[0] / b[0]
+#     g[0] = d[0] / b[0]
+#
+#     for i in range(1, n - 1):
+#         w[i] = c[i] / (b[i] - a[i - 1] * w[i - 1])
+#
+#     for i in range(1, n):
+#         g[i] = (d[i] - a[i - 1] * g[i - 1]) / (b[i] - a[i - 1] * w[i - 1])
+#
+#     p[n - 1] = g[n - 1]
+#     for i in range(n - 1, 0, -1):
+#         p[i - 1] = g[i - 1] - w[i - 1] * p[i]
+#
+#     return p
 
 
-@numba.jit(nopython=True, cache=True)
-def TDMA(a, b, c, d):
-    n = len(d)
+# ab = diagonal_form(a, upper=1, lower=1) # for tridiagonal matrix upper and lower = 1
 
-    # w = np.zeros(n, d.dtype)
-    # g = np.zeros(n, d.dtype)
-    # p = np.zeros(n, d.dtype)
-    w = np.empty(n, d.dtype)
-    g = np.empty(n, d.dtype)
-    p = np.empty(n, d.dtype)
-
-    w[0] = c[0] / b[0]
-    g[0] = d[0] / b[0]
-
-    for i in range(1, n - 1):
-        w[i] = c[i] / (b[i] - a[i - 1] * w[i - 1])
-
-    for i in range(1, n):
-        g[i] = (d[i] - a[i - 1] * g[i - 1]) / (b[i] - a[i - 1] * w[i - 1])
-
-    p[n - 1] = g[n - 1]
-    for i in range(n - 1, 0, -1):
-        p[i - 1] = g[i - 1] - w[i - 1] * p[i]
-
-    return p
+# x_sp = solve_banded((1,1), ab, b)
 
 
 class Stage(object):
@@ -211,7 +216,7 @@ class Stage(object):
                         self.tower.stages[self.number + 2 + i].type = NORMAL_STAGE
 
         # Quick dirty hack to make sure that the last stage added has the correct type
-        # Still needs to correct in case only one stages is added as a side stripper !!
+        ##Still needs to correct in case only one stages is added as a side stripper !!
         if numNewStages == 1:
             tower = self.tower
             if newStage.type == NORMAL_STAGE and newStage.number + 1 < tower.numStages:
@@ -638,10 +643,11 @@ class Stage(object):
         inactiveSpecs = self.inactiveSpecs = []
         for spec in list(self.specs.values()):
             if spec.port.GetValue() is not None:
-                if self.subCool and self.subCool.isCalculated and isinstance(spec, StageSpecification) and spec.type == T_VAR:
-                    # If it is subCooled and the subCool object has a calculated value
-                    # then it means that the sat T and the T in the liq are both known
-                    # hence, this T should not be a counted as a spec (this should be the liq)
+                if self.subCool and self.subCool.isCalculated and isinstance(spec,
+                                                                             StageSpecification) and spec.type == T_VAR:
+                    ##If it is subCooled and the subCool object has a calculated value
+                    ##then it means that the sat T and the T in the liq are both known
+                    ##hence, this T should not be a counted as a spec (this should be the liq)
                     pass
                 else:
                     activeSpecs.append(spec)
@@ -1313,6 +1319,8 @@ class DegSubCooling(StageObject):
             if newNumber != 0:
                 raise SimError('CantAddToStageObject', (name, self.name,
                                                         self.stage.number, self.stage.tower.GetPath()))
+
+
         elif name == 'NewName':
             newName = str(obj)
             self.ChangeName(self.stage.GetParent(), self.name, newName)
@@ -1774,10 +1782,10 @@ class Draw(StageObject):
         portTemp = self.port.GetPropValue(T_VAR)
         if portTemp is not None:
             if self.isSubCooled and self.stage.subCool.isCalculated:
-                # If it is subCooled and the subCool object has a calculated value
-                # then it means that the sat T and the T in the liq are both known
-                # hence, this T should not be counted as a spec (this should be the liq)
-                # as the
+                ##If it is subCooled and the subCool object has a calculated value
+                ##then it means that the sat T and the T in the liq are both known
+                ##hence, this T should not be counted as a spec (this should be the liq)
+                ##as the
                 pass
             else:
                 spec = PortTemperatureSpec(self, portTemp, self.port)
@@ -3122,7 +3130,8 @@ class ComponentSpec(DrawSpec):
         self.compNo = []
         compoundNames = self.stage.tower.GetCompoundNames()
         for cmpName in self.components:
-            self.compNo.append(compoundNames.index(cmpName.upper()))
+            idx = compoundNames.index(cmpName.upper())
+            self.compNo.append(idx)
 
     def Clone(self):
         clone = self.__class__(self.varType)
@@ -3448,7 +3457,7 @@ class MoleRatioSpec(ComponentSpec):
             if cmpName == '/':
                 addTo = self.denomNo
             else:
-                addTo.append(compoundNames.index(cmpName))
+                addTo.append(compoundNames.index(cmpName.upper()))
 
     def GetCurrentTowerValue(self):
         """Gets the value based in the current values kept in the tower arrays"""
@@ -4933,8 +4942,6 @@ class Tower(UnitOperations.UnitOperation):
         path = self.path
 
         self.useOldCode = self.GetParameterValue('UseOldCode')
-        # self.useOldCode = False
-
         if self.useOldCode is None:
             self.useOldCode = True
             if self.GetParameterValue('UseNewCode') == 1:
@@ -5087,7 +5094,8 @@ class Tower(UnitOperations.UnitOperation):
             while 1:  # outer loop
                 innerLoopCount = 0
                 outerOldT = np.array(self.T, np.float)
-                if self.convRepLevel & 2: outerOldT = np.array(self.T, np.float)
+                if self.convRepLevel & 2:
+                    outerOldT = np.array(self.T, np.float)
 
                 if self.debug:
                     ##DEBUG CODE ##########################################
@@ -5108,25 +5116,28 @@ class Tower(UnitOperations.UnitOperation):
                     debug_file.flush()
                     ######################################################
 
-                # def inner_loop(new_factors):
-                #     self.SolveFlowMatrix(new_factors)
-                #     self.CalculateTemperatures()
-                #     res = self.InnerErrors()
-                #     # print('Last inner norm:', np.linalg.norm(res))
-                #     return res
+                def inner_loop(new_factors):
+                    res_act = np.zeros(len(new_factors))
+                    self.SolveFlowMatrix(new_factors)
+                    self.CalculateTemperatures()
+                    res = self.InnerErrors()
+                    res_act[:len(res)] = res
+                    return res_act
+                #
+                oldErrors[:] = self.errors[:]
+                oldTotalError = totalError
+                oldLogSFactors[:] = self.logSFactors[:]
+                oldT[:] = self.T[:]
 
                 # from scipy.optimize import fsolve
-                # init_values = last_solution
-                # results = fsolve(inner_loop, self.logSFactors[:self.numStages - totReb], full_output=True)
-                #
-                # self.logSFactors = results[0][:]
-                # inner_loop(self.logSFactors)
-                # # innerConverged = results[2] == 1
-                # res = np.linalg.norm(self.InnerErrors())
-                # innerConverged = res < maxInnerError
-                # #last_solution = self.logSFactors
+                # init_values = np.copy(self.logSFactors)
+                # results = fsolve(inner_loop, init_values)
+                # self.logSFactors = results
+                # self.SolveFlowMatrix(self.logSFactors)
+                # self.CalculateTemperatures()
+                # print('Last inner norm:', np.linalg.norm(self.InnerErrors()))
 
-                #################################
+                # START INNER LOOP ################################
                 while innerLoopCount < maxInnerLoops:  # inner loop
                     innerLoopCount += 1
                     innerConverged = 0
@@ -5138,10 +5149,12 @@ class Tower(UnitOperations.UnitOperation):
                     adjustment = -np.dot(self.jacobian, self.errors)
 
                     # initial step length limited to 1 over largest correction
+                    #
+                    # stepLength = 1.0
                     stepLength = 1.0 / max(1.0, max(np.absolute(adjustment)))
 
                     if self.debug:
-                        # DEBUG CODE ##########################################
+                        ##DEBUG CODE ##########################################
                         txt = '    ***************\n    Entered InnerLoop %i\n    Stage       T            lnS            lnR              L              V             xw             xhc             yw            yhc\n' % innerLoopCount
                         debug_file.write(txt)
                         wIdx = self.waterIdx
@@ -5193,7 +5206,7 @@ class Tower(UnitOperations.UnitOperation):
                             self.errors = self.InnerErrors()
                             break
 
-                        stepLength /= 4
+                        stepLength *= 0.25
 
                     if stepLength < minInnerStep:
                         # smallest step did't work - exit
@@ -5207,8 +5220,7 @@ class Tower(UnitOperations.UnitOperation):
                     # Pass an info message depending on the level of report
                     if self.convRepLevel & 1:
                         idxMaxErr = np.argmax(np.absolute(self.errors))
-                        self.InfoMessage('InnerErrorDetail', (path, totalError, self.errors[idxMaxErr],
-                                                              self.eqnLbls[idxMaxErr]))
+                        self.InfoMessage('InnerErrorDetail', (path, totalError, self.errors[idxMaxErr], self.eqnLbls[idxMaxErr]))
                     else:
                         self.InfoMessage('TowerInnerError', (path, totalError))
 
@@ -5236,7 +5248,7 @@ class Tower(UnitOperations.UnitOperation):
                         print('Inner loop is not changing significantly - exiting')
                         break
 
-                ##################################
+                # END INNER LOOP #####
 
                 # Do a summary if requested
                 if self.convRepLevel & 2:
@@ -5304,9 +5316,7 @@ class Tower(UnitOperations.UnitOperation):
 
                 # Add the water error to the outer error
                 wError = 0.0
-                for wdraw in self.waterDraws:
-                    wError += wdraw.Error()
-
+                for wdraw in self.waterDraws: wError += wdraw.Error()
                 outerError += wError
                 self.outerError = outerError
                 if not self.convRepLevel:
@@ -5341,7 +5351,7 @@ class Tower(UnitOperations.UnitOperation):
                 else:
                     self.SolveFlowMatrix(self.logSFactors)
                     self.CalculateTemperatures()
-                    # self.jacobian = self.CalcJacobian()
+                    pass
 
                 if self.debug:
                     ##DEBUG CODE ##########################################
@@ -5529,7 +5539,6 @@ class Tower(UnitOperations.UnitOperation):
                     top, bottom = section
                     effOffset[top + 1:bottom + 1] = effterm[top:bottom]
                     # put(effOffset, range(1, self.numStages), effterm[:-1])
-
                 diag = RvTerm + RlTerm * alphaSj + effOffset
                 upper = -1.0 - (1.0 - eff[:, i]) * alphaSj * RlTerm / RvTerm
             else:
@@ -5543,14 +5552,14 @@ class Tower(UnitOperations.UnitOperation):
                 if wdraw.moleFlows:
                     rhs[stageNo] -= wdraw.moleFlows[i]
 
-            copy_flow_matrix(self.numStages, flowMatrix, alphaSj, diag, upper)
+            # copy_flow_matrix(self.numStages, flowMatrix, alphaSj, diag, upper)
 
-            # for j in range(self.numStages):
-            #     if self.stages[j].type != TOP_STAGE:
-            #         flowMatrix[j][j-1] = -alphaSj[j-1]
-            #     flowMatrix[j][j] = diag[j]
-            #     if self.stages[j].type != BOTTOM_STAGE:
-            #         flowMatrix[j][j+1] = upper[j]
+            for j in range(self.numStages):
+                if self.stages[j].type != TOP_STAGE:
+                    flowMatrix[j][j-1] = -alphaSj[j-1]
+                flowMatrix[j][j] = diag[j]
+                if self.stages[j].type != BOTTOM_STAGE:
+                    flowMatrix[j][j+1] = upper[j]
 
             if hasPumps:
                 if self.useEff:
@@ -5582,7 +5591,6 @@ class Tower(UnitOperations.UnitOperation):
                     top, bottom = section
                     self.l[top:bottom, i] -= effterm[top:bottom] * self.v[top + 1:bottom + 1, i]
                     # self.l[:-1,i] -= effterm[:-1]*self.v[1:,i]
-
                 self.l[:, i] = np.clip(self.l[:, i], tiniestValue, largestValue)
 
         ## probably don't need both x and y, but efficiency can come later
@@ -5656,12 +5664,13 @@ class Tower(UnitOperations.UnitOperation):
         fugacity = 'LnFugacityCoeff'
         thCaseObj = self.GetThermo()
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
-        liq_phase = np.ones(self.numStages) * LIQUID_PHASE
-        lnFugL = thAdmin.GetArrayProperty(prov, case, (T_VAR, t), (P_VAR, p), liq_phase, x, fugacity)
+        lnFugL = thAdmin.GetArrayProperty(prov, case, (T_VAR, t), (P_VAR, p),
+                                          np.ones(self.numStages) * LIQUID_PHASE,
+                                          x, fugacity)
 
-
-        vap_phase = np.ones(self.numStages) * VAPOUR_PHASE
-        lnFugV = thAdmin.GetArrayProperty(prov, case, (T_VAR, t), (P_VAR, p), vap_phase, y, fugacity)
+        lnFugV = thAdmin.GetArrayProperty(prov, case, (T_VAR, t), (P_VAR, p),
+                                          np.ones(self.numStages) * VAPOUR_PHASE,
+                                          y, fugacity)
 
         if self.debug:
             ##DEBUG CODE ##########################################
@@ -5732,9 +5741,22 @@ class Tower(UnitOperations.UnitOperation):
                                                    np.ones(self.numStages) * phase,
                                                    x, (H_VAR, 'Cp', 'MolecularWeight')))
 
+        # value_prime = np.transpose(thAdmin.GetProperties(prov, case, (T_VAR,t + 1), (P_VAR, p),
+        #                                         np.ones(self.numStages)*phase,
+        #                                         x, (H_VAR, 'Cp', 'MolecularWeight')))
+
         value[0] /= value[2]  # make enthalpy on mass basis
         value[1] /= value[2]  # make Cp on mass basis
         value[0] -= value[1] * t  # self.T # convert H to A term (B is just Cp)
+
+        # value_prime[0] /= value_prime[2]   # make enthalpy on mass basis
+        # h2 = value_prime[0][:]
+        # cp = (h2 - h1)/1.0*1e-3
+        #
+        # value_prime[1] /= value_prime[2]   # make Cp on mass basis
+        # value_prime[0] -= value_prime[1]*t #self.T # convert H to A term (B is just Cp)
+        #
+        # value[1] = cp
 
         newModel = np.resize(value, (2, self.numStages))
         if oldModel is not None and self.dampingFactor < 1.0:
@@ -5779,12 +5801,12 @@ class Tower(UnitOperations.UnitOperation):
             if maxK[i] < 0.5:
                 try:
                     # TODO: CHECK THIS!
-                    # pass
-                    (newT, newY, newLnK) = self.GetBubbleLnK(self.P[i], self.x[i])
-                    self.T[i] = newT
-                    lnK[i,:] = newLnK
-                    self.y[i,:] = newY
-                    bptCount += 1
+                    pass
+                    # (newT, newY, newLnK) = self.GetBubbleLnK(self.P[i], self.x[i])
+                    # self.T[i] = newT
+                    # lnK[i,:] = newLnK
+                    # self.y[i,:] = newY
+                    # bptCount += 1
                 except:
                     pass  # if the flash fails just keep doing what we were doing
 

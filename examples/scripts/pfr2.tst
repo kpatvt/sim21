@@ -1,5 +1,5 @@
 
-$thermo = VirtualMaterials.Advanced_Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 
 thermo + n-BUTANE ISOBUTANE

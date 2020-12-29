@@ -1,17 +1,17 @@
 # Ammonia Refrigeration Loop - no streams
 # Sim42 Tutorial
 
- 
-$thermo = VirtualMaterials.RK
+
+$thermo = Sim21Thermo.SRK
 / -> $thermo
 thermo + Ammonia
- 
+
 
 Chiller    = Heater.Heater()
 Compressor = Compressor.Compressor()
 Condenser  = Heater.Cooler()
 JT         = Valve.Valve()
- 
+
 
 Chiller.Out.T        = 253.15 K
 Chiller.Out.VapFrac  = 1
@@ -19,7 +19,7 @@ Chiller.Out.Fraction = 1
 Chiller.DeltaP = 20
 
 Chiller.InQ   = 10000
- 
+
 
 Condenser.Out.T        = 333.15 K
 Condenser.Out.VapFrac  = 0

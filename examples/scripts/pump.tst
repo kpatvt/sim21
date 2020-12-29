@@ -1,6 +1,6 @@
 # pump test
 units SI
-$thermo = VirtualMaterials.Advanced_Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo +  WATER
 
@@ -22,7 +22,7 @@ Out
 InQ
 
 InQ = None
-In.T = 
+In.T =
 Out.T = 20.0247
 In.MoleFlow = 205.10982071
 In
@@ -39,7 +39,7 @@ cd /
 # A real pump with one set of pump curves ------------------
 # where head-flow-efficiency-power are restricted
 realPump = Pump.PumpWithCurve()
-cd realPump 
+cd realPump
 
 NumberTables = 1
 PumpSpeed0 = 100.0

@@ -1,5 +1,5 @@
-optimizecode 1
-maxversions 0
+# optimizecode 1
+# maxversions 0
 units Field
 /LiquidPhases = 2
 /StdLiqVolRefT = 288.15

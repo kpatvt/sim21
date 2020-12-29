@@ -1,5 +1,5 @@
 units SI
-$thermo = VirtualMaterials.SRK
+$thermo = Sim21Thermo.SRK
 / -> $thermo
 thermo + Methane Ethane Propane n-Butane n-Pentane n-Hexane n-Heptane n-Octane n-Nonane n-Decane
 

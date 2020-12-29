@@ -1,6 +1,6 @@
 # Depeopanizer test (from old Hysim manual)
 units SI
-$thermo = VirtualMaterials.RK
+$thermo = Sim21Thermo.SRK
 / -> $thermo
 thermo + propane isobutane n-butane isopentane n-pentane
 thermo + n-hexane n-heptane n-octane

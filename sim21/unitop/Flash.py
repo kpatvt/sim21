@@ -211,6 +211,7 @@ class SimpleFlash(UnitOperations.UnitOperation):
             vapPort.AssignFlashResults(results)
         else:
             vapPort.AssignFlashResults(results.ResultsForPhase(0))
+
         vapPort.CalcFlows()
 
         # The following chunk of code assigns specific phases to specific ports

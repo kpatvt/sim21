@@ -6,7 +6,7 @@ from numba import njit
 from sim21.data import chemsep
 from sim21.data.chemsep_consts import GAS_CONSTANT
 from sim21.provider.flash.basic import basic_flash_temp_press_2phase
-from sim21.provider.flash.io import flash_press_prop_2phase, flash_press_vap_frac_2phase
+from sim21.provider.flash.io import flash_press_prop_2phase, flash_press_vap_frac_2phase, flash_temp_vap_frac_2phase
 from sim21.support.roots import solve_cubic_reals, mid
 from sim21.provider.generic import press_derivs, log_phi_derivs, residual_derivs, calc_ig_props
 from sim21.provider.phase import PhaseByMole
@@ -920,6 +920,19 @@ class CubicEos(Provider):
         results = flash_press_vap_frac_2phase(self, press, vap_frac_value, frac_value_mole, valid=valid, previous=previous)
         results.scale(flow_sum_mole=flow_sum_value_mole)
         return results
+
+    def flash_temp_vap_frac(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value, temp,
+                             vap_frac_basis, vap_frac_value, previous, valid):
+
+        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
+                                                                          frac_basis, frac_value)
+        if vap_frac_basis != 'mole':
+            raise NotImplementedError
+
+        results = flash_temp_vap_frac_2phase(self, temp, vap_frac_value, frac_value_mole, valid=valid, previous=previous)
+        results.scale(flow_sum_mole=flow_sum_value_mole)
+        return results
+
 
     def phase(self, temp, press, n, desired_phase,
               allow_pseudo=True, valid=None, press_comp_derivs=False,

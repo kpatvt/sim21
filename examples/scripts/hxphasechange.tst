@@ -4,7 +4,7 @@ units SI
 displayproperties
 commonproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor SurfaceTension  StdLiqMolarVol
 displayproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor SurfaceTension
-$VMGThermo = VirtualMaterials.Advanced_Peng-Robinson
+$VMGThermo = Sim21Thermo.Peng-Robinson
 / -> $VMGThermo
 $VMGThermo + WATER
 $VMGThermo + NITROGEN
