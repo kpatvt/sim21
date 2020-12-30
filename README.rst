@@ -21,6 +21,7 @@ Revival of legacy Sim42 simulator for Python 3 with custom thermodynamics.
 * Free software: MIT license
 * Documentation: https://sim21.readthedocs.io.
 
+Under continual development, breaking changes are to be expected.
 
 Features
 --------
