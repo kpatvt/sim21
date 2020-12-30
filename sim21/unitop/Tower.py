@@ -2317,11 +2317,14 @@ class LiquidPumpAround(PumpAround, LiquidDraw):
         stageNo = self.stage.number
         tower = self.stage.tower
 
-        ##Should it handle subcooled liquid ??
+        # Should it handle subcooled liquid ??
+        temp = tower.T[stageNo]
+        m = len(tower.x[stageNo])
+        calc_ig_enthalpy_mole = sum([tower.x[stageNo][j] * tower.ig_enthalpy_mole[j](temp) for j in range(m)])
 
         hmass = tower.hlModel[0][stageNo] + tower.hlModel[1][stageNo] * tower.T[stageNo]
         mw = np.sum(tower.x[stageNo] * tower.mw)
-        return hmass * mw
+        return hmass * mw + calc_ig_enthalpy_mole
 
 
 class VapourPumpAround(PumpAround, VapourDraw):
@@ -2350,9 +2353,14 @@ class VapourPumpAround(PumpAround, VapourDraw):
         """
         stageNo = self.stage.number
         tower = self.stage.tower
+
+        temp = tower.T[stageNo]
+        m = len(tower.y[stageNo])
+        calc_ig_enthalpy_mole = sum([tower.y[stageNo][j] * tower.ig_enthalpy_mole[j](temp) for j in range(m)])
+
         hmass = tower.hvModel[0][stageNo] + tower.hvModel[1][stageNo] * tower.T[stageNo]
         mw = np.sum(tower.y[stageNo] * tower.mw)
-        return hmass * mw
+        return hmass * mw + calc_ig_enthalpy_mole
 
 
 class InternalLiquidClone(LiquidDraw):
@@ -5000,10 +5008,13 @@ class Tower(UnitOperations.UnitOperation):
         self.cmpNames = self.GetCompoundNames()
         self.numCompounds = len(self.cmpNames)
         self.mw = np.zeros(self.numCompounds, np.float)
+        self.ig_enthalpy_mole = [None]*self.numCompounds
         thCaseObj = self.GetThermo()
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
         for i in range(self.numCompounds):
-            self.mw[i] = thAdmin.GetSelectedCompoundProperties(prov, case, i, ['MolecularWeight'])[0]
+            res = thAdmin.GetSelectedCompoundProperties(prov, case, i, ['MolecularWeight', IDEALGASENTHALPY_FUNC_VAR])
+            self.mw[i] = res[0]
+            self.ig_enthalpy_mole[i] = res[1]
 
         if self.debug:
             ##DEBUG CODE ##########################################
@@ -5739,14 +5750,22 @@ class Tower(UnitOperations.UnitOperation):
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
         value = np.transpose(thAdmin.GetProperties(prov, case, (T_VAR, t), (P_VAR, p),
                                                    np.ones(self.numStages) * phase,
-                                                   x, (H_VAR, 'Cp', 'MolecularWeight')))
+                                                   x, (H_VAR, 'Cp', 'MolecularWeight', IDEALGASENTHALPY_VAR)))
 
-        # value_prime = np.transpose(thAdmin.GetProperties(prov, case, (T_VAR,t + 1), (P_VAR, p),
-        #                                         np.ones(self.numStages)*phase,
-        #                                         x, (H_VAR, 'Cp', 'MolecularWeight')))
+        value_prime = np.transpose(thAdmin.GetProperties(prov, case, (T_VAR, t + 1), (P_VAR, p),
+                                                         np.ones(self.numStages)*phase,
+                                                         x, (H_VAR, IDEALGASENTHALPY_VAR)))
 
-        value[0] /= value[2]  # make enthalpy on mass basis
-        value[1] /= value[2]  # make Cp on mass basis
+        mw = value[2]
+        res_enthalpy_mass = (value[0] - value[3])/mw
+        res_enthalpy_mass_prime = (value_prime[0] - value_prime[1])/mw
+        res_cp_mass = res_enthalpy_mass_prime - res_enthalpy_mass
+
+        value[0] = res_enthalpy_mass
+        value[1] = res_cp_mass
+
+        # value[0] /= value[2]  # make enthalpy on mass basis
+        # value[1] /= value[2]  # make Cp on mass basis
         value[0] -= value[1] * t  # self.T # convert H to A term (B is just Cp)
 
         # value_prime[0] /= value_prime[2]   # make enthalpy on mass basis
@@ -5769,9 +5788,15 @@ class Tower(UnitOperations.UnitOperation):
         return array (nstage long) of enthalpies calculated from inner model
         t and x are arrays of termperature and mole fraction nstage long
         """
+        n = len(t)
+        m = x.shape[1]
+        calc_ig_enthalpy_mole = np.zeros(n)
+        for i in range(n):
+            calc_ig_enthalpy_mole[i] = sum([x[i, j]*self.ig_enthalpy_mole[j](t[i]) for j in range(m)])
+
         hmass = model[0] + model[1] * t
         mw = np.add.reduce(x * self.mw, 1)
-        return hmass * mw
+        return hmass * mw + calc_ig_enthalpy_mole
 
     def CalculateTemperatures(self):
         """

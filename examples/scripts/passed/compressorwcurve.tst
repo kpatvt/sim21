@@ -1,14 +1,15 @@
-optimizecode 1
-maxversions 0
-units Field
-/LiquidPhases = 2
-/StdLiqVolRefT = 288.15
- /StdLiqVolRefT = 60 F
-/RecycleDetails = 1
-displayproperties
-displayproperties VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow StdGasVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
-commonproperties
-commonproperties + ZFactor P T MolecularWeight MassDensity StdLiqMolarVolVapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow StdGasVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
+# Commented out for testing
+# optimizecode 1
+# maxversions 0
+# units Field
+# /LiquidPhases = 2
+# /StdLiqVolRefT = 288.15
+# /StdLiqVolRefT = 60 F
+# /RecycleDetails = 1
+# displayproperties
+# displayproperties VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow StdGasVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
+# commonproperties
+# commonproperties + ZFactor P T MolecularWeight MassDensity StdLiqMolarVolVapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow StdGasVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
 units SI
 $thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo

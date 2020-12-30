@@ -109,3 +109,12 @@ class PhaseByMole:
             return self.provider.liq_visc(self.temp, self.comp_mole)
         else:
             raise NotImplementedError
+
+    @property
+    def dens_mass(self):
+        return self.dens_mole * self.mw
+
+    @property
+    def surf_tens(self):
+        assert self.identifier == 'liq'
+        return self.provider.surf_tens(self.temp, self.comp_mole)

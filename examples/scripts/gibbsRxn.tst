@@ -1,7 +1,7 @@
 $thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 #Peng-Robinson
-thermo + METHANE WATER CARBON_MONOXIDE CARBON_DIOXIDE BGS-HYDROGEN
+thermo + METHANE WATER CARBON_MONOXIDE CARBON_DIOXIDE HYDROGEN
 
 units SI
 

@@ -770,6 +770,7 @@ class CubicEos(Provider):
         self._ig_g_form = g = None
         self._vap_visc = None
         self._liq_visc = None
+        self._surf_tens = None
         self._ig_s_form = None
         self._std_liq_vol = None
         self._source_k_ij = None
@@ -815,6 +816,7 @@ class CubicEos(Provider):
         self._ig_g_form = g = np.array([c.ig_gibbs_form_mole for c in components])
         self._vap_visc = [c.vap_visc for c in components]
         self._liq_visc = [c.liq_visc for c in components]
+        self._surf_tens = [c.surf_tens for c in components]
         self._ig_s_form = (g - h) / -298.15
         self._std_liq_vol = np.array([c.std_liq_vol_mole for c in components])
         self._source_k_ij = k_ij
@@ -836,6 +838,9 @@ class CubicEos(Provider):
 
     def liq_visc(self, temp, comp_mole):
         return np.dot(comp_mole, [comp_visc(temp) for comp_visc in self._liq_visc])
+
+    def surf_tens(self, temp, comp_mole):
+        return np.dot(comp_mole, [comp_surf_tens(temp) for comp_surf_tens in self._surf_tens])
 
     def update_interactions(self, k_ij, l_ij):
         if k_ij is not None:

@@ -325,7 +325,7 @@ def SolveNonLinearEquations(parent, u, numMethSettings, lastConvX, lastX, lastJa
 
     # Start from last vals?
     if tryToRestart:
-        if lastX and len(lastX) == nuEquations:
+        if lastX is not None and len(lastX) == nuEquations:
             # Should it really waste the time checking on the specs?
             for i in range(nuEquations):
                 if not isFix[i]:
@@ -333,7 +333,7 @@ def SolveNonLinearEquations(parent, u, numMethSettings, lastConvX, lastX, lastJa
 
     # Use last converged?
     elif tryLastConverged:
-        if lastConvX and len(lastConvX) == nuEquations:
+        if lastConvX is not None and len(lastConvX) == nuEquations:
             try:
                 # Keep the specs:
                 for i in range(nuEquations):

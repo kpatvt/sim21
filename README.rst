@@ -39,13 +39,17 @@ Status
 
 * Thermodynamics provider is partially complete
 * Many of the original examples will run largely unmodified
-* Tower model is partially functional (Runs OK for narrow boiling mixtures)
+* Tower/Distillation Column model is fully functional (Supporting Pumparounds, Bypass, Efficiencies and Side-Strippers)
+* Common examples of different types of towers now included
+* Some reactor models (Equilibrium/PFR) work partially
 * Some unusual behavior especially when changing components on the fly
+* Cleaned up some exception handling
+
 
 Next Steps
 ----------
 
-* Implement basic thermodynamic provider with component database
+* Fully implement basic thermodynamic provider with component database
 * Massive code cleanup (Use snake_case instead of CamelCase, Exception Handling)
 
 Credits

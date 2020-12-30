@@ -1,8 +1,11 @@
+# MAKE SURE COMPONENT NAMES ARE UPPERCASE
+# CASE SENSITIVITY IS IMPORTANT!
+# SINCE THIS EXAMPLE CONTAINS EMBEDDED PYTHON CODE
 
 $thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 
-thermo + n-BUTANE ISOBUTANE
+thermo + N-BUTANE ISOBUTANE
 
 pfr = KineticReactor.PFR()
 pfr.In.T = 330 K
@@ -16,7 +19,7 @@ pfr.OutQ = 0
 pfr.NumberSections = 40
 
 pfr.NumberRxn = 1
-pfr.Rxn0.Formula = theRxn0:1.0*ISOBUTANE-1.0*!'n-BUTANE'
+pfr.Rxn0.Formula = theRxn0:1.0*ISOBUTANE-1.0*!'N-BUTANE'
 pfr.CustomEquationUnitSet = sim42
 
 pfr.Rxn0.ReactionRateEq = """
@@ -38,7 +41,7 @@ KcRef = 3.03
 Kc = KcRef*exp( (-6900.0/R)*(1/T2 - 1/T) )
 
 #The unit set defined is sim42, hence concentration comes in kmol/m3
-r = k*(rxnCmp['n-BUTANE'].Concentration - rxnCmp['ISOBUTANE'].Concentration/Kc)
+r = k*(rxnCmp['N-BUTANE'].Concentration - rxnCmp['ISOBUTANE'].Concentration/Kc)
 
 #The unit set defined is sim42, hence r has to be returned in kmol/(s*m3)
 r = r/3600.0                          #kmol/(s*m3)
@@ -80,7 +83,7 @@ KcRef = 3.03
 Kc = KcRef*exp( ((-6900.0*0.43)/R)*(1/T2 - 1/T) )
 
 #The unit set defined is sim42, hence concentration comes in lbmol/ft3
-r = k*(rxnCmp['n-BUTANE'].Concentration - rxnCmp['ISOBUTANE'].Concentration/Kc)
+r = k*(rxnCmp['N-BUTANE'].Concentration - rxnCmp['ISOBUTANE'].Concentration/Kc)
 
 #The unit set defined is Field, hence r has to be returned in lbmol/(s*ft3)
 r = r/3600.0                          #lbmol/(s*ft3)

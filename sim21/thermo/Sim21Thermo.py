@@ -34,6 +34,8 @@ def extract_property_from_phase(prop_name, ph):
         new_value = float(ph.vap_frac_mole)
     elif prop_name == molarV_VAR:
         new_value = float(ph.vol_mole)
+    elif prop_name == MASSDEN_VAR:
+        new_value = float(ph.dens_mass)
     elif prop_name == ZFACTOR_VAR:
         new_value = float(ph.z_factor)
     elif prop_name == MOLEWT_VAR:
@@ -42,12 +44,22 @@ def extract_property_from_phase(prop_name, ph):
         new_value = float(ph.std_liq_vol_mole)
     elif prop_name == CP_VAR:
         new_value = float(ph.cp_mole) * 1e-3
+    elif prop_name == CV_VAR:
+        new_value = float(ph.cv_mole) * 1e-3
     elif prop_name == VISCOSITY_VAR:
         new_value = float(ph.visc)
+    elif prop_name == IDEALGASENTHALPY_VAR:
+        new_value = float(ph.ig_enthalpy_mole) * 1e-3
+    elif prop_name == SURFACETENSION_VAR:
+        new_value = float(ph.surf_tens)
+    elif prop_name == RXNBASEH_VAR:
+        new_value = 0.0
     else:
+        print('ALERT:', prop_name)
         raise NotImplementedError
 
     return new_value
+
 
 def perform_flash(hnd, bulkComp, given_vars, given_vals):
     flash_params = dict(flow_sum_basis=None, flow_sum_value=None,
@@ -789,6 +801,9 @@ class ThermoInterface(object):
         for prop in propNames:
             if prop == MOLEWT_VAR:
                 values.append(hnd.mw[cmpNo])
+            elif prop == IDEALGASENTHALPY_FUNC_VAR:
+                given_comp = hnd.components[cmpNo]
+                values.append(lambda temp: given_comp.ig_enthalpy_mole(temp)*1e-3)
             else:
                 raise NotImplementedError
 
@@ -978,6 +993,8 @@ class ThermoInterface(object):
         if not isinstance(prop1, np.ndarray):
             if len(propList) == 1 and 'MolecularWeight' in propList:
                 return [np.dot(hnd.mw, frac)]
+            if len(propList) == 1 and RXNBASEH_VAR in propList:
+                return [0.0]
 
             needsFlash = False
             if phase == OVERALL_PHASE:
@@ -1004,7 +1021,7 @@ class ThermoInterface(object):
                 ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
             else:
                 bulkComp = frac
-                given_vars = (inProp1[0], inProp1[0])
+                given_vars = (inProp1[0], inProp2[0])
                 given_vals = (inProp1[1], inProp2[1])
 
                 prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)

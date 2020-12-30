@@ -10,8 +10,11 @@ cd preHeater
 In.Fraction
 In.Fraction = .25 .25 .25 .25
 In.P = 101.325
-In.H = -7200
-In.T
+# We are not using the same basis, so explicit enthalpy flashes will get strange results
+# In.H = -7200
+# Replace with temperature spec
+In.T = -16.826
+
 In.MoleFlow = 10
 InQ.Energy = 1000000
 DeltaP

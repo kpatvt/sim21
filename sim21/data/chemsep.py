@@ -185,6 +185,7 @@ class ChemsepPure:
     ig_press_ref: float           # Pa
     liq_visc_coeffs: np.ndarray
     vap_visc_coeffs: np.ndarray
+    surf_tens_coeffs: np.ndarray
 
     def __init__(self, name):
         cur = _CHEMSEP_DATABASE_CUR
@@ -235,6 +236,16 @@ class ChemsepPure:
                                          conv_number(comp_data['vaporviscosity_e_value']),
                                          0.0])
 
+        self.surf_tens_coeffs = np.array([conv_number(comp_data['surfacetension_eqno_value']),
+                                          conv_number(comp_data['surfacetension_tmin_value']),
+                                          conv_number(comp_data['surfacetension_tmax_value']),
+                                          conv_number(comp_data['surfacetension_a_value']),
+                                          conv_number(comp_data['surfacetension_b_value']),
+                                          conv_number(comp_data['surfacetension_c_value']),
+                                          conv_number(comp_data['surfacetension_d_value']),
+                                          conv_number(comp_data['surfacetension_e_value']),
+                                          0.0])
+
         self.std_liq_vol_mole = conv_number(comp_data['liquidvolumeatnormalboilingpoint_value'])
         self.ig_temp_ref = 298.15
         self.ig_press_ref = 101325.0
@@ -244,10 +255,10 @@ class ChemsepPure:
         return eval_eqn(self.ig_cp_mole_coeffs, temp, self.crit_temp)
 
     def ig_enthalpy_mole(self, temp):
-        return eval_eqn_int(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref, self.ig_enthalpy_form_mole)
+        return eval_eqn_int(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + self.ig_enthalpy_form_mole
 
     def ig_entropy_mole(self, temp, press):
-        p1 = eval_eqn_int_over_t(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref, self.ig_entropy_form_mole)
+        p1 = eval_eqn_int_over_t(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + self.ig_entropy_form_mole
         return p1 - GAS_CONSTANT * math.log(press / self.ig_press_ref)
 
     def ig_gibbs_mole(self, temp, press):
@@ -258,6 +269,9 @@ class ChemsepPure:
 
     def vap_visc(self, temp):
         return eval_eqn(self.vap_visc_coeffs, temp, self.crit_temp)
+
+    def surf_tens(self, temp):
+        return eval_eqn(self.surf_tens_coeffs, temp, self.crit_temp)
 
 
 def pure(names):

@@ -84,6 +84,7 @@ HELMHOLTZENERGY_VAR = 'HelmholtzEnergy'
 
 IDEALGASCP_VAR = 'IdealGasCp'
 IDEALGASENTHALPY_VAR = 'IdealGasEnthalpy'
+IDEALGASENTHALPY_FUNC_VAR = 'IdealGasEnthalpyFunc'
 IDEALGASENTROPY_VAR = 'IdealGasEntropy'
 IDEALGASFORMATION_VAR = 'IdealGasFormation'
 IDEALGASGIBBS_VAR = 'IdealGasGibbs'
@@ -912,7 +913,7 @@ class BasicArrayProperty(object):
         if self._value is None:
             return None
         else:
-            return np.rank(self._value)
+            return np.ndim(self._value)
 
     def GetType(self):
         """Get the list of types. Returns a list even for a scalar"""

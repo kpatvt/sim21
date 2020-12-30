@@ -1321,24 +1321,24 @@ class PFR(EquationSolver.EquationBasedOp):
         self.DelUnitOperation(name)
 
     def AssignResultsFromIntegrator(self):
-        if self.P:
+        if self.P is not None:
             self.outPort.SetPropValue(P_VAR, self.P[self.stepCount - 1], CALCULATED_V)
             self.P = self.P[:self.stepCount]
-        if self.T:
+        if self.T is not None:
             self.outPort.SetPropValue(T_VAR, self.T[self.stepCount - 1], CALCULATED_V)
             self.T = self.T[:self.stepCount]
-        if self.F:
+        if self.F is not None:
             self.outPort.SetPropValue(MOLEFLOW_VAR, self.F[self.stepCount - 1], CALCULATED_V)
             self.F = self.F[:self.stepCount]
-        if self.f:
+        if self.f is not None:
             z = self.f[self.stepCount - 1, :] / np.sum(self.f[self.stepCount - 1, :])
             self.outPort.SetCompositionValues(z, CALCULATED_V)
             self.f = self.f[:self.stepCount, :]
-        if self.Q:
+        if self.Q is not None:
             self.Q = self.Q[:self.stepCount]
-        if self.r:
+        if self.r is not None:
             self.r = self.r[:self.stepCount, :]
-        if self.C:
+        if self.C is not None:
             self.C = self.C[:self.stepCount, :]
 
     def IsZeroFlow(self):
@@ -1373,7 +1373,7 @@ class PFR(EquationSolver.EquationBasedOp):
             return
 
         self.y0, yMin, yMax, yScale = self.GetInitValsForIntegrator()
-        if not self.y0:
+        if self.y0 is None:
             return
 
         # Dimension arrays
@@ -2074,7 +2074,7 @@ class PFR(EquationSolver.EquationBasedOp):
                 self._unitSet = self._unitSet[0]
 
         self._stoichCoeffsArray = self.GetStoichCoeffsArray()
-        if not self._stoichCoeffsArray:
+        if self._stoichCoeffsArray is None:
             ready = False
 
         self.SolveForPressure()

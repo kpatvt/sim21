@@ -161,3 +161,22 @@ class AggregateByMole:
     def std_liq_vol_mole(self):
         return np.dot(self.provider.std_liq_vol_mole, self.comp_mole)
 
+    @property
+    def dens_mole(self):
+        return 1/self.vol_mole
+
+    @property
+    def dens_mass(self):
+        return 1/self.vol_mole * self.mw
+
+    @property
+    def visc(self):
+        calc_visc = 0
+        for ph in self._phases.keys():
+            calc_visc += self._phases[ph].visc*self._phases_frac_mole[ph]
+        return calc_visc
+
+    @property
+    def surf_tens(self):
+        return self._phases['liq'].surf_tens
+

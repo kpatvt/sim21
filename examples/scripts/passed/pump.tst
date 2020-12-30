@@ -1,4 +1,6 @@
 # pump test
+# Solves, but results are weird - Likely to due to thermo differences
+# Water is treated just like any other component, so expected.
 units SI
 $thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo

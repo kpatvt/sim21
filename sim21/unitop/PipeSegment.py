@@ -948,7 +948,8 @@ class PipeSegment(EquationSolver.EquationBasedOp):
         isSpecQ = qTotVal is not None
         isSpecU = uVal is not None
         # Can not spec Q and U at the same time
-        isSpecU = np.where(isSpecQ, False, isSpecU)[0]
+        # TODO - FIX THIS
+        isSpecU = np.where(isSpecQ, False, isSpecU) # [0]
         if isSpecQ:
             qArray = -1.0 * (qTotVal / nuSections) * np.ones(nuSections, dtype=float)
         else:
