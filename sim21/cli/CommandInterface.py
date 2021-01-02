@@ -411,8 +411,10 @@ class CommandInterface(object):
 
         except (SimError, CmdError) as e:
             self.root.InfoMessage(e.messageKey, e.extraData, MessageHandler.errorMessage)
+            raise
         except ConsistencyError as e:
             self.root.InfoMessage(str(e), None, MessageHandler.errorMessage)
+            raise
 
         return retVal
 

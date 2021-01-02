@@ -17,7 +17,10 @@ l.Port.P = 1000
 
 cond = Tower.EnergyFeed(0)
 
-wd = Tower.WaterDraw()
+# WORKS OUT WITHOUT WATER DRAW
+# USING WATER DRAW REQUIRES 2 LIQ PHASE CALCS
+# NOT YET IMPLEMENTED
+# wd = Tower.WaterDraw()
 
 estT = Tower.Estimate('T')
 estT.Value = 25

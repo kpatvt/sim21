@@ -1,6 +1,6 @@
 #conversion reactor example
 #calculation of propane adiabatic flame temperature
-$thermo = VirtualMaterials.SRK
+$thermo = Sim21Thermo.SRK
 / -> $thermo
 thermo + PROPANE OXYGEN NITROGEN CARBON_DIOXIDE WATER
 

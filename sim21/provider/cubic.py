@@ -6,7 +6,8 @@ from numba import njit
 from sim21.data import chemsep
 from sim21.data.chemsep_consts import GAS_CONSTANT
 from sim21.provider.flash.basic import basic_flash_temp_press_2phase
-from sim21.provider.flash.io import flash_press_prop_2phase, flash_press_vap_frac_2phase, flash_temp_vap_frac_2phase
+from sim21.provider.flash.io import flash_press_prop_2phase, flash_press_vap_frac_2phase, flash_temp_vap_frac_2phase, \
+    flash_temp_prop_2phase
 from sim21.support.roots import solve_cubic_reals, mid
 from sim21.provider.generic import press_derivs, log_phi_derivs, residual_derivs, calc_ig_props
 from sim21.provider.phase import PhaseByMole
@@ -297,7 +298,7 @@ def derivs_secondary(n_count, valid_comps,
     return del_2F_del_V_del_n_T, del_2F_del_n_del_T_V, del_2F_del_n_del_n_T_V
 
 
-@njit(cache=True)
+# @njit(cache=True)
 def identify_phase(eos, r, a_mix, da_dtemp_mix, b_mix, temp, vol, press):
     """
     Identify a phase given the derivative properties
@@ -558,7 +559,7 @@ def pseudo_volume_watson(eos, r, temp, press_eos, rho_eos, a_mix, b_mix, desired
         return '', 0, 0
 
 
-@njit(cache=True)
+# @njit(cache=True)
 def calc_phase(eos, gas_const, temp, press, n, valid_comps, desired_phase, allow_pseudo,
                mw_list, crit_temp, crit_press, omega, k_ij, l_ij,
                ig_temp_ref, ig_press_ref, ig_cp_coeffs, ig_h_form, ig_s_form,
@@ -914,6 +915,25 @@ class CubicEos(Provider):
         results.scale(flow_sum_mole=flow_sum_value_mole)
         return results
 
+    def flash_temp_prop(self, flow_sum_basis, flow_sum_value,
+                         frac_basis, frac_value, temp,
+                         prop_name, prop_basis, prop_value, previous, valid):
+
+        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
+                                                                          frac_basis, frac_value)
+
+        prop_flash_name = prop_name + '_' + prop_basis
+        start_press = None
+        if previous is not None:
+            start_press = previous.press
+
+        results = flash_temp_prop_2phase(self, temp, prop_flash_name, prop_value, 0,
+                                         frac_value_mole, valid=valid, previous=previous,
+                                         start_press=start_press)
+
+        results.scale(flow_sum_mole=flow_sum_value_mole)
+        return results
+
     def flash_press_vap_frac(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value, press,
                              vap_frac_basis, vap_frac_value, previous, valid):
 
@@ -1042,14 +1062,18 @@ class CubicEos(Provider):
         vol = GAS_CONSTANT * temp / press
         return vol, calc_mw, calc_ig_cp, calc_ig_enthalpy, calc_ig_entropy, calc_ig_int_energy, calc_ig_gibbs, calc_ig_helmholtz
 
-    def AddCompound(self, compound):
+    def AddCompound(self, compound_by_name, compound_obj=None):
         # print('AddCompound:', compound)
-        comp_obj = chemsep.pure(compound)
+        if compound_obj is None:
+            compound_obj = chemsep.pure(compound_by_name)
+        else:
+            pass
+
         if self._components is None:
-            new_components = [comp_obj]
+            new_components = [compound_obj]
         else:
             new_components = self._components[:]
-            new_components.append(comp_obj)
+            new_components.append(compound_obj)
 
         # This is really inefficient, but it's simple
         self.setup_components(self._eos, new_components, None, None)

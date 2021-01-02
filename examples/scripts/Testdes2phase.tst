@@ -10,7 +10,7 @@ V101.LiquidPhases = 1
 sep101.In.T = 45
 sep101.In.P = 165 psia
 sep101.In.MassFlow = 852143
-sep101.In.Fraction =  2 2 2 1 
+sep101.In.Fraction =  2 2 2 1
 
 sep101.Vap
 sep101.Liq0

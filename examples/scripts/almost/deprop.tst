@@ -64,8 +64,8 @@ TryToSolve = 1  # start calculation
 
 
 #Now lets do some vol flow specs
-commonproperties + VolumeFlow StdLiqMolarVol
-displayproperties + StdLiqMolarVol StdLiqVolumeFlow
+# commonproperties + VolumeFlow StdLiqMolarVol
+# displayproperties + StdLiqMolarVol StdLiqVolumeFlow
 
 TryToSolve = 1
 TryToRestart = 1

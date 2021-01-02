@@ -5,8 +5,9 @@ Classes:
 ThermoInterface -- Main class of the interfase
 
 """
-from sim21.data import chemsep
+from sim21.data import chemsep, twu
 from sim21.provider.cubic import PengRobinson, SoaveRedlichKwong
+from sim21.provider.error import FlashConvergenceError
 from sim21.solver.Messages import MessageHandler
 from sim21.solver.Variables import *
 from sim21.thermo import Oils
@@ -73,7 +74,7 @@ def perform_flash(hnd, bulkComp, given_vars, given_vals):
                         int_energy_basis=None, int_energy_value=None, previous=None)
 
     flash_params['frac_basis'] = 'mole'
-    flash_params['frac_value'] = np.array(bulkComp)
+    flash_params['frac_value'] = np.array(bulkComp)/np.sum(bulkComp)
     flash_params['flow_sum_basis'] = 'mole'
     flash_params['flow_sum_value'] = 1.0
     for i in range(len(given_vars)):
@@ -680,13 +681,33 @@ class ThermoInterface(object):
         """Adds a hypothetical compound to a  thermo case"""
         # translate the property keywords
         hnd = self.gPkgHandles[thName][0]
-        strDescs = CompoundPropNameFromSimToVmg('String', hypoDesc[0])
-        strVals = hypoDesc[1]
-        lngDescs = CompoundPropNameFromSimToVmg('Long', hypoDesc[2])
-        lngVals = hypoDesc[3]
-        dblDescs = CompoundPropNameFromSimToVmg('Double', hypoDesc[4])
-        dblVals = hypoDesc[5]
-        vmg.AddGeneralCompound(hnd, strDescs, strVals, lngDescs, lngVals, dblDescs, dblVals)
+        print('hypoName:', hypoName)
+        print('hypoDesc:', hypoDesc)
+
+        # strDescs = CompoundPropNameFromSimToVmg('String', hypoDesc[0])
+        # strVals = hypoDesc[1]
+        # lngDescs = CompoundPropNameFromSimToVmg('Long', hypoDesc[2])
+        # lngVals = hypoDesc[3]
+
+        tags = hypoDesc[4]
+        tags_values = hypoDesc[5]
+
+        assert len(tags) == len(tags_values)
+
+        identifier = hypoName
+        tb, sg, mw = None, None, None
+        for t, v in zip(tags, tags_values):
+            if t == 'MolecularWeight':
+                mw = float(v)
+            elif t == 'NormalBoilingPoint':
+                tb = float(v)
+            elif t == 'LiquidDensity@298':
+                # TODO Fix conversion to specific gravity
+                sg = float(v)/1000
+
+        assert tb is not None and sg is not None
+        new_hypo = twu.TwuHypo(identifier, tb, sg, mw=mw)
+        hnd.AddCompound(identifier, compound_obj=new_hypo)
 
     def EditCompound(self, thName, cmpIdx, hypoDesc):
         """Adds a hypothetical compound to a  thermo case"""
@@ -751,7 +772,7 @@ class ThermoInterface(object):
             sProp = propNames
             if sProp in self.propHandler.GetCmpSimIDPropertyNames() and sProp != 'Id':
                 raise NotImplementedError
-                # TODO Return the compund property from one of
+                # TODO Return the compound property from one of
                 #     'Id', 'Formula', 'Name', 'CASN', 'ChemicalAbstractsServiceNumber', 'ComponentCASN',
                 #     'MainChemicalFamily', 'SecondaryChemicalFamily', 'ChemicalFamily'
                 # try:
@@ -992,7 +1013,8 @@ class ThermoInterface(object):
 
         if not isinstance(prop1, np.ndarray):
             if len(propList) == 1 and 'MolecularWeight' in propList:
-                return [np.dot(hnd.mw, frac)]
+                phase_comp = np.array(frac)
+                return [np.dot(hnd.mw, phase_comp/sum(phase_comp))]
             if len(propList) == 1 and RXNBASEH_VAR in propList:
                 return [0.0]
 
@@ -1017,10 +1039,12 @@ class ThermoInterface(object):
                         raise NotImplementedError
 
                 phase_comp = np.array(frac)
+                phase_comp /= sum(phase_comp)
                 desired_phase = {VAPOUR_PHASE: 'vap', LIQUID_PHASE: 'liq', SOLID_PHASE: 'solid'}[phase]
                 ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
             else:
-                bulkComp = frac
+                bulkComp = np.array(frac)
+                bulkComp /= sum(bulkComp)
                 given_vars = (inProp1[0], inProp2[0])
                 given_vals = (inProp1[1], inProp2[1])
 
@@ -1063,10 +1087,11 @@ class ThermoInterface(object):
 
                     given_vals = (inProp1[1], prop2_value)
                     if len(np.shape(frac)) == 2:
-                        bulkComp = frac[i]
+                        bulkComp = frac[i][:]
                     else:
-                        bulkComp = frac
+                        bulkComp = frac[:]
 
+                    bulkComp /= sum(bulkComp)
                     prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)
                     if isinstance(phase, np.ndarray):
                         chosen_phase = phase[i]
@@ -1094,6 +1119,9 @@ class ThermoInterface(object):
                         phase_comp = frac[i]
                     else:
                         phase_comp = frac
+
+                    phase_comp = np.copy(phase_comp)
+                    phase_comp /= sum(phase_comp)
 
                     phase_temp, phase_press = None, None
                     for j in (inProp1, inProp2):
@@ -1144,6 +1172,7 @@ class ThermoInterface(object):
         if not isinstance(prop1, np.ndarray):
             if prop == 'MassFraction':
                 frac_mole = frac
+                frac_mole /= sum(frac_mole)
                 frac_mass = frac_mole*hnd.mw
                 frac_mass_sum = np.sum(frac_mass)
                 frac_mass = frac_mass/frac_mass_sum
@@ -1151,6 +1180,7 @@ class ThermoInterface(object):
 
             if prop == 'StdVolFraction' or prop == 'IdealVolumeFraction':
                 frac_mole = frac
+                frac_mole /= sum(frac_mole)
                 frac_vol = frac_mole*hnd.std_liq_vol_mole
                 frac_vol_sum = np.sum(frac_vol)
                 frac_vol /= frac_vol_sum
@@ -1193,6 +1223,9 @@ class ThermoInterface(object):
                     phase_comp = frac[i]
                 else:
                     phase_comp = frac
+
+                phase_comp = np.copy(phase_comp)
+                phase_comp /= sum(phase_comp)
 
                 ph = hnd.phase(temp_var, press_var, phase_comp, desired_phase)
                 if prop in (LNFUG_VAR, "LnFugacityCoefficient", "LnFugacityCoeff"):
@@ -1329,9 +1362,15 @@ class ThermoInterface(object):
             if nuSolids > 1:
                 thThermoAdmin.InfoMessage('TooManySolidPhases', (nuSolids, thName))
 
-
         bulkComp = cmps.GetValues()
-        prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)
+        try:
+            bulkComp = np.copy(bulkComp)
+            bulkComp /= sum(bulkComp)
+            print('bulkComp:', bulkComp)
+            prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)
+        except (FlashConvergenceError, ZeroDivisionError):
+            raise
+            # pass
 
         # vmg.SetObjectDoubleArrayValues(hnd, feed, seaComposition, bulkComp)
         # vmg.SetMultipleObjectDoubleValues(hnd, feed, vmprops, given_vals)
@@ -1363,6 +1402,8 @@ class ThermoInterface(object):
             # (T_VAR, P_VAR, H_VAR, S_VAR, VPFRAC_VAR, molarV_VAR, ZFACTOR_VAR, MOLE_WT, STDLIQVOL_VAR)
             new_value = extract_property_from_phase(prop_name, prov_flash_results)
             bulkProps.append(new_value)
+            # if prop_name == ZFACTOR_VAR:
+            #     print(ZFACTOR_VAR + ':', 'BULK', new_value)
 
         bulkArrProps = []
         # sim42 uses the solid as the last phase
@@ -1371,7 +1412,6 @@ class ThermoInterface(object):
             # given_vals = vmg.GetObjectDoubleArrayValues(hnd, feed, prop, -1)
             # bulkArrProps.append(given_vals)
             raise NotImplementedError
-
 
         phasesComposit = []
         phasesArrProps = []
@@ -1389,7 +1429,6 @@ class ThermoInterface(object):
 
             # Array props
             # Cannot get bulk array props
-
             lstArrProps = []
             for prop in arrPropNamesOut:
                 # given_vals = vmg.GetObjectDoubleArrayValues(hnd, i, prop, keepValue)
@@ -1408,6 +1447,9 @@ class ThermoInterface(object):
                     new_value = extract_property_from_phase(prop_name, ph)
                 else:
                     new_value = 0.0
+
+                # if prop_name == ZFACTOR_VAR:
+                #     print(ZFACTOR_VAR + ':', i, new_value)
 
                 props_for_phase.append(new_value)
 

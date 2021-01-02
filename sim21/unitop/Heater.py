@@ -1841,26 +1841,26 @@ class _Side(EquationSolver.EquationBasedOp):
             obj = self._parentOp.GetObject(COUNTER_CURRENT_PAR + str(idx))
             return obj
         elif desc == T_VAR:
-            if not self.TArray:
+            if self.TArray is None:
                 return None
             if None in self.TArray:
                 return None
             return self.TArray
         elif desc == P_VAR:
-            if not self.PArray:
+            if self.PArray is None:
                 return None
             if None in self.PArray:
                 return None
             return self.PArray
         elif desc == H_VAR:
-            if not self.HArray:
+            if self.HArray is None:
                 return None
             if None in self.HArray:
                 return None
             return self.HArray
         elif desc == ENERGY_VAR:
             # Solution algorith uses it in kJ/h !!. Convert to J/s
-            if not self.QArray or None in self.QArray:
+            if self.QArray is None or None in self.QArray:
                 return None
             # For countercurrent, the values should have the opposite side
             # so the increases or decreases in energy match the flow direction
@@ -1875,7 +1875,7 @@ class _Side(EquationSolver.EquationBasedOp):
                 return qOut
             # return mySign*Numeric.np.array(self.QArray, Numeric.dtype=float) / 3.6
         elif desc == ENERGY_VAR + 'Acum':
-            if not self.QArray or None in self.QArray:
+            if self.QArray is None or None in self.QArray:
                 return None
             qOut = np.zeros(1 + len(self.QArray), dtype=float)
             qOut[1:] = self.QArray / 3.6
@@ -2077,7 +2077,7 @@ class _HeatTransfer(EquationSolver.EquationBasedOp):
 
         if desc == ENERGY_VAR:
             # Solution algorith uses it in kJ/h !!. Return in J/s
-            if not self.duty or None in self.duty:
+            if self.duty is None or None in self.duty:
                 return None
 
             return np.array(self.duty, dtype=float) / 3.6
@@ -4173,7 +4173,7 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
                 else:
                     tArr0 = side0.GetArray(T_VAR)
                     tAtt1 = side1.GetArray(T_VAR)
-                    if tArr0 and tAtt1:
+                    if tArr0 is not None and tAtt1 is not None:
                         deltas = tArr0 - tAtt1
                         if min(deltas) < 0.0 < max(deltas):
                             self.unitOpMessage = ('InternalTCross', (self.GetPath(),))
@@ -4414,7 +4414,7 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
         nuSides = len(self._sides)
         moleFlowVec = self._estMoleFlowVec
         if None in moleFlowVec:
-            val = max(moleFlowVec)
+            val = max([i for i in moleFlowVec if i is not None])
             if val is None:
                 val = 10.0
 
@@ -4475,7 +4475,7 @@ class MultiSidedHeatExchangerOp(EquationSolver.EquationBasedOp):
                     # TOutVec[i+1] = (TInVec[i+1] + TOutVec[i]) / 2.0 #half way
 
                 elif nuNones == 2:
-                    idxMax = lstT.index(max(lstT))
+                    idxMax = lstT.index(max([i for i in lstT if i is not None]))
                     if idxMax == 0 or idxMax == 1:  # hot side is s0
                         if lstT[0] is None and lstT[2] is None:
                             TInVec[i] = TOutVec[i] * 1.1  # higher

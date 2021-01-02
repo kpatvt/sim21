@@ -342,8 +342,11 @@ def InitPropTypes(t):
     t[P_VAR] = PropertyType(P_VAR, calcType=INTENSIVE_PROP | CANFLASH_PROP, unitType='Pressure',
                             scaleFactor=1000.0, minValue=0.0)  # Pressure
 
+    # TODO Verify this scaling factor is not too loose, one or two problems require this to be closer
+    #      The base enthalpy from heat of formations is high, leading to some strange results with
+    #      the default tolerance. Perhaps other variables need to be adjusted as well
     t[H_VAR] = PropertyType(H_VAR, calcType=INTENSIVE_PROP | CANFLASH_PROP, unitType='MolarEnthalpy',
-                            scaleFactor=10000.0)  # Enthalpy
+                            scaleFactor=100000.0)  # Enthalpy
 
     t[HMASS_VAR] = PropertyType(HMASS_VAR, calcType=INTENSIVE_PROP, unitType='MassEnthalpy',
                                 scaleFactor=10000.0)  # Enthalpy mass basis
@@ -1201,15 +1204,25 @@ class CompoundList(list):
 
         vals = self.GetValues()
         try:
-            vals = np.array(vals, dtype=float)
-            total = sum(vals)
-            if total == 0 or math.isnan(total):
-                # all components cannot be zero - set unknown
-                for i in self:
-                    i.SetValue(None, FIXED_V)
-            else:
-                vals = vals / total
-                list(map(_SetValuesToAttribute, self, vals))
+            # TODO Removed this code b/c of consistency errors
+            #      Using this code causes a consistency error when the compositions don't add up to 1
+            #      Especially after adding/deleting components (i.e deleting a component with a given comp
+            #      causes the total composition to be less than 1, and using this code normalizes to 1.
+            #      Adding additional composition for new components, will create a composition greater than 1
+            #      causing a subsequent consistency error
+
+            # vals = np.array(vals, dtype=float)
+            # total = sum(vals)
+            # if total == 0 or math.isnan(total):
+            #     # all components cannot be zero - set unknown
+            #     for i in self:
+            #         i.SetValue(None, FIXED_V)
+            # else:
+            #     vals = vals / total
+            #     list(map(_SetValuesToAttribute, self, vals))
+
+            for indx in range(len(self)):
+                self[indx].SetValue(vals[indx], FIXED_V)
         except:
             pass
 

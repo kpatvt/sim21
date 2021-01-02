@@ -1,6 +1,6 @@
 #Property Sensor Example
 #generate a table of enthalpy versus molar fractions
-$thermo = VirtualMaterials.Advanced_Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + WATER TRIETHYLENE_GLYCOL
 

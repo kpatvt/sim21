@@ -9,8 +9,8 @@ cd heater
 In.Fraction
 In.Fraction = .25 .25 .25 .25
 In.P = 101.325
-In.H = -7200
-In.T
+# In.H = -7200
+In.T = -16.826
 In.MoleFlow = 10
 InQ.Energy = 1000000
 DeltaP
@@ -30,7 +30,7 @@ heater.Cp
 heater.VapFrac
 heater.NumberSegments = 10
 heater.DeltaP.DP = 10.0
-heater.In.H =
+heater.In.T =
 heater.In.VapFrac = 0.75
 heater.T
 heater.P

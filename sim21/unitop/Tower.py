@@ -6312,8 +6312,7 @@ class Tower(UnitOperations.UnitOperation):
             var1, var2 = (T_VAR, refT), (P_VAR, 101.325)
             for i in range(self.numStages):
                 moleFracs = frac[i]
-                stdMolVol[i] = thAdmin.GetProperties(prov, case, var1, var2, LIQUID_PHASE, moleFracs, (STDLIQVOL_VAR,))[
-                    0]
+                stdMolVol[i] = thAdmin.GetProperties(prov, case, var1, var2, LIQUID_PHASE, moleFracs, (STDLIQVOL_VAR,))[0]
             if phase == LIQUID_PHASE:
                 if not waterFree: return self.L * stdMolVol
                 return (self.L - self.l[:, idxWater]) * stdMolVol
@@ -6322,7 +6321,6 @@ class Tower(UnitOperations.UnitOperation):
                 return (self.V - self.v[:, idxWater]) * stdMolVol
 
         elif property == VOLFLOW_VAR:
-
             thCaseObj = self.GetThermo()
             thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
             T, P = self.T, self.P
@@ -6337,8 +6335,7 @@ class Tower(UnitOperations.UnitOperation):
 
                 for i in range(self.numStages):
                     moleFracs = frac[i]
-                    molVol[i] = \
-                    thAdmin.GetProperties(prov, case, (T_VAR, T[i]), (P_VAR, P[i]), phase, moleFracs, (MOLARV_VAR,))[0]
+                    molVol[i] = thAdmin.GetProperties(prov, case, (T_VAR, T[i]), (P_VAR, P[i]), phase, moleFracs, (MOLARV_VAR,))[0]
 
                 # Load it before leaving
                 if waterFree:

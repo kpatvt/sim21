@@ -1,6 +1,8 @@
 import math
 from scipy.optimize import fsolve
 from sim21.data.chemsep_consts import GAS_CONSTANT
+from sim21.data.eqn import eval_eqn, eval_eqn_int, eval_eqn_int_over_t
+import numpy as np
 
 
 def fixed_properties(tb, sg, mw):
@@ -120,7 +122,7 @@ def ig_heat_cp_coeffs(tb, sg):
 class TwuHypo:
 
     def __init__(self, identifier, tb, sg, mw=None):
-        self.identifier = identifier
+        self.identifier = identifier.upper()
         tc, pc, vc, mw, omega = fixed_properties(tb, sg, mw)
         self.mw = mw
         self.acen_fact = omega
@@ -128,8 +130,36 @@ class TwuHypo:
         self.crit_press = pc  # Pa
         self.crit_temp = tc  # K
         self.crit_vol_mole = vc  # m3/kmol
-        coeffs = ig_heat_cp_coeffs(tb, sg)
-        self.ig_heat_cap_mole_coeffs = coeffs  # J/kmol-K
-        self.ig_enthalpy_form_mole = 0  # J/kmol
-        self.ig_entropy_abs_mole = 0  # J/kmol-K
-        self.ig_gibbs_form_mole = 0  # J/kmol-K
+        coeffs = np.array(ig_heat_cp_coeffs(tb, sg))
+        self.ig_cp_mole_coeffs = coeffs  # J/kmol-K
+        # TODO Document the regression to get the ideal gas enthalpy
+        self.ig_enthalpy_form_mole = -104680000+(-1476031.316)*(mw-44.097)  # J/kmol
+        self.ig_gibbs_form_mole = -24390000+(584256.2662)*(mw-44.097)     # J/kmol
+        self.ig_entropy_form_mole = (self.ig_gibbs_form_mole - self.ig_enthalpy_form_mole)/-298.15  # J/kmol-K
+
+        # TODO Fix Specific Gravity conversion
+        self.std_liq_vol_mole = 1/(sg*1000/mw)
+        self.ig_temp_ref = 298.15
+        self.ig_press_ref = 101325.0
+
+    def ig_heat_cap_mole(self, temp):
+        return eval_eqn(self.ig_cp_mole_coeffs, temp, self.crit_temp)
+
+    def ig_enthalpy_mole(self, temp):
+        return eval_eqn_int(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + self.ig_enthalpy_form_mole
+
+    def ig_entropy_mole(self, temp, press):
+        p1 = eval_eqn_int_over_t(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + self.ig_entropy_form_mole
+        return p1 - GAS_CONSTANT * math.log(press / self.ig_press_ref)
+
+    def ig_gibbs_mole(self, temp, press):
+        return self.ig_enthalpy_mole(temp) - self.ig_entropy_mole(temp, press)
+
+    def liq_visc(self, temp):
+        return 0
+
+    def vap_visc(self, temp):
+        return 0
+
+    def surf_tens(self, temp):
+        return 0

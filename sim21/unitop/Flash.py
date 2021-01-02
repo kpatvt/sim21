@@ -148,6 +148,7 @@ class SimpleFlash(UnitOperations.UnitOperation):
         if results is None:
             return None
 
+
         propsNamesOut = list(results.propNames)
         zIndex = propsNamesOut.index(ZFACTOR_VAR)
         bulkProps = results.bulkProps
@@ -204,6 +205,7 @@ class SimpleFlash(UnitOperations.UnitOperation):
             feedPort.SetPropValue(MOLEFLOW_VAR, fMoles, CALCULATED_V)
             if feedPort is flashPort:
                 vapPort.SetPropValue(MOLEFLOW_VAR, fMoles * phasesFracs[0], CALCULATED_V)
+
         feedPort.CalcFlows()
 
         if (vapPort is not flashPort) and abs(bulkProps[zIndex] - phasesProps[0][zIndex]) < 1.e-40:

@@ -868,6 +868,7 @@ class UnitOperation(object):
         called when deleting a compound to the thermo for this operation
         called after the actual delete
         """
+        pass
 
     def SetCompositionValues(self, portName, values, calcStatus=FIXED_V):
         """set the port mole fractions to values (alphabetically sorted by name)"""
@@ -993,7 +994,7 @@ class UnitOperation(object):
         #     except:
         #         pass
 
-        if uOp.initScript:
+        if uOp.initScript is not None and isinstance(uOp.initScript, str):
             from sim21.cli.CommandInterface import CommandInterface
             cmdproc = CommandInterface(uOp)
             inString = io.StringIO(uOp.initScript)
@@ -1512,6 +1513,7 @@ class UnitOperation(object):
         If message is None, then this is just a check to see if it is okay to continue
         """
         reply = None
+        # print('message:', message, 'args:', args)
         if addToUnitOpMsg:
             self.unitOpMessage = (message, args)
         if self.infoCallBack:

@@ -1,9 +1,10 @@
 units SI
-/LiquidPhases = 2
-/RecycleDetails = 1
-displayproperties
-commonproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor SurfaceTension  StdLiqMolarVol
-displayproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor SurfaceTension
+# /LiquidPhases = 2
+# /RecycleDetails = 1
+# Commented out for testing purposes
+# displayproperties
+# commonproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp Viscosity molarV ZFactor SurfaceTension
+# displayproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp Viscosity molarV ZFactor SurfaceTension
 $VMGThermo = Sim21Thermo.Peng-Robinson
 / -> $VMGThermo
 $VMGThermo + WATER

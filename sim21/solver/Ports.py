@@ -10,6 +10,8 @@ Port_Signal -- Signal port. Inherits from Port
 """
 import numpy as np
 import re
+
+from sim21.provider.error import FlashConvergenceError
 from sim21.solver.Variables import *
 from sim21.solver import setup
 from sim21.solver.Error import SimError
@@ -1133,6 +1135,8 @@ class Port_Material(Port):
         """Deletes a compound from the port"""
         cmpNo = self.GetCompoundNumber(cmpName)
         self.DeleteCompoundNumber(cmpNo)
+        # to prevent inconsistency in composition
+        self._flashResults = None
 
     def DeleteCompoundNumber(self, cmpNo):
         """Delete a compound based on position in list"""
@@ -1159,6 +1163,10 @@ class Port_Material(Port):
         calcStatus -- Status of all the values (FIXED_V, UNKNOWN_V, etc)
 
         """
+        # if vals is None:
+        #     for i in range(len(self._compounds)):
+        #         self._compounds[i].SetValue(None, FIXED_V)
+        # else:
         for i in range(len(vals)):
             self._compounds[i].SetValue(vals[i], calcStatus)
 
@@ -1344,7 +1352,8 @@ class Port_Material(Port):
                                                    uo.NumberLiqPhases(),
                                                    nuSolids=uo.NumberSolidPhases(),
                                                    stdVolRefT=uo.GetParameterValue(STDVOLREFT_PAR))
-            except Exception as e:
+            except FlashConvergenceError as e:
+                raise
                 # Let the error be raised but wrap it as a SimError that notifies of the port that failed
                 raise SimError('FlashFailure', (self.GetPath(), str(e)))
 

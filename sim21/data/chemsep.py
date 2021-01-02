@@ -195,7 +195,11 @@ class ChemsepPure:
         col_ids = results[0].keys()
         row_data = results[0]
         comp_data = {k: v for k, v in zip(col_ids, row_data)}
-        # print('\n'.join(sorted(comp_data.keys())))
+
+        # the_keys = list(sorted(comp_data.keys()))
+        # for k in the_keys:
+        #     print(k, comp_data[k])
+
         # print(comp_data['liquidvolumeatnormalboilingpoint_units'])
         # print(comp_data['liquidvolumeatnormalboilingpoint_value'])
         self.identifier = comp_data['compoundid_value'].upper()

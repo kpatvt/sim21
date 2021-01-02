@@ -1,4 +1,5 @@
 # Heat exchanger test
+# Requires updating the Enthalpy scaling factor
 units SI
 
 $thermo = Sim21Thermo.Peng-Robinson

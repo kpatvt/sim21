@@ -8,7 +8,7 @@ from sim21.provider.flash.rachford_rice import possible_rr_2phase, solve_rr_2pha
 from sim21.provider.flash.rachford_rice import bubble_point_rr_2phase
 from sim21.provider.flash.stability import two_phase_stability_test
 
-__BASIC_TEMP_PRESS_FLASH_ITERATIONS = 30
+__BASIC_TEMP_PRESS_FLASH_ITERATIONS = 100
 __BASIC_TEMP_PRESS_TOLERANCE = 1e-6
 
 
@@ -85,7 +85,7 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
     deviation = 1
     fully_converged = False
     invalid_solution_count = 0
-
+    beta_error = 0
     for flash_iteration in range(__BASIC_TEMP_PRESS_FLASH_ITERATIONS):
         if deviation < __BASIC_TEMP_PRESS_TOLERANCE:
             fully_converged = True
@@ -94,7 +94,9 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
         vapor_present, liquid_present = possible_rr_2phase(k_values, feed_comp, valid)
 
         if vapor_present and liquid_present:
-            rr_converged, beta_guess, liq_comp, vap_comp = solve_rr_2phase(k_values, feed_comp, valid, beta_guess)
+            rr_converged, beta_guess_new, liq_comp, vap_comp = solve_rr_2phase(k_values, feed_comp, valid, beta_guess)
+            beta_error = abs(beta_guess_new - beta_guess)
+            beta_guess = beta_guess_new
 
         elif vapor_present or liquid_present:
             invalid_solution_count += 1
@@ -118,7 +120,7 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
         # Update the k-values from the provider and then repeat the RR caluation
         # until K-values converge or iterations run out
         k_values = new_k_values
-        # print('temp:', temp, 'press:', press, 'beta:', beta_guess, 'k-values:', k_values)
+        # print('temp:', temp, 'press:', press, 'beta:', beta_guess, 'k-values:', k_values, 'error:', deviation)
 
     # We have broken out of the loop, but check if we are converged or forcing a stability scripts
     # We can break out to force a stability scripts or because we didn't converge
@@ -126,8 +128,11 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
     # Eventually shift to a full Newton approach here
     # For now we error out
     if not fully_converged and vapor_present and liquid_present:
-        # If iterations run out and provider supports log_phi derivatives, use to switch over to a full Newton approach
-        raise FlashConvergenceError
+        if beta_error < __BASIC_TEMP_PRESS_TOLERANCE:
+            fully_converged = True
+        else:
+            # If iterations run out and provider supports log_phi derivatives, use to switch over to a full Newton approach
+            raise FlashConvergenceError
 
     # if K-values converge, we have a valid solution
     if liquid_present and not vapor_present:

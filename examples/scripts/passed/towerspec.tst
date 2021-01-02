@@ -96,38 +96,39 @@ spec.Port = 2
 /bottoms.Out
 spec.Port = None
 
-cd l
-viscosity = Tower.PropertySpec('Viscosity')
-viscosity.Port = 0.078
-/bottoms.Out
+# SPECIAL PROPERTIES NOT YET SUPPORTED!
+# cd l
+# viscosity = Tower.PropertySpec('Viscosity')
+# viscosity.Port = 0.078
+# /bottoms.Out
 
-viscosity.Port = None
-speedofsound = Tower.PropertySpec('SpeedOfSound')
-speedofsound.Port = 400 m/s
-/bottoms.Out
-viscosity.Port
+# viscosity.Port = None
+# speedofsound = Tower.PropertySpec('SpeedOfSound')
+# speedofsound.Port = 400 m/s
+# /bottoms.Out
+# viscosity.Port
 
 
 #Test some special properties
-speedofsound.Port = None
-rvpd323 = Tower.SpecialPropertySpec("ReidVaporPressure_D323")
-rvpd323.Port = 33.027
-/bottoms.Out
-viscosity.Port
-speedofsound.Port
+# speedofsound.Port = None
+# rvpd323 = Tower.SpecialPropertySpec("ReidVaporPressure_D323")
+# rvpd323.Port = 33.027
+# /bottoms.Out
+# viscosity.Port
+# speedofsound.Port
 
-rvpd323.Port = None
-kinvisc = Tower.SpecialPropertySpec("KinematicViscosity")
-kinvisc.Port = 3.1
-/bottoms.Out
-viscosity.Port
-speedofsound.Port
-rvpd323.Port
+# rvpd323.Port = None
+# kinvisc = Tower.SpecialPropertySpec("KinematicViscosity")
+# kinvisc.Port = 3.1
+# /bottoms.Out
+# viscosity.Port
+# speedofsound.Port
+# rvpd323.Port
 
-copy /deprop /overhead /bottoms
-paste /
-cd /depropClone.Stage_19.l
-/bottomsClone.Out
-viscosity.Port
-speedofsound.Port
-rvpd323.Port
+# copy /deprop /overhead /bottoms
+# paste /
+# cd /depropClone.Stage_19.l
+# /bottomsClone.Out
+# viscosity.Port
+# speedofsound.Port
+# rvpd323.Port

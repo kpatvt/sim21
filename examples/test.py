@@ -711,10 +711,11 @@ def TestFlowsh2():
     thAdmin.DeleteCompound(provider, thCase, 'n-PENTANE')
 
     portsIn = stream.GetPortNames(MAT | IN)
+    stream.SetCompositionValue(portsIn[0], "PROPANE", 0.0)
     stream.SetCompositionValue(portsIn[0], 'n-HEXANE', 0.25)
     stream.SetCompositionValue(portsIn[0], 'n-DODECANE', 0.25)
 
-    portsIn = stream.GetPortNames(MAT | IN)
+    portsIn = stream2.GetPortNames(MAT | IN)
     stream2.SetCompositionValue(portsIn[0], 'n-HEXANE', 0.3)
     stream2.SetCompositionValue(portsIn[0], 'n-DODECANE', 0.2)
 
@@ -1194,17 +1195,17 @@ def PropertiesHandling():
 
 
 # Order --> key: (MethodName, Description)
-TEST_MAP = {# 10: (TestSimpleFlash, 'Test to a flash'),
+TEST_MAP = {10: (TestSimpleFlash, 'Test to a flash'),
             # 11: (TestSimpleFlash2LPhase, 'Tests a two liquid phase flash'),
-            # 20: (TestMixAndFlash, 'Tests the unit op MixAndFlash'),
+            20: (TestMixAndFlash, 'Tests the unit op MixAndFlash'),
             # 30: (TestLiqLiqEx, 'Tests the Liquid Liquid extraction'),
-            # 50: (TestHeater, 'Tests the heater'),
-            # 51: (TestHeatEx, 'Test the heat exchanger'),
-            # 60: (TestFlowsh1, 'Flowsheet: 2 streams --> mixer --> flash'),
+            50: (TestHeater, 'Tests the heater'),
+            51: (TestHeatEx, 'Test the heat exchanger'),
+            60: (TestFlowsh1, 'Flowsheet: 2 streams --> mixer --> flash'),
             61: (TestFlowsh2, 'Flowsheet: 2 streams --> mixer --> flash. Then changes cmps and calc again'),
-            # 70: (TestRecycle, 'stream --> mixer --> recycle --> flash'),
-            # 71: (TestRecycle2, 'stream --> mixer --> recycle --> flash with back calc'),
-            # 80: (TestMoleBalance, 'Tests the mole balance from Balance.Balance'),
+            70: (TestRecycle, 'stream --> mixer --> recycle --> flash'),
+            71: (TestRecycle2, 'stream --> mixer --> recycle --> flash with back calc'),
+            80: (TestMoleBalance, 'Tests the mole balance from Balance.Balance'),
             # 100: (TestThAdminSaveLoad, 'Tests the save and load methods of thAdmin'),
             # 110: (PropertiesHandling, 'Tests setting and getting common and supported properties')
             }
@@ -1212,5 +1213,7 @@ TEST_MAP = {# 10: (TestSimpleFlash, 'Test to a flash'),
 if __name__ == '__main__':
     for test_number in sorted(TEST_MAP.keys()):
         f, descr = TEST_MAP[test_number]
-        print(descr)
+        # print(descr)
         f()
+        print("\n\n")
+

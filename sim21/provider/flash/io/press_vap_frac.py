@@ -218,21 +218,27 @@ def flash_press_vap_frac_2phase(provider, press, vap_frac, feed_comp, valid=None
             outer_converged = True
             break
 
-        # print('#', outer_iterations, 'temp:', temp, 'vap_frac:', vap_frac, 'error:', error)
         # If we have less than 5 iterations, we do a full update
         # This helps minimize the number of iterations
         if outer_iterations < 5:
             force_full_update = True
 
         # Solve the inner simplified model
-        inner_converged, \
-        p, p_sum, \
-        r_value, \
-        kb_calc, \
-        liq_comp_new, vap_comp_new = solve_model_press_vap_frac_2phase(vap_frac,
-                                                                       feed_comp,
-                                                                       kb_0, u,
-                                                                       r_value, valid)
+        try:
+            inner_converged, \
+            p, p_sum, \
+            r_value, \
+            kb_calc, \
+            liq_comp_new, vap_comp_new = solve_model_press_vap_frac_2phase(vap_frac,
+                                                                           feed_comp,
+                                                                           kb_0, u,
+                                                                           r_value, valid)
+        except ZeroDivisionError:
+            print('Zero Divide Error')
+            pass
+
+        print('PV#', outer_iterations, 'temp:', temp, 'vap_frac:', vap_frac, 'error:', error, 'inner_converged:', inner_converged)
+
         if kb_calc > 0:
             # Calculate the new temperature
             log_kb_calc = log(kb_calc)
@@ -285,27 +291,31 @@ def flash_press_vap_frac_2phase(provider, press, vap_frac, feed_comp, valid=None
         previous_error = error
         error = calc_error(u, u_hat, a, a_hat, b, b_hat, valid)
 
-        if outer_iterations > minimum_full_update_steps+pre_accelerate and accelerate:
+        if outer_iterations > 10:
             # a, b
-            x = np.zeros(len(u) + 2)
-            x[:len(u)] = u
-            x[len(u):] = a, b
-
-            f_x = np.zeros(len(u_hat) + 2)
-            f_x[:len(u_hat)] = u_hat
-            f_x[len(u_hat):] = a_hat, b_hat
-
-            history.append(x)
-            history.append(f_x)
-
-            if len(history) == 6 and accelerate:
-                # x_2, f_x_2, x_1, f_x_1, x_0, f_x_0 = history
-                # x_inf = gdem(x_2, f_x_2, x_1, f_x_1, x_0, f_x_0)
-                x_inf = (x + f_x)*0.5
-                # print('Accelerating')
-                u_hat = x_inf[:len(u_hat)]
-                a_hat, b_hat = x_inf[len(u_hat):]
-                history = []
+            # x = np.zeros(len(u) + 2)
+            # x[:len(u)] = u
+            # x[len(u):] = a, b
+            #
+            # f_x = np.zeros(len(u_hat) + 2)
+            # f_x[:len(u_hat)] = u_hat
+            # f_x[len(u_hat):] = a_hat, b_hat
+            #
+            # history.append(x)
+            # history.append(f_x)
+            #
+            # if len(history) == 6 and accelerate:
+            #     # x_2, f_x_2, x_1, f_x_1, x_0, f_x_0 = history
+            #     # x_inf = gdem(x_2, f_x_2, x_1, f_x_1, x_0, f_x_0)
+            #     x_inf = (x + f_x)*0.5
+            #     # print('Accelerating')
+            #     u_hat = x_inf[:len(u_hat)]
+            #     a_hat, b_hat = x_inf[len(u_hat):]
+            #     history = []
+            temp_calc = (temp + temp_calc)*0.5
+            u_hat = (u + u_hat)*0.5
+            a_hat = (a + a_hat)*0.5
+            b_hat = (b + b_hat)*0.5
 
         temp = temp_calc
         u = u_hat
