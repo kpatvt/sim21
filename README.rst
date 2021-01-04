@@ -23,6 +23,39 @@ Revival of legacy Sim42 simulator for Python 3 with custom thermodynamics.
 
 Under continual development, breaking changes are to be expected.
 
+Status
+------
+* Many examples with output now available with PR/SRK EOS Thermo:
+    * Air Separation Unit (ASU)
+    * Natural Gas Separation Train
+    * Refrigeration Loops
+    * Nitrogen Rejection
+    * Compressors/Expanders with given efficiencies and performance curves
+    * Many examples of wide and narrow boiling distillation/absorption/stripping (DeC1, DeC2, DeC3s)
+    * Towers with pumparounds/efficiencies
+    * Superfractionator example with C3= Splitter
+    * Ejector
+    * Heat Exchangers with multiple sides (Coldboxes)
+    * Basic Controllers
+
+* Cubic EOS Thermodynamics provider is largely complete
+    Pathological cases remain where flashes can fail
+    Implement Newton based solver to speed up flashes
+    No support for critical properties/phase envelopes yet
+
+* Tower/Distillation Column model is fully functional (Supporting Pumparounds, Bypass, Efficiencies and Side-Strippers)
+* Some reactor models (Equilibrium/PFR) work partially
+* Some unusual behavior especially when changing components on the fly
+* Cleaned up some exception handling
+
+TODO
+----
+
+* Support component addition/deletion on the fly
+* Cleanup command line interface
+* Provide Python based alternate interface to run simulator to integrate better with Python ecosystem
+* Revamp web/HTML interface to use for models
+
 Features
 --------
 
@@ -34,17 +67,6 @@ Features
     * IAPWS97 implementation based on `XSteam <https://github.com/KurtJacobson/XSteam>`_
     * Two-phase flashes for common specifications using inside-out method
 * Builtin database of 400+ common components using `ChemSep <http://www.chemsep.com/>`_ database
-
-Status
-------
-
-* Thermodynamics provider is partially complete
-* Many of the original examples will run largely unmodified
-* Tower/Distillation Column model is fully functional (Supporting Pumparounds, Bypass, Efficiencies and Side-Strippers)
-* Common examples of different types of towers now included
-* Some reactor models (Equilibrium/PFR) work partially
-* Some unusual behavior especially when changing components on the fly
-* Cleaned up some exception handling
 
 
 Next Steps
