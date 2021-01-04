@@ -39,9 +39,9 @@ Status
     * Basic Controllers
 
 * Cubic EOS Thermodynamics provider is largely complete
-    Pathological cases remain where flashes can fail
-    Implement Newton based solver to speed up flashes
-    No support for critical properties/phase envelopes yet
+    * Pathological cases remain where flashes can fail
+    * Implement Newton based solver to speed up flashes
+    * No support for critical properties/phase envelopes yet
 
 * Tower/Distillation Column model is fully functional (Supporting Pumparounds, Bypass, Efficiencies and Side-Strippers)
 * Some reactor models (Equilibrium/PFR) work partially
