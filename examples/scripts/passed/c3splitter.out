@@ -1,0 +1,296 @@
+>> # C3 splitter test (from old Hysim manual)
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE PROPYLENE
+PROPANE PROPYLENE 
+>> 
+>> c3splitter = Tower.Tower()
+>> c3splitter.Stage_0 + 183  # 185 stages`
+>> 
+>> cd c3splitter.Stage_0
+/c3splitter.Stage_0
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 280
+>> l.Port.Fraction.PROPANE = 0.004
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = 114.8
+>> 
+>> # reflux = Tower.StageSpecification('Reflux')
+>> # reflux.Value = 16.4
+>> 
+>> cd ../Stage_137
+/c3splitter.Stage_137
+>> f = Tower.Feed()
+>> 
+>> cd ../Stage_184
+/c3splitter.Stage_184
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 280
+>> 
+>> reb = Tower.EnergyFeed(1)
+>> estT = Tower.Estimate('T')
+>> estT.Value = 129.2
+>> l.Port.Fraction.PROPYLENE = 0.015
+>> 
+>> cd /
+/
+>> 
+>> feed = Stream.Stream_Material()
+>> cd feed.In
+/feed.In
+>> P = 280
+>> VapFrac = 1
+>> MoleFlow = 1322.76
+>> Fraction = 0.4 0.6
+>> cd /c3splitter
+/c3splitter
+>> /feed.Out -> Stage_137.f.Port
+>> /feed.Out
+Port: /feed.Out + sim21.solver.Ports.Port_Material
+Connected to: /c3splitter.Feed_137_f
+VapFrac            = 1.0 = 
+T                  = 122.63730774279868 = F
+P                  = 280.0 = psia
+MoleFlow           = 1322.76 = lbmole/h
+MassFlow           = 56728.00705392 = lb/h
+VolumeFlow         = 5.798910659171223 = ft3/s
+StdLiqVolumeFlow   = 0.4702290333482771 = ft3/s
+H                  = -13013.26256131307 = Btu/lbmol
+Energy             = -17210528.55942386 = Btu/hr
+MolecularWeight    = 42.886092000000005 = 
+ZFactor            = 0.7071430706348214 = 
+PROPANE            = 0.4 = 
+PROPYLENE          = 0.6 = 
+
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.l.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_184.l.Port
+>> 
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /c3splitter
+Calculating disturbance 10 of 185 in jacobian of /c3splitter
+Calculating disturbance 20 of 185 in jacobian of /c3splitter
+Calculating disturbance 30 of 185 in jacobian of /c3splitter
+Calculating disturbance 40 of 185 in jacobian of /c3splitter
+Calculating disturbance 50 of 185 in jacobian of /c3splitter
+Calculating disturbance 60 of 185 in jacobian of /c3splitter
+Calculating disturbance 70 of 185 in jacobian of /c3splitter
+Calculating disturbance 80 of 185 in jacobian of /c3splitter
+Calculating disturbance 90 of 185 in jacobian of /c3splitter
+Calculating disturbance 100 of 185 in jacobian of /c3splitter
+Calculating disturbance 110 of 185 in jacobian of /c3splitter
+Calculating disturbance 120 of 185 in jacobian of /c3splitter
+Calculating disturbance 130 of 185 in jacobian of /c3splitter
+Calculating disturbance 140 of 185 in jacobian of /c3splitter
+Calculating disturbance 150 of 185 in jacobian of /c3splitter
+Calculating disturbance 160 of 185 in jacobian of /c3splitter
+Calculating disturbance 170 of 185 in jacobian of /c3splitter
+Calculating disturbance 180 of 185 in jacobian of /c3splitter
+/c3splitter Inner Error 0.528820
+/c3splitter Inner Error 0.077655
+Step size too small - Exiting inner loop
+/c3splitter Iteration 1 Outer Error 0.000882
+Calculating Jacobian for /c3splitter
+Calculating disturbance 10 of 185 in jacobian of /c3splitter
+Calculating disturbance 20 of 185 in jacobian of /c3splitter
+Calculating disturbance 30 of 185 in jacobian of /c3splitter
+Calculating disturbance 40 of 185 in jacobian of /c3splitter
+Calculating disturbance 50 of 185 in jacobian of /c3splitter
+Calculating disturbance 60 of 185 in jacobian of /c3splitter
+Calculating disturbance 70 of 185 in jacobian of /c3splitter
+Calculating disturbance 80 of 185 in jacobian of /c3splitter
+Calculating disturbance 90 of 185 in jacobian of /c3splitter
+Calculating disturbance 100 of 185 in jacobian of /c3splitter
+Calculating disturbance 110 of 185 in jacobian of /c3splitter
+Calculating disturbance 120 of 185 in jacobian of /c3splitter
+Calculating disturbance 130 of 185 in jacobian of /c3splitter
+Calculating disturbance 140 of 185 in jacobian of /c3splitter
+Calculating disturbance 150 of 185 in jacobian of /c3splitter
+Calculating disturbance 160 of 185 in jacobian of /c3splitter
+Calculating disturbance 170 of 185 in jacobian of /c3splitter
+Calculating disturbance 180 of 185 in jacobian of /c3splitter
+/c3splitter Inner Error 0.124388
+/c3splitter Inner Error 0.122264
+/c3splitter Inner Error 0.105824
+/c3splitter Inner Error 0.048326
+/c3splitter Inner Error 0.043774
+/c3splitter Inner Error 0.039484
+/c3splitter Inner Error 0.021920
+/c3splitter Inner Error 0.017368
+/c3splitter Inner Error 0.010569
+/c3splitter Inner Error 0.007234
+/c3splitter Inner Error 0.004652
+/c3splitter Inner Error 0.003307
+/c3splitter Inner Error 0.002737
+/c3splitter Inner Error 0.002027
+/c3splitter Inner Error 0.000803
+/c3splitter Inner Error 0.000668
+/c3splitter Inner Error 0.000647
+/c3splitter Inner Error 0.000510
+/c3splitter Inner Error 0.000452
+/c3splitter Inner Error 0.000251
+/c3splitter Iteration 2 Outer Error 0.000445
+Calculating Jacobian for /c3splitter
+Calculating disturbance 10 of 185 in jacobian of /c3splitter
+Calculating disturbance 20 of 185 in jacobian of /c3splitter
+Calculating disturbance 30 of 185 in jacobian of /c3splitter
+Calculating disturbance 40 of 185 in jacobian of /c3splitter
+Calculating disturbance 50 of 185 in jacobian of /c3splitter
+Calculating disturbance 60 of 185 in jacobian of /c3splitter
+Calculating disturbance 70 of 185 in jacobian of /c3splitter
+Calculating disturbance 80 of 185 in jacobian of /c3splitter
+Calculating disturbance 90 of 185 in jacobian of /c3splitter
+Calculating disturbance 100 of 185 in jacobian of /c3splitter
+Calculating disturbance 110 of 185 in jacobian of /c3splitter
+Calculating disturbance 120 of 185 in jacobian of /c3splitter
+Calculating disturbance 130 of 185 in jacobian of /c3splitter
+Calculating disturbance 140 of 185 in jacobian of /c3splitter
+Calculating disturbance 150 of 185 in jacobian of /c3splitter
+Calculating disturbance 160 of 185 in jacobian of /c3splitter
+Calculating disturbance 170 of 185 in jacobian of /c3splitter
+Calculating disturbance 180 of 185 in jacobian of /c3splitter
+/c3splitter Inner Error 0.038438
+/c3splitter Inner Error 0.034882
+/c3splitter Inner Error 0.028114
+/c3splitter Inner Error 0.027229
+/c3splitter Inner Error 0.024483
+/c3splitter Inner Error 0.022441
+/c3splitter Inner Error 0.015750
+/c3splitter Inner Error 0.010046
+/c3splitter Inner Error 0.008311
+/c3splitter Inner Error 0.007836
+/c3splitter Inner Error 0.007532
+/c3splitter Inner Error 0.007072
+/c3splitter Inner Error 0.006516
+/c3splitter Inner Error 0.006300
+/c3splitter Inner Error 0.005648
+/c3splitter Inner Error 0.004847
+/c3splitter Inner Error 0.004438
+/c3splitter Inner Error 0.004181
+/c3splitter Inner Error 0.004026
+/c3splitter Inner Error 0.003983
+/c3splitter Iteration 3 Outer Error 0.000031
+Calculating Jacobian for /c3splitter
+Calculating disturbance 10 of 185 in jacobian of /c3splitter
+Calculating disturbance 20 of 185 in jacobian of /c3splitter
+Calculating disturbance 30 of 185 in jacobian of /c3splitter
+Calculating disturbance 40 of 185 in jacobian of /c3splitter
+Calculating disturbance 50 of 185 in jacobian of /c3splitter
+Calculating disturbance 60 of 185 in jacobian of /c3splitter
+Calculating disturbance 70 of 185 in jacobian of /c3splitter
+Calculating disturbance 80 of 185 in jacobian of /c3splitter
+Calculating disturbance 90 of 185 in jacobian of /c3splitter
+Calculating disturbance 100 of 185 in jacobian of /c3splitter
+Calculating disturbance 110 of 185 in jacobian of /c3splitter
+Calculating disturbance 120 of 185 in jacobian of /c3splitter
+Calculating disturbance 130 of 185 in jacobian of /c3splitter
+Calculating disturbance 140 of 185 in jacobian of /c3splitter
+Calculating disturbance 150 of 185 in jacobian of /c3splitter
+Calculating disturbance 160 of 185 in jacobian of /c3splitter
+Calculating disturbance 170 of 185 in jacobian of /c3splitter
+Calculating disturbance 180 of 185 in jacobian of /c3splitter
+/c3splitter Inner Error 0.003390
+/c3splitter Inner Error 0.001906
+/c3splitter Inner Error 0.000994
+/c3splitter Inner Error 0.000818
+/c3splitter Inner Error 0.000278
+/c3splitter Inner Error 0.000082
+/c3splitter Inner Error 0.000053
+/c3splitter Inner Error 0.000039
+/c3splitter Inner Error 0.000025
+/c3splitter Inner Error 0.000015
+Inner loop is not changing significantly - exiting
+/c3splitter Iteration 4 Outer Error 0.000007
+Calculating Jacobian for /c3splitter
+Calculating disturbance 10 of 185 in jacobian of /c3splitter
+Calculating disturbance 20 of 185 in jacobian of /c3splitter
+Calculating disturbance 30 of 185 in jacobian of /c3splitter
+Calculating disturbance 40 of 185 in jacobian of /c3splitter
+Calculating disturbance 50 of 185 in jacobian of /c3splitter
+Calculating disturbance 60 of 185 in jacobian of /c3splitter
+Calculating disturbance 70 of 185 in jacobian of /c3splitter
+Calculating disturbance 80 of 185 in jacobian of /c3splitter
+Calculating disturbance 90 of 185 in jacobian of /c3splitter
+Calculating disturbance 100 of 185 in jacobian of /c3splitter
+Calculating disturbance 110 of 185 in jacobian of /c3splitter
+Calculating disturbance 120 of 185 in jacobian of /c3splitter
+Calculating disturbance 130 of 185 in jacobian of /c3splitter
+Calculating disturbance 140 of 185 in jacobian of /c3splitter
+Calculating disturbance 150 of 185 in jacobian of /c3splitter
+Calculating disturbance 160 of 185 in jacobian of /c3splitter
+Calculating disturbance 170 of 185 in jacobian of /c3splitter
+Calculating disturbance 180 of 185 in jacobian of /c3splitter
+/c3splitter Inner Error 0.002145
+/c3splitter Inner Error 0.000608
+/c3splitter Inner Error 0.000123
+/c3splitter Inner Error 0.000053
+/c3splitter Inner Error 0.000021
+/c3splitter Inner Error 0.000016
+Inner loop is not changing significantly - exiting
+/c3splitter Iteration 5 Outer Error 0.000001
+Calculating Jacobian for /c3splitter
+Calculating disturbance 10 of 185 in jacobian of /c3splitter
+Calculating disturbance 20 of 185 in jacobian of /c3splitter
+Calculating disturbance 30 of 185 in jacobian of /c3splitter
+Calculating disturbance 40 of 185 in jacobian of /c3splitter
+Calculating disturbance 50 of 185 in jacobian of /c3splitter
+Calculating disturbance 60 of 185 in jacobian of /c3splitter
+Calculating disturbance 70 of 185 in jacobian of /c3splitter
+Calculating disturbance 80 of 185 in jacobian of /c3splitter
+Calculating disturbance 90 of 185 in jacobian of /c3splitter
+Calculating disturbance 100 of 185 in jacobian of /c3splitter
+Calculating disturbance 110 of 185 in jacobian of /c3splitter
+Calculating disturbance 120 of 185 in jacobian of /c3splitter
+Calculating disturbance 130 of 185 in jacobian of /c3splitter
+Calculating disturbance 140 of 185 in jacobian of /c3splitter
+Calculating disturbance 150 of 185 in jacobian of /c3splitter
+Calculating disturbance 160 of 185 in jacobian of /c3splitter
+Calculating disturbance 170 of 185 in jacobian of /c3splitter
+Calculating disturbance 180 of 185 in jacobian of /c3splitter
+/c3splitter Inner Error 0.000002
+Inner loop converged
+>> 
+>> /overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 116.33121210870418 = F
+P                  = 280.0 = psia
+MoleFlow           = 788.8020890846632 = lbmole/h
+MassFlow           = 33198.94734361807 = lb/h
+VolumeFlow         = 0.31552214412855717 = ft3/s
+StdLiqVolumeFlow   = 0.2920470532050924 = ft3/s
+H                  = 2980.115646108513 = Btu/lbmol
+Energy             = 2350326.147732899 = Btu/hr
+MolecularWeight    = 42.08780352260805 = 
+ZFactor            = 0.06522777454274716 = 
+PROPANE            = 0.004 = 
+PROPYLENE          = 0.9959996765625995 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 131.40816054619853 = F
+P                  = 280.0 = psia
+MoleFlow           = 533.9579109153276 = lbmole/h
+MassFlow           = 23529.059209440846 = lb/h
+VolumeFlow         = 0.23955000028822462 = ft3/s
+StdLiqVolumeFlow   = 0.17818198939785623 = ft3/s
+H                  = -49383.633990937196 = Btu/lbmol
+Energy             = -26364347.83887689 = Btu/hr
+MolecularWeight    = 44.065381799675166 = 
+ZFactor            = 0.07129160676956181 = 
+PROPANE            = 0.9849999892575227 = 
+PROPYLENE          = 0.015 = 
+

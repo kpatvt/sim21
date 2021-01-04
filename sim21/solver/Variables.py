@@ -1204,22 +1204,22 @@ class CompoundList(list):
 
         vals = self.GetValues()
         try:
-            # TODO Removed this code b/c of consistency errors
+            # TODO Fix this code...
             #      Using this code causes a consistency error when the compositions don't add up to 1
             #      Especially after adding/deleting components (i.e deleting a component with a given comp
             #      causes the total composition to be less than 1, and using this code normalizes to 1.
             #      Adding additional composition for new components, will create a composition greater than 1
             #      causing a subsequent consistency error
 
-            # vals = np.array(vals, dtype=float)
-            # total = sum(vals)
-            # if total == 0 or math.isnan(total):
-            #     # all components cannot be zero - set unknown
-            #     for i in self:
-            #         i.SetValue(None, FIXED_V)
-            # else:
-            #     vals = vals / total
-            #     list(map(_SetValuesToAttribute, self, vals))
+            vals = np.array(vals, dtype=float)
+            total = sum(vals)
+            if total == 0 or math.isnan(total):
+                # all components cannot be zero - set unknown
+                for i in self:
+                    i.SetValue(None, FIXED_V)
+            else:
+                vals = vals / total
+                list(map(_SetValuesToAttribute, self, vals))
 
             for indx in range(len(self)):
                 self[indx].SetValue(vals[indx], FIXED_V)

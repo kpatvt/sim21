@@ -45,8 +45,8 @@ cd ..
 /dryGas = Stream.Stream_Material()
 /Rich = Stream.Stream_Material()
 
-/dryGas.In -> Stage_0.V.Port
-/Rich.In -> Stage_11.L.Port
+/dryGas.In -> Stage_0.v.Port
+/Rich.In -> Stage_11.l.Port
 
 InitKPower = 0  # says to use combined feed composition and est T and P on each stage to get initial Ks
 TryToSolve = 1

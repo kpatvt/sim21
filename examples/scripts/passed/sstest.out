@@ -1,0 +1,608 @@
+>> # Depeopanizer test (from old Hysim manual)
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane PROPANE
+Methane Ethane PROPANE 
+>> thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane
+ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane 
+>> thermo + n-Heptane n-Octane
+n-Heptane n-Octane 
+>> 
+>> deprop = Tower.Tower()
+>> deprop.Stage_0 + 9  # eleven stages`
+>> 
+>> cd deprop.Stage_0
+/deprop.Stage_0
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.P = 200
+>> v.Port.Fraction.ISOBUTANE = .01
+>> 
+>> # add estimate of overhead
+>> v.FlowEst = Tower.Estimate('MoleFlow')
+>> v.FlowEst.Value = 400
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = 25
+>> 
+>> cd ../Stage_5
+/deprop.Stage_5
+>> f = Tower.Feed()
+>> f.Port.T = 50
+>> f.Port.P = 480
+>> f.Port.MoleFlow = 1000
+>> f.Port.Fraction = .1702 .1473 .1132 .1166 .1066 .0963 .0829 .0694 .0558 .0417
+>> f.Port
+Port: /deprop.Feed_5_f + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0012160576534577289 = 
+T                  = 49.99999999999999 * F
+P                  = 480.0 * psia
+MoleFlow           = 1000.0000000000001 * lbmole/h
+MassFlow           = 54388.326918000006 = lb/h
+VolumeFlow         = 0.4158123139223912 = ft3/s
+StdLiqVolumeFlow   = 0.39667686847159 = ft3/s
+H                  = -62299.57969537366 = Btu/lbmol
+Energy             = -62289103.33675756 = Btu/hr
+MolecularWeight    = 54.388326918 = 
+ZFactor            = 0.13136680931210476 = 
+METHANE            = 0.17020000000000002 * 
+ETHANE             = 0.14730000000000001 * 
+PROPANE            = 0.11320000000000001 * 
+ISOBUTANE          = 0.11660000000000001 * 
+N-BUTANE           = 0.10660000000000001 * 
+ISOPENTANE         = 0.09630000000000001 * 
+N-PENTANE          = 0.08290000000000002 * 
+N-HEXANE           = 0.06940000000000002 * 
+N-HEPTANE          = 0.05580000000000001 * 
+N-OCTANE           = 0.04170000000000001 * 
+
+>> 
+>> cd ../Stage_10
+/deprop.Stage_10
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 205
+>> l.Port.Fraction.PROPANE = .02
+>> 
+>> reb = Tower.EnergyFeed(1)
+>> estT = Tower.Estimate('T')
+>> estT.Value = 250
+>> 
+>> # add two stage reboiler
+>> . + 2
+>> 
+>> cd ../Stage_11
+/deprop.Stage_11
+>> SSLiqFeed = Tower.Feed()
+>> SSRetVap = Tower.VapourDraw()
+>> SSRetVap.Port.P = 200
+>> 
+>> cd ../Stage_12
+/deprop.Stage_12
+>> SSBtms = Tower.LiquidDraw()
+>> SSBtms.Port.P = 200
+>> 
+>> SSVapFeed = Tower.Feed()
+>> cd SSVapFeed.Port
+/deprop.Feed_12_SSVapFeed
+>> T = 250
+>> P = 200
+>> MoleFlow = 22
+>> Fraction = 0 1 10 10 1 0 0 0 0 0
+>> 
+>> cd /deprop.Stage_6
+/deprop.Stage_6
+>> SSRet = Tower.Feed()
+>> SSRet.Port -> /deprop.Stage_11.SSRetVap.Port
+>> 
+>> cd ../Stage_7
+/deprop.Stage_7
+>> LiqToSS = Tower.LiquidDraw()
+>> #LiqToSS.Port.MoleFlow = 20
+>> LiqToSS.Port.MassFlow = 1250
+>> LiqToSS.Port -> /deprop.Stage_11.SSLiqFeed.Port
+>> 
+>> cd /deprop
+/deprop
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 14 in jacobian of /deprop
+Could not invert Jacobian in /deprop
+/deprop failed to converge in 0 iterations - error = 1.000000
+>> 
+>> /deprop.Stage_0.v.Port
+Port: /deprop.VapourDraw_0_v + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 200.0 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = 0.01 * 
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /deprop.Stage_10.l.Port
+Port: /deprop.LiquidDraw_10_l + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 205.0 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = 0.02 * 
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /deprop.Stage_11.SSLiqFeed.Port
+Port: /deprop.Feed_11_SSLiqFeed + sim21.solver.Ports.Port_Material
+Connected to: /deprop.LiquidDraw_7_LiqToSS
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = 1250.0 | lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /deprop.Stage_11.SSRetVap.Port
+Port: /deprop.VapourDraw_11_SSRetVap + sim21.solver.Ports.Port_Material
+Connected to: /deprop.Feed_6_SSRet
+VapFrac            = None
+T                  = None
+P                  = 200.0 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /deprop.Stage_12.SSBtms.Port
+Port: /deprop.LiquidDraw_12_SSBtms + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 200.0 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> 
+>> /deprop.L
+[-9.78891664e+01 -1.69463891e+02 -1.66345766e+02 -1.53119320e+02
+ -1.56381132e+02 -3.66933001e+02 -9.72702536e+02 -1.44153118e+03
+ -2.55682490e+03 -4.77749755e+03 -1.92283133e+02 -6.98191218e+01
+  4.52611873e+00]
+>> /deprop.V
+[  135.80651584    37.9173494    -33.65737486   -30.53925045
+   -17.31280376   -20.57461664  -684.71892615  -967.24962068
+ -1572.48689095 -2687.78061048 -4908.45325358  -323.23884041
+   -64.36620683]
+>> /deprop.T
+[267.29322621 294.68284689 299.38068449 300.92806116 306.50238039
+ 308.01058767 126.0080717  338.87280705 347.19315384 353.49887657
+ 379.05907982 365.98764158 371.8136994 ]
+>> 
+>> 
+>> #Add some pressure profile handling
+>> cd /
+/
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ ... ]
+
+>> 
+>> #Get rid of the P in the last SS draw
+>> /deprop.Stage_12.SSBtms.Port.P =
+Calculating disturbance 10 of 14 in jacobian of /deprop
+Could not invert Jacobian in /deprop
+/deprop failed to converge in 0 iterations - error = 1.000000
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ ... ]
+
+>> 
+>> 
+>> #Get rid of the P in the first SS draw
+>> #The P in this stage is an average of the P of the connected stages
+>> /deprop.Stage_11.SSRetVap.Port.P =
+Calculating disturbance 10 of 14 in jacobian of /deprop
+Could not invert Jacobian in /deprop
+/deprop failed to converge in 0 iterations - error = 1.000000
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ ... ]
+
+>> 
+>> 
+>> #Get rid of the P at the top
+>> /deprop.Stage_0.v.Port.P =
+Calculating disturbance 10 of 14 in jacobian of /deprop
+Could not invert Jacobian in /deprop
+/deprop failed to converge in 0 iterations - error = 1.000000
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ ... ]
+
+>> 
+>> 
+>> #Get rid of the P at the bottom of main section
+>> /deprop.Stage_10.l.Port.P =
+No outlet pressures available for tower /deprop
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ ... ]
+
+>> 
+>> 
+>> #Put a pressure in the side stripper
+>> #It should not solve as there is no P in the main section yet
+>> /deprop.Stage_11.SSRetVap.Port.P = 210
+No outlet pressures available for tower /deprop
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+1447.89897
+None
+ ... ]
+
+>> 
+>> 
+>> #Put a pressure in a stage
+>> /deprop.P_Profile.Item2 = 205.0
+Calculating disturbance 10 of 14 in jacobian of /deprop
+Could not invert Jacobian in /deprop
+/deprop failed to converge in 0 iterations - error = 1.000000
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+1413.4251849999998
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ ... ]
+
+>> 
+>> 
+>> #Add a stage to the side stripper and see if it does an  independent interpolation of P
+>> /deprop.Stage_11 + 1
+Rename port /deprop.LiquidDraw_12_SSBtms to LiquidDraw_13_SSBtms.  It is connected to 
+Rename port /deprop.Feed_12_SSVapFeed to Feed_13_SSVapFeed.  It is connected to 
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 15 in jacobian of /deprop
+Could not invert Jacobian in /deprop
+/deprop failed to converge in 0 iterations - error = 1.000000
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+1413.4251849999998
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ ... ]
+
+>> /deprop.TryToSolve = 0
+>> /deprop.P_Profile.Item13 = 215.0
+>> /deprop.TryToSolve = 1
+Calculating disturbance 10 of 15 in jacobian of /deprop
+Could not invert Jacobian in /deprop
+/deprop failed to converge in 0 iterations - error = 1.000000
+>> /deprop.P_Profile.Values
+[ ...
+None
+None
+1413.4251849999998
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+1482.3727549999999
+ ... ]
+
+>> 
+>> copy /deprop
+Copied /deprop to the clipboard
+>> paste /
+Pasting /deprop
+Pasted /deprop as /depropClone
+Calculating disturbance 10 of 15 in jacobian of /depropClone
+Could not invert Jacobian in /depropClone
+/depropClone failed to converge in 0 iterations - error = 1.000000
+>> 
+>> /depropClone.Stage_0.v.Port
+Port: /depropClone.VapourDraw_0_v + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = 0.01 * 
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /depropClone.Stage_10.l.Port
+Port: /depropClone.LiquidDraw_10_l + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = 0.02 * 
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /depropClone.Stage_11.SSLiqFeed.Port
+Port: /depropClone.Feed_11_SSLiqFeed + sim21.solver.Ports.Port_Material
+Connected to: /depropClone.LiquidDraw_7_LiqToSS
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = 1250.0 | lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /depropClone.Stage_11.SSRetVap.Port
+Port: /depropClone.VapourDraw_11_SSRetVap + sim21.solver.Ports.Port_Material
+Connected to: /depropClone.Feed_6_SSRet
+VapFrac            = None
+T                  = None
+P                  = 210.0 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> /depropClone.Stage_13.SSBtms.Port
+Port: /depropClone.LiquidDraw_13_SSBtms + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 215.0 = psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+
+>> 

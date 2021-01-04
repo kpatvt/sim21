@@ -1,0 +1,305 @@
+>> # A simple recycle test
+>> 
+>> # set up thermo - the name can be anything, I just use
+>> # 'thermo' for convenience.  Essentially the rhs causes
+>> # a thermo package to be created and assigned to the unit op
+>> # owning the name thermo - in the case the base flowsheet
+>> 
+>> # Also note that for now spaces are needed around the operators (= + etc)
+>> # A further also is that case is always significant
+>> 
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE ISOBUTANE n-BUTANE n-NONANE
+PROPANE ISOBUTANE n-BUTANE n-NONANE 
+>> units SI
+>> 
+>> # Add a stream
+>> # for now creating a unit op requires module.class(), but this
+>> # will be stream lined in the future
+>> stream = Stream.Stream_Material()
+>> 
+>> # Make the stream In port current to save typing
+>> # You can use cd (named because it is similar to change directory in
+>> # Unix and DOS) to sub objects in this case first to the unit op stream
+>> # and then to its port In.  This is just a typing convenience as everything
+>> # could be done from the top level with full names i.e. stream.In.T = 360.15
+>> cd stream.In
+/stream.In
+>> 
+>> # Mole fractions can be enter indivually (Fraction.PROPANE = .25) or all
+>> # together as below.
+>> Fraction = .25 .25 .25 .25
+>> T = 360.15 K
+>> P = 715
+>> MoleFlow = 3000
+>> 
+>> # Now create a recycle stream
+>> cd /  # return to top level - only place a slash is used
+/
+>> recycle = Stream.Stream_Material()
+>> cd recycle.In
+/recycle.In
+>> 
+>> # Estimate the values in the stream
+>> # Estimates use the ~= operator in place of the normal = which
+>> # fixes values
+>> T ~= 460.15 K
+Changed state of port /recycle.In to 1 (0=Normal port; 1=Recycle port)
+>> P ~= 715
+>> MoleFlow ~= 300
+>> Fraction      # any object without an operator displays itself - here to get order
+PROPANE                     = None
+ISOBUTANE                   = None
+N-BUTANE                    = None
+N-NONANE                    = None
+
+>> Fraction ~= 0 .5 0 .5
+>> .             # a dot represents the current obj for display purposes
+Port: /recycle.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.737733333693532 = 
+T                  = 187.0 ~ C
+P                  = 715.0 ~ kPa
+MoleFlow           = 300.0 ~ kgmole/h
+MassFlow           = 27956.594999999998 = kg/h
+VolumeFlow         = 1062.0264418503825 = m3/hr
+StdLiqVolumeFlow   = 42.608999999999995 = m3/hr
+H                  = -161153.4721819582 = kJ/kmol
+Energy             = -13429456.015163183 = W
+MolecularWeight    = 93.18865 = 
+ZFactor            = 0.6615863031220215 = 
+PROPANE            = 0.0 ~ 
+ISOBUTANE          = 0.5 ~ 
+N-BUTANE           = 0.0 ~ 
+N-NONANE           = 0.5 ~ 
+
+>> 
+>> # add a mixer to combine the first stream with the recycle
+>> cd /
+/
+>> mixer = Mixer.Mixer()
+>> 
+>> # ports are connected with the -> operator.  They would be disconnected
+>> # by having an empty rhs.  Similarly "stream.In.T =" would remove any value
+>> # for the stream In port Temperature
+>> stream.Out -> mixer.In0
+>> recycle.Out -> mixer.In1
+>> mixer.Out
+Port: /mixer.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.5827111369312759 = 
+T                  = 99.42650652580505 = C
+P                  = 715.0 = kPa
+MoleFlow           = 3300.0 = kgmole/h
+MassFlow           = 244402.935 = kg/h
+VolumeFlow         = 7739.319807794248 = m3/hr
+StdLiqVolumeFlow   = 387.16650000000004 = m3/hr
+H                  = -155238.5148658809 = kJ/kmol
+Energy             = -142301971.9603908 = W
+MolecularWeight    = 74.06149545454547 = 
+ZFactor            = 0.541308994900394 = 
+PROPANE            = 0.22727272727272727 = 
+ISOBUTANE          = 0.2727272727272727 = 
+N-BUTANE           = 0.22727272727272727 = 
+N-NONANE           = 0.2727272727272727 = 
+
+>> 
+>> # add a separator
+>> flash = Flash.SimpleFlash()
+>> mixer.Out -> flash.In
+>> 
+>> # split the liquid from the flash
+>> splitter = Split.Splitter()
+>> flash.Liq0 -> splitter.In
+>> 
+>> # set the flow in one of the splitter outlets
+>> splitter.Out1.MoleFlow = 200
+>> 
+>> # close the recycle
+>> splitter.Out1 -> recycle.In
+Iteration 1 -> max Error 0.875735 in /recycle.In.T
+Iteration 2 -> max Error 0.321536 in /recycle.In.Energy
+Iteration 3 -> max Error 0.195415 in /recycle.In.Energy
+Iteration 4 -> max Error 0.067705 in /recycle.In.Energy
+Iteration 5 -> max Error 0.000641 in /recycle.In.Energy
+Iteration 6 -> max Error 0.000005 in /recycle.In.T
+>> 
+>> # All done - check some streams
+>> recycle.Out
+Port: /recycle.Out + sim21.solver.Ports.Port_Material
+Connected to: /mixer.In1
+VapFrac            = 5.468057664021047e-07 = 
+T                  = 87.00013982194332 = C
+P                  = 715.0 = kPa
+MoleFlow           = 200.0 = kgmole/h
+MassFlow           = 18891.472554455806 = kg/h
+VolumeFlow         = 31.527983718052578 = m3/hr
+StdLiqVolumeFlow   = 28.234587654516556 = m3/hr
+H                  = -200544.01984634346 = kJ/kmol
+Energy             = -11141334.435907971 = W
+MolecularWeight    = 94.45736277227904 = 
+ZFactor            = 0.03764042088358543 = 
+PROPANE            = 0.10168072035664484 = 
+ISOBUTANE          = 0.16568367539839302 = 
+N-BUTANE           = 0.1942093373884777 = 
+N-NONANE           = 0.5384262668564844 = 
+
+>> splitter.Liq0
+None
+>> #splitter.Liq0.Out
+>> splitter.Out0
+Port: /splitter.Out0 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 86.99963573289943 = C
+P                  = 715.0 = kPa
+MoleFlow           = 1345.7859918502943 = kgmole/h
+MassFlow           = 127119.01634851552 = kg/h
+VolumeFlow         = 212.14627578377696 = m3/hr
+StdLiqVolumeFlow   = 189.98814244256477 = m3/hr
+H                  = -200543.68770263184 = kJ/kmol
+Energy             = -74969134.90672278 = W
+MolecularWeight    = 94.45708093137611 = 
+ZFactor            = 0.037639884801071 = 
+PROPANE            = 0.1016809012841702 = 
+ISOBUTANE          = 0.16568568777222684 = 
+N-BUTANE           = 0.19421112657049644 = 
+N-NONANE           = 0.5384222843731065 = 
+
+>> flash.In
+Port: /flash.In + sim21.solver.Ports.Port_Material
+Connected to: /mixer.Out
+VapFrac            = 0.516941877546783 | 
+T                  = 86.99963573289943 | C
+P                  = 715.0 | kPa
+MoleFlow           = 3200.0 | kgmole/h
+MassFlow           = 235337.8125544558 | kg/h
+VolumeFlow         = 6444.281681080447 | m3/hr
+StdLiqVolumeFlow   = 372.79208765451654 | m3/hr
+H                  = -157515.58167877755 | kJ/kmol
+Energy             = -140013850.38113558 | W
+MolecularWeight    = 73.54306642326742 | 
+ZFactor            = 0.4808542001290023 | 
+PROPANE            = 0.24073004502229028 | 
+ISOBUTANE          = 0.24473022971239955 | 
+N-BUTANE           = 0.24651308358677987 | 
+N-NONANE           = 0.2680266416785303 | 
+
+>> 
+>> 
+>> #Copy and paste the recycle
+>> sub = Flowsheet.SubFlowsheet()
+>> innerflowsh = Flowsheet.Flowsheet()
+>> copy /stream /recycle /mixer /flash /splitter
+Copied /stream /recycle /mixer /flash /splitter to the clipboard
+>> paste /sub
+Pasting /stream /recycle /mixer /flash /splitter
+Pasted /stream /recycle /mixer /flash /splitter as /sub.stream /sub.recycle /sub.mixer /sub.flash /sub.splitter
+Iteration 1 -> max Error 0.000005 in /sub.recycle.In.T
+>> copy /stream /recycle /mixer /flash /splitter
+Copied /stream /recycle /mixer /flash /splitter to the clipboard
+>> paste /innerflowsh
+Pasting /stream /recycle /mixer /flash /splitter
+Pasted /stream /recycle /mixer /flash /splitter as /innerflowsh.stream /innerflowsh.recycle /innerflowsh.mixer /innerflowsh.flash /innerflowsh.splitter
+Iteration 1 -> max Error 0.000005 in /innerflowsh.recycle.In.T
+>> 
+>> 
+>> 
+>> #Now lets test flags for unconverged recycles that are not being re-solved
+>> /MaxNumIterations = 20
+Iteration 1 -> max Error 0.000005 in /innerflowsh.recycle.In.T
+Iteration 1 -> max Error 0.000005 in /sub.recycle.In.T
+>> /recycle.In.T ~= -87
+Iteration 1 -> max Error 2.136986 in /recycle.In.Energy
+Iteration 2 -> max Error 0.232383 in /recycle.In.Energy
+Iteration 3 -> max Error 0.059818 in /recycle.In.Energy
+Iteration 4 -> max Error 0.003591 in /recycle.In.Energy
+Iteration 5 -> max Error 0.000006 in /recycle.In.Fraction.N-BUTANE
+>> 
+>> 
+>> #Add a second recycle
+>> #The "annoying" flag regarding the previously unconverged recycle will keep on coming until
+>> #it is resolved.
+>> c = Stream.Stream_Material()
+>> cd c
+/c
+>> cd /
+/
+>> split = Split.Splitter()
+>> cd split
+/split
+>> cd /split.In.Fraction
+/split.In.Fraction
+>> /split.In.Fraction = 1 1 1 1
+>> /split.In.Fraction ~= 1 1 1 1
+Changed state of port /split.In to 1 (0=Normal port; 1=Recycle port)
+>> cd /split.In
+/split.In
+>> T ~= 100
+>> P = 100
+>> MoleFlow ~= 100
+>> cd /split
+/split
+>> /split.FlowFraction1.Fraction = .4
+>> /split.Out0 -> /c.In
+>> /split.In -> /c.Out
+Iteration 1 -> max Error 0.040000 in /split.In.MoleFlow
+Iteration 2 -> max Error 0.938434 in /split.In.Energy
+Iteration 3 -> max Error 0.563060 in /split.In.Energy
+Iteration 4 -> max Error 0.000000 in /split.In.MoleFlow
+>> 
+>> 
+>> #Only resolve split.
+>> #It sould still flag the other recycle as unconverged
+>> /split.Ignored = 1
+>> /split.Ignored = None
+Iteration 1 -> max Error 0.000000 in /split.In.MoleFlow
+>> 
+>> #Only resolve recycle
+>> #It should still flag the other recycle as unconverged
+>> /recycle.Ignored = 1
+Iteration 1 -> max Error 0.000000 in 
+>> /recycle.Ignored = None
+Iteration 1 -> max Error 0.000006 in /recycle.In.Fraction.N-BUTANE
+>> 
+>> 
+>> #Do it again. Now this should have been converged and is not flagged anymore
+>> #It should still flag the other recycle as unconverged
+>> /recycle.Ignored = 1
+Iteration 1 -> max Error 0.000000 in 
+>> /recycle.Ignored = None
+Iteration 1 -> max Error 0.000006 in /recycle.In.Fraction.N-BUTANE
+>> 
+>> 
+>> #Unconverge the recycle again
+>> /recycle.In.T ~= -87
+Iteration 1 -> max Error 2.136919 in /recycle.In.Energy
+Iteration 2 -> max Error 0.232385 in /recycle.In.Energy
+Iteration 3 -> max Error 0.059819 in /recycle.In.Energy
+Iteration 4 -> max Error 0.003591 in /recycle.In.Energy
+Iteration 5 -> max Error 0.000006 in /recycle.In.Fraction.N-BUTANE
+>> 
+>> 
+>> #Delete /recycle. Nothing should break
+>> delete /recycle
+>> 
+>> #Disconnect the other recycle. the unconv message sould go away
+>> /split.In ->
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 

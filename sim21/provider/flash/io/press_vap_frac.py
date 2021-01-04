@@ -237,7 +237,7 @@ def flash_press_vap_frac_2phase(provider, press, vap_frac, feed_comp, valid=None
             print('Zero Divide Error')
             pass
 
-        print('PV#', outer_iterations, 'temp:', temp, 'vap_frac:', vap_frac, 'error:', error, 'inner_converged:', inner_converged)
+        # print('PV#', outer_iterations, 'temp:', temp, 'vap_frac:', vap_frac, 'error:', error, 'inner_converged:', inner_converged)
 
         if kb_calc > 0:
             # Calculate the new temperature

@@ -1,0 +1,57 @@
+>> # Simple set test
+>> units SI
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
+PROPANE n-BUTANE ISOBUTANE n-PENTANE 
+>> 
+>> h1 = Heater.Heater()
+>> h1.DeltaP.DP = 10
+>> h2 = Heater.Heater()
+>> set = Set.Set()
+>> set.SignalType = DP  # must be set before addition
+>> set.multiplier = 2.
+>> set.addition = 0.
+>> h1.DeltaP -> set.Signal0
+>> sig = Stream.Stream_Signal()
+>> sig.In -> set.Signal1
+>> sig.Out -> h2.DeltaP
+>> 
+>> h2.DeltaP
+Port: /h2.DeltaP + sim21.solver.Ports.Port_Signal
+Connected to: /sig.Out
+DP   = 20.0 | Kpa
+
+>> set.addition = None
+>> h2.DeltaP
+Port: /h2.DeltaP + sim21.solver.Ports.Port_Signal
+Connected to: /sig.Out
+DP   = None
+
+>> 
+>> h2.DeltaP = 30
+>> set.addition
+Port: /set.addition + sim21.solver.Ports.Port_Signal
+Connected to: None
+DP   = 10.0 = Kpa
+
+>> 
+>> set.multiplier = None
+>> set.addition = 5
+>> 
+>> set.multiplier
+Port: /set.multiplier + sim21.solver.Ports.Port_Signal
+Connected to: None
+Generic   = 2.5 = 
+
+>> 
+>> sig.clonePort = Stream.ClonePort()
+>> sig.clonePort
+Port: /sig.clonePort + sim21.solver.Ports.Port_Signal
+Connected to: None
+DP   = 30.0 = Kpa
+
+>> 
+>> 

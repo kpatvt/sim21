@@ -1,0 +1,156 @@
+>> # Demethanizer test (from old Hysim manual)
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Nitrogen Carbon_Dioxide Methane Ethane PROPANE
+Nitrogen Carbon Dioxide Methane Ethane PROPANE 
+>> thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane
+ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane 
+>> 
+>> feed = Stream.Stream_Material()
+>> feed.In.Fraction =
+>> feed.In.T = -135.5506
+>> feed.In.P = 335
+>> feed.In.MoleFlow = 21.2984
+>> feed.In.Fraction = .0047 .0037 .7650 .1379 .0594 .0115 .0090 .0046 .0028 .0014
+>> 
+>> demeth = Tower.Tower()
+>> demeth.Stage_0
+Stage_0
+>> demeth.Stage_0 + 4  # just six stages`
+>> 
+>> cd demeth.Stage_0
+/demeth.Stage_0
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = -142.2855
+>> f.Port.P = 330
+>> f.Port.MoleFlow = 6.1343
+>> f.Port.Fraction = .0034 .0051 .7886 .1678 .0310 .0025 .0013 .0003 .0001 0.0
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.P = 330
+>> #v.Port.MoleFlow = 21.7  # overhead flow spec
+>> v.estF = Tower.Estimate('MoleFlow')
+>> v.estF.Value = 22
+>> #estT = Tower.Estimate('T')
+>> #estT.Value = -120
+>> 
+>> cd ../Stage_1
+/demeth.Stage_1
+>> f = Tower.Feed()
+>> f.Port -> /feed.Out
+>> 
+>> cd ../Stage_5
+/demeth.Stage_5
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 335
+>> reb = Tower.EnergyFeed(1)
+>> #reb.Port.Energy = 0.065e6
+>> l.Port.Fraction.METHANE = 0.01
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = 0
+>> 
+>> cd ..
+/demeth
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_5.l.Port
+>> 
+>> TryToSolve = 1  # start calculation - turned off by default
+Calculating Jacobian for /demeth
+/demeth Inner Error 0.003386
+/demeth Inner Error 0.001094
+/demeth Inner Error 0.000330
+/demeth Inner Error 0.000045
+/demeth Inner Error 0.000002
+Inner loop converged
+/demeth Iteration 1 Outer Error 0.053663
+/demeth Inner Error 0.000704
+/demeth Inner Error 0.000159
+/demeth Inner Error 0.000008
+Inner loop converged
+/demeth Iteration 2 Outer Error 0.015131
+/demeth Inner Error 0.003214
+/demeth Inner Error 0.000615
+/demeth Inner Error 0.000153
+/demeth Inner Error 0.000013
+/demeth Inner Error 0.000001
+Inner loop converged
+/demeth Iteration 3 Outer Error 0.011353
+/demeth Inner Error 0.000537
+/demeth Inner Error 0.000060
+/demeth Inner Error 0.000003
+Inner loop converged
+/demeth Iteration 4 Outer Error 0.004604
+/demeth Inner Error 0.000121
+/demeth Inner Error 0.000008
+Inner loop converged
+/demeth Iteration 5 Outer Error 0.001126
+/demeth Inner Error 0.000008
+Inner loop converged
+/demeth Iteration 6 Outer Error 0.000257
+/demeth Inner Error 0.000003
+Inner loop converged
+/demeth Iteration 7 Outer Error 0.000066
+/demeth Inner Error 0.000001
+Inner loop converged
+>> 
+>> /overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 330.0 = psia
+MoleFlow           = 21.656432020706568 = lbmole/h
+MassFlow           = 355.7668956382484 = lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 0.0034487944854202568 = ft3/s
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+NITROGEN           = 0.005585199082188519 = 
+CARBON DIOXIDE     = 0.0008604444771819189 = 
+METHANE            = 0.9730381191771361 = 
+ETHANE             = 0.020055404887891454 = 
+PROPANE            = 0.0004502767913422713 = 
+ISOBUTANE          = 7.987976345199324e-06 = 
+N-BUTANE           = 2.4426224261303338e-06 = 
+ISOPENTANE         = 1.2112891812839036e-07 = 
+N-PENTANE          = 3.855904298297282e-09 = 
+N-HEXANE           = 6.658204680476649e-13 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 59.833175418865125 = F
+P                  = 335.0 = psia
+MoleFlow           = 5.776267979293441 = lbmole/h
+MassFlow           = 215.73142364240928 = lb/h
+VolumeFlow         = 0.0020637577175660156 = ft3/s
+StdLiqVolumeFlow   = 0.0015511695549556784 = ft3/s
+H                  = -49003.484087459336 = Btu/lbmol
+Energy             = -283009.6568215459 = Btu/hr
+MolecularWeight    = 37.34789043994419 = 
+ZFactor            = 0.07728658464390968 = 
+NITROGEN           = 2.649290203379704e-07 = 
+CARBON DIOXIDE     = 0.015832320248985714 = 
+METHANE            = 0.01 = 
+ETHANE             = 0.6114594192646845 = 
+PROPANE            = 0.25025117637046573 = 
+ISOBUTANE          = 0.045027832234240305 = 
+N-BUTANE           = 0.0345563077838072 = 
+ISOPENTANE         = 0.0172793442283176 = 
+N-PENTANE          = 0.010430403397830941 = 
+N-HEXANE           = 0.005162115070227063 = 
+
+>> 
+>> 

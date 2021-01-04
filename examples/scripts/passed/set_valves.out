@@ -1,0 +1,158 @@
+>> units SI
+>> # Commented out for testing
+>> # /LiquidPhases = 2
+>> # /RecycleDetails = 1
+>> # displayproperties
+>> # commonproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor Cv SpeedOfSound SurfaceTension IdealGasCp  StdLiqMolarVol
+>> # displayproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor Cv SpeedOfSound SurfaceTension IdealGasCp
+>> $VMGThermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $VMGThermo
+Thermo case attached to a unit operation. / to /VMGThermo
+>> # /SolidPhases = 0
+>> $VMGThermo + METHANE
+METHANE 
+>> $VMGThermo + ETHANE
+ETHANE 
+>> $VMGThermo + PROPANE
+PROPANE 
+>> /V1 = Valve.Valve()
+>> '/V1.In.T' = 30
+>> '/V1.In.P' = 3000
+>> '/V1.In.MoleFlow' = 500
+>> '/V1.In.Fraction' =  0.7 0.2 0.1
+>> '/V1.Out.P' = 1000
+>> /V2 = Valve.Valve()
+>> '/V2.In.T' = 30
+>> '/V2.In.P' = 3e3
+>> '/V2.In.MoleFlow' = 500
+>> '/V2.In.Fraction' =  0.7 0.2 0.1
+>> '/V2.Out.T' = 15
+>> '/V2.Out.T' =
+>> /Set1 = Set.Set()
+>> '/Set1.multiplier.Generic' = 1
+>> '/Set1.addition.Generic' = -1
+>> delete '/Set1'
+>> '/V2.Out.T' = 15
+>> units SI
+>> '/V2.In.P' =
+>> '/V2.Out.P' = 1e3
+>> '/V2.Out.P' =
+>> /V2Out = Stream.Stream_Material()
+>> /V2.Out -> /V2Out.In
+>> /V1Out = Stream.Stream_Material()
+>> /V1.Out -> /V1Out.In
+>> /V1in = Stream.Stream_Material()
+>> /V1.In -> /V1in.Out
+>> /V12In = Stream.Stream_Material()
+>> /V2.In -> /V12In.Out
+>> /Set1 = Set.Set()
+>> '/Set1.multiplier.Generic' = 1
+>> '/Set1.addition.Generic' = 0
+>> /V2Out.T = Stream.SensorPort('T')
+>> /V2Out.T -> /Set1.Signal0
+>> /Set1.Signal0 ->
+>> /V1Out.T = Stream.SensorPort('T')
+>> /V1Out.T -> /Set1.Signal0
+>> /V1Out.P = Stream.SensorPort('P')
+>> /V1Out.T ->
+>> /V1Out.P -> /Set1.Signal0
+>> /V2Out.P = Stream.SensorPort('P')
+>> /V2Out.P -> /Set1.Signal1
+>> '/V2.Out.T' = 12
+>> /V2.In
+Port: /V2.In + sim21.solver.Ports.Port_Material
+Connected to: /V12In.Out
+VapFrac            = 1.0 = 
+T                  = 30.0 * C
+P                  = 3439.5142056503846 = kPa
+MoleFlow           = 500.00000000000006 * kgmole/h
+MassFlow           = 10826.546000000002 = kg/h
+VolumeFlow         = 316.9401634292207 = m3/hr
+StdLiqVolumeFlow   = 20.7975 = m3/hr
+H                  = -80287.85197366892 = kJ/kmol
+Energy             = -11151090.551898463 = W
+MolecularWeight    = 21.653092 = 
+ZFactor            = 0.8649930599825343 = 
+METHANE            = 0.7000000000000001 * 
+ETHANE             = 0.20000000000000004 * 
+PROPANE            = 0.10000000000000002 * 
+
+>> /V2.Out
+Port: /V2.Out + sim21.solver.Ports.Port_Material
+Connected to: /V2Out.In
+VapFrac            = 1.0 = 
+T                  = 12.0 * C
+P                  = 1000.0 | kPa
+MoleFlow           = 500.00000000000006 = kgmole/h
+MassFlow           = 10826.546000000002 = kg/h
+VolumeFlow         = 1128.8870794968898 = m3/hr
+StdLiqVolumeFlow   = 20.7975 = m3/hr
+H                  = -80287.85197366892 = kJ/kmol
+Energy             = -11151090.551898463 = W
+MolecularWeight    = 21.653092 = 
+ZFactor            = 0.9522981422296758 = 
+METHANE            = 0.7000000000000001 = 
+ETHANE             = 0.20000000000000004 = 
+PROPANE            = 0.10000000000000002 = 
+
+>> /V1.In
+Port: /V1.In + sim21.solver.Ports.Port_Material
+Connected to: /V1in.Out
+VapFrac            = 1.0 = 
+T                  = 30.0 * C
+P                  = 3000.0 * kPa
+MoleFlow           = 500.00000000000006 * kgmole/h
+MassFlow           = 10826.546000000002 = kg/h
+VolumeFlow         = 370.5432254620563 = m3/hr
+StdLiqVolumeFlow   = 20.7975 = m3/hr
+H                  = -80138.25067760507 = kJ/kmol
+Energy             = -11130312.594111817 = W
+MolecularWeight    = 21.653092 = 
+ZFactor            = 0.8820604922602535 = 
+METHANE            = 0.7000000000000001 * 
+ETHANE             = 0.20000000000000004 * 
+PROPANE            = 0.10000000000000002 * 
+
+>> /V1.In
+Port: /V1.In + sim21.solver.Ports.Port_Material
+Connected to: /V1in.Out
+VapFrac            = 1.0 = 
+T                  = 30.0 * C
+P                  = 3000.0 * kPa
+MoleFlow           = 500.00000000000006 * kgmole/h
+MassFlow           = 10826.546000000002 = kg/h
+VolumeFlow         = 370.5432254620563 = m3/hr
+StdLiqVolumeFlow   = 20.7975 = m3/hr
+H                  = -80138.25067760507 = kJ/kmol
+Energy             = -11130312.594111817 = W
+MolecularWeight    = 21.653092 = 
+ZFactor            = 0.8820604922602535 = 
+METHANE            = 0.7000000000000001 * 
+ETHANE             = 0.20000000000000004 * 
+PROPANE            = 0.10000000000000002 * 
+
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+>> /RootClone.V1.In
+Port: /RootClone.V1.In + sim21.solver.Ports.Port_Material
+Connected to: /RootClone.V1in.Out
+VapFrac            = 1.0 | 
+T                  = 30.0 * C
+P                  = 3000.0 * kPa
+MoleFlow           = 500.00000000000006 * kgmole/h
+MassFlow           = 10826.546000000002 | kg/h
+VolumeFlow         = 370.5432254620563 | m3/hr
+StdLiqVolumeFlow   = 20.7975 | m3/hr
+H                  = -80138.25067760507 | kJ/kmol
+Energy             = -11130312.594111817 | W
+MolecularWeight    = 21.653092 | 
+ZFactor            = 0.8820604922602535 | 
+METHANE            = 0.7000000000000001 * 
+ETHANE             = 0.20000000000000004 * 
+PROPANE            = 0.10000000000000002 * 
+

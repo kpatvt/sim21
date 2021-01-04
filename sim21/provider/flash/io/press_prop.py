@@ -401,11 +401,11 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
         if outer_iterations > 2 and liq_present and not vap_present:
             # If we called recursively, ending up here is a weird situation, error out
             if recursive:
-                print('PH called recursively!')
+                # print('PH called recursively!')
                 raise FlashConvergenceError
 
             # Switching to one phase search
-            print('Switching to one phase search in:', 'liq')
+            # print('Switching to one phase search in:', 'liq')
             return flash_press_prop_1phase(provider, 'liq',
                                            press,
                                            temp_calc,
@@ -420,7 +420,7 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
             if recursive:
                 raise FlashConvergenceError
 
-            print('Switching to one phase search in:', 'vap')
+            # print('Switching to one phase search in:', 'vap')
             return flash_press_prop_1phase(provider, 'vap',
                                            press,
                                            temp_calc,
@@ -486,7 +486,7 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
             f = f_hat
             log_kb = log_kb_hat
 
-        print('PH#', outer_iterations, 'temp:', temp, 'vap_frac:', vap_frac, 'error:', error, 'vap_present:', vap_present, 'liq_present:', liq_present)
+        # print('PH#', outer_iterations, 'temp:', temp, 'vap_frac:', vap_frac, 'error:', error, 'vap_present:', vap_present, 'liq_present:', liq_present)
 
     if not outer_converged:
         raise FlashConvergenceError
@@ -545,7 +545,7 @@ def flash_press_prop_1phase(provider, phase_type, press, start_temp, prop_type, 
         prop_2 = getattr(provider.phase(temp_2, press, feed_comp, phase_type, valid=valid), prop_type)/prop_scaling
         f = (prop_1 - prop_target_scaled)
 
-        print('#', iterations, 'temp:', temp_1, 'error:', f, 'phase:', phase_type, 'pseudo:', phase_at_temp.pseudo)
+        # print('#', iterations, 'temp:', temp_1, 'error:', f, 'phase:', phase_type, 'pseudo:', phase_at_temp.pseudo)
 
         if abs(f) < INSIDE_OUT_OUTER_TOLERANCE:
             converged = True
@@ -585,7 +585,7 @@ def flash_press_prop_1phase(provider, phase_type, press, start_temp, prop_type, 
     # If we converged, now check if we can flash into multiple phases
     results = flash_temp_press_2phase(provider, temp_final, press, feed_comp, valid)
     if len(results.phases) > 1:
-        print('One phase resulted in two phases, calling 2 phase search recursively')
+        # print('One phase resulted in two phases, calling 2 phase search recursively')
         # This can happen where the flash indicates that we need to be two phases
         # in that case, we go to the nested search and hope for the best
         # print('vap_frac of tested phase', results.vap_frac_mole)
@@ -601,12 +601,12 @@ def flash_press_prop_1phase(provider, phase_type, press, start_temp, prop_type, 
         if phase_type not in results.phases:
             if recursive:
                 # Should happen only once, otherwise we have a problem
-                print('Single phase recursive PH')
+                # print('Single phase recursive PH')
                 raise FlashConvergenceError
             else:
                 # We converged to a false phase solution
                 # Repeat with the flipped_phase
-                print('One phase resulted in false/pseudo solution, flipping phase and calling 1 phase search recursively')
+                # print('One phase resulted in false/pseudo solution, flipping phase and calling 1 phase search recursively')
                 flipped_phase = {'vap': 'liq', 'liq': 'vap'}
                 return flash_press_prop_1phase(provider,
                                                flipped_phase[phase_type], press, start_temp, prop_type, prop_target,

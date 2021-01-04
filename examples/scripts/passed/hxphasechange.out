@@ -1,0 +1,168 @@
+>> units SI
+>> # /LiquidPhases = 2
+>> # /RecycleDetails = 1
+>> # Commented out for testing purposes
+>> # displayproperties
+>> # commonproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp Viscosity molarV ZFactor SurfaceTension
+>> # displayproperties  VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow Energy H S MolecularWeight MassDensity Cp Viscosity molarV ZFactor SurfaceTension
+>> $VMGThermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $VMGThermo
+Thermo case attached to a unit operation. / to /VMGThermo
+>> $VMGThermo + WATER
+WATER 
+>> $VMGThermo + NITROGEN
+NITROGEN 
+>> $VMGThermo + CARBON_DIOXIDE
+CARBON DIOXIDE 
+>> $VMGThermo + METHANE
+METHANE 
+>> $VMGThermo + ETHANE
+ETHANE 
+>> $VMGThermo + PROPANE
+PROPANE 
+>> $VMGThermo + ISOBUTANE
+ISOBUTANE 
+>> $VMGThermo + n-BUTANE
+n-BUTANE 
+>> $VMGThermo + ISOPENTANE
+ISOPENTANE 
+>> $VMGThermo + n-PENTANE
+n-PENTANE 
+>> $VMGThermo + n-HEXANE
+n-HEXANE 
+>> /Hx1 = Heater.HeatExchangerUA()
+>> '/Hx1.DeltaP0.DP' = 20
+>> '/Hx1.DeltaP1.DP' = 5
+>> '/Hx1.In0.T' = 150
+>> '/Hx1.In0.P' = 200
+>> '/Hx1.In0.MassFlow' = 80
+>> '/Hx1.In0.Fraction' =  0 1.56701856206534E-02 3.10201631060189E-04 5.52959423625356E-02 0.622104367839095 0.255756241557012 3.45624656026417E-02 1.38289888427478E-02 1.2508130284685E-03 9.10591884725071E-04 3.10201631060189E-04
+>> '/Hx1.In1.T' = 90
+>> '/Hx1.In1.P' = 200
+>> '/Hx1.UA0_1.UA' = 45
+>> '/Hx1.In1.Fraction' =  1 0 0 0 0 0 0 0 0 0 0
+>> '/Hx1.Out0.T' = 130
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 1 Max Error 0.016702
+Calculating Jacobian for /Hx1
+Could not invert Jacobian in /Hx1
+Could not converge /Hx1 after 1 iterations
+>> /Hx1.NumberSegments = 5
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 1 Max Error 0.006944
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 2 Max Error 0.003338
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 3 Max Error 0.001356
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 4 Max Error 0.000112
+Calculating Jacobian for /Hx1
+Converged /Hx1 in 5 iterations
+>> cd /
+/
+>> 
+>> 
+>> #Now play with segments and phase change tracking
+>> /Hx1.UA0_1.UA = None
+>> /Hx1.Out1.T = 125
+>> /Hx1.UA0_1.UA
+/Hx1.heatTransfer0_1.UA.UA= 47.49045731695435 = W/K
+>> 
+>> #As the number of segments increases, the ua converges to a single
+>> #ua but the hx becomes slower
+>> /Hx1.NumberSegments = 10
+>> /Hx1.UA0_1.UA
+/Hx1.heatTransfer0_1.UA.UA= 51.60132728643831 = W/K
+>> /Hx1.NumberSegments = 50
+>> /Hx1.UA0_1.UA
+/Hx1.heatTransfer0_1.UA.UA= 53.46154543382022 = W/K
+>> 
+>> 
+>> #Now back to 5 segments
+>> /Hx1.NumberSegments = 5
+>> /Hx1.UA0_1.UA
+/Hx1.heatTransfer0_1.UA.UA= 47.49045731695435 = W/K
+>> 
+>> #Track phase change
+>> #The UA is already the converged one with 100 segments
+>> /Hx1.TrackPhaseChange = 1
+>> /Hx1.UA0_1.UA
+/Hx1.heatTransfer0_1.UA.UA= 50.94446084008512 = W/K
+>> /Hx1.NumberSegments = 3
+>> /Hx1.UA0_1.UA
+/Hx1.heatTransfer0_1.UA.UA= 48.96257476485968 = W/K
+>> /Hx1.NumberSegments = 10
+>> /Hx1.UA0_1.UA
+/Hx1.heatTransfer0_1.UA.UA= 52.17868089272155 = W/K
+>> 
+>> #Lets get a bunch of profiles
+>> /Hx1.side0.T
+[423.15       423.05028494 419.21087073 417.23021121 415.24203719
+ 413.24625803 411.24278152 409.23151384 407.21235953 404.25711377
+ 403.15      ]
+>> /Hx1.side0.EnergyAcum
+[  0.           4.96161697 195.29176834 292.93765251 390.58353668
+ 488.22942085 585.87530502 683.52118919 781.16707336 923.39013062
+ 976.4588417 ]
+>> /Hx1.side0.L_Cp
+None
+>> /Hx1.side0.L_Viscosity
+None
+>> /Hx1.side0.V_Viscosity
+None
+>> /Hx1.side0.Viscosity
+None
+>> 
+>> /Hx1.side1.T
+[398.15       393.61343027 393.76764032 393.8465127  393.92522153
+ 394.00376758 394.0821516  394.16037434 394.23843655 391.81039461
+ 363.15      ]
+>> /Hx1.side1.EnergyAcum
+[  0.           4.96161697 195.29176834 292.93765251 390.58353668
+ 488.22942085 585.87530502 683.52118919 781.16707336 923.39013062
+ 976.4588417 ]
+>> /Hx1.side1.L_Cp
+None
+>> /Hx1.side1.L_Viscosity
+None
+>> /Hx1.side1.V_Viscosity
+None
+>> /Hx1.side1.Viscosity
+None
+>> 
+>> #Now unspec T and spec ua
+>> #Unfortunately, the track phase change thing does not work for rating mode :(
+>> /Hx1.Out1.T = None
+>> /Hx1.TryLastConverged = 0
+>> /Hx1.UA0_1.UA = 49.9
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 1 Max Error 0.010044
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 2 Max Error 0.002914
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 3 Max Error 0.000496
+Calculating Jacobian for /Hx1
+/Hx1 Iteration 4 Max Error 0.000093
+Calculating Jacobian for /Hx1
+Converged /Hx1 in 5 iterations
+>> /Hx1.Out1.T
+/Hx1.side1.Out.T= 120.45940184952974 = C
+>> 
+>> #Test vap frac profiles
+>> /Hx1.side1.VapFrac
+None
+>> /Hx1.side1.MassVapFrac
+None
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+>> /RootClone.Hx1.side1.VapFrac
+None
+>> 
+>> 
+>> 
+>> 

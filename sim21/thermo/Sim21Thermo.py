@@ -571,7 +571,7 @@ class ThermoInterface(object):
         """Deletes a thermo case"""
         if thName in self.gPkgHandles:
             del self.gPkgHandles[thName]
-            if thName in self.flashSettings:
+            if self.flashSettings is not None and thName in self.flashSettings:
                 del self.flashSettings[thName]
 
     def GetPropPkgString(self, thName):
@@ -1366,7 +1366,7 @@ class ThermoInterface(object):
         try:
             bulkComp = np.copy(bulkComp)
             bulkComp /= sum(bulkComp)
-            print('bulkComp:', bulkComp)
+            # print('bulkComp:', bulkComp)
             prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)
         except (FlashConvergenceError, ZeroDivisionError):
             raise

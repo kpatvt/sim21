@@ -1,0 +1,413 @@
+>> # A recycle test with information flowing both ways
+>> # through the recycle
+>> 
+>> units SI
+>> # set up thermo
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE n-BUTANE ISOBUTANE n-NONANE
+PROPANE n-BUTANE ISOBUTANE n-NONANE 
+>> 
+>> # Add a stream
+>> stream = Stream.Stream_Material()
+>> 
+>> # Make the stream In port current to save typing
+>> cd stream.In
+/stream.In
+>> Fraction = .25 .25 .25 .25
+>> T = 360.15 K
+>> P = 715
+>> # Note that flow is not known for the feed stream
+>> 
+>> # Now create a recycle stream
+>> cd /
+/
+>> recycle = Stream.Stream_Material()
+>> 
+>> # add a mixer to combine the first stream with the recycle
+>> cd /
+/
+>> mixer = Mixer.Mixer()
+>> stream.Out -> mixer.In0
+>> recycle.Out -> mixer.In1
+>> recycle.Out -> mixer.In1
+>> mixer.Out
+Port: /mixer.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+PROPANE            = None
+N-BUTANE           = None
+ISOBUTANE          = None
+N-NONANE           = None
+
+>> 
+>> # add a separator
+>> flash = Flash.SimpleFlash()
+>> mixer.Out -> flash.In
+>> 
+>> # instead of estimating the recycle stream, I will estimate
+>> # the inlet port of the flash for everything but flow
+>> # I will just use the same values as the feed stream
+>> cd flash.In
+/flash.In
+>> # Note use of ~= to mean estimate
+>> Fraction ~= .25 .25 .25 .25
+Changed state of port /flash.In to 1 (0=Normal port; 1=Recycle port)
+>> T ~= 360.15 K
+>> cd /
+/
+>> 
+>> # fix the flow of the vapour from the flash
+>> flash.Vap.MoleFlow = 1652.682
+>> 
+>> # split the liquid from the flash
+>> splitter = Split.Splitter()
+>> flash.Liq0 -> splitter.In
+>> 
+>> # set the flow in one of the splitter outlets
+>> splitter.Out1.MoleFlow = 200
+>> splitter.Out1.P = 715
+>> 
+>> # close the recycle
+>> splitter.Out1 -> recycle.In
+>> 
+>> # still needs balance to figure out flow
+>> balance = Balance.BalanceOp()
+>> # just need a mole balance
+>> balance.BalanceType = 2
+>> 
+>> #set number of balance streams
+>> balance.NumberStreamsInMat = 2
+>> balance.NumberStreamsOutMat = 1
+>> 
+>> # connect the dangling ends of the streams to the balance
+>> stream.In -> balance.Out0
+>> flash.Vap -> balance.In1
+>> splitter.Out0 -> balance.In0
+Iteration 1 -> max Error 1.082683 in /balance.In0.MoleFlow
+Iteration 2 -> max Error 1.369606 in /balance.In0.MoleFlow
+Iteration 3 -> max Error 1.342367 in /balance.In0.MoleFlow
+Iteration 4 -> max Error 0.000102 in /flash.In.Energy
+Iteration 5 -> max Error 0.000101 in /flash.In.Energy
+Iteration 6 -> max Error 0.000101 in /flash.In.Energy
+Iteration 7 -> max Error 0.000101 in /flash.In.Energy
+Iteration 8 -> max Error 0.000101 in /flash.In.Energy
+Iteration 9 -> max Error 0.000101 in /flash.In.Energy
+Iteration 10 -> max Error 0.000101 in /flash.In.Energy
+Iteration 11 -> max Error 0.000101 in /flash.In.Energy
+Iteration 12 -> max Error 0.000101 in /flash.In.Energy
+Iteration 13 -> max Error 0.000101 in /flash.In.Energy
+Iteration 14 -> max Error 0.000101 in /flash.In.Energy
+Iteration 15 -> max Error 0.000101 in /flash.In.Energy
+Iteration 16 -> max Error 0.000101 in /flash.In.Energy
+Iteration 17 -> max Error 0.000101 in /flash.In.Energy
+Iteration 18 -> max Error 0.000101 in /flash.In.Energy
+Iteration 19 -> max Error 0.000101 in /flash.In.Energy
+Maximum 20 iterations exceeded in solving flowsheet /
+Error processing command:
+<class 'sim21.solver.Error.SimError'>
+Maximum 20 iterations exceeded in solving flowsheet /
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 550, in InnerSolve
+    raise Error.SimError("MaxSolverIterExceeded", (maxIter, path))
+
+
+>> 
+>> # All done - check some streams
+>> recycle.Out
+Port: /recycle.Out + sim21.solver.Ports.Port_Material
+Connected to: /mixer.In1
+VapFrac            = 0.0 = 
+T                  = 86.99958005399486 = C
+P                  = 715.0 = kPa
+MoleFlow           = 200.0 = kgmole/h
+MassFlow           = 18891.41053481632 = kg/h
+VolumeFlow         = 31.527480786435806 = m3/hr
+StdLiqVolumeFlow   = 28.234518750911725 = m3/hr
+H                  = -200543.65429327078 = kJ/kmol
+Energy             = -11141314.127403932 = W
+MolecularWeight    = 94.45705267408161 = 
+ZFactor            = 0.03763987894917181 = 
+PROPANE            = 0.10168099106119105 = 
+N-BUTANE           = 0.19421126834694136 = 
+ISOBUTANE          = 0.16568584117403817 = 
+N-NONANE           = 0.5384218994178295 = 
+
+>> splitter.Liq0
+None
+>> splitter.Liq0.Out
+There is no object named Out
+Error processing command:
+<class 'sim21.cli.CommandInterface.CmdError'>
+There is no object named Out
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 389, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 352, in ProcessCommand
+    lhsObj = self.GetObject(self.currentObj, lhsDesc)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2183, in GetObject
+    return self.GetObject(obj, remaining)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2188, in GetObject
+    raise CmdError('CMDNoSuchName', remaining)
+
+
+>> splitter.Out0
+Port: /splitter.Out0 + sim21.solver.Ports.Port_Material
+Connected to: /balance.In0
+VapFrac            = 0.0 = 
+T                  = 86.99958005399486 = C
+P                  = 715.0 = kPa
+MoleFlow           = 1344.5384419887466 = kgmole/h
+MassFlow           = 127001.13843725866 = kg/h
+VolumeFlow         = 211.94954948212273 = m3/hr
+StdLiqVolumeFlow   = 189.8119792582645 = m3/hr
+H                  = -200543.65429327078 = kJ/kmol
+Energy             = -74899625.69283447 = W
+MolecularWeight    = 94.45705267408161 = 
+ZFactor            = 0.03763987894917181 = 
+PROPANE            = 0.10168099106119105 = 
+N-BUTANE           = 0.19421126834694136 = 
+ISOBUTANE          = 0.16568584117403817 = 
+N-NONANE           = 0.5384218994178295 = 
+
+>> flash.In
+Port: /flash.In + sim21.solver.Ports.Port_Material
+Connected to: /mixer.Out
+VapFrac            = 0.5169121210084572 = 
+T                  = 86.99958005399486 ~ C
+P                  = 715.0 = kPa
+MoleFlow           = 3197.2204419887466 = kgmole/h
+MassFlow           = 235137.208815365 = kg/h
+VolumeFlow         = 6438.3409584877 = m3/hr
+StdLiqVolumeFlow   = 372.4727795644241 = m3/hr
+H                  = -157518.1664452007 = kJ/kmol
+Energy             = -139894528.26199487 = W
+MolecularWeight    = 73.544259171915 = 
+ZFactor            = 0.48082864784006657 = 
+PROPANE            = 0.24072200296288931 ~ 
+N-BUTANE           = 0.24651017296646868 ~ 
+ISOBUTANE          = 0.24472578382655943 ~ 
+N-NONANE           = 0.26804204024408257 ~ 
+
+>> stream.Out
+Port: /stream.Out + sim21.solver.Ports.Port_Material
+Connected to: /mixer.In0
+VapFrac            = 0.551407770688256 = 
+T                  = 87.0 = C
+P                  = 715.0 = kPa
+MoleFlow           = 2997.220441988745 = kgmole/h
+MassFlow           = 216245.7982805487 = kg/h
+VolumeFlow         = 6406.854002674635 = m3/hr
+StdLiqVolumeFlow   = 344.2382608135123 = m3/hr
+H                  = -154647.01913427297 = kJ/kmol
+Energy             = -128753113.06718542 = W
+MolecularWeight    = 72.14878 = 
+ZFactor            = 0.5104045993111413 = 
+PROPANE            = 0.25 = 
+N-BUTANE           = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-NONANE           = 0.25 = 
+
+>> 
+>> # reset the temperature
+>> stream.In.T = 400 K
+Iteration 1 -> max Error 8.806090 in /flash.In.Energy
+Iteration 2 -> max Error 0.655924 in /flash.In.Energy
+Iteration 3 -> max Error 0.735746 in /balance.In0.Fraction.N-NONANE
+Iteration 4 -> max Error 0.740677 in /balance.In0.Fraction.N-NONANE
+Iteration 5 -> max Error 0.000003 in /flash.In.Fraction.N-NONANE
+>> 
+>> # check streams again
+>> recycle.Out
+Port: /recycle.Out + sim21.solver.Ports.Port_Material
+Connected to: /mixer.In1
+VapFrac            = 0.0 = 
+T                  = 126.84989085249134 = C
+P                  = 715.0 = kPa
+MoleFlow           = 200.0 = kgmole/h
+MassFlow           = 21862.024627203828 = kg/h
+VolumeFlow         = 37.40203182508552 = m3/hr
+StdLiqVolumeFlow   = 31.621951575411998 = m3/hr
+H                  = -213999.65305017185 = kJ/kmol
+Energy             = -11888869.613898436 = W
+MolecularWeight    = 109.31012313601913 = 
+ZFactor            = 0.04020473312630374 = 
+PROPANE            = 0.05629072692066503 = 
+N-BUTANE           = 0.11001242542179301 = 
+ISOBUTANE          = 0.09256836843552205 = 
+N-NONANE           = 0.7411284792220199 = 
+
+>> splitter.Liq0
+None
+>> splitter.Liq0.Out
+There is no object named Out
+Error processing command:
+<class 'sim21.cli.CommandInterface.CmdError'>
+There is no object named Out
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 389, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 352, in ProcessCommand
+    lhsObj = self.GetObject(self.currentObj, lhsDesc)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2183, in GetObject
+    return self.GetObject(obj, remaining)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2188, in GetObject
+    raise CmdError('CMDNoSuchName', remaining)
+
+
+>> splitter.Out0
+Port: /splitter.Out0 + sim21.solver.Ports.Port_Material
+Connected to: /balance.In0
+VapFrac            = 0.0 = 
+T                  = 126.84989085249134 = C
+P                  = 715.0 = kPa
+MoleFlow           = 593.0759195981944 = kgmole/h
+MassFlow           = 64829.20180028642 = kg/h
+VolumeFlow         = 110.91122209751767 = m3/hr
+StdLiqVolumeFlow   = 93.77109005038523 = m3/hr
+H                  = -213999.65305017185 = kJ/kmol
+Energy             = -35255011.39622923 = W
+MolecularWeight    = 109.31012313601913 = 
+ZFactor            = 0.04020473312630374 = 
+PROPANE            = 0.05629072692066503 = 
+N-BUTANE           = 0.11001242542179301 = 
+ISOBUTANE          = 0.09256836843552205 = 
+N-NONANE           = 0.7411284792220199 = 
+
+>> flash.In
+Port: /flash.In + sim21.solver.Ports.Port_Material
+Connected to: /mixer.Out
+VapFrac            = 0.6757340891168467 = 
+T                  = 126.84989085249134 ~ C
+P                  = 715.0 = kPa
+MoleFlow           = 2445.7579195981943 = kgmole/h
+MassFlow           = 183891.19591972273 = kg/h
+VolumeFlow         = 7144.181857401382 = m3/hr
+StdLiqVolumeFlow   = 289.5534150122546 = m3/hr
+H                  = -149788.8689875378 = kJ/kmol
+Energy             = -101763142.38720194 = W
+MolecularWeight    = 75.18781578756315 = 
+ZFactor            = 0.6279875250123496 = 
+PROPANE            = 0.23415866402173657 ~ 
+N-BUTANE           = 0.23855184935577028 ~ 
+ISOBUTANE          = 0.23712522675077596 ~ 
+N-NONANE           = 0.2901642598717171 ~ 
+
+>> stream.Out
+Port: /stream.Out + sim21.solver.Ports.Port_Material
+Connected to: /mixer.In0
+VapFrac            = 0.7359174767520567 = 
+T                  = 126.85000000000002 = C
+P                  = 715.0 = kPa
+MoleFlow           = 2245.7645339605033 = kgmole/h
+MassFlow           = 162029.17129251888 = kg/h
+VolumeFlow         = 7106.84525279263 = m3/hr
+StdLiqVolumeFlow   = 257.9316711366987 = m3/hr
+H                  = -144070.03265441532 = kJ/kmol
+Energy             = -89874269.3727271 = W
+MolecularWeight    = 72.14878 = 
+ZFactor            = 0.6803376498566872 = 
+PROPANE            = 0.25 = 
+N-BUTANE           = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-NONANE           = 0.25 = 
+
+>> 
+>> #Copy the whole flowsheet
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+Iteration 1 -> max Error 0.000003 in /RootClone.flash.In.Fraction.N-NONANE
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone_1
+Iteration 1 -> max Error 0.000003 in /RootClone_1.RootClone.flash.In.Fraction.N-NONANE
+Iteration 1 -> max Error 0.000003 in /RootClone_1.flash.In.Fraction.N-NONANE
+>> 
+>> /flash.In.State = 0
+Changed state of port /flash.In to 0 (0=Normal port; 1=Recycle port)
+>> /flash.In
+Port: /flash.In + sim21.solver.Ports.Port_Material
+Connected to: /mixer.Out
+VapFrac            = 0.6757340891168467 = 
+T                  = 126.84989085249134 * C
+P                  = 715.0 = kPa
+MoleFlow           = 2445.7579195981943 = kgmole/h
+MassFlow           = 183891.19591972273 = kg/h
+VolumeFlow         = 7144.181857401382 = m3/hr
+StdLiqVolumeFlow   = 289.5534150122546 = m3/hr
+H                  = -149788.8689875378 = kJ/kmol
+Energy             = -101763142.38720194 = W
+MolecularWeight    = 75.18781578756315 = 
+ZFactor            = 0.6279875250123496 = 
+PROPANE            = 0.23415866402173657 * 
+N-BUTANE           = 0.23855184935577028 * 
+ISOBUTANE          = 0.23712522675077596 * 
+N-NONANE           = 0.2901642598717171 * 
+
+>> /flash.In.State = 1
+Changed state of port /flash.In to 1 (0=Normal port; 1=Recycle port)
+>> /flash.In
+Port: /flash.In + sim21.solver.Ports.Port_Material
+Connected to: /mixer.Out
+VapFrac            = 0.6757340891168467 = 
+T                  = 126.84989085249134 ~ C
+P                  = 715.0 = kPa
+MoleFlow           = 2445.7579195981943 = kgmole/h
+MassFlow           = 183891.19591972273 = kg/h
+VolumeFlow         = 7144.181857401382 = m3/hr
+StdLiqVolumeFlow   = 289.5534150122546 = m3/hr
+H                  = -149788.8689875378 = kJ/kmol
+Energy             = -101763142.38720194 = W
+MolecularWeight    = 75.18781578756315 = 
+ZFactor            = 0.6279875250123496 = 
+PROPANE            = 0.23415866402173657 ~ 
+N-BUTANE           = 0.23855184935577028 ~ 
+ISOBUTANE          = 0.23712522675077596 ~ 
+N-NONANE           = 0.2901642598717171 ~ 
+
+>> 
+>> 

@@ -298,7 +298,7 @@ def derivs_secondary(n_count, valid_comps,
     return del_2F_del_V_del_n_T, del_2F_del_n_del_T_V, del_2F_del_n_del_n_T_V
 
 
-# @njit(cache=True)
+@njit(cache=True)
 def identify_phase(eos, r, a_mix, da_dtemp_mix, b_mix, temp, vol, press):
     """
     Identify a phase given the derivative properties
@@ -559,7 +559,7 @@ def pseudo_volume_watson(eos, r, temp, press_eos, rho_eos, a_mix, b_mix, desired
         return '', 0, 0
 
 
-# @njit(cache=True)
+@njit(cache=True)
 def calc_phase(eos, gas_const, temp, press, n, valid_comps, desired_phase, allow_pseudo,
                mw_list, crit_temp, crit_press, omega, k_ij, l_ij,
                ig_temp_ref, ig_press_ref, ig_cp_coeffs, ig_h_form, ig_s_form,

@@ -1,0 +1,129 @@
+>> # Seader example problem, 10_37 (from 2nd Ed.)
+>> # Sucessfully solves
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + METHANE ETHANE PROPANE N-BUTANE N-PENTANE N-DECANE
+METHANE ETHANE PROPANE N-BUTANE N-PENTANE N-DECANE 
+>> 
+>> col = Tower.Tower()
+>> col.Stage_0
+Stage_0
+>> col.Stage_0 + 2  # four stage
+>> 
+>> 
+>> cd col.Stage_0
+/col.Stage_0
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 90
+>> f.Port.P = 75
+>> f.Port.MoleFlow = 1000
+>> f.Port.Fraction = 0 0 0 0 0 1
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.P = 75
+>> 
+>> cd /
+/
+>> 
+>> 
+>> cd col.Stage_3
+/col.Stage_3
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 90
+>> f.Port.P = 75
+>> f.Port.MoleFlow = 1000
+>> f.Port.Fraction = 286 157 240 169 148 0
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 75
+>> 
+>> cd ..
+/col
+>> 
+>> TryToSolve = 1  # start calculation - turned off by default
+Calculating Jacobian for /col
+/col Inner Error 0.002006
+/col Inner Error 0.000635
+/col Inner Error 0.000060
+/col Inner Error 0.000026
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 1 Outer Error 0.088694
+/col Inner Error 0.003818
+/col Inner Error 0.000639
+/col Inner Error 0.000229
+/col Inner Error 0.000031
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.003391
+/col Inner Error 0.001721
+/col Inner Error 0.000227
+/col Inner Error 0.000010
+Inner loop converged
+/col Iteration 3 Outer Error 0.000145
+/col Inner Error 0.000049
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 4 Outer Error 0.000021
+/col Inner Error 0.000004
+Inner loop converged
+>> 
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_3.l.Port
+>> 
+>> cd ..
+/
+>> 
+>> overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 75.0 = psia
+MoleFlow           = 496.0579772065674 = lbmole/h
+MassFlow           = 12629.538657106987 = lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 0.10267282830891415 = ft3/s
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.5484599648021071 = 
+ETHANE             = 0.25001102886677623 = 
+PROPANE            = 0.19061618287811513 = 
+N-BUTANE           = 0.00953705393424415 = 
+N-PENTANE          = 0.0001687546500417906 = 
+N-DECANE           = 0.0012070148687156012 = 
+
+>> bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 128.88942791922133 = F
+P                  = 75.0 = psia
+MoleFlow           = 1503.9420227934324 = lbmole/h
+MassFlow           = 170044.764222893 = lb/h
+VolumeFlow         = 1.1797537109702714 = ft3/s
+StdLiqVolumeFlow   = 1.0780845837840107 = ft3/s
+H                  = -102932.6576963693 = Btu/lbmol
+Energy             = -154778717.30841058 = Btu/hr
+MolecularWeight    = 113.06603688555138 = 
+ZFactor            = 0.03353260819285931 = 
+METHANE            = 0.009263694391359635 = 
+ETHANE             = 0.0219290599246352 = 
+PROPANE            = 0.09670806433648127 = 
+N-BUTANE           = 0.10922566550255335 = 
+N-PENTANE          = 0.09835238703877382 = 
+N-DECANE           = 0.6645211288061967 = 
+
+>> 
+>> 

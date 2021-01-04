@@ -25,7 +25,7 @@ recycle = Stream.Stream_Material()
 cd /
 mixer = Mixer.Mixer()
 stream.Out -> mixer.In0
-recycle.Out ->mixer.In1
+recycle.Out -> mixer.In1
 recycle.Out -> mixer.In1
 mixer.Out
 

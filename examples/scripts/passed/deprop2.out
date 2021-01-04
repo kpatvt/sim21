@@ -1,0 +1,419 @@
+>> # Depeopanizer test with some changes
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane PROPANE
+Methane Ethane PROPANE 
+>> thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane
+ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane 
+>> thermo + n-Heptane n-Octane
+n-Heptane n-Octane 
+>> 
+>> deprop = Tower.Tower()
+>> deprop.Stage_0 + 18  # twenty stages`
+>> 
+>> cd deprop.Stage_0
+/deprop.Stage_0
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.P = 200
+>> v.Port.Fraction.ISOBUTANE = .01
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> estT = Tower.Estimate('T')
+>> estT.Value = 25
+>> 
+>> cd ../Stage_9
+/deprop.Stage_9
+>> f = Tower.Feed()
+>> f.Port.T = 50
+>> f.Port.P = 480
+>> f.Port.MoleFlow = 1000
+>> f.Port.Fraction = .1702 .1473 .1132 .1166 .1066 .0963 .0829 .0694 .0558 .0417
+>> f.Port
+Port: /deprop.Feed_9_f + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0012160576534577289 = 
+T                  = 49.99999999999999 * F
+P                  = 480.0 * psia
+MoleFlow           = 1000.0000000000001 * lbmole/h
+MassFlow           = 54388.326918000006 = lb/h
+VolumeFlow         = 0.4158123139223912 = ft3/s
+StdLiqVolumeFlow   = 0.39667686847159 = ft3/s
+H                  = -62299.57969537366 = Btu/lbmol
+Energy             = -62289103.33675756 = Btu/hr
+MolecularWeight    = 54.388326918 = 
+ZFactor            = 0.13136680931210476 = 
+METHANE            = 0.17020000000000002 * 
+ETHANE             = 0.14730000000000001 * 
+PROPANE            = 0.11320000000000001 * 
+ISOBUTANE          = 0.11660000000000001 * 
+N-BUTANE           = 0.10660000000000001 * 
+ISOPENTANE         = 0.09630000000000001 * 
+N-PENTANE          = 0.08290000000000002 * 
+N-HEXANE           = 0.06940000000000002 * 
+N-HEPTANE          = 0.05580000000000001 * 
+N-OCTANE           = 0.04170000000000001 * 
+
+>> 
+>> cd ../Stage_19
+/deprop.Stage_19
+>> l = Tower.LiquidDraw()
+>> 
+>> l.c3flow = Tower.ComponentMoleFlowSpec()
+>> l.c3flow + PROPANE
+>> l.c3flow.Port = 12
+>> 
+>> reb = Tower.EnergyFeed(1)
+>> #reb.Port.Energy = 8.42e6
+>> estT = Tower.Estimate('T')
+>> estT.Value = 250
+>> 
+>> cd ..
+/deprop
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_19.l.Port
+>> 
+>> 
+>> 
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 1.529796
+/deprop Inner Error 0.236581
+/deprop Inner Error 0.213206
+Step size too small - Exiting inner loop
+/deprop Iteration 1 Outer Error 0.104723
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.050928
+/deprop Inner Error 0.001467
+Step size too small - Exiting inner loop
+/deprop Iteration 2 Outer Error 0.015191
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.187990
+/deprop Inner Error 0.049681
+/deprop Inner Error 0.010776
+/deprop Inner Error 0.001740
+/deprop Inner Error 0.000092
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.001262
+/deprop Inner Error 0.013791
+/deprop Inner Error 0.000381
+/deprop Inner Error 0.000025
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000223
+/deprop Inner Error 0.000912
+/deprop Inner Error 0.000042
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000041
+/deprop Inner Error 0.000038
+/deprop Inner Error 0.000006
+Inner loop converged
+>> 
+>> /overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 200.0 = psia
+MoleFlow           = 423.1968143526796 = lbmole/h
+MassFlow           = 11883.530574268394 = lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 0.09296147048021548 = ft3/s
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.4021769403610971 = 
+ETHANE             = 0.34805725063480086 = 
+PROPANE            = 0.23913220193965018 = 
+ISOBUTANE          = 0.01 = 
+N-BUTANE           = 0.0006334426061494511 = 
+ISOPENTANE         = 1.3305349404858815e-07 = 
+N-PENTANE          = 5.830245498086101e-09 = 
+N-HEXANE           = 1.409697091715683e-09 = 
+N-HEPTANE          = 1.0643466736590932e-09 = 
+N-OCTANE           = 4.550408358591066e-10 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.1681393910916824e-08 = 
+T                  = 253.7044904998159 = F
+P                  = 200.0 = psia
+MoleFlow           = 576.8031856473203 = lbmole/h
+MassFlow           = 42504.79605582607 = lb/h
+VolumeFlow         = 0.3774171907450112 = ft3/s
+StdLiqVolumeFlow   = 0.3037153956463354 = ft3/s
+H                  = -68604.27319618683 = Btu/lbmol
+Energy             = -39564509.00282153 = Btu/hr
+MolecularWeight    = 73.69029352712676 = 
+ZFactor            = 0.06153788655350694 = 
+METHANE            = 5.734387911391244e-11 = 
+ETHANE             = 5.6870681053689175e-06 = 
+PROPANE            = 0.02080434752892556 = 
+ISOBUTANE          = 0.19481172273151293 = 
+N-BUTANE           = 0.18434698655082948 = 
+ISOPENTANE         = 0.166954597492578 = 
+N-PENTANE          = 0.1437231963960528 = 
+N-HEXANE           = 0.12031833583848223 = 
+N-HEPTANE          = 0.09674010292947681 = 
+N-OCTANE           = 0.07229502340669311 = 
+
+>> 
+>> cd Stage_19
+/deprop.Stage_19
+>> delete l.c3flow
+>> 
+>> c = Tower.InternalLiquidClone()
+>> c.Port.T = 255
+/deprop Inner Error 0.001440
+Inner loop is not changing significantly - exiting
+/deprop Iteration 1 Outer Error 0.000008
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.000154
+/deprop Inner Error 0.000014
+/deprop Inner Error 0.000000
+Inner loop converged
+>> 
+>> /overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 200.0 = psia
+MoleFlow           = 426.08952670451913 = lbmole/h
+MassFlow           = 12011.300679711016 = lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 0.09392737895778959 = ft3/s
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.39944654271330476 = 
+ETHANE             = 0.3456966004737273 = 
+PROPANE            = 0.2442573372624237 = 
+ISOBUTANE          = 0.01 = 
+N-BUTANE           = 0.0005993616457338633 = 
+ISOPENTANE         = 1.2183663174512966e-07 = 
+N-PENTANE          = 5.3202884321118875e-09 = 
+N-HEXANE           = 1.3511938449886414e-09 = 
+N-HEPTANE          = 1.044212083414765e-09 = 
+N-OCTANE           = 4.506894033495242e-10 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 254.9998727178232 = F
+P                  = 200.0 = psia
+MoleFlow           = 573.9104732954808 = lbmole/h
+MassFlow           = 42377.0258824306 = lb/h
+VolumeFlow         = 0.3767661163067158 = ft3/s
+StdLiqVolumeFlow   = 0.30274948661391765 = ft3/s
+H                  = -68648.72201253487 = Btu/lbmol
+Energy             = -39391595.29781492 = Btu/hr
+MolecularWeight    = 73.8390878965761 = 
+ZFactor            = 0.06162945659173507 = 
+METHANE            = 2.033685055258067e-08 = 
+ETHANE             = 4.006061738157358e-06 = 
+PROPANE            = 0.01589883299977714 = 
+ISOBUTANE          = 0.19574323535032245 = 
+N-BUTANE           = 0.1852982707727868 = 
+ISOPENTANE         = 0.16779611553996987 = 
+N-PENTANE          = 0.144447612633825 = 
+N-HEXANE           = 0.1209247829644321 = 
+N-HEPTANE          = 0.09722770737160474 = 
+N-OCTANE           = 0.0726594159686933 = 
+
+>> 
+>> c.Port.T = None
+>> c.c3spec = Tower.MassFractionSpec()
+>> c.c3spec + PROPANE
+>> c.c3spec.Port = .02
+/deprop Inner Error 0.010506
+Inner loop is not changing significantly - exiting
+/deprop Iteration 1 Outer Error 0.004719
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.009521
+/deprop Inner Error 0.001671
+/deprop Inner Error 0.000088
+/deprop Inner Error 0.000029
+/deprop Inner Error 0.000003
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.015061
+/deprop Inner Error 0.002057
+/deprop Inner Error 0.000178
+/deprop Inner Error 0.000022
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.001658
+/deprop Inner Error 0.000214
+/deprop Inner Error 0.000021
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000296
+/deprop Inner Error 0.000020
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000059
+/deprop Inner Error 0.000001
+Inner loop converged
+>> 
+>> /overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 200.0 = psia
+MoleFlow           = 415.7035297598746 = lbmole/h
+MassFlow           = 11552.271973765692 = lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 0.09045707935529433 = ft3/s
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.4094264007176243 = 
+ETHANE             = 0.3543257179918663 = 
+PROPANE            = 0.22557127926592063 = 
+ISOBUTANE          = 0.01 = 
+N-BUTANE           = 0.0006762428849525741 = 
+ISOPENTANE         = 1.3566388430031116e-07 = 
+N-PENTANE          = 5.736678747662988e-09 = 
+N-HEXANE           = 1.2146826509983346e-09 = 
+N-HEPTANE          = 8.604910464316669e-10 = 
+N-OCTANE           = 3.561397940123624e-10 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 250.38719473350892 = F
+P                  = 200.0 = psia
+MoleFlow           = 584.2964702401255 = lbmole/h
+MassFlow           = 42836.05222934736 = lb/h
+VolumeFlow         = 0.3791083204946166 = ft3/s
+StdLiqVolumeFlow   = 0.3062197670301956 = ft3/s
+H                  = -68491.18840814529 = Btu/lbmol
+Energy             = -40012429.96817386 = Btu/hr
+MolecularWeight    = 73.31218723779811 = 
+ZFactor            = 0.06130598097717245 = 
+METHANE            = 7.66780010882362e-11 = 
+ETHANE             = 9.495772029854411e-06 = 
+PROPANE            = 0.03325233676103136 = 
+ISOBUTANE          = 0.19244147607462928 = 
+N-BUTANE           = 0.18196050953731913 = 
+ISOPENTANE         = 0.16481349538953818 = 
+N-PENTANE          = 0.14188002467509928 = 
+N-HEXANE           = 0.11877531874620295 = 
+N-HEPTANE          = 0.09549946385840559 = 
+N-OCTANE           = 0.0713678791090663 = 
+
+>> 
+>> #Now test TriggerSolve
+>> cd /
+/
+>> deprop.TriggerSolve = 1
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.000012
+/deprop Inner Error 0.000000
+Inner loop converged
+>> deprop.TryToSolve = 0
+>> 
+>> 
+>> #Lets trigger a solve
+>> deprop.TriggerSolve = 1
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.000002
+/deprop Inner Error 0.000000
+Inner loop converged
+>> deprop.TriggerSolve
+/deprop.TriggerSolve = 0 
+>> deprop.TryToSolve
+/deprop.TryToSolve = 0 
+>> 
+>> 
+>> #Lets change a spec
+>> deprop.Stage_19.c.c3spec.Port = 0.01
+>> 
+>> #Everything is forgotten. trigger a solve
+>> deprop.TriggerSolve = 1
+/deprop Inner Error 0.002019
+/deprop Inner Error 0.000460
+/deprop Inner Error 0.000080
+/deprop Inner Error 0.000005
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.011370
+/deprop Inner Error 0.004427
+/deprop Inner Error 0.001464
+/deprop Inner Error 0.000367
+/deprop Inner Error 0.000014
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.001682
+/deprop Inner Error 0.000202
+/deprop Inner Error 0.000008
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000284
+/deprop Inner Error 0.000016
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000061
+/deprop Inner Error 0.000001
+Inner loop converged
+>> deprop.Stage_19.c.c3spec.Port = None
+>> deprop.TriggerSolve = 1
+>> deprop.Stage_19.c.c3spec.Port = 0.02
+>> deprop.TryToSolve = 1
+/deprop Inner Error 0.004459
+/deprop Inner Error 0.000821
+/deprop Inner Error 0.000058
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.014875
+/deprop Inner Error 0.003521
+/deprop Inner Error 0.000622
+/deprop Inner Error 0.000015
+/deprop Inner Error 0.000003
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.001601
+/deprop Inner Error 0.000232
+/deprop Inner Error 0.000017
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000270
+/deprop Inner Error 0.000009
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000056
+/deprop Inner Error 0.000001
+Inner loop converged
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 

@@ -1,0 +1,210 @@
+>> # Simple compressor test
+>> units SI
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + METHANE ETHANE PROPANE n-BUTANE
+METHANE ETHANE PROPANE n-BUTANE 
+>> comp = Compressor.Compressor()
+>> comp
+Operation: comp = sim21.unitop.Compressor.Compressor
+Port: In = sim21.solver.Ports.Port_Material
+Port: Out = sim21.solver.Ports.Port_Material
+Port: InQ = sim21.solver.Ports.Port_Energy (/comp.TotalQ.In)
+Port: AdiabaticEff = sim21.solver.Ports.Port_Signal (/comp.EfficiencySig.In)
+Port: DeltaP = sim21.solver.Ports.Port_Signal
+Port: PolytropicEff = sim21.solver.Ports.Port_Signal
+Child: EfficiencySig = sim21.unitop.Stream.Stream_Signal
+Child: Ideal = sim21.unitop.Compressor.IdealCompressorExpander
+Child: IdealQ = sim21.unitop.Sensor.EnergySensor
+Child: Mix = sim21.unitop.Balance.BalanceOp
+Child: Set = sim21.unitop.Set.Set
+Child: TotalQ = sim21.unitop.Sensor.EnergySensor
+Child: Waste = sim21.unitop.Heater.Heater
+Child: WasteQ = sim21.unitop.Sensor.EnergySensor
+Parameter: Ignored = None
+>> cd comp
+/comp
+>> In.Fraction = .4 .3 .2 .1
+>> In.P = 101.325
+>> In.T = 20
+>> In.MoleFlow = 100
+>> Out.P = 400
+>> Efficiency = .8
+>> In
+Port: /comp.Ideal.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 20.0 * C
+P                  = 101.325 * kPa
+MoleFlow           = 100.0 * kgmole/h
+MassFlow           = 3006.904 = kg/h
+VolumeFlow         = 2385.3394241305573 = m3/hr
+StdLiqVolumeFlow   = 5.308300000000001 = m3/hr
+H                  = -88798.97871407201 = kJ/kmol
+Energy             = -2466638.2976131113 = W
+MolecularWeight    = 30.06904 = 
+ZFactor            = 0.9916141490209276 = 
+METHANE            = 0.4000000000000001 * 
+ETHANE             = 0.30000000000000004 * 
+PROPANE            = 0.20000000000000004 * 
+N-BUTANE           = 0.10000000000000002 * 
+
+>> Out
+Port: /comp.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 99.03786358226489 = C
+P                  = 400.0 * kPa
+MoleFlow           = 100.00000000000001 = kgmole/h
+MassFlow           = 3006.904 = kg/h
+VolumeFlow         = 761.0838471485582 = m3/hr
+StdLiqVolumeFlow   = 5.308300000000001 = m3/hr
+H                  = -84254.14975675425 = kJ/kmol
+Energy             = -2340393.0487987297 = W
+MolecularWeight    = 30.06904 = 
+ZFactor            = 0.9837757287462187 = 
+METHANE            = 0.4000000000000001 = 
+ETHANE             = 0.30000000000000004 = 
+PROPANE            = 0.20000000000000004 = 
+N-BUTANE           = 0.10000000000000002 = 
+
+>> InQ
+Port: /comp.TotalQ.In + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 126245.24881438178 = W
+
+>> Efficiency = .5
+>> Out
+Port: /comp.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 139.94191405955894 = C
+P                  = 400.0 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 3006.9039999999995 = kg/h
+VolumeFlow         = 848.781100982343 = m3/hr
+StdLiqVolumeFlow   = 5.3083 = m3/hr
+H                  = -81527.25238236361 = kJ/kmol
+Energy             = -2264645.8995101005 = W
+MolecularWeight    = 30.06904 = 
+ZFactor            = 0.98849576529049 = 
+METHANE            = 0.4000000000000001 = 
+ETHANE             = 0.30000000000000004 = 
+PROPANE            = 0.20000000000000004 = 
+N-BUTANE           = 0.10000000000000002 = 
+
+>> InQ
+Port: /comp.TotalQ.In + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 201992.39810301084 = W
+
+>> # ideal efficiency
+>> Efficiency = 1.
+>> Out
+Port: /comp.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 84.69864281258037 = C
+P                  = 400.0 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 3006.9039999999995 = kg/h
+VolumeFlow         = 730.163254833225 = m3/hr
+StdLiqVolumeFlow   = 5.3083 = m3/hr
+H                  = -85163.11554821781 = kJ/kmol
+Energy             = -2365642.098561606 = W
+MolecularWeight    = 30.06904 = 
+ZFactor            = 0.9816267965610043 = 
+METHANE            = 0.4000000000000001 = 
+ETHANE             = 0.30000000000000004 = 
+PROPANE            = 0.20000000000000004 = 
+N-BUTANE           = 0.10000000000000002 = 
+
+>> InQ
+Port: /comp.TotalQ.In + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 100996.19905150542 = W
+
+>> 
+>> # add expander
+>> cd /
+/
+>> expander = Compressor.Expander()
+>> comp.Out -> expander.In
+>> expander.Efficiency = 1.
+>> expander.Out.P = 101.325
+>> expander.OutQ
+Port: /expander.TotalQ.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 100996.13768220646 = W
+
+>> expander.Out
+Port: /expander.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 20.000047262736814 = C
+P                  = 101.325 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 3006.9039999999995 = kg/h
+VolumeFlow         = 2385.339817956657 = m3/hr
+StdLiqVolumeFlow   = 5.3083 = m3/hr
+H                  = -88798.97650477724 = kJ/kmol
+Energy             = -2466638.2362438124 = W
+MolecularWeight    = 30.06904 = 
+ZFactor            = 0.9916141528674173 = 
+METHANE            = 0.4000000000000001 = 
+ETHANE             = 0.30000000000000004 = 
+PROPANE            = 0.20000000000000004 = 
+N-BUTANE           = 0.10000000000000002 = 
+
+>> comp.Efficiency = .75
+>> expander.Efficiency = .75
+>> comp.InQ
+Port: /comp.TotalQ.In + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 134661.59873534055 = W
+
+>> comp.Out
+Port: /comp.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: /expander.Ideal.In
+VapFrac            = 1.0 = 
+T                  = 103.73464744443083 = C
+P                  = 400.0 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 3006.9039999999995 = kg/h
+VolumeFlow         = 771.1895479396278 = m3/hr
+StdLiqVolumeFlow   = 5.3083 = m3/hr
+H                  = -83951.16115959975 = kJ/kmol
+Energy             = -2331976.698877771 = W
+MolecularWeight    = 30.06904 = 
+ZFactor            = 0.9844156162260241 = 
+METHANE            = 0.4000000000000001 = 
+ETHANE             = 0.30000000000000004 = 
+PROPANE            = 0.20000000000000004 = 
+N-BUTANE           = 0.10000000000000002 = 
+
+>> expander.OutQ
+Port: /expander.TotalQ.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 80312.57289572584 = W
+
+>> expander.Out
+Port: /expander.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 54.68571469368817 = C
+P                  = 101.325 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 3006.9039999999995 = kg/h
+VolumeFlow         = 2673.831655624367 = m3/hr
+StdLiqVolumeFlow   = 5.3083 = m3/hr
+H                  = -86842.41378384588 = kJ/kmol
+Energy             = -2412289.2717734966 = W
+MolecularWeight    = 30.06904 = 
+ZFactor            = 0.9939401261222208 = 
+METHANE            = 0.4000000000000001 = 
+ETHANE             = 0.30000000000000004 = 
+PROPANE            = 0.20000000000000004 = 
+N-BUTANE           = 0.10000000000000002 = 
+

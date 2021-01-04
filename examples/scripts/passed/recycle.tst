@@ -91,7 +91,7 @@ paste /innerflowsh
 
 
 #Now lets test flags for unconverged recycles that are not being re-solved
-/MaxNumIterations = 4
+/MaxNumIterations = 20
 /recycle.In.T ~= -87
 
 

@@ -1,0 +1,103 @@
+>> # Ammonia Refrigeration Loop - no streams
+>> # Sim42 Tutorial
+>> 
+>> 
+>> $thermo = Sim21Thermo.SRK
+pkgName: SRK
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Ammonia
+Ammonia 
+>> 
+>> 
+>> Chiller    = Heater.Heater()
+>> Compressor = Compressor.Compressor()
+>> Condenser  = Heater.Cooler()
+>> JT         = Valve.Valve()
+>> 
+>> 
+>> Chiller.Out.T        = 253.15 K
+>> Chiller.Out.VapFrac  = 1
+>> Chiller.Out.Fraction = 1
+>> Chiller.DeltaP = 20
+>> 
+>> Chiller.InQ   = 10000
+>> 
+>> 
+>> Condenser.Out.T        = 333.15 K
+>> Condenser.Out.VapFrac  = 0
+>> Condenser.Out.Fraction = 1
+>> Condenser.DeltaP = 20
+>> 
+>> Compressor.Efficiency = 0.75
+>> 
+>> Chiller.Out    -> Compressor.In
+>> Compressor.Out -> Condenser.In
+>> Condenser.Out  -> JT.In
+>> JT.Out         -> Chiller.In
+>> 
+>> 
+>> Chiller.Out
+Port: /Chiller.Out + sim21.solver.Ports.Port_Material
+Connected to: /Compressor.Ideal.In
+VapFrac            = 1.0 * 
+T                  = -19.99999999999997 * C
+P                  = 185.9069959260533 = kPa
+MoleFlow           = 2.2025215652748344 = kgmole/h
+MassFlow           = 37.51008756784437 = kg/h
+VolumeFlow         = 24.354788973792342 = m3/hr
+StdLiqVolumeFlow   = 0.054974938269259865 = m3/hr
+H                  = -47614.11379189864 = kJ/kmol
+Energy             = -29130.864566140743 = W
+MolecularWeight    = 17.03052 = 
+ZFactor            = 0.9766699326476956 = 
+AMMONIA            = 1.0 * 
+
+>> Compressor.Out
+Port: /Compressor.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: /Condenser.In
+VapFrac            = 1.0 | 
+T                  = 249.24583274898453 | C
+P                  = 2680.2954498908084 | kPa
+MoleFlow           = 2.2025215652748344 = kgmole/h
+MassFlow           = 37.51008756784437 = kg/h
+VolumeFlow         = 3.45720479520787 = m3/hr
+StdLiqVolumeFlow   = 0.054974938269259865 = m3/hr
+H                  = -37717.669049121905 = kJ/kmol
+Energy             = -23076.105409052823 = W
+MolecularWeight    = 17.03052 | 
+ZFactor            = 0.9686206366747975 | 
+AMMONIA            = 1.0 = 
+
+>> Condenser.Out
+Port: /Condenser.Out + sim21.solver.Ports.Port_Material
+Connected to: /JT.In
+VapFrac            = 0.0 * 
+T                  = 60.0 * C
+P                  = 2660.2954498908084 = kPa
+MoleFlow           = 2.2025215652748344 = kgmole/h
+MassFlow           = 37.51008756784437 = kg/h
+VolumeFlow         = 0.08848660861892761 = m3/hr
+StdLiqVolumeFlow   = 0.054974938269259865 = m3/hr
+H                  = -63959.01618358436 = kJ/kmol
+Energy             = -39130.86456614075 = W
+MolecularWeight    = 17.03052 = 
+ZFactor            = 0.038584533162784214 = 
+AMMONIA            = 1.0 * 
+
+>> JT.Out
+Port: /JT.Out + sim21.solver.Ports.Port_Material
+Connected to: /Chiller.In
+VapFrac            = 0.2990262566094427 | 
+T                  = -17.723255194953566 | C
+P                  = 205.9069959260533 | kPa
+MoleFlow           = 2.202521565274834 | kgmole/h
+MassFlow           = 37.510087567844366 | kg/h
+VolumeFlow         = 6.6715001727226735 | m3/hr
+StdLiqVolumeFlow   = 0.05497493826925986 | m3/hr
+H                  = -63959.01618358436 = kJ/kmol
+Energy             = -39130.86456614074 | W
+MolecularWeight    = 17.03052 | 
+ZFactor            = 0.29367966831605785 | 
+AMMONIA            = 1.0 = 
+

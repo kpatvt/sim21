@@ -3,6 +3,9 @@ pytest~=6.2.1
 click~=7.1.2
 setuptools~=49.6.0
 numba~=0.52.0
-
-scipy~=1.5.3
 dataclasses~=0.7
+
+scipy~=1.6.0
+matplotlib~=3.3.3
+pathlib~=1.0.1
+tabulate~=0.8.7

@@ -1,0 +1,147 @@
+>> # Seader example problem, 10_4 (from 2nd Ed.)
+>> #
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + METHANE ETHANE PROPANE N-BUTANE N-PENTANE N-DECANE
+METHANE ETHANE PROPANE N-BUTANE N-PENTANE N-DECANE 
+>> 
+>> col = Tower.Tower()
+>> col.Stage_0
+Stage_0
+>> col.Stage_0 + 4  # six stage
+>> 
+>> 
+>> cd col.Stage_0
+/col.Stage_0
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 90
+>> f.Port.P = 400
+>> f.Port.MoleFlow = 900.0
+>> f.Port.Fraction = 0 0 0 0.05 0.78 164.17
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.P = 400
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = 100
+>> 
+>> cd /
+/
+>> 
+>> 
+>> cd col.Stage_5
+/col.Stage_5
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 105
+>> f.Port.P = 400
+>> f.Port.MoleFlow = 800
+>> f.Port.Fraction = 160 370 240 25 5 0
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 400
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = 100
+>> 
+>> 
+>> cd ..
+/col
+>> 
+>> DampingFactor = 1.0
+>> TryToSolve = 1  # start calculation - turned off by default
+Calculating Jacobian for /col
+/col Inner Error 0.033895
+/col Inner Error 0.020579
+/col Inner Error 0.011491
+/col Inner Error 0.002566
+/col Inner Error 0.002220
+/col Inner Error 0.001135
+/col Inner Error 0.000073
+/col Inner Error 0.000014
+/col Inner Error 0.000007
+Inner loop converged
+/col Iteration 1 Outer Error 0.060272
+/col Inner Error 0.063659
+/col Inner Error 0.059872
+/col Inner Error 0.052926
+/col Inner Error 0.015914
+/col Inner Error 0.009319
+/col Inner Error 0.005286
+/col Inner Error 0.002434
+/col Inner Error 0.000659
+/col Inner Error 0.000034
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 2 Outer Error 0.004170
+/col Inner Error 0.003281
+/col Inner Error 0.000692
+/col Inner Error 0.000045
+/col Inner Error 0.000006
+Inner loop converged
+/col Iteration 3 Outer Error 0.000596
+/col Inner Error 0.000351
+/col Inner Error 0.000042
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 4 Outer Error 0.000072
+/col Inner Error 0.000021
+/col Inner Error 0.000004
+Inner loop converged
+>> 
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_5.l.Port
+>> 
+>> cd /
+/
+>> 
+>> overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 400.0 = psia
+MoleFlow           = 67.99940109513736 = lbmole/h
+MassFlow           = 1099.0787325255687 = lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 0.010791321724805583 = ft3/s
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.9951391871946762 = 
+ETHANE             = 0.004203440163694977 = 
+PROPANE            = 5.099996293962439e-06 = 
+N-BUTANE           = 4.54915947624785e-05 = 
+N-PENTANE          = 0.00024256685419794 = 
+N-DECANE           = 0.00036421419637446293 = 
+
+>> bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 132.03887255302917 = F
+P                  = 400.0 = psia
+MoleFlow           = 1632.0005989048627 = lbmole/h
+MassFlow           = 152722.2010805654 = lb/h
+VolumeFlow         = 1.1109758633745146 = ft3/s
+StdLiqVolumeFlow   = 0.9672503301019196 = ft3/s
+H                  = -88029.15191864397 = Btu/lbmol
+Energy             = -143639470.03517398 = Btu/hr
+MolecularWeight    = 93.5797457323533 = 
+ZFactor            = 0.1543733589802484 = 
+METHANE            = 0.05657542731688826 = 
+ETHANE             = 0.22654046134200098 = 
+PROPANE            = 0.14705855706447393 = 
+N-BUTANE           = 0.015483838601827405 = 
+N-PENTANE          = 0.005660568421318941 = 
+N-DECANE           = 0.5486811472534904 = 
+

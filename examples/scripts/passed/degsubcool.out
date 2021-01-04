@@ -1,0 +1,1383 @@
+>> # Simple distilation column test
+>> units SI
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
+PROPANE n-BUTANE ISOBUTANE n-PENTANE 
+>> 
+>> col = Tower.Tower()
+>> col.Stage_0 + 20  # twenty two stages`
+>> 
+>> /col.MaxOuterLoops = 50
+>> /col.Damping = 0.9
+>> cd col.Stage_10
+/col.Stage_10
+>> f = Tower.Feed()
+>> f.Port.T = 30
+>> f.Port.P = 720
+>> f.Port.MoleFlow = 10
+>> f.Port.Fraction = .4 .05 .4 .15
+>> f.Port
+Port: /col.Feed_10_f + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 30.0 * C
+P                  = 720.0 * kPa
+MoleFlow           = 10.0 * kgmole/h
+MassFlow           = 546.15555 = kg/h
+VolumeFlow         = 0.9655645670839446 = m3/hr
+StdLiqVolumeFlow   = 0.93999 = m3/hr
+H                  = -143034.62168443223 = kJ/kmol
+Energy             = -397318.39356786734 = W
+MolecularWeight    = 54.615555 = 
+ZFactor            = 0.027581765327025335 = 
+PROPANE            = 0.4 * 
+N-BUTANE           = 0.05 * 
+ISOBUTANE          = 0.4 * 
+N-PENTANE          = 0.15 * 
+
+>> 
+>> cd ../Stage_0
+/col.Stage_0
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 700
+>> 
+>> l.Port.MoleFlow = 5
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> 
+>> reflux = Tower.StageSpecification('Reflux')
+>> reflux.Value = 1
+>> 
+>> cd ../Stage_21
+/col.Stage_21
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 720
+>> reb = Tower.EnergyFeed(1)
+>> 
+>> cd ..
+/col
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.023985
+/col Inner Error 0.005666
+/col Inner Error 0.003543
+/col Inner Error 0.000256
+/col Inner Error 0.000028
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 1 Outer Error 0.024536
+/col Inner Error 0.046431
+/col Inner Error 0.010417
+/col Inner Error 0.002218
+/col Inner Error 0.000272
+/col Inner Error 0.000040
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 2 Outer Error 0.000759
+/col Inner Error 0.000160
+/col Inner Error 0.000012
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000019
+/col Inner Error 0.000032
+/col Inner Error 0.000004
+Inner loop converged
+>> 
+>> # since there was little output here, I will put some profile stuff here
+>> L_MassFraction.PROPANE
+[0.74459982 0.55374142 0.4435768  0.38718542 0.35973487 0.34643686
+ 0.33955565 0.33487453 0.32916242 0.31817595 0.29596742 0.25601346
+ 0.21133091 0.16606201 0.12443773 0.08935136 0.06182774 0.04139844
+ 0.02681564 0.01663661 0.00955241 0.00460214]
+>> V_MoleFraction.ISOBUTANE
+[0.09543393 0.20006882 0.28044426 0.32827819 0.35233628 0.36290303
+ 0.36658816 0.36668776 0.36421962 0.35820044 0.3451615  0.39428573
+ 0.45613609 0.52739595 0.60169805 0.67160813 0.73119933 0.77735714
+ 0.80911736 0.82527872 0.81930842 0.76655074]
+>> L_MassFlow
+[234.95883832 238.79752727 242.19827909 244.30429187 245.33784233
+ 245.68111791 245.49975976 244.61037748 242.28552553 237.12767539
+ 817.35735217 826.44745696 837.97271671 851.33134073 865.3381312
+ 878.60917102 890.03145154 898.94385363 904.80949944 906.20069523
+ 899.49089663 311.19671168]
+>> L_Viscosity
+[0.00012015 0.0001242  0.00012576 0.00012624 0.00012634 0.00012631
+ 0.00012625 0.00012621 0.00012627 0.00012655 0.00012717 0.00012696
+ 0.00012655 0.00012591 0.00012511 0.00012426 0.00012345 0.00012275
+ 0.00012216 0.00012161 0.00012096 0.00011968]
+>> L_StdVolFraction.PROPANE
+[0.73404966 0.54027427 0.43028587 0.37452319 0.34754053 0.33455265
+ 0.32793203 0.32360882 0.31861656 0.30922231 0.2901159  0.25041908
+ 0.20621989 0.1616525  0.12086256 0.08662155 0.05985338 0.04003949
+ 0.025929   0.0161049  0.00929278 0.0045425 ]
+>> V_StdVolFraction.PROPANE
+[0.8689986  0.73404966 0.63587555 0.57863735 0.54907619 0.53466696
+ 0.52778566 0.52444985 0.52265329 0.52124515 0.51914426 0.46374372
+ 0.3967875  0.32322143 0.25022163 0.18457073 0.13040748 0.08872006
+ 0.05826177 0.03679631 0.0219767  0.01175067]
+>> L_VolumeFlow
+[0.43447615 0.43930448 0.44484914 0.44858669 0.45049036 0.45112831
+ 0.45074604 0.44891198 0.44406604 0.43319911 1.48331698 1.50148104
+ 1.52493885 1.55265164 1.58223108 1.61069482 1.63551753 1.655118
+ 1.6682247  1.67169253 1.65747325 0.5713642 ]
+>> L_StdLiqVolumeFlow
+[0.4046706  0.41556114 0.42393099 0.42882861 0.43117543 0.43196024
+ 0.43160908 0.42978279 0.42499298 0.41427731 1.41578309 1.43457418
+ 1.45805781 1.48490569 1.51271979 1.53880405 1.56103431 1.57812136
+ 1.58881012 1.58943809 1.56991524 0.5353194 ]
+>> V_StdLiqVolumeFlow
+[7.56936094e-42 8.09341194e-01 8.20231741e-01 8.28601592e-01
+ 8.33499211e-01 8.35846023e-01 8.36630840e-01 8.36279682e-01
+ 8.34453391e-01 8.29663579e-01 8.18947910e-01 8.80463682e-01
+ 8.99254776e-01 9.22738411e-01 9.49586284e-01 9.77400383e-01
+ 1.00348465e+00 1.02571491e+00 1.04280196e+00 1.05349072e+00
+ 1.05411869e+00 1.03459584e+00]
+>> 
+>> 
+>> cd /
+/
+>> 
+>> #Create streams
+>> s_feed = Stream.Stream_Material()
+>> s_liqdraw_0 = Stream.Stream_Material()
+>> s_liqdraw_21 = Stream.Stream_Material()
+>> s_vapdraw_0 = Stream.Stream_Material()
+>> ene_cond = Stream.Stream_Energy()
+>> ene_reb = Stream.Stream_Energy()
+>> s_intvap_1 = Stream.Stream_Material()
+>> s_intliq_0 = Stream.Stream_Material()
+>> 
+>> 
+>> 
+>> #Create clones in streams
+>> cd /s_feed
+/s_feed
+>> clone = Stream.ClonePort(0)
+>> cd /s_liqdraw_0
+/s_liqdraw_0
+>> clone = Stream.ClonePort()
+>> cd /s_liqdraw_21
+/s_liqdraw_21
+>> clone = Stream.ClonePort()
+>> cd /s_vapdraw_0
+/s_vapdraw_0
+>> clone = Stream.ClonePort()
+>> cd /ene_cond
+/ene_cond
+>> clone = Stream.ClonePort()
+>> cd clone
+/ene_cond.clone
+>> cd /ene_reb
+/ene_reb
+>> clone = Stream.ClonePort(0)
+>> cd /s_intvap_1
+/s_intvap_1
+>> clone = Stream.ClonePort(0)
+>> cd /s_intliq_0
+/s_intliq_0
+>> clone = Stream.ClonePort()
+>> cd /s_liqdraw_0
+/s_liqdraw_0
+>> clone2 = Stream.ClonePort()
+>> cd /ene_cond
+/ene_cond
+>> clone2 = Stream.ClonePort()
+>> 
+>> #Create clones in tower
+>> cd /col.Stage_1
+/col.Stage_1
+>> vaporclone = Tower.InternalVapourClone()
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000001
+/col Inner Error 0.000001
+Inner loop converged
+>> cd /col.Stage_0
+/col.Stage_0
+>> liquidclone = Tower.InternalLiquidClone()
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> 
+>> 
+>> 
+>> #Create a balance for the overall tower
+>> cd /
+/
+>> bal = Balance.BalanceOp()
+>> cd bal
+/bal
+>> NumberStreamsInMat = 1
+>> NumberStreamsOutMat = 2
+>> NumberStreamsInEne = 1
+>> NumberStreamsOutEne = 2
+>> BalanceType = 4
+>> 
+>> 
+>> #Create a balance for the top stage
+>> cd /
+/
+>> stagebalance = Balance.BalanceOp()
+>> cd stagebalance
+/stagebalance
+>> BalanceType = 4
+>> NumberStreamsInMat = 1
+>> NumberStreamsOutMat = 2
+>> NumberStreamsOutEne = 2
+>> 
+>> 
+>> 
+>> #Connect the streams to the tower and the clones to the balance
+>> /s_feed.Out -> /col.Feed_10_f
+>> /s_liqdraw_0.In -> /col.LiquidDraw_0_l
+>> /s_liqdraw_21.In -> /col.LiquidDraw_21_l
+>> /ene_cond.In -> /col.EnergyFeed_0_cond
+>> /ene_reb.Out -> /col.EnergyFeed_21_reb
+>> 
+>> /bal.In0 -> /s_feed.clone
+>> /bal.Out0 -> /s_liqdraw_0.clone
+>> /bal.Out1 -> /s_liqdraw_21.clone
+>> /bal.InQ0 -> /ene_reb.clone
+>> /bal.OutQ0 -> /ene_cond.clone
+>> 
+>> /stagebalance.In0 -> /s_intvap_1.clone
+>> /stagebalance.Out0 -> /s_intliq_0.clone
+>> /stagebalance.Out1 -> /s_liqdraw_0.clone2
+>> /stagebalance.OutQ0 -> /ene_cond.clone2
+>> 
+>> /s_intliq_0.In -> /col.InternalLiquid_0_liquidclone
+>> /s_intvap_1.In -> /col.InternalVapour_1_vaporclone
+>> 
+>> 
+>> 
+>> cd /col
+/col
+>> MaxOuterError = 1e-6
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> MaxInnerError = 1e-6
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> TryToRestart = 1
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /col.LiquidDraw_0_l
+Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
+Connected to: /s_liqdraw_0.In
+VapFrac            = 1.7996493864055564e-09 = 
+T                  = 19.145603616719825 = C
+P                  = 700.0 * kPa
+MoleFlow           = 5.0 * kgmole/h
+MassFlow           = 234.9603320081784 = kg/h
+VolumeFlow         = 0.4344788636954325 = m3/hr
+StdLiqVolumeFlow   = 0.4046732650552046 = m3/hr
+H                  = -128550.52235779306 = kJ/kmol
+Energy             = -178542.39216360147 = W
+MolecularWeight    = 46.99206640163568 = 
+ZFactor            = 0.025028811144912937 = 
+PROPANE            = 0.7935044043795 = 
+N-BUTANE           = 0.00642194121217878 = 
+ISOBUTANE          = 0.20007227060577687 = 
+N-PENTANE          = 1.3838025442673195e-06 = 
+
+>> 
+>> 
+>> #Add degrees of subcooling
+>> cd /col.Stage_0
+/col.Stage_0
+>> degsubcool = Tower.DegSubCooling()
+>> 
+>> 
+>> /col.DegSubCool_0_degsubcool.DT = 2
+/col Inner Error 0.000224
+/col Inner Error 0.000037
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000041
+/col Inner Error 0.000037
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000004
+/col Inner Error 0.000005
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 3 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /col.LiquidDraw_0_l
+Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
+Connected to: /s_liqdraw_0.In
+VapFrac            = 0.0 = 
+T                  = 17.136190964483035 = C
+P                  = 700.0 * kPa
+MoleFlow           = 5.0 * kgmole/h
+MassFlow           = 234.93971187905944 = kg/h
+VolumeFlow         = 0.43138660575109655 = m3/hr
+StdLiqVolumeFlow   = 0.4046324186717248 = m3/hr
+H                  = -128788.22707096866 = kJ/kmol
+Energy             = -178872.53759856755 = W
+MolecularWeight    = 46.98794237581188 = 
+ZFactor            = 0.025022697762253743 = 
+PROPANE            = 0.7937983500085163 = 
+N-BUTANE           = 0.006293092249972925 = 
+ISOBUTANE          = 0.19990724337447804 = 
+N-PENTANE          = 1.3143670328753905e-06 = 
+
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 0.01974739762226818 = W
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> /col.DegSubCool_0_degsubcool.DT = 4
+/col Inner Error 0.000071
+/col Inner Error 0.000008
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 1 Outer Error 0.000039
+/col Inner Error 0.000105
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000003
+/col Inner Error 0.000004
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 3 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /col.LiquidDraw_0_l
+Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
+Connected to: /s_liqdraw_0.In
+VapFrac            = 0.0 = 
+T                  = 15.127438156322171 = C
+P                  = 700.0 * kPa
+MoleFlow           = 5.0 * kgmole/h
+MassFlow           = 234.92058067850334 = kg/h
+VolumeFlow         = 0.42840006286768595 = m3/hr
+StdLiqVolumeFlow   = 0.404594595505215 = m3/hr
+H                  = -129024.24320597482 = kJ/kmol
+Energy             = -179200.33778607615 = W
+MolecularWeight    = 46.98411613570067 = 
+ZFactor            = 0.0250226166527302 = 
+PROPANE            = 0.7940710714295398 = 
+N-BUTANE           = 0.006169738777370142 = 
+ISOBUTANE          = 0.19975793896838218 = 
+N-PENTANE          = 1.250824707724569e-06 = 
+
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 0.05102451061975444 = W
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> /col.DegSubCool_0_degsubcool.DT = 0
+/col Inner Error 0.000101
+/col Inner Error 0.000007
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 1 Outer Error 0.000108
+/col Inner Error 0.000168
+/col Inner Error 0.000006
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000006
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 3 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /col.LiquidDraw_0_l
+Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
+Connected to: /s_liqdraw_0.In
+VapFrac            = 0.0 = 
+T                  = 19.145617288701487 = C
+P                  = 700.0 * kPa
+MoleFlow           = 5.0 * kgmole/h
+MassFlow           = 234.96036400779187 = kg/h
+VolumeFlow         = 0.43447888872935003 = m3/hr
+StdLiqVolumeFlow   = 0.40467333161955243 = m3/hr
+H                  = -128550.53604311653 = kJ/kmol
+Energy             = -178542.41117099518 = W
+MolecularWeight    = 46.992072801558386 = 
+ZFactor            = 0.02502881141631935 = 
+PROPANE            = 0.793503948125677 = 
+N-BUTANE           = 0.006421977872744355 = 
+ISOBUTANE          = 0.20007269018178492 = 
+N-PENTANE          = 1.3838197937618012e-06 = 
+
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = -0.17836999218707206 = W
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> /col.DegSubCool_0_degsubcool.DT =
+>> /col.LiquidDraw_0_l.T = 18
+/col Inner Error 0.000009
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000025
+/col Inner Error 0.000011
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 3 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /col.DegSubCool_0_degsubcool
+Port: /col.DegSubCool_0_degsubcool + sim21.solver.Ports.Port_Signal
+Connected to: None
+DT   = 1.1401504408911478 = C
+
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 0.041540901409462094 = W
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> /col.LiquidDraw_0_l.MoleFlow =
+>> /col.DegSubCool_0_degsubcool.DT = 2
+6 specs found, only 2 needed in /col
+Error processing command:
+<class 'sim21.solver.Error.SimError'>
+6 specs found, only 2 needed in /col
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
+    op.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
+    if not self.NeedToSolve():
+
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
+    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
+
+
+>> /col.DegSubCool_0_degsubcool
+Port: /col.DegSubCool_0_degsubcool + sim21.solver.Ports.Port_Signal
+Connected to: None
+DT   = 2.0 * C
+
+>> /col.LiquidDraw_0_l
+Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
+Connected to: /s_liqdraw_0.In
+VapFrac            = 0.0 = 
+T                  = 18.0 * C
+P                  = 700.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = -128686.23761931452 = kJ/kmol
+Energy             = None
+MolecularWeight    = 46.989675941368205 = 
+ZFactor            = 0.025024571397436905 = 
+PROPANE            = 0.7936747876318383 = 
+N-BUTANE           = 0.006347791630854403 = 
+ISOBUTANE          = 0.1999760772830083 = 
+N-PENTANE          = 1.3434542989787516e-06 = 
+
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> #Now add a vapour draw and make sure it doesnt break anything
+>> /col.TryToSolve = 0
+>> /col.TryToRestart = 0
+>> cd /col.Stage_0
+/col.Stage_0
+>> vap = Tower.VapourDraw()
+>> cd /
+/
+>> 
+>> #Should solve fine even for vap flow > 0.0
+>> /col.DegSubCool_0_degsubcool.DT = 0
+>> /col.TryToSolve = 1
+>> /col.VapourDraw_0_vap.MoleFlow = 1
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.005654
+/col Inner Error 0.001104
+/col Inner Error 0.000092
+/col Inner Error 0.000055
+/col Inner Error 0.000005
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.009517
+/col Inner Error 0.010011
+/col Inner Error 0.003586
+/col Inner Error 0.003515
+Step size too small - Exiting inner loop
+/col Iteration 2 Outer Error 0.016197
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.015403
+/col Inner Error 0.015037
+/col Inner Error 0.014676
+Step size too small - Exiting inner loop
+/col Iteration 3 Outer Error 0.000713
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.013376
+/col Inner Error 0.011559
+Step size too small - Exiting inner loop
+/col Iteration 4 Outer Error 0.000226
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011012
+/col Inner Error 0.010987
+Step size too small - Exiting inner loop
+/col Iteration 5 Outer Error 0.000124
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011313
+/col Inner Error 0.011271
+Step size too small - Exiting inner loop
+/col Iteration 6 Outer Error 0.000092
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011480
+Step size too small - Exiting inner loop
+/col Iteration 7 Outer Error 0.000199
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011691
+/col Inner Error 0.011674
+Step size too small - Exiting inner loop
+/col Iteration 8 Outer Error 0.000037
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011587
+Inner loop is not changing significantly - exiting
+/col Iteration 9 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011490
+Step size too small - Exiting inner loop
+/col Iteration 10 Outer Error 0.000011
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011525
+Step size too small - Exiting inner loop
+/col Iteration 11 Outer Error 0.000019
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011483
+Inner loop is not changing significantly - exiting
+/col Iteration 12 Outer Error 0.000019
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011536
+Inner loop is not changing significantly - exiting
+/col Iteration 13 Outer Error 0.000035
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011441
+/col Inner Error 0.011426
+Step size too small - Exiting inner loop
+/col Iteration 14 Outer Error 0.000011
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011427
+Step size too small - Exiting inner loop
+/col Iteration 15 Outer Error 0.000051
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011534
+/col Inner Error 0.011533
+Step size too small - Exiting inner loop
+/col Iteration 16 Outer Error 0.000013
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011518
+Step size too small - Exiting inner loop
+/col Iteration 17 Outer Error 0.000021
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011450
+Inner loop is not changing significantly - exiting
+/col Iteration 18 Outer Error 0.000015
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011497
+Step size too small - Exiting inner loop
+/col Iteration 19 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011453
+Inner loop is not changing significantly - exiting
+/col Iteration 20 Outer Error 0.000019
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011502
+Inner loop is not changing significantly - exiting
+/col Iteration 21 Outer Error 0.000035
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011405
+/col Inner Error 0.011390
+Step size too small - Exiting inner loop
+/col Iteration 22 Outer Error 0.000011
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011391
+Step size too small - Exiting inner loop
+/col Iteration 23 Outer Error 0.000051
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011499
+/col Inner Error 0.011498
+Step size too small - Exiting inner loop
+/col Iteration 24 Outer Error 0.000013
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011483
+Step size too small - Exiting inner loop
+/col Iteration 25 Outer Error 0.000021
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011415
+/col Inner Error 0.011415
+Inner loop is not changing significantly - exiting
+/col Iteration 26 Outer Error 0.000008
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011417
+Inner loop is not changing significantly - exiting
+/col Iteration 27 Outer Error 0.000023
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011474
+Inner loop is not changing significantly - exiting
+/col Iteration 28 Outer Error 0.000034
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011374
+/col Inner Error 0.011359
+Step size too small - Exiting inner loop
+/col Iteration 29 Outer Error 0.000011
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011357
+Step size too small - Exiting inner loop
+/col Iteration 30 Outer Error 0.000051
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011465
+/col Inner Error 0.011463
+Step size too small - Exiting inner loop
+/col Iteration 31 Outer Error 0.000013
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011449
+Step size too small - Exiting inner loop
+/col Iteration 32 Outer Error 0.000021
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011381
+Step size too small - Exiting inner loop
+/col Iteration 33 Outer Error 0.000015
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011428
+Step size too small - Exiting inner loop
+/col Iteration 34 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011384
+Inner loop is not changing significantly - exiting
+/col Iteration 35 Outer Error 0.000019
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011431
+Step size too small - Exiting inner loop
+/col Iteration 36 Outer Error 0.000016
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011383
+Inner loop is not changing significantly - exiting
+/col Iteration 37 Outer Error 0.000018
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011428
+Step size too small - Exiting inner loop
+/col Iteration 38 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011380
+Inner loop is not changing significantly - exiting
+/col Iteration 39 Outer Error 0.000018
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011426
+Step size too small - Exiting inner loop
+/col Iteration 40 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011377
+Inner loop is not changing significantly - exiting
+/col Iteration 41 Outer Error 0.000018
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011423
+Step size too small - Exiting inner loop
+/col Iteration 42 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011375
+Inner loop is not changing significantly - exiting
+/col Iteration 43 Outer Error 0.000018
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011421
+Step size too small - Exiting inner loop
+/col Iteration 44 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011372
+Inner loop is not changing significantly - exiting
+/col Iteration 45 Outer Error 0.000018
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011418
+Step size too small - Exiting inner loop
+/col Iteration 46 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011370
+Inner loop is not changing significantly - exiting
+/col Iteration 47 Outer Error 0.000018
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011416
+Step size too small - Exiting inner loop
+/col Iteration 48 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011367
+Inner loop is not changing significantly - exiting
+/col Iteration 49 Outer Error 0.000018
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011413
+Step size too small - Exiting inner loop
+/col Iteration 50 Outer Error 0.000017
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.011365
+Inner loop is not changing significantly - exiting
+/col failed to converge in 51 iterations - error = 0.000017
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> #Solve with an inconcistency
+>> /col.LiquidDraw_0_l.T =
+>> /col.LiquidDraw_0_l.MoleFlow = 5
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.167452
+/col Inner Error 0.054569
+/col Inner Error 0.006507
+/col Inner Error 0.002359
+/col Inner Error 0.000162
+/col Inner Error 0.000091
+/col Inner Error 0.000027
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.023801
+/col Inner Error 0.022645
+/col Inner Error 0.009420
+/col Inner Error 0.000766
+/col Inner Error 0.000163
+/col Inner Error 0.000044
+/col Inner Error 0.000015
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000442
+/col Inner Error 0.000817
+/col Inner Error 0.000058
+/col Inner Error 0.000007
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000014
+/col Inner Error 0.000031
+/col Inner Error 0.000005
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000000
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+>> /col.DegSubCool_0_degsubcool.DT = 1
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.168740
+/col Inner Error 0.054519
+/col Inner Error 0.006191
+/col Inner Error 0.002144
+/col Inner Error 0.000112
+/col Inner Error 0.000075
+/col Inner Error 0.000023
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.023851
+/col Inner Error 0.020082
+/col Inner Error 0.008687
+/col Inner Error 0.000713
+/col Inner Error 0.000133
+/col Inner Error 0.000038
+/col Inner Error 0.000012
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000440
+/col Inner Error 0.000965
+/col Inner Error 0.000078
+/col Inner Error 0.000010
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000013
+/col Inner Error 0.000028
+/col Inner Error 0.000004
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000000
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/col.VapourDraw_0_vap.MoleFlow: 0 Vs 1
+
+ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
+Error processing command:
+<class 'sim21.solver.Error.ConsistencyError'>
+ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 566, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> /bal.OutQ1
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/col.VapourDraw_0_vap.MoleFlow: 0 Vs 1
+
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = -31007.498192281004 = W
+
+>> /stagebalance.OutQ1
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/col.VapourDraw_0_vap.MoleFlow: 0 Vs 1
+
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> #Solve fine again
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/col.VapourDraw_0_vap.MoleFlow: 0 Vs 1
+
+>> /col.DegSubCool_0_degsubcool.DT = 0
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.167452
+/col Inner Error 0.054569
+/col Inner Error 0.006507
+/col Inner Error 0.002359
+/col Inner Error 0.000162
+/col Inner Error 0.000091
+/col Inner Error 0.000027
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.023801
+/col Inner Error 0.022645
+/col Inner Error 0.009420
+/col Inner Error 0.000766
+/col Inner Error 0.000163
+/col Inner Error 0.000044
+/col Inner Error 0.000015
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000442
+/col Inner Error 0.000817
+/col Inner Error 0.000058
+/col Inner Error 0.000007
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000014
+/col Inner Error 0.000031
+/col Inner Error 0.000005
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000000
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+>> 
+>> 
+>> #Should attempt to solve for vapour draw even if TryToSolve = 0
+>> /col.DegSubCool_0_degsubcool.DT =
+>> /col.TryToSolve = 0
+>> /col.DegSubCool_0_degsubcool.DT = 1
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/col.VapourDraw_0_vap.MoleFlow: 0 Vs 1
+
+ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
+Error processing command:
+<class 'sim21.solver.Error.ConsistencyError'>
+ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 566, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> /col.VapourDraw_0_vap.MoleFlow =
+>> /col.VapourDraw_0_vap.MoleFlow
+/col.VapourDraw_0_vap.MoleFlow= 1e-40 = kgmole/h
+>> /col.TryToSolve = 1
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.024429
+/col Inner Error 0.005674
+/col Inner Error 0.003608
+/col Inner Error 0.000283
+/col Inner Error 0.000031
+/col Inner Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.024710
+/col Inner Error 0.041472
+/col Inner Error 0.010385
+/col Inner Error 0.002089
+/col Inner Error 0.000239
+/col Inner Error 0.000041
+/col Inner Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000754
+/col Inner Error 0.000165
+/col Inner Error 0.000015
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000020
+/col Inner Error 0.000045
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000001
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 5 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> 
+>> 
+>> #Solve fine. A DegSubcooling > 0.0 puts a zero lfow in the vap flow
+>> /col.VapourDraw_0_vap.MoleFlow =
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.024429
+/col Inner Error 0.005674
+/col Inner Error 0.003608
+/col Inner Error 0.000283
+/col Inner Error 0.000031
+/col Inner Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.024710
+/col Inner Error 0.041472
+/col Inner Error 0.010385
+/col Inner Error 0.002089
+/col Inner Error 0.000239
+/col Inner Error 0.000041
+/col Inner Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000754
+/col Inner Error 0.000165
+/col Inner Error 0.000015
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000020
+/col Inner Error 0.000045
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000001
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 5 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 0.06351715217897436 = W
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> # Can not solve because the liquid is subcooled and the vap is > 0.0
+>> /col.DegSubCool_0_degsubcool.DT =
+>> /col.LiquidDraw_0_l.T = 18 C
+>> /col.VapourDraw_0_vap.MoleFlow = 1
+Calculating Jacobian for /col
+Calculating disturbance 10 of 23 in jacobian of /col
+Calculating disturbance 20 of 23 in jacobian of /col
+/col Inner Error 0.174410
+/col Inner Error 0.054613
+/col Inner Error 0.004894
+/col Inner Error 0.001567
+/col Inner Error 0.000140
+/col Inner Error 0.000101
+/col Inner Error 0.000015
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 1 Outer Error 0.024065
+/col Inner Error 0.027589
+/col Inner Error 0.010922
+/col Inner Error 0.001202
+/col Inner Error 0.000378
+/col Inner Error 0.000065
+/col Inner Error 0.000017
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000429
+/col Inner Error 0.001112
+/col Inner Error 0.000070
+/col Inner Error 0.000013
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000013
+/col Inner Error 0.000041
+/col Inner Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000000
+/col Inner Error 0.000001
+/col Inner Error 0.000000
+Inner loop converged
+Tower failed to converge due to a sub cooled solution at the top where there is a vapour draw. Degrees of subcooling = 6.038846
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> #Solve fine
+>> /col.VapourDraw_0_vap.MoleFlow = 0
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.023467
+/col Inner Error 0.005972
+/col Inner Error 0.003342
+/col Inner Error 0.000261
+/col Inner Error 0.000023
+/col Inner Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.024605
+/col Inner Error 0.041853
+/col Inner Error 0.010194
+/col Inner Error 0.002136
+/col Inner Error 0.000263
+/col Inner Error 0.000043
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000714
+/col Inner Error 0.000185
+/col Inner Error 0.000014
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000018
+/col Inner Error 0.000040
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000001
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 5 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 0.054527451255125925 = W
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> 
+>> 
+>> #Get rid of the vapour draw wich should not have been there at all to begin with
+>> delete /col.Stage_0.vap
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.023467
+/col Inner Error 0.005972
+/col Inner Error 0.003342
+/col Inner Error 0.000261
+/col Inner Error 0.000023
+/col Inner Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.024605
+/col Inner Error 0.041853
+/col Inner Error 0.010194
+/col Inner Error 0.002136
+/col Inner Error 0.000263
+/col Inner Error 0.000043
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000714
+/col Inner Error 0.000185
+/col Inner Error 0.000014
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000018
+/col Inner Error 0.000040
+/col Inner Error 0.000002
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000001
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 5 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
+>> /bal.OutQ1
+Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 0.054527451255125925 = W
+
+>> /stagebalance.OutQ1
+Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+Calculating Jacobian for /RootClone.col
+Calculating disturbance 10 of 22 in jacobian of /RootClone.col
+Calculating disturbance 20 of 22 in jacobian of /RootClone.col
+/RootClone.col Inner Error 0.023467
+/RootClone.col Inner Error 0.005972
+/RootClone.col Inner Error 0.003342
+/RootClone.col Inner Error 0.000261
+/RootClone.col Inner Error 0.000023
+/RootClone.col Inner Error 0.000003
+/RootClone.col Inner Error 0.000000
+Inner loop converged
+/RootClone.col Iteration 1 Outer Error 0.024605
+/RootClone.col Inner Error 0.041853
+/RootClone.col Inner Error 0.010194
+/RootClone.col Inner Error 0.002136
+/RootClone.col Inner Error 0.000263
+/RootClone.col Inner Error 0.000043
+/RootClone.col Inner Error 0.000002
+/RootClone.col Inner Error 0.000000
+Inner loop converged
+/RootClone.col Iteration 2 Outer Error 0.000714
+/RootClone.col Inner Error 0.000185
+/RootClone.col Inner Error 0.000014
+/RootClone.col Inner Error 0.000001
+Inner loop converged
+/RootClone.col Iteration 3 Outer Error 0.000018
+/RootClone.col Inner Error 0.000040
+/RootClone.col Inner Error 0.000002
+/RootClone.col Inner Error 0.000000
+Inner loop converged
+/RootClone.col Iteration 4 Outer Error 0.000001
+/RootClone.col Inner Error 0.000001
+Inner loop converged
+/RootClone.col Iteration 5 Outer Error 0.000000
+/RootClone.col Inner Error 0.000000
+Inner loop converged
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 

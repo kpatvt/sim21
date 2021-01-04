@@ -1,0 +1,284 @@
+>> # A simple flowsheet
+>> units SI
+>> 
+>> # set up thermo
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE ISOBUTANE n-BUTANE n-PENTANE
+PROPANE ISOBUTANE n-BUTANE n-PENTANE 
+>> 
+>> # Add a couple of streams
+>> stream1 = Stream.Stream_Material()
+>> stream2 = Stream.Stream_Material()
+>> 
+>> # Make the stream1 In port current to save typing
+>> cd stream1.In
+/stream1.In
+>> Fraction  # print fractions to figure out order
+PROPANE                     = None
+ISOBUTANE                   = None
+N-BUTANE                    = None
+N-PENTANE                   = None
+
+>> Fraction = .5 0 0 .5  # assign mole fractions
+>> T = 187
+>> P = 715
+>> MoleFlow = 3000
+>> 
+>> # Make the other stream In port current
+>> cd /stream2.In
+/stream2.In
+>> Fraction = 0 .5 .5 0
+>> T = -73
+>> P = 715
+>> MoleFlow = 3000
+>> cd /  # return to top level flowsheet
+/
+>> 
+>> # now mix the streams
+>> mixer = Mixer.Mixer()   # add a mixer op
+>> stream1.Out -> mixer.In0 # connect the streams to it
+>> stream2.Out -> mixer.In1
+>> mixer.Out  # have a look at the combined outlet
+Port: /mixer.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.501626936975516 = 
+T                  = 60.72014736922455 = C
+P                  = 715.0 = kPa
+MoleFlow           = 6000.0 = kgmole/h
+MassFlow           = 348733.2 = kg/h
+VolumeFlow         = 10377.315141292436 = m3/hr
+StdLiqVolumeFlow   = 592.395 = m3/hr
+H                  = -135251.87476101628 = kJ/kmol
+Energy             = -225419791.26836044 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.44547980741532167 = 
+PROPANE            = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-BUTANE           = 0.25 = 
+N-PENTANE          = 0.25 = 
+
+>> 
+>> # add a flash drum
+>> flash = Flash.SimpleFlash()
+>> mixer.Out -> flash.In
+>> 
+>> # have a look at the flash outlets
+>> flash.Vap
+Port: /flash.Vap + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 60.72014736922455 = C
+P                  = 715.0 = kPa
+MoleFlow           = 3009.7616218530957 = kgmole/h
+MassFlow           = 165696.56811217032 = kg/h
+VolumeFlow         = 10046.924729923676 = m3/hr
+StdLiqVolumeFlow   = 284.33277437494235 = m3/hr
+H                  = -121301.22419381372 = kJ/kmol
+Energy             = -101413269.23953854 = W
+MolecularWeight    = 55.05305367345064 = 
+ZFactor            = 0.8597957942463985 = 
+PROPANE            = 0.35325818994987535 = 
+ISOBUTANE          = 0.2720008080043744 = 
+N-BUTANE           = 0.24029212459752192 = 
+N-PENTANE          = 0.13444887744822834 = 
+
+>> flash.Liq0
+Port: /flash.Liq0 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 60.72014736922455 = C
+P                  = 715.0 = kPa
+MoleFlow           = 2990.2383781469043 = kgmole/h
+MassFlow           = 183036.63188782966 = kg/h
+VolumeFlow         = 330.39041136876074 = m3/hr
+StdLiqVolumeFlow   = 308.06222562505764 = m3/hr
+H                  = -149293.83542628543 = kJ/kmol
+Energy             = -124006710.08678515 = W
+MolecularWeight    = 61.211384759652574 = 
+ZFactor            = 0.028458754646562834 = 
+PROPANE            = 0.14606763811059484 = 
+ISOBUTANE          = 0.22785554888692178 = 
+N-BUTANE           = 0.25977125804739926 = 
+N-PENTANE          = 0.36630555495508405 = 
+
+>> 
+>> #Test copy and paste
+>> #The whole thing
+>> copy /stream1 /stream2 /mixer /flash
+Copied /stream1 /stream2 /mixer /flash to the clipboard
+>> paste /
+Pasting /stream1 /stream2 /mixer /flash
+Pasted /stream1 /stream2 /mixer /flash as /stream1Clone /stream2Clone /mixerClone /flashClone
+>> /stream2Clone.In
+Port: /stream2Clone.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -73.0 * C
+P                  = 715.0 * kPa
+MoleFlow           = 3000.0 * kgmole/h
+MassFlow           = 174366.6 = kg/h
+VolumeFlow         = 249.2787909911218 = m3/hr
+StdLiqVolumeFlow   = 307.26 = m3/hr
+H                  = -163108.16349699267 = kJ/kmol
+Energy             = -135923469.5808272 = W
+MolecularWeight    = 58.1222 = 
+ZFactor            = 0.03570099639789254 = 
+PROPANE            = 0.0 * 
+ISOBUTANE          = 0.5 * 
+N-BUTANE           = 0.5 * 
+N-PENTANE          = 0.0 * 
+
+>> /mixerClone.Out0
+None
+>> /flashClone.Vap
+Port: /flashClone.Vap + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 60.72014736922455 = C
+P                  = 715.0 = kPa
+MoleFlow           = 3009.7616218530957 = kgmole/h
+MassFlow           = 165696.56811217032 = kg/h
+VolumeFlow         = 10046.924729923676 = m3/hr
+StdLiqVolumeFlow   = 284.33277437494235 = m3/hr
+H                  = -121301.22419381372 = kJ/kmol
+Energy             = -101413269.23953854 = W
+MolecularWeight    = 55.05305367345064 = 
+ZFactor            = 0.8597957942463985 = 
+PROPANE            = 0.35325818994987535 = 
+ISOBUTANE          = 0.2720008080043744 = 
+N-BUTANE           = 0.24029212459752192 = 
+N-PENTANE          = 0.13444887744822834 = 
+
+>> 
+>> 
+>> #copy part of it
+>> copy  /stream2 /mixer /flash
+Copied /stream2 /mixer /flash to the clipboard
+>> paste /
+Pasting /stream2 /mixer /flash
+Pasted /stream2 /mixer /flash as /stream2Clone_1 /mixerClone_1 /flashClone_1
+>> /stream2Clone_1.In
+Port: /stream2Clone_1.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -73.0 * C
+P                  = 715.0 * kPa
+MoleFlow           = 3000.0 * kgmole/h
+MassFlow           = 174366.6 = kg/h
+VolumeFlow         = 249.2787909911218 = m3/hr
+StdLiqVolumeFlow   = 307.26 = m3/hr
+H                  = -163108.16349699267 = kJ/kmol
+Energy             = -135923469.5808272 = W
+MolecularWeight    = 58.1222 = 
+ZFactor            = 0.03570099639789254 = 
+PROPANE            = 0.0 * 
+ISOBUTANE          = 0.5 * 
+N-BUTANE           = 0.5 * 
+N-PENTANE          = 0.0 * 
+
+>> /mixerClone_1.Out0
+None
+>> /flashClone_1.Vap
+Port: /flashClone_1.Vap + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+N-PENTANE          = None
+
+>> 
+>> 
+>> #copy part of it again but
+>> copy  /stream2 /flash
+Copied /stream2 /flash to the clipboard
+>> paste /
+Pasting /stream2 /flash
+Pasted /stream2 /flash as /stream2Clone_2 /flashClone_2
+>> /stream2Clone_2.In
+Port: /stream2Clone_2.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -73.0 * C
+P                  = 715.0 * kPa
+MoleFlow           = 3000.0 * kgmole/h
+MassFlow           = 174366.6 = kg/h
+VolumeFlow         = 249.2787909911218 = m3/hr
+StdLiqVolumeFlow   = 307.26 = m3/hr
+H                  = -163108.16349699267 = kJ/kmol
+Energy             = -135923469.5808272 = W
+MolecularWeight    = 58.1222 = 
+ZFactor            = 0.03570099639789254 = 
+PROPANE            = 0.0 * 
+ISOBUTANE          = 0.5 * 
+N-BUTANE           = 0.5 * 
+N-PENTANE          = 0.0 * 
+
+>> /flashClone_2.Vap
+Port: /flashClone_2.Vap + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+N-PENTANE          = None
+
+>> 
+>> 
+>> #Now copy the whole flowsheet
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+>> 
+>> 
+>> #Now copy into a subflowsheet
+>> cd /
+/
+>> sub = Flowsheet.SubFlowsheet()
+>> copy /stream1 /stream2 /mixer /flash
+Copied /stream1 /stream2 /mixer /flash to the clipboard
+>> paste /sub
+Pasting /stream1 /stream2 /mixer /flash
+Pasted /stream1 /stream2 /mixer /flash as /sub.stream1 /sub.stream2 /sub.mixer /sub.flash
+>> 
+>> #Now clone the subflowsheet
+>> copy /sub
+Copied /sub to the clipboard
+>> paste /
+Pasting /sub
+Pasted /sub as /subClone
+>> 
+>> #Now test cut and paste
+>> sub2 = Flowsheet.SubFlowsheet()
+>> cut /stream1Clone /stream2Clone /mixerClone /flashClone
+Copied /stream1Clone /stream2Clone /mixerClone /flashClone to the clipboard
+>> paste sub2
+Pasting /stream1Clone /stream2Clone /mixerClone /flashClone
+Pasted /stream1Clone /stream2Clone /mixerClone /flashClone as /sub2.stream1Clone /sub2.stream2Clone /sub2.mixerClone /sub2.flashClone
+>> 
+>> 

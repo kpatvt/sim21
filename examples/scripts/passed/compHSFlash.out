@@ -1,0 +1,105 @@
+>> # Commented out property changes for testing purposes
+>> units VMG
+>> # /LiquidPhases = 2
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> # commonproperties VapFrac T P MoleFlow MassFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
+>> # displayproperties VapFrac T P MoleFlow MassFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
+>> /thermo + METHANE
+METHANE 
+>> S1 = Stream.Stream_Material()
+>> '/S1.In.T' = 300
+>> '/S1.In.P' = 100
+>> '/S1.In.MoleFlow' = 1
+>> '/S1.In.Fraction' =  1
+>> CP1 = Compressor.Compressor()
+>> /S1.Out -> /CP1.In
+>> S2 = Stream.Stream_Material()
+>> /CP1.Out -> /S2.In
+>> cd /CP1.Efficiency
+/CP1.EfficiencySig.In
+>> '/CP1.Efficiency.Generic' = .75
+>> cd /
+/
+>> 
+>> /CP1.InQ.Energy = 10000
+>> CP1.Out
+Port: /CP1.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: /S2.In
+VapFrac            = 0.0 = 
+T                  = 965.324393807325 = K
+P                  = 31081.20212691942 = kPa
+MoleFlow           = 1.0 = kgmole/h
+MassFlow           = 16.04246 = kg/h
+VolumeFlow         = 0.279313243566091 = m3/hr
+StdLiqVolumeFlow   = 0.03554 = m3/hr
+H                  = -38471.71168396728 = kJ/kmol
+Energy             = -10686.5865788798 = W
+MolecularWeight    = 16.04246 = 
+ZFactor            = 1.0816378338917276 = 
+METHANE            = 1.0 = 
+
+>> 
+>> #Small change,
+>> /CP1.InQ.Energy = 10010
+>> CP1.Out
+Port: /CP1.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: /S2.In
+VapFrac            = 0.0 = 
+T                  = 965.8099043506105 = K
+P                  = 31177.17788040307 = kPa
+MoleFlow           = 1.0 = kgmole/h
+MassFlow           = 16.04246 = kg/h
+VolumeFlow         = 0.2786603783185824 = m3/hr
+StdLiqVolumeFlow   = 0.03554 = m3/hr
+H                  = -38435.71168396728 = kJ/kmol
+Energy             = -10676.5865788798 = W
+MolecularWeight    = 16.04246 = 
+ZFactor            = 1.081897664782502 = 
+METHANE            = 1.0 = 
+
+>> 
+>> #Large change
+>> /CP1.InQ.Energy = 1000
+>> CP1.Out
+Port: /CP1.Waste.Out + sim21.solver.Ports.Port_Material
+Connected to: /S2.In
+VapFrac            = 1.0 = 
+T                  = 395.0505049112364 = K
+P                  = 263.7532285768029 = kPa
+MoleFlow           = 1.0 = kgmole/h
+MassFlow           = 16.04246 = kg/h
+VolumeFlow         = 12.428399328361332 = m3/hr
+StdLiqVolumeFlow   = 0.03554 = m3/hr
+H                  = -70871.71168396728 = kJ/kmol
+Energy             = -19686.5865788798 = W
+MolecularWeight    = 16.04246 = 
+ZFactor            = 0.9979899711283756 = 
+METHANE            = 1.0 = 
+
+>> 
+>> 
+>> #Now spec outside
+>> '/S1.In.T' =
+>> '/S1.In.P' =
+>> '/S2.In.T' = 400
+>> '/S2.In.P' = 270
+>> CP1.In
+Port: /CP1.Ideal.In + sim21.solver.Ports.Port_Material
+Connected to: /S1.Out
+VapFrac            = 1.0 = 
+T                  = 305.577501347792 = K
+P                  = 103.97889125328993 = kPa
+MoleFlow           = 1.0 | kgmole/h
+MassFlow           = 16.04246 | kg/h
+VolumeFlow         = 24.382971539651216 = m3/hr
+StdLiqVolumeFlow   = 0.03554 | m3/hr
+H                  = -74271.29594217971 = kJ/kmol
+Energy             = -20630.915539494363 = W
+MolecularWeight    = 16.04246 = 
+ZFactor            = 0.9978752553462121 = 
+METHANE            = 1.0 | 
+
+>> 

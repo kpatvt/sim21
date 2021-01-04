@@ -69,16 +69,16 @@ INIT_TOWER_OBJ = "InitTowerAlgorithm"
 import numba
 
 
-# @numba.jit(nopython=True, cache=True)
-# def copy_flow_matrix(numStages, flowMatrix, alphaSj, diag, upper):
-#     for j in range(numStages):
-#         if j > 0:
-#             flowMatrix[j][j - 1] = -alphaSj[j - 1]
-#
-#         flowMatrix[j][j] = diag[j]
-#
-#         if j < numStages - 1:
-#             flowMatrix[j][j + 1] = upper[j]
+@numba.jit(nopython=True, cache=True)
+def copy_flow_matrix(numStages, flowMatrix, alphaSj, diag, upper):
+    for j in range(numStages):
+        if j > 0:
+            flowMatrix[j][j - 1] = -alphaSj[j - 1]
+
+        flowMatrix[j][j] = diag[j]
+
+        if j < numStages - 1:
+            flowMatrix[j][j + 1] = upper[j]
 
 
 # @numba.jit(nopython=True, cache=True)
@@ -109,7 +109,6 @@ import numba
 
 
 # ab = diagonal_form(a, upper=1, lower=1) # for tridiagonal matrix upper and lower = 1
-
 # x_sp = solve_banded((1,1), ab, b)
 
 
@@ -705,7 +704,8 @@ class Stage(object):
         totVap = 0.0
         totLiq = 0.0
         for feed in list(self.feeds.values()):
-            f += feed.MoleArray()
+            f_values = feed.MoleArray()
+            f += f_values
             totVap += feed.TotalVapourFlow()
             totLiq += feed.TotalLiquidFlow()
         return totVap, totLiq
@@ -1440,7 +1440,17 @@ class Feed(StageObject):
         if moles == 0.0:
             return np.zeros(self.stage.tower.numCompounds, np.float)
 
-        x = np.array(self.port.GetCompositionValues())
+        comp_values = self.port.GetCompositionValues()
+        none_count = 0
+        for i in range(len(comp_values)):
+            if comp_values[i] is None:
+                comp_values[i] = 0
+                none_count += 1
+
+        if none_count == len(comp_values):
+            return np.zeros(self.stage.tower.numCompounds, np.float)
+
+        x = np.array(comp_values)
         return (x / np.sum(x)) * moles
 
     def MoleFracs(self):
@@ -2106,13 +2116,16 @@ class VapourDraw(Draw):
 
         stageNo = self.stage.number
         tower = self.stage.tower
+
         # self.port.SetPropValue(VPFRAC_VAR, 1.0, CALCULATED_V)
+        # Removed below
         # switch back to T until prop pkg problem resolved
+        # TODO Investigate why this is necessary - It can cause a phase flip in narrow boiling mixtures
         T = tower.T[stageNo]
         if self.isSubCooled:
             T -= self.stage.GetDegreesSubCooled()
 
-        self.port.SetPropValue(T_VAR, T, CALCULATED_V)
+        # self.port.SetPropValue(T_VAR, T, CALCULATED_V)
         self.port.SetCompositionValues(tower.y[stageNo], CALCULATED_V)
 
     def MoleFracs(self):
@@ -5217,7 +5230,7 @@ class Tower(UnitOperations.UnitOperation):
                             self.errors = self.InnerErrors()
                             break
 
-                        stepLength *= 0.25
+                        stepLength *= 0.5
 
                     if stepLength < minInnerStep:
                         # smallest step did't work - exit
@@ -5359,6 +5372,9 @@ class Tower(UnitOperations.UnitOperation):
 
                     self.InfoMessage('TowerCalcJacobian', path)
                     self.jacobian = self.CalcJacobian()
+                    self.SolveFlowMatrix(self.logSFactors)
+                    self.CalculateTemperatures()
+
                 else:
                     self.SolveFlowMatrix(self.logSFactors)
                     self.CalculateTemperatures()
@@ -5563,14 +5579,14 @@ class Tower(UnitOperations.UnitOperation):
                 if wdraw.moleFlows:
                     rhs[stageNo] -= wdraw.moleFlows[i]
 
-            # copy_flow_matrix(self.numStages, flowMatrix, alphaSj, diag, upper)
+            copy_flow_matrix(self.numStages, flowMatrix, alphaSj, diag, upper)
 
-            for j in range(self.numStages):
-                if self.stages[j].type != TOP_STAGE:
-                    flowMatrix[j][j-1] = -alphaSj[j-1]
-                flowMatrix[j][j] = diag[j]
-                if self.stages[j].type != BOTTOM_STAGE:
-                    flowMatrix[j][j+1] = upper[j]
+            # for j in range(self.numStages):
+            #     if self.stages[j].type != TOP_STAGE:
+            #         flowMatrix[j][j-1] = -alphaSj[j-1]
+            #     flowMatrix[j][j] = diag[j]
+            #     if self.stages[j].type != BOTTOM_STAGE:
+            #         flowMatrix[j][j+1] = upper[j]
 
             if hasPumps:
                 if self.useEff:

@@ -1,0 +1,205 @@
+>> # A simple refrigeration loop example
+>> # This is refrigeration with a user at one level
+>> # Demonstrates how a controller is not required to solve this problem
+>> 
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + ETHANE PROPANE ISOBUTANE N-BUTANE
+ETHANE PROPANE ISOBUTANE N-BUTANE 
+>> 
+>> 
+>> # s1 is the stream coming out the condenser
+>> # Notice we only provide the composition of the stream and flash conditions
+>> # Flow will be calculated backwards
+>> s1 = Stream.Stream_Material()
+>> s1.In.T = 140 F
+>> s1.In.Fraction = 0.010 0.969 0.017 0.003
+>> s1.In.VapFrac = 0
+>> 
+>> # Expansion Valve
+>> s2 = Stream.Stream_Material()
+>> v1 = Valve.Valve()
+>> s1.Out -> v1.In
+>> v1.Out -> s2.In
+>> v1.Out.P = 88
+>> 
+>> # Chiller
+>> s3 = Stream.Stream_Material()
+>> h2 = Heater.Heater()
+>> s2.Out -> h2.In
+>> h2.DeltaP.DP = 5 psi
+>> h2.Out.T = 44 F
+>> s3.In -> h2.Out
+>> 
+>> # Flash
+>> s4 = Stream.Stream_Material()
+>> s5 = Stream.Stream_Material()
+>> 
+>> f1 = Flash.SimpleFlash()
+>> s3.Out -> f1.In
+>> s4.In -> f1.Vap
+>> s5.In -> f1.Liq0
+>> 
+>> # Ref. User
+>> s6 = Stream.Stream_Material()
+>> h_user = Heater.Heater()
+>> h_user.In -> s5.Out
+>> 
+>> # Specify the duty consumed by the User
+>> # Typically this would require a controller to vary feed rate to get
+>> # to this value, but since the solver works backwards, that is not
+>> # needed
+>> h_user.InQ.Energy = 82.74e6 Btu/hr
+>> h_user.DeltaP.DP = 9 psi
+>> h_user.Out.VapFrac = 1
+>> h_user.Out -> s6.In
+>> 
+>> # Note that vapor stream coming out of the flash is calculated as well
+>> s4.Out
+Port: /s4.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 43.99999999999998 = F
+P                  = 82.99999999999999 = psia
+MoleFlow           = 13985.310070763542 = lbmole/h
+MassFlow           = 615955.6810129433 = lb/h
+VolumeFlow         = 222.18044614640215 = ft3/s
+StdLiqVolumeFlow   = 4.652603459842335 = ft3/s
+H                  = -45916.03720536607 = Btu/lbmol
+Energy             = -642042032.95902 = Btu/hr
+MolecularWeight    = 44.0430478764004 = 
+ZFactor            = 0.8782170896871283 = 
+ETHANE             = 0.015057173004598258 = 
+PROPANE            = 0.9736336897628591 = 
+ISOBUTANE          = 0.009942358279632198 = 
+N-BUTANE           = 0.0013667789529104614 = 
+
+>> s6.Out
+Port: /s6.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 39.921423480134145 = F
+P                  = 73.99999999999997 = psia
+MoleFlow           = 11858.737181450942 = lbmole/h
+MassFlow           = 527282.270510448 = lb/h
+VolumeFlow         = 211.96102749064707 = ft3/s
+StdLiqVolumeFlow   = 3.9906193253605156 = ft3/s
+H                  = -46291.506563866395 = Btu/lbmol
+Energy             = -548866496.6206981 = Btu/hr
+MolecularWeight    = 44.463610453835344 = 
+ZFactor            = 0.8881175601600193 = 
+ETHANE             = 0.0040577624496703855 = 
+PROPANE            = 0.9656492521286054 = 
+ISOBUTANE          = 0.02536034182245448 = 
+N-BUTANE           = 0.004932643599269673 = 
+
+>> 
+>> # Now combine both streams and feed to compressor
+>> m1 = Mixer.Mixer()
+>> s4.Out -> m1.In0
+>> s6.Out -> m1.In1
+>> 
+>> # Compressor, note we don't define the discharge pressure
+>> # That will be calculated backward from the condenser
+>> s8 = Stream.Stream_Material()
+>> comp1 = Compressor.Compressor()
+>> m1.Out -> comp1.In
+>> comp1.Efficiency = .8
+>> comp1.Out -> s8.In
+>> 
+>> # Condenser, we connect it back to stream S1 (which is defined at the bubble point at 140F)
+>> # The bubble point pressure will then set the H1 pressure in and out which will fully define
+>> # the compressor
+>> h1 = Heater.Heater()
+>> s8.Out -> h1.In
+>> h1.DeltaP.DP = 5 psi
+>> h1.Out -> s1.In
+>> 
+>> # Now show us what s8 (comp1 discharge) and comp1 work is is
+>> s8.Out
+Port: /s8.Out + sim21.solver.Ports.Port_Material
+Connected to: /h1.In
+VapFrac            = 1.0 = 
+T                  = 151.15848396396242 = F
+P                  = 314.79723129343347 | psia
+MoleFlow           = 25844.047252214485 = lbmole/h
+MassFlow           = 1143237.9515233915 = lb/h
+VolumeFlow         = 102.86797592272373 = ft3/s
+StdLiqVolumeFlow   = 8.643222785202854 = ft3/s
+H                  = -44928.46861015892 = Btu/lbmol
+Energy             = -1160938208.3845837 = Btu/hr
+MolecularWeight    = 44.236026206206205 = 
+ZFactor            = 0.6881251399761896 = 
+ETHANE             = 0.010010010010010006 = 
+PROPANE            = 0.9699699699699699 = 
+ISOBUTANE          = 0.01701701701701702 = 
+N-BUTANE           = 0.003003003003003003 = 
+
+>> comp1.TotalQ.Out
+Port: /comp1.TotalQ.Out + sim21.solver.Ports.Port_Energy
+Connected to: /comp1.Mix.InQ0
+Energy   = 29970321.195134304 = Btu/hr
+
+>> 
+>> # The flowsheet is fully solved now ...
+>> # Let's see what happens when efficiency of the compressor
+>> comp1.Efficiency = .75
+>> 
+>> s8.Out
+Port: /s8.Out + sim21.solver.Ports.Port_Material
+Connected to: /h1.In
+VapFrac            = 1.0 = 
+T                  = 154.17781624198724 = F
+P                  = 314.79723129343347 | psia
+MoleFlow           = 25844.047252214485 | lbmole/h
+MassFlow           = 1143237.9515233915 | lb/h
+VolumeFlow         = 104.39862713983732 = ft3/s
+StdLiqVolumeFlow   = 8.643222785202854 = ft3/s
+H                  = -44851.14490620253 = Btu/lbmol
+Energy             = -1158940186.9715748 = Btu/hr
+MolecularWeight    = 44.236026206206205 = 
+ZFactor            = 0.6949292362446827 = 
+ETHANE             = 0.010010010010010006 = 
+PROPANE            = 0.9699699699699699 = 
+ISOBUTANE          = 0.01701701701701702 = 
+N-BUTANE           = 0.003003003003003003 = 
+
+>> comp1.TotalQ.Out
+Port: /comp1.TotalQ.Out + sim21.solver.Ports.Port_Energy
+Connected to: /comp1.Mix.InQ0
+Energy   = 31968342.60814326 = Btu/hr
+
+>> 
+>> # Surprise, duty goes up!
+>> 
+>> # Let's change the duty on the user and see what the results are
+>> h_user.InQ.Energy = 41.37e6 Btu/hr
+>> 
+>> s8.Out
+Port: /s8.Out + sim21.solver.Ports.Port_Material
+Connected to: /h1.In
+VapFrac            = 1.0 = 
+T                  = 154.17781625545447 = F
+P                  = 314.79723129343347 | psia
+MoleFlow           = 12922.023626107251 = lbmole/h
+MassFlow           = 571618.975761696 = lb/h
+VolumeFlow         = 52.19931357329481 = ft3/s
+StdLiqVolumeFlow   = 4.321611392601429 = ft3/s
+H                  = -44851.14490585895 = Btu/lbmol
+Energy             = -579470093.4813489 = Btu/hr
+MolecularWeight    = 44.236026206206205 = 
+ZFactor            = 0.694929236274383 = 
+ETHANE             = 0.01001001001001001 | 
+PROPANE            = 0.96996996996997 | 
+ISOBUTANE          = 0.01701701701701702 | 
+N-BUTANE           = 0.003003003003003003 | 
+
+>> comp1.TotalQ.Out
+Port: /comp1.TotalQ.Out + sim21.solver.Ports.Port_Energy
+Connected to: /comp1.Mix.InQ0
+Energy   = 15984171.30851047 = Btu/hr
+
+>> 
