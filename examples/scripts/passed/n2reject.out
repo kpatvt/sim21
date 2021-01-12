@@ -307,17 +307,17 @@ Inner loop converged
 >> /e1.OutC
 Port: /e1.ColdSide.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 1.0 = 
+T                  = -286.4731355176468 = F
 P                  = 28.892 = psia
 MoleFlow           = 429.99320032236136 = lbmole/h
 MassFlow           = 11929.324319235458 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 7.3170802674357605 = ft3/s
 StdLiqVolumeFlow   = 0.06668957207993614 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -3303.2331286596614 = Btu/lbmol
+Energy             = -1420128.9339591358 = Btu/hr
+MolecularWeight    = 27.743053175293372 = 
+ZFactor            = 0.9522478875095808 = 
 NITROGEN           = 0.9774164154854944 = 
 METHANE            = 0.022583578935650668 = 
 ETHANE             = 2.7483843631097578e-09 = 
@@ -330,17 +330,17 @@ N-PENTANE          = 4.949813227709295e-12 =
 >> /RootClone.e1.OutC
 Port: /RootClone.e1.ColdSide.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 1.0 = 
+T                  = -286.47392281736415 = F
 P                  = 28.892 = psia
 MoleFlow           = 429.97683638952407 = lbmole/h
 MassFlow           = 11928.769076140217 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 7.316757943537945 = ft3/s
 StdLiqVolumeFlow   = 0.06668706047046376 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -3303.8773608467695 = Btu/lbmol
+Energy             = -1420351.8475001203 = Btu/hr
+MolecularWeight    = 27.742817679741453 = 
+ZFactor            = 0.9522465075391526 = 
 NITROGEN           = 0.9773967432171825 = 
 METHANE            = 0.022603251203445574 = 
 ETHANE             = 2.749619519053861e-09 = 

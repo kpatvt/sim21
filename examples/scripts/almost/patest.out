@@ -429,16 +429,16 @@ N-DECANE           = 0.07366348740463166 =
 Port: /stab.Feed_10_pd_paR + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 57.11472881436504 = C
+T                  = 57.11470733167931 = C
 P                  = 1063.6363636363637 = kPa
 MoleFlow           = 299.9963692830526 = kgmole/h
 MassFlow           = 22704.593882880054 = kg/h
-VolumeFlow         = 37.16895012311356 = m3/hr
+VolumeFlow         = 37.16894858890687 = m3/hr
 StdLiqVolumeFlow   = 36.06253969445792 = m3/hr
 H                  = -176209.29813865485 = kJ/kmol
 Energy             = -14683930.465419836 = W
 MolecularWeight    = 75.68289555350523 = 
-ZFactor            = 0.04799114282809674 = 
+ZFactor            = 0.04799114396886062 = 
 PROPANE            = 0.013016800950779388 = 
 ISOBUTANE          = 0.08161771585557977 = 
 N-BUTANE           = 0.13455800869958912 = 
@@ -507,7 +507,7 @@ Step size too small - Exiting inner loop
 Calculating Jacobian for /stab
 Calculating disturbance 10 of 13 in jacobian of /stab
 /stab Inner Error 0.250895
-/stab Inner Error 0.048857
+/stab Inner Error 0.048858
 /stab Inner Error 0.006549
 /stab Inner Error 0.004866
 /stab Inner Error 0.000758
@@ -534,34 +534,34 @@ Inner loop converged
 /stab Inner Error 0.000000
 Inner loop converged
 >> L
-[ 867.79029961  831.38478815  802.12512223  767.18417752  688.59385406
- 2107.17669022 2163.81941444 1910.64524622 1927.93701249 1894.08494553
- 2173.24451561  566.1048502 ]
+[ 867.79029969  831.38478818  802.12512225  767.18417755  688.59385411
+ 2107.17669031 2163.81941456 1910.64524627 1927.93701221 1894.08494412
+ 2173.24446384  566.10485016]
 >> V
 [1.18789601e-40 1.30168545e+03 1.26527994e+03 1.23602027e+03
  1.20107933e+03 1.12248900e+03 1.54107184e+03 1.59771456e+03
- 1.64454034e+03 1.66183211e+03 1.62798004e+03 1.60713967e+03]
+ 1.64454034e+03 1.66183211e+03 1.62798004e+03 1.60713961e+03]
 >> T
-[324.08852923 336.35437834 345.2603469  352.31447086 359.21600062
- 371.18504287 381.69610694 390.52510421 398.2432057  405.34667182
- 414.88935827 439.23089368]
+[324.08852924 336.35437835 345.26034692 352.31447088 359.21600064
+ 371.18504289 381.69610697 390.52510424 398.24320574 405.34667189
+ 414.88935844 439.23089369]
 >> /stab.Variable_7_PAReturnT.T =
 >> /stab.Variable_7_PADeltaT.DT = 60
 Calculating Jacobian for /stab
 Calculating disturbance 10 of 13 in jacobian of /stab
 Tower /stab failed to converge due to an arithmetic error
 >> L
-[ 846.64408094  839.36260008  827.99945726  850.96943466 1006.36875712
- 1822.43557455 1761.01924282 1550.31392704 1658.90217267 1896.33192031
- 2365.22245501  576.67795953]
+[ 846.64411349  839.36258739  827.99942716  850.96941862 1006.36879572
+ 1822.43556949 1761.01925647 1550.31399127 1658.90228224 1896.33205982
+ 2365.22227916  576.67794326]
 >> V
-[8.12573483e-41 1.26996612e+03 1.26268464e+03 1.25132150e+03
- 1.27429148e+03 1.42969080e+03 1.24575762e+03 1.18434128e+03
- 1.18240640e+03 1.29099465e+03 1.52842439e+03 1.78854450e+03]
+[8.12573498e-41 1.26996617e+03 1.26268464e+03 1.25132148e+03
+ 1.27429148e+03 1.42969085e+03 1.24575763e+03 1.18434131e+03
+ 1.18240647e+03 1.29099477e+03 1.52842454e+03 1.78854434e+03]
 >> T
-[324.36045707 337.6837681  345.5939537  351.05931149 357.70836867
- 376.27983639 388.13560103 397.62498953 404.84097855 410.27670661
- 419.11962725 450.27124762]
+[324.36045826 337.68377041 345.59395726 351.05931643 357.70837505
+ 376.27984406 388.13561166 397.62500102 404.84098896 410.27671535
+ 419.11963543 450.27125342]
 >> /stab.Variable_7_PADeltaT.DT =
 >> /stab.Stage_10.pd_paQ.Port.Energy = 1000000
 Calculating Jacobian for /stab
@@ -1135,19 +1135,19 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
 Error processing command:
 <class 'sim21.solver.Error.SimError'>
 Cannot remove a stage with a feed from a pump around unless the pump around is removed too. Feed is in stage 10, pump around from stage 7
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 389, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 390, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 364, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 365, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1600, in Minus
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1601, in Minus
     lhsObj.Minus(remaining)
 
   File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 255, in Minus
@@ -1159,19 +1159,19 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
 Error processing command:
 <class 'sim21.solver.Error.SimError'>
 Cannot remove a stage with a feed from a pump around unless the pump around is removed too. Feed is in stage 10, pump around from stage 7
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 389, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 390, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 364, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 365, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1600, in Minus
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1601, in Minus
     lhsObj.Minus(remaining)
 
   File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 262, in Minus

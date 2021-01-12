@@ -6,9 +6,10 @@ Stream_Energy -- Class for energy stream. Inherits from UnitOperation
 
 """
 from sim21.solver.Error import SimError
+from sim21.solver.Ports import SIGNAL_TYPE_NONE
 from sim21.solver.Variables import *
 from sim21.solver import setup
-from sim21.solver.Ports import SIGNAL_TYPE_NONE
+# from sim21.solver.Ports import SIGNAL_TYPE_NONE
 from sim21.solver.Messages import MessageHandler
 from sim21.unitop import UnitOperations
 

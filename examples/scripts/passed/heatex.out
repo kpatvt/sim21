@@ -92,16 +92,16 @@ N-PENTANE          = 0.0 =
 Port: /coldOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 97.30834145832557 = C
+T                  = 97.30826271302493 = C
 P                  = 290.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 44796.94899999999 = kg/h
-VolumeFlow         = 10335.625295510285 = m3/hr
+VolumeFlow         = 10335.622916275923 = m3/hr
 StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
 H                  = -100040.06235906796 = kJ/kmol
 Energy             = -27788906.210852213 = W
 MolecularWeight    = 44.79694899999999 = 
-ZFactor            = 0.97310833161064 = 
+ZFactor            = 0.9731083144492826 = 
 PROPANE            = 0.95 = 
 ISOBUTANE          = 0.0 = 
 N-BUTANE           = 0.05 = 
@@ -190,16 +190,16 @@ N-PENTANE          = 0.0 =
 Port: /sub.coldOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 97.30834145832557 = C
+T                  = 97.30826271302493 = C
 P                  = 290.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 44796.94899999999 = kg/h
-VolumeFlow         = 10335.625295510285 = m3/hr
+VolumeFlow         = 10335.622916275923 = m3/hr
 StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
 H                  = -100040.06235906796 = kJ/kmol
 Energy             = -27788906.210852213 = W
 MolecularWeight    = 44.79694899999999 = 
-ZFactor            = 0.97310833161064 = 
+ZFactor            = 0.9731083144492826 = 
 PROPANE            = 0.95 = 
 ISOBUTANE          = 0.0 = 
 N-BUTANE           = 0.05 = 

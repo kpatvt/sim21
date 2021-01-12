@@ -9,12 +9,14 @@ Flowsheet -- Class for the flowsheet. Inherits from UnitOperation
 # Anything in CVS should always have it as False
 REPORT_TIME = False
 
-import time
 import re
+import numpy as np
 from sim21.unitop import UnitOperations
 from sim21.unitop import Controller
 from sim21.thermo.ThermoAdmin import ThermoCase
-from .Messages import MessageHandler
+from sim21.solver.Messages import MessageHandler
+
+from sim21.solver import Ports
 from sim21.solver import Error
 from sim21.solver.Variables import *
 
@@ -95,8 +97,7 @@ class Flowsheet(UnitOperations.UnitOperation):
         (done this way to allow parent value to be used)
         """
         value = super(Flowsheet, self).GetParameterValue(paramName)
-        if value is not None:
-            return value
+        if value is not None: return value
         if paramName == NULIQPH_PAR:
             return 1
 
@@ -267,7 +268,7 @@ class Flowsheet(UnitOperations.UnitOperation):
             # op = self.PopForgetOp()
             op = PopForgetOp()
             while op:
-                if op is not self:
+                if not op is self:
                     op.BlockPush(1)
                     try:
                         try:
@@ -330,7 +331,9 @@ class Flowsheet(UnitOperations.UnitOperation):
         self._isSolving = 1
         path = self.GetPath()
         if REPORT_TIME:
-            self.InfoMessage('InitSolveTime', (time.asctime(), time.time()))
+            # self.InfoMessage('InitSolveTime', (time.asctime(), time.time()))
+            pass
+
         self.unitOpMessage = ('OK',)
         try:
             self.InnerSolve()
@@ -349,9 +352,9 @@ class Flowsheet(UnitOperations.UnitOperation):
                 self.InfoMessage('DoneSolving', self.name)
         finally:
             self._isSolving = 0
-
         if REPORT_TIME:
-            self.InfoMessage('InitSolveTime', (time.asctime(), time.time()))
+            # self.InfoMessage('InitSolveTime', (time.asctime(), time.time()))
+            pass
 
         # Notify associated objects
         if not self.IsForgetting():
@@ -381,23 +384,21 @@ class Flowsheet(UnitOperations.UnitOperation):
         PopIterationProperty = self.PopIterationProperty
         InfoMessage = self.InfoMessage
 
-        while PopConsistencyError():
-            pass
+        while PopConsistencyError(): pass
 
-        iterations = 0
+        iter = 0
         jacobian = None
         if not maxStep:
             maxStep = .05
-        while iterations < maxIter:
-            iterations += 1
+        while iter < maxIter:
+            iter += 1
             # print iter
             SolverForget()
-            if self.hold:
-                return 1
+            if self.hold: return 1
             try:
                 op = PopSolveOp()
                 while op:
-                    if op is not self and op.GetParameterValue(IGNORED_PAR) is None:
+                    if not op is self and op.GetParameterValue(IGNORED_PAR) is None:
                         op.BlockPush(1)
                         try:
                             InfoMessage('SolvingOp', op.GetPath())
@@ -450,14 +451,13 @@ class Flowsheet(UnitOperations.UnitOperation):
                     maxError = err
                     maxErrProp = prop.GetPath()
 
-            InfoMessage('RecycleIter', (iterations, maxError, maxErrProp))
+            InfoMessage('RecycleIter', (iter, maxError, maxErrProp))
 
             if maxError < tolerance and len(self._consistencyErrorStack) == 0:
-                while PopIterationProperty():
-                    pass
+                while PopIterationProperty(): pass
                 break
 
-            if iterations + 1 < maxIter:
+            if iter + 1 < maxIter:
                 # broyden acceleration for successive substitution
                 # Solve f(x) = 0 where f(x) = g(x) - x
                 # g(x) is the new value of x calculated by the flowsheet given x
@@ -478,13 +478,12 @@ class Flowsheet(UnitOperations.UnitOperation):
                         indexDict[prop] = i
                         lastValues[i] = prop._value / prop.GetType().scaleFactor
                         values[i] = prop._newIterationValue / prop.GetType().scaleFactor
-                    jacobian = np.eye(nIterationValues, dtype=float)
+                    jacobian = np.identity(nIterationValues, dtype=float)
                     newValues = values
                     errors = lastValues - values
                 else:
                     for prop in self._iterationStack:
                         values[indexDict[prop]] = prop._newIterationValue / prop.GetType().scaleFactor
-
                     errors = lastValues - values
                     adjustment = np.dot(jacobian, errors)
                     largestChange = max(abs(adjustment))
@@ -497,13 +496,9 @@ class Flowsheet(UnitOperations.UnitOperation):
                 for prop in self._iterationStack:
                     propType = prop.GetType()
                     val = newValues[indexDict[prop]]
-                    if propType.name == FRAC_VAR:
-                        val = np.clip(val, 0.0, 1.0)
-
+                    if propType.name == FRAC_VAR: val = np.clip(val, 0.0, 1.0)
                     prop.SetValue(val * propType.scaleFactor, FIXED_V | ESTIMATED_V)
-
-                while PopIterationProperty():
-                    pass
+                while PopIterationProperty(): pass
 
                 dx = newValues - lastValues
                 lastErrors = np.array(errors)
@@ -530,8 +525,7 @@ class Flowsheet(UnitOperations.UnitOperation):
                 # just clear the consistency stack for next iteration
                 # but don't if there is nothing left to solve
                 # while self.PopConsistencyError(): pass
-                while PopConsistencyError():
-                    pass
+                while PopConsistencyError(): pass
 
         # Recycles that haven't been resolved. Both, new and old ones
         if uncRecyclesDict:
@@ -545,7 +539,7 @@ class Flowsheet(UnitOperations.UnitOperation):
                 self.unitOpMessage = ('UnresolvedRecycles', (str(self.lastUnconvRecycles),))
                 self.InfoMessage('UnresolvedRecycles', (path, str(self.lastUnconvRecycles)))
 
-        if iterations >= maxIter:
+        if iter >= maxIter:
             self._isSolving = 0
             raise Error.SimError("MaxSolverIterExceeded", (maxIter, path))
 
@@ -591,8 +585,38 @@ class Flowsheet(UnitOperations.UnitOperation):
 
     def ValidateOk(self):
         """True if the uo is ready to be calculated"""
-        # Perhaps calling a method for counting degrees of freedom
+        ##      Perhaps calling a method for counting degrees of freedom
         return 1
+
+    def AdjustOldCase(self, version):
+        """apply any necessary fixups to a recalled operation"""
+        # if version[0] < 20:
+        #     if not hasattr(self, 'hold'):
+        #         self.hold = 0
+        # if version[0] < 32:
+        #     if not hasattr(self, '_isSolving'):
+        #         self._isSolving = 0
+        #
+        # if version[0] < 40:
+        #     if not hasattr(self, 'lastConsistErrrors'):
+        #         self.lastConsistErrrors = ConsistencyErrorDict()
+        #     if not hasattr(self, 'lastUnconvRecycles'):
+        #         self.lastUnconvRecycles = UnconvRecycleDict()
+        #
+        # if MAXITERCONT_PAR not in self.parameters:
+        #     self.parameters[MAXITERCONT_PAR] = 20
+        #
+        # super(Flowsheet, self).AdjustOldCase(version)
+        pass
+
+    def adjustVersion(self, revertFunction):
+        """if object version different than code version due to recall"""
+
+        # This call has to be made always because connections in ports get half broken
+        # when pickling (__getstate__) but they can not be restored in
+        # the __setstate__ call because the order of how the port are being restored is not guaranteed
+        self.walk(RestorePortConnections)
+        pass
 
     def Clone(self):
         if len(self._solveStack) or len(self._forgetStack) or len(self._consistencyErrorStack) or len(self._iterationStack):
@@ -629,7 +653,6 @@ class SubFlowsheet(UnitOperations.UnitOperation):
 class UnconvRecycleDict(dict):
 
     def __init__(self):
-        super().__init__()
         self.objDict = {}
 
     def __str__(self):
@@ -703,6 +726,48 @@ class ConsistencyErrorDict(object):
             del self.objDict[uo]
 
 
+revertToVersion = '''
+def revertToVersion(flowsheet, version):
+    """make necessary changes in flowsheet to run version """
+    flowsheet.version = version
+
+    if version[0] < 36:
+        def RestorePortConnections(uo):
+            """Port connections are stroed as paths in order to make things easier on pickle. This method restores the connections"""
+
+            #Find the top most parent
+            topParent = uo.GetParent()
+            while topParent:
+                tempParent = topParent.GetParent()
+                if not tempParent:
+                    break
+                topParent = tempParent
+            if not topParent: topParent = uo
+
+
+            for port in uo.GetPorts():
+                connPath = port._connection
+                if connPath:
+                    if isinstance(connPath, str):
+                        try:
+                            if connPath[0] == '/':
+                                connPath = connPath[1:]
+                            splitConn = connPath.split('.')
+                            parent = topParent
+                            for uoname in splitConn[:-1]:
+                                parent = parent.GetChildUO(uoname)
+                            conn = parent.GetPort(splitConn[-1])
+                            port._connection = conn
+                            conn._connection = port
+                        except:
+                            port._connection = None
+
+
+        flowsheet.walk(RestorePortConnections)
+
+'''
+
+
 def FixThCaseNames(uo):
     """Remove "." from thCase names and make the name == to the case"""
     if uo.thCaseObj:
@@ -724,7 +789,7 @@ def FixThCaseNames(uo):
                 case = name
                 while case in caseList:
                     case += '_'
-                newThCase = re.sub(r'\.', '_', case)
+                newThCase = re.sub('\.', '_', case)
                 thAdmin.ChangeThermoCaseName(caseObjList[i].provider, caseList[i], newThCase)
                 caseObjList[i].name = case
                 caseObjList[i].case = case
@@ -741,8 +806,7 @@ def RestorePortConnections(uo):
         if not tempParent:
             break
         topParent = tempParent
-    if not topParent:
-        topParent = uo
+    if not topParent: topParent = uo
 
     for port in uo.GetPorts():
         connPath = port._connection
@@ -814,3 +878,4 @@ def AdjustThermo(uo):
         del uo.thermoSelected
     if hasattr(uo, 'CmdThermo'):
         del uo.CmdThermo
+

@@ -1,7 +1,7 @@
 """Heat and material (mole or mass) balance class(es)"""
 
+from sim21.solver import Ports, Error
 from sim21.solver.Variables import *
-from sim21.solver.Error import SimError
 from sim21.unitop import UnitOperations
 
 MASS_BALANCE = 1
@@ -14,8 +14,8 @@ BALANCETYPE_PAR = 'BalanceType'
 
 
 class Balance:
-    def __init__(self, type_of):
-        self.type = type_of
+    def __init__(self, type):
+        self.type = type
         self._eneIn = []
         self._eneOut = []
         self._matIn = []
@@ -105,7 +105,7 @@ class Balance:
             return balanced
 
         missing = None
-        sum_of = 0.0
+        sum = 0.0
 
         # do inlets
         for port in self._matIn:
@@ -116,7 +116,7 @@ class Balance:
                 missing = port
                 missingInlet = 1
             else:
-                sum_of += flow
+                sum += flow
 
         # now the outlets
         for port in self._matOut:
@@ -127,20 +127,20 @@ class Balance:
                 missing = port
                 missingInlet = 0
             else:
-                sum_of -= flow
+                sum -= flow
 
         if missing:
             if missingInlet:
-                sum_of = -sum_of
-            missing.SetPropValue(MASSFLOW_VAR, sum_of, calcStatus)
+                sum = -sum
+            missing.SetPropValue(MASSFLOW_VAR, sum, calcStatus)
             missing.CalcFlows()
         elif aPort:
             scaleFactor = PropTypes[MASSFLOW_VAR].scaleFactor
             if scaleFactor:
                 tolerance = aPort.GetParentOp().GetTolerance()
-                if abs(sum_of) / scaleFactor > tolerance:
+                if abs(sum) / scaleFactor > tolerance:
                     prop = aPort.GetProperty(MASSFLOW_VAR)
-                    aPort.GetParentOp().PushConsistencyError(prop, sum_of)
+                    aPort.GetParentOp().PushConsistencyError(prop, sum)
 
         # If it made it all the way here, then  it must be balanced
         balanced = 1
@@ -152,7 +152,7 @@ class Balance:
         """
 
         missing = None
-        sum_of = 0.0
+        sum = 0.0
         inlets = self._matIn + self._eneIn
         outlets = self._matOut + self._eneOut
         balanced = 0
@@ -174,7 +174,7 @@ class Balance:
                 missing = port
                 missingInlet = 1
             else:
-                sum_of += flow
+                sum += flow
 
         # now the outlets
         for port in outlets:
@@ -185,19 +185,19 @@ class Balance:
                 missing = port
                 missingInlet = 0
             else:
-                sum_of -= flow
+                sum -= flow
 
         if missing:
             if missingInlet:
-                sum_of = -sum_of
-            missing.SetPropValue(ENERGY_VAR, sum_of, calcStatus)
+                sum = -sum
+            missing.SetPropValue(ENERGY_VAR, sum, calcStatus)
         elif aPort:
             scaleFactor = PropTypes[ENERGY_VAR].scaleFactor
             if scaleFactor:
                 tolerance = aPort.GetParentOp().GetTolerance()
-                if abs(sum_of) / scaleFactor > tolerance:
+                if abs(sum) / scaleFactor > tolerance:
                     prop = aPort.GetProperty(ENERGY_VAR)
-                    aPort.GetParentOp().PushConsistencyError(prop, sum_of)
+                    aPort.GetParentOp().PushConsistencyError(prop, sum)
 
         # If it made it all the way here, then  it must be balanced
         balanced = 1
@@ -209,7 +209,7 @@ class Balance:
         determine mole flows
         """
         missing = []  # port missing port array (port, inletFlag)
-        sum_of = 0.0
+        sum = 0.0
         nuPortsIn = len(self._matIn)
         nuPortsOut = len(self._matOut)
         totPorts = nuPortsIn + nuPortsOut
@@ -238,7 +238,7 @@ class Balance:
                 missing.append((port, 0))
                 allMatOutAreZero = 0
             else:
-                sum_of -= flow
+                sum -= flow
                 if allMatOutAreZero:
                     if abs(flow) / scaleFactor >= tolerance:
                         allMatOutAreZero = 0
@@ -253,14 +253,14 @@ class Balance:
                 missing.append((port, 1))
                 allMatInAreZero = 0
             else:
-                sum_of += flow
+                sum += flow
                 if allMatInAreZero:
                     if abs(flow) / scaleFactor >= tolerance:
                         allMatInAreZero = 0
                         # This makes sure that aPort is not a zero flow
                         aPort = port
 
-        # Mmmhh, Always check if H and composition can be shared
+                        # Mmmhh, Always check if H and composition can be shared
         if totPorts == 2:
             myPortLst = self._matIn + self._matOut
             for i in range(len(myPortLst) - 1):
@@ -283,14 +283,14 @@ class Balance:
             # all flows known, but do consistency check
             if aPort:
                 if scaleFactor:
-                    if abs(sum_of) / scaleFactor > tolerance:
+                    if abs(sum) / scaleFactor > tolerance:
                         prop = aPort.GetProperty(MOLEFLOW_VAR)
-                        aPort.GetParentOp().PushConsistencyError(prop, sum_of)
+                        aPort.GetParentOp().PushConsistencyError(prop, sum)
 
         elif nuMissing == 1:
             if missing[0][1]:
-                sum_of = -sum_of
-            missing[0][0].SetPropValue(MOLEFLOW_VAR, sum_of, calcStatus)
+                sum = -sum
+            missing[0][0].SetPropValue(MOLEFLOW_VAR, sum, calcStatus)
             missing[0][0].CalcFlows()
         else:
             # more than 1 unknown
@@ -306,7 +306,7 @@ class Balance:
                 else:
                     row.append(-1.0)
             a.append(row)
-            b.append(-sum_of)
+            b.append(-sum)
 
             if canUseEnth:
                 # see if all missing ports have enthalpies
@@ -420,7 +420,7 @@ class Balance:
         # iterate through components
         missing = None
         for cmpNo in range(len(cmps)):
-            sum_of = 0.0
+            sum = 0.0
             # inlets
             for port in self._matIn:
                 flow = port.GetPropValue(MOLEFLOW_VAR)
@@ -431,8 +431,8 @@ class Balance:
                     if x is not None:
                         if missing and missing is port:
                             return balanced  # all components must be missing
-                        sum_of += x * flow
-                    elif missing and port is not missing:
+                        sum += x * flow
+                    elif missing and not port is missing:
                         return balanced  # all missing compositions must be in same port
                     else:
                         missing = port
@@ -449,8 +449,8 @@ class Balance:
                     if x is not None:
                         if missing and missing is port:
                             return balanced  # all components must be missing
-                        sum_of -= x * flow
-                    elif missing and port is not missing:
+                        sum -= x * flow
+                    elif missing and not port is missing:
                         return balanced  # all missing compositions must be in same port
                     else:
                         missing = port
@@ -462,14 +462,14 @@ class Balance:
                 if flow == 0:
                     return balanced
                 if missingInlet:
-                    sum_of = -sum_of
-                missing.GetCompounds()[cmpNo].SetValue(sum_of / flow, calcStatus)
+                    sum = -sum
+                missing.GetCompounds()[cmpNo].SetValue(sum / flow, calcStatus)
                 missing.CalcFlows()
             else:
                 flow = aPort.GetPropValue(MOLEFLOW_VAR)
                 if flow == 0:
                     flow = 1000.0  # arbitrary scaling
-                x = abs(sum_of) / flow
+                x = abs(sum) / flow
 
                 scaleFactor = PropTypes[FRAC_VAR].scaleFactor
                 if scaleFactor:
@@ -624,10 +624,10 @@ class Balance:
                 return balanced  # Nothing can be done
 
         # Decide which balance can be done
-        # !!
-        # Starting here, the prefix vol will be used for vol and stdvol depending on the selected mode
-        # Use v to refer to the port that is missing the volume flow
-        # Use x to refer to the port that is missing the composition
+        ##!!
+        ##Starting here, the prefix vol will be used for vol and stdvol depending on the selected mode
+        ##Use v to refer to the port that is missing the volume flow
+        ##Use x to refer to the port that is missing the composition
         vPort = None
         xPort = None
 
@@ -636,7 +636,7 @@ class Balance:
             vPort = missingStdVol
             vInlet = missingInletStdVol
             xPort = missingxStdVol
-            sum_of = sumStdVol
+            sum = sumStdVol
             vMolVol = vPort.GetPropValue(STDLIQVOL_VAR)
             xVolFlow = xPort.GetPropValue(STDVOLFLOW_VAR)
         elif canDoVol:
@@ -644,7 +644,7 @@ class Balance:
             vPort = missingVol
             vInlet = missingInletVol
             xPort = missingxVol
-            sum_of = sumVol
+            sum = sumVol
             vMolVol = vPort.GetPropValue(MOLARV_VAR)
             xVolFlow = xPort.GetPropValue(VOLFLOW_VAR)
         else:
@@ -671,11 +671,9 @@ class Balance:
 
         # Get some thermo info
         parentOp = xPort._parentOp
-        if parentOp is None:
-            return balanced
+        if parentOp is None: return balanced
         thCaseObj = parentOp.GetThermo()
-        if thCaseObj is None:
-            return balanced
+        if thCaseObj is None: return balanced
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
         refT = parentOp.GetStdVolRefT()
 
@@ -683,13 +681,10 @@ class Balance:
         if vMolVol is None:
             if mode == STDVOLFLOW_VAR:
                 vMolVol = thAdmin.GetArrayProperty(prov, case, (P_VAR, 101.325), (T_VAR, refT),
-                                                   LIQUID_PHASE, np.array(compositions[vIdx], type=float),
+                                                   LIQUID_PHASE, np.array(compositions[vIdx], dtype=float),
                                                    STDLIQMOLVOLPERCMP_VAR)
-                if vMolVol is None:
-                    return balanced
-
+                if vMolVol is None: return balanced
                 vMolVol = np.sum(np.array(compositions[vIdx], dtype=float) * vMolVol)
-
             if vMolVol is None:
                 return balanced
 
@@ -707,22 +702,20 @@ class Balance:
 
         # Estimate a mole flow and convert arrays to Numeric array
         if vInlet:
-            sum_of = -sum_of
-        vVolFlow = sum_of
+            sum = -sum
+        vVolFlow = sum
         vMoleFlow = vVolFlow / vMolVol
         moleFlows[vIdx] = vMoleFlow
         try:
-            moleFlows = np.array(moleFlows, type=float)
+            moleFlows = np.array(moleFlows, dtype=float)
         except:
             return balanced
-
-        compositions = np.array(compositions, type=float)
-        signs = np.array(signs, type=float)
+        compositions = np.array(compositions, dtype=float)
+        signs = np.array(signs, dtype=float)
 
         if mode == VOLFLOW_VAR:
             xP = xPort.GetPropValue(P_VAR)
-            if xP is None:
-                return balanced
+            if xP is None: return balanced
             nuSolids = parentOp.NumberSolidPhases()
             propsDict = MaterialPropertyDict()
             xList = CompoundList(None)
@@ -740,13 +733,13 @@ class Balance:
 
         # Preapre to iterate
         maxIter = 20
-        iteration = 0
+        iter = 0
         converged = False
         scaleFactor = PropTypes[MOLEFLOW_VAR].scaleFactor
         tolerance = 1.0E-6
         errorOld = None
-        while not converged and iteration < maxIter:
-            iteration += 1
+        while not converged and iter < maxIter:
+            iter += 1
             moleFlows[vIdx] = vMoleFlow
 
             xMoleFlows = np.matmul(moleFlows * signs, compositions)
@@ -758,8 +751,7 @@ class Balance:
             if mode == STDVOLFLOW_VAR:
                 xMolVol = thAdmin.GetArrayProperty(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x,
                                                    STDLIQMOLVOLPERCMP_VAR)
-                if xMolVol is None:
-                    return balanced
+                if xMolVol is None: return balanced
                 xMolVol = np.sum(x * xMolVol)
             else:
                 propsDict[P_VAR].SetValue(xP, FIXED_V)
@@ -854,8 +846,7 @@ class BalanceOp(UnitOperations.UnitOperation):
         # now outlet material ports
         nuPorts = self.GetNumberPorts(MAT | OUT)
         nuStOut = self.GetParameterValue(NUSTOUT_PAR + S_MAT)
-        if nuStOut is None:
-            return
+        if nuStOut is None: return
 
         for i in range(nuPorts, nuStOut, -1):
             self.DeletePortNamed(OUT_PORT + str(i - 1))
@@ -865,8 +856,7 @@ class BalanceOp(UnitOperations.UnitOperation):
         # inlet energy ports
         nuPorts = self.GetNumberPorts(ENE | IN)
         nuStIn = self.GetParameterValue(NUSTIN_PAR + S_ENE)
-        if nuStIn is None:
-            return
+        if nuStIn is None: return
 
         for i in range(nuPorts, nuStIn, -1):
             self.DeletePortNamed(IN_PORT + 'Q' + str(i - 1))
@@ -876,8 +866,7 @@ class BalanceOp(UnitOperations.UnitOperation):
         # outlet energy ports
         nuPorts = self.GetNumberPorts(ENE | OUT)
         nuStOut = self.GetParameterValue(NUSTOUT_PAR + S_ENE)
-        if nuStOut is None:
-            return
+        if nuStOut is None: return
 
         for i in range(nuPorts, nuStOut, -1):
             self.DeletePortNamed(OUT_PORT + 'Q' + str(i - 1))
@@ -886,8 +875,7 @@ class BalanceOp(UnitOperations.UnitOperation):
 
         # now create the balance
         balanceType = self.GetParameterValue(BALANCETYPE_PAR)
-        if balanceType is None:
-            return
+        if balanceType is None: return
         self._balance = Balance(balanceType)
         for port in self.GetPorts(MAT | ENE | IN | OUT):
             if port.GetPortType() & IN:

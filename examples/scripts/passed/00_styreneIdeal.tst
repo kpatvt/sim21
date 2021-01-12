@@ -36,7 +36,8 @@ delete /T1.Stage_0.condenserV
 #Add liquid draw and solve
 /T1.Stage_20.L = Tower.LiquidDraw()
 /T1.LiquidDraw_20_L.MoleFlow = 11 kgmole/h
-/T1.TryToRestart = 1 /T1.TryToSolve = 1
+/T1.TryToRestart = 1
+/T1.TryToSolve = 1
 
 #Energy, distillate, draw and bottoms streams for T1
 S2 = Stream.Stream_Material()

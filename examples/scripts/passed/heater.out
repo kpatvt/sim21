@@ -58,16 +58,16 @@ N-PENTANE          = 0.25 *
 Port: /heater.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 1378.8401114024023 = C
+T                  = 1378.8401119199643 = C
 P                  = 101.325 = kPa
 MoleFlow           = 10.0 = kgmole/h
 MassFlow           = 581.222 = kg/h
-VolumeFlow         = 1356.1817359425481 = m3/hr
+VolumeFlow         = 1356.18173636744 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
 H                  = 205585.1535993866 = kJ/kmol
 Energy             = 571069.8711094072 = W
 MolecularWeight    = 58.12219999999999 = 
-ZFactor            = 1.0004442104467124 = 
+ZFactor            = 1.0004442104467164 = 
 PROPANE            = 0.25 = 
 N-BUTANE           = 0.25 = 
 ISOBUTANE          = 0.25 = 

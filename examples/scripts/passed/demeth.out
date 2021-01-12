@@ -105,17 +105,17 @@ Inner loop converged
 >> /overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 1.0 = 
+T                  = -135.7413214792956 = F
 P                  = 330.0 = psia
 MoleFlow           = 21.656432020706568 = lbmole/h
 MassFlow           = 355.7668956382484 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 0.046326788627093544 = ft3/s
 StdLiqVolumeFlow   = 0.0034487944854202568 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -34286.272621135715 = Btu/lbmol
+Energy             = -742393.4696497455 = Btu/hr
+MolecularWeight    = 16.427770247289583 = 
+ZFactor            = 0.7310481605994913 = 
 NITROGEN           = 0.005585199082188519 = 
 CARBON DIOXIDE     = 0.0008604444771819189 = 
 METHANE            = 0.9730381191771361 = 

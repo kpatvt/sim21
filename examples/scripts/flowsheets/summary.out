@@ -1,9 +1,9 @@
 +------------------------+------------+
 | File                   | Time(secs) |
 +------------------------+------------+
-| asu.tst                |   4.8800   |
-| luyben_nat_gas_sep.tst |   3.7139   |
-| simple_refloop.tst     |   0.1263   |
+| asu.tst                |   9.1730   |
+| luyben_nat_gas_sep.tst |   4.0923   |
+| simple_refloop.tst     |   0.1554   |
 |                        |            |
-| TOTAL                  |   8.7202   |
+| TOTAL                  |  13.4206   |
 +------------------------+------------+

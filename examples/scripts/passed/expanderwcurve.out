@@ -53,16 +53,16 @@ N-BUTANE           = 0.10000000000000002 *
 Port: /realExpander.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 26.73898422946496 = C
+T                  = 26.73898878321876 = C
 P                  = 150.70103 = kPa
 MoleFlow           = 33.25679835471968 = kgmole/h
 MassFlow           = 1000.0000000000001 = kg/h
-VolumeFlow         = 543.8062247952553 = m3/hr
+VolumeFlow         = 543.8062333343825 = m3/hr
 StdLiqVolumeFlow   = 1.7653706270635847 = m3/hr
-H                  = -88457.0325246409 = kJ/kmol
-Energy             = -817166.0260357952 = W
+H                  = -88457.03255696998 = kJ/kmol
+Energy             = -817166.026334451 = W
 MolecularWeight    = 30.06904 = 
-ZFactor            = 0.98829195409139 = 
+ZFactor            = 0.9882919546030484 = 
 METHANE            = 0.4000000000000001 = 
 ETHANE             = 0.30000000000000004 = 
 PROPANE            = 0.20000000000000004 = 
@@ -71,7 +71,7 @@ N-BUTANE           = 0.10000000000000002 =
 >> OutQ
 Port: /realExpander.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 1391.5169314072318 = W
+Energy   = 1391.5172300631316 = W
 
 >> '/realExpander.In.MassFlow' =
 >> '/realExpander.In.VolumeFlow' =  1000
@@ -83,13 +83,13 @@ Generic   = 0.5 =
 >> PolytropicEff
 Port: /realExpander.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.4775057932115945 = 
+Generic   = 0.47750579458401 = 
 
 >> /realExpander.EfficiencyCurveType = Polytropic
 >> AdiabaticEff
 Port: /realExpander.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.522534417096612 = 
+Generic   = 0.5225344157239978 = 
 
 >> PolytropicEff
 Port: /realExpander.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -105,7 +105,7 @@ Generic   = 0.5 =
 >> PolytropicEff
 Port: /realExpander.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.4775057932115945 = 
+Generic   = 0.47750579458401 = 
 
 >> 
 >> copy /

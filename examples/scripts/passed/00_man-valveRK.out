@@ -34,15 +34,15 @@ METHANE            = 1.0 =
 Port: /v.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 25.03424763176912 = C
+T                  = 25.034244757607325 = C
 P                  = 500.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 1604.2459999999999 = kg/h
-VolumeFlow         = 491.6701101945907 = m3/hr
+VolumeFlow         = 491.6701052950348 = m3/hr
 StdLiqVolumeFlow   = 3.5540000000000003 = m3/hr
 H                  = -74601.78426540855 = kJ/kmol
 Energy             = -2072271.7851502376 = W
 MolecularWeight    = 16.04246 = 
-ZFactor            = 0.9915735409713133 = 
+ZFactor            = 0.9915735406478126 = 
 METHANE            = 1.0 = 
 

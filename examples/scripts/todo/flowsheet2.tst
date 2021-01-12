@@ -42,13 +42,16 @@ flash.Liq0
 thermo + n-HEXANE n-DODECANE
 # pretty much everything will have been forgotten
 stream1.Out
+
 # let's delete a component
 thermo - n-Pentane
 stream1.In.Fraction
 stream1.In.Fraction.n-Hexane = .25
+
 # Whoops, caps count, even in components - try again
 stream1.In.Fraction.N-HEXANE = .25
 stream1.In.Fraction.N-DODECANE = .25
+
 # Whoops again - the composition is not normalized when
 # individual component fractions are specified
 stream1.In.Fraction = .25 0 0 .25 .25 .25

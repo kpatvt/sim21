@@ -38,16 +38,16 @@ pIn-pOut = 0.05*f^2
 Port: /Outlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 16.228080349176594 = C
+T                  = 16.228054259161922 = C
 P                  = 2500.0 = kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 2165.3092000000006 = kg/h
-VolumeFlow         = 85.18456880932091 = m3/hr
+VolumeFlow         = 85.18455781810972 = m3/hr
 StdLiqVolumeFlow   = 4.1595 = m3/hr
 H                  = -80631.12334226654 = kJ/kmol
 Energy             = -2239753.4261740707 = W
 MolecularWeight    = 21.653092 = 
-ZFactor            = 0.8851178959057362 = 
+ZFactor            = 0.8851178615018402 = 
 METHANE            = 0.7 = 
 ETHANE             = 0.2 = 
 PROPANE            = 0.1 = 

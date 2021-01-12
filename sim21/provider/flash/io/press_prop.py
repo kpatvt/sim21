@@ -356,6 +356,7 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
     if abs(temp_est - temp_star)/temp_est < 0.05:
         temp_star = 0.95*temp_est
 
+    start_temp = temp_est
     # Initialize the values of the search
     temp = temp_est
     r_value = vap_frac
@@ -408,7 +409,7 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
             # print('Switching to one phase search in:', 'liq')
             return flash_press_prop_1phase(provider, 'liq',
                                            press,
-                                           temp_calc,
+                                           start_temp,
                                            prop_type,
                                            prop_target,
                                            delta_target,
@@ -423,7 +424,7 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
             # print('Switching to one phase search in:', 'vap')
             return flash_press_prop_1phase(provider, 'vap',
                                            press,
-                                           temp_calc,
+                                           start_temp,
                                            prop_type,
                                            prop_target,
                                            delta_target,
@@ -539,7 +540,7 @@ def flash_press_prop_1phase(provider, phase_type, press, start_temp, prop_type, 
     phase_at_temp = None
 
     for iterations in range(INSIDE_OUT_OUTER_ITERATIONS):
-        temp_2 = temp_1 + temp_1*1e-3
+        temp_2 = temp_1 + 0.001
         phase_at_temp = provider.phase(temp_1, press, feed_comp, phase_type, valid=valid)
         prop_1 = getattr(phase_at_temp, prop_type)/prop_scaling
         prop_2 = getattr(provider.phase(temp_2, press, feed_comp, phase_type, valid=valid), prop_type)/prop_scaling

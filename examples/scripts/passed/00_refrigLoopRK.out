@@ -57,16 +57,16 @@ AMMONIA            = 1.0 *
 Port: /Compressor.Waste.Out + sim21.solver.Ports.Port_Material
 Connected to: /Condenser.In
 VapFrac            = 1.0 | 
-T                  = 249.24583274898453 | C
+T                  = 249.24606465678482 | C
 P                  = 2680.2954498908084 | kPa
 MoleFlow           = 2.2025215652748344 = kgmole/h
 MassFlow           = 37.51008756784437 = kg/h
-VolumeFlow         = 3.45720479520787 = m3/hr
+VolumeFlow         = 3.4572065463385253 = m3/hr
 StdLiqVolumeFlow   = 0.054974938269259865 = m3/hr
-H                  = -37717.669049121905 = kJ/kmol
-Energy             = -23076.105409052823 = W
+H                  = -37717.671260953866 = kJ/kmol
+Energy             = -23076.106762277148 = W
 MolecularWeight    = 17.03052 | 
-ZFactor            = 0.9686206366747975 | 
+ZFactor            = 0.9686206972960267 | 
 AMMONIA            = 1.0 = 
 
 >> Condenser.Out

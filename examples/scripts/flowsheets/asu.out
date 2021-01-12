@@ -13,6 +13,9 @@ Thermo case attached to a unit operation. / to /thermo
 >> thermo + NITROGEN OXYGEN ARGON
 NITROGEN OXYGEN ARGON 
 >> 
+>> /MaxNumIterations = 50
+>> # /RecycleDetails = 1
+>> 
 >> air_feed = Stream.Stream_Material()
 >> air_feed.In.T = 30 C
 >> air_feed.In.P = 1.01315 bar
@@ -332,16 +335,16 @@ ARGON              = 0.014251789492023489 =
 Port: /exp1.Waste.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = -171.92192016196753 = C
+T                  = -171.92176154022906 = C
 P                  = 130.0 * kPa
 MoleFlow           = 1864.683831013143 = kgmole/h
 MassFlow           = 54000.000151200045 = kg/h
-VolumeFlow         = 11745.365536261203 = m3/hr
+VolumeFlow         = 11745.385275013981 = m3/hr
 StdLiqVolumeFlow   = 62.13539179467596 = m3/hr
-H                  = -5777.407237012976 = kJ/kmol
-Energy             = -2992510.5166767817 = W
+H                  = -5777.402585780363 = kJ/kmol
+Energy             = -2992508.107488379 = W
 MolecularWeight    = 28.959333080000004 = 
-ZFactor            = 0.9729029060602575 = 
+ZFactor            = 0.972903016565321 = 
 NITROGEN           = 0.7812 = 
 OXYGEN             = 0.2095 = 
 ARGON              = 0.0093 = 
@@ -429,7 +432,7 @@ ARGON              = 0.0093 =
 >> l = Tower.LiquidDraw()
 >> l.Port.P = 1.35 bar
 >> # l.Port.MassFlow = 4.7 kg/s
->> l.Port.Fraction.OXYGEN = 0.985
+>> l.Port.Fraction.OXYGEN = 0.99
 >> reb = Tower.EnergyFeed(1)
 >> 
 >> estT = Tower.Estimate('T')
@@ -491,7 +494,7 @@ Energy             = None
 MolecularWeight    = None
 ZFactor            = None
 NITROGEN           = None
-OXYGEN             = 0.985 = 
+OXYGEN             = 0.99 = 
 ARGON              = None
 
 >> 
@@ -499,25 +502,25 @@ ARGON              = None
 >> vap_draw2_col2.In.P ~= 132.214 kPa
 Changed state of port /vap_draw2_col2.In to 1 (0=Normal port; 1=Recycle port)
 >> vap_draw2_col2.In.VapFrac ~= 1
->> vap_draw2_col2.In.Fraction ~= 0.0 0.9224 0.0776
+>> vap_draw2_col2.In.Fraction ~= 0.0 0.92 0.08
 >> vap_draw2_col2.In.MoleFlow ~= 0.225 kgmole/s
 >> vap_draw2_col2.Out
 Port: /vap_draw2_col2.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = -180.62735290155794 = C
+T                  = -180.633519685411 = C
 P                  = 132.214 = kPa
 MoleFlow           = 810.0000022680001 = kgmole/h
-MassFlow           = 26418.682989172314 = kg/h
-VolumeFlow         = 4536.11724159348 = m3/hr
-StdLiqVolumeFlow   = 22.6370700633838 = m3/hr
-H                  = -5922.106947510906 = kJ/kmol
-Energy             = -1332474.0669208814 = W
-MolecularWeight    = 32.61565792 = 
-ZFactor            = 0.962486087836652 = 
+MassFlow           = 26434.136234015583 = kg/h
+VolumeFlow         = 4535.805510419209 = m3/hr
+StdLiqVolumeFlow   = 22.639500063390603 = m3/hr
+H                  = -5918.173862377641 = kJ/kmol
+Energy             = -1331589.1227634188 = W
+MolecularWeight    = 32.634736 = 
+ZFactor            = 0.9624840949604995 = 
 NITROGEN           = 0.0 = 
-OXYGEN             = 0.9224 = 
-ARGON              = 0.0776 = 
+OXYGEN             = 0.92 = 
+ARGON              = 0.08 = 
 
 >> 
 >> 
@@ -532,7 +535,7 @@ ARGON              = 0.0776 =
 >> cond = Tower.EnergyFeed(0)
 >> # reflux = Tower.StageSpecification('Reflux')
 >> # reflux.Value = 33.4
->> l.Port.Fraction.ARGON = 0.999999
+>> l.Port.Fraction.OXYGEN = 1e-6
 >> cd /
 /
 >> 
@@ -567,27 +570,27 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.729887
-/col3 Inner Error 0.184434
-/col3 Inner Error 0.167366
-/col3 Inner Error 0.160781
-/col3 Inner Error 0.148192
-/col3 Inner Error 0.141851
-/col3 Inner Error 0.140754
-/col3 Inner Error 0.136518
-/col3 Inner Error 0.130690
-/col3 Inner Error 0.128546
-/col3 Inner Error 0.127195
-/col3 Inner Error 0.115569
-/col3 Inner Error 0.109811
-/col3 Inner Error 0.107253
-/col3 Inner Error 0.098367
-/col3 Inner Error 0.084535
-/col3 Inner Error 0.078023
-/col3 Inner Error 0.061546
-/col3 Inner Error 0.037970
-/col3 Inner Error 0.026344
-/col3 Iteration 1 Outer Error 0.012852
+/col3 Inner Error 0.721250
+/col3 Inner Error 0.183548
+/col3 Inner Error 0.165629
+/col3 Inner Error 0.159099
+/col3 Inner Error 0.147072
+/col3 Inner Error 0.140028
+/col3 Inner Error 0.138874
+/col3 Inner Error 0.135132
+/col3 Inner Error 0.129075
+/col3 Inner Error 0.126546
+/col3 Inner Error 0.125553
+/col3 Inner Error 0.114001
+/col3 Inner Error 0.107854
+/col3 Inner Error 0.105384
+/col3 Inner Error 0.096674
+/col3 Inner Error 0.082052
+/col3 Inner Error 0.076092
+/col3 Inner Error 0.060288
+/col3 Inner Error 0.037048
+/col3 Inner Error 0.025083
+/col3 Iteration 1 Outer Error 0.012817
 Calculating Jacobian for /col3
 Calculating disturbance 10 of 121 in jacobian of /col3
 Calculating disturbance 20 of 121 in jacobian of /col3
@@ -601,18 +604,18 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.047144
-/col3 Inner Error 0.029710
-/col3 Inner Error 0.019409
-/col3 Inner Error 0.010722
-/col3 Inner Error 0.008909
-/col3 Inner Error 0.007833
-/col3 Inner Error 0.003901
-/col3 Inner Error 0.003510
-/col3 Inner Error 0.003138
-/col3 Inner Error 0.001445
+/col3 Inner Error 0.048136
+/col3 Inner Error 0.030242
+/col3 Inner Error 0.019582
+/col3 Inner Error 0.010624
+/col3 Inner Error 0.008611
+/col3 Inner Error 0.008204
+/col3 Inner Error 0.004039
+/col3 Inner Error 0.003181
+/col3 Inner Error 0.003110
+/col3 Inner Error 0.001424
 Step size too small - Exiting inner loop
-/col3 Iteration 2 Outer Error 0.008121
+/col3 Iteration 2 Outer Error 0.008073
 Calculating Jacobian for /col3
 Calculating disturbance 10 of 121 in jacobian of /col3
 Calculating disturbance 20 of 121 in jacobian of /col3
@@ -626,16 +629,16 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.626320
-/col3 Inner Error 0.625701
-/col3 Inner Error 0.625665
-/col3 Inner Error 0.622809
-/col3 Inner Error 0.622474
-/col3 Inner Error 0.443592
-/col3 Inner Error 0.283020
-/col3 Inner Error 0.282760
+/col3 Inner Error 0.621834
+/col3 Inner Error 0.619097
+/col3 Inner Error 0.618971
+/col3 Inner Error 0.618947
+/col3 Inner Error 0.615360
+/col3 Inner Error 0.612219
+/col3 Inner Error 0.224266
+/col3 Inner Error 0.198494
 Step size too small - Exiting inner loop
-/col3 Iteration 3 Outer Error 0.001572
+/col3 Iteration 3 Outer Error 0.003470
 Calculating Jacobian for /col3
 Calculating disturbance 10 of 121 in jacobian of /col3
 Calculating disturbance 20 of 121 in jacobian of /col3
@@ -649,37 +652,95 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.330167
-/col3 Inner Error 0.328982
-/col3 Inner Error 0.290049
-/col3 Inner Error 0.095734
-/col3 Inner Error 0.095373
-/col3 Inner Error 0.059986
-/col3 Inner Error 0.054195
-/col3 Inner Error 0.020612
-/col3 Inner Error 0.001801
-/col3 Inner Error 0.000810
-/col3 Inner Error 0.000125
-/col3 Inner Error 0.000042
+/col3 Inner Error 0.408771
+Inner loop is not changing significantly - exiting
+/col3 Iteration 4 Outer Error 0.002887
+Calculating Jacobian for /col3
+Calculating disturbance 10 of 121 in jacobian of /col3
+Calculating disturbance 20 of 121 in jacobian of /col3
+Calculating disturbance 30 of 121 in jacobian of /col3
+Calculating disturbance 40 of 121 in jacobian of /col3
+Calculating disturbance 50 of 121 in jacobian of /col3
+Calculating disturbance 60 of 121 in jacobian of /col3
+Calculating disturbance 70 of 121 in jacobian of /col3
+Calculating disturbance 80 of 121 in jacobian of /col3
+Calculating disturbance 90 of 121 in jacobian of /col3
+Calculating disturbance 100 of 121 in jacobian of /col3
+Calculating disturbance 110 of 121 in jacobian of /col3
+Calculating disturbance 120 of 121 in jacobian of /col3
+/col3 Inner Error 0.532010
+Step size too small - Exiting inner loop
+/col3 Iteration 5 Outer Error 0.000012
+Calculating Jacobian for /col3
+Calculating disturbance 10 of 121 in jacobian of /col3
+Calculating disturbance 20 of 121 in jacobian of /col3
+Calculating disturbance 30 of 121 in jacobian of /col3
+Calculating disturbance 40 of 121 in jacobian of /col3
+Calculating disturbance 50 of 121 in jacobian of /col3
+Calculating disturbance 60 of 121 in jacobian of /col3
+Calculating disturbance 70 of 121 in jacobian of /col3
+Calculating disturbance 80 of 121 in jacobian of /col3
+Calculating disturbance 90 of 121 in jacobian of /col3
+Calculating disturbance 100 of 121 in jacobian of /col3
+Calculating disturbance 110 of 121 in jacobian of /col3
+Calculating disturbance 120 of 121 in jacobian of /col3
+/col3 Inner Error 0.534868
+/col3 Inner Error 0.534848
+/col3 Inner Error 0.534328
+/col3 Inner Error 0.534134
+/col3 Inner Error 0.533975
+/col3 Inner Error 0.533937
+/col3 Inner Error 0.533527
+/col3 Inner Error 0.532478
+/col3 Inner Error 0.531217
+/col3 Inner Error 0.527621
+/col3 Inner Error 0.277683
+/col3 Inner Error 0.199201
+/col3 Inner Error 0.106749
+/col3 Inner Error 0.096381
+/col3 Inner Error 0.062915
+/col3 Inner Error 0.030344
+/col3 Inner Error 0.030203
+/col3 Inner Error 0.009462
+/col3 Inner Error 0.003741
+/col3 Inner Error 0.000975
+/col3 Iteration 6 Outer Error 0.005657
+Calculating Jacobian for /col3
+Calculating disturbance 10 of 121 in jacobian of /col3
+Calculating disturbance 20 of 121 in jacobian of /col3
+Calculating disturbance 30 of 121 in jacobian of /col3
+Calculating disturbance 40 of 121 in jacobian of /col3
+Calculating disturbance 50 of 121 in jacobian of /col3
+Calculating disturbance 60 of 121 in jacobian of /col3
+Calculating disturbance 70 of 121 in jacobian of /col3
+Calculating disturbance 80 of 121 in jacobian of /col3
+Calculating disturbance 90 of 121 in jacobian of /col3
+Calculating disturbance 100 of 121 in jacobian of /col3
+Calculating disturbance 110 of 121 in jacobian of /col3
+Calculating disturbance 120 of 121 in jacobian of /col3
+/col3 Inner Error 0.009330
+/col3 Inner Error 0.004156
+/col3 Inner Error 0.001169
+/col3 Inner Error 0.000462
+/col3 Inner Error 0.000021
+/col3 Inner Error 0.000009
+Inner loop converged
+/col3 Iteration 7 Outer Error 0.003236
+/col3 Inner Error 0.043974
+/col3 Inner Error 0.009308
+/col3 Inner Error 0.003669
+/col3 Inner Error 0.002943
+/col3 Inner Error 0.001797
+/col3 Inner Error 0.000137
+/col3 Inner Error 0.000035
+/col3 Inner Error 0.000017
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 8 Outer Error 0.000009
+/col3 Inner Error 0.000617
+/col3 Inner Error 0.000189
 /col3 Inner Error 0.000006
 Inner loop converged
-/col3 Iteration 4 Outer Error 0.002204
-/col3 Inner Error 0.045462
-/col3 Inner Error 0.043087
-/col3 Inner Error 0.010320
-/col3 Inner Error 0.010032
-/col3 Inner Error 0.009777
-/col3 Inner Error 0.005355
-/col3 Inner Error 0.001961
-/col3 Inner Error 0.000306
-/col3 Inner Error 0.000032
-/col3 Inner Error 0.000002
-Inner loop converged
-/col3 Iteration 5 Outer Error 0.000008
-/col3 Inner Error 0.000308
-/col3 Inner Error 0.000058
-/col3 Inner Error 0.000002
-Inner loop converged
 Calculating Jacobian for /col2
 Calculating disturbance 10 of 73 in jacobian of /col2
 Calculating disturbance 20 of 73 in jacobian of /col2
@@ -688,111 +749,521 @@ Calculating disturbance 40 of 73 in jacobian of /col2
 Calculating disturbance 50 of 73 in jacobian of /col2
 Calculating disturbance 60 of 73 in jacobian of /col2
 Calculating disturbance 70 of 73 in jacobian of /col2
-/col2 Inner Error 0.019967
-/col2 Inner Error 0.011215
-/col2 Inner Error 0.001103
-/col2 Inner Error 0.000064
-/col2 Inner Error 0.000012
-/col2 Inner Error 0.000002
+/col2 Inner Error 0.103904
+/col2 Inner Error 0.056937
+/col2 Inner Error 0.007957
+/col2 Inner Error 0.001152
+/col2 Inner Error 0.000228
+/col2 Inner Error 0.000056
+/col2 Inner Error 0.000008
 Inner loop converged
-/col2 Iteration 1 Outer Error 0.022081
-/col2 Inner Error 0.011011
-/col2 Inner Error 0.000764
-/col2 Inner Error 0.000150
-/col2 Inner Error 0.000016
-/col2 Inner Error 0.000005
+/col2 Iteration 1 Outer Error 0.022677
+/col2 Inner Error 0.041488
+/col2 Inner Error 0.008454
+/col2 Inner Error 0.001169
+/col2 Inner Error 0.000199
+/col2 Inner Error 0.000046
+/col2 Inner Error 0.000006
 Inner loop converged
-/col2 Iteration 2 Outer Error 0.007690
-/col2 Inner Error 0.002997
-/col2 Inner Error 0.000457
-/col2 Inner Error 0.000030
+/col2 Iteration 2 Outer Error 0.010321
+/col2 Inner Error 0.005715
+/col2 Inner Error 0.000696
+/col2 Inner Error 0.000037
 /col2 Inner Error 0.000004
 Inner loop converged
-/col2 Iteration 3 Outer Error 0.001103
-/col2 Inner Error 0.000162
-/col2 Inner Error 0.000022
-/col2 Inner Error 0.000001
-Inner loop converged
-/col2 Iteration 4 Outer Error 0.000272
-/col2 Inner Error 0.000027
+/col2 Iteration 3 Outer Error 0.001600
+/col2 Inner Error 0.000277
+/col2 Inner Error 0.000016
 /col2 Inner Error 0.000002
 Inner loop converged
-/col2 Iteration 5 Outer Error 0.000048
+/col2 Iteration 4 Outer Error 0.000371
+/col2 Inner Error 0.000037
+/col2 Inner Error 0.000004
+Inner loop converged
+/col2 Iteration 5 Outer Error 0.000070
 /col2 Inner Error 0.000001
 Inner loop converged
-Iteration 1 -> max Error 0.000111 in /vap_draw2_col2.In.Fraction.ARGON
-/col3 Inner Error 0.000410
-/col3 Inner Error 0.000044
+Iteration 1 -> max Error 0.017336 in /vap_draw2_col2.In.Fraction.ARGON
+/col3 Inner Error 0.007584
+/col3 Inner Error 0.002351
+/col3 Inner Error 0.000221
+/col3 Inner Error 0.000052
+/col3 Inner Error 0.000007
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000075
+/col3 Inner Error 0.003489
+/col3 Inner Error 0.001055
+/col3 Inner Error 0.000164
+/col3 Inner Error 0.000071
+/col3 Inner Error 0.000016
+/col3 Inner Error 0.000001
+Inner loop converged
+/col2 Inner Error 0.003115
+/col2 Inner Error 0.000182
+/col2 Inner Error 0.000036
+/col2 Inner Error 0.000013
+/col2 Inner Error 0.000002
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.005535
+/col2 Inner Error 0.001064
+/col2 Inner Error 0.000129
+/col2 Inner Error 0.000017
+/col2 Inner Error 0.000003
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000922
+/col2 Inner Error 0.000085
+/col2 Inner Error 0.000004
+Inner loop converged
+/col2 Iteration 3 Outer Error 0.000250
+/col2 Inner Error 0.000005
+Inner loop converged
+/col2 Iteration 4 Outer Error 0.000053
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 2 -> max Error 0.003567 in /vap_draw2_col2.In.Fraction.ARGON
+/col3 Inner Error 0.000788
+/col3 Inner Error 0.000132
+/col3 Inner Error 0.000065
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000011
+/col3 Inner Error 0.000816
+/col3 Inner Error 0.000250
+/col3 Inner Error 0.000026
 /col3 Inner Error 0.000004
 Inner loop converged
-/col3 Iteration 1 Outer Error 0.000003
-/col3 Inner Error 0.000121
-/col3 Inner Error 0.000105
-Step size too small - Exiting inner loop
-/col3 Iteration 2 Outer Error 0.000016
-Calculating Jacobian for /col3
-Calculating disturbance 10 of 121 in jacobian of /col3
-Calculating disturbance 20 of 121 in jacobian of /col3
-Calculating disturbance 30 of 121 in jacobian of /col3
-Calculating disturbance 40 of 121 in jacobian of /col3
-Calculating disturbance 50 of 121 in jacobian of /col3
-Calculating disturbance 60 of 121 in jacobian of /col3
-Calculating disturbance 70 of 121 in jacobian of /col3
-Calculating disturbance 80 of 121 in jacobian of /col3
-Calculating disturbance 90 of 121 in jacobian of /col3
-Calculating disturbance 100 of 121 in jacobian of /col3
-Calculating disturbance 110 of 121 in jacobian of /col3
-Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.000112
-/col3 Inner Error 0.000110
-Inner loop is not changing significantly - exiting
-/col3 Iteration 3 Outer Error 0.000003
-Calculating Jacobian for /col3
-Calculating disturbance 10 of 121 in jacobian of /col3
-Calculating disturbance 20 of 121 in jacobian of /col3
-Calculating disturbance 30 of 121 in jacobian of /col3
-Calculating disturbance 40 of 121 in jacobian of /col3
-Calculating disturbance 50 of 121 in jacobian of /col3
-Calculating disturbance 60 of 121 in jacobian of /col3
-Calculating disturbance 70 of 121 in jacobian of /col3
-Calculating disturbance 80 of 121 in jacobian of /col3
-Calculating disturbance 90 of 121 in jacobian of /col3
-Calculating disturbance 100 of 121 in jacobian of /col3
-Calculating disturbance 110 of 121 in jacobian of /col3
-Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.000303
-Inner loop is not changing significantly - exiting
-/col3 Iteration 4 Outer Error 0.000002
-Calculating Jacobian for /col3
-Calculating disturbance 10 of 121 in jacobian of /col3
-Calculating disturbance 20 of 121 in jacobian of /col3
-Calculating disturbance 30 of 121 in jacobian of /col3
-Calculating disturbance 40 of 121 in jacobian of /col3
-Calculating disturbance 50 of 121 in jacobian of /col3
-Calculating disturbance 60 of 121 in jacobian of /col3
-Calculating disturbance 70 of 121 in jacobian of /col3
-Calculating disturbance 80 of 121 in jacobian of /col3
-Calculating disturbance 90 of 121 in jacobian of /col3
-Calculating disturbance 100 of 121 in jacobian of /col3
-Calculating disturbance 110 of 121 in jacobian of /col3
-Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.000076
-/col3 Inner Error 0.000002
+/col2 Inner Error 0.000222
+/col2 Inner Error 0.000028
+/col2 Inner Error 0.000002
 Inner loop converged
-/col2 Inner Error 0.000043
-Inner loop is not changing significantly - exiting
-/col2 Iteration 1 Outer Error 0.000053
-Calculating Jacobian for /col2
-Calculating disturbance 10 of 73 in jacobian of /col2
-Calculating disturbance 20 of 73 in jacobian of /col2
-Calculating disturbance 30 of 73 in jacobian of /col2
-Calculating disturbance 40 of 73 in jacobian of /col2
-Calculating disturbance 50 of 73 in jacobian of /col2
-Calculating disturbance 60 of 73 in jacobian of /col2
-Calculating disturbance 70 of 73 in jacobian of /col2
+/col2 Iteration 1 Outer Error 0.001305
+/col2 Inner Error 0.000118
+/col2 Inner Error 0.000007
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000216
+/col2 Inner Error 0.000007
+Inner loop converged
+/col2 Iteration 3 Outer Error 0.000061
+/col2 Inner Error 0.000003
+Inner loop converged
+Iteration 3 -> max Error 0.000695 in /vap_draw2_col2.In.Fraction.OXYGEN
+/col3 Inner Error 0.000609
+/col3 Inner Error 0.000025
+/col3 Inner Error 0.000004
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000101
+/col3 Inner Error 0.000032
+/col3 Inner Error 0.000001
+Inner loop converged
+/col2 Inner Error 0.000052
+/col2 Inner Error 0.000004
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000338
+/col2 Inner Error 0.000013
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000056
+/col2 Inner Error 0.000002
+Inner loop converged
+Iteration 4 -> max Error 1.000000 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000623
+/col3 Inner Error 0.000068
+/col3 Inner Error 0.000015
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000022
+/col3 Inner Error 0.000005
+Inner loop converged
+/col2 Inner Error 0.000021
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000259
+/col2 Inner Error 0.000006
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000042
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 5 -> max Error 0.050000 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000447
+/col3 Inner Error 0.000021
+/col3 Inner Error 0.000003
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000010
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000249
+/col2 Inner Error 0.000005
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000041
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 6 -> max Error 1.000000 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000277
+/col3 Inner Error 0.000023
+/col3 Inner Error 0.000003
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000022
+/col3 Inner Error 0.000001
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000257
+/col2 Inner Error 0.000006
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000043
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 7 -> max Error 0.042114 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000018
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000001
+Inner loop converged
 /col2 Inner Error 0.000000
 Inner loop converged
-Iteration 2 -> max Error 0.000023 in /vap_draw2_col2.In.Fraction.OXYGEN
+/col2 Iteration 1 Outer Error 0.000003
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 8 -> max Error 0.040454 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000009
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 9 -> max Error 0.038840 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000587
+/col3 Inner Error 0.000009
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000018
+/col3 Inner Error 0.000003
+Inner loop converged
+/col2 Inner Error 0.000002
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000323
+/col2 Inner Error 0.000006
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000056
+/col2 Inner Error 0.000002
+Inner loop converged
+Iteration 10 -> max Error 0.011160 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000052
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000001
+/col3 Inner Error 0.000008
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000148
+/col2 Inner Error 0.000004
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000025
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 11 -> max Error 0.014748 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000038
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000001
+/col3 Inner Error 0.000003
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000111
+/col2 Inner Error 0.000002
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000019
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 12 -> max Error 0.003752 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000002
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000001
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000007
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 13 -> max Error 0.001989 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000009
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 14 -> max Error 0.000578 in /vap_draw2_col2.In.ZFactor
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000014
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 15 -> max Error 0.998661 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000514
+/col3 Inner Error 0.000012
+/col3 Inner Error 0.000002
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000027
+/col3 Inner Error 0.000004
+Inner loop converged
+/col2 Inner Error 0.000002
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000323
+/col2 Inner Error 0.000007
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000054
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 16 -> max Error 0.051339 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000011
+/col3 Inner Error 0.000002
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000002
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000022
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 17 -> max Error 0.051486 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000016
+/col3 Inner Error 0.000002
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000001
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000011
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 18 -> max Error 0.049068 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000001
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 19 -> max Error 0.049373 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000318
+/col3 Inner Error 0.000007
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000003
+/col3 Inner Error 0.000009
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000247
+/col2 Inner Error 0.000005
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000042
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 20 -> max Error 0.011826 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000082
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000001
+/col3 Inner Error 0.000006
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000175
+/col2 Inner Error 0.000004
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000029
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 21 -> max Error 0.038967 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000046
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000001
+/col3 Inner Error 0.000004
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000131
+/col2 Inner Error 0.000003
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000022
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 22 -> max Error 0.018813 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000635
+/col3 Inner Error 0.000010
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000017
+/col3 Inner Error 0.000004
+Inner loop converged
+/col2 Inner Error 0.000003
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000330
+/col2 Inner Error 0.000007
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000058
+/col2 Inner Error 0.000002
+Inner loop converged
+Iteration 23 -> max Error 0.031187 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000489
+/col3 Inner Error 0.000013
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000007
+Inner loop converged
+/col2 Inner Error 0.000007
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000331
+/col2 Inner Error 0.000010
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000059
+/col2 Inner Error 0.000002
+Inner loop converged
+Iteration 24 -> max Error 0.081187 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000619
+/col3 Inner Error 0.000024
+/col3 Inner Error 0.000003
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000018
+/col3 Inner Error 0.000004
+Inner loop converged
+/col2 Inner Error 0.000010
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000308
+/col2 Inner Error 0.000006
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000050
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 25 -> max Error 0.031187 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000587
+/col3 Inner Error 0.000045
+/col3 Inner Error 0.000003
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000002
+/col3 Inner Error 0.000016
+/col3 Inner Error 0.000002
+Inner loop converged
+/col2 Inner Error 0.000003
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000267
+/col2 Inner Error 0.000005
+Inner loop converged
+/col2 Iteration 2 Outer Error 0.000043
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 26 -> max Error 0.008018 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000003
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000001
+/col3 Inner Error 0.000007
+Inner loop converged
+/col2 Inner Error 0.000002
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000080
+/col2 Inner Error 0.000002
+Inner loop converged
+Iteration 27 -> max Error 0.006398 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000002
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000002
+Inner loop converged
+/col2 Inner Error 0.000001
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000031
+/col2 Inner Error 0.000001
+Inner loop converged
+Iteration 28 -> max Error 0.000530 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000000
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 29 -> max Error 0.000169 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000000
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 30 -> max Error 0.000314 in /vap_draw2_col2.In.molarV
+/col3 Inner Error 0.000001
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000004
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 31 -> max Error 0.000350 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000000
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 32 -> max Error 0.000312 in /vap_draw2_col2.In.VapFrac
+/col3 Inner Error 0.000000
+Inner loop converged
+/col3 Iteration 1 Outer Error 0.000000
+/col3 Inner Error 0.000000
+Inner loop converged
+/col2 Inner Error 0.000000
+Inner loop converged
+/col2 Iteration 1 Outer Error 0.000001
+/col2 Inner Error 0.000000
+Inner loop converged
+Iteration 33 -> max Error 0.000036 in /vap_draw2_col2.In.VapFrac
 >> cd ..
 /
 >> 
@@ -800,20 +1271,20 @@ Iteration 2 -> max Error 0.000023 in /vap_draw2_col2.In.Fraction.OXYGEN
 >> ovhd_vap_col2.Out
 Port: /ovhd_vap_col2.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 1.0 = 
+T                  = -194.42951724909884 = C
 P                  = 120.0 = kPa
-MoleFlow           = 1930.8416778390947 = kgmole/h
-MassFlow           = 54089.44145076729 = kg/h
-VolumeFlow         = None
-StdLiqVolumeFlow   = 67.27052339699303 = m3/hr
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
-NITROGEN           = 0.9999999424419491 = 
-OXYGEN             = 8.702262213506471e-09 = 
-ARGON              = 4.885578869347571e-08 = 
+MoleFlow           = 2036.197328639894 = kgmole/h
+MassFlow           = 57040.811582770926 = kg/h
+VolumeFlow         = 10587.772714279645 = m3/hr
+StdLiqVolumeFlow   = 70.94111421939557 = m3/hr
+H                  = -6468.640632912722 = kJ/kmol
+Energy             = -3658730.21574121 = W
+MolecularWeight    = 28.01340044719719 = 
+ZFactor            = 0.9533317535291963 = 
+NITROGEN           = 0.9999999406410068 = 
+OXYGEN             = 6.539217319833654e-09 = 
+ARGON              = 5.2819775892098174e-08 = 
 
 >> 
 >> # Purified Oxygen Product
@@ -821,19 +1292,19 @@ ARGON              = 4.885578869347571e-08 =
 Port: /btm_liq_col2.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -180.29643394851627 = C
+T                  = -180.279979161465 = C
 P                  = 135.0 = kPa
-MoleFlow           = 1845.4529263249424 = kgmole/h
-MassFlow           = 59272.32720361855 = kg/h
-VolumeFlow         = 46.48826466818318 = m3/hr
-StdLiqVolumeFlow   = 51.43046623874178 = m3/hr
-H                  = -12707.000830669549 = kJ/kmol
-Energy             = -6513936.629936831 = W
-MolecularWeight    = 32.11803799387839 = 
-ZFactor            = 0.004404953813714808 = 
-NITROGEN           = 3.694173242696695e-17 = 
-OXYGEN             = 0.985 = 
-ARGON              = 0.014999999218180774 = 
+MoleFlow           = 1743.8121740783508 = kgmole/h
+MassFlow           = 55938.51612641216 = kg/h
+VolumeFlow         = 43.92680280304298 = m3/hr
+StdLiqVolumeFlow   = 48.586966702329335 = m3/hr
+H                  = -12716.870933811098 = kJ/kmol
+Energy             = -6159953.986267477 = W
+MolecularWeight    = 32.078292007553564 = 
+ZFactor            = 0.004404067124087473 = 
+NITROGEN           = 1.8786146913465055e-17 = 
+OXYGEN             = 0.99 = 
+ARGON              = 0.01000000095982736 = 
 
 >> 
 >> # Pure Argon Product
@@ -841,19 +1312,19 @@ ARGON              = 0.014999999218180774 =
 Port: /ovhd_liq_col3.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -184.33399995133698 = C
+T                  = -184.3340609478833 = C
 P                  = 120.0 = kPa
-MoleFlow           = 14.930819830845943 = kgmole/h
-MassFlow           = 596.4562690522233 = kg/h
-VolumeFlow         = 0.37650752655071795 = m3/hr
-StdLiqVolumeFlow   = 0.4344868434508174 = m3/hr
-H                  = -10771.315482801143 = kJ/kmol
-Energy             = -44673.49189302923 = W
-MolecularWeight    = 39.94799185909336 = 
-ZFactor            = 0.004097753767214607 = 
-NITROGEN           = 4.824703009308984e-08 = 
-OXYGEN             = 9.516803744347956e-07 = 
-ARGON              = 0.999999 = 
+MoleFlow           = 11.215908190228184 = kgmole/h
+MassFlow           = 448.05265720829397 = kg/h
+VolumeFlow         = 0.2828294598776637 = m3/hr
+StdLiqVolumeFlow   = 0.3263830845820504 = m3/hr
+H                  = -10771.31931586722 = kJ/kmol
+Energy             = -33558.369037332835 = W
+MolecularWeight    = 39.94796048693213 = 
+ZFactor            = 0.0040977583839778 = 
+NITROGEN           = 2.6447361346212185e-06 = 
+OXYGEN             = 1e-06 = 
+ARGON              = 0.9999963552599188 = 
 
 >> 
 >> # Liquid recycle back to Col2
@@ -861,37 +1332,37 @@ ARGON              = 0.999999 =
 Port: /btm_liq_col3.Out + sim21.solver.Ports.Port_Material
 Connected to: /col2.Feed_56_f
 VapFrac            = 0.0 = 
-T                  = -180.82991876620622 = C
+T                  = -180.78060127197767 = C
 P                  = 130.0 = kPa
-MoleFlow           = 795.0691824371531 = kgmole/h
-MassFlow           = 25821.512966688944 = kg/h
-VolumeFlow         = 19.995831287899605 = m3/hr
-StdLiqVolumeFlow   = 22.202471087787355 = m3/hr
-H                  = -12637.956816090205 = kJ/kmol
-Energy             = -2791124.998179135 = W
-MolecularWeight    = 32.47706430720578 = 
-ZFactor            = 0.004259391235612032 = 
-NITROGEN           = 1.635523869575276e-08 = 
-OXYGEN             = 0.9398348887436457 = 
-ARGON              = 0.0601650949011155 = 
+MoleFlow           = 798.784094077773 = kgmole/h
+MassFlow           = 25845.949164063124 = kg/h
+VolumeFlow         = 20.087744569638268 = m3/hr
+StdLiqVolumeFlow   = 22.2910813421654 = m3/hr
+H                  = -12667.988784579064 = kJ/kmol
+Energy             = -2810829.9847437157 = W
+MolecularWeight    = 32.356614393267094 = 
+ZFactor            = 0.004256795822036864 = 
+NITROGEN           = 1.1105922845456689e-08 = 
+OXYGEN             = 0.9549873148333797 = 
+ARGON              = 0.04501267406069739 = 
 
 >> 
 >> # Vapor recycle to Col3
 >> vap_draw2_col2.Out
 Port: /vap_draw2_col2.Out + sim21.solver.Ports.Port_Material
 Connected to: /col3.Feed_120_f
-VapFrac            = 1.0 = 
-T                  = -180.6598674418039 = C
+VapFrac            = 0.9999637859097885 = 
+T                  = -180.61048787168153 = C
 P                  = 132.21428571428572 = kPa
 MoleFlow           = 810.0000022680001 = kgmole/h
-MassFlow           = 26417.969235741202 = kg/h
-VolumeFlow         = 4534.356764086178 = m3/hr
-StdLiqVolumeFlow   = 22.636957931238204 = m3/hr
-H                  = -5923.2593163079555 = kJ/kmol
-Energy             = -1332733.3499009437 = W
-MolecularWeight    = 32.61477674292702 = 
-ZFactor            = 0.9624528514922899 = 
-NITROGEN           = 1.694310362180616e-08 = 
-OXYGEN             = 0.9225108256005405 = 
-ARGON              = 0.07748915745635583 = 
+MassFlow           = 26294.00182127103 = kg/h
+VolumeFlow         = 4536.689100748347 = m3/hr
+StdLiqVolumeFlow   = 22.617464426747365 = m3/hr
+H                  = -5955.051736140702 = kJ/kmol
+Energy             = -1339886.6443833406 = W
+MolecularWeight    = 32.46173051106259 = 
+ZFactor            = 0.9624340742092025 = 
+NITROGEN           = 4.757327417827188e-08 = 
+OXYGEN             = 0.9417638101419474 = 
+ARGON              = 0.0582361422847784 = 
 

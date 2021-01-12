@@ -1,5 +1,4 @@
-"""
-Class and constant definitions for variables within the simulator
+"""Class and constant definitions for variables within the simulator
 
 Group of constants:
 Properties -- written as XXX_VAR
@@ -16,21 +15,21 @@ MaterialArrayPropertyDict -- Dict with material properties
 EnergyPropertyDict -- Dict with energy properties
 ParameterDict -- Dict with parameters
 CompoundList -- List with compounds
+
 """
 
+# There are more imports at the end of the file!!!
+import re, os, sys, copy
+from .Error import ConsistencyError, SimError
 import numpy as np
 
-# There are more imports at the end of the file!!!
-import copy
-from sim21.solver.Error import SimError
-# from sim21.uom.units import units
-from sim21.solver import setup
-import math
+# Redefine them as integers
+from .setup import unitSystem
 
 TINIEST_FLOW = 1.0E-40
 
-# IMPORTANT !!
-# THE STRING NAME OF THE VARIABLES MUST NOT CONTAIN A _ IN ITS NAME !!
+##IMPORTANT !!
+##THE STRING NAME OF THE VARIABLES MUST NOT CONTAIN A _ IN ITS NAME !!
 
 T_VAR = 'T'  # Temperature
 P_VAR = 'P'  # Pressure
@@ -74,7 +73,7 @@ CP_VAR = 'Cp'
 CV_VAR = 'Cv'
 CPMASS_VAR = 'CpMass'
 CVMASS_VAR = 'CvMass'
-# HMASS_VAR = 'HMass'
+HMASS_VAR = 'HMass'
 SMASS_VAR = 'SMass'
 
 DPDVT_VAR = 'dPdVt'
@@ -84,10 +83,10 @@ HELMHOLTZENERGY_VAR = 'HelmholtzEnergy'
 
 IDEALGASCP_VAR = 'IdealGasCp'
 IDEALGASENTHALPY_VAR = 'IdealGasEnthalpy'
-IDEALGASENTHALPY_FUNC_VAR = 'IdealGasEnthalpyFunc'
 IDEALGASENTROPY_VAR = 'IdealGasEntropy'
 IDEALGASFORMATION_VAR = 'IdealGasFormation'
 IDEALGASGIBBS_VAR = 'IdealGasGibbs'
+IDEALGASENTHALPY_FUNC_VAR = 'IdealGasEnthalpy_Func'
 
 INTERNALENERGY_VAR = 'InternalEnergy'
 ISOTHERMALCOMPRESSIBILITY_VAR = 'IsothermalCompressibility'
@@ -156,8 +155,7 @@ STDLIQMOLVOLPERCMP_VAR = 'StdLiqMolVolPerCmp'
 
 # Compositions
 FRAC_VAR = 'Fraction'  # Mole fraction
-# A mistake in design. FRAC_VAR for mole fractions in MAT ports and CMPMOLEFRAC_VAR for SIG ports
-CMPMOLEFRAC_VAR = 'MoleFraction'
+CMPMOLEFRAC_VAR = 'MoleFraction'  # A mistake in design. FRAC_VAR for mole fractions in MAT ports and CMPMOLEFRAC_VAR for SIG ports
 MASSFRAC_VAR = 'MassFraction'
 STDVOLFRAC_VAR = 'StdVolFraction'
 
@@ -254,25 +252,35 @@ def GetReqArrayPropertyNames():
 def SetReqIntensivePropertyNames(propList):
     """Sets the list of requiered intensive properties"""
     global _reqIntProps
-    _reqIntProps = tuple(propList)
+    try:
+        _reqIntProps = tuple(propList)
+    except:
+        pass
 
 
 def SetReqExtensivePropertyNames(propList):
     """Sets the list of requiered intensive properties"""
     global _reqExtProps
-    _reqExtProps = tuple(propList)
+    try:
+        _reqExtProps = tuple(propList)
+    except:
+        pass
 
 
 def SetReqArrayPropertyNames(propList):
     """Sets the list of requiered intensive properties"""
     global _reqArrayProps
-    _reqArrayProps = tuple(propList)
+    try:
+        _reqArrayProps = tuple(propList)
+    except:
+        pass
 
 
 class PropertyType(object):
     """information concerning the type of variable"""
 
-    def __init__(self, name, calcType=INTENSIVE_PROP, unitType=None, scaleFactor=None, minValue=None, maxValue=None):
+    def __init__(self, name, calcType=INTENSIVE_PROP, unitType=None, scaleFactor=None,
+                 minValue=None, maxValue=None):
         """
         name = descriptive name key - should be unique
         calcType = INTENSIVE_PROP intensive variable,
@@ -293,7 +301,7 @@ class PropertyType(object):
         self.name = name
         self.calcType = calcType
         if unitType:
-            unitType = setup.unitSystem.GetTypeID(unitType)
+            unitType = unitSystem.GetTypeID(unitType)
         self.unitType = unitType
         self.scaleFactor = scaleFactor  # Negative, 0.0 or None are ignored in consistency calcs
         self.minValue = minValue
@@ -309,12 +317,9 @@ class PropertyType(object):
         calcstatus is ignored
         """
         try:
-            if values[0]:
-                self.scaleFactor = float(values[0])
-            if values[1] is not None and values[1] != 'None':
-                self.minValue = float(values[1])
-            if values[2] is not None and values[2] != 'None':
-                self.maxValue = float(values[2])
+            if values[0]: self.scaleFactor = float(values[0])
+            if values[1] is not None and values[1] != 'None': self.minValue = float(values[1])
+            if values[2] is not None and values[2] != 'None': self.maxValue = float(values[2])
         except IndexError:
             pass
 
@@ -327,7 +332,7 @@ class PropertyType(object):
 
 
 # Constants for properties used commonly.
-# need to fill in Units
+## need to fill in Units
 
 PropTypes = {}
 
@@ -342,14 +347,11 @@ def InitPropTypes(t):
     t[P_VAR] = PropertyType(P_VAR, calcType=INTENSIVE_PROP | CANFLASH_PROP, unitType='Pressure',
                             scaleFactor=1000.0, minValue=0.0)  # Pressure
 
-    # TODO Verify this scaling factor is not too loose, one or two problems require this to be closer
-    #      The base enthalpy from heat of formations is high, leading to some strange results with
-    #      the default tolerance. Perhaps other variables need to be adjusted as well
     t[H_VAR] = PropertyType(H_VAR, calcType=INTENSIVE_PROP | CANFLASH_PROP, unitType='MolarEnthalpy',
                             scaleFactor=100000.0)  # Enthalpy
 
     t[HMASS_VAR] = PropertyType(HMASS_VAR, calcType=INTENSIVE_PROP, unitType='MassEnthalpy',
-                                scaleFactor=10000.0)  # Enthalpy mass basis
+                                scaleFactor=100000.0)  # Enthalpy mass basis
 
     t[MOLARV_VAR] = PropertyType(MOLARV_VAR, calcType=INTENSIVE_PROP,
                                  unitType='MolarVolume',
@@ -363,7 +365,7 @@ def InitPropTypes(t):
                                     scaleFactor=50000.0, minValue=0.0)  # StdLiqMassDensity
 
     t[S_VAR] = PropertyType(S_VAR, calcType=INTENSIVE_PROP, unitType='MolarSpecificHeat',
-                            scaleFactor=1000.0)  # Entropy
+                            scaleFactor=10000.0)  # Entropy
 
     t[VPFRAC_VAR] = PropertyType(VPFRAC_VAR, calcType=INTENSIVE_PROP,
                                  scaleFactor=1.0,
@@ -387,7 +389,7 @@ def InitPropTypes(t):
 
     t[ENERGY_VAR] = PropertyType(ENERGY_VAR, calcType=EXTENSIVE_PROP,
                                  unitType='Power',
-                                 scaleFactor=1000000.0)  # Energy
+                                 scaleFactor=10000000.0)  # Energy
 
     t[FRAC_VAR] = PropertyType(FRAC_VAR, calcType=INTENSIVE_PROP,
                                scaleFactor=1.0,
@@ -562,7 +564,7 @@ def InitPropTypes(t):
     t[CVMASS_VAR] = PropertyType(CVMASS_VAR, calcType=INTENSIVE_PROP, unitType='MassSpecificHeat',
                                  scaleFactor=500.0)
     t[SMASS_VAR] = PropertyType(SMASS_VAR, calcType=INTENSIVE_PROP, unitType='MassSpecificHeat',
-                                scaleFactor=1000.0)
+                                scaleFactor=10000.0)
 
 
 InitPropTypes(PropTypes)
@@ -669,8 +671,7 @@ class BasicProperty(object):
 
         elif calcStatus & (CALCULATED_V | PASSED_V):
             # ignore attempts to calculate or pass unknown values
-            if value is None:
-                return
+            if value is None: return
             # is there already a value? GetValue won't return new fixed values
             isNew = self._calcStatus & NEW_V
             isFixed = self._calcStatus & FIXED_V
@@ -726,7 +727,7 @@ class BasicProperty(object):
         if newValue and fixedValue:
             return None
 
-        # Is this really needed??
+        ##Is this really needed??
         # Hide passed vapour fractions while forgetting because they could calculate
         # unexpected bubble or dew points
         # if calcStatus & PASSED_V and self._type.name == VPFRAC_VAR:
@@ -771,7 +772,8 @@ class BasicProperty(object):
         if skipStatus and not (skipStatus & self._calcStatus):
             return
 
-        if (self._calcStatus & CALCULATED_V) and not (self._calcStatus & NEW_V):
+        if ((self._calcStatus & CALCULATED_V) and
+            not (self._calcStatus & NEW_V)):
             fromParent = self._calcStatus & PARENT_V
             self._calcStatus = UNKNOWN_V
             self._value = None
@@ -796,7 +798,7 @@ class BasicProperty(object):
 
     def SetTypeByName(self, typeName):
         """Change the type of a property, but only if it is of an equivalent unit type"""
-        if setup.unitSystem.IsEquivalentType(self._type.unitType, PropTypes[typeName].unitType):
+        if unitSystem.IsEquivalentType(self._type.unitType, PropTypes[typeName].unitType):
             self._type = PropTypes[typeName]
 
     def GetCalcType(self):
@@ -878,8 +880,7 @@ class BasicArrayProperty(object):
         self.parent = parent
 
     def GetPath(self):
-        if not self.parent:
-            return self.name
+        if not self.parent: return self.name
         return "%s.%s" % (self.parent.GetPath(), self.name)
 
     def SetValue(self, value):
@@ -901,22 +902,24 @@ class BasicArrayProperty(object):
             return None
         else:
             retShape = None
-            myShape = np.shape(self._value)
-            if len(myShape) == 0:
-                retShape = (0, 0)
-            elif len(myShape) == 1:
-                retShape = (myShape[0], 0)
-            else:
-                retShape = myShape
+            try:
+                myShape = np.shape(self._value)
+                if len(myShape) == 0:
+                    retShape = (0, 0)
+                elif len(myShape) == 1:
+                    retShape = (myShape[0], 0)
+                else:
+                    retShape = myShape
 
-            return retShape
+            finally:
+                return retShape
 
     def GetRank(self):
         """Return how many dimensions the value has (scalar, vector, or array)"""
         if self._value is None:
             return None
         else:
-            return np.ndim(self._value)
+            return self._value.ndim
 
     def GetType(self):
         """Get the list of types. Returns a list even for a scalar"""
@@ -931,13 +934,9 @@ class MaterialPropertyDict(dict):
 
     """
 
-    def __init__(self, dict_values=None, port=None):
+    def __init__(self, dict=None, port=None):
         """Init dictionary with basic and common properties."""
-
-        dict.__init__(self)
-        if dict_values is not None:
-            for k in dict_values:
-                self[k] = []
+        dict.__init__(self, dict)
 
         for i in GetReqIntensivePropertyNames():
             self[i] = BasicProperty(i, port)
@@ -946,8 +945,7 @@ class MaterialPropertyDict(dict):
 
     def __setitem__(self, key, item):
         """Only BasicProperties"""
-        if not isinstance(item, BasicProperty):
-            return
+        if not isinstance(item, BasicProperty): return
         dict.__setitem__(self, key, item)
 
     def NumericItems(self):
@@ -958,42 +956,41 @@ class MaterialPropertyDict(dict):
 
         """
         numItems = []
-        for i in list(self.items()):
-            numItems.append((i[0], i[1].value))
+        for i in list(self.items()): numItems.append((i[0], i[1].value))
         return numItems
 
-    def GetNamesOfKnownFixedVars(self, type_of=None):
+    def GetNamesOfKnownFixedVars(self, type=None):
         """Returns names of props with self.GetCalcStatus()==FIXED_V"""
-        all_vars = []
+        vars = []
         for i in list(self.items()):
-            if i[1] is not None:
-                if i[1].GetCalcStatus() & FIXED_V and i[1].GetValue() is not None:
-                    if type_of is None or i[1].GetType().calcType & type_of:
-                        all_vars.append(i[0])
-        return all_vars
+            if (i[1].GetCalcStatus() & FIXED_V and
+                i[1].GetValue() is not None):
+                if type is None or i[1].GetType().calcType & type:
+                    vars.append(i[0])
+        return vars
 
-    def GetNamesOfKnownCalcVars(self, type_of=None):
+    def GetNamesOfKnownCalcVars(self, type=None):
         """Returns names of props with self.GetCalcStatus()==CALCULATED_V"""
-        all_vars = []
+        vars = []
         for i in list(self.items()):
-            if i[1] is not None:
-                if i[1].GetCalcStatus() & (CALCULATED_V | PASSED_V) and i[1].GetValue() is not None:
-                    if type_of is None or i[1].GetType().calcType & type_of:
-                        all_vars.append(i[0])
-        return all_vars
+            if (i[1].GetCalcStatus() & (CALCULATED_V | PASSED_V) and
+                i[1].GetValue() is not None):
+                if type is None or i[1].GetType().calcType & type:
+                    vars.append(i[0])
+        return vars
 
-    def GetNamesOfKnownVars(self, type_of=None):
+    def GetNamesOfKnownVars(self, type=None):
         """Returns names of props with self.GetCalcStatus()=!= UNKNOWN_V.
 
         type -- filters by type if desired(i.e. intensive or extensive)
 
         """
-        all_vars = []
+        vars = []
         for i in list(self.items()):
             if i[1].GetCalcStatus() != UNKNOWN_V:
-                if type_of is None or i[1].GetType().calcType & type_of:
-                    all_vars.append(i[0])
-        return all_vars
+                if type is None or i[1].GetType().calcType & type:
+                    vars.append(i[0])
+        return vars
 
 
 class MaterialArrayPropertyDict(dict):
@@ -1004,13 +1001,10 @@ class MaterialArrayPropertyDict(dict):
 
     """
 
-    def __init__(self, dict_values=None, port=None):
+    def __init__(self, dict=None, port=None):
         """Init dictionary with required properties."""
-        dict.__init__(self)
+        dict.__init__(self, dict)
         self._port = port
-        if dict_values is not None:
-            for k in dict_values:
-                self[k] = []
 
         for i in GetReqArrayPropertyNames():
             self[i] = []
@@ -1030,19 +1024,15 @@ class EnergyPropertyDict(dict):
 
     """
 
-    def __init__(self, dict_values=None, port=None, varTypeName=ENERGY_VAR):
+    def __init__(self, dict=None, port=None, varTypeName=ENERGY_VAR):
         """The only value of the dictionary is varTypeName"""
-        dict.__init__(self)
-        if dict_values is not None:
-            for k in dict_values:
-                self[k] = []
+        dict.__init__(self, dict)
 
         self[varTypeName] = BasicProperty(varTypeName, port)
 
     def __setitem__(self, key, item):
         """Only BasicProperties"""
-        if not isinstance(item, BasicProperty):
-            return
+        if not isinstance(item, BasicProperty): return
         dict.__setitem__(self, key, item)
 
 
@@ -1092,7 +1082,7 @@ class CompoundList(list):
         try:
             # Can we do everything in arrays?
             # vals can be a list with strings, therefore a map call is needed first
-            vals = np.array([float(i) for i in vals], dtype=float)
+            vals = np.array(list(map(float, vals)), dtype=float)
             total = sum(vals)
             vals = vals / total  # normalize
             for i in range(len(vals)):
@@ -1108,7 +1098,6 @@ class CompoundList(list):
                     self[i].SetValue(val, calcStatus)
             except:
                 pass
-
             self.Normalize()
 
     def GetValues(self):
@@ -1123,16 +1112,17 @@ class CompoundList(list):
     def AreValuesReady(self):
         """True if all the compositions hava a valid value"""
         if len(self) == 0:
-            return False
+            return 0
         try:
             # If I can do this, then it is ready
             values = np.array(self.GetValues(), dtype=float)
-            if np.isnan(values).any():
-                return False
-
-            return True
+            return 1
         except:
             return 0
+
+        # for i in self:
+        # if i.GetValue() == None: return 0
+        # return 1
 
     def GetName(self):
         """return the name used by material ports to refer to this"""
@@ -1190,10 +1180,15 @@ class CompoundList(list):
         """
         return the sum of the fractions or None if any unknown
         """
-        try:
-            return sum(np.array(self.GetValues(), dtype=float))
-        except:
+        x = self.GetValues()
+        if None in x:
             return None
+
+        x_sum = sum(np.array(x, dtype=float))
+        if np.isnan(x_sum):
+            return None
+        else:
+            return x_sum
 
     def Normalize(self):
         """
@@ -1204,25 +1199,15 @@ class CompoundList(list):
 
         vals = self.GetValues()
         try:
-            # TODO Fix this code...
-            #      Using this code causes a consistency error when the compositions don't add up to 1
-            #      Especially after adding/deleting components (i.e deleting a component with a given comp
-            #      causes the total composition to be less than 1, and using this code normalizes to 1.
-            #      Adding additional composition for new components, will create a composition greater than 1
-            #      causing a subsequent consistency error
-
             vals = np.array(vals, dtype=float)
             total = sum(vals)
-            if total == 0 or math.isnan(total):
+            if total == 0:
                 # all components cannot be zero - set unknown
                 for i in self:
                     i.SetValue(None, FIXED_V)
             else:
                 vals = vals / total
                 list(map(_SetValuesToAttribute, self, vals))
-
-            for indx in range(len(self)):
-                self[indx].SetValue(vals[indx], FIXED_V)
         except:
             pass
 
@@ -1240,14 +1225,13 @@ class CompoundList(list):
     def SetLocalCompValues(self, vals):
         # Load CompoundList with a list of floats, already normalized
         # Typical use is to create a local CompoundList for internal flash calcualtions
-        # i am expecting len(self) = 0 and self._parent = None
+        # i am exoecting len(self) = 0 and self._parent = None
         n = len(vals)
         n0 = len(self)
         for i in range(n):
             if i >= n0:
                 self.append(BasicProperty(FRAC_VAR))
             self[i].SetValue(vals[i], FIXED_V)
-
         for i in range(i, n0):
             del self[i]
 
@@ -1298,7 +1282,7 @@ class MassCompoundList(object):
             try:
                 values = values / mw
             except:
-                # Came as a list instead of an array?
+                # Came as a list instaed of an array?
                 values = np.array(list(map(float, values)), dtype=float) / mw
 
             # normalize right here
@@ -1318,8 +1302,7 @@ class MassCompoundList(object):
            mole fractions are available.
            Vals are in the order of the compounds"""
         vals = self._cmpList.GetValues()
-        if vals is None:
-            return None
+        if vals is None: return None
 
         try:
             try:
@@ -1336,6 +1319,7 @@ class MassCompoundList(object):
                 vals = list(vals)  # back to a list
                 for i in range(len(vals)):
                     vals[i] = None
+
         except:
             return None
 
@@ -1345,8 +1329,7 @@ class MassCompoundList(object):
         result = ''
         cmpNames = self._cmpList.GetParent().GetParent().GetCompoundNames()
         vals = self.GetValues()
-        if vals is None:
-            return "None"
+        if vals is None: return "None"
         for i in range(len(self._cmpList)):
             cmp = cmpNames[i]
             result += cmp
@@ -1427,8 +1410,7 @@ class StdVolCompoundList(object):
            mole fractions are available.
            Vals are in the order of the compounds"""
         vals = self._cmpList.GetValues()
-        if vals is None:
-            return None
+        if vals is None: return None
 
         try:
             try:
@@ -1442,10 +1424,7 @@ class StdVolCompoundList(object):
 
                 # Get properties
                 refT = unitOp.GetStdVolRefT()
-                vals = thAdmin.GetArrayProperty(prov, case,
-                                                (P_VAR, 101.325),
-                                                (T_VAR, refT),
-                                                LIQUID_PHASE, vals,
+                vals = thAdmin.GetArrayProperty(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, vals,
                                                 STDVOLFRAC_VAR)
 
                 return vals
@@ -1465,8 +1444,7 @@ class StdVolCompoundList(object):
         result = ''
         cmpNames = self._cmpList.GetParent().GetParent().GetCompoundNames()
         vals = self.GetValues()
-        if vals is None:
-            return "None"
+        if vals is None: return "None"
         for i in range(len(self._cmpList)):
             cmp = cmpNames[i]
             result += cmp
@@ -1563,4 +1541,4 @@ def _SetValuesToAttribute(obj, value):
     obj._value = value
 
 
-from sim21.solver import Ports
+from . import Ports

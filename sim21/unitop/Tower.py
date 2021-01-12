@@ -2118,14 +2118,16 @@ class VapourDraw(Draw):
         tower = self.stage.tower
 
         # self.port.SetPropValue(VPFRAC_VAR, 1.0, CALCULATED_V)
+
         # Removed below
         # switch back to T until prop pkg problem resolved
         # TODO Investigate why this is necessary - It can cause a phase flip in narrow boiling mixtures
+
         T = tower.T[stageNo]
         if self.isSubCooled:
             T -= self.stage.GetDegreesSubCooled()
+        self.port.SetPropValue(T_VAR, T, CALCULATED_V)
 
-        # self.port.SetPropValue(T_VAR, T, CALCULATED_V)
         self.port.SetCompositionValues(tower.y[stageNo], CALCULATED_V)
 
     def MoleFracs(self):
@@ -5804,6 +5806,7 @@ class Tower(UnitOperations.UnitOperation):
         return array (nstage long) of enthalpies calculated from inner model
         t and x are arrays of termperature and mole fraction nstage long
         """
+        # TODO THIS IS A VERY SLOW FUNCTION CALL - REPLACE WITH A BETTER FUNCTION
         n = len(t)
         m = x.shape[1]
         calc_ig_enthalpy_mole = np.zeros(n)

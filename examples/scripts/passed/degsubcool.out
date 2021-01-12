@@ -349,7 +349,7 @@ Energy   = 0.01974739762226818 = W
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = 0.005137747873959597 = W
 
 >> 
 >> 
@@ -397,7 +397,7 @@ Energy   = 0.05102451061975444 = W
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = 0.027529079066880513 = W
 
 >> 
 >> /col.DegSubCool_0_degsubcool.DT = 0
@@ -444,7 +444,7 @@ Energy   = -0.17836999218707206 = W
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = -0.10652044663584093 = W
 
 >> 
 >> 
@@ -477,38 +477,36 @@ Energy   = 0.041540901409462094 = W
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = 0.028616180788958445 = W
 
 >> 
 >> 
 >> /col.LiquidDraw_0_l.MoleFlow =
 >> /col.DegSubCool_0_degsubcool.DT = 2
-6 specs found, only 2 needed in /col
-Error processing command:
-<class 'sim21.solver.Error.SimError'>
-6 specs found, only 2 needed in /col
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
-
-
+/col Inner Error 0.001591
+/col Inner Error 0.001267
+/col Inner Error 0.000340
+/col Inner Error 0.000301
+/col Inner Error 0.000228
+Step size too small - Exiting inner loop
+/col Iteration 1 Outer Error 0.000228
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.000117
+/col Inner Error 0.000008
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 2 Outer Error 0.000012
+/col Inner Error 0.000008
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 3 Outer Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 4 Outer Error 0.000000
+/col Inner Error 0.000000
+Inner loop converged
 >> /col.DegSubCool_0_degsubcool
 Port: /col.DegSubCool_0_degsubcool + sim21.solver.Ports.Port_Signal
 Connected to: None
@@ -520,28 +518,28 @@ Connected to: /s_liqdraw_0.In
 VapFrac            = 0.0 = 
 T                  = 18.0 * C
 P                  = 700.0 * kPa
-MoleFlow           = None
-MassFlow           = None
-VolumeFlow         = None
-StdLiqVolumeFlow   = None
-H                  = -128686.23761931452 = kJ/kmol
-Energy             = None
-MolecularWeight    = 46.989675941368205 = 
-ZFactor            = 0.025024571397436905 = 
-PROPANE            = 0.7936747876318383 = 
-N-BUTANE           = 0.006347791630854403 = 
-ISOBUTANE          = 0.1999760772830083 = 
-N-PENTANE          = 1.3434542989787516e-06 = 
+MoleFlow           = 5.206230241363433 = kgmole/h
+MassFlow           = 246.72669074067667 = kg/h
+VolumeFlow         = 0.45254668359422306 = m3/hr
+StdLiqVolumeFlow   = 0.4257030953164043 = m3/hr
+H                  = -129655.53151689812 = kJ/kmol
+Energy             = -187504.59698425687 = W
+MolecularWeight    = 47.390660670447524 = 
+ZFactor            = 0.0251354738317801 = 
+PROPANE            = 0.7650878345977205 = 
+N-BUTANE           = 0.00762074337133813 = 
+ISOBUTANE          = 0.2272895406415199 = 
+N-PENTANE          = 1.8813894214859737e-06 = 
 
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = 0.02013274955970701 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = -0.004620776147930883 = W
 
 >> 
 >> 
@@ -980,19 +978,19 @@ ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
 Error processing command:
 <class 'sim21.solver.Error.ConsistencyError'>
 ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 411, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
     self.InnerSolve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 566, in InnerSolve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 560, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -1010,7 +1008,7 @@ The following consistency errors in flowsheet / have not been resolved (only lis
 
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = -31007.528363810772 = W
 
 >> 
 >> #Solve fine again
@@ -1069,19 +1067,19 @@ ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
 Error processing command:
 <class 'sim21.solver.Error.ConsistencyError'>
 ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 411, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
     self.InnerSolve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 566, in InnerSolve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 560, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -1173,7 +1171,7 @@ Energy   = 0.06351715217897436 = W
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = 0.027541490002477076 = W
 
 >> 
 >> 
@@ -1277,7 +1275,7 @@ Energy   = 0.054527451255125925 = W
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = 0.024952123319962993 = W
 
 >> 
 >> 
@@ -1328,7 +1326,7 @@ Energy   = 0.054527451255125925 = W
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = None
+Energy   = 0.024952123319962993 = W
 
 >> 
 >> copy /

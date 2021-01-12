@@ -121,10 +121,10 @@ N-NONANE           = 0.2727272727272727 =
 >> # close the recycle
 >> splitter.Out1 -> recycle.In
 Iteration 1 -> max Error 0.875735 in /recycle.In.T
-Iteration 2 -> max Error 0.321536 in /recycle.In.Energy
-Iteration 3 -> max Error 0.195415 in /recycle.In.Energy
-Iteration 4 -> max Error 0.067705 in /recycle.In.Energy
-Iteration 5 -> max Error 0.000641 in /recycle.In.Energy
+Iteration 2 -> max Error 0.112998 in /recycle.In.T
+Iteration 3 -> max Error 0.067492 in /recycle.In.T
+Iteration 4 -> max Error 0.022023 in /recycle.In.T
+Iteration 5 -> max Error 0.000125 in /recycle.In.T
 Iteration 6 -> max Error 0.000005 in /recycle.In.T
 >> 
 >> # All done - check some streams
@@ -213,10 +213,10 @@ Iteration 1 -> max Error 0.000005 in /innerflowsh.recycle.In.T
 Iteration 1 -> max Error 0.000005 in /innerflowsh.recycle.In.T
 Iteration 1 -> max Error 0.000005 in /sub.recycle.In.T
 >> /recycle.In.T ~= -87
-Iteration 1 -> max Error 2.136986 in /recycle.In.Energy
-Iteration 2 -> max Error 0.232383 in /recycle.In.Energy
-Iteration 3 -> max Error 0.059818 in /recycle.In.Energy
-Iteration 4 -> max Error 0.003591 in /recycle.In.Energy
+Iteration 1 -> max Error 1.672692 in /recycle.In.T
+Iteration 2 -> max Error 0.061017 in /recycle.In.T
+Iteration 3 -> max Error 0.015685 in /recycle.In.T
+Iteration 4 -> max Error 0.000944 in /recycle.In.T
 Iteration 5 -> max Error 0.000006 in /recycle.In.Fraction.N-BUTANE
 >> 
 >> 
@@ -247,8 +247,8 @@ Changed state of port /split.In to 1 (0=Normal port; 1=Recycle port)
 >> /split.Out0 -> /c.In
 >> /split.In -> /c.Out
 Iteration 1 -> max Error 0.040000 in /split.In.MoleFlow
-Iteration 2 -> max Error 0.938434 in /split.In.Energy
-Iteration 3 -> max Error 0.563060 in /split.In.Energy
+Iteration 2 -> max Error 0.093843 in /split.In.Energy
+Iteration 3 -> max Error 0.056306 in /split.In.Energy
 Iteration 4 -> max Error 0.000000 in /split.In.MoleFlow
 >> 
 >> 
@@ -276,10 +276,10 @@ Iteration 1 -> max Error 0.000006 in /recycle.In.Fraction.N-BUTANE
 >> 
 >> #Unconverge the recycle again
 >> /recycle.In.T ~= -87
-Iteration 1 -> max Error 2.136919 in /recycle.In.Energy
-Iteration 2 -> max Error 0.232385 in /recycle.In.Energy
-Iteration 3 -> max Error 0.059819 in /recycle.In.Energy
-Iteration 4 -> max Error 0.003591 in /recycle.In.Energy
+Iteration 1 -> max Error 1.672692 in /recycle.In.T
+Iteration 2 -> max Error 0.061017 in /recycle.In.T
+Iteration 3 -> max Error 0.015685 in /recycle.In.T
+Iteration 4 -> max Error 0.000944 in /recycle.In.T
 Iteration 5 -> max Error 0.000006 in /recycle.In.Fraction.N-BUTANE
 >> 
 >> 

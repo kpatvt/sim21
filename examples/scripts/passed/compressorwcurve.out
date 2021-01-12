@@ -34,16 +34,16 @@ METHANE ETHANE PROPANE n-BUTANE
 Port: /realcomp.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 32.57385240076712 = C
+T                  = 32.573850133062365 = C
 P                  = 106.0 * kPa
 MoleFlow           = 125.07267171842588 = kgmole/h
 MassFlow           = 3760.815168808216 = kg/h
-VolumeFlow         = 2975.969875758291 = m3/hr
+VolumeFlow         = 2975.9698531840536 = m3/hr
 StdLiqVolumeFlow   = 6.6392326328292 = m3/hr
-H                  = -88108.11766242367 = kJ/kmol
-Energy             = -3061088.2433668766 = W
+H                  = -88108.11817346221 = kJ/kmol
+Energy             = -3061088.2611215864 = W
 MolecularWeight    = 30.06904 = 
-ZFactor            = 0.992221105007666 = 
+ZFactor            = 0.9922211048409608 = 
 METHANE            = 0.4000000000000001 = 
 ETHANE             = 0.30000000000000004 = 
 PROPANE            = 0.20000000000000004 = 
@@ -52,23 +52,23 @@ N-BUTANE           = 0.10000000000000002 =
 >> InQ
 Port: /realcomp.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 4894.085697595729 = W
+Energy   = 4894.067942886031 = W
 
 >> /realcomp.EfficiencyCurveType = Polytropic
 >> Out
 Port: /realcomp.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 32.57599464397077 = C
+T                  = 32.57599239175113 = C
 P                  = 106.0 * kPa
 MoleFlow           = 125.07267171842585 = kgmole/h
 MassFlow           = 3760.815168808216 = kg/h
-VolumeFlow         = 2975.991201065729 = m3/hr
+VolumeFlow         = 2975.991178645646 = m3/hr
 StdLiqVolumeFlow   = 6.6392326328292 = m3/hr
-H                  = -88107.99797919288 = kJ/kmol
-Energy             = -3061084.0852831444 = W
+H                  = -88107.99848946539 = kJ/kmol
+Energy             = -3061084.1030112407 = W
 MolecularWeight    = 30.06904 = 
-ZFactor            = 0.9922212624880608 = 
+ZFactor            = 0.9922212623224979 = 
 METHANE            = 0.4000000000000001 = 
 ETHANE             = 0.30000000000000004 = 
 PROPANE            = 0.20000000000000004 = 
@@ -77,7 +77,7 @@ N-BUTANE           = 0.10000000000000002 =
 >> AdiabaticEff
 Port: /realcomp.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.7993208857839631 = 
+Generic   = 0.7993208789794216 = 
 
 >> PolytropicEff
 Port: /realcomp.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -93,7 +93,7 @@ Generic   = 0.8 =
 >> PolytropicEff
 Port: /realcomp.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.8006768184694338 = 
+Generic   = 0.8006768252660978 = 
 
 >> '/realcomp.Out.P' =
 >> '/realcomp.In.VolumeFlow' =  2500
@@ -105,7 +105,7 @@ Generic   = 0.75 =
 >> PolytropicEff
 Port: /realcomp.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.7509685286374573 = 
+Generic   = 0.7509685348501286 = 
 
 >> cd /
 /

@@ -8,13 +8,12 @@ Port_Energy -- Energy port. Inherits from Port
 Port_Signal -- Signal port. Inherits from Port
 
 """
-import numpy as np
+
+from sim21.solver.Variables import *
+from sim21.solver.Error import SimError
 import re
 
-from sim21.provider.error import FlashConvergenceError
-from sim21.solver.Variables import *
-from sim21.solver import setup
-from sim21.solver.Error import SimError
+from sim21.solver.setup import unitSystem
 
 ENERGY_PORT = 'Ene'
 MATERIAL_PORT = 'Mat'
@@ -41,10 +40,8 @@ class PortDict(dict):
 
     def __setitem__(self, key, item):
         """Only ports, no repetitions of values"""
-        if not isinstance(item, Port):
-            return
-        if item in list(self.values()):
-            return
+        if not isinstance(item, Port): return
+        if item in list(self.values()): return
         dict.__setitem__(self, key, item)
 
 
@@ -156,7 +153,7 @@ Error raised when calling the 'AddToBorrowedIn' method because the obj %s does n
 the method 'DeleteObj'
 """ % (self.GetPath(), str(obj), str(obj))
             raise AssertionError(errMsg)
-        if obj not in self._borrowedIn:
+        if not obj in self._borrowedIn:
             self._borrowedIn.append(obj)
 
     def RemoveFromBorrowedIn(self, obj):
@@ -182,8 +179,7 @@ the method 'DeleteObj'
 
     def SetState(self, state):
         """Sets the state of a port (all fixed, all estimated, etc)"""
-        if self.state == state:
-            return
+        if self.state == state: return
         op = self.GetParent()
         if op:
             op.InfoMessage('ChangedPortState', (op.ShortestPortPath(self), state))
@@ -206,7 +202,7 @@ the method 'DeleteObj'
     def IsOnStack(self, flag):
         return self._stackStatus & flag
 
-    def PropertyModified(self, prop, calcStatus):
+    def PropertyModified(self, property, calcStatus):
         """
         called when any property contained by this port is modified.
         """
@@ -260,7 +256,7 @@ the method 'DeleteObj'
             # We need to keep track of the consistency errors so they get notifed to the user
             solver = parentOp.Solver()
             if solver and len(solver._consistencyErrorStack):
-                if parentOp not in solver._solveStack and otherPort._parentOp not in solver._solveStack:
+                if not parentOp in solver._solveStack and not otherPort._parentOp in solver._solveStack:
                     if not self._estimated and not otherPort._estimated:
                         parentOp.ForgetAllCalculations()
 
@@ -268,8 +264,7 @@ the method 'DeleteObj'
 
     def Disconnect(self, internalCall=False):
         """break connection to other port"""
-        if not self._connection:
-            return
+        if not self._connection: return
 
         parentOp = self._parentOp
 
@@ -339,8 +334,7 @@ the method 'DeleteObj'
 
     def ForgetAllCalculations(self):
         for prop in list(self._properties.values()):
-            if prop is not None:
-                prop.ForgetForStatus(CALCULATED_V)
+            prop.ForgetForStatus(CALCULATED_V)
         if self._connection is not None:
             self._connection.ForgetAllPassed()
 
@@ -419,8 +413,7 @@ the method 'DeleteObj'
                 # Estimate all the fixed props
                 prop._calcStatus &= ~ESTIMATED_V
         self._estimated = 0
-        if needUpdateConn:
-            self.UpdateConnection()
+        if needUpdateConn: self.UpdateConnection()
 
     def UpdateConnection(self):
         """passes any information available through the connection
@@ -447,9 +440,8 @@ the method 'DeleteObj'
         myProps = self._properties
         connParent = conn._parentOp
         for i in list(myProps.keys()):
-            # print('UpdateConnection:', i)
             myProp = myProps[i]
-            if i not in connPropNames:
+            if not i in connPropNames:
                 connProps[i] = BasicProperty(myProp.GetType().name, conn)
             connProp = connProps[i]
             myStatus = myProp.GetCalcStatus()
@@ -469,7 +461,10 @@ the method 'DeleteObj'
                 if connStatus & PASSED_V:
                     isNew = myStatus & NEW_V
                     isCalc = myStatus & CALCULATED_V
-                    if (myStatus & UNKNOWN_V) or (isNew and not isCalc) or (isCalc and not isNew) or myProp.GetValue() != connProp.GetValue():
+                    if ((myStatus & UNKNOWN_V) or
+                        (isNew and not isCalc) or
+                        (isCalc and not isNew) or
+                        myProp.GetValue() != connProp.GetValue()):
                         connProp.SetValue(None, UNKNOWN_V)
             else:
                 # normal calculation update from connection as appropriate
@@ -493,23 +488,21 @@ the method 'DeleteObj'
         for i in list(self._properties.values()):
             i.ResetNewCalc()
 
-    def GetNuKnownProps(self, type_of=None):
+    def GetNuKnownProps(self, type=None):
         """Number of properties with calcStatus != UNKNOWN_V"""
         nu = 0
         for i in list(self._properties.values()):
-            if i is not None:
-                if i.GetValue() is not None:
-                    if type_of is None or i.GetType().calcType & type_of:
-                        nu += 1
+            if i.GetValue() is not None:
+                if type is None or i.GetType().calcType & type: nu += 1
         return nu
 
-    def GetKnownProps(self, type_of=None):
+    def GetKnownProps(self, type=None):
         """List of instances of properties with calcStatus != UNKNOWN_V"""
         props = []
         for i in list(self._properties.keys()):
             prop = self._properties[i]
-            if prop.GetValue() is not None and (type_of is None or
-                                                prop.GetType().calcType & type_of):
+            if prop.GetValue() is not None and (type is None or
+                                                prop.GetType().calcType & type):
                 props.append(i)
         return props
 
@@ -517,7 +510,7 @@ the method 'DeleteObj'
         return self._properties
 
     def GetProperty(self, propName):
-        return self._properties.get(propName, None)  # perhaps some error checking?
+        return self._properties.get(propName, None)  ## perhaps some error checking?
 
     def GetObject(self, description):
         """return object corresponding to description"""
@@ -761,9 +754,8 @@ class Port_Material(Port):
             cmp.ForgetForStatus(CALCULATED_V)
         # arrProperties
         for prop in list(self._arrProperties.values()):
-            if prop is not None:
-                for cmp in prop:
-                    cmp.ForgetForStatus(CALCULATED_V)
+            for cmp in prop:
+                cmp.ForgetForStatus(CALCULATED_V)
 
     def ForgetAllPassed(self):
         Port.ForgetAllPassed(self)
@@ -835,8 +827,10 @@ class Port_Material(Port):
                 self._connection._parentOp.MakingPortConnection(self._connection, self)
             elif self._parentOp.GetCompoundNames() != self._connection._parentOp.GetCompoundNames():
                 # If the compounds are the same and have the same order then keep on going.
-                self._parentOp.InfoMessage('DiffThCaseInConn', (self.GetPath(), self._connection.GetPath()), addToUnitOpMsg=1)
-                self._connection._parentOp.unitOpMessage = ('DiffThCaseInConn', (self._connection.GetPath(), self._connection.GetPath()))
+                self._parentOp.InfoMessage('DiffThCaseInConn', (self.GetPath(), self._connection.GetPath()),
+                                           addToUnitOpMsg=1)
+                self._connection._parentOp.unitOpMessage = (
+                'DiffThCaseInConn', (self._connection.GetPath(), self._connection.GetPath()))
                 return 0
 
         if self._estimated:
@@ -891,7 +885,9 @@ class Port_Material(Port):
             if connStatus & PASSED_V:
                 isNew = myStatus & NEW_V
                 isCalc = myStatus & CALCULATED_V
-                if (myStatus & UNKNOWN_V) or (isNew and not isCalc) or (isCalc and not isNew):
+                if ((myStatus & UNKNOWN_V) or
+                    (isNew and not isCalc) or
+                    (isCalc and not isNew)):
                     connCmp.SetValue(None, UNKNOWN_V)
         else:
             # normal calculation update from connection as appropriate
@@ -994,7 +990,7 @@ class Port_Material(Port):
             stdVolFracObj = StdVolCompoundList(self.GetCompounds())
             return stdVolFracObj
         elif description in self._arrProperties:
-            # This key could be MASSFRAC
+            ##This key could be MASSFRAC
             return self._arrProperties[description]
         elif description == 'FlashResults':
             return self._flashResults
@@ -1029,8 +1025,7 @@ class Port_Material(Port):
 
     def GetArrPropNames(self):
         """Names of the array properties available"""
-        a = list(self._arrProperties.keys())
-        return a
+        return list(self._arrProperties.keys())
 
     def GetArrPropValue(self, propName):
         """List of values of propName"""
@@ -1061,33 +1056,33 @@ class Port_Material(Port):
         """Add a compound to the port"""
         self.AppendCompounds(1, cmpIdx)
 
-        # # get the status of the current composition
-        # nc = len(self._compounds)
-        # zeroNewCmp = 0
-        # if nc > 0:
-        # st0 = self._compounds[0].GetCalcStatus()
-        # if st0 & ESTIMATED_V or st0 & FIXED_V:
-        # zeroNewCmp = 1
-        # for cmp in self._compounds[1:]:
-        # st = cmp.GetCalcStatus()
-        # if st & NEW_V:
-        # #When adding more then 1 compounds, the earlier ones will be new & fixed
-        # st = st - NEW_V
-        # if st != st0:
-        # zeroNewCmp = 0
-        # elif cmp.GetValue() == None:
-        # zeroNewCmp = 0
+        ### get the status of the current composition
+        ##nc = len(self._compounds)
+        ##zeroNewCmp = 0
+        ##if nc > 0:
+        ##st0 = self._compounds[0].GetCalcStatus()
+        ##if st0 & ESTIMATED_V or st0 & FIXED_V:
+        ##zeroNewCmp = 1
+        ##for cmp in self._compounds[1:]:
+        ##st = cmp.GetCalcStatus()
+        ##if st & NEW_V:
+        ###When adding more then 1 compounds, the earlier ones will be new & fixed
+        ##st = st - NEW_V
+        ##if st != st0:
+        ##zeroNewCmp = 0
+        ##elif cmp.GetValue() == None:
+        ##zeroNewCmp = 0
 
-        # self._compounds.append(BasicProperty(FRAC_VAR, self))
+        ##self._compounds.append(BasicProperty(FRAC_VAR, self))
 
-        # # If all composition is fixed or estimated, zero the new compound.
-        # if zeroNewCmp:
-        # self._compounds[nc].SetValue(0.0, st0)
+        ### If all composition is fixed or estimated, zero the new compound.
+        ##if zeroNewCmp:
+        ##self._compounds[nc].SetValue(0.0, st0)
 
-        # #arrProperties
-        # for name, prop in self._arrProperties.items():
-        # prop.append(BasicProperty(name, self))
-        # self._flashResults = None
+        ###arrProperties
+        ##for name, prop in self._arrProperties.items():
+        ##prop.append(BasicProperty(name, self))
+        ##self._flashResults = None
 
     def AppendCompounds(self, nuAddCmps, cmpIdx=-1):
         """ append nuCmps in one shot"""
@@ -1120,8 +1115,7 @@ class Port_Material(Port):
         # arrProperties
         for name, prop in list(self._arrProperties.items()):
             for i in range(nuAddCmps):
-                if prop is not None:
-                    prop.append(BasicProperty(name, self))
+                prop.append(BasicProperty(name, self))
 
         self._flashResults = None
 
@@ -1135,8 +1129,6 @@ class Port_Material(Port):
         """Deletes a compound from the port"""
         cmpNo = self.GetCompoundNumber(cmpName)
         self.DeleteCompoundNumber(cmpNo)
-        # to prevent inconsistency in composition
-        self._flashResults = None
 
     def DeleteCompoundNumber(self, cmpNo):
         """Delete a compound based on position in list"""
@@ -1163,10 +1155,9 @@ class Port_Material(Port):
         calcStatus -- Status of all the values (FIXED_V, UNKNOWN_V, etc)
 
         """
-        # if vals is None:
-        #     for i in range(len(self._compounds)):
-        #         self._compounds[i].SetValue(None, FIXED_V)
-        # else:
+        if vals is None:
+            raise
+
         for i in range(len(vals)):
             self._compounds[i].SetValue(vals[i], calcStatus)
 
@@ -1176,7 +1167,6 @@ class Port_Material(Port):
 
     def SetCompositionValue(self, cmpName, val, calcStatus):
         """assign value by name - ineffiecient lookup"""
-        cmpName = cmpName.upper()
         cmp = self.GetCompound(cmpName)
         if cmp:
             cmp.SetValue(val, calcStatus)
@@ -1185,7 +1175,6 @@ class Port_Material(Port):
         """
         return mole fraction for cmpName
         """
-        cmpName = cmpName.upper()
         cmp = self.GetCompound(cmpName)
         if cmp:
             return cmp.GetValue()
@@ -1199,8 +1188,7 @@ class Port_Material(Port):
         var = propName.split('_', 1)
         if len(var) == 2:
             cmpIdx = self.GetCompoundNumber(var[1])
-            if cmpIdx is None:
-                return None
+            if cmpIdx is None: return None
 
             if var[0] == CMPMASSFRAC_VAR:
                 massCmps = MassCompoundList(self._compounds)
@@ -1212,29 +1200,25 @@ class Port_Material(Port):
                 flow = self.GetPropValue(MOLEFLOW_VAR)
                 if flow is not None:
                     frac = self._compounds.GetValues()[cmpIdx]
-                    if frac is not None:
-                        return frac * flow
+                    if frac is not None: return frac * flow
             elif var[0] == MASSFLOW_VAR:
                 flow = self.GetPropValue(MASSFLOW_VAR)
                 if flow is not None:
                     massCmps = MassCompoundList(self._compounds)
                     frac = massCmps.GetValues()[cmpIdx]
-                    if frac is not None:
-                        return frac * flow
+                    if frac is not None: return frac * flow
             elif var[0] == STDVOLFLOW_VAR:
                 flow = self.GetPropValue(STDVOLFLOW_VAR)
                 if flow is not None:
                     volCmps = StdVolCompoundList(self._compounds)
                     frac = volCmps.GetValues()[cmpIdx]
-                    if frac is not None:
-                        return frac * flow
+                    if frac is not None: return frac * flow
             else:
                 # Just return the proportional value based on mole fraction
                 value = self.GetPropValue(var[0])
                 if value is not None:
                     frac = self._compounds.GetValues()[cmpIdx]
-                    if frac is not None:
-                        return frac * value
+                    if frac is not None: return frac * value
 
         return None
 
@@ -1352,13 +1336,11 @@ class Port_Material(Port):
                                                    uo.NumberLiqPhases(),
                                                    nuSolids=uo.NumberSolidPhases(),
                                                    stdVolRefT=uo.GetParameterValue(STDVOLREFT_PAR))
-            except FlashConvergenceError as e:
-                raise
+            except Exception as e:
                 # Let the error be raised but wrap it as a SimError that notifies of the port that failed
                 raise SimError('FlashFailure', (self.GetPath(), str(e)))
 
-            if self._flashResults is None:
-                return 0
+            if self._flashResults is None: return 0
             self.AssignFlashResults(self._flashResults, calcStatus)
             self.CalcFlows(calcStatus)
             return 1
@@ -1389,8 +1371,7 @@ class Port_Material(Port):
 
         compounds = self._compounds
         nuCmps = len(compounds)
-        if not nuCmps:
-            return None
+        if not nuCmps: return None
 
         parentOp = self._parentOp
         if isForgetting is None:
@@ -1398,12 +1379,10 @@ class Port_Material(Port):
         x = np.zeros(nuCmps, dtype=float)
 
         thCaseObj = parentOp.GetThermo()
-        if thCaseObj is None:
-            return None
+        if thCaseObj is None: return None
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
         cmpMwt = thAdmin.GetMolecularWeightValues(prov, case)
-        if cmpMwt is None:
-            return None
+        if cmpMwt is None: return None
 
         for i in range(nuCmps):
             cmp = compounds[i]
@@ -1426,7 +1405,7 @@ class Port_Material(Port):
         return np.sum(x * cmpMwt)
 
         # for i in range(len(self._compounds)):
-        # Note: cmpMwt is an array with only one element because only one prop (Mwt) was requested
+        ##Note: cmpMwt is an array with only one element because only one prop (Mwt) was requested
         # cmpMwt = thAdmin.GetSelectedCompoundProperties(prov, case, i, 'MolecularWeight')
         # mwt += x[i]*cmpMwt[0]/sum
         # return mwt
@@ -1438,8 +1417,7 @@ class Port_Material(Port):
 
         compounds = self._compounds
         nuCmps = len(compounds)
-        if not nuCmps:
-            return None
+        if not nuCmps: return None
         x = np.zeros(nuCmps, dtype=float)
 
         parentOp = self._parentOp
@@ -1447,8 +1425,7 @@ class Port_Material(Port):
             isForgetting = parentOp.IsForgetting()
 
         thCaseObj = parentOp.GetThermo()
-        if thCaseObj is None:
-            return None
+        if thCaseObj is None: return None
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
 
         for i in range(nuCmps):
@@ -1461,14 +1438,14 @@ class Port_Material(Port):
             frac = cmp.GetValue()
             if frac is None:
                 return None
-
             x[i] = frac
 
         refT = parentOp.GetStdVolRefT()
-        # molVol = thAdmin.GetArrayProperty(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, STDLIQMOLVOLPERCMP_VAR)
-        # if molVol == None: return None
-        # molVol = sum(x*molVol)
+        ##molVol = thAdmin.GetArrayProperty(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, STDLIQMOLVOLPERCMP_VAR)
+        ##if molVol == None: return None
+        ##molVol = sum(x*molVol)
         molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
+
         return molVol
 
     def CalcFlows(self, calcStatus=CALCULATED_V):
@@ -1486,20 +1463,14 @@ class Port_Material(Port):
         stdVolFlow = self.GetLocalValue(STDVOLFLOW_VAR, isForgetting)
         stdGasVolFlow = self.GetLocalValue(STDGASVOLFLOW_VAR, isForgetting)
         q = self.GetLocalValue(ENERGY_VAR, isForgetting)
-        if 0 in (moles, massFlow, volFlow, stdVolFlow, q, stdGasVolFlow):
-            if moles is None:
-                self.SetPropValue(MOLEFLOW_VAR, 0.0, calcStatus)
-            if massFlow is None:
-                self.SetPropValue(MASSFLOW_VAR, 0.0, calcStatus)
-            if volFlow is None:
-                self.SetPropValue(VOLFLOW_VAR, 0.0, calcStatus)
-            if stdVolFlow is None:
-                self.SetPropValue(STDVOLFLOW_VAR, 0.0, calcStatus)
-            if q is None:
-                self.SetPropValue(ENERGY_VAR, 0.0, calcStatus)
-            if stdGasVolFlow is None:
-                self.SetPropValue(STDGASVOLFLOW_VAR, 0.0, calcStatus)
 
+        if 0 in (moles, massFlow, volFlow, stdVolFlow, q, stdGasVolFlow):
+            if moles is None: self.SetPropValue(MOLEFLOW_VAR, 0.0, calcStatus)
+            if massFlow is None: self.SetPropValue(MASSFLOW_VAR, 0.0, calcStatus)
+            if volFlow is None: self.SetPropValue(VOLFLOW_VAR, 0.0, calcStatus)
+            if stdVolFlow is None: self.SetPropValue(STDVOLFLOW_VAR, 0.0, calcStatus)
+            if q is None: self.SetPropValue(ENERGY_VAR, 0.0, calcStatus)
+            if stdGasVolFlow is None: self.SetPropValue(STDGASVOLFLOW_VAR, 0.0, calcStatus)
             return  # Done!
 
         if moles is None and stdGasVolFlow is not None:
@@ -1536,10 +1507,10 @@ class Port_Material(Port):
             if moles is not None:
                 # if mole flow is available, mass flow has already been calculated if possible
                 # Set the values regardless if they are there already or not for consistency checks
-                # if volFlow == None:
+                ##if volFlow == None:
                 volFlow = moles * molVol
                 self.SetPropValue(VOLFLOW_VAR, volFlow, calcStatus)
-                # if stdVolFlow == None and stdMolVol != None:
+                ##if stdVolFlow == None and stdMolVol != None:
                 if stdMolVol is not None:
                     stdVolFlow = moles * stdMolVol
                     self.SetPropValue(STDVOLFLOW_VAR, stdVolFlow, calcStatus)
@@ -1578,7 +1549,6 @@ class Port_Material(Port):
                 if massFlow is None:
                     massFlow = moles * mwt
                     self.SetPropValue(MASSFLOW_VAR, massFlow, calcStatus)
-
         elif moles is not None and stdVolFlow is None and mwt is not None:
             stdMolVol = self.GetLocalStdMolVol(isForgetting)
             if stdMolVol is not None:
@@ -1637,8 +1607,7 @@ class Port_Material(Port):
         if hasattr(obj, 'AttachToPort'):
             if self._attachedObj:
                 # disconnect existing connection
-                if obj == self._attachedObj:
-                    return
+                if obj == self._attachedObj: return
                 self.RemoveFromBorrowedIn(self._attachedObj)
                 self._attachedObj.DeleteObject(self)
             # connect to object
@@ -1679,8 +1648,7 @@ class Port_Energy(Port):
     def GetObject(self, description):
         """Get object. Hack to make ENERGY_VAR equivalent to WORK_VAR)"""
         obj = super(Port_Energy, self).GetObject(description)
-        if obj is not None:
-            return obj
+        if obj is not None: return obj
 
         if description == WORK_VAR:
             return self.GetObject(ENERGY_VAR)
@@ -1830,7 +1798,10 @@ class Port_Energy(Port):
             if connStatus & PASSED_V:
                 isNew = myStatus & NEW_V
                 isCalc = myStatus & CALCULATED_V
-                if (myStatus & UNKNOWN_V) or (isNew and not isCalc) or (isCalc and not isNew) or myProp.GetValue() != connProp.GetValue():
+                if ((myStatus & UNKNOWN_V) or
+                    (isNew and not isCalc) or
+                    (isCalc and not isNew) or
+                    myProp.GetValue() != connProp.GetValue()):
                     connProp.SetValue(None, UNKNOWN_V)
         else:
             # normal calculation update from connection as appropriate
@@ -1893,7 +1864,7 @@ class Port_Signal(Port):
         equivalent = True
         try:
             if myType.unitType != otherType.unitType:
-                equivalent = setup.unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
+                equivalent = unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
         except:
             # if it failed comparing, then assume they are equivalent
             pass
@@ -1915,8 +1886,7 @@ class Port_Signal(Port):
 
     def Disconnect(self, internalCall=False):
         """break connection to other port"""
-        if not self._connection:
-            return
+        if not self._connection: return
         if self._varType is None:
             self.DeleteProperty()
         super(Port_Signal, self).Disconnect()
@@ -1998,7 +1968,7 @@ class Port_Signal(Port):
         equivalent = True
         try:
             if myType.unitType != otherType.unitType:
-                equivalent = setup.unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
+                equivalent = unitSystem.IsEquivalentType(myType.unitType, otherType.unitType)
         except:
             # if it failed comparing, then assume they are equivalent
             pass
@@ -2022,17 +1992,17 @@ class Port_Signal(Port):
     def GetType(self):
         """returns property type object"""
         if self._prop:
-            type_of = self._prop.GetType()
-            self._varType = type_of.name  # redudnant check to keep it synchronized
-            return type_of
+            type = self._prop.GetType()
+            self._varType = type.name  # redudnant check to keep it synchronized
+            return type
 
         elif self._properties:
             # Somehow we don't have a self._prop but we do have properties ??
             items = list(self._properties.items())
             self._prop = items[0][1]
-            type_of = self._prop.GetType()
-            self._varType = type_of.name
-            return type_of
+            type = self._prop.GetType()
+            self._varType = type.name
+            return type
 
         return None
 
@@ -2158,7 +2128,10 @@ class Port_Signal(Port):
             if connStatus & PASSED_V:
                 isNew = myStatus & NEW_V
                 isCalc = myStatus & CALCULATED_V
-                if (myStatus & UNKNOWN_V) or (isNew and not isCalc) or (isCalc and not isNew) or myProp.GetValue() != connProp.GetValue():
+                if ((myStatus & UNKNOWN_V) or
+                    (isNew and not isCalc) or
+                    (isCalc and not isNew) or
+                    myProp.GetValue() != connProp.GetValue()):
                     connProp.SetValue(None, UNKNOWN_V)
         else:
             # normal calculation update from connection as appropriate
@@ -2169,6 +2142,12 @@ class Port_Signal(Port):
 
         return 1
 
+    # import psyco
+
+
+# psyco.bind(Port_Material.UpdateConnection)
+# psyco.bind(Port_Material.CalcFlows)
+# psyco.bind(Port_Material.CalcFlows)
 
 class PortStateObj(object):
     """wrapper object for the state flag in the ports"""
@@ -2215,3 +2194,4 @@ class PortStateObj(object):
             self.port.AllPropsAsNonEstimates()
         else:
             pass
+

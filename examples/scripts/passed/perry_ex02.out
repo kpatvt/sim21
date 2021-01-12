@@ -100,17 +100,17 @@ Inner loop converged
 >> overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 1.0 = 
+T                  = 104.50815321010079 = F
 P                  = 400.0 = psia
 MoleFlow           = 161.41252208753968 = lbmole/h
 MassFlow           = 3202.147819637263 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 0.6237052275752456 = ft3/s
 StdLiqVolumeFlow   = 0.02760822547573563 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -33169.809965761924 = Btu/lbmol
+Energy             = -5353122.346015895 = Btu/hr
+MolecularWeight    = 19.83828610693757 = 
+ZFactor            = 0.9190137786391772 = 
 METHANE            = 0.7314985709478617 = 
 ETHANE             = 0.26723193259808353 = 
 PROPANE            = 0.0011751489562629154 = 
@@ -179,17 +179,17 @@ Inner loop converged
 >> overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 1.0 = 
+T                  = 110.14206727422668 = F
 P                  = 400.0 = psia
 MoleFlow           = 205.83775224719386 = lbmole/h
 MassFlow           = 4475.037855127601 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 0.7892532681521476 = ft3/s
 StdLiqVolumeFlow   = 0.036565752825100856 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -33706.281351872574 = Btu/lbmol
+Energy             = -6936858.484938898 = Btu/hr
+MolecularWeight    = 21.740606940769116 = 
+ZFactor            = 0.9029336586556248 = 
 METHANE            = 0.5984969785389022 = 
 ETHANE             = 0.39784177521373504 = 
 PROPANE            = 0.003540429684419274 = 
@@ -254,17 +254,17 @@ Inner loop converged
 >> overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 1.0 = 
+T                  = 113.68061766602672 = F
 P                  = 400.0 = psia
 MoleFlow           = 241.80115718694125 = lbmole/h
 MassFlow           = 5522.513800984639 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 0.9229764707099041 = ft3/s
 StdLiqVolumeFlow   = 0.043928628534288035 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -34024.991100833795 = Btu/lbmol
+Energy             = -8225898.713584074 = Btu/hr
+MolecularWeight    = 22.839070854564756 = 
+ZFactor            = 0.8933221379100797 = 
 METHANE            = 0.5244072935756532 = 
 ETHANE             = 0.46787465695954206 = 
 PROPANE            = 0.00757669175050504 = 
@@ -333,17 +333,17 @@ Inner loop converged
 >> overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 0.999999993093661 = 
+T                  = 119.68812015418081 = F
 P                  = 400.0 = psia
 MoleFlow           = 303.02984357547524 = lbmole/h
 MassFlow           = 7370.191027850932 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 1.1526160090333653 = ft3/s
 StdLiqVolumeFlow   = 0.0570049325640547 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -34498.72653360372 = Btu/lbmol
+Energy             = -10452385.725940105 = Btu/hr
+MolecularWeight    = 24.321666640899565 = 
+ZFactor            = 0.8809439423038414 = 
 METHANE            = 0.43694647094728195 = 
 ETHANE             = 0.5374120288771244 = 
 PROPANE            = 0.02545173309040931 = 

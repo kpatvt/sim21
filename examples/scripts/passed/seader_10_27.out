@@ -193,17 +193,17 @@ N-OCTANE           = 1.7729188158862141e-06 =
 >> draw2.Out
 Port: /draw2.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 0.0 = 
+T                  = 197.7832357791033 = F
 P                  = 24.137931034482758 = psia
 MoleFlow           = 24.780000000000005 = lbmole/h
 MassFlow           = 2166.7036119917907 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 0.01614857472709434 = ft3/s
 StdLiqVolumeFlow   = 0.014667468441832716 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -80272.54554868373 = Btu/lbmol
+Energy             = -1988819.1806567104 = Btu/hr
+MolecularWeight    = 87.43759531847418 = 
+ZFactor            = 0.008026093258574061 = 
 N-BUTANE           = 6.222442321719648e-08 = 
 N-PENTANE          = 0.00575558561025397 = 
 N-HEXANE           = 0.9463720553003392 = 

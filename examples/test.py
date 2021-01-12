@@ -1,18 +1,16 @@
 import os
 import pickle
-from sim21.thermo import ThermoAdmin
-from sim21.unitop import Flash
-from sim21.unitop import Stream
+
 from sim21.solver import Flowsheet
-from sim21.unitop import Mixer
-from sim21.unitop import LiqLiqExt
-from sim21.unitop import Heater
-from sim21.unitop import Split
-from sim21.unitop import Balance
-from sim21.solver import Ports
 from sim21.solver.Variables import *
-from sim21.solver.Error import SimError
-from sim21.unitop.Tower import Tower
+from sim21.thermo import ThermoAdmin
+from sim21.unitop import Balance
+from sim21.unitop import Flash
+from sim21.unitop import Heater
+from sim21.unitop import LiqLiqExt
+from sim21.unitop import Mixer
+from sim21.unitop import Split
+from sim21.unitop import Stream
 
 
 def TestSimpleFlash():
@@ -599,6 +597,9 @@ def TestFlowsh1():
 
 
 def TestFlowsh2():
+    import numpy as np
+    np.seterr(all='raise')
+
     print("""Init Flowsh2 ++++++++++++++++++++++++++++++""")
     # Set Thermo
     pkgName = "Peng-Robinson"
@@ -711,11 +712,10 @@ def TestFlowsh2():
     thAdmin.DeleteCompound(provider, thCase, 'n-PENTANE')
 
     portsIn = stream.GetPortNames(MAT | IN)
-    stream.SetCompositionValue(portsIn[0], "PROPANE", 0.0)
     stream.SetCompositionValue(portsIn[0], 'n-HEXANE', 0.25)
     stream.SetCompositionValue(portsIn[0], 'n-DODECANE', 0.25)
 
-    portsIn = stream2.GetPortNames(MAT | IN)
+    portsIn = stream.GetPortNames(MAT | IN)
     stream2.SetCompositionValue(portsIn[0], 'n-HEXANE', 0.3)
     stream2.SetCompositionValue(portsIn[0], 'n-DODECANE', 0.2)
 
@@ -739,7 +739,8 @@ def TestFlowsh2():
         print(MOLEFLOW_VAR, ': ', flash.GetPropValue(i, MOLEFLOW_VAR))
         print('')
 
-    # Print some info out
+        # Print some info out
+
     for i in portsOut:
         comp = flash.GetCompositionValues(i)
         print('Composition of flash port out "', i, '":')
@@ -754,6 +755,7 @@ def TestFlowsh2():
         print('')
 
     print("""Finished Flowsh2 ++++++++++++++++++++++++++++++""")
+
     flsheet.CleanUp()
     thAdmin.CleanUp()
 
@@ -1195,20 +1197,20 @@ def PropertiesHandling():
 
 
 # Order --> key: (MethodName, Description)
-TEST_MAP = {10: (TestSimpleFlash, 'Test to a flash'),
-            # 11: (TestSimpleFlash2LPhase, 'Tests a two liquid phase flash'),
-            20: (TestMixAndFlash, 'Tests the unit op MixAndFlash'),
-            # 30: (TestLiqLiqEx, 'Tests the Liquid Liquid extraction'),
-            50: (TestHeater, 'Tests the heater'),
-            51: (TestHeatEx, 'Test the heat exchanger'),
-            60: (TestFlowsh1, 'Flowsheet: 2 streams --> mixer --> flash'),
-            61: (TestFlowsh2, 'Flowsheet: 2 streams --> mixer --> flash. Then changes cmps and calc again'),
-            70: (TestRecycle, 'stream --> mixer --> recycle --> flash'),
-            71: (TestRecycle2, 'stream --> mixer --> recycle --> flash with back calc'),
-            80: (TestMoleBalance, 'Tests the mole balance from Balance.Balance'),
-            # 100: (TestThAdminSaveLoad, 'Tests the save and load methods of thAdmin'),
-            # 110: (PropertiesHandling, 'Tests setting and getting common and supported properties')
-            }
+TEST_MAP = {  # 10: (TestSimpleFlash, 'Test to a flash'),
+    # 11: (TestSimpleFlash2LPhase, 'Tests a two liquid phase flash'),
+    # 20: (TestMixAndFlash, 'Tests the unit op MixAndFlash'),
+    # 30: (TestLiqLiqEx, 'Tests the Liquid Liquid extraction'),
+    # 50: (TestHeater, 'Tests the heater'),
+    # 51: (TestHeatEx, 'Test the heat exchanger'),
+    # 60: (TestFlowsh1, 'Flowsheet: 2 streams --> mixer --> flash'),
+    61: (TestFlowsh2, 'Flowsheet: 2 streams --> mixer --> flash. Then changes cmps and calc again'),
+    # 70: (TestRecycle, 'stream --> mixer --> recycle --> flash'),
+    # 71: (TestRecycle2, 'stream --> mixer --> recycle --> flash with back calc'),
+    # 80: (TestMoleBalance, 'Tests the mole balance from Balance.Balance'),
+    # 100: (TestThAdminSaveLoad, 'Tests the save and load methods of thAdmin'),
+    # 110: (PropertiesHandling, 'Tests setting and getting common and supported properties')
+}
 
 if __name__ == '__main__':
     for test_number in sorted(TEST_MAP.keys()):
@@ -1216,4 +1218,3 @@ if __name__ == '__main__':
         # print(descr)
         f()
         print("\n\n")
-

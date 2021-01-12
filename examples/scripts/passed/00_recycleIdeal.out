@@ -119,9 +119,9 @@ ETHANOL            = 0.5454545454545454 =
 >> # close the recycle
 >> splitter.Out1 -> recycle.In
 Iteration 1 -> max Error 1.594304 in /recycle.In.T
-Iteration 2 -> max Error 0.109091 in /recycle.In.Energy
-Iteration 3 -> max Error 0.016910 in /recycle.In.Energy
-Iteration 4 -> max Error 0.000823 in /recycle.In.Energy
+Iteration 2 -> max Error 0.055414 in /recycle.In.Fraction.ETHANOL
+Iteration 3 -> max Error 0.008587 in /recycle.In.Fraction.METHANOL
+Iteration 4 -> max Error 0.000417 in /recycle.In.Fraction.METHANOL
 Iteration 5 -> max Error 0.000000 in /recycle.In.Fraction.ETHANOL
 >> 
 >> # All done - check some streams

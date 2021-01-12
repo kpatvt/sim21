@@ -132,17 +132,17 @@ Inner loop converged
 >> /overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 0.999996530863219 = 
+T                  = 24.580602670090283 = F
 P                  = 200.0 = psia
 MoleFlow           = 423.6734232268661 = lbmole/h
 MassFlow           = 11904.606872168857 = lb/h
-VolumeFlow         = None
+VolumeFlow         = 2.6344298025390143 = ft3/s
 StdLiqVolumeFlow   = 0.09312080958890798 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
+H                  = -37822.335677769195 = Btu/lbmol
+Energy             = -16021623.76588294 = Btu/hr
+MolecularWeight    = 28.09854481924385 = 
+ZFactor            = 0.8614922512399985 = 
 METHANE            = 0.4017245138130373 = 
 ETHANE             = 0.3476654447805084 = 
 PROPANE            = 0.2399815758657627 = 
@@ -200,64 +200,184 @@ Inner loop converged
 >> 
 >> #Delete fractions
 >> /deprop.LiquidDraw_19_l.Fraction = None None None None None None None None None None
-11 specs found, only 2 needed in /deprop
-Error processing command:
-<class 'sim21.solver.Error.SimError'>
-11 specs found, only 2 needed in /deprop
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
-
-
 >> /deprop.LiquidDraw_19_l.StdLiqVolumeFlow = 0.304
+/deprop Inner Error 0.000446
+/deprop Inner Error 0.000090
+/deprop Inner Error 0.000023
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.002030
+/deprop Inner Error 0.000458
+/deprop Inner Error 0.000147
+/deprop Inner Error 0.000021
+/deprop Inner Error 0.000003
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.000271
+/deprop Inner Error 0.000031
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000035
+/deprop Inner Error 0.000002
+Inner loop converged
+>> /overhead.Out
+Port: /overhead.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 24.197156799438687 = F
+P                  = 200.0 = psia
+MoleFlow           = 422.3437209386715 = lbmole/h
+MassFlow           = 11845.830739693749 = lb/h
+VolumeFlow         = 2.62464453127234 = ft3/s
+StdLiqVolumeFlow   = 0.09267646707403107 = ft3/s
+H                  = -37798.94971528004 = Btu/lbmol
+Energy             = -15961464.52331084 = Btu/hr
+MolecularWeight    = 28.04784314101487 = 
+ZFactor            = 0.8616768851519904 = 
+METHANE            = 0.40298925541467856 = 
+ETHANE             = 0.3487590994228711 = 
+PROPANE            = 0.23760977864580457 = 
+ISOBUTANE          = 0.01 = 
+N-BUTANE           = 0.000640798277461991 = 
+ISOPENTANE         = 1.3597116616119136e-07 = 
+N-PENTANE          = 5.967272955807496e-09 = 
+N-HEXANE           = 1.4476046936926141e-09 = 
+N-HEPTANE          = 1.0914781845118868e-09 = 
+N-OCTANE           = 4.664507362500622e-10 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = 256.02713434186154 = F
+P                  = 205.0 = psia
+MoleFlow           = 577.6562790613284 = lbmole/h
+MassFlow           = nan = lb/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 0.304 = ft3/s
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = nan = 
+ETHANE             = nan = 
+PROPANE            = nan = 
+ISOBUTANE          = nan = 
+N-BUTANE           = nan = 
+ISOPENTANE         = nan = 
+N-PENTANE          = nan = 
+N-HEXANE           = nan = 
+N-HEPTANE          = nan = 
+N-OCTANE           = nan = 
+
+>> 
+>> /deprop.LiquidDraw_19_l.StdLiqVolumeFlow =
+>> /deprop.VapourDraw_0_v.VolumeFlow = 2.0
+/deprop Inner Error 0.631895
+/deprop Inner Error 0.422729
+/deprop Inner Error 0.053411
+Step size too small - Exiting inner loop
+/deprop Iteration 1 Outer Error 0.126068
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.252808
+/deprop Inner Error 0.234076
+/deprop Inner Error 0.227692
+/deprop Inner Error 0.226610
+/deprop Inner Error 0.226237
+/deprop Inner Error 0.226227
+/deprop Inner Error 0.226213
+/deprop Inner Error 0.226174
+/deprop Inner Error 0.226171
+Inner loop is not changing significantly - exiting
+/deprop Iteration 2 Outer Error 0.286078
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.499226
+/deprop Inner Error 0.453744
+/deprop Inner Error 0.173627
+/deprop Inner Error 0.056604
+/deprop Inner Error 0.044245
+/deprop Inner Error 0.006661
+/deprop Inner Error 0.005724
+/deprop Inner Error 0.001964
+/deprop Inner Error 0.001049
+/deprop Inner Error 0.000438
+/deprop Inner Error 0.000016
+/deprop Inner Error 0.000016
+Inner loop is not changing significantly - exiting
+/deprop Iteration 3 Outer Error 0.077841
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.052109
+/deprop Inner Error 0.007566
+Step size too small - Exiting inner loop
+/deprop Iteration 4 Outer Error 0.015043
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.025130
+/deprop Inner Error 0.001938
+/deprop Inner Error 0.000178
+/deprop Inner Error 0.000100
+/deprop Inner Error 0.000018
+/deprop Inner Error 0.000007
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.029778
+/deprop Inner Error 0.066171
+/deprop Inner Error 0.006830
+/deprop Inner Error 0.006532
+/deprop Inner Error 0.001271
+/deprop Inner Error 0.000365
+/deprop Inner Error 0.000039
+/deprop Inner Error 0.000004
+Inner loop converged
+/deprop Iteration 6 Outer Error 0.006547
+/deprop Inner Error 0.000945
+/deprop Inner Error 0.000161
+/deprop Inner Error 0.000019
+/deprop Inner Error 0.000003
+Inner loop converged
+/deprop Iteration 7 Outer Error 0.001747
+/deprop Inner Error 0.000075
+/deprop Inner Error 0.000008
+Inner loop converged
+/deprop Iteration 8 Outer Error 0.000404
+/deprop Inner Error 0.000010
+Inner loop converged
+/deprop Iteration 9 Outer Error 0.000097
+/deprop Inner Error 0.000006
+Inner loop converged
 Error processing command:
 <class 'ZeroDivisionError'>
 division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 411, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
     self.InnerSolve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 406, in InnerSolve
     op.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Stream.py", line 111, in Solve
+    inPort.Flash()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1317, in Flash
     self.CalcFlows(calcStatus)  # just in case this can get H
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1570, in CalcFlows
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1553, in CalcFlows
     stdMolVol = self.GetLocalStdMolVol(isForgetting)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1447, in GetLocalStdMolVol
     molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
 
   File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
@@ -321,60 +441,380 @@ N-HEPTANE          = None
 N-OCTANE           = None
 
 >> 
->> /deprop.LiquidDraw_19_l.StdLiqVolumeFlow =
-11 specs found, only 2 needed in /deprop
+>> TryToRestart = 1  #Keep last solution and ramp it up
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.000024
+/deprop Inner Error 0.000001
+Inner loop converged
 Error processing command:
-<class 'sim21.solver.Error.SimError'>
-11 specs found, only 2 needed in /deprop
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+<class 'ZeroDivisionError'>
+division by zero
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 411, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
     self.InnerSolve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 406, in InnerSolve
     op.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Stream.py", line 111, in Solve
+    inPort.Flash()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1317, in Flash
+    self.CalcFlows(calcStatus)  # just in case this can get H
 
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1553, in CalcFlows
+    stdMolVol = self.GetLocalStdMolVol(isForgetting)
 
->> /deprop.VapourDraw_0_v.VolumeFlow = 2.0
-12 specs found, only 2 needed in /deprop
-Error processing command:
-<class 'sim21.solver.Error.SimError'>
-12 specs found, only 2 needed in /deprop
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1447, in GetLocalStdMolVol
+    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
+  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
+    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
+  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
+    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
+  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
+    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
 
 
+>> /deprop.VapourDraw_0_v.VolumeFlow = 2.8
+/deprop Inner Error 0.160930
+/deprop Inner Error 0.032662
+/deprop Inner Error 0.013313
+/deprop Inner Error 0.008949
+/deprop Inner Error 0.002194
+/deprop Inner Error 0.000134
+/deprop Inner Error 0.000124
+/deprop Inner Error 0.000023
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.093869
+/deprop Inner Error 0.516090
+/deprop Inner Error 0.210696
+/deprop Inner Error 0.190797
+Step size too small - Exiting inner loop
+/deprop Iteration 2 Outer Error 0.276579
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 2.573241
+/deprop Inner Error 2.073992
+/deprop Inner Error 1.183514
+/deprop Inner Error 0.268815
+/deprop Inner Error 0.049123
+Step size too small - Exiting inner loop
+/deprop Iteration 3 Outer Error 0.982307
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 1.131388
+/deprop Inner Error 0.939994
+/deprop Inner Error 0.666902
+/deprop Inner Error 0.189677
+/deprop Inner Error 0.173952
+Step size too small - Exiting inner loop
+/deprop Iteration 4 Outer Error 0.269512
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.321895
+/deprop Inner Error 0.321890
+Inner loop is not changing significantly - exiting
+/deprop Iteration 5 Outer Error 0.216167
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 2.319174
+/deprop Inner Error 2.319095
+/deprop Inner Error 2.314865
+/deprop Inner Error 2.300439
+/deprop Inner Error 2.285196
+/deprop Inner Error 2.275855
+/deprop Inner Error 2.267967
+/deprop Inner Error 2.262725
+/deprop Inner Error 2.258208
+/deprop Inner Error 2.255355
+/deprop Inner Error 2.252698
+/deprop Inner Error 2.251240
+/deprop Inner Error 2.249600
+/deprop Inner Error 2.248957
+/deprop Inner Error 2.247850
+/deprop Inner Error 2.247701
+/deprop Inner Error 2.246847
+Step size too small - Exiting inner loop
+/deprop Iteration 6 Outer Error 0.135850
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 7 Outer Error 0.062737
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 8 Outer Error 0.042641
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 9 Outer Error 0.068178
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 10 Outer Error 0.026984
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 11 Outer Error 0.019141
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 12 Outer Error 0.039368
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 13 Outer Error 0.023136
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 14 Outer Error 0.026132
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 15 Outer Error 0.024467
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 16 Outer Error 0.038774
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 17 Outer Error 0.016642
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 18 Outer Error 0.010089
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 5.793873
+/deprop Inner Error 5.793492
+/deprop Inner Error 5.793124
+/deprop Inner Error 5.790798
+/deprop Inner Error 5.790601
+/deprop Inner Error 5.784186
+/deprop Inner Error 5.783191
+/deprop Inner Error 5.761896
+/deprop Inner Error 5.758022
+/deprop Inner Error 5.721476
+/deprop Inner Error 5.673358
+/deprop Inner Error 5.487274
+/deprop Inner Error 5.355772
+/deprop Inner Error 5.210232
+/deprop Inner Error 5.056695
+/deprop Inner Error 4.988081
+/deprop Inner Error 4.979799
+Step size too small - Exiting inner loop
+/deprop Iteration 19 Outer Error 0.052859
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 5.524602
+Inner loop is not changing significantly - exiting
+/deprop Iteration 20 Outer Error 0.036265
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 5.713715
+Step size too small - Exiting inner loop
+/deprop Iteration 21 Outer Error 0.007202
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 5.771652
+/deprop Inner Error 5.771645
+Inner loop is not changing significantly - exiting
+/deprop Iteration 22 Outer Error 0.009897
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 5.824591
+Step size too small - Exiting inner loop
+/deprop Iteration 23 Outer Error 0.009327
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 5.890003
+/deprop Inner Error 5.889993
+Inner loop is not changing significantly - exiting
+/deprop Iteration 24 Outer Error 0.007372
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 5.982643
+/deprop Inner Error 5.982639
+Inner loop is not changing significantly - exiting
+/deprop Iteration 25 Outer Error 0.006135
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.119636
+/deprop Inner Error 6.119634
+Inner loop is not changing significantly - exiting
+/deprop Iteration 26 Outer Error 0.007610
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.255083
+Inner loop is not changing significantly - exiting
+/deprop Iteration 27 Outer Error 0.007241
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.312133
+Step size too small - Exiting inner loop
+/deprop Iteration 28 Outer Error 0.003133
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.326227
+Inner loop is not changing significantly - exiting
+/deprop Iteration 29 Outer Error 0.001479
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.338560
+Inner loop is not changing significantly - exiting
+/deprop Iteration 30 Outer Error 0.001107
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.347905
+Inner loop is not changing significantly - exiting
+/deprop Iteration 31 Outer Error 0.001050
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.357266
+Inner loop is not changing significantly - exiting
+/deprop Iteration 32 Outer Error 0.001058
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.366559
+Inner loop is not changing significantly - exiting
+/deprop Iteration 33 Outer Error 0.001039
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.375488
+Inner loop is not changing significantly - exiting
+/deprop Iteration 34 Outer Error 0.001005
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 6.384050
+Inner loop is not changing significantly - exiting
+/deprop Iteration 35 Outer Error 0.000975
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 36 Outer Error 0.000594
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 37 Outer Error 0.000387
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 38 Outer Error 0.000492
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 39 Outer Error 0.000470
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 40 Outer Error 0.000451
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 41 Outer Error 0.000434
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 42 Outer Error 0.000428
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 43 Outer Error 0.000422
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 44 Outer Error 0.000414
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 45 Outer Error 0.000407
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 46 Outer Error 0.000399
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 47 Outer Error 0.000392
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 48 Outer Error 0.000385
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 49 Outer Error 0.000378
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 50 Outer Error 0.000375
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop failed to converge in 51 iterations - error = 0.000375
 >> /overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
@@ -383,7 +823,7 @@ T                  = None
 P                  = 200.0 = psia
 MoleFlow           = None
 MassFlow           = None
-VolumeFlow         = None
+VolumeFlow         = 2.8 = ft3/s
 StdLiqVolumeFlow   = None
 H                  = None
 Energy             = None
@@ -414,151 +854,273 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-METHANE            = None
-ETHANE             = None
-PROPANE            = None
-ISOBUTANE          = None
-N-BUTANE           = None
-ISOPENTANE         = None
-N-PENTANE          = None
-N-HEXANE           = None
-N-HEPTANE          = None
-N-OCTANE           = None
-
->> 
->> TryToRestart = 1  #Keep last solution and ramp it up
-12 specs found, only 2 needed in /deprop
-Error processing command:
-<class 'sim21.solver.Error.SimError'>
-12 specs found, only 2 needed in /deprop
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
-
-
->> /deprop.VapourDraw_0_v.VolumeFlow = 2.8
-12 specs found, only 2 needed in /deprop
-Error processing command:
-<class 'sim21.solver.Error.SimError'>
-12 specs found, only 2 needed in /deprop
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
-
-
->> /overhead.Out
-Port: /overhead.Out + sim21.solver.Ports.Port_Material
-Connected to: None
-VapFrac            = None
-T                  = None
-P                  = None
-MoleFlow           = None
-MassFlow           = None
-VolumeFlow         = None
-StdLiqVolumeFlow   = None
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
-METHANE            = None
-ETHANE             = None
-PROPANE            = None
-ISOBUTANE          = None
-N-BUTANE           = None
-ISOPENTANE         = None
-N-PENTANE          = None
-N-HEXANE           = None
-N-HEPTANE          = None
-N-OCTANE           = None
-
->> /bottoms.Out
-Port: /bottoms.Out + sim21.solver.Ports.Port_Material
-Connected to: None
-VapFrac            = None
-T                  = None
-P                  = None
-MoleFlow           = None
-MassFlow           = None
-VolumeFlow         = None
-StdLiqVolumeFlow   = None
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
-METHANE            = None
-ETHANE             = None
-PROPANE            = None
-ISOBUTANE          = None
-N-BUTANE           = None
-ISOPENTANE         = None
-N-PENTANE          = None
-N-HEXANE           = None
-N-HEPTANE          = None
-N-OCTANE           = None
+METHANE            = nan = 
+ETHANE             = nan = 
+PROPANE            = nan = 
+ISOBUTANE          = nan = 
+N-BUTANE           = nan = 
+ISOPENTANE         = nan = 
+N-PENTANE          = nan = 
+N-HEXANE           = nan = 
+N-HEPTANE          = nan = 
+N-OCTANE           = nan = 
 
 >> 
 >> 
 >> /deprop.VapourDraw_0_v.VolumeFlow = 2.0
-12 specs found, only 2 needed in /deprop
-Error processing command:
-<class 'sim21.solver.Error.SimError'>
-12 specs found, only 2 needed in /deprop
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
-
-
+/deprop Inner Error 7.288768
+Step size too small - Exiting inner loop
+/deprop Iteration 1 Outer Error 0.008982
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 2 Outer Error 0.006666
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 3 Outer Error 0.001582
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 4 Outer Error 0.000335
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 5 Outer Error 0.000064
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 6 Outer Error 0.000014
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 7 Outer Error 0.000004
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 8 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 9 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 10 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 11 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 12 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 13 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 14 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 15 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 16 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 17 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 18 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 19 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 20 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 21 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 22 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 23 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 24 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 25 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 26 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 27 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 28 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 29 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 30 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 31 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 32 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 33 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 34 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 35 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 36 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 37 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 38 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 39 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 40 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 41 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 42 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 43 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 44 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 45 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 46 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 47 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 48 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 49 Outer Error 0.000000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop Iteration 50 Outer Error 0.000001
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+Step size too small - Exiting inner loop
+/deprop failed to converge in 51 iterations - error = 0.000001
 >> cd /
 /
 >> 
@@ -611,39 +1173,266 @@ Copied /deprop /bottoms /overhead to the clipboard
 >> paste /
 Pasting /deprop /bottoms /overhead
 Pasted /deprop /bottoms /overhead as /depropClone /bottomsClone /overheadClone
-12 specs found, only 2 needed in /depropClone
-Error processing command:
-<class 'sim21.solver.Error.SimError'>
-12 specs found, only 2 needed in /depropClone
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4940, in Solve
-    if not self.NeedToSolve():
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4885, in NeedToSolve
-    raise SimError("TooManyTowerSpecs", (numSpecsDisp, numReqDisp, self.GetPath()))
-
-
+/depropClone Inner Error 7.411948
+Step size too small - Exiting inner loop
+/depropClone Iteration 1 Outer Error 0.004071
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 2 Outer Error 0.001293
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 3 Outer Error 0.000409
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 4 Outer Error 0.000066
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 5 Outer Error 0.000005
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 6 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 7 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 8 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 9 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 10 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 11 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 12 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 13 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 14 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 15 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 16 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 17 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 18 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 19 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 20 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 21 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 22 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 23 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 24 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 25 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 26 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 27 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 28 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 29 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 30 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 31 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 32 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 33 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 34 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 35 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 36 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 37 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 38 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 39 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 40 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 41 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 42 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 43 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 44 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 45 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 46 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 47 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 48 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 49 Outer Error 0.000000
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone Iteration 50 Outer Error 0.000001
+Calculating Jacobian for /depropClone
+Calculating disturbance 10 of 20 in jacobian of /depropClone
+Calculating disturbance 20 of 20 in jacobian of /depropClone
+Step size too small - Exiting inner loop
+/depropClone failed to converge in 51 iterations - error = 0.000001
 >> 
 >> /bottoms.In
 Port: /bottoms.In + sim21.solver.Ports.Port_Material
 Connected to: /deprop.LiquidDraw_19_l
 VapFrac            = None
 T                  = None
-P                  = None
+P                  = 205.0 | psia
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
@@ -652,23 +1441,23 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-METHANE            = None
-ETHANE             = None
-PROPANE            = None
-ISOBUTANE          = None
-N-BUTANE           = None
-ISOPENTANE         = None
-N-PENTANE          = None
-N-HEXANE           = None
-N-HEPTANE          = None
-N-OCTANE           = None
+METHANE            = nan | 
+ETHANE             = nan | 
+PROPANE            = nan | 
+ISOBUTANE          = nan | 
+N-BUTANE           = nan | 
+ISOPENTANE         = nan | 
+N-PENTANE          = nan | 
+N-HEXANE           = nan | 
+N-HEPTANE          = nan | 
+N-OCTANE           = nan | 
 
 >> /bottomsClone.In
 Port: /bottomsClone.In + sim21.solver.Ports.Port_Material
 Connected to: /depropClone.LiquidDraw_19_l
 VapFrac            = None
 T                  = None
-P                  = None
+P                  = 205.0 | psia
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None

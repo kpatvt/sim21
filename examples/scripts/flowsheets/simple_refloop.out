@@ -123,16 +123,16 @@ N-BUTANE           = 0.004932643599269673 =
 Port: /s8.Out + sim21.solver.Ports.Port_Material
 Connected to: /h1.In
 VapFrac            = 1.0 = 
-T                  = 151.15848396396242 = F
+T                  = 151.1587438931455 = F
 P                  = 314.79723129343347 | psia
 MoleFlow           = 25844.047252214485 = lbmole/h
 MassFlow           = 1143237.9515233915 = lb/h
-VolumeFlow         = 102.86797592272373 = ft3/s
+VolumeFlow         = 102.86810918710094 = ft3/s
 StdLiqVolumeFlow   = 8.643222785202854 = ft3/s
-H                  = -44928.46861015892 = Btu/lbmol
-Energy             = -1160938208.3845837 = Btu/hr
+H                  = -44928.460080171535 = Btu/lbmol
+Energy             = -1160937987.9722579 = Btu/hr
 MolecularWeight    = 44.236026206206205 = 
-ZFactor            = 0.6881251399761896 = 
+ZFactor            = 0.6881257386131208 = 
 ETHANE             = 0.010010010010010006 = 
 PROPANE            = 0.9699699699699699 = 
 ISOBUTANE          = 0.01701701701701702 = 
@@ -141,7 +141,7 @@ N-BUTANE           = 0.003003003003003003 =
 >> comp1.TotalQ.Out
 Port: /comp1.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: /comp1.Mix.InQ0
-Energy   = 29970321.195134304 = Btu/hr
+Energy   = 29970541.60746027 = Btu/hr
 
 >> 
 >> # The flowsheet is fully solved now ...
@@ -152,16 +152,16 @@ Energy   = 29970321.195134304 = Btu/hr
 Port: /s8.Out + sim21.solver.Ports.Port_Material
 Connected to: /h1.In
 VapFrac            = 1.0 = 
-T                  = 154.17781624198724 = F
+T                  = 154.1780756004027 = F
 P                  = 314.79723129343347 | psia
 MoleFlow           = 25844.047252214485 | lbmole/h
 MassFlow           = 1143237.9515233915 | lb/h
-VolumeFlow         = 104.39862713983732 = ft3/s
+VolumeFlow         = 104.39875717790075 = ft3/s
 StdLiqVolumeFlow   = 8.643222785202854 = ft3/s
-H                  = -44851.14490620253 = Btu/lbmol
-Energy             = -1158940186.9715748 = Btu/hr
+H                  = -44851.135807549326 = Btu/lbmol
+Energy             = -1158939951.865094 = Btu/hr
 MolecularWeight    = 44.236026206206205 = 
-ZFactor            = 0.6949292362446827 = 
+ZFactor            = 0.6949298082261762 = 
 ETHANE             = 0.010010010010010006 = 
 PROPANE            = 0.9699699699699699 = 
 ISOBUTANE          = 0.01701701701701702 = 
@@ -170,7 +170,7 @@ N-BUTANE           = 0.003003003003003003 =
 >> comp1.TotalQ.Out
 Port: /comp1.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: /comp1.Mix.InQ0
-Energy   = 31968342.60814326 = Btu/hr
+Energy   = 31968577.714624293 = Btu/hr
 
 >> 
 >> # Surprise, duty goes up!
@@ -182,16 +182,16 @@ Energy   = 31968342.60814326 = Btu/hr
 Port: /s8.Out + sim21.solver.Ports.Port_Material
 Connected to: /h1.In
 VapFrac            = 1.0 = 
-T                  = 154.17781625545447 = F
+T                  = 154.178075594016 = F
 P                  = 314.79723129343347 | psia
 MoleFlow           = 12922.023626107251 = lbmole/h
 MassFlow           = 571618.975761696 = lb/h
-VolumeFlow         = 52.19931357329481 = ft3/s
+VolumeFlow         = 52.1993785873493 = ft3/s
 StdLiqVolumeFlow   = 4.321611392601429 = ft3/s
-H                  = -44851.14490585895 = Btu/lbmol
-Energy             = -579470093.4813489 = Btu/hr
+H                  = -44851.135807712264 = Btu/lbmol
+Energy             = -579469975.9346524 = Btu/hr
 MolecularWeight    = 44.236026206206205 = 
-ZFactor            = 0.694929236274383 = 
+ZFactor            = 0.6949298082120909 = 
 ETHANE             = 0.01001001001001001 | 
 PROPANE            = 0.96996996996997 | 
 ISOBUTANE          = 0.01701701701701702 | 
@@ -200,6 +200,6 @@ N-BUTANE           = 0.003003003003003003 |
 >> comp1.TotalQ.Out
 Port: /comp1.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: /comp1.Mix.InQ0
-Energy   = 15984171.30851047 = Btu/hr
+Energy   = 15984288.855206888 = Btu/hr
 
 >> 

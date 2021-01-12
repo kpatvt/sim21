@@ -345,242 +345,244 @@ Inner loop converged
 >> 
 >> #Delete a compound
 >> $thermo - ISOBUTANE
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.253668
+/col Inner Error 0.208627
+/col Inner Error 0.172660
+/col Inner Error 0.165585
+/col Inner Error 0.108476
+/col Inner Error 0.073167
+/col Inner Error 0.015541
+/col Inner Error 0.009122
+/col Inner Error 0.002769
+/col Inner Error 0.001347
+/col Inner Error 0.000873
+/col Inner Error 0.000191
+/col Inner Error 0.000094
+/col Inner Error 0.000034
+/col Inner Error 0.000012
+/col Inner Error 0.000007
+Inner loop converged
+/col Iteration 1 Outer Error 0.608043
+/col Inner Error 0.564446
+/col Inner Error 0.561261
+/col Inner Error 0.555860
+/col Inner Error 0.547142
+/col Inner Error 0.531925
+/col Inner Error 0.504028
+/col Inner Error 0.492599
+/col Inner Error 0.467614
+/col Inner Error 0.439410
+/col Inner Error 0.367676
+/col Inner Error 0.280877
+/col Inner Error 0.193054
+/col Inner Error 0.098116
+/col Inner Error 0.025972
+Step size too small - Exiting inner loop
+/col Iteration 2 Outer Error 0.024576
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.029220
+/col Inner Error 0.005682
+/col Inner Error 0.001110
+/col Inner Error 0.000677
+/col Inner Error 0.000214
+/col Inner Error 0.000119
+/col Inner Error 0.000012
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 3 Outer Error 0.003515
+/col Inner Error 0.000776
+/col Inner Error 0.000159
+/col Inner Error 0.000034
+/col Inner Error 0.000019
+/col Inner Error 0.000005
+Inner loop converged
+/col Iteration 4 Outer Error 0.000433
+/col Inner Error 0.000544
+/col Inner Error 0.000014
+/col Inner Error 0.000007
+Inner loop converged
+/col Iteration 5 Outer Error 0.000039
+/col Inner Error 0.000009
+Inner loop converged
 >> V_MoleFraction.PROPANE
-[1.37980966e-04 6.91902500e-04 1.72337175e-03 3.66601946e-03
- 7.18986640e-03 1.34081040e-02 2.39222067e-02 4.04785861e-02
- 6.38899421e-02 9.26708580e-02 1.22671637e-01 1.32089127e-01
- 1.38483232e-01 1.43131290e-01 1.47463564e-01 1.53285335e-01
- 1.63555329e-01 1.83862694e-01 2.24559633e-01 3.02046630e-01
- 4.32334214e-01 6.10830225e-01]
+[8.40495220e-01 5.00005063e-01 3.68390261e-01 3.17569459e-01
+ 3.04189021e-01 3.01115313e-01 3.00412803e-01 3.00264473e-01
+ 3.00249464e-01 3.00271256e-01 3.00303030e-01 1.17440064e-01
+ 4.03120808e-02 1.31172798e-02 4.17465377e-03 1.31530101e-03
+ 4.12291281e-04 1.28833668e-04 4.31082998e-05 1.43510392e-05
+ 4.37694110e-06 1.26391460e-06]
 >> 
 >> #Now play with removing and adding stages
 >> Efficiencies = 1.0
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.004994
+Step size too small - Exiting inner loop
+/col Iteration 1 Outer Error 0.005580
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.000353
+/col Inner Error 0.000024
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 2 Outer Error 0.000458
+/col Inner Error 0.000156
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 3 Outer Error 0.000060
+/col Inner Error 0.000005
+Inner loop converged
 >> /col.Stage_10 - 2
 Rename port /col.LiquidDraw_21_l to LiquidDraw_19_l.  It is connected to 
 Rename port /col.EnergyFeed_21_reb to EnergyFeed_19_reb.  It is connected to 
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+Calculating Jacobian for /col
+Calculating disturbance 10 of 20 in jacobian of /col
+Calculating disturbance 20 of 20 in jacobian of /col
+/col Inner Error 0.252014
+/col Inner Error 0.186554
+/col Inner Error 0.170438
+/col Inner Error 0.148812
+/col Inner Error 0.145935
+/col Inner Error 0.060446
+/col Inner Error 0.005203
+/col Inner Error 0.004804
+/col Inner Error 0.001415
+/col Inner Error 0.001342
+/col Inner Error 0.000872
+/col Inner Error 0.000205
+/col Inner Error 0.000013
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 1 Outer Error 0.634608
+/col Inner Error 0.555645
+/col Inner Error 0.551482
+/col Inner Error 0.544995
+/col Inner Error 0.535420
+/col Inner Error 0.519906
+/col Inner Error 0.501927
+/col Inner Error 0.489621
+/col Inner Error 0.462269
+/col Inner Error 0.425175
+/col Inner Error 0.362105
+/col Inner Error 0.278115
+/col Inner Error 0.173062
+/col Inner Error 0.043355
+/col Inner Error 0.024633
+Step size too small - Exiting inner loop
+/col Iteration 2 Outer Error 0.024395
+Calculating Jacobian for /col
+Calculating disturbance 10 of 20 in jacobian of /col
+Calculating disturbance 20 of 20 in jacobian of /col
+/col Inner Error 0.031242
+/col Inner Error 0.015452
+/col Inner Error 0.002641
+/col Inner Error 0.000678
+/col Inner Error 0.000146
+/col Inner Error 0.000024
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 3 Outer Error 0.003052
+/col Inner Error 0.005044
+/col Inner Error 0.001827
+/col Inner Error 0.000564
+/col Inner Error 0.000011
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 4 Outer Error 0.000474
+/col Inner Error 0.000038
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 5 Outer Error 0.000052
+/col Inner Error 0.000004
+Inner loop converged
 >> Efficiencies
 /col.Efficiencies = 1.0 
 >> 
 >> Efficiencies = :0 .9 1 .8 2 .9 3 .87 4 .98 5 .76 6 .9 7-14 .93 15- 1.0
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.001806
+/col Inner Error 0.001177
+/col Inner Error 0.000105
+/col Inner Error 0.000018
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 1 Outer Error 0.003195
+/col Inner Error 0.000683
+/col Inner Error 0.000127
+/col Inner Error 0.000013
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 2 Outer Error 0.000266
+/col Inner Error 0.000007
+Inner loop converged
+/col Iteration 3 Outer Error 0.000025
+/col Inner Error 0.000004
+Inner loop converged
 >> /col.Stage_13 - 2
 The efficiencies matrix changed as a result of a change in configuration in /col
 Rename port /col.LiquidDraw_19_l to LiquidDraw_17_l.  It is connected to 
 Rename port /col.EnergyFeed_19_reb to EnergyFeed_17_reb.  It is connected to 
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+Calculating Jacobian for /col
+Calculating disturbance 10 of 18 in jacobian of /col
+/col Inner Error 0.246988
+/col Inner Error 0.171517
+/col Inner Error 0.090687
+/col Inner Error 0.088996
+/col Inner Error 0.079412
+/col Inner Error 0.020905
+/col Inner Error 0.016053
+/col Inner Error 0.006249
+/col Inner Error 0.003846
+/col Inner Error 0.001138
+/col Inner Error 0.000098
+/col Inner Error 0.000075
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 1 Outer Error 0.611236
+/col Inner Error 0.536724
+/col Inner Error 0.523827
+/col Inner Error 0.478709
+/col Inner Error 0.345399
+/col Inner Error 0.242332
+/col Inner Error 0.187253
+/col Inner Error 0.077446
+/col Inner Error 0.039543
+/col Inner Error 0.032950
+/col Inner Error 0.007501
+/col Inner Error 0.002071
+/col Inner Error 0.000442
+/col Inner Error 0.000065
+/col Inner Error 0.000045
+/col Inner Error 0.000011
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 2 Outer Error 0.024980
+/col Inner Error 0.034062
+/col Inner Error 0.012694
+/col Inner Error 0.001649
+/col Inner Error 0.000268
+/col Inner Error 0.000055
+/col Inner Error 0.000013
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 3 Outer Error 0.003040
+/col Inner Error 0.011276
+/col Inner Error 0.004277
+/col Inner Error 0.000526
+/col Inner Error 0.000010
+Inner loop converged
+/col Iteration 4 Outer Error 0.000330
+/col Inner Error 0.000453
+/col Inner Error 0.000092
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 5 Outer Error 0.000030
+/col Inner Error 0.000023
+/col Inner Error 0.000002
+Inner loop converged
 >> Efficiencies
 /col.Efficiencies = :0 .9 1 .8 2 .9 3 .87 4 .98 5 .76 6 .9 7-13 .93 14- 1.0 
 >> 
@@ -589,49 +591,63 @@ The efficiencies matrix changed as a result of a change in configuration in /col
 Rename port /col.Feed_10_f to Feed_8_f.  It is connected to 
 Rename port /col.LiquidDraw_17_l to LiquidDraw_15_l.  It is connected to 
 Rename port /col.EnergyFeed_17_reb to EnergyFeed_15_reb.  It is connected to 
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+Calculating Jacobian for /col
+Calculating disturbance 10 of 16 in jacobian of /col
+/col Inner Error 0.243584
+/col Inner Error 0.169756
+/col Inner Error 0.114732
+/col Inner Error 0.093717
+/col Inner Error 0.074791
+/col Inner Error 0.060870
+/col Inner Error 0.056860
+/col Inner Error 0.002496
+/col Inner Error 0.001314
+/col Inner Error 0.000225
+/col Inner Error 0.000089
+/col Inner Error 0.000012
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 1 Outer Error 0.598063
+/col Inner Error 0.537627
+/col Inner Error 0.527476
+/col Inner Error 0.507724
+/col Inner Error 0.229607
+/col Inner Error 0.182882
+/col Inner Error 0.122150
+/col Inner Error 0.047288
+/col Inner Error 0.022319
+/col Inner Error 0.013886
+/col Inner Error 0.003170
+/col Inner Error 0.000510
+/col Inner Error 0.000318
+/col Inner Error 0.000246
+/col Inner Error 0.000042
+/col Inner Error 0.000007
+Inner loop converged
+/col Iteration 2 Outer Error 0.024963
+/col Inner Error 0.051426
+/col Inner Error 0.005781
+/col Inner Error 0.005286
+/col Inner Error 0.005163
+/col Inner Error 0.000276
+/col Inner Error 0.000035
+/col Inner Error 0.000010
+Inner loop converged
+/col Iteration 3 Outer Error 0.003006
+/col Inner Error 0.005199
+/col Inner Error 0.001938
+/col Inner Error 0.000160
+/col Inner Error 0.000021
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 4 Outer Error 0.000319
+/col Inner Error 0.000138
+/col Inner Error 0.000022
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 5 Outer Error 0.000029
+/col Inner Error 0.000003
+Inner loop converged
 >> Efficiencies
 /col.Efficiencies = :0 .9 1 .8 2 .9 3 .87 4 .9 5-11 .93 12- 1.0 
 >> 
@@ -640,97 +656,81 @@ division by zero
 >> 
 >> 
 >> Efficiencies = :-2 .32 4 .18 8 .91 @PROPANE 0 .2 1 .4 2 .6 3-7 .7 @n-BUTANE 1 .3 4-5 .8 6- .4 @CARBON_DIOXIDE -3 .2 4 .6
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.004520
+/col Inner Error 0.002599
+/col Inner Error 0.000467
+/col Inner Error 0.000184
+/col Inner Error 0.000030
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 1 Outer Error 0.021601
+/col Inner Error 0.002248
+/col Inner Error 0.000746
+/col Inner Error 0.000217
+/col Inner Error 0.000069
+/col Inner Error 0.000019
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 2 Outer Error 0.000809
+/col Inner Error 0.000194
+/col Inner Error 0.000054
+/col Inner Error 0.000013
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 3 Outer Error 0.000053
+/col Inner Error 0.000009
+Inner loop converged
 >> /col.Stage_4 - 2
 The efficiencies matrix changed as a result of a change in configuration in /col
 Rename port /col.Feed_8_f to Feed_6_f.  It is connected to 
 Rename port /col.LiquidDraw_15_l to LiquidDraw_13_l.  It is connected to 
 Rename port /col.EnergyFeed_15_reb to EnergyFeed_13_reb.  It is connected to 
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+Calculating Jacobian for /col
+Calculating disturbance 10 of 14 in jacobian of /col
+/col Inner Error 0.231164
+/col Inner Error 0.158687
+/col Inner Error 0.075562
+/col Inner Error 0.047992
+/col Inner Error 0.012546
+/col Inner Error 0.008022
+/col Inner Error 0.004654
+/col Inner Error 0.002973
+/col Inner Error 0.000281
+/col Inner Error 0.000054
+/col Inner Error 0.000007
+Inner loop converged
+/col Iteration 1 Outer Error 0.569618
+/col Inner Error 0.533629
+/col Inner Error 0.521715
+/col Inner Error 0.484723
+/col Inner Error 0.298269
+/col Inner Error 0.216079
+/col Inner Error 0.160500
+/col Inner Error 0.061242
+/col Inner Error 0.016001
+Step size too small - Exiting inner loop
+/col Iteration 2 Outer Error 0.028927
+Calculating Jacobian for /col
+Calculating disturbance 10 of 14 in jacobian of /col
+/col Inner Error 0.021005
+/col Inner Error 0.007753
+/col Inner Error 0.000222
+/col Inner Error 0.000088
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 3 Outer Error 0.003172
+/col Inner Error 0.001947
+/col Inner Error 0.000229
+/col Inner Error 0.000015
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 4 Outer Error 0.000291
+/col Inner Error 0.000014
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 5 Outer Error 0.000025
+/col Inner Error 0.000001
+Inner loop converged
 >> Efficiencies
 /col.Efficiencies = :-2 .32 4 .18 6 .91 @PROPANE 0 .2 1 .4 2 .6 3-5 .7 @n-BUTANE 1 .3 4-4 .8 5- .4 @CARBON_DIOXIDE -3 .2 4 .6 
 >> 
@@ -739,145 +739,89 @@ The efficiencies matrix changed as a result of a change in configuration in /col
 Rename port /col.Feed_6_f to Feed_4_f.  It is connected to 
 Rename port /col.LiquidDraw_13_l to LiquidDraw_11_l.  It is connected to 
 Rename port /col.EnergyFeed_13_reb to EnergyFeed_11_reb.  It is connected to 
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+Calculating Jacobian for /col
+Calculating disturbance 10 of 12 in jacobian of /col
+/col Inner Error 0.227830
+/col Inner Error 0.157729
+/col Inner Error 0.120275
+/col Inner Error 0.074800
+/col Inner Error 0.048722
+/col Inner Error 0.021382
+/col Inner Error 0.003990
+/col Inner Error 0.001986
+/col Inner Error 0.000197
+/col Inner Error 0.000055
+/col Inner Error 0.000010
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 1 Outer Error 0.577818
+/col Inner Error 0.536201
+/col Inner Error 0.523093
+/col Inner Error 0.460154
+/col Inner Error 0.227504
+/col Inner Error 0.223593
+/col Inner Error 0.153837
+/col Inner Error 0.064137
+/col Inner Error 0.013956
+/col Inner Error 0.013097
+/col Inner Error 0.006169
+/col Inner Error 0.001572
+/col Inner Error 0.000259
+/col Inner Error 0.000041
+/col Inner Error 0.000013
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 2 Outer Error 0.032785
+/col Inner Error 0.009975
+/col Inner Error 0.004399
+/col Inner Error 0.001527
+/col Inner Error 0.000404
+/col Inner Error 0.000060
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 3 Outer Error 0.002669
+/col Inner Error 0.000727
+/col Inner Error 0.000133
+/col Inner Error 0.000046
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 4 Outer Error 0.000259
+/col Inner Error 0.000078
+/col Inner Error 0.000005
+Inner loop converged
+/col Iteration 5 Outer Error 0.000023
+/col Inner Error 0.000001
+Inner loop converged
 >> Efficiencies
 /col.Efficiencies = :-0 .32 2 .18 4 .91 @PROPANE 0 .2 1-3 .7 @n-BUTANE 2-2 .8 3- .4 @CARBON_DIOXIDE -1 .2 2 .6 
 >> 
 >> 
 >> #Now lets play with the P_Profile object
 >> Efficiencies = 1.0
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.016341
+/col Inner Error 0.001464
+/col Inner Error 0.000076
+/col Inner Error 0.000030
+/col Inner Error 0.000008
+Inner loop converged
+/col Iteration 1 Outer Error 0.003610
+/col Inner Error 0.000994
+/col Inner Error 0.000093
+/col Inner Error 0.000022
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 2 Outer Error 0.000283
+/col Inner Error 0.000071
+/col Inner Error 0.000005
+Inner loop converged
+/col Iteration 3 Outer Error 0.000029
+/col Inner Error 0.000001
+Inner loop converged
 >> TryToSolve = 0
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> 
 >> /col.P_Profile.Values
 [ ...
+700.0
 None
 None
 None
@@ -888,55 +832,11 @@ None
 None
 None
 None
-None
-None
+730.0
  ... ]
 
 >> 
 >> /col.LiquidDraw_0_l.P =
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /col.P_Profile.Values
 [ ...
 None
@@ -950,56 +850,13 @@ None
 None
 None
 None
-None
+730.0
  ... ]
 
 >> 
 >> /col.P_Profile.Item0 = 700
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /col.LiquidDraw_0_l.P
-/col.LiquidDraw_0_l.P= None
+/col.LiquidDraw_0_l.P= 700.0 = kPa
 >> /col.P_Profile.Values
 [ ...
 700.0
@@ -1013,268 +870,80 @@ None
 None
 None
 None
-None
+730.0
  ... ]
 
 >> 
 >> TryToSolve = 1
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.000003
+/col Inner Error 0.000000
+Inner loop converged
 >> /col.LiquidDraw_0_l.P
-/col.LiquidDraw_0_l.P= None
+/col.LiquidDraw_0_l.P= 700.0 = kPa
 >> /col.P_Profile.Values
 [ ...
 700.0
-None
-None
-None
-None
-None
-None
-None
-None
-None
-None
-None
+702.7272727272727
+705.4545454545455
+708.1818181818181
+710.9090909090909
+713.6363636363636
+716.3636363636364
+719.0909090909091
+721.8181818181819
+724.5454545454545
+727.2727272727273
+730.0
  ... ]
 
 >> 
 >> TryToSolve = 0
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /col.P_Profile.Item4 = 701
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> TryToSolve = 1
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.011710
+/col Inner Error 0.000122
+/col Inner Error 0.000011
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 2 Outer Error 0.000494
+/col Inner Error 0.000006
+Inner loop converged
+/col Iteration 3 Outer Error 0.000027
+/col Inner Error 0.000011
+/col Inner Error 0.000002
+Inner loop converged
 >> /col.LiquidDraw_0_l.P
-/col.LiquidDraw_0_l.P= None
+/col.LiquidDraw_0_l.P= 700.0 = kPa
 >> /col.P_Profile.Values
 [ ...
 700.0
-None
-None
-None
+700.25
+700.5
+700.75
 701.0
-None
-None
-None
-None
-None
-None
-None
+705.1428571428571
+709.2857142857143
+713.4285714285714
+717.5714285714286
+721.7142857142857
+725.8571428571429
+730.0
  ... ]
 
 >> 
 >> /col.P_Profile.Item0 =
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.001210
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 2 Outer Error 0.000046
+/col Inner Error 0.000002
+Inner loop converged
 >> cd /col.Stage_2
 /col.Stage_2
 >> . + 2
@@ -1284,160 +953,93 @@ Rename port /col.Feed_4_f to Feed_5_f.  It is connected to
 Rename port /col.LiquidDraw_12_l to LiquidDraw_13_l.  It is connected to 
 Rename port /col.EnergyFeed_12_reb to EnergyFeed_13_reb.  It is connected to 
 Rename port /col.Feed_5_f to Feed_6_f.  It is connected to 
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+Calculating Jacobian for /col
+Calculating disturbance 10 of 14 in jacobian of /col
+/col Inner Error 0.240472
+/col Inner Error 0.168461
+/col Inner Error 0.144363
+/col Inner Error 0.094353
+/col Inner Error 0.070258
+/col Inner Error 0.047821
+/col Inner Error 0.016999
+/col Inner Error 0.002991
+/col Inner Error 0.001589
+/col Inner Error 0.000122
+/col Inner Error 0.000039
+/col Inner Error 0.000008
+Inner loop converged
+/col Iteration 1 Outer Error 0.591866
+/col Inner Error 0.540031
+/col Inner Error 0.531644
+/col Inner Error 0.515565
+/col Inner Error 0.410787
+/col Inner Error 0.237079
+Step size too small - Exiting inner loop
+/col Iteration 2 Outer Error 0.020982
+Calculating Jacobian for /col
+Calculating disturbance 10 of 14 in jacobian of /col
+/col Inner Error 0.149669
+/col Inner Error 0.098195
+/col Inner Error 0.051784
+/col Inner Error 0.031886
+/col Inner Error 0.005343
+/col Inner Error 0.000875
+/col Inner Error 0.000128
+/col Inner Error 0.000114
+/col Inner Error 0.000008
+Inner loop converged
+/col Iteration 3 Outer Error 0.027799
+/col Inner Error 0.010387
+/col Inner Error 0.000661
+/col Inner Error 0.000223
+/col Inner Error 0.000006
+Inner loop converged
+/col Iteration 4 Outer Error 0.000429
+/col Inner Error 0.000309
+/col Inner Error 0.000023
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 5 Outer Error 0.000069
+/col Inner Error 0.000007
+Inner loop converged
 >> cd /col
 /col
 >> /col.LiquidDraw_0_l.P
-/col.LiquidDraw_0_l.P= None
+/col.LiquidDraw_0_l.P= 701.0 = kPa
 >> /col.P_Profile.Values
 [ ...
-None
-None
-None
-None
-None
-None
 701.0
-None
-None
-None
-None
-None
-None
-None
+701.0
+701.0
+701.0
+701.0
+701.0
+701.0
+705.1428571428571
+709.2857142857143
+713.4285714285714
+717.5714285714286
+721.7142857142857
+725.8571428571429
+730.0
  ... ]
 
 >> 
 >> /col.LiquidDraw_13_l.P =
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.033026
+/col Inner Error 0.000092
+/col Inner Error 0.000008
+Inner loop converged
+/col Iteration 2 Outer Error 0.000107
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 3 Outer Error 0.000002
+/col Inner Error 0.000001
+Inner loop converged
 >> /col.P_Profile.Item6 =
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+No outlet pressures available for tower /col
 >> /col.LiquidDraw_0_l.P
 /col.LiquidDraw_0_l.P= None
 >> /col.LiquidDraw_13_l.P
@@ -1462,200 +1064,41 @@ None
 
 >> 
 >> TryToSolve = 0
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /col.P_Profile.Item0 = 700
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /col.P_Profile.Item13 = 720
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> TryToSolve = 1
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000000
+Inner loop converged
+/col Iteration 1 Outer Error 0.021175
+/col Inner Error 0.000142
+/col Inner Error 0.000007
+Inner loop converged
+/col Iteration 2 Outer Error 0.000415
+/col Inner Error 0.000024
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 3 Outer Error 0.000020
+/col Inner Error 0.000003
+Inner loop converged
 >> /col.LiquidDraw_0_l.P
-/col.LiquidDraw_0_l.P= None
+/col.LiquidDraw_0_l.P= 700.0 = kPa
 >> /col.LiquidDraw_13_l.P
-/col.LiquidDraw_13_l.P= None
+/col.LiquidDraw_13_l.P= 720.0 = kPa
 >> /col.P_Profile.Values
 [ ...
 700.0
-None
-None
-None
-None
-None
-None
-None
-None
-None
-None
-None
-None
+701.5384615384615
+703.0769230769231
+704.6153846153846
+706.1538461538462
+707.6923076923077
+709.2307692307693
+710.7692307692307
+712.3076923076923
+713.8461538461538
+715.3846153846154
+716.9230769230769
+718.4615384615385
 720.0
  ... ]
 
@@ -1663,147 +1106,72 @@ None
 >> 
 >> #Degrees of subcooling
 >> /col.Stage_0.dsc = Tower.DegSubCooling()
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /col.Stage_0.l.Port
 Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
 T                  = None
-P                  = None
+P                  = 700.0 = kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = nan = kg/h
+MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
 H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /col.Stage_0.dsc.Port = 3
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000732
+/col Inner Error 0.000030
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 1 Outer Error 0.000116
+/col Inner Error 0.000039
+/col Inner Error 0.000005
+Inner loop converged
+/col Iteration 2 Outer Error 0.000011
+/col Inner Error 0.000004
+Inner loop converged
 >> /col.Stage_0.l.Port
 Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 35.00632281195459 = C
+P                  = 700.0 = kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = nan = kg/h
+MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
 H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /col.Stage_0.v = Tower.VapourDraw()
 Could not assign Tower.VapourDraw()
 Error processing command:
 <class 'sim21.cli.CommandInterface.CmdError'>
 Could not assign Tower.VapourDraw()
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 389, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 390, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 364, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 365, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1996, in Equal
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1997, in Equal
     raise CmdError('CMDCouldNotAssign', rhsDesc)
 
 
@@ -1812,22 +1180,22 @@ Could not assign 0.0
 Error processing command:
 <class 'sim21.cli.CommandInterface.CmdError'>
 Could not assign 0.0
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 389, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 390, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 364, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 365, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1814, in Equal
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1815, in Equal
     self.CreateObject(parentObj, createName, rhsDesc)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1687, in CreateObject
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1688, in CreateObject
     raise CmdError('CMDCouldNotAssign', opTypeDesc)
 
 
@@ -1835,8 +1203,8 @@ Could not assign 0.0
 Port: /col.VapourDraw_0_v + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 35.00632281195459 = C
+P                  = 700.0 = kPa
 MoleFlow           = 1e-40 * kgmole/h
 MassFlow           = None
 VolumeFlow         = None
@@ -1845,60 +1213,27 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /col.Stage_0.dsc.Port = 0
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000116
+/col Inner Error 0.000006
+Inner loop converged
+/col Iteration 1 Outer Error 0.000120
+/col Inner Error 0.000034
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 2 Outer Error 0.000010
+/col Inner Error 0.000004
+Inner loop converged
 >> /col.Stage_0.v.Port
 Port: /col.VapourDraw_0_v + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 38.00712565874193 = C
+P                  = 700.0 = kPa
 MoleFlow           = 1e-40 * kgmole/h
 MassFlow           = None
 VolumeFlow         = None
@@ -1907,78 +1242,41 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /col.Stage_0.l.Port
 Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 38.00712565874193 = C
+P                  = 700.0 = kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = nan = kg/h
+MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
 H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /col.Stage_0.dsc.Port = 2
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 1 Outer Error 0.000077
+/col Inner Error 0.000010
+/col Inner Error 0.000000
+Inner loop converged
 >> /col.Stage_0.v.Port
 Port: /col.VapourDraw_0_v + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 36.00647177076303 = C
+P                  = 700.0 = kPa
 MoleFlow           = 1e-40 * kgmole/h
 MassFlow           = None
 VolumeFlow         = None
@@ -1987,27 +1285,27 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /col.Stage_0.l.Port
 Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 36.00647177076303 = C
+P                  = 700.0 = kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = nan = kg/h
+MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
 H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> 
 >> copy /col
@@ -2015,138 +1313,62 @@ Copied /col to the clipboard
 >> paste /
 Pasting /col
 Pasted /col as /colClone
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/colClone Inner Error 0.000000
+Inner loop converged
+/colClone Iteration 1 Outer Error 0.000007
+/colClone Inner Error 0.000003
+Inner loop converged
 >> 
 >> /col.LiquidDraw_0_l
 Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 36.00647177076303 = C
+P                  = 700.0 = kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = nan = kg/h
+MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
 H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /colClone.LiquidDraw_0_l
 Port: /colClone.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
-P                  = None
+VapFrac            = 0.0 = 
+T                  = 36.0066744125524 = C
+P                  = 700.0 = kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = nan = kg/h
-VolumeFlow         = None
-StdLiqVolumeFlow   = None
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+MassFlow           = 279.175004974955 = kg/h
+VolumeFlow         = 0.49058164208100674 = m3/hr
+StdLiqVolumeFlow   = 0.4632087517112572 = m3/hr
+H                  = -141429.24285147965 = kJ/kmol
+Energy             = -196429.5039603884 = W
+MolecularWeight    = 55.835000994991006 = 
+ZFactor            = 0.026719388596185726 = 
+N-BUTANE           = 0.16311345245329328 = 
+N-PENTANE          = 0.33691238723476064 = 
+PROPANE            = 0.49997416031194614 = 
 
 >> 
 >> 
 >> delete /col.Stage_0.dsc
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3599, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 294, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 410, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 336, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 405, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 4931, in Solve
-    self.FlashAllPorts()  # make sure feeds are calculated
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 963, in FlashAllPorts
-    nuFlashed += port.Flash(calcStatus)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1333, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1583, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1471, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
+/col Inner Error 0.000005
+Inner loop converged
+/col Iteration 1 Outer Error 0.000088
+/col Inner Error 0.000007
+Inner loop converged
 >> /col.Stage_0.v.Port
 Port: /col.VapourDraw_0_v + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 38.00690469412524 = C
+P                  = 700.0 = kPa
 MoleFlow           = 1e-40 * kgmole/h
 MassFlow           = None
 VolumeFlow         = None
@@ -2155,27 +1377,27 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> /col.Stage_0.l.Port
 Port: /col.LiquidDraw_0_l + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = None
-T                  = None
-P                  = None
+T                  = 38.00690469412524 = C
+P                  = 700.0 = kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = nan = kg/h
+MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
 H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-N-BUTANE           = nan * 
-N-PENTANE          = nan * 
-PROPANE            = nan * 
+N-BUTANE           = nan 	
+N-PENTANE          = nan 	
+PROPANE            = nan 	
 
 >> 
 >> 

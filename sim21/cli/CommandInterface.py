@@ -291,6 +291,7 @@ class CommandInterface(object):
                 cmd = cmd.strip()
                 if cmd == 'quit':
                     break
+                # print('PROCESSING:', cmd)
                 cmdResult = self.ProcessCommandString(cmd)
 
                 if cmdResult:

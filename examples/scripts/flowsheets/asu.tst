@@ -10,6 +10,9 @@ $thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + NITROGEN OXYGEN ARGON
 
+/MaxNumIterations = 50
+# /RecycleDetails = 1
+
 air_feed = Stream.Stream_Material()
 air_feed.In.T = 30 C
 air_feed.In.P = 1.01315 bar
@@ -191,7 +194,7 @@ cd col2.Stage_70
 l = Tower.LiquidDraw()
 l.Port.P = 1.35 bar
 # l.Port.MassFlow = 4.7 kg/s
-l.Port.Fraction.OXYGEN = 0.985
+l.Port.Fraction.OXYGEN = 0.99
 reb = Tower.EnergyFeed(1)
 
 estT = Tower.Estimate('T')
@@ -223,7 +226,7 @@ btm_liq_col2.Out
 # Provide initial estimates for recycle
 vap_draw2_col2.In.P ~= 132.214 kPa
 vap_draw2_col2.In.VapFrac ~= 1
-vap_draw2_col2.In.Fraction ~= 0.0 0.9224 0.0776
+vap_draw2_col2.In.Fraction ~= 0.0 0.92 0.08
 vap_draw2_col2.In.MoleFlow ~= 0.225 kgmole/s
 vap_draw2_col2.Out
 
@@ -238,7 +241,7 @@ l.Port.P = 1.20 bar
 cond = Tower.EnergyFeed(0)
 # reflux = Tower.StageSpecification('Reflux')
 # reflux.Value = 33.4
-l.Port.Fraction.ARGON = 0.999999
+l.Port.Fraction.OXYGEN = 1e-6
 cd /
 
 

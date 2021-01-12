@@ -1,3 +1,6 @@
+/MaxNumIterations = 50
+/RecycleDetails = 0
+
 $thermo = Sim21Thermo.SRK
 / -> $thermo
 /thermo + NITROGEN CARBON_DIOXIDE METHANE ETHANE  PROPANE
