@@ -1,0 +1,713 @@
+>> units VMG
+>> $thermo = Sim21Thermo.SRK
+pkgName: SRK
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> # /LiquidPhases = 2
+>> # Original comps were TOLUENE ETHYLBENZENE STYRENE MESITYLENE alpha-METHYLSTYRENE n-PROPYLBENZENE
+>> # alpha-METHYLSTYRENE not available in the ChemSep database, using CUMENE instead
+>> /thermo + TOLUENE ETHYLBENZENE STYRENE MESITYLENE CUMENE N-PROPYLBENZENE
+TOLUENE ETHYLBENZENE STYRENE MESITYLENE CUMENE N-PROPYLBENZENE 
+>> 
+>> #Feed
+>> S1 = Stream.Stream_Material()
+>> /S1.In.T = 317.75 K
+>> /S1.In.P = 220 mmHg
+>> /S1.In.Fraction = 0.80 51.00 47.77 0.06 0.13 0.20
+>> /S1.In.MoleFlow = 99.96 kgmole/h
+>> 
+>> #Tower 1
+>> T1 = Tower.DistillationColumn()
+>> /T1.TryToSolve = 0
+>> /S1.Out -> /T1.Feed_1_feed
+>> /T1.Stage_0 + 49
+Rename port /T1.LiquidDraw_2_reboilerL to LiquidDraw_3_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_2_reboilerQ to EnergyFeed_3_reboilerQ.  It is connected to 
+Rename port /T1.Feed_1_feed to Feed_2_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_3_reboilerL to LiquidDraw_4_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_3_reboilerQ to EnergyFeed_4_reboilerQ.  It is connected to 
+Rename port /T1.Feed_2_feed to Feed_3_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_4_reboilerL to LiquidDraw_5_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_4_reboilerQ to EnergyFeed_5_reboilerQ.  It is connected to 
+Rename port /T1.Feed_3_feed to Feed_4_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_5_reboilerL to LiquidDraw_6_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_5_reboilerQ to EnergyFeed_6_reboilerQ.  It is connected to 
+Rename port /T1.Feed_4_feed to Feed_5_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_6_reboilerL to LiquidDraw_7_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_6_reboilerQ to EnergyFeed_7_reboilerQ.  It is connected to 
+Rename port /T1.Feed_5_feed to Feed_6_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_7_reboilerL to LiquidDraw_8_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_7_reboilerQ to EnergyFeed_8_reboilerQ.  It is connected to 
+Rename port /T1.Feed_6_feed to Feed_7_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_8_reboilerL to LiquidDraw_9_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_8_reboilerQ to EnergyFeed_9_reboilerQ.  It is connected to 
+Rename port /T1.Feed_7_feed to Feed_8_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_9_reboilerL to LiquidDraw_10_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_9_reboilerQ to EnergyFeed_10_reboilerQ.  It is connected to 
+Rename port /T1.Feed_8_feed to Feed_9_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_10_reboilerL to LiquidDraw_11_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_10_reboilerQ to EnergyFeed_11_reboilerQ.  It is connected to 
+Rename port /T1.Feed_9_feed to Feed_10_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_11_reboilerL to LiquidDraw_12_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_11_reboilerQ to EnergyFeed_12_reboilerQ.  It is connected to 
+Rename port /T1.Feed_10_feed to Feed_11_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_12_reboilerL to LiquidDraw_13_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_12_reboilerQ to EnergyFeed_13_reboilerQ.  It is connected to 
+Rename port /T1.Feed_11_feed to Feed_12_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_13_reboilerL to LiquidDraw_14_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_13_reboilerQ to EnergyFeed_14_reboilerQ.  It is connected to 
+Rename port /T1.Feed_12_feed to Feed_13_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_14_reboilerL to LiquidDraw_15_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_14_reboilerQ to EnergyFeed_15_reboilerQ.  It is connected to 
+Rename port /T1.Feed_13_feed to Feed_14_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_15_reboilerL to LiquidDraw_16_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_15_reboilerQ to EnergyFeed_16_reboilerQ.  It is connected to 
+Rename port /T1.Feed_14_feed to Feed_15_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_16_reboilerL to LiquidDraw_17_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_16_reboilerQ to EnergyFeed_17_reboilerQ.  It is connected to 
+Rename port /T1.Feed_15_feed to Feed_16_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_17_reboilerL to LiquidDraw_18_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_17_reboilerQ to EnergyFeed_18_reboilerQ.  It is connected to 
+Rename port /T1.Feed_16_feed to Feed_17_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_18_reboilerL to LiquidDraw_19_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_18_reboilerQ to EnergyFeed_19_reboilerQ.  It is connected to 
+Rename port /T1.Feed_17_feed to Feed_18_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_19_reboilerL to LiquidDraw_20_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_19_reboilerQ to EnergyFeed_20_reboilerQ.  It is connected to 
+Rename port /T1.Feed_18_feed to Feed_19_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_20_reboilerL to LiquidDraw_21_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_20_reboilerQ to EnergyFeed_21_reboilerQ.  It is connected to 
+Rename port /T1.Feed_19_feed to Feed_20_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_21_reboilerL to LiquidDraw_22_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_21_reboilerQ to EnergyFeed_22_reboilerQ.  It is connected to 
+Rename port /T1.Feed_20_feed to Feed_21_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_22_reboilerL to LiquidDraw_23_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_22_reboilerQ to EnergyFeed_23_reboilerQ.  It is connected to 
+Rename port /T1.Feed_21_feed to Feed_22_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_23_reboilerL to LiquidDraw_24_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_23_reboilerQ to EnergyFeed_24_reboilerQ.  It is connected to 
+Rename port /T1.Feed_22_feed to Feed_23_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_24_reboilerL to LiquidDraw_25_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_24_reboilerQ to EnergyFeed_25_reboilerQ.  It is connected to 
+Rename port /T1.Feed_23_feed to Feed_24_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_25_reboilerL to LiquidDraw_26_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_25_reboilerQ to EnergyFeed_26_reboilerQ.  It is connected to 
+Rename port /T1.Feed_24_feed to Feed_25_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_26_reboilerL to LiquidDraw_27_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_26_reboilerQ to EnergyFeed_27_reboilerQ.  It is connected to 
+Rename port /T1.Feed_25_feed to Feed_26_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_27_reboilerL to LiquidDraw_28_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_27_reboilerQ to EnergyFeed_28_reboilerQ.  It is connected to 
+Rename port /T1.Feed_26_feed to Feed_27_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_28_reboilerL to LiquidDraw_29_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_28_reboilerQ to EnergyFeed_29_reboilerQ.  It is connected to 
+Rename port /T1.Feed_27_feed to Feed_28_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_29_reboilerL to LiquidDraw_30_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_29_reboilerQ to EnergyFeed_30_reboilerQ.  It is connected to 
+Rename port /T1.Feed_28_feed to Feed_29_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_30_reboilerL to LiquidDraw_31_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_30_reboilerQ to EnergyFeed_31_reboilerQ.  It is connected to 
+Rename port /T1.Feed_29_feed to Feed_30_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_31_reboilerL to LiquidDraw_32_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_31_reboilerQ to EnergyFeed_32_reboilerQ.  It is connected to 
+Rename port /T1.Feed_30_feed to Feed_31_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_32_reboilerL to LiquidDraw_33_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_32_reboilerQ to EnergyFeed_33_reboilerQ.  It is connected to 
+Rename port /T1.Feed_31_feed to Feed_32_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_33_reboilerL to LiquidDraw_34_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_33_reboilerQ to EnergyFeed_34_reboilerQ.  It is connected to 
+Rename port /T1.Feed_32_feed to Feed_33_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_34_reboilerL to LiquidDraw_35_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_34_reboilerQ to EnergyFeed_35_reboilerQ.  It is connected to 
+Rename port /T1.Feed_33_feed to Feed_34_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_35_reboilerL to LiquidDraw_36_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_35_reboilerQ to EnergyFeed_36_reboilerQ.  It is connected to 
+Rename port /T1.Feed_34_feed to Feed_35_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_36_reboilerL to LiquidDraw_37_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_36_reboilerQ to EnergyFeed_37_reboilerQ.  It is connected to 
+Rename port /T1.Feed_35_feed to Feed_36_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_37_reboilerL to LiquidDraw_38_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_37_reboilerQ to EnergyFeed_38_reboilerQ.  It is connected to 
+Rename port /T1.Feed_36_feed to Feed_37_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_38_reboilerL to LiquidDraw_39_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_38_reboilerQ to EnergyFeed_39_reboilerQ.  It is connected to 
+Rename port /T1.Feed_37_feed to Feed_38_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_39_reboilerL to LiquidDraw_40_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_39_reboilerQ to EnergyFeed_40_reboilerQ.  It is connected to 
+Rename port /T1.Feed_38_feed to Feed_39_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_40_reboilerL to LiquidDraw_41_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_40_reboilerQ to EnergyFeed_41_reboilerQ.  It is connected to 
+Rename port /T1.Feed_39_feed to Feed_40_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_41_reboilerL to LiquidDraw_42_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_41_reboilerQ to EnergyFeed_42_reboilerQ.  It is connected to 
+Rename port /T1.Feed_40_feed to Feed_41_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_42_reboilerL to LiquidDraw_43_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_42_reboilerQ to EnergyFeed_43_reboilerQ.  It is connected to 
+Rename port /T1.Feed_41_feed to Feed_42_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_43_reboilerL to LiquidDraw_44_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_43_reboilerQ to EnergyFeed_44_reboilerQ.  It is connected to 
+Rename port /T1.Feed_42_feed to Feed_43_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_44_reboilerL to LiquidDraw_45_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_44_reboilerQ to EnergyFeed_45_reboilerQ.  It is connected to 
+Rename port /T1.Feed_43_feed to Feed_44_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_45_reboilerL to LiquidDraw_46_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_45_reboilerQ to EnergyFeed_46_reboilerQ.  It is connected to 
+Rename port /T1.Feed_44_feed to Feed_45_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_46_reboilerL to LiquidDraw_47_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_46_reboilerQ to EnergyFeed_47_reboilerQ.  It is connected to 
+Rename port /T1.Feed_45_feed to Feed_46_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_47_reboilerL to LiquidDraw_48_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_47_reboilerQ to EnergyFeed_48_reboilerQ.  It is connected to 
+Rename port /T1.Feed_46_feed to Feed_47_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_48_reboilerL to LiquidDraw_49_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_48_reboilerQ to EnergyFeed_49_reboilerQ.  It is connected to 
+Rename port /T1.Feed_47_feed to Feed_48_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_49_reboilerL to LiquidDraw_50_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_49_reboilerQ to EnergyFeed_50_reboilerQ.  It is connected to 
+Rename port /T1.Feed_48_feed to Feed_49_feed.  It is connected to /S1
+Rename port /T1.LiquidDraw_50_reboilerL to LiquidDraw_51_reboilerL.  It is connected to 
+Rename port /T1.EnergyFeed_50_reboilerQ to EnergyFeed_51_reboilerQ.  It is connected to 
+Rename port /T1.Feed_49_feed to Feed_50_feed.  It is connected to /S1
+>> /T1.Stage_50.feed.ParentStage = 9
+Rename port /T1.Feed_50_feed to Feed_9_feed.  It is connected to /S1
+>> 
+>> #Total cond and P prof
+>> delete /T1.Stage_0.condenserV
+>> /T1.LiquidDraw_0_condenserL.P = 40 mmHg
+>> /T1.LiquidDraw_51_reboilerL.P = 270 mmHg
+>> 
+>> #More specs and solve
+>> /T1.LiquidDraw_0_condenserL.MoleFlow = 52 kgmole/h
+>> /T1.Variable_0_Reflux.Generic = 2.5
+>> /T1.TryToRestart = 0
+>> /T1.TryToSolve = 1
+Calculating Jacobian for /T1
+Calculating disturbance 10 of 52 in jacobian of /T1
+Calculating disturbance 20 of 52 in jacobian of /T1
+Calculating disturbance 30 of 52 in jacobian of /T1
+Calculating disturbance 40 of 52 in jacobian of /T1
+Calculating disturbance 50 of 52 in jacobian of /T1
+/T1 Inner Error 0.044751
+/T1 Inner Error 0.023329
+/T1 Inner Error 0.006277
+/T1 Inner Error 0.002910
+/T1 Inner Error 0.000398
+/T1 Inner Error 0.000052
+/T1 Inner Error 0.000014
+/T1 Inner Error 0.000001
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.063333
+/T1 Inner Error 0.066089
+/T1 Inner Error 0.016299
+/T1 Inner Error 0.007415
+/T1 Inner Error 0.000350
+/T1 Inner Error 0.000036
+/T1 Inner Error 0.000011
+/T1 Inner Error 0.000003
+Inner loop converged
+/T1 Iteration 2 Outer Error 0.000118
+/T1 Inner Error 0.003899
+/T1 Inner Error 0.000447
+/T1 Inner Error 0.000136
+/T1 Inner Error 0.000033
+/T1 Inner Error 0.000007
+Inner loop converged
+/T1 Iteration 3 Outer Error 0.000004
+/T1 Inner Error 0.000086
+/T1 Inner Error 0.000035
+/T1 Inner Error 0.000009
+Inner loop converged
+>> /T1.TryToRestart = 1
+/T1 Inner Error 0.000003
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000000
+/T1 Inner Error 0.000000
+Inner loop converged
+>> /T1.TryToSolve = 0
+>> 
+>> #Add liquid draw and solve
+>> /T1.Stage_20.L = Tower.LiquidDraw()
+>> /T1.LiquidDraw_20_L.MoleFlow = 11 kgmole/h
+>> /T1.TryToRestart = 1
+>> /T1.TryToSolve = 1
+Calculating Jacobian for /T1
+Calculating disturbance 10 of 53 in jacobian of /T1
+Calculating disturbance 20 of 53 in jacobian of /T1
+Calculating disturbance 30 of 53 in jacobian of /T1
+Calculating disturbance 40 of 53 in jacobian of /T1
+Calculating disturbance 50 of 53 in jacobian of /T1
+/T1 Inner Error 0.045666
+/T1 Inner Error 0.020698
+/T1 Inner Error 0.009542
+/T1 Inner Error 0.004551
+/T1 Inner Error 0.001055
+/T1 Inner Error 0.000247
+/T1 Inner Error 0.000031
+/T1 Inner Error 0.000012
+/T1 Inner Error 0.000001
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.056567
+/T1 Inner Error 0.088179
+/T1 Inner Error 0.044166
+/T1 Inner Error 0.029630
+/T1 Inner Error 0.005215
+/T1 Inner Error 0.000751
+/T1 Inner Error 0.000090
+/T1 Inner Error 0.000011
+/T1 Inner Error 0.000004
+Inner loop converged
+/T1 Iteration 2 Outer Error 0.000199
+/T1 Inner Error 0.003659
+/T1 Inner Error 0.000459
+/T1 Inner Error 0.000131
+/T1 Inner Error 0.000022
+/T1 Inner Error 0.000003
+Inner loop converged
+/T1 Iteration 3 Outer Error 0.000004
+/T1 Inner Error 0.000060
+/T1 Inner Error 0.000033
+/T1 Inner Error 0.000007
+Inner loop converged
+>> 
+>> #Energy, distillate, draw and bottoms streams for T1
+>> S2 = Stream.Stream_Material()
+>> /T1.LiquidDraw_0_condenserL -> /S2.In
+>> S3 = Stream.Stream_Material()
+>> /T1.LiquidDraw_20_L -> /S3.In
+>> S4 = Stream.Stream_Material()
+>> /T1.LiquidDraw_51_reboilerL -> /S4.In
+>> Q1 = Stream.Stream_Energy()
+>> /T1.EnergyFeed_0_condenserQ -> /Q1.In
+>> Q2 = Stream.Stream_Energy()
+>> /Q2.Out -> /T1.EnergyFeed_51_reboilerQ
+>> 
+>> #Tower2
+>> T2 = Tower.DistillationColumn()
+>> /T2.TryToSolve = 0
+>> /S4.Out -> /T2.Feed_1_feed
+>> /T2.Stage_0 + 49
+Rename port /T2.LiquidDraw_2_reboilerL to LiquidDraw_3_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_2_reboilerQ to EnergyFeed_3_reboilerQ.  It is connected to 
+Rename port /T2.Feed_1_feed to Feed_2_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_3_reboilerL to LiquidDraw_4_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_3_reboilerQ to EnergyFeed_4_reboilerQ.  It is connected to 
+Rename port /T2.Feed_2_feed to Feed_3_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_4_reboilerL to LiquidDraw_5_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_4_reboilerQ to EnergyFeed_5_reboilerQ.  It is connected to 
+Rename port /T2.Feed_3_feed to Feed_4_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_5_reboilerL to LiquidDraw_6_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_5_reboilerQ to EnergyFeed_6_reboilerQ.  It is connected to 
+Rename port /T2.Feed_4_feed to Feed_5_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_6_reboilerL to LiquidDraw_7_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_6_reboilerQ to EnergyFeed_7_reboilerQ.  It is connected to 
+Rename port /T2.Feed_5_feed to Feed_6_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_7_reboilerL to LiquidDraw_8_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_7_reboilerQ to EnergyFeed_8_reboilerQ.  It is connected to 
+Rename port /T2.Feed_6_feed to Feed_7_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_8_reboilerL to LiquidDraw_9_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_8_reboilerQ to EnergyFeed_9_reboilerQ.  It is connected to 
+Rename port /T2.Feed_7_feed to Feed_8_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_9_reboilerL to LiquidDraw_10_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_9_reboilerQ to EnergyFeed_10_reboilerQ.  It is connected to 
+Rename port /T2.Feed_8_feed to Feed_9_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_10_reboilerL to LiquidDraw_11_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_10_reboilerQ to EnergyFeed_11_reboilerQ.  It is connected to 
+Rename port /T2.Feed_9_feed to Feed_10_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_11_reboilerL to LiquidDraw_12_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_11_reboilerQ to EnergyFeed_12_reboilerQ.  It is connected to 
+Rename port /T2.Feed_10_feed to Feed_11_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_12_reboilerL to LiquidDraw_13_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_12_reboilerQ to EnergyFeed_13_reboilerQ.  It is connected to 
+Rename port /T2.Feed_11_feed to Feed_12_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_13_reboilerL to LiquidDraw_14_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_13_reboilerQ to EnergyFeed_14_reboilerQ.  It is connected to 
+Rename port /T2.Feed_12_feed to Feed_13_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_14_reboilerL to LiquidDraw_15_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_14_reboilerQ to EnergyFeed_15_reboilerQ.  It is connected to 
+Rename port /T2.Feed_13_feed to Feed_14_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_15_reboilerL to LiquidDraw_16_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_15_reboilerQ to EnergyFeed_16_reboilerQ.  It is connected to 
+Rename port /T2.Feed_14_feed to Feed_15_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_16_reboilerL to LiquidDraw_17_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_16_reboilerQ to EnergyFeed_17_reboilerQ.  It is connected to 
+Rename port /T2.Feed_15_feed to Feed_16_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_17_reboilerL to LiquidDraw_18_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_17_reboilerQ to EnergyFeed_18_reboilerQ.  It is connected to 
+Rename port /T2.Feed_16_feed to Feed_17_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_18_reboilerL to LiquidDraw_19_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_18_reboilerQ to EnergyFeed_19_reboilerQ.  It is connected to 
+Rename port /T2.Feed_17_feed to Feed_18_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_19_reboilerL to LiquidDraw_20_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_19_reboilerQ to EnergyFeed_20_reboilerQ.  It is connected to 
+Rename port /T2.Feed_18_feed to Feed_19_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_20_reboilerL to LiquidDraw_21_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_20_reboilerQ to EnergyFeed_21_reboilerQ.  It is connected to 
+Rename port /T2.Feed_19_feed to Feed_20_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_21_reboilerL to LiquidDraw_22_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_21_reboilerQ to EnergyFeed_22_reboilerQ.  It is connected to 
+Rename port /T2.Feed_20_feed to Feed_21_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_22_reboilerL to LiquidDraw_23_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_22_reboilerQ to EnergyFeed_23_reboilerQ.  It is connected to 
+Rename port /T2.Feed_21_feed to Feed_22_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_23_reboilerL to LiquidDraw_24_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_23_reboilerQ to EnergyFeed_24_reboilerQ.  It is connected to 
+Rename port /T2.Feed_22_feed to Feed_23_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_24_reboilerL to LiquidDraw_25_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_24_reboilerQ to EnergyFeed_25_reboilerQ.  It is connected to 
+Rename port /T2.Feed_23_feed to Feed_24_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_25_reboilerL to LiquidDraw_26_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_25_reboilerQ to EnergyFeed_26_reboilerQ.  It is connected to 
+Rename port /T2.Feed_24_feed to Feed_25_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_26_reboilerL to LiquidDraw_27_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_26_reboilerQ to EnergyFeed_27_reboilerQ.  It is connected to 
+Rename port /T2.Feed_25_feed to Feed_26_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_27_reboilerL to LiquidDraw_28_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_27_reboilerQ to EnergyFeed_28_reboilerQ.  It is connected to 
+Rename port /T2.Feed_26_feed to Feed_27_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_28_reboilerL to LiquidDraw_29_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_28_reboilerQ to EnergyFeed_29_reboilerQ.  It is connected to 
+Rename port /T2.Feed_27_feed to Feed_28_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_29_reboilerL to LiquidDraw_30_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_29_reboilerQ to EnergyFeed_30_reboilerQ.  It is connected to 
+Rename port /T2.Feed_28_feed to Feed_29_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_30_reboilerL to LiquidDraw_31_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_30_reboilerQ to EnergyFeed_31_reboilerQ.  It is connected to 
+Rename port /T2.Feed_29_feed to Feed_30_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_31_reboilerL to LiquidDraw_32_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_31_reboilerQ to EnergyFeed_32_reboilerQ.  It is connected to 
+Rename port /T2.Feed_30_feed to Feed_31_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_32_reboilerL to LiquidDraw_33_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_32_reboilerQ to EnergyFeed_33_reboilerQ.  It is connected to 
+Rename port /T2.Feed_31_feed to Feed_32_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_33_reboilerL to LiquidDraw_34_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_33_reboilerQ to EnergyFeed_34_reboilerQ.  It is connected to 
+Rename port /T2.Feed_32_feed to Feed_33_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_34_reboilerL to LiquidDraw_35_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_34_reboilerQ to EnergyFeed_35_reboilerQ.  It is connected to 
+Rename port /T2.Feed_33_feed to Feed_34_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_35_reboilerL to LiquidDraw_36_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_35_reboilerQ to EnergyFeed_36_reboilerQ.  It is connected to 
+Rename port /T2.Feed_34_feed to Feed_35_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_36_reboilerL to LiquidDraw_37_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_36_reboilerQ to EnergyFeed_37_reboilerQ.  It is connected to 
+Rename port /T2.Feed_35_feed to Feed_36_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_37_reboilerL to LiquidDraw_38_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_37_reboilerQ to EnergyFeed_38_reboilerQ.  It is connected to 
+Rename port /T2.Feed_36_feed to Feed_37_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_38_reboilerL to LiquidDraw_39_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_38_reboilerQ to EnergyFeed_39_reboilerQ.  It is connected to 
+Rename port /T2.Feed_37_feed to Feed_38_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_39_reboilerL to LiquidDraw_40_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_39_reboilerQ to EnergyFeed_40_reboilerQ.  It is connected to 
+Rename port /T2.Feed_38_feed to Feed_39_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_40_reboilerL to LiquidDraw_41_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_40_reboilerQ to EnergyFeed_41_reboilerQ.  It is connected to 
+Rename port /T2.Feed_39_feed to Feed_40_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_41_reboilerL to LiquidDraw_42_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_41_reboilerQ to EnergyFeed_42_reboilerQ.  It is connected to 
+Rename port /T2.Feed_40_feed to Feed_41_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_42_reboilerL to LiquidDraw_43_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_42_reboilerQ to EnergyFeed_43_reboilerQ.  It is connected to 
+Rename port /T2.Feed_41_feed to Feed_42_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_43_reboilerL to LiquidDraw_44_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_43_reboilerQ to EnergyFeed_44_reboilerQ.  It is connected to 
+Rename port /T2.Feed_42_feed to Feed_43_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_44_reboilerL to LiquidDraw_45_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_44_reboilerQ to EnergyFeed_45_reboilerQ.  It is connected to 
+Rename port /T2.Feed_43_feed to Feed_44_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_45_reboilerL to LiquidDraw_46_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_45_reboilerQ to EnergyFeed_46_reboilerQ.  It is connected to 
+Rename port /T2.Feed_44_feed to Feed_45_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_46_reboilerL to LiquidDraw_47_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_46_reboilerQ to EnergyFeed_47_reboilerQ.  It is connected to 
+Rename port /T2.Feed_45_feed to Feed_46_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_47_reboilerL to LiquidDraw_48_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_47_reboilerQ to EnergyFeed_48_reboilerQ.  It is connected to 
+Rename port /T2.Feed_46_feed to Feed_47_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_48_reboilerL to LiquidDraw_49_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_48_reboilerQ to EnergyFeed_49_reboilerQ.  It is connected to 
+Rename port /T2.Feed_47_feed to Feed_48_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_49_reboilerL to LiquidDraw_50_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_49_reboilerQ to EnergyFeed_50_reboilerQ.  It is connected to 
+Rename port /T2.Feed_48_feed to Feed_49_feed.  It is connected to /S4
+Rename port /T2.LiquidDraw_50_reboilerL to LiquidDraw_51_reboilerL.  It is connected to 
+Rename port /T2.EnergyFeed_50_reboilerQ to EnergyFeed_51_reboilerQ.  It is connected to 
+Rename port /T2.Feed_49_feed to Feed_50_feed.  It is connected to /S4
+>> /T2.Stage_50.feed.ParentStage = 30
+Rename port /T2.Feed_50_feed to Feed_30_feed.  It is connected to /S4
+>> 
+>> #Total cond and P prof
+>> delete /T2.Stage_0.condenserV
+>> /T2.LiquidDraw_0_condenserL.P = 40 mmHg
+>> /T2.LiquidDraw_51_reboilerL.P = 250 mmHg
+>> 
+>> #more specs and solve
+>> /T2.LiquidDraw_0_condenserL.MoleFlow = 16 kgmole/h
+>> /T2.Variable_0_Reflux.Generic = 2.5
+>> /T2.TryToRestart = 0
+>> /T2.TryToSolve = 1
+Calculating Jacobian for /T2
+Calculating disturbance 10 of 52 in jacobian of /T2
+Calculating disturbance 20 of 52 in jacobian of /T2
+Calculating disturbance 30 of 52 in jacobian of /T2
+Calculating disturbance 40 of 52 in jacobian of /T2
+Calculating disturbance 50 of 52 in jacobian of /T2
+/T2 Inner Error 0.001368
+/T2 Inner Error 0.000120
+/T2 Inner Error 0.000001
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.055205
+/T2 Inner Error 0.000748
+/T2 Inner Error 0.000022
+/T2 Inner Error 0.000001
+Inner loop converged
+/T2 Iteration 2 Outer Error 0.000067
+/T2 Inner Error 0.000054
+/T2 Inner Error 0.000003
+Inner loop converged
+>> /T2.TryToRestart = 1
+/T2 Inner Error 0.000000
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000000
+/T2 Inner Error 0.000000
+Inner loop converged
+>> /T2.TryToSolve = 0
+>> 
+>> #Add liquid draw and solve
+>> /T2.Stage_20.L = Tower.LiquidDraw()
+>> /T2.LiquidDraw_20_L.MoleFlow = 7 kgmole/h
+>> /T2.TryToRestart = 0
+>> /T2.TryToSolve = 1
+Calculating Jacobian for /T2
+Calculating disturbance 10 of 53 in jacobian of /T2
+Calculating disturbance 20 of 53 in jacobian of /T2
+Calculating disturbance 30 of 53 in jacobian of /T2
+Calculating disturbance 40 of 53 in jacobian of /T2
+Calculating disturbance 50 of 53 in jacobian of /T2
+/T2 Inner Error 0.001974
+/T2 Inner Error 0.000213
+/T2 Inner Error 0.000009
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.055978
+/T2 Inner Error 0.001284
+/T2 Inner Error 0.000076
+/T2 Inner Error 0.000006
+Inner loop converged
+/T2 Iteration 2 Outer Error 0.000064
+/T2 Inner Error 0.000068
+/T2 Inner Error 0.000006
+Inner loop converged
+>> /T2.TryToRestart = 1
+/T2 Inner Error 0.000000
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000000
+/T2 Inner Error 0.000000
+Inner loop converged
+>> /T2.TryToSolve = 0
+>> 
+>> #Energy, distillate, draw and bottoms streams for T2
+>> S5 = Stream.Stream_Material()
+>> /T2.LiquidDraw_0_condenserL -> /S5.In
+>> S6 = Stream.Stream_Material()
+>> /T2.LiquidDraw_20_L -> /S6.In
+>> S7 = Stream.Stream_Material()
+>> /T2.LiquidDraw_51_reboilerL -> /S7.In
+>> Q3 = Stream.Stream_Energy()
+>> /Q3.Out -> /T2.EnergyFeed_51_reboilerQ
+>> Q4 = Stream.Stream_Energy()
+>> /T2.EnergyFeed_0_condenserQ -> /Q4.In
+>> 
+>> #Connect recycle and spec estimates
+>> /T2.LiquidDraw_0_condenserL ->
+>> /T1.Stage_44.feed = Tower.Feed()
+>> /T1.Feed_44_feed -> /S5.Out
+>> /S5.In.T ~= 350 K
+Changed state of port /S5.In to 1 (0=Normal port; 1=Recycle port)
+>> /S5.In.P ~= 26.6644
+>> /S5.In.MoleFlow ~= 0
+>> /S5.In.Fraction ~= 1 0 0 0 0 0
+/T1 Inner Error 0.000002
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000000
+/T1 Inner Error 0.000000
+Inner loop converged
+>> /T2.LiquidDraw_0_condenserL -> /S5.In
+Iteration 1 -> max Error 0.021332 in /S5.In.P
+/T1 Inner Error 0.048534
+/T1 Inner Error 0.015000
+/T1 Inner Error 0.005875
+/T1 Inner Error 0.002325
+/T1 Inner Error 0.000859
+/T1 Inner Error 0.000132
+/T1 Inner Error 0.000048
+/T1 Inner Error 0.000014
+/T1 Inner Error 0.000002
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.019315
+/T1 Inner Error 0.043893
+/T1 Inner Error 0.034888
+/T1 Inner Error 0.005293
+/T1 Inner Error 0.000596
+/T1 Inner Error 0.000087
+/T1 Inner Error 0.000010
+Inner loop converged
+/T1 Iteration 2 Outer Error 0.000073
+/T1 Inner Error 0.000331
+/T1 Inner Error 0.000082
+/T1 Inner Error 0.000019
+/T1 Inner Error 0.000002
+Inner loop converged
+Iteration 2 -> max Error 0.000000 in 
+>> 
+>> #Final solve
+>> /T1.TryToRestart = 1
+/T1 Inner Error 0.000000
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000000
+/T1 Inner Error 0.000006
+Inner loop converged
+Iteration 1 -> max Error 0.000000 in 
+>> /T1.TryToSolve = 1
+/T1 Inner Error 0.000001
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000000
+/T1 Inner Error 0.000000
+Inner loop converged
+Iteration 1 -> max Error 0.000000 in 
+>> /T2.TryToRestart = 1
+Iteration 1 -> max Error 0.000000 in 
+>> /T2.TryToSolve = 1
+/T2 Inner Error 0.029562
+/T2 Inner Error 0.009241
+/T2 Inner Error 0.002217
+/T2 Inner Error 0.000786
+/T2 Inner Error 0.000232
+/T2 Inner Error 0.000068
+/T2 Inner Error 0.000021
+/T2 Inner Error 0.000008
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.003409
+/T2 Inner Error 0.018805
+/T2 Inner Error 0.008283
+/T2 Inner Error 0.004078
+/T2 Inner Error 0.000972
+/T2 Inner Error 0.000240
+/T2 Inner Error 0.000050
+/T2 Inner Error 0.000010
+/T2 Inner Error 0.000003
+Inner loop converged
+/T2 Iteration 2 Outer Error 0.000004
+/T2 Inner Error 0.000197
+/T2 Inner Error 0.000045
+/T2 Inner Error 0.000008
+Inner loop converged
+Iteration 1 -> max Error 54.438739 in /S5.In.molarV
+/T1 Inner Error 0.056755
+/T1 Inner Error 0.015672
+/T1 Inner Error 0.007926
+/T1 Inner Error 0.001869
+/T1 Inner Error 0.000423
+/T1 Inner Error 0.000169
+/T1 Inner Error 0.000029
+/T1 Inner Error 0.000002
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.020379
+/T1 Inner Error 0.057081
+/T1 Inner Error 0.007385
+/T1 Inner Error 0.003172
+/T1 Inner Error 0.000372
+/T1 Inner Error 0.000071
+/T1 Inner Error 0.000008
+Inner loop converged
+/T1 Iteration 2 Outer Error 0.000008
+/T1 Inner Error 0.000141
+/T1 Inner Error 0.000022
+/T1 Inner Error 0.000005
+Inner loop converged
+/T2 Inner Error 0.001995
+/T2 Inner Error 0.000349
+/T2 Inner Error 0.000049
+/T2 Inner Error 0.000010
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000188
+/T2 Inner Error 0.001689
+/T2 Inner Error 0.000336
+/T2 Inner Error 0.000063
+/T2 Inner Error 0.000013
+/T2 Inner Error 0.000002
+Inner loop converged
+/T2 Iteration 2 Outer Error 0.000001
+/T2 Inner Error 0.000007
+Inner loop converged
+Iteration 2 -> max Error 0.087109 in /S5.In.H
+/T1 Inner Error 0.000424
+/T1 Inner Error 0.000063
+/T1 Inner Error 0.000015
+/T1 Inner Error 0.000002
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000031
+/T1 Inner Error 0.000542
+/T1 Inner Error 0.000068
+/T1 Inner Error 0.000011
+/T1 Inner Error 0.000001
+Inner loop converged
+/T2 Inner Error 0.000206
+/T2 Inner Error 0.000044
+/T2 Inner Error 0.000007
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000054
+/T2 Inner Error 0.000099
+/T2 Inner Error 0.000028
+/T2 Inner Error 0.000004
+Inner loop converged
+Iteration 3 -> max Error 0.055734 in /S5.In.H
+/T1 Inner Error 0.000760
+/T1 Inner Error 0.000059
+/T1 Inner Error 0.000002
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000030
+/T1 Inner Error 0.000063
+/T1 Inner Error 0.000021
+/T1 Inner Error 0.000002
+Inner loop converged
+/T2 Inner Error 0.000145
+/T2 Inner Error 0.000020
+/T2 Inner Error 0.000003
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000053
+/T2 Inner Error 0.000309
+/T2 Inner Error 0.000053
+/T2 Inner Error 0.000006
+Inner loop converged
+Iteration 4 -> max Error 0.026543 in /S5.In.H
+/T1 Inner Error 0.000291
+/T1 Inner Error 0.000028
+/T1 Inner Error 0.000001
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000027
+/T1 Inner Error 0.000243
+/T1 Inner Error 0.000018
+/T1 Inner Error 0.000002
+Inner loop converged
+/T2 Inner Error 0.000256
+/T2 Inner Error 0.000026
+/T2 Inner Error 0.000004
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000048
+/T2 Inner Error 0.000242
+/T2 Inner Error 0.000038
+/T2 Inner Error 0.000005
+Inner loop converged
+Iteration 5 -> max Error 0.001109 in /S5.In.H
+/T1 Inner Error 0.000004
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000001
+/T1 Inner Error 0.000004
+Inner loop converged
+/T2 Inner Error 0.000009
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000002
+/T2 Inner Error 0.000010
+/T2 Inner Error 0.000001
+Inner loop converged
+Iteration 6 -> max Error 0.000030 in /S5.In.Fraction.ETHYLBENZENE
