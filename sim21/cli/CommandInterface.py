@@ -203,9 +203,6 @@ class CommandInterface(object):
                 return netServer.open(self.root, name, mode)
         else:
             if mode == 'w' and keepVersions and self.maxCaseVersions != 0:
-                # try:
-                #     return VersionedOutputFile(name, self.maxCaseVersions)
-                # except:
                 return open(name, mode)
             else:
                 return open(name, mode)
@@ -3559,7 +3556,7 @@ globalBasePath = None
 netServer = None
 
 
-def run(inp=sys.stdin, out=sys.stdout, err=sys.stderr):
+def run(inp=sys.stdin, out=sys.stdout, err=sys.stderr, cwd=None):
     MessageHandler.IgnoreMessage('SolvingOp')
     MessageHandler.IgnoreMessage('DoneSolving')
     MessageHandler.IgnoreMessage('BeforePortDisconnect')

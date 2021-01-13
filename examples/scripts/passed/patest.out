@@ -488,80 +488,137 @@ N-DECANE           = 0.01957159462184831 =
 >> /stab.Variable_7_PAReturnT.T = 54.53
 Calculating Jacobian for /stab
 Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 2.197835
-/stab Inner Error 0.998694
-/stab Inner Error 0.102497
-/stab Inner Error 0.044723
-/stab Inner Error 0.000857
-/stab Inner Error 0.000107
-/stab Inner Error 0.000074
-/stab Inner Error 0.000067
-Inner loop is not changing significantly - exiting
-/stab Iteration 1 Outer Error 0.132481
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 1.708603
-/stab Inner Error 0.108065
+/stab Inner Error 1.089623
+/stab Inner Error 0.105345
+/stab Inner Error 0.034398
+/stab Inner Error 0.025707
 Step size too small - Exiting inner loop
-/stab Iteration 2 Outer Error 0.009183
+/stab Iteration 1 Outer Error 0.167774
 Calculating Jacobian for /stab
 Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 0.250895
-/stab Inner Error 0.048858
-/stab Inner Error 0.006549
-/stab Inner Error 0.004866
-/stab Inner Error 0.000758
-/stab Inner Error 0.000042
-/stab Inner Error 0.000003
+/stab Inner Error 1.232358
+/stab Inner Error 1.232345
+/stab Inner Error 1.232267
+/stab Inner Error 1.232267
+Inner loop is not changing significantly - exiting
+/stab Iteration 2 Outer Error 0.134601
+Calculating Jacobian for /stab
+Calculating disturbance 10 of 13 in jacobian of /stab
+/stab Inner Error 2.185769
+/stab Inner Error 2.176690
+/stab Inner Error 2.103591
+/stab Inner Error 0.060924
+/stab Inner Error 0.050803
+/stab Inner Error 0.048931
+/stab Inner Error 0.046944
+/stab Inner Error 0.040998
+/stab Inner Error 0.023220
+/stab Inner Error 0.019048
+/stab Inner Error 0.010993
+/stab Inner Error 0.000994
+/stab Inner Error 0.000406
+Step size too small - Exiting inner loop
+/stab Iteration 3 Outer Error 0.093867
+Calculating Jacobian for /stab
+Calculating disturbance 10 of 13 in jacobian of /stab
+/stab Inner Error 0.044063
+/stab Inner Error 0.021571
+/stab Inner Error 0.010294
+/stab Inner Error 0.007260
+/stab Inner Error 0.001607
+/stab Inner Error 0.000021
+/stab Inner Error 0.000001
 Inner loop converged
-/stab Iteration 3 Outer Error 0.004970
-/stab Inner Error 0.018427
-/stab Inner Error 0.009689
-/stab Inner Error 0.000659
-/stab Inner Error 0.000204
-/stab Inner Error 0.000048
-/stab Inner Error 0.000000
+/stab Iteration 4 Outer Error 0.010588
+Step size too small - Exiting inner loop
+/stab Iteration 5 Outer Error 0.004382
+Calculating Jacobian for /stab
+Calculating disturbance 10 of 13 in jacobian of /stab
+/stab Inner Error 0.026818
+/stab Inner Error 0.015816
+/stab Inner Error 0.003243
+/stab Inner Error 0.000319
+/stab Inner Error 0.000010
+/stab Inner Error 0.000001
 Inner loop converged
-/stab Iteration 4 Outer Error 0.000259
-/stab Inner Error 0.010271
-/stab Inner Error 0.000601
-/stab Inner Error 0.000017
-/stab Inner Error 0.000000
+/stab Iteration 6 Outer Error 0.000733
+/stab Inner Error 0.020915
+/stab Inner Error 0.000521
+/stab Inner Error 0.000016
+/stab Inner Error 0.000006
 Inner loop converged
-/stab Iteration 5 Outer Error 0.000015
-/stab Inner Error 0.000210
-/stab Inner Error 0.000013
+/stab Iteration 7 Outer Error 0.000049
+/stab Inner Error 0.001333
+/stab Inner Error 0.000055
 /stab Inner Error 0.000000
 Inner loop converged
 >> L
-[ 867.79029969  831.38478818  802.12512225  767.18417755  688.59385411
- 2107.17669031 2163.81941456 1910.64524627 1927.93701221 1894.08494412
- 2173.24446384  566.10485016]
+[ 867.59566416  831.29866591  802.08384627  767.13172682  688.48980021
+ 2107.00098756 2163.57261368 1910.54969656 1928.57708378 1897.22469255
+ 2293.66610682  566.20216792]
 >> V
-[1.18789601e-40 1.30168545e+03 1.26527994e+03 1.23602027e+03
- 1.20107933e+03 1.12248900e+03 1.54107184e+03 1.59771456e+03
- 1.64454034e+03 1.66183211e+03 1.62798004e+03 1.60713961e+03]
+[1.18730530e-40 1.30139350e+03 1.26509650e+03 1.23588168e+03
+ 1.20092956e+03 1.12228763e+03 1.54079882e+03 1.59737045e+03
+ 1.64434782e+03 1.66237521e+03 1.63102281e+03 1.72746394e+03]
 >> T
-[324.08852924 336.35437835 345.26034692 352.31447088 359.21600064
- 371.18504289 381.69610697 390.52510424 398.24320574 405.34667189
- 414.88935844 439.23089369]
+[324.07871645 336.33091697 345.22339491 352.26851546 359.16727152
+ 371.14167794 381.63803633 390.45580216 398.15232955 405.19139802
+ 414.5155949  439.22262914]
 >> /stab.Variable_7_PAReturnT.T =
 >> /stab.Variable_7_PADeltaT.DT = 60
 Calculating Jacobian for /stab
 Calculating disturbance 10 of 13 in jacobian of /stab
-Tower /stab failed to converge due to an arithmetic error
+/stab Inner Error 0.804882
+/stab Inner Error 0.065998
+/stab Inner Error 0.031071
+/stab Inner Error 0.024263
+/stab Inner Error 0.022244
+/stab Inner Error 0.020645
+/stab Inner Error 0.020638
+Inner loop is not changing significantly - exiting
+/stab Iteration 1 Outer Error 0.155218
+Calculating Jacobian for /stab
+Calculating disturbance 10 of 13 in jacobian of /stab
+/stab Inner Error 0.539759
+/stab Inner Error 0.178467
+/stab Inner Error 0.068273
+/stab Inner Error 0.024833
+/stab Inner Error 0.008147
+/stab Inner Error 0.002984
+/stab Inner Error 0.000730
+/stab Inner Error 0.000077
+/stab Inner Error 0.000004
+Inner loop converged
+/stab Iteration 2 Outer Error 0.004425
+/stab Inner Error 0.026238
+/stab Inner Error 0.008827
+/stab Inner Error 0.000072
+/stab Inner Error 0.000005
+Inner loop converged
+/stab Iteration 3 Outer Error 0.000301
+/stab Inner Error 0.006296
+/stab Inner Error 0.000267
+/stab Inner Error 0.000055
+/stab Inner Error 0.000002
+Inner loop converged
+/stab Iteration 4 Outer Error 0.000005
+/stab Inner Error 0.001136
+/stab Inner Error 0.000227
+/stab Inner Error 0.000012
+/stab Inner Error 0.000001
+Inner loop converged
 >> L
-[ 846.64411349  839.36258739  827.99942716  850.96941862 1006.36879572
- 1822.43556949 1761.01925647 1550.31399127 1658.90228224 1896.33205982
- 2365.22227916  576.67794326]
+[ 867.62735744  831.30779718  802.08405976  767.13337292  688.49660802
+ 2107.013472   2163.58695317 1910.53952608 1928.48173294 1896.88965323
+ 2282.29019073  566.18632128]
 >> V
-[8.12573498e-41 1.26996617e+03 1.26268464e+03 1.25132148e+03
- 1.27429148e+03 1.42969085e+03 1.24575763e+03 1.18434131e+03
- 1.18240647e+03 1.29099477e+03 1.52842454e+03 1.78854434e+03]
+[1.18787439e-40 1.30144104e+03 1.26512148e+03 1.23589774e+03
+ 1.20094705e+03 1.12231029e+03 1.54082715e+03 1.59740063e+03
+ 1.64435319e+03 1.66229540e+03 1.63070332e+03 1.71610387e+03]
 >> T
-[324.36045826 337.68377041 345.59395726 351.05931643 357.70837505
- 376.27984406 388.13561166 397.62500102 404.84098896 410.27671535
- 419.11963543 450.27125342]
+[324.08018801 336.33332143 345.22687253 352.27273857 359.17184253
+ 371.14609537 381.6444901  390.46376204 398.16245909 405.20743683
+ 414.55122614 439.22447338]
 >> /stab.Variable_7_PADeltaT.DT =
 >> /stab.Stage_10.pd_paQ.Port.Energy = 1000000
 Calculating Jacobian for /stab
@@ -904,6 +961,7 @@ Inner loop converged
 >> cd /stab
 /stab
 >> /stab.Variable_0_reflux.Generic =
+>> # This spec doesn't appear to converge at 0.986 like original unless the TryToRestart flag is turned on
 >> /stab.Variable_11_StdLiqVolRatio.Fraction = 0.986
 /stab Inner Error 0.014344
 /stab Inner Error 0.012980
@@ -934,195 +992,49 @@ Inner loop converged
 /stab Inner Error 0.000014
 /stab Inner Error 0.000002
 Inner loop converged
->> TryToRestart = 0
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 0.376185
-/stab Inner Error 0.360010
-/stab Inner Error 0.347697
-/stab Inner Error 0.347697
-Inner loop is not changing significantly - exiting
-/stab Iteration 1 Outer Error 0.020089
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 0.332911
-/stab Inner Error 0.332910
-Inner loop is not changing significantly - exiting
-/stab Iteration 2 Outer Error 0.002895
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 0.320865
-/stab Inner Error 0.320852
-/stab Inner Error 0.320802
-/stab Inner Error 0.320772
-/stab Inner Error 0.320729
-/stab Inner Error 0.320694
-/stab Inner Error 0.320353
-Step size too small - Exiting inner loop
-/stab Iteration 3 Outer Error 0.003164
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 0.316582
-/stab Inner Error 0.316572
-/stab Inner Error 0.316566
-Inner loop is not changing significantly - exiting
-/stab Iteration 4 Outer Error 0.000317
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 0.315647
-Inner loop is not changing significantly - exiting
-/stab Iteration 5 Outer Error 0.000092
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 6 Outer Error 0.000032
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 7 Outer Error 0.000007
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 8 Outer Error 0.000005
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 9 Outer Error 0.000002
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 10 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 11 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 12 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 13 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 14 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 15 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 16 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 17 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 18 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 19 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 20 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 21 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 22 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 23 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 24 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 25 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Step size too small - Exiting inner loop
-/stab Iteration 26 Outer Error 0.000000
-Calculating Jacobian for /stab
-Calculating disturbance 10 of 13 in jacobian of /stab
-Could not invert Jacobian in /stab
-/stab failed to converge in 26 iterations - error = 0.000000
+>> TryToRestart = 1
+/stab Inner Error 0.000000
+Inner loop converged
+/stab Iteration 1 Outer Error 0.000000
+/stab Inner Error 0.000000
+Inner loop converged
 >> L
-[3.31061494e-11 3.35106218e+00 7.19483429e+00 1.11838133e+01
- 1.56608071e+01 1.17903134e+03 1.17694193e+03 8.58390810e+02
- 9.02003442e+02 9.84808099e+02 1.66987469e+03 8.40189578e+02]
+[ 568.22080287  536.80844433  516.51322815  493.47271849  436.20824094
+ 1847.17214241 1905.07291913 1653.82765437 1674.34824849 1651.07239767
+ 1956.83199573  551.56094607]
 >> V
-[4.42220537e-54 1.59810422e+02 1.63161484e+02 1.67005256e+02
- 1.70994235e+02 1.75471229e+02 3.38841759e+02 3.36752354e+02
- 3.59891090e+02 4.03503722e+02 4.86308379e+02 8.29685114e+02]
+[7.73325793e-41 1.01665986e+03 9.85247498e+02 9.64952282e+02
+ 9.41911772e+02 8.84647295e+02 1.29561120e+03 1.35351197e+03
+ 1.40226706e+03 1.42278766e+03 1.39951181e+03 1.40527105e+03]
 >> T
-[317.39664891 340.48531036 342.29851975 344.77416035 348.61115863
- 357.07894607 357.43622707 356.81384756 355.65101935 355.30525261
- 358.4946061  385.0037817 ]
+[325.46907068 339.65815585 348.71368275 354.90033746 360.49787482
+ 371.02904998 381.95537285 391.19696011 399.29556494 406.60312309
+ 416.14168052 440.67708867]
+>> 
 >> /stab.Variable_11_StdLiqVolRatio.Fraction =
 >> /stab.Variable_0_reflux.Generic = 2
+Step size too small - Exiting inner loop
+/stab Iteration 1 Outer Error 0.000000
 Calculating Jacobian for /stab
 Calculating disturbance 10 of 13 in jacobian of /stab
-/stab Inner Error 0.092201
-/stab Inner Error 0.016233
-/stab Inner Error 0.012355
-/stab Inner Error 0.001492
-/stab Inner Error 0.000399
-/stab Inner Error 0.000033
-/stab Inner Error 0.000007
-Inner loop converged
-/stab Iteration 1 Outer Error 0.132475
-/stab Inner Error 0.022819
-/stab Inner Error 0.022533
-/stab Inner Error 0.022382
-/stab Inner Error 0.016820
-/stab Inner Error 0.006121
-/stab Inner Error 0.002262
-/stab Inner Error 0.000332
-/stab Inner Error 0.000020
-/stab Inner Error 0.000001
-Inner loop converged
-/stab Iteration 2 Outer Error 0.002717
-/stab Inner Error 0.008528
-/stab Inner Error 0.000654
-/stab Inner Error 0.000116
-/stab Inner Error 0.000011
-/stab Inner Error 0.000003
-Inner loop converged
-/stab Iteration 3 Outer Error 0.000186
-/stab Inner Error 0.000608
-/stab Inner Error 0.000048
-/stab Inner Error 0.000003
-Inner loop converged
-/stab Iteration 4 Outer Error 0.000009
-/stab Inner Error 0.000045
-/stab Inner Error 0.000008
+/stab Inner Error 0.259643
+/stab Inner Error 0.042189
+/stab Inner Error 0.006365
+/stab Inner Error 0.000279
+/stab Inner Error 0.000006
 Inner loop converged
 >> L
-[ 867.82445027  831.39735376  802.12860735  767.19088425  688.61383789
- 2107.19345067 2163.84975434 1910.71907638 1928.01394154 1894.04424359
- 2167.92217754  566.08777487]
+[ 868.98515298  830.72700444  800.37402022  764.85700399  685.48547043
+ 2101.00234504 2158.11553083 1904.87067297 1921.64016067 1887.59673445
+ 2164.04205931  565.50622482]
 >> V
-[1.18803788e-40 1.30173668e+03 1.26530958e+03 1.23604083e+03
- 1.20110311e+03 1.12252606e+03 1.54110568e+03 1.59776198e+03
- 1.64462767e+03 1.66192254e+03 1.62795284e+03 1.60183440e+03]
+[1.21080380e-40 1.30347893e+03 1.26522078e+03 1.23486780e+03
+ 1.19935078e+03 1.11997925e+03 1.53549612e+03 1.59260931e+03
+ 1.63936214e+03 1.65613162e+03 1.62208820e+03 1.59853583e+03]
 >> T
-[324.08989333 336.35715545 345.26451169 352.31955913 359.22137382
- 371.18987036 381.7021726  390.5314292  398.24998587 405.35624491
- 414.90944574 439.23347099]
+[324.14313275 336.34777048 345.19772654 352.21100138 359.11354327
+ 371.18723698 381.76014197 390.61574708 398.34434787 405.45960734
+ 415.03157148 439.31820169]
 >> 
 >> 
 >> 
@@ -1135,19 +1047,19 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
 Error processing command:
 <class 'sim21.solver.Error.SimError'>
 Cannot remove a stage with a feed from a pump around unless the pump around is removed too. Feed is in stage 10, pump around from stage 7
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3597, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 292, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 390, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 387, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 365, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 362, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1601, in Minus
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1598, in Minus
     lhsObj.Minus(remaining)
 
   File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 255, in Minus
@@ -1159,19 +1071,19 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
 Error processing command:
 <class 'sim21.solver.Error.SimError'>
 Cannot remove a stage with a feed from a pump around unless the pump around is removed too. Feed is in stage 10, pump around from stage 7
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3597, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 292, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 390, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 387, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 365, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 362, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1601, in Minus
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1598, in Minus
     lhsObj.Minus(remaining)
 
   File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 262, in Minus
@@ -1225,42 +1137,17 @@ Copied / to the clipboard
 >> paste /
 Pasting /
 Pasted / as /RootClone
-Calculating Jacobian for /RootClone.stab
-/RootClone.stab Inner Error 0.010169
-/RootClone.stab Inner Error 0.003812
-/RootClone.stab Inner Error 0.001415
-/RootClone.stab Inner Error 0.000445
-/RootClone.stab Inner Error 0.000029
-/RootClone.stab Inner Error 0.000005
-Inner loop converged
-/RootClone.stab Iteration 1 Outer Error 0.094152
-/RootClone.stab Inner Error 0.013480
-/RootClone.stab Inner Error 0.005622
-/RootClone.stab Inner Error 0.002007
-/RootClone.stab Inner Error 0.000453
-/RootClone.stab Inner Error 0.000078
-/RootClone.stab Inner Error 0.000020
 /RootClone.stab Inner Error 0.000000
 Inner loop converged
-/RootClone.stab Iteration 2 Outer Error 0.005371
-/RootClone.stab Inner Error 0.001035
-/RootClone.stab Inner Error 0.000149
-/RootClone.stab Inner Error 0.000058
-/RootClone.stab Inner Error 0.000003
-Inner loop converged
-/RootClone.stab Iteration 3 Outer Error 0.000301
-/RootClone.stab Inner Error 0.000031
-/RootClone.stab Inner Error 0.000004
-Inner loop converged
-/RootClone.stab Iteration 4 Outer Error 0.000018
-/RootClone.stab Inner Error 0.000002
+/RootClone.stab Iteration 1 Outer Error 0.000001
+/RootClone.stab Inner Error 0.000000
 Inner loop converged
 >> /RootClone.stab.L
-[1025.66581709  966.95533078  943.7510338   909.42027977  817.40462657
- 2170.33714648 2042.41624889  487.16709145]
+[1025.64646764  966.94077072  943.74468723  909.40636933  817.38143279
+ 2170.3010438  2042.40782797  487.17676618]
 >> /RootClone.stab.V
-[9.58483330e-41 1.53849873e+03 1.47978824e+03 1.45658394e+03
- 1.42225319e+03 1.33023754e+03 1.68317006e+03 1.55524916e+03]
+[9.58439456e-41 1.53846970e+03 1.47976400e+03 1.45656792e+03
+ 1.42222960e+03 1.33020467e+03 1.68312428e+03 1.55523106e+03]
 >> /RootClone.stab.T
-[331.2633981  351.10885834 364.39943569 372.95225405 380.39739838
- 392.39227968 415.4573961  447.53266938]
+[331.26272613 351.1078519  364.39843256 372.95139973 380.39653436
+ 392.3912594  415.45576158 447.53087438]

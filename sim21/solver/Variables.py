@@ -1198,18 +1198,40 @@ class CompoundList(list):
         """
 
         vals = self.GetValues()
-        try:
-            vals = np.array(vals, dtype=float)
-            total = sum(vals)
-            if total == 0:
-                # all components cannot be zero - set unknown
-                for i in self:
-                    i.SetValue(None, FIXED_V)
+        val_cnt = 0
+        val_sum = 0
+        none_set = 0
+        for idx, val_i in enumerate(vals):
+            if val_i is None:
+                self[idx].SetValue(None, FIXED_V)
+                none_set += 1
             else:
-                vals = vals / total
-                list(map(_SetValuesToAttribute, self, vals))
-        except:
-            pass
+                val_cnt += 1
+                val_sum += vals[idx]
+
+        if val_cnt <= len(vals) and val_sum > 0:
+            for idx, val_i in enumerate(vals):
+                if val_i is None:
+                    self[idx].SetValue(None, FIXED_V)
+                else:
+                    self[idx].SetValue(val_i/val_sum, FIXED_V)
+
+        elif val_sum == 0 and none_set != len(vals):
+            for idx, val_i in enumerate(vals):
+                self[idx].SetValue(None, FIXED_V)
+
+        # try:
+        #     vals = np.array(vals, dtype=float)
+        #     total = sum(vals)
+        #     if total == 0:
+        #         # all components cannot be zero - set unknown
+        #         for i in self:
+        #             i.SetValue(None, FIXED_V)
+        #     else:
+        #         vals = vals / total
+        #         list(map(_SetValuesToAttribute, self, vals))
+        # except:
+        #     pass
 
     def MoveCompound(self, idx1, idx2):
         cmp1 = self.GetObject(idx1)

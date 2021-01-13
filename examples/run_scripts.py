@@ -22,11 +22,21 @@ for dir_type in ['flowsheets', 'passed', 'almost']:
         # Redirect stdout/stderr
         sys.stdout, sys.stderr = out_file, out_file
 
+        # Get orig. working directory
+        orig_path = os.getcwd()
+        # Get working directory of input file
+        containing_path = os.path.dirname(os.path.realpath(inp_file.name))
+        # Change to that directory
+        os.chdir(containing_path)
+
         # Run and time the execution
         script_run_time = time.time()
         run(inp_file, out_file, out_file)
         script_run_time = time.time() - script_run_time
         total_run_time += script_run_time
+
+        # Restore working directory
+        os.chdir(orig_path)
 
         # Restore stdout/stderr
         sys.stdout, sys.stderr = old_stdout, old_stderr

@@ -16,7 +16,7 @@ s1.Out
 
 
 #Set thermo below
-$thermo = VirtualMaterials.RK
+$thermo = Sim21Thermo.PR
 / -> $thermo
 thermo + WATER
 

@@ -1,5 +1,5 @@
 units SI
-$thermo = VirtualMaterials.RK
+$thermo = Sim21Thermo.SRK
 / -> $thermo
 thermo + Methane Ethane Propane
 

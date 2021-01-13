@@ -1,4 +1,4 @@
-$thermo = VirtualMaterials.Advanced_Peng-Robinson
+$thermo = Sim21Thermo.Peng-Robinson
  . -> $thermo
 cd thermo
 cd $
@@ -26,7 +26,7 @@ cd /mixer1
 /mixer1.In0.VolumeFlow = 20
 /mixer1.In1.VolumeFlow = 40
 /mixer1.Out.VolumeFlow = 150
-/mixer1.Out.T = 
+/mixer1.Out.T =
 
 #Solve for vol in In2 and composition in Out
 /mixer1.In2.T = 40
@@ -37,8 +37,8 @@ cd /mixer1
 
 
 #Solve for vol in Out and composition in In2
-/mixer1.In2.T = 
-/mixer1.Out.VolumeFlow = 
+/mixer1.In2.T =
+/mixer1.Out.VolumeFlow =
 cd /mixer1.In2.Fraction
 /mixer1.In2.Fraction = None
 cd /mixer1
@@ -54,7 +54,7 @@ cd /mixer1
 
 
 #Solve for vol in In1 and composition in In2
-/mixer1.In1.VolumeFlow = 
+/mixer1.In1.VolumeFlow =
 /mixer1.Out.VolumeFlow = 150
 /mixer1.In0
 /mixer1.In1
@@ -63,7 +63,7 @@ cd /mixer1
 
 
 #Solve for vol in In0 and composition in In2
-/mixer1.In0.VolumeFlow = 
+/mixer1.In0.VolumeFlow =
 /mixer1.In1.VolumeFlow = 40
 /mixer1.In0
 /mixer1.In1
@@ -73,13 +73,13 @@ cd /mixer1
 
 
 #Solve for vol in In0 and composition in In1
-/mixer1.In1.VolumeFlow = 
+/mixer1.In1.VolumeFlow =
 /mixer1.In1.Fraction = None
 /mixer1.In2.Fraction = 0.0 0.0 0.0 0.26316 0.31579 0.15789 0.26316
-/mixer1.In1.T = 
+/mixer1.In1.T =
 /mixer1.In2.T = 40
 /mixer1.In0.VolumeFlow = 20
-/mixer1.In0.VolumeFlow = 
+/mixer1.In0.VolumeFlow =
 /mixer1.In1.VolumeFlow = 40
 /mixer1.In0
 /mixer1.In1
@@ -88,7 +88,7 @@ cd /mixer1
 
 
 #Solve for vol in In2 and composition in In1
-/mixer1.In2.VolumeFlow = 
+/mixer1.In2.VolumeFlow =
 /mixer1.In0.VolumeFlow = 20
 /mixer1.In0
 /mixer1.In1
@@ -97,7 +97,7 @@ cd /mixer1
 
 
 #Now change specs to std vol flow
-/mixer1.Out.VolumeFlow = 
+/mixer1.Out.VolumeFlow =
 /mixer1.Out.StdLiqVolumeFlow = 150
 /mixer1.In0
 /mixer1.In1
@@ -106,7 +106,7 @@ cd /mixer1
 
 
 
-/mixer1.In1.VolumeFlow = 
+/mixer1.In1.VolumeFlow =
 /mixer1.In1.StdLiqVolumeFlow = 40
 /mixer1.In0
 /mixer1.In1
@@ -114,7 +114,7 @@ cd /mixer1
 /mixer1.Out
 
 
-/mixer1.In0.VolumeFlow = 
+/mixer1.In0.VolumeFlow =
 /mixer1.In0.StdLiqVolumeFlow = 20
 /mixer1.In0
 /mixer1.In1
@@ -123,9 +123,9 @@ cd /mixer1
 
 
 #Deleting temperatures should still be able to balance moles
-/mixer1.Out.T = 
-/mixer1.In2.T = 
-/mixer1.In0.T = 
+/mixer1.Out.T =
+/mixer1.In2.T =
+/mixer1.In0.T =
 /mixer1.In0
 /mixer1.In1
 /mixer1.In2
@@ -133,9 +133,9 @@ cd /mixer1
 
 
 #Changing specs should work
-/mixer1.In0.StdLiqVolumeFlow = 
+/mixer1.In0.StdLiqVolumeFlow =
 /mixer1.In2.StdLiqVolumeFlow = 90
-/mixer1.Out.StdLiqVolumeFlow = 
+/mixer1.Out.StdLiqVolumeFlow =
 /mixer1.In0.StdLiqVolumeFlow = 20
 /mixer1.In0
 /mixer1.In1

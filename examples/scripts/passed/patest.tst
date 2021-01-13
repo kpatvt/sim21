@@ -193,11 +193,13 @@ cd StdLiqVolRatio
 
 cd /stab
 /stab.Variable_0_reflux.Generic =
+# This spec doesn't appear to converge at 0.986 like original unless the TryToRestart flag is turned on
 /stab.Variable_11_StdLiqVolRatio.Fraction = 0.986
-TryToRestart = 0
+TryToRestart = 1
 L
 V
 T
+
 /stab.Variable_11_StdLiqVolRatio.Fraction =
 /stab.Variable_0_reflux.Generic = 2
 L

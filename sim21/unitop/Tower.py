@@ -3561,7 +3561,9 @@ class StdVolRatioSpec(MoleRatioSpec):
             sumDenominator += volFracs[cmpNo]
 
         if sumDenominator:
-            return sumNumerator / sumDenominator
+            actual_value = sumNumerator / sumDenominator
+            # print('StdVolRatioSpec:', actual_value)
+            return actual_value
         else:
             return None
 
@@ -4006,7 +4008,7 @@ class PumpAroundReturnTSpec(PumpAroundReturnPropSpec):
 
             hDraw = parent.HDraw()
             if parent.paQ.q is None:  # This needs to be fixed
-                qTotal = hDraw * parent.flow - tower._lastEneErrs[parent.paQ.stage.number]  # Non conversion needed
+                qTotal = hDraw * parent.flow - 0 # tower._lastEneErrs[parent.paQ.stage.number]  # Non conversion needed
             else:
                 qTotal = hDraw * parent.flow + parent.paQ.TotalQFlow() * 3.6  # note W to KJ/h conversion
             h = qTotal / parent.flow
@@ -4025,11 +4027,12 @@ class PumpAroundReturnTSpec(PumpAroundReturnPropSpec):
                 cmps.append(BasicProperty(FRAC_VAR))
             cmps.SetValues(moleFracs, FIXED_V)
             liqPhases = 1
-            propList = [T_VAR, 'Cp', 'MolecularWeight']
+            propList = [T_VAR, 'Cp', 'MolecularWeight', IDEALGASENTHALPY_VAR]
             results = thAdmin.Flash(prov, case, cmps, matDict, liqPhases, propList)
             value = results.bulkProps
 
-            hMass = h / value[2]  # make enthalpy on mass basis
+            ig_h = value[3]
+            hMass = (h - ig_h)/ value[2]  # make enthalpy on mass basis
             value[1] /= value[2]  # make Cp on mass basis
 
             value[0] = hMass - value[1] * value[0]  # convert H to A term (B is just Cp)
@@ -4038,11 +4041,39 @@ class PumpAroundReturnTSpec(PumpAroundReturnPropSpec):
             self.model = None
 
     def PropertyFromModel(self, h, p, x):
-        if not self.model: return None
+        stage = self.parent.stage
+        tower = stage.tower
+
+        if not self.model:
+            return None
+
         mw = self.parent.stage.tower.mw
         mw = np.add.reduce(x * mw)
         hMass = h / mw
-        return (hMass - self.model[0]) / self.model[1]
+
+        t_guess = 300
+
+        def f_guess(t_guess):
+            ig_h = sum([x[j]*tower.ig_enthalpy_mole[j](t_guess) for j in range(len(x))])/mw
+            t_guess_new = ((hMass - ig_h) - self.model[0]) / self.model[1]
+            return t_guess - t_guess_new
+
+        def secant_method(f, x0, x1, iterations=30, xtol=1e-4, f_prime_tol=1e-6):
+            """Return the root calculated using the secant method."""
+            x2 = None
+            for i in range(iterations):
+                den = float(f(x1) - f(x0))
+                if abs(den) < f_prime_tol:
+                    break
+                x2 = x1 - f(x1) * (x1 - x0) / den
+                x0, x1 = x1, x2
+                xtol_calc = abs(x0 - x1)
+                if xtol_calc < xtol:
+                    break
+            return x2
+
+        t_guess_new = secant_method(f_guess, t_guess, t_guess + 1)
+        return t_guess_new
 
 
 class PumpAroundDTSpec(PumpAroundReturnPropSpec):
@@ -4073,6 +4104,7 @@ class PumpAroundDTSpec(PumpAroundReturnPropSpec):
                 # validateValue = thAdmin.GetProperties(prov, case, (H_VAR,h), (P_VAR, p), phase, moleFracs, (T_VAR,))[0]
                 # validateValue = tower.T[stageNo] - validateValue
                 # tower.InfoMessage('SpecWithModelErr', (str(propValue-validateValue,)))
+                # print('PumpAroundReturnTSpec(Model):', propValue)
                 return propValue
         except:
             pass
@@ -4092,8 +4124,9 @@ class PumpAroundDTSpec(PumpAroundReturnPropSpec):
         propValue = vals[0]
 
         # propValue = thAdmin.GetProperties(prov, case, (H_VAR,h), (P_VAR, p), phase, moleFracs, (T_VAR,))[0]
-
-        return tower.T[stageNo] - propValue
+        ret_value = tower.T[stageNo] - propValue
+        # print('tower.T[stageNo]', tower.T[stageNo], 'propValue', propValue, 'PumpAroundReturnTSpec:', ret_value, 'stageNo', stageNo)
+        return ret_value
 
     def InitModel(self):
         try:
@@ -4106,7 +4139,7 @@ class PumpAroundDTSpec(PumpAroundReturnPropSpec):
 
             hDraw = parent.HDraw()
             if parent.paQ.q is None:  # This needs to be fixed
-                qTotal = hDraw * parent.flow - tower._lastEneErrs[parent.paQ.stage.number]  # Non conversion needed
+                qTotal = hDraw * parent.flow - 0 # tower._lastEneErrs[parent.paQ.stage.number]  # Non conversion needed
             else:
                 qTotal = hDraw * parent.flow + parent.paQ.TotalQFlow() * 3.6  # note W to KJ/h conversion
             h = qTotal / parent.flow
@@ -4115,24 +4148,50 @@ class PumpAroundDTSpec(PumpAroundReturnPropSpec):
 
             phase = OVERALL_PHASE
             value = thAdmin.GetProperties(prov, case, (H_VAR, h), (P_VAR, p), phase,
-                                          moleFracs, (T_VAR, 'Cp', 'MolecularWeight'))
-
-            hMass = h / value[2]  # make enthalpy on mass basis
+                                          moleFracs, (T_VAR, 'Cp', 'MolecularWeight', IDEALGASENTHALPY_VAR))
+            ig_h = value[3]
+            hMass = (h - ig_h) / value[2]  # make enthalpy on mass basis
             value[1] /= value[2]  # make Cp on mass basis
 
             value[0] = hMass - value[1] * value[0]  # convert H to A term (B is just Cp)
+
             self.model = value
         except:
             self.model = None
 
     def PropertyFromModel(self, h, p, x):
-        if not self.model: return None
+        stage = self.parent.stage
+        tower = stage.tower
+        if self.model is None:
+            return None
+
         mw = self.parent.stage.tower.mw
         mw = np.add.reduce(x * mw)
         hMass = h / mw
-        t = (hMass - self.model[0]) / self.model[1]
-        stage = self.parent.stage
-        tower = stage.tower
+
+        t_guess = 300
+
+        def f_guess(t_guess):
+            ig_h = sum([x[j]*tower.ig_enthalpy_mole[j](t_guess) for j in range(len(x))])/mw
+            t_guess_new = ((hMass - ig_h) - self.model[0]) / self.model[1]
+            return t_guess - t_guess_new
+
+        def secant_method(f, x0, x1, iterations=30, xtol=1e-4, f_prime_tol=1e-6):
+            """Return the root calculated using the secant method."""
+            x2 = None
+            for i in range(iterations):
+                den = float(f(x1) - f(x0))
+                if abs(den) < f_prime_tol:
+                    break
+                x2 = x1 - f(x1) * (x1 - x0) / den
+                x0, x1 = x1, x2
+                xtol_calc = abs(x0 - x1)
+                if xtol_calc < xtol:
+                    break
+            return x2
+
+        t_guess_new = secant_method(f_guess, t_guess, t_guess + 1)
+        t = t_guess_new
         return tower.T[stage.number] - t
 
 
@@ -5269,7 +5328,6 @@ class Tower(UnitOperations.UnitOperation):
 
                     # update jacobian
                     self.jacobian = self.UpdateJacobian(self.jacobian, actualAdjustment, (self.errors - oldErrors))
-
                     if abs(oldTotalError - totalError) < maxInnerError:
                         print('Inner loop is not changing significantly - exiting')
                         break

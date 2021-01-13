@@ -63,7 +63,7 @@ TryToSolve = 1  # start calculation
 /bottoms.Out
 
 
-#Now lets do some vol flow specs
+# Now lets do some vol flow specs
 # commonproperties + VolumeFlow StdLiqMolarVol
 # displayproperties + StdLiqMolarVol StdLiqVolumeFlow
 

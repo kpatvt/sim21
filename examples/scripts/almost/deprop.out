@@ -181,7 +181,7 @@ N-OCTANE           = 0.07235480970628394 =
 
 >> 
 >> 
->> #Now lets do some vol flow specs
+>> # Now lets do some vol flow specs
 >> # commonproperties + VolumeFlow StdLiqMolarVol
 >> # displayproperties + StdLiqMolarVol StdLiqVolumeFlow
 >> 
@@ -247,27 +247,27 @@ N-OCTANE           = 4.664507362500622e-10 =
 >> /bottoms.Out
 Port: /bottoms.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
+VapFrac            = 1.3191452548800654e-06 = 
 T                  = 256.02713434186154 = F
 P                  = 205.0 = psia
 MoleFlow           = 577.6562790613284 = lbmole/h
-MassFlow           = nan = lb/h
-VolumeFlow         = None
+MassFlow           = 42542.484450873184 = lb/h
+VolumeFlow         = 0.37980153331111877 = ft3/s
 StdLiqVolumeFlow   = 0.304 = ft3/s
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
-METHANE            = nan = 
-ETHANE             = nan = 
-PROPANE            = nan = 
-ISOBUTANE          = nan = 
-N-BUTANE           = nan = 
-ISOPENTANE         = nan = 
-N-PENTANE          = nan = 
-N-HEXANE           = nan = 
-N-HEPTANE          = nan = 
-N-OCTANE           = nan = 
+H                  = -68449.12611385912 = Btu/lbmol
+Energy             = -39533418.39927916 = Btu/hr
+MolecularWeight    = 73.64670997777995 = 
+ZFactor            = 0.06317538934228646 = 
+METHANE            = 3.180067577439846e-08 = 
+ETHANE             = 6.551021189782147e-06 = 
+PROPANE            = 0.022239872431046102 = 
+ISOBUTANE          = 0.1945381309198016 = 
+N-BUTANE           = 0.18407029703530137 = 
+ISOPENTANE         = 0.1667080339365753 = 
+N-PENTANE          = 0.14351094324547017 = 
+N-HEXANE           = 0.1201406474822465 = 
+N-HEPTANE          = 0.09659723534849154 = 
+N-OCTANE           = 0.07218825677920192 = 
 
 >> 
 >> /deprop.LiquidDraw_19_l.StdLiqVolumeFlow =
@@ -350,95 +350,55 @@ Inner loop converged
 /deprop Iteration 9 Outer Error 0.000097
 /deprop Inner Error 0.000006
 Inner loop converged
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 411, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 406, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Stream.py", line 111, in Solve
-    inPort.Flash()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1317, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1553, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1447, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /overhead.Out
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 0.9999998840729358 = 
+T                  = -10.790329412402384 = F
 P                  = 200.0 = psia
-MoleFlow           = None
-MassFlow           = None
-VolumeFlow         = None
-StdLiqVolumeFlow   = None
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
-METHANE            = None
-ETHANE             = None
-PROPANE            = None
+MoleFlow           = 343.95425996606923 = lbmole/h
+MassFlow           = 8390.46390794753 = lb/h
+VolumeFlow         = 2.0 = ft3/s
+StdLiqVolumeFlow   = 0.06656966778862351 = ft3/s
+H                  = -36168.589443284596 = Btu/lbmol
+Energy             = -12438248.436097542 = Btu/hr
+MolecularWeight    = 24.394126895590002 = 
+ZFactor            = 0.8690890336310924 = 
+METHANE            = 0.4948330713609306 = 
+ETHANE             = 0.425876901590481 = 
+PROPANE            = 0.06833048904994656 = 
 ISOBUTANE          = 0.01 = 
-N-BUTANE           = None
-ISOPENTANE         = None
-N-PENTANE          = None
-N-HEXANE           = None
-N-HEPTANE          = None
-N-OCTANE           = None
+N-BUTANE           = 0.0009597029927570221 = 
+ISOPENTANE         = 8.896821086409133e-08 = 
+N-PENTANE          = 2.4068373974958235e-09 = 
+N-HEXANE           = 1.3350473267453973e-10 = 
+N-HEPTANE          = 4.865379553848141e-11 = 
+N-OCTANE           = 1.3515160759366393e-11 = 
 
 >> /bottoms.Out
 Port: /bottoms.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = None
-T                  = None
+VapFrac            = 2.195054539229645e-06 = 
+T                  = 226.49654159698704 = F
 P                  = 205.0 = psia
-MoleFlow           = None
-MassFlow           = None
-VolumeFlow         = None
-StdLiqVolumeFlow   = None
-H                  = None
-Energy             = None
-MolecularWeight    = None
-ZFactor            = None
-METHANE            = None
-ETHANE             = None
-PROPANE            = None
-ISOBUTANE          = None
-N-BUTANE           = None
-ISOPENTANE         = None
-N-PENTANE          = None
-N-HEXANE           = None
-N-HEPTANE          = None
-N-OCTANE           = None
+MoleFlow           = 656.0457400339312 = lbmole/h
+MassFlow           = 45997.865986439196 = lb/h
+VolumeFlow         = 0.3999648721415601 = ft3/s
+StdLiqVolumeFlow   = 0.3301072245817494 = ft3/s
+H                  = -67249.22124692134 = Btu/lbmol
+Energy             = -44111146.098324746 = Btu/hr
+MolecularWeight    = 70.11380941831915 = 
+ZFactor            = 0.06110098113231287 = 
+METHANE            = 8.708739417223592e-08 = 
+ETHANE             = 0.0012465982581660593 = 
+PROPANE            = 0.1367243649826416 = 
+ISOBUTANE          = 0.17248880488280485 = 
+N-BUTANE           = 0.16198551348240256 = 
+ISOPENTANE         = 0.14678849891476192 = 
+N-PENTANE          = 0.1263631392040902 = 
+N-HEXANE           = 0.10578530690633105 = 
+N-HEPTANE          = 0.08505504506496654 = 
+N-OCTANE           = 0.06356264121644116 = 
 
 >> 
 >> TryToRestart = 1  #Keep last solution and ramp it up
@@ -447,46 +407,6 @@ Inner loop converged
 /deprop Iteration 1 Outer Error 0.000024
 /deprop Inner Error 0.000001
 Inner loop converged
-Error processing command:
-<class 'ZeroDivisionError'>
-division by zero
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3600, in run
-    interface.ProcessCommandStream(inp, out, err)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 295, in ProcessCommandStream
-    cmdResult = self.ProcessCommandString(cmd)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 411, in ProcessCommandString
-    self.root.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
-    self.InnerSolve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 406, in InnerSolve
-    op.Solve()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Stream.py", line 111, in Solve
-    inPort.Flash()
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1317, in Flash
-    self.CalcFlows(calcStatus)  # just in case this can get H
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1553, in CalcFlows
-    stdMolVol = self.GetLocalStdMolVol(isForgetting)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\solver\Ports.py", line 1447, in GetLocalStdMolVol
-    molVol = thAdmin.GetProperties(prov, case, (P_VAR, 101.325), (T_VAR, refT), LIQUID_PHASE, x, [STDLIQVOL_VAR])[0]
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 622, in GetProperties
-    return self.thDict[provider].GetProperties(thName, prop1, prop2, phase, frac, propList)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1044, in GetProperties
-    ph = hnd.phase(phase_temp, phase_press, phase_comp, desired_phase)
-
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 972, in phase
-    results = calc_phase(self._eos_code, GAS_CONSTANT, temp, press, n, valid, desired_phase, allow_pseudo,
-
-
 >> /deprop.VapourDraw_0_v.VolumeFlow = 2.8
 /deprop Inner Error 0.160930
 /deprop Inner Error 0.032662
@@ -854,16 +774,16 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-METHANE            = nan = 
-ETHANE             = nan = 
-PROPANE            = nan = 
-ISOBUTANE          = nan = 
-N-BUTANE           = nan = 
-ISOPENTANE         = nan = 
-N-PENTANE          = nan = 
-N-HEXANE           = nan = 
-N-HEPTANE          = nan = 
-N-OCTANE           = nan = 
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
 
 >> 
 >> 
@@ -1441,16 +1361,16 @@ H                  = None
 Energy             = None
 MolecularWeight    = None
 ZFactor            = None
-METHANE            = nan | 
-ETHANE             = nan | 
-PROPANE            = nan | 
-ISOBUTANE          = nan | 
-N-BUTANE           = nan | 
-ISOPENTANE         = nan | 
-N-PENTANE          = nan | 
-N-HEXANE           = nan | 
-N-HEPTANE          = nan | 
-N-OCTANE           = nan | 
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
 
 >> /bottomsClone.In
 Port: /bottomsClone.In + sim21.solver.Ports.Port_Material
