@@ -1,0 +1,294 @@
+>> /MaxNumIterations = 100
+>> /RecycleDetails = 0
+>> 
+>> $thermo = Sim21Thermo.SRK
+pkgName: SRK
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> /thermo + NITROGEN CARBON_DIOXIDE METHANE ETHANE  PROPANE
+NITROGEN CARBON DIOXIDE METHANE ETHANE PROPANE 
+>> /thermo + ISOBUTANE  n-BUTANE  ISOPENTANE n-PENTANE n-HEXANE
+ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-HEXANE 
+>> /thermo.BP120* = HypoCompound MolecularWeight = 120.00
+NormalBoilingPoint = 408.2
+LiquidDensity@298 = 756.2597
+hypoName: BP120*
+hypoDesc: (['Name', 'CreationInfo'], ['BP120*', '\nMolecularWeight = 120.00\nNormalBoilingPoint = 408.2\nLiquidDensity@298 = 756.2597'], [], [], ['MolecularWeight', 'NormalBoilingPoint', 'LiquidDensity@298'], [120.0, 408.2, 756.2597])
+>> /thermo.BP260* = HypoCompound MolecularWeight = 200.00
+NormalBoilingPoint = 533.2
+LiquidDensity@298 = 835.1824
+hypoName: BP260*
+hypoDesc: (['Name', 'CreationInfo'], ['BP260*', '\nMolecularWeight = 200.00\nNormalBoilingPoint = 533.2\nLiquidDensity@298 = 835.1824'], [], [], ['MolecularWeight', 'NormalBoilingPoint', 'LiquidDensity@298'], [200.0, 533.2, 835.1824])
+>> /thermo.BP500* = HypoCompound MolecularWeight = 500.00
+NormalBoilingPoint = 773.2
+LiquidDensity@298 = 949.0709
+hypoName: BP500*
+hypoDesc: (['Name', 'CreationInfo'], ['BP500*', '\nMolecularWeight = 500.00\nNormalBoilingPoint = 773.2\nLiquidDensity@298 = 949.0709'], [], [], ['MolecularWeight', 'NormalBoilingPoint', 'LiquidDensity@298'], [500.0, 773.2, 949.0709])
+>> 
+>> S1 = Stream.Stream_Material()
+>> /S1.NewName = Inlet_Gas
+>> units SI
+>> '/Inlet_Gas.In.T' = 45
+>> '/Inlet_Gas.In.P' = 450
+>> '/Inlet_Gas.In.Fraction' =  2.55740021193924E-03 2.71282232426704E-02 0.205086541858001 0.128180854821618 0.102578594136348 0.010879547862946 3.97032850582833E-02 0.013465206640763 2.30731190392088E-02 2.17873542917697E-02 0.169198163193218 0.128180854821618 0.128180854821618
+>> '/Inlet_Gas.In.MassFlow' = None
+>> '/Inlet_Gas.In.MoleFlow' = 70775
+>> 
+>> M1 = Mixer.Mixer("NumberStreamsIn = 2")
+>> NumberStreamsIn = 2
+
+>> /Inlet_Gas.Out -> /M1.In0
+>> '/M1.In1.T' ~= 25
+Changed state of port /M1.In1 to 1 (0=Normal port; 1=Recycle port)
+>> '/M1.In1.P' ~= 1000
+>> '/M1.In1.MoleFlow' ~= 0
+>> '/M1.In1.Fraction' ~=  0 0 0 0 0 0 0 0 0 1 0 0 0
+>> S1 = Stream.Stream_Material()
+>> /M1.Out -> /S1.In
+>> Sep1 = Flash.SimpleFlash("LiquidPhases = 1")
+>> LiquidPhases = 1
+
+>> /S1.Out -> /Sep1.In
+>> S2 = Stream.Stream_Material()
+>> /Sep1.Vap -> /S2.In
+>> S3 = Stream.Stream_Material()
+>> /Sep1.Liq0 -> /S3.In
+>> CP1 = Compressor.Compressor()
+>> /S2.Out -> /CP1.In
+>> '/CP1.Efficiency.Generic' = .78
+>> S4 = Stream.Stream_Material()
+>> /CP1.Out -> /S4.In
+>> '/S4.In.P' = 1100
+>> C1 = Heater.Cooler()
+>> /S4.Out -> /C1.In
+>> S5 = Stream.Stream_Material()
+>> /C1.Out -> /S5.In
+>> '/C1.DeltaP.DP' = 100
+>> '/S5.In.T' = 60
+>> '/S5.In.T' = 20
+>> '/S5.In.T' = 60
+>> M2 = Mixer.Mixer("NumberStreamsIn = 2")
+>> NumberStreamsIn = 2
+
+>> /S5.Out -> /M2.In0
+>> '/M2.In1.T' ~= 25
+Changed state of port /M2.In1 to 1 (0=Normal port; 1=Recycle port)
+>> '/M2.In1.P' ~= 2600
+>> '/M2.In1.MoleFlow' ~= 0
+>> '/M2.In1.Fraction' ~=  0 0 0 0 0 0 0 0 0 1 0 0 0
+>> S6 = Stream.Stream_Material()
+>> /M2.Out -> /S6.In
+>> Sep2 = Flash.SimpleFlash("LiquidPhases = 1")
+>> LiquidPhases = 1
+
+>> /S6.Out -> /Sep2.In
+>> S7 = Stream.Stream_Material()
+>> /Sep2.Vap -> /S7.In
+>> S8 = Stream.Stream_Material()
+>> /Sep2.Liq0 -> /S8.In
+>> CP2 = Compressor.Compressor()
+>> /S7.Out -> /CP2.In
+>> '/CP2.Efficiency.Generic' = .75
+>> S9 = Stream.Stream_Material()
+>> /CP2.Out -> /S9.In
+>> '/S9.In.P' = 2600
+>> C2 = Heater.Cooler()
+>> /S9.Out -> /C2.In
+>> S10 = Stream.Stream_Material()
+>> /C2.Out -> /S10.In
+>> '/C2.DeltaP.DP' = 100
+>> '/S10.In.T' = 60
+>> CP3 = Compressor.Compressor()
+>> M3 = Mixer.Mixer("NumberStreamsIn = 2")
+>> NumberStreamsIn = 2
+
+>> /S10.Out -> /M3.In0
+>> '/M3.In1.T' ~= 25
+Changed state of port /M3.In1 to 1 (0=Normal port; 1=Recycle port)
+>> '/M3.In1.P' ~= 6200
+>> '/M3.In1.MoleFlow' ~= 0
+>> '/M3.In1.Fraction' ~=  0 0 0 0 0 0 0 0 0 1 0 0 0
+>> S11 = Stream.Stream_Material()
+>> /M3.Out -> /S11.In
+>> Sep3 = Flash.SimpleFlash("LiquidPhases = 1")
+>> LiquidPhases = 1
+
+>> /S11.Out -> /Sep3.In
+>> S12 = Stream.Stream_Material()
+>> /Sep3.Vap -> /S12.In
+>> S13 = Stream.Stream_Material()
+>> /Sep3.Liq0 -> /S13.In
+>> /S12.Out -> /CP3.In
+>> S14 = Stream.Stream_Material()
+>> /CP3.Out -> /S14.In
+>> '/CP3.Efficiency.Generic' = .72
+>> '/S14.In.P' = 6300
+>> C3 = Heater.Cooler()
+>> /S14.Out -> /C3.In
+>> S15 = Stream.Stream_Material()
+>> /C3.Out -> /S15.In
+>> '/S15.In.T' = 60
+>> '/C3.DeltaP.DP' = 100
+>> Sep4 = Flash.SimpleFlash("LiquidPhases = 1")
+>> LiquidPhases = 1
+
+>> /S15.Out -> /Sep4.In
+>> S16 = Stream.Stream_Material()
+>> /Sep4.Vap -> /S16.In
+>> S17 = Stream.Stream_Material()
+>> /Sep4.Liq0 -> /S17.In
+>> /S16.NewName = Compressed_Gas
+>> /S17.Out -> /M3.In1
+Iteration 1 -> max Error 12.266190 in /M3.In1.MoleFlow
+Iteration 2 -> max Error 7.106747 in /M3.In1.Energy
+Iteration 3 -> max Error 6.862363 in /M3.In1.Energy
+Iteration 4 -> max Error 6.617888 in /M3.In1.Energy
+Iteration 5 -> max Error 6.369399 in /M3.In1.Energy
+Iteration 6 -> max Error 6.120940 in /M3.In1.Energy
+Iteration 7 -> max Error 5.871674 in /M3.In1.Energy
+Iteration 8 -> max Error 5.622476 in /M3.In1.Energy
+Iteration 9 -> max Error 5.373149 in /M3.In1.Energy
+Iteration 10 -> max Error 5.123926 in /M3.In1.Energy
+Iteration 11 -> max Error 4.874753 in /M3.In1.Energy
+Iteration 12 -> max Error 4.625706 in /M3.In1.Energy
+Iteration 13 -> max Error 4.376746 in /M3.In1.Energy
+Iteration 14 -> max Error 4.127903 in /M3.In1.Energy
+Iteration 15 -> max Error 3.879174 in /M3.In1.Energy
+Iteration 16 -> max Error 3.630551 in /M3.In1.Energy
+Iteration 17 -> max Error 3.382063 in /M3.In1.Energy
+Error processing command:
+<class 'sim21.provider.error.FlashConvergenceError'>
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 409, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 408, in InnerSolve
+    op.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Flash.py", line 143, in Solve
+    results = thAdmin.Flash(prov, case, flashPort.GetCompounds(), flashPort.GetProperties(),
+
+  File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 680, in Flash
+    return self.thDict[provider].Flash(thName, cmps, properties, liqPhases, propList, self, nuSolids, stdVolRefT)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1392, in Flash
+    prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 99, in perform_flash
+    prov_flash_results = hnd.flash(**flash_params)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\provider\base.py", line 85, in flash
+    return self.flash_press_prop(flow_sum_basis, flow_sum_value, frac_basis, frac_value, press, 'enthalpy',
+
+  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 911, in flash_press_prop
+    results = flash_press_prop_2phase(self, press, prop_flash_name, prop_value,
+
+  File "C:\Users\kpatv\Code\sim21\sim21\provider\flash\io\press_prop.py", line 429, in flash_press_prop_2phase
+    return flash_press_prop_1phase(provider, 'vap',
+
+  File "C:\Users\kpatv\Code\sim21\sim21\provider\flash\io\press_prop.py", line 647, in flash_press_prop_1phase
+    raise FlashConvergenceError
+
+
+>> /S13.Out -> /M2.In1
+Iteration 1 -> max Error 10.155589 in /M2.In1.MoleFlow
+Iteration 2 -> max Error 14.768704 in /M3.In1.Energy
+Iteration 3 -> max Error 10.135082 in /M2.In1.Energy
+Iteration 4 -> max Error 9.852113 in /M2.In1.Energy
+Iteration 5 -> max Error 9.569959 in /M2.In1.Energy
+Iteration 6 -> max Error 9.330976 in /M2.In1.Energy
+Iteration 7 -> max Error 9.091852 in /M2.In1.Energy
+Iteration 8 -> max Error 8.853545 in /M2.In1.Energy
+Iteration 9 -> max Error 8.615172 in /M2.In1.Energy
+Iteration 10 -> max Error 8.377628 in /M2.In1.Energy
+Iteration 11 -> max Error 8.140025 in /M2.In1.Energy
+Iteration 12 -> max Error 7.902897 in /M2.In1.Energy
+Iteration 13 -> max Error 7.665706 in /M2.In1.Energy
+Iteration 14 -> max Error 7.428722 in /M2.In1.Energy
+Iteration 15 -> max Error 7.191672 in /M2.In1.Energy
+Iteration 16 -> max Error 6.954694 in /M2.In1.Energy
+Iteration 17 -> max Error 6.717647 in /M2.In1.Energy
+Iteration 18 -> max Error 6.480606 in /M2.In1.Energy
+Iteration 19 -> max Error 6.243497 in /M2.In1.Energy
+Iteration 20 -> max Error 6.006360 in /M2.In1.Energy
+Iteration 21 -> max Error 5.769156 in /M2.In1.Energy
+Iteration 22 -> max Error 5.531909 in /M2.In1.Energy
+Iteration 23 -> max Error 5.294598 in /M2.In1.Energy
+Iteration 24 -> max Error 5.057236 in /M2.In1.Energy
+Iteration 25 -> max Error 4.819813 in /M2.In1.Energy
+Iteration 26 -> max Error 4.582339 in /M2.In1.Energy
+Iteration 27 -> max Error 4.344807 in /M2.In1.Energy
+Iteration 28 -> max Error 4.107225 in /M2.In1.Energy
+Iteration 29 -> max Error 3.869592 in /M2.In1.Energy
+Iteration 30 -> max Error 3.631911 in /M2.In1.Energy
+Iteration 31 -> max Error 3.394185 in /M2.In1.Energy
+Iteration 32 -> max Error 3.156419 in /M2.In1.Energy
+Iteration 33 -> max Error 2.918615 in /M2.In1.Energy
+Iteration 34 -> max Error 2.680779 in /M2.In1.Energy
+Iteration 35 -> max Error 2.442915 in /M2.In1.Energy
+Iteration 36 -> max Error 2.205032 in /M2.In1.Energy
+Iteration 37 -> max Error 1.967135 in /M2.In1.Energy
+Iteration 38 -> max Error 1.729237 in /M2.In1.Energy
+Iteration 39 -> max Error 1.491348 in /M2.In1.Energy
+Iteration 40 -> max Error 1.253485 in /M2.In1.Energy
+Iteration 41 -> max Error 1.015672 in /M2.In1.Energy
+Iteration 42 -> max Error 0.777941 in /M2.In1.Energy
+Iteration 43 -> max Error 0.540347 in /M2.In1.Energy
+Iteration 44 -> max Error 0.302990 in /M2.In1.Energy
+Iteration 45 -> max Error 0.066053 in /M2.In1.Energy
+Iteration 46 -> max Error 0.001412 in /M2.In1.Energy
+Iteration 47 -> max Error 0.000582 in /M2.In1.Energy
+Iteration 48 -> max Error 0.000298 in /M2.In1.Energy
+Iteration 49 -> max Error 0.000014 in /M3.In1.MoleFlow
+>> /S8.Out -> /M1.In1
+Iteration 1 -> max Error 7.286016 in /M1.In1.MoleFlow
+Iteration 2 -> max Error 6.500859 in /M2.In1.Energy
+Iteration 3 -> max Error 5.351253 in /M1.In1.Energy
+Iteration 4 -> max Error 5.160847 in /M1.In1.Energy
+Iteration 5 -> max Error 4.971254 in /M1.In1.Energy
+Iteration 6 -> max Error 4.808078 in /M1.In1.Energy
+Iteration 7 -> max Error 4.645148 in /M1.In1.Energy
+Iteration 8 -> max Error 4.486992 in /M1.In1.Energy
+Iteration 9 -> max Error 4.328332 in /M1.In1.Energy
+Iteration 10 -> max Error 4.164623 in /M1.In1.Energy
+Iteration 11 -> max Error 4.001309 in /M1.In1.Energy
+Iteration 12 -> max Error 3.841118 in /M1.In1.Energy
+Iteration 13 -> max Error 3.680602 in /M1.In1.Energy
+Iteration 14 -> max Error 3.518259 in /M1.In1.Energy
+Iteration 15 -> max Error 3.356134 in /M1.In1.Energy
+Iteration 16 -> max Error 3.195098 in /M1.In1.Energy
+Iteration 17 -> max Error 3.033888 in /M1.In1.Energy
+Iteration 18 -> max Error 2.872054 in /M1.In1.Energy
+Iteration 19 -> max Error 2.710329 in /M1.In1.Energy
+Iteration 20 -> max Error 2.548975 in /M1.In1.Energy
+Iteration 21 -> max Error 2.387523 in /M1.In1.Energy
+Iteration 22 -> max Error 2.225858 in /M1.In1.Energy
+Iteration 23 -> max Error 2.064241 in /M1.In1.Energy
+Iteration 24 -> max Error 1.902748 in /M1.In1.Energy
+Iteration 25 -> max Error 1.741201 in /M1.In1.Energy
+Iteration 26 -> max Error 1.579573 in /M1.In1.Energy
+Iteration 27 -> max Error 1.417966 in /M1.In1.Energy
+Iteration 28 -> max Error 1.256398 in /M1.In1.Energy
+Iteration 29 -> max Error 1.094797 in /M1.In1.Energy
+Iteration 30 -> max Error 0.933164 in /M1.In1.Energy
+Iteration 31 -> max Error 0.771542 in /M1.In1.Energy
+Iteration 32 -> max Error 0.609934 in /M1.In1.Energy
+Iteration 33 -> max Error 0.448306 in /M1.In1.Energy
+Iteration 34 -> max Error 0.286668 in /M1.In1.Energy
+Iteration 35 -> max Error 0.125027 in /M1.In1.Energy
+Iteration 36 -> max Error 0.001501 in /M1.In1.Energy
+Iteration 37 -> max Error 0.000789 in /M1.In1.Energy
+Iteration 38 -> max Error 0.000436 in /M1.In1.Energy
+Iteration 39 -> max Error 0.000103 in /M1.In1.Energy
+Iteration 40 -> max Error 0.000017 in /M2.In1.MoleFlow
+>> /S3.NewName = Condensate
+>> 
