@@ -1,0 +1,249 @@
+>> #splitter example
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + ETHANOL WATER
+ETHANOL WATER 
+>> units SI
+>> s = Split.Splitter()
+>> s.In.P = 100.0
+>> s.In.T = 25.0
+>> s.In
+Port: /s.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = 25.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+ETHANOL            = None
+WATER              = None
+
+>> s.Out0.MoleFlow = 50.0
+>> s.Out1.MoleFlow = 50.0
+>> s.Out1.Fraction = 1.0 1.0
+>> s.In
+Port: /s.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 3204.186 = kg/h
+VolumeFlow         = 4.20497288015411 = m3/hr
+StdLiqVolumeFlow   = 3.8375 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = -7776405.408023264 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> cd /s
+/s
+>> /s.Out0.MoleFlow =
+>> /s.FlowFraction1.Fraction = .3
+>> Out0
+Port: /s.Out0 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 = C
+P                  = 100.0 = kPa
+MoleFlow           = 116.66666666666669 = kgmole/h
+MassFlow           = 3738.217000000001 = kg/h
+VolumeFlow         = 4.905801693513129 = m3/hr
+StdLiqVolumeFlow   = 4.477083333333334 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = -9072472.976027144 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> /s.FlowFraction1.Fraction =
+>> /s.FlowFraction0.Fraction = .2
+>> Out0
+Port: /s.Out0 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 = C
+P                  = 100.0 = kPa
+MoleFlow           = 12.5 = kgmole/h
+MassFlow           = 400.52325 = kg/h
+VolumeFlow         = 0.5256216100192638 = m3/hr
+StdLiqVolumeFlow   = 0.4796875 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = -972050.676002908 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> /s.FlowFraction0.Fraction = 3
+>> In
+Port: /s.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = -25.0 = kgmole/h
+MassFlow           = -801.0464999999997 = kg/h
+VolumeFlow         = -1.0512432200385275 = m3/hr
+StdLiqVolumeFlow   = -0.959375 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = 1944101.352005816 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> Out0
+Port: /s.Out0 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 = C
+P                  = 100.0 = kPa
+MoleFlow           = -75.0 = kgmole/h
+MassFlow           = -2403.1394999999998 = kg/h
+VolumeFlow         = -3.1537296601155824 = m3/hr
+StdLiqVolumeFlow   = -2.878125 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = 5832304.056017448 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> /s.FlowFraction0.Fraction = .1
+>> /s.Out1.MoleFlow =
+>> /s.In.MoleFlow = 100
+>> Out1
+Port: /s.Out1 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 = C
+P                  = 100.0 = kPa
+MoleFlow           = 90.0 = kgmole/h
+MassFlow           = 2883.7674 = kg/h
+VolumeFlow         = 3.784475592138699 = m3/hr
+StdLiqVolumeFlow   = 3.45375 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = -6998764.867220938 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 * 
+WATER              = 0.5 * 
+
+>> cd /s.NumberStreamsOut
+/s.NumberStreamsOut
+>> /s.NumberStreamsOut = 4
+>> cd /s.FlowFraction1
+/s.FlowFraction1
+>> cd /s
+/s
+>> /s.Out2.MassFlow = 30
+>> /s.FlowFraction1.Fraction = .3
+>> FlowFraction3
+Port: /s.FlowFraction3 + sim21.solver.Ports.Port_Signal
+Connected to: None
+Fraction   = 0.5906372476504173 = 
+
+>> Out1
+Port: /s.Out1 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 = C
+P                  = 100.0 = kPa
+MoleFlow           = 30.0 = kgmole/h
+MassFlow           = 961.2557999999999 = kg/h
+VolumeFlow         = 1.261491864046233 = m3/hr
+StdLiqVolumeFlow   = 1.1512499999999999 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = -2332921.62240698 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 * 
+WATER              = 0.5 * 
+
+>> cd /s.NumberStreamsOut
+/s.NumberStreamsOut
+>> /s.NumberStreamsOut = 2
+Mole fractions of /s.Out0 sums to 7.000000, not 1
+Mole fractions of /s.Out0 sums to 7.000000, not 1
+Mole fractions of /s.Out0 sums to 7.000000, not 1
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.In.Energy: -4.66584e+06 Vs -7.77641e+06
+
+ConsistencyError: /s.In - MassFlow 1922.5116000000003 vs 3204.186
+Error processing command:
+<class 'sim21.solver.Error.ConsistencyError'>
+ConsistencyError: /s.In - MassFlow 1922.5116000000003 vs 3204.186
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 409, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 562, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> cd /s
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.In.Energy: -4.66584e+06 Vs -7.77641e+06
+
+/s
+>> /s.FlowFraction0.Fraction =
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+>> /s.Out0
+Port: /s.Out0 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 = C
+P                  = 100.0 = kPa
+MoleFlow           = 70.0 = kgmole/h
+MassFlow           = 2242.9302 = kg/h
+VolumeFlow         = 2.943481016107877 = m3/hr
+StdLiqVolumeFlow   = 2.68625 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = -5443483.785616285 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> /RootClone.s.Out0
+Port: /RootClone.s.Out0 + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 25.0 = C
+P                  = 100.0 = kPa
+MoleFlow           = 70.0 = kgmole/h
+MassFlow           = 2242.9302 = kg/h
+VolumeFlow         = 2.943481016107877 = m3/hr
+StdLiqVolumeFlow   = 2.68625 = m3/hr
+H                  = -279950.59468883753 = kJ/kmol
+Energy             = -5443483.785616285 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0016962669501490168 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+

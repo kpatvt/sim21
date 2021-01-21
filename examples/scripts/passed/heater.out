@@ -58,16 +58,16 @@ N-PENTANE          = 0.25 *
 Port: /heater.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 1378.8401119199643 = C
+T                  = 1660.0976589320649 = C
 P                  = 101.325 = kPa
 MoleFlow           = 10.0 = kgmole/h
 MassFlow           = 581.222 = kg/h
-VolumeFlow         = 1356.18173636744 = m3/hr
+VolumeFlow         = 1587.0504406602072 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
 H                  = 205585.1535993866 = kJ/kmol
 Energy             = 571069.8711094072 = W
 MolecularWeight    = 58.12219999999999 = 
-ZFactor            = 1.0004442104467164 = 
+ZFactor            = 1.000427599498883 = 
 PROPANE            = 0.25 = 
 N-BUTANE           = 0.25 = 
 ISOBUTANE          = 0.25 = 
@@ -153,16 +153,16 @@ None
 Port: /heaterClone.In + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 * 
-T                  = -17.175380275663713 = C
+T                  = -17.174578527054194 = C
 P                  = 101.325 * kPa
 MoleFlow           = 10.0 * kgmole/h
 MassFlow           = 581.222 = kg/h
-VolumeFlow         = 0.9010923077649833 = m3/hr
+VolumeFlow         = 0.9010935232796822 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
-H                  = -154743.4128441084 = kJ/kmol
-Energy             = -429842.81345585664 = W
+H                  = -154743.31323403394 = kJ/kmol
+Energy             = -429842.5367612054 = W
 MolecularWeight    = 58.12219999999999 = 
-ZFactor            = 0.0042899754135423684 = 
+ZFactor            = 0.00428996776365509 = 
 PROPANE            = 0.25 * 
 N-BUTANE           = 0.25 * 
 ISOBUTANE          = 0.25 * 

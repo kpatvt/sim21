@@ -155,17 +155,17 @@ WATER              = 0.009552239594768102 =
 >> /bottoms.Out
 Port: /bottoms.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 2.750563217990772e-06 = 
+VapFrac            = 2.7655762972330994e-06 = 
 T                  = 165.71791999026328 = C
 P                  = 1100.0 = kPa
 MoleFlow           = 566.8423385897427 = kgmole/h
 MassFlow           = 53225.29866680365 = kg/h
-VolumeFlow         = 105.03757236397857 = m3/hr
+VolumeFlow         = 105.03759327667085 = m3/hr
 StdLiqVolumeFlow   = 79.64120101441952 = m3/hr
-H                  = -180044.2578343415 = kJ/kmol
-Energy             = -28349085.600131314 = W
-MolecularWeight    = 93.89788843088861 = 
-ZFactor            = 0.05586078808389681 = 
+H                  = -180044.2575584945 = kJ/kmol
+Energy             = -28349085.556697488 = W
+MolecularWeight    = 93.89788843088864 = 
+ZFactor            = 0.055860799205626345 = 
 PROPANE            = 0.00017774455528902483 = 
 ISOBUTANE          = 0.00665336012182786 = 
 N-BUTANE           = 0.02 = 

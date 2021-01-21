@@ -65,16 +65,16 @@ ISOPENTANE         = 0.03690036900369004 *
 Port: /CP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 146.88620814087653 = C
+T                  = 146.88612461493386 = C
 P                  = 300.0 * kPa
 MoleFlow           = 99.99999999999999 = kgmole/h
 MassFlow           = 3002.4561180811806 = kg/h
-VolumeFlow         = 1154.591967458961 = m3/hr
+VolumeFlow         = 1154.591731355319 = m3/hr
 StdLiqVolumeFlow   = 5.202940959409594 = m3/hr
-H                  = -81527.4678526987 = kJ/kmol
-Energy             = -2264651.8847971857 = W
+H                  = -81527.46774591424 = kJ/kmol
+Energy             = -2264651.8818309507 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9918108892635953 = 
+ZFactor            = 0.9918108836729245 = 
 WATER              = 0.003690036900369004 = 
 METHANE            = 0.36900369003690037 = 
 ETHANE             = 0.36900369003690037 = 
@@ -90,12 +90,12 @@ Generic   = 0.8 *
 >> /CP1.PolytropicEff
 Port: /CP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.8128501630300505 = 
+Generic   = 0.8128500762448715 = 
 
 >> /CP1.TotalQ.In
 Port: /CP1.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 119277.86704410915 = W
+Energy   = 119277.8700103442 = W
 
 >> 
 >> '/CP1.AdiabaticEff.Generic' =
@@ -125,16 +125,16 @@ ISOPENTANE         = 0.03690036900369004 *
 Port: /CP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 147.96207327234083 = C
+T                  = 147.96198224171025 = C
 P                  = 300.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 3002.456118081181 = kg/h
-VolumeFlow         = 1157.6329444052722 = m3/hr
+VolumeFlow         = 1157.6326871188196 = m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 = m3/hr
-H                  = -81452.58870103648 = kJ/kmol
-Energy             = -2262571.9083621246 = W
+H                  = -81452.58909895003 = kJ/kmol
+Energy             = -2262571.919415279 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9918825605027751 = 
+ZFactor            = 0.9918825544672126 = 
 WATER              = 0.003690036900369004 = 
 METHANE            = 0.36900369003690037 = 
 ETHANE             = 0.36900369003690037 = 
@@ -145,7 +145,7 @@ ISOPENTANE         = 0.03690036900369004 =
 >> /CP1.AdiabaticEff
 Port: /CP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.786288639445582 = 
+Generic   = 0.7862887306136411 = 
 
 >> /CP1.PolytropicEff
 Port: /CP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -155,7 +155,7 @@ Generic   = 0.8 *
 >> /CP1.TotalQ.In
 Port: /CP1.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 121357.84347917048 = W
+Energy   = 121357.83242601634 = W
 
 >> 
 >> /CP1.FlowSensor.In.MoleFlow =
@@ -184,16 +184,16 @@ ISOPENTANE         = 0.03690036900369004 *
 Port: /CP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 147.96207327234072 = C
+T                  = 147.96198224171025 = C
 P                  = 300.0 * kPa
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
-H                  = -81452.5887010365 = kJ/kmol
+H                  = -81452.58909895003 = kJ/kmol
 Energy             = None
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9918825605027753 = 
+ZFactor            = 0.9918825544672126 = 
 WATER              = 0.003690036900369004 = 
 METHANE            = 0.36900369003690037 = 
 ETHANE             = 0.36900369003690037 = 
@@ -204,7 +204,7 @@ ISOPENTANE         = 0.03690036900369004 =
 >> /CP1.AdiabaticEff
 Port: /CP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.786288639445582 = 
+Generic   = 0.7862887306136411 = 
 
 >> /CP1.PolytropicEff
 Port: /CP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -224,12 +224,12 @@ Connected to: None
 VapFrac            = 1.0 = 
 T                  = 80.0 * C
 P                  = 100.0 * kPa
-MoleFlow           = 100.4148858503044 = kgmole/h
-MassFlow           = 3014.912883676698 = kg/h
-VolumeFlow         = 2934.3114315340595 = m3/hr
-StdLiqVolumeFlow   = 5.224527225249877 = m3/hr
+MoleFlow           = 100.41489499599525 = kgmole/h
+MassFlow           = 3014.913158272053 = kg/h
+VolumeFlow         = 2934.311698788312 = m3/hr
+StdLiqVolumeFlow   = 5.224527701094772 = m3/hr
 H                  = -85821.47106628661 = kJ/kmol
-Energy             = -2393820.339062881 = W
+Energy             = -2393820.5570897264 = W
 MolecularWeight    = 30.024561180811805 = 
 ZFactor            = 0.9952099536973447 = 
 WATER              = 0.003690036900369004 * 
@@ -243,16 +243,16 @@ ISOPENTANE         = 0.03690036900369004 *
 Port: /CP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 147.96207327234072 = C
+T                  = 147.96198224171025 = C
 P                  = 300.0 * kPa
-MoleFlow           = 100.4148858503044 = kgmole/h
-MassFlow           = 3014.912883676698 = kg/h
-VolumeFlow         = 1162.4357996900717 = m3/hr
-StdLiqVolumeFlow   = 5.224527225249877 = m3/hr
-H                  = -81452.5887010365 = kJ/kmol
-Energy             = -2271958.9990628813 = W
+MoleFlow           = 100.41489499599524 = kgmole/h
+MassFlow           = 3014.9131582720524 = kg/h
+VolumeFlow         = 1162.4356472096808 = m3/hr
+StdLiqVolumeFlow   = 5.224527701094771 = m3/hr
+H                  = -81452.58909895003 = kJ/kmol
+Energy             = -2271959.217089726 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9918825605027753 = 
+ZFactor            = 0.9918825544672126 = 
 WATER              = 0.003690036900369004 = 
 METHANE            = 0.36900369003690037 = 
 ETHANE             = 0.36900369003690037 = 
@@ -263,7 +263,7 @@ ISOPENTANE         = 0.03690036900369004 =
 >> /CP1.AdiabaticEff
 Port: /CP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.786288639445582 = 
+Generic   = 0.7862887306136411 = 
 
 >> /CP1.PolytropicEff
 Port: /CP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -284,16 +284,16 @@ Energy   = 121861.34 * W
 Port: /CP1.FlowSensor.In + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 80.16002830477208 = C
+T                  = 80.16004580747847 = C
 P                  = 100.0 * kPa
 MoleFlow           = 100.0 * kgmole/h
 MassFlow           = 3002.456118081181 = kg/h
-VolumeFlow         = 2923.531430700813 = m3/hr
+VolumeFlow         = 2923.5315776686075 = m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 = m3/hr
-H                  = -85811.69085854423 = kJ/kmol
-Energy             = -2383658.0794040062 = W
+H                  = -85811.68680072723 = kJ/kmol
+Energy             = -2383657.9666868676 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9952166144248324 = 
+ZFactor            = 0.9952166151527443 = 
 WATER              = 0.003690036900369004 * 
 METHANE            = 0.36900369003690037 * 
 ETHANE             = 0.36900369003690037 * 
@@ -325,7 +325,7 @@ ISOPENTANE         = 0.03690036900369004 =
 >> /CP1.AdiabaticEff
 Port: /CP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.786292898995675 = 
+Generic   = 0.7862930031250702 = 
 
 >> /CP1.PolytropicEff
 Port: /CP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -335,7 +335,7 @@ Generic   = 0.8 *
 >> /CP1.TotalQ.In
 Port: /CP1.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 121411.09932637308 = W
+Energy   = 121410.98660923447 = W
 
 >> 
 >> 
@@ -345,16 +345,16 @@ Energy   = 121411.09932637308 = W
 Port: /CP1.FlowSensor.In + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 80.15285127788911 = C
+T                  = 80.15286088406441 = C
 P                  = 100.0 * kPa
 MoleFlow           = 100.0 * kgmole/h
 MassFlow           = 3002.456118081181 = kg/h
-VolumeFlow         = 2923.4711661890246 = m3/hr
+VolumeFlow         = 2923.471246850783 = m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 = m3/hr
-H                  = -85812.12955209505 = kJ/kmol
-Energy             = -2383670.2653359734 = W
+H                  = -85812.12597720041 = kJ/kmol
+Energy             = -2383670.166033345 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9952163159320188 = 
+ZFactor            = 0.9952163163315547 = 
 WATER              = 0.003690036900369004 * 
 METHANE            = 0.36900369003690037 * 
 ETHANE             = 0.36900369003690037 * 
@@ -391,12 +391,12 @@ Generic   = 0.78619833 *
 >> /CP1.PolytropicEff
 Port: /CP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.7999114877927234 = 
+Generic   = 0.7999114761071793 = 
 
 >> /CP1.TotalQ.In
 Port: /CP1.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 121423.28525922752 = W
+Energy   = 121423.18595627381 = W
 
 >> 
 >> /CP1.OutPSensor.Out.T =
@@ -411,16 +411,16 @@ Energy   = 121423.28525922752 = W
 Port: /EXP1.FlowSensor.In + sim21.solver.Ports.Port_Material
 Connected to: /CP1.OutPSensor.Out
 VapFrac            = 1.0 | 
-T                  = 147.9692770210599 | C
+T                  = 147.9691932603314 | C
 P                  = 300.0 | kPa
 MoleFlow           = 100.0 | kgmole/h
 MassFlow           = 3002.456118081181 | kg/h
-VolumeFlow         = 1157.6533048728536 | m3/hr
+VolumeFlow         = 1157.6530681340398 | m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 | m3/hr
-H                  = -81452.08685394631 | kJ/kmol
-Energy             = -2262557.968165175 | W
+H                  = -81452.08674528722 | kJ/kmol
+Energy             = -2262557.965146867 | W
 MolecularWeight    = 30.024561180811805 | 
-ZFactor            = 0.99188303811433 | 
+ZFactor            = 0.9918830325611325 | 
 WATER              = 0.003690036900369004 | 
 METHANE            = 0.36900369003690037 | 
 ETHANE             = 0.36900369003690037 | 
@@ -432,16 +432,16 @@ ISOPENTANE         = 0.03690036900369004 |
 Port: /EXP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 103.68077509201038 = C
+T                  = 103.68065535191971 = C
 P                  = 100.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 3002.456118081181 = kg/h
-VolumeFlow         = 3120.891798999234 = m3/hr
+VolumeFlow         = 3120.8907949361674 = m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 = m3/hr
-H                  = -84340.51176588352 = kJ/kmol
-Energy             = -2342791.9934967645 = W
+H                  = -84340.51567029189 = kJ/kmol
+Energy             = -2342792.1019525523 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9960890439681245 = 
+ZFactor            = 0.9960890400161178 = 
 WATER              = 0.003690036900369004 = 
 METHANE            = 0.36900369003690037 = 
 ETHANE             = 0.36900369003690037 = 
@@ -452,7 +452,7 @@ ISOPENTANE         = 0.03690036900369004 =
 >> /EXP1.AdiabaticEff
 Port: /EXP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.8114082560824771 = 
+Generic   = 0.8114082160278718 = 
 
 >> /EXP1.PolytropicEff
 Port: /EXP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -462,7 +462,7 @@ Generic   = 0.8 *
 >> /EXP1.TotalQ.Out
 Port: /EXP1.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 80234.02533158916 = W
+Energy   = 80234.13680568512 = W
 
 >> 
 >> 
@@ -472,16 +472,16 @@ Energy   = 80234.02533158916 = W
 Port: /EXP1.FlowSensor.In + sim21.solver.Ports.Port_Material
 Connected to: /CP1.OutPSensor.Out
 VapFrac            = 1.0 | 
-T                  = 147.9692770210599 | C
+T                  = 147.9691932603314 | C
 P                  = 300.0 | kPa
 MoleFlow           = 100.0 | kgmole/h
 MassFlow           = 3002.456118081181 | kg/h
-VolumeFlow         = 1157.6533048728536 | m3/hr
+VolumeFlow         = 1157.6530681340398 | m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 | m3/hr
-H                  = -81452.08685394631 | kJ/kmol
-Energy             = -2262557.968165175 | W
+H                  = -81452.08674528722 | kJ/kmol
+Energy             = -2262557.965146867 | W
 MolecularWeight    = 30.024561180811805 | 
-ZFactor            = 0.99188303811433 | 
+ZFactor            = 0.9918830325611325 | 
 WATER              = 0.003690036900369004 | 
 METHANE            = 0.36900369003690037 | 
 ETHANE             = 0.36900369003690037 | 
@@ -493,16 +493,16 @@ ISOPENTANE         = 0.03690036900369004 |
 Port: /EXP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 103.68089172082944 = C
+T                  = 103.68076975217917 = C
 P                  = 100.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 3002.456118081181 = kg/h
-VolumeFlow         = 3120.89277697318 = m3/hr
+VolumeFlow         = 3120.891754222858 = m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 = m3/hr
-H                  = -84340.50430431678 = kJ/kmol
-Energy             = -2342791.786231022 = W
+H                  = -84340.50835129972 = kJ/kmol
+Energy             = -2342791.8986472143 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.9960890478174392 = 
+ZFactor            = 0.9960890437918838 = 
 WATER              = 0.003690036900369004 = 
 METHANE            = 0.36900369003690037 = 
 ETHANE             = 0.36900369003690037 = 
@@ -518,12 +518,12 @@ Generic   = 0.81140616 *
 >> /EXP1.PolytropicEff
 Port: /EXP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.7999978103653818 = 
+Generic   = 0.7999978522091343 = 
 
 >> /EXP1.TotalQ.Out
 Port: /EXP1.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 80233.81806584679 = W
+Energy   = 80233.93350034721 = W
 
 >> 
 >> 
@@ -538,16 +538,16 @@ Energy   = 80233.81806584679 = W
 Port: /EXP1.FlowSensor.In + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 147.9890215015172 = C
+T                  = 147.9890004156299 = C
 P                  = 300.0 * kPa
 MoleFlow           = 100.0 * kgmole/h
 MassFlow           = 3002.4561180804776 = kg/h
-VolumeFlow         = 1157.7091100196626 = m3/hr
+VolumeFlow         = 1157.709050423273 = m3/hr
 StdLiqVolumeFlow   = 5.202940959408451 = m3/hr
-H                  = -81450.71132808989 = kJ/kmol
-Energy             = -2262519.759113608 = W
+H                  = -81450.7068526973 = kJ/kmol
+Energy             = -2262519.634797147 = W
 MolecularWeight    = 30.024561180804774 = 
-ZFactor            = 0.9918843470265907 = 
+ZFactor            = 0.9918843456288744 = 
 WATER              = 0.003690036900370849 * 
 METHANE            = 0.3690036900370849 * 
 ETHANE             = 0.3690036900370849 * 
@@ -579,7 +579,7 @@ ISOPENTANE         = 0.03690036900370849 =
 >> /EXP1.AdiabaticEff
 Port: /EXP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.8114078476661042 = 
+Generic   = 0.811407806285524 = 
 
 >> /EXP1.PolytropicEff
 Port: /EXP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -589,7 +589,7 @@ Generic   = 0.8 *
 >> /EXP1.TotalQ.Out
 Port: /EXP1.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 80238.06840251712 = W
+Energy   = 80238.19271897804 = W
 
 >> 
 >> 
@@ -620,16 +620,16 @@ ISOPENTANE         = 0.03690036900370849 *
 Port: /EXP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 103.86391439534219 = C
+T                  = 103.86385961009768 = C
 P                  = 100.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 3002.4561180804776 = kg/h
-VolumeFlow         = 3122.42747953706 = m3/hr
+VolumeFlow         = 3122.4270201477952 = m3/hr
 StdLiqVolumeFlow   = 5.202940959408451 = m3/hr
-H                  = -84328.7930115989 = kJ/kmol
-Energy             = -2342466.472544414 = W
+H                  = -84328.792755739 = kJ/kmol
+Energy             = -2342466.4654371943 = W
 MolecularWeight    = 30.024561180804774 = 
-ZFactor            = 0.9960950831651458 = 
+ZFactor            = 0.9960950813601297 = 
 WATER              = 0.003690036900370849 = 
 METHANE            = 0.3690036900370849 = 
 ETHANE             = 0.3690036900370849 = 
@@ -640,7 +640,7 @@ ISOPENTANE         = 0.03690036900370849 =
 >> /EXP1.AdiabaticEff
 Port: /EXP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.8114042926543709 = 
+Generic   = 0.8114042330859201 = 
 
 >> /EXP1.PolytropicEff
 Port: /EXP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -650,7 +650,7 @@ Generic   = 0.8 *
 >> /EXP1.TotalQ.Out
 Port: /EXP1.TotalQ.Out + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 80272.53148971447 = W
+Energy   = 80272.52438249502 = W
 
 >> 
 >> /EXP1.FlowSensor.In.MoleFlow =
@@ -679,16 +679,16 @@ ISOPENTANE         = 0.03690036900370849 *
 Port: /EXP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 103.86391439534219 = C
+T                  = 103.86385961009768 = C
 P                  = 100.0 * kPa
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
-H                  = -84328.79301159889 = kJ/kmol
+H                  = -84328.792755739 = kJ/kmol
 Energy             = None
 MolecularWeight    = 30.024561180804774 = 
-ZFactor            = 0.9960950831651458 = 
+ZFactor            = 0.9960950813601297 = 
 WATER              = 0.003690036900370849 = 
 METHANE            = 0.3690036900370849 = 
 ETHANE             = 0.3690036900370849 = 
@@ -699,7 +699,7 @@ ISOPENTANE         = 0.03690036900370849 =
 >> /EXP1.AdiabaticEff
 Port: /EXP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.8114042926543709 = 
+Generic   = 0.8114042330859201 = 
 
 >> /EXP1.PolytropicEff
 Port: /EXP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -719,12 +719,12 @@ Connected to: None
 VapFrac            = 1.0 = 
 T                  = 148.15736000000004 * C
 P                  = 300.0 * kPa
-MoleFlow           = 100.33509907473174 = kgmole/h
-MassFlow           = 3012.5173207513917 = kg/h
-VolumeFlow         = 1162.0659582921894 = m3/hr
-StdLiqVolumeFlow   = 5.220375966422268 = m3/hr
+MoleFlow           = 100.33510795826386 = kgmole/h
+MassFlow           = 3012.5175874755455 = kg/h
+VolumeFlow         = 1162.0660611799162 = m3/hr
+StdLiqVolumeFlow   = 5.220376428627199 = m3/hr
 H                  = -81438.98187796919 = kJ/kmol
-Energy             = -2269774.5320198117 = W
+Energy             = -2269774.732982537 = W
 MolecularWeight    = 30.024561180804774 = 
 ZFactor            = 0.9918954973969697 = 
 WATER              = 0.003690036900370849 * 
@@ -738,16 +738,16 @@ ISOPENTANE         = 0.03690036900370849 *
 Port: /EXP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 103.86391439534219 = C
+T                  = 103.86385961009768 = C
 P                  = 100.0 * kPa
-MoleFlow           = 100.33509907473177 = kgmole/h
-MassFlow           = 3012.5173207513926 = kg/h
-VolumeFlow         = 3132.89070513016 = m3/hr
-StdLiqVolumeFlow   = 5.22037596642227 = m3/hr
-H                  = -84328.79301159889 = kJ/kmol
-Energy             = -2350316.056019812 = W
+MoleFlow           = 100.33510795826385 = kgmole/h
+MassFlow           = 3012.517587475545 = kg/h
+VolumeFlow         = 3132.8905215832915 = m3/hr
+StdLiqVolumeFlow   = 5.2203764286271985 = m3/hr
+H                  = -84328.792755739 = kJ/kmol
+Energy             = -2350316.2569825365 = W
 MolecularWeight    = 30.024561180804774 = 
-ZFactor            = 0.9960950831651458 = 
+ZFactor            = 0.9960950813601297 = 
 WATER              = 0.003690036900370849 = 
 METHANE            = 0.3690036900370849 = 
 ETHANE             = 0.3690036900370849 = 
@@ -758,7 +758,7 @@ ISOPENTANE         = 0.03690036900370849 =
 >> /EXP1.AdiabaticEff
 Port: /EXP1.EfficiencySig.effClone + sim21.solver.Ports.Port_Signal
 Connected to: None
-Generic   = 0.8114042926543709 = 
+Generic   = 0.8114042330859201 = 
 
 >> /EXP1.PolytropicEff
 Port: /EXP1.PolytropicEffSig.effClone + sim21.solver.Ports.Port_Signal
@@ -781,16 +781,16 @@ Pasted /CP1 /EXP1 as /CP1Clone /EXP1Clone
 Port: /CP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 147.9692770210599 = C
+T                  = 147.9691932603314 = C
 P                  = 300.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 3002.456118081181 = kg/h
-VolumeFlow         = 1157.6533048728536 = m3/hr
+VolumeFlow         = 1157.6530681340398 = m3/hr
 StdLiqVolumeFlow   = 5.202940959409595 = m3/hr
-H                  = -81452.08685394631 = kJ/kmol
-Energy             = -2262557.968165175 = W
+H                  = -81452.08674528722 = kJ/kmol
+Energy             = -2262557.965146867 = W
 MolecularWeight    = 30.024561180811805 = 
-ZFactor            = 0.99188303811433 = 
+ZFactor            = 0.9918830325611325 = 
 WATER              = 0.003690036900369004 = 
 METHANE            = 0.36900369003690037 = 
 ETHANE             = 0.36900369003690037 = 
@@ -802,16 +802,16 @@ ISOPENTANE         = 0.03690036900369004 =
 Port: /EXP1.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 103.86391439534219 = C
+T                  = 103.86385961009768 = C
 P                  = 100.0 * kPa
-MoleFlow           = 100.33509907473177 = kgmole/h
-MassFlow           = 3012.5173207513926 = kg/h
-VolumeFlow         = 3132.89070513016 = m3/hr
-StdLiqVolumeFlow   = 5.22037596642227 = m3/hr
-H                  = -84328.79301159889 = kJ/kmol
-Energy             = -2350316.056019812 = W
+MoleFlow           = 100.33510795826385 = kgmole/h
+MassFlow           = 3012.517587475545 = kg/h
+VolumeFlow         = 3132.8905215832915 = m3/hr
+StdLiqVolumeFlow   = 5.2203764286271985 = m3/hr
+H                  = -84328.792755739 = kJ/kmol
+Energy             = -2350316.2569825365 = W
 MolecularWeight    = 30.024561180804774 = 
-ZFactor            = 0.9960950831651458 = 
+ZFactor            = 0.9960950813601297 = 
 WATER              = 0.003690036900370849 = 
 METHANE            = 0.3690036900370849 = 
 ETHANE             = 0.3690036900370849 = 

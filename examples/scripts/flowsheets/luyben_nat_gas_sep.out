@@ -170,17 +170,17 @@ N-PENTANE          = 5.959728716620682e-09 =
 >> bottoms_col1.Out
 Port: /bottoms_col1.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 2.6952588743325616e-06 = 
+VapFrac            = 2.7070832530118254e-06 = 
 T                  = 97.38003483778283 = C
 P                  = 1773.1875 = kPa
 MoleFlow           = 8039.659834260062 = kgmole/h
 MassFlow           = 474314.61786344385 = kg/h
-VolumeFlow         = 1033.5843400288165 = m3/hr
+VolumeFlow         = 1033.5844449784263 = m3/hr
 StdLiqVolumeFlow   = 813.932233008426 = m3/hr
-H                  = -140957.32854077136 = kJ/kmol
-Energy             = -314791381.28162193 = W
-MolecularWeight    = 58.99685156357087 = 
-ZFactor            = 0.07399549941508689 = 
+H                  = -140957.32838698578 = kJ/kmol
+Energy             = -314791380.938182 = W
+MolecularWeight    = 58.99685156357088 = 
+ZFactor            = 0.07399550692855093 = 
 ETHANE             = 7.793289878239044e-05 = 
 PROPANE            = 0.1692004265610109 = 
 ISOBUTANE          = 0.38414039602784594 = 

@@ -247,7 +247,7 @@ N-HEXANE           = 0.006702412868632708 =
 >> s.InQ0
 Port: /s.FeedBalance.InQ0 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 3841.6297630975605 = W
+Energy   = 3841.614732078975 = W
 
 >> 
 >> thermo - N-HEXANE
@@ -274,16 +274,16 @@ N-PENTANE          = 0.10526315789473685 |
 Port: /s.Splitter.Out1 + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 * 
-T                  = 44.479426877531864 = C
+T                  = 44.48219616627978 = C
 P                  = 400.0 * kPa
 MoleFlow           = 2.2 = kgmole/h
 MassFlow           = 137.61362189473684 = kg/h
-VolumeFlow         = 0.2357505691073199 = m3/hr
+VolumeFlow         = 0.23575222986326805 = m3/hr
 StdLiqVolumeFlow   = 0.2339018947368421 = m3/hr
-H                  = -155332.73529357178 = kJ/kmol
-Energy             = -94925.56045718276 = W
+H                  = -155332.3032783801 = kJ/kmol
+Energy             = -94925.29644789895 = W
 MolecularWeight    = 62.55164631578947 = 
-ZFactor            = 0.016230621283732538 = 
+ZFactor            = 0.016230594112801422 = 
 PROPANE            = 0.01913875598086126 = 
 N-BUTANE           = 0.28708133971291855 = 
 ISOBUTANE          = 0.3588516746411483 = 
@@ -292,7 +292,7 @@ N-PENTANE          = 0.3349282296650718 =
 >> s.InQ0
 Port: /s.FeedBalance.InQ0 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -6264.017641512095 = W
+Energy   = -6263.507745528768 = W
 
 >> 
 >> 
@@ -325,16 +325,16 @@ N-PENTANE          = 0.10526315789473685 |
 Port: /sClone.Splitter.Out1 + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 * 
-T                  = 44.479426877531864 = C
+T                  = 44.48219616627978 = C
 P                  = 400.0 * kPa
 MoleFlow           = 2.2 = kgmole/h
 MassFlow           = 137.61362189473684 = kg/h
-VolumeFlow         = 0.2357505691073199 = m3/hr
+VolumeFlow         = 0.23575222986326805 = m3/hr
 StdLiqVolumeFlow   = 0.2339018947368421 = m3/hr
-H                  = -155332.73529357178 = kJ/kmol
-Energy             = -94925.56045718276 = W
+H                  = -155332.3032783801 = kJ/kmol
+Energy             = -94925.29644789895 = W
 MolecularWeight    = 62.55164631578947 = 
-ZFactor            = 0.016230621283732538 = 
+ZFactor            = 0.016230594112801422 = 
 PROPANE            = 0.01913875598086126 = 
 N-BUTANE           = 0.28708133971291855 = 
 ISOBUTANE          = 0.3588516746411483 = 
@@ -343,5 +343,5 @@ N-PENTANE          = 0.3349282296650718 =
 >> sClone.InQ0
 Port: /sClone.FeedBalance.InQ0 + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -6264.017641512095 = W
+Energy   = -6263.507745528768 = W
 

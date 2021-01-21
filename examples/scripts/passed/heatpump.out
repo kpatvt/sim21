@@ -1,0 +1,240 @@
+>> # Depeopanizer test (from old Hysim manual)
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Propane ISOBUTANE n-BUTANE ISOPENTANE
+Propane ISOBUTANE n-BUTANE ISOPENTANE 
+>> 
+>> Feed = Stream.Stream_Material()
+>> Feed.In.T = 90
+>> Feed.In.P = 55
+>> Feed.In.MoleFlow = 3000
+>> Feed.In.Fraction = 2.5 39 58 .5
+>> 
+>> c4split = Tower.Tower()
+>> c4split.Stage_0 + 38  # forty stages`
+>> 
+>> cd c4split.Stage_0
+/c4split.Stage_0
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 60
+>> l.nC4spec = Tower.VolFractionSpec()
+>> l.nC4spec + n-BUTANE
+>> l.nC4spec.Port = .05
+>> 
+>> reflux = Tower.RefluxRatioSpec()
+>> reflux.Port = 7
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> estT = Tower.Estimate('T')
+>> estT.Port = 100
+>> 
+>> cd ../Stage_1
+/c4split.Stage_1
+>> vap = Tower.InternalVapourClone()
+>> /to_comp = Stream.Stream_Material()
+>> vap.Port -> /to_comp.In
+>> 
+>> cd ../Stage_29
+/c4split.Stage_29
+>> f = Tower.Feed()
+>> f.Port -> /Feed.Out
+>> 
+>> cd ../Stage_39
+/c4split.Stage_39
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 68
+>> 
+>> reb = Tower.EnergyFeed(1)
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Port = 120
+>> 
+>> cd ..
+/c4split
+>> 
+>> /liq_prod = Stream.Stream_Material()
+>> /liq_prod.clone = Stream.ClonePort(1)
+>> /liq_prod.In -> Stage_0.l.Port
+>> 
+>> /btm_prod = Stream.Stream_Material()
+>> /btm_prod.In -> Stage_39.l.Port
+>> 
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /c4split
+Calculating disturbance 10 of 40 in jacobian of /c4split
+Calculating disturbance 20 of 40 in jacobian of /c4split
+Calculating disturbance 30 of 40 in jacobian of /c4split
+Calculating disturbance 40 of 40 in jacobian of /c4split
+/c4split Inner Error 0.045623
+/c4split Inner Error 0.018955
+/c4split Inner Error 0.003893
+/c4split Inner Error 0.000759
+/c4split Inner Error 0.000054
+/c4split Inner Error 0.000021
+/c4split Inner Error 0.000013
+Inner loop is not changing significantly - exiting
+/c4split Iteration 1 Outer Error 0.004348
+Calculating Jacobian for /c4split
+Calculating disturbance 10 of 40 in jacobian of /c4split
+Calculating disturbance 20 of 40 in jacobian of /c4split
+Calculating disturbance 30 of 40 in jacobian of /c4split
+Calculating disturbance 40 of 40 in jacobian of /c4split
+/c4split Inner Error 0.038290
+/c4split Inner Error 0.022148
+Step size too small - Exiting inner loop
+/c4split Iteration 2 Outer Error 0.001315
+Calculating Jacobian for /c4split
+Calculating disturbance 10 of 40 in jacobian of /c4split
+Calculating disturbance 20 of 40 in jacobian of /c4split
+Calculating disturbance 30 of 40 in jacobian of /c4split
+Calculating disturbance 40 of 40 in jacobian of /c4split
+/c4split Inner Error 0.083569
+/c4split Inner Error 0.051719
+/c4split Inner Error 0.024147
+/c4split Inner Error 0.010428
+/c4split Inner Error 0.004245
+/c4split Inner Error 0.002173
+/c4split Inner Error 0.000627
+/c4split Inner Error 0.000312
+Step size too small - Exiting inner loop
+/c4split Iteration 3 Outer Error 0.000869
+Calculating Jacobian for /c4split
+Calculating disturbance 10 of 40 in jacobian of /c4split
+Calculating disturbance 20 of 40 in jacobian of /c4split
+Calculating disturbance 30 of 40 in jacobian of /c4split
+Calculating disturbance 40 of 40 in jacobian of /c4split
+/c4split Inner Error 0.011214
+/c4split Inner Error 0.010065
+/c4split Inner Error 0.007992
+/c4split Inner Error 0.007948
+/c4split Inner Error 0.006434
+/c4split Inner Error 0.001667
+/c4split Inner Error 0.000207
+/c4split Inner Error 0.000052
+/c4split Inner Error 0.000005
+Inner loop converged
+/c4split Iteration 4 Outer Error 0.000035
+/c4split Inner Error 0.000443
+/c4split Inner Error 0.000008
+Inner loop converged
+>> 
+>> /liq_prod.Out
+Port: /liq_prod.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 7.1479622088491735e-06 = 
+T                  = 81.6245574813975 = F
+P                  = 60.0 = psia
+MoleFlow           = 991.2411006039421 = lbmole/h
+MassFlow           = 56561.184590338264 = lb/h
+VolumeFlow         = 0.4380585822506077 = ft3/s
+StdLiqVolumeFlow   = 0.4495842997150558 = ft3/s
+H                  = -65177.024197701016 = Btu/lbmol
+Energy             = -64595280.966878235 = Btu/hr
+MolecularWeight    = 57.06097584872818 = 
+ZFactor            = 0.016432612679033436 = 
+PROPANE            = 0.07565808236871198 = 
+ISOBUTANE          = 0.873615785832478 = 
+N-BUTANE           = 0.050726125880646095 = 
+ISOPENTANE         = 5.918163976703943e-09 = 
+
+>> /btm_prod.Out
+Port: /btm_prod.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 114.64077175240838 = F
+P                  = 68.0 = psia
+MoleFlow           = 2008.7588993960553 = lbmole/h
+MassFlow           = 116963.82060966156 = lb/h
+VolumeFlow         = 0.9160197786714347 = ft3/s
+StdLiqVolumeFlow   = 0.9044231769323734 = ft3/s
+H                  = -62646.24531707946 = Btu/lbmol
+Energy             = -125820041.21395889 = Btu/hr
+MolecularWeight    = 58.22690848803577 = 
+ZFactor            = 0.018112363397073394 = 
+PROPANE            = 2.2895546377759234e-06 = 
+ISOBUTANE          = 0.15135521094036924 = 
+N-BUTANE           = 0.8411752050784779 = 
+ISOPENTANE         = 0.00746729442651504 = 
+
+>> 
+>> cd /
+/
+>> K-100 = Compressor.Compressor()
+>> K-100.Efficiency = .75
+>> K-100.Out.P = 235.1787
+>> 
+>> c4split.Stage_1.vap.Port -> K-100.In
+>> 
+>> E-100 = Heater.Cooler()
+>> E-100.DeltaP = 5
+>> 
+>> K-100.Out -> E-100.In
+>> E-100.OutQ -> c4split.Stage_39.reb.Port
+>> 
+>> E-101 = Heater.Cooler()
+>> E-101.DeltaP = 5
+>> E-100.Out -> E-101.In
+>> 
+>> CV-100 = Valve.Valve()
+>> E-101.Out -> CV-100.In
+>> 
+>> V-100 = Flash.SimpleFlash()
+>> CV-100.Out -> V-100.In
+>> 
+>> split = Split.Splitter()
+>> V-100.Liq0 -> split.In
+>> split.Out0 -> liq_prod.clone
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+/RootClone.c4split Inner Error 0.000002
+Inner loop converged
+/RootClone.c4split Iteration 1 Outer Error 0.000001
+/RootClone.c4split Inner Error 0.000002
+Inner loop converged
+>> 
+>> /btm_prod.In
+Port: /btm_prod.In + sim21.solver.Ports.Port_Material
+Connected to: /c4split.LiquidDraw_39_l
+VapFrac            = 0.0 | 
+T                  = 114.64077175240838 | F
+P                  = 68.0 | psia
+MoleFlow           = 2008.7588993960553 | lbmole/h
+MassFlow           = 116963.82060966156 | lb/h
+VolumeFlow         = 0.9160197786714347 | ft3/s
+StdLiqVolumeFlow   = 0.9044231769323734 | ft3/s
+H                  = -62646.24531707946 | Btu/lbmol
+Energy             = -125820041.21395889 | Btu/hr
+MolecularWeight    = 58.22690848803577 | 
+ZFactor            = 0.018112363397073394 | 
+PROPANE            = 2.2895546377759234e-06 | 
+ISOBUTANE          = 0.15135521094036924 | 
+N-BUTANE           = 0.8411752050784779 | 
+ISOPENTANE         = 0.00746729442651504 | 
+
+>> /RootClone.btm_prod.In
+Port: /RootClone.btm_prod.In + sim21.solver.Ports.Port_Material
+Connected to: /RootClone.c4split.LiquidDraw_39_l
+VapFrac            = 2.2186178893942225e-06 | 
+T                  = 114.6438135465806 | F
+P                  = 68.0 | psia
+MoleFlow           = 2008.4607949708982 | lbmole/h
+MassFlow           = 116946.49429973878 | lb/h
+VolumeFlow         = 0.9159813057102939 | ft3/s
+StdLiqVolumeFlow   = 0.9042849782247411 | ft3/s
+H                  = -62645.74630780147 | Btu/lbmol
+Energy             = -125800367.15940401 | Btu/hr
+MolecularWeight    = 58.22692411650153 | 
+ZFactor            = 0.018114194937030172 | 
+PROPANE            = 2.283679567302532e-06 | 
+ISOBUTANE          = 0.15123582051396314 | 
+N-BUTANE           = 0.8412934930514385 | 
+ISOPENTANE         = 0.007468402755031019 | 
+

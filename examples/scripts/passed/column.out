@@ -1160,19 +1160,19 @@ Could not assign Tower.VapourDraw()
 Error processing command:
 <class 'sim21.cli.CommandInterface.CmdError'>
 Could not assign Tower.VapourDraw()
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3597, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 292, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 387, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 388, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 362, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 363, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1994, in Equal
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1995, in Equal
     raise CmdError('CMDCouldNotAssign', rhsDesc)
 
 
@@ -1181,22 +1181,22 @@ Could not assign 0.0
 Error processing command:
 <class 'sim21.cli.CommandInterface.CmdError'>
 Could not assign 0.0
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3597, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 292, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 387, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 388, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 362, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 363, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1812, in Equal
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1813, in Equal
     self.CreateObject(parentObj, createName, rhsDesc)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1685, in CreateObject
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1686, in CreateObject
     raise CmdError('CMDCouldNotAssign', opTypeDesc)
 
 
@@ -1232,17 +1232,17 @@ Inner loop converged
 >> /col.Stage_0.v.Port
 Port: /col.VapourDraw_0_v + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.9999994211927568 = 
+VapFrac            = 0.999999414909813 = 
 T                  = 38.00712565874193 = C
 P                  = 700.0 = kPa
 MoleFlow           = 1e-40 * kgmole/h
 MassFlow           = 4.725479225557232e-39 = kg/h
-VolumeFlow         = 3.226410984637913e-40 = m3/hr
+VolumeFlow         = 3.226410966112496e-40 = m3/hr
 StdLiqVolumeFlow   = 7.991471945122356e-42 = m3/hr
-H                  = -109293.84864863256 = kJ/kmol
-Energy             = -3.035940240239793e-36 = W
-MolecularWeight    = 47.254792255572326 = 
-ZFactor            = 0.8729789897808635 = 
+H                  = -109293.84876691003 = kJ/kmol
+Energy             = -3.0359402435252785e-36 = W
+MolecularWeight    = 47.25479225557233 = 
+ZFactor            = 0.8729789847683899 = 
 N-BUTANE           = 0.09213498058569837 = 
 N-PENTANE          = 0.06654628496713327 = 
 PROPANE            = 0.8413187344471683 = 
@@ -1367,17 +1367,17 @@ Inner loop converged
 >> /col.Stage_0.v.Port
 Port: /col.VapourDraw_0_v + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.9999976545874191 = 
+VapFrac            = 0.9999976483087808 = 
 T                  = 38.00690469412524 = C
 P                  = 700.0 = kPa
 MoleFlow           = 1e-40 * kgmole/h
 MassFlow           = 4.725477749955075e-39 = kg/h
-VolumeFlow         = 3.226402743679619e-40 = m3/hr
+VolumeFlow         = 3.226402725167625e-40 = m3/hr
 StdLiqVolumeFlow   = 7.99147011361634e-42 = m3/hr
-H                  = -109293.87882089193 = kJ/kmol
-Energy             = -3.0359410783581084e-36 = W
-MolecularWeight    = 47.254777499550755 = 
-ZFactor            = 0.8729773799366085 = 
+H                  = -109293.87893909936 = kJ/kmol
+Energy             = -3.0359410816416486e-36 = W
+MolecularWeight    = 47.25477749955075 = 
+ZFactor            = 0.8729773749277631 = 
 N-BUTANE           = 0.09213551584334222 = 
 N-PENTANE          = 0.06654549133619352 = 
 PROPANE            = 0.8413189928204643 = 

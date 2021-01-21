@@ -67,43 +67,43 @@ Converged /Hx1 in 5 iterations
 >> /Hx1.UA0_1.UA = None
 >> /Hx1.Out1.T = 125
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 47.49045914578961 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 47.49046814100825 = W/K
 >> 
 >> #As the number of segments increases, the ua converges to a single
 >> #ua but the hx becomes slower
 >> /Hx1.NumberSegments = 10
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 51.6013295905065 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 51.60134090889888 = W/K
 >> /Hx1.NumberSegments = 50
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 53.46154726401278 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 53.46156344367232 = W/K
 >> 
 >> 
 >> #Now back to 5 segments
 >> /Hx1.NumberSegments = 5
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 47.49045914578961 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 47.49046814100825 = W/K
 >> 
 >> #Track phase change
 >> #The UA is already the converged one with 100 segments
 >> /Hx1.TrackPhaseChange = 1
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 50.94446278670873 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 53.161675250885864 = W/K
 >> /Hx1.NumberSegments = 3
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 48.96257628668898 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 53.218141222033694 = W/K
 >> /Hx1.NumberSegments = 10
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 52.17868312444752 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 53.28334303056107 = W/K
 >> 
 >> #Lets get a bunch of profiles
 >> /Hx1.side0.T
-[423.15       423.05028381 419.21086971 417.23021024 415.24203627
- 413.24625716 411.2427807  409.23151307 407.2123588  404.25711311
+[423.15       423.08447254 419.21086462 417.23020544 415.24203174
+ 413.24625289 411.24277668 409.23150928 407.21235524 404.34244439
  403.15      ]
 >> /Hx1.side0.EnergyAcum
-[  0.           4.96161697 195.29176834 292.93765251 390.58353668
- 488.22942085 585.87530502 683.52118919 781.16707336 923.39013062
+[  0.           3.26029743 195.29176834 292.93765251 390.58353668
+ 488.22942085 585.87530502 683.52118919 781.16707336 919.29488437
  976.4588417 ]
 >> /Hx1.side0.L_Cp
 None
@@ -115,12 +115,12 @@ None
 None
 >> 
 >> /Hx1.side1.T
-[398.15       393.61343027 393.76764032 393.8465127  393.92522153
- 394.00376758 394.0821516  394.16037434 394.23843655 391.81039424
+[398.15       393.95363978 393.76764032 393.8465127  393.92522153
+ 394.00376758 394.0821516  394.16037434 394.23843655 394.00100819
  363.15      ]
 >> /Hx1.side1.EnergyAcum
-[  0.           4.96161697 195.29176834 292.93765251 390.58353668
- 488.22942085 585.87530502 683.52118919 781.16707336 923.39013062
+[  0.           3.26029743 195.29176834 292.93765251 390.58353668
+ 488.22942085 585.87530502 683.52118919 781.16707336 919.29488437
  976.4588417 ]
 >> /Hx1.side1.L_Cp
 None
@@ -137,13 +137,13 @@ None
 >> /Hx1.TryLastConverged = 0
 >> /Hx1.UA0_1.UA = 49.9
 Calculating Jacobian for /Hx1
-/Hx1 Iteration 1 Max Error 0.010044
+/Hx1 Iteration 1 Max Error 0.009555
 Calculating Jacobian for /Hx1
-/Hx1 Iteration 2 Max Error 0.002914
+/Hx1 Iteration 2 Max Error 0.002703
 Calculating Jacobian for /Hx1
-/Hx1 Iteration 3 Max Error 0.000496
+/Hx1 Iteration 3 Max Error 0.000287
 Calculating Jacobian for /Hx1
-/Hx1 Iteration 4 Max Error 0.000093
+/Hx1 Iteration 4 Max Error 0.000019
 Calculating Jacobian for /Hx1
 Converged /Hx1 in 5 iterations
 >> /Hx1.Out1.T

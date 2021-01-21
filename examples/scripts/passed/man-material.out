@@ -14,34 +14,34 @@ WATER TRIETHYLENE GLYCOL
 >> s.In.VapFrac = 0.0
 >> s.In.Fraction = 0.0 1.0
 >> s.Out.T
-/s.Out.T= 545.0700061495407 = F
+/s.Out.T= 545.5526238831324 = F
 >> s.In.Fraction = 0.1 0.9
 >> s.Out.T
-/s.Out.T= 283.40184032611734 = F
+/s.Out.T= 281.7623238435548 = F
 >> s.In.Fraction = 0.2 0.8
 >> s.Out.T
-/s.Out.T= 228.1559466138567 = F
+/s.Out.T= 228.1564817395562 = F
 >> s.In.Fraction = 0.3 0.7
 >> s.Out.T
-/s.Out.T= 203.18044175346037 = F
+/s.Out.T= 203.17547794779912 = F
 >> s.In.Fraction = 0.4 0.6
 >> s.Out.T
-/s.Out.T= 188.9451417994794 = F
+/s.Out.T= 188.94516903484268 = F
 >> s.In.Fraction = 0.5 0.5
 >> s.Out.T
-/s.Out.T= 180.84505693075576 = F
+/s.Out.T= 180.84527105967024 = F
 >> s.In.Fraction = 0.6 0.4
 >> s.Out.T
-/s.Out.T= 177.37913763388173 = F
+/s.Out.T= 177.37917684596124 = F
 >> s.In.Fraction = 0.7 0.3
 >> s.Out.T
-/s.Out.T= 178.41933191714267 = F
+/s.Out.T= 178.41938085921296 = F
 >> s.In.Fraction = 0.8 0.2
 >> s.Out.T
-/s.Out.T= 184.92866775199477 = F
+/s.Out.T= 184.9306771332877 = F
 >> s.In.Fraction = 0.9 0.1
 >> s.Out.T
-/s.Out.T= 198.85753707209008 = F
+/s.Out.T= 198.85678868825428 = F
 >> s.In.Fraction = 1.0 0.0
 >> s.Out.T
-/s.Out.T= 207.8194676926227 = F
+/s.Out.T= 207.64434844029614 = F

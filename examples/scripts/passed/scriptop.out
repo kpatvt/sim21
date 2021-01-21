@@ -56,16 +56,16 @@ deltaP = pIn-pOut
 Port: /Outlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 16.228054259161922 = C
+T                  = 16.228065279897237 = C
 P                  = 2500.0 = kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 2165.3092000000006 = kg/h
-VolumeFlow         = 85.18455781810972 = m3/hr
+VolumeFlow         = 85.18456246092929 = m3/hr
 StdLiqVolumeFlow   = 4.1595 = m3/hr
 H                  = -80631.12334226654 = kJ/kmol
 Energy             = -2239753.4261740707 = W
 MolecularWeight    = 21.653092 = 
-ZFactor            = 0.8851178615018402 = 
+ZFactor            = 0.8851178760344601 = 
 METHANE            = 0.7 = 
 ETHANE             = 0.2 = 
 PROPANE            = 0.1 = 
@@ -75,16 +75,16 @@ PROPANE            = 0.1 =
 Port: /Outlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 4.158111876900648 = C
+T                  = 4.158064272963543 = C
 P                  = 1000.0 = kPa
 MoleFlow           = 200.0 = kgmole/h
 MassFlow           = 4330.6184 = kg/h
-VolumeFlow         = 437.1710266778675 = m3/hr
+VolumeFlow         = 437.17093905713006 = m3/hr
 StdLiqVolumeFlow   = 8.318999999999999 = m3/hr
 H                  = -80631.12334226654 = kJ/kmol
 Energy             = -4479506.852348141 = W
 MolecularWeight    = 21.653092 = 
-ZFactor            = 0.9480355367017546 = 
+ZFactor            = 0.9480355094341084 = 
 METHANE            = 0.7 = 
 ETHANE             = 0.2 = 
 PROPANE            = 0.1 = 

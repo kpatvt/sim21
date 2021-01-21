@@ -1,0 +1,472 @@
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + HYDROGEN WATER CARBON_MONOXIDE CARBON_DIOXIDE
+HYDROGEN WATER CARBON MONOXIDE CARBON DIOXIDE 
+>> thermo + METHANE OXYGEN NITROGEN AMMONIA ETHANE PROPANE
+METHANE OXYGEN NITROGEN AMMONIA ETHANE PROPANE 
+>> 
+>> units SI
+>> 
+>> # A conversion reactor - isothermal, no pressure drop
+>> rxn = ConvRxn.ConvReactor()
+>> cd /rxn
+/rxn
+>> In.P = 0.0 psig
+>> In.T = 70.08 F
+>> In.MoleFlow = 21.1497
+>> In.Fraction = 0. 0. 0. 0. 1.0 4.0 5.0 0. 0. 0.
+>> DeltaP = 0
+>> Out.T = 70.08 F
+>> 
+>> # Test 1 : Single reaction, complete reaction----------------------------------
+>> # The default is 100 % conversion
+>> NumberRxn = 1
+>> # Note the use of quotes around CO2
+>> Rxn0.Formula = CH4-Combustion:2*WATER+"CARBON DIOXIDE"-!METHANE-2*OXYGEN
+>> # review reaction and results
+>> Rxn0
+Operation: Rxn0 = sim21.unitop.ConvRxn.ConversionReaction
+Parameter: Ignored = None
+Parameter: Formula = CH4-Combustion:2.0*'WATER'+1.0*'CARBON_DIOXIDE'-1.0*!'METHANE'-2.0*'OXYGEN'
+Parameter: RxnOrder = 1
+>> Rxn0.Coeff
+Reaction = CH4-Combustion:2.0*'WATER'+1.0*'CARBON_DIOXIDE'-1.0*!'METHANE'-2.0*'OXYGEN'
+Order = 1
+Stoichmetric coefficients:
+   HYDROGEN          0.000000
+   WATER             2.000000
+   CARBON MONOXIDE   0.000000
+   CARBON DIOXIDE    1.000000
+   METHANE          -1.000000 (Base Comp)
+   OXYGEN           -2.000000
+   NITROGEN          0.000000
+   AMMONIA           0.000000
+   ETHANE            0.000000
+   PROPANE           0.000000
+>> valueOf Rxn0.Coeff.GetValues
+['CH4-Combustion', 4, 1.0, 1, 0, 2.0, 0, 1.0, -1.0, -2.0, 0, 0, 0, 0]
+>> In
+Port: /rxn.IsoRxn.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 21.155533364479993 * C
+P                  = 101.325 * kPa
+MoleFlow           = 21.1497 * kgmole/h
+MassFlow           = 600.8728327602 = kg/h
+VolumeFlow         = 510.3329860633331 = m3/hr
+StdLiqVolumeFlow   = 0.6792014658000001 = m3/hr
+H                  = -7576.494112457729 = kJ/kmol
+Energy             = -44511.27153617978 = W
+MolecularWeight    = 28.410466 = 
+ZFactor            = 0.9991562947539732 = 
+HYDROGEN           = 0.0 * 
+WATER              = 0.0 * 
+CARBON MONOXIDE    = 0.0 * 
+CARBON DIOXIDE     = 0.0 * 
+METHANE            = 0.1 * 
+OXYGEN             = 0.4 * 
+NITROGEN           = 0.5 * 
+AMMONIA            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.817174379946997 = 
+T                  = 21.155533364479993 * C
+P                  = 101.325 = kPa
+MoleFlow           = 21.149700000000003 = kgmole/h
+MassFlow           = 600.8728327602 = kg/h
+VolumeFlow         = 416.9482576863313 = m3/hr
+StdLiqVolumeFlow   = 0.6931141614540001 = m3/hr
+H                  = -96232.57106564584 = kJ/kmol
+Energy             = -565358.3356297472 = W
+MolecularWeight    = 28.410466 = 
+ZFactor            = 0.8163228472993498 = 
+HYDROGEN           = 0.0 = 
+WATER              = 0.2 = 
+CARBON MONOXIDE    = 0.0 = 
+CARBON DIOXIDE     = 0.1 = 
+METHANE            = 0.0 = 
+OXYGEN             = 0.2 = 
+NITROGEN           = 0.49999999999999994 = 
+AMMONIA            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 0.0 = 
+
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 520847.0640935675 = W
+
+>> 
+>> # Test 2  : Single reaction, 25% conversion-------------------------------------
+>> Rxn0.Conversion = 0.25
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.970389064702759 = 
+T                  = 21.155533364479993 * C
+P                  = 101.325 = kPa
+MoleFlow           = 21.149700000000003 = kgmole/h
+MassFlow           = 600.8728327602 = kg/h
+VolumeFlow         = 495.1312229605007 = m3/hr
+StdLiqVolumeFlow   = 0.6826796397135 = m3/hr
+H                  = -29002.79563511038 = kJ/kmol
+Energy             = -170389.00745663725 = W
+MolecularWeight    = 28.410465999999996 = 
+ZFactor            = 0.9693934973053504 = 
+HYDROGEN           = 0.0 = 
+WATER              = 0.05 = 
+CARBON MONOXIDE    = 0.0 = 
+CARBON DIOXIDE     = 0.025 = 
+METHANE            = 0.07500000000000001 = 
+OXYGEN             = 0.35000000000000003 = 
+NITROGEN           = 0.49999999999999994 = 
+AMMONIA            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 0.0 = 
+
+>> 
+>> # Test 3  : Single reaction, in-sufficient O2 for complete reaction-------------
+>> Rxn0.Conversion = 1.0
+>> In.Fraction = 0. 0. 0. 0. 5.0 2.0 3.0 0. 0. 0.
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.8171989583455027 = 
+T                  = 21.155533364479993 * C
+P                  = 101.325 = kPa
+MoleFlow           = 21.1497 = kgmole/h
+MassFlow           = 482.742113997 = kg/h
+VolumeFlow         = 416.61968074101856 = m3/hr
+StdLiqVolumeFlow   = 0.728603358054 = m3/hr
+H                  = -126053.53254348255 = kJ/kmol
+Energy             = -740553.9992319146 = W
+MolecularWeight    = 22.82501 = 
+ZFactor            = 0.8156795423745542 = 
+HYDROGEN           = 0.0 = 
+WATER              = 0.19999999999999996 = 
+CARBON MONOXIDE    = 0.0 = 
+CARBON DIOXIDE     = 0.09999999999999998 = 
+METHANE            = 0.4 = 
+OXYGEN             = 0.0 = 
+NITROGEN           = 0.3 = 
+AMMONIA            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 0.0 = 
+
+>> 
+>> # test 4 : Multiple reactions, in-sufficient O2 for complete reaction--------------
+>> IsoRxn.NumberRxn = 5
+>> Rxn1.Formula = H2_Combustion:2*WATER-2*!HYDROGEN-OXYGEN
+>> Rxn2.Formula = CO_Combustion:2*CARBON_DIOXIDE-2*!CARBON_MONOXIDE-OXYGEN
+>> Rxn3.Formula = C2_Combustion:3*WATER+2*CARBON_DIOXIDE-!ETHANE-3.5*OXYGEN
+>> # test5 : Alternative formula input
+>> # 4*WATER+3*CARBON_DIOXIDE-!PROPANE-5*OXYGEN
+>> Rxn4.Formula = C3_Combustion:4*1+3*3-!9-5*5
+>> Rxn4.Coeff
+Reaction = C3_Combustion:4.0*'WATER'+3.0*'CARBON_DIOXIDE'-5.0*'OXYGEN'-1.0*!'PROPANE'
+Order = 5
+Stoichmetric coefficients:
+   HYDROGEN          0.000000
+   WATER             4.000000
+   CARBON MONOXIDE   0.000000
+   CARBON DIOXIDE    3.000000
+   METHANE           0.000000
+   OXYGEN           -5.000000
+   NITROGEN          0.000000
+   AMMONIA           0.000000
+   ETHANE            0.000000
+   PROPANE          -1.000000 (Base Comp)
+>> In.Fraction = .1 .1 .1 .1 .1 .1 .1 .1 .1 .1
+>> In.MoleFlow = 10.0
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.83114219350856 = 
+T                  = 21.155533364479993 * C
+P                  = 101.325 = kPa
+MoleFlow           = 10.043478260869566 = kgmole/h
+MassFlow           = 259.3006 = kg/h
+VolumeFlow         = 200.75155656713142 = m3/hr
+StdLiqVolumeFlow   = 0.3936814565217393 = m3/hr
+H                  = -154488.80906223177 = kJ/kmol
+Energy             = -431001.38760115387 = W
+MolecularWeight    = 25.817808658008662 = 
+ZFactor            = 0.8276729794878881 = 
+HYDROGEN           = 0.09090909090909091 = 
+WATER              = 0.1861471861471861 = 
+CARBON MONOXIDE    = 0.09090909090909091 = 
+CARBON DIOXIDE     = 0.16017316017316013 = 
+METHANE            = 0.09090909090909091 = 
+OXYGEN             = 0.0 = 
+NITROGEN           = 0.09956709956709955 = 
+AMMONIA            = 0.09956709956709955 = 
+ETHANE             = 0.09090909090909091 = 
+PROPANE            = 0.09090909090909091 = 
+
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 127243.3718711952 = W
+
+>> 
+>> # test 5 : adibatic reaction-----------------------------------------------------
+>> Out.T =
+>> OutQ = 0.0
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 734.8714424383993 = C
+P                  = 101.325 = kPa
+MoleFlow           = 10.043478260869566 = kgmole/h
+MassFlow           = 259.3006 = kg/h
+VolumeFlow         = 830.8887484118609 = m3/hr
+StdLiqVolumeFlow   = 0.3936814565217393 = m3/hr
+H                  = -108879.4965473618 = kJ/kmol
+Energy             = -303758.01572995866 = W
+MolecularWeight    = 25.81780865800866 = 
+ZFactor            = 1.0001643973473766 = 
+HYDROGEN           = 0.09090909090909091 = 
+WATER              = 0.1861471861471861 = 
+CARBON MONOXIDE    = 0.09090909090909091 = 
+CARBON DIOXIDE     = 0.16017316017316013 = 
+METHANE            = 0.09090909090909091 = 
+OXYGEN             = 0.0 = 
+NITROGEN           = 0.09956709956709955 = 
+AMMONIA            = 0.09956709956709955 = 
+ETHANE             = 0.09090909090909091 = 
+PROPANE            = 0.09090909090909091 = 
+
+>> 
+>> # test 6 : Compae with literature result-----------------------------------------
+>> # burns 1 mole of C3 with 28 moles of air adibatically
+>> # literature outlet T = 1878.8 C
+>> In.Fraction = 0 0 0 0 0 0.202759 0.7628 0 0 0.034482
+>> In.P = 1 atm
+>> In.T = 25 C
+>> OutQ = 0.0
+>> In.MoleFlow = 29
+>> In
+Port: /rxn.IsoRxn.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 25.0 * C
+P                  = 101.325 * kPa
+MoleFlow           = 29.0 * kgmole/h
+MassFlow           = 851.9030419384407 = kg/h
+VolumeFlow         = 708.941274193987 = m3/hr
+StdLiqVolumeFlow   = 1.0092878864066575 = m3/hr
+H                  = -3619.242129429787 = kJ/kmol
+Energy             = -29155.00604262884 = W
+MolecularWeight    = 29.375966963394504 = 
+ZFactor            = 0.999217145034683 = 
+HYDROGEN           = 0.0 * 
+WATER              = 0.0 * 
+CARBON MONOXIDE    = 0.0 * 
+CARBON DIOXIDE     = 0.0 * 
+METHANE            = 0.0 * 
+OXYGEN             = 0.2027506872218239 * 
+NITROGEN           = 0.7627687264822143 * 
+AMMONIA            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.03448058629596187 * 
+
+>> IsoRxn.Out
+Port: /rxn.IsoRxn.Out + sim21.solver.Ports.Port_Material
+Connected to: /rxn.RxnHeater.In
+VapFrac            = 0.8904896785242865 = 
+T                  = 25.0 = C
+P                  = 101.325 = kPa
+MoleFlow           = 29.999937002582897 = kgmole/h
+MassFlow           = 851.9030419384407 = kg/h
+VolumeFlow         = 652.9537243898319 = m3/hr
+StdLiqVolumeFlow   = 1.0524797652584246 = m3/hr
+H                  = -76604.4734588681 = kJ/kmol
+Energy             = -638369.2716339101 = W
+MolecularWeight    = 28.39682769550798 = 
+ZFactor            = 0.8896305215656622 = 
+HYDROGEN           = 0.0 = 
+WATER              = 0.13332521364918903 = 
+CARBON MONOXIDE    = 0.0 = 
+CARBON DIOXIDE     = 0.09999391023689178 = 
+METHANE            = 0.0 = 
+OXYGEN             = 0.02933622548749518 = 
+NITROGEN           = 0.737344650626424 = 
+AMMONIA            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 0.0 = 
+
+>> IsoRxn.OutQ
+Port: /rxn.IsoRxn.OutQ + sim21.solver.Ports.Port_Energy
+Connected to: /rxn.EneBalance.InQ0
+Energy   = 609214.2655912812 = W
+
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 1961.7885805981664 = C
+P                  = 101.325 = kPa
+MoleFlow           = 29.999937002582897 = kgmole/h
+MassFlow           = 851.9030419384407 = kg/h
+VolumeFlow         = 5502.452291057997 = m3/hr
+StdLiqVolumeFlow   = 1.0524797652584246 = m3/hr
+H                  = -3498.608071891201 = kJ/kmol
+Energy             = -29155.0060426289 = W
+MolecularWeight    = 28.396827695507984 = 
+ZFactor            = 1.0001215325972896 = 
+HYDROGEN           = 0.0 = 
+WATER              = 0.13332521364918903 = 
+CARBON MONOXIDE    = 0.0 = 
+CARBON DIOXIDE     = 0.09999391023689178 = 
+METHANE            = 0.0 = 
+OXYGEN             = 0.02933622548749518 = 
+NITROGEN           = 0.737344650626424 = 
+AMMONIA            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 0.0 = 
+
+>> 
+>> # test 7 : partial spec----------------------------------------------------------
+>> # specify inlet composition, should be able to calculate outlet composition
+>> In.P =
+>> In.T =
+>> In.MoleFlow =
+>> OutQ.Energy =
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+HYDROGEN           = 0.0 = 
+WATER              = 0.13332521364918906 = 
+CARBON MONOXIDE    = 0.0 = 
+CARBON DIOXIDE     = 0.09999391023689179 = 
+METHANE            = 0.0 = 
+OXYGEN             = 0.02933622548749519 = 
+NITROGEN           = 0.7373446506264241 = 
+AMMONIA            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 0.0 = 
+
+>> 
+>> # test 8 : backward calc---------------------------------------------------------
+>> Out.P = 101.325
+>> Out.T = 2000 C
+>> Out.MoleFlow = 30
+>> In.T = 29 C
+>> DeltaP = 5 psi
+>> In
+Port: /rxn.IsoRxn.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 29.0 * C
+P                  = 135.798785 = kPa
+MoleFlow           = 29.000060897631084 = kgmole/h
+MassFlow           = 851.9048308652394 = kg/h
+VolumeFlow         = 535.9629511132844 = m3/hr
+StdLiqVolumeFlow   = 1.0092900058287735 = m3/hr
+H                  = -3499.3455603936145 = kJ/kmol
+Energy             = -28189.23176479716 = W
+MolecularWeight    = 29.375966963394504 = 
+ZFactor            = 0.9990217892253047 = 
+HYDROGEN           = 0.0 * 
+WATER              = 0.0 * 
+CARBON MONOXIDE    = 0.0 * 
+CARBON DIOXIDE     = 0.0 * 
+METHANE            = 0.0 * 
+OXYGEN             = 0.2027506872218239 * 
+NITROGEN           = 0.7627687264822143 * 
+AMMONIA            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.03448058629596187 * 
+
+>> Out
+Port: /rxn.RxnHeater.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 2000.0 * C
+P                  = 101.325 * kPa
+MoleFlow           = 30.0 * kgmole/h
+MassFlow           = 851.9048308652394 = kg/h
+VolumeFlow         = 5596.528316375871 = m3/hr
+StdLiqVolumeFlow   = 1.052481975379958 = m3/hr
+H                  = -2111.700486352932 = kJ/kmol
+Energy             = -17597.504052941098 = W
+MolecularWeight    = 28.396827695507984 = 
+ZFactor            = 1.0001192426262482 = 
+HYDROGEN           = 0.0 = 
+WATER              = 0.13332521364918906 = 
+CARBON MONOXIDE    = 0.0 = 
+CARBON DIOXIDE     = 0.09999391023689179 = 
+METHANE            = 0.0 = 
+OXYGEN             = 0.02933622548749519 = 
+NITROGEN           = 0.7373446506264241 = 
+AMMONIA            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 0.0 = 
+
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = -10591.727711856132 = W
+
+>> 
+>> 
+>> 
+>> In.T =
+>> In.VapFrac = 1.0
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = -41059.04685259203 = W
+
+>> 
+>> 
+>> In.VapFrac =
+>> In.T = 29 C
+>> Out.T = 29 C
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 606414.0143136786 = W
+
+>> 
+>> 
+>> #Due to an old mistake in the sign of Q, now we have to support the following parameter
+>> QExothermicIsPositive = 0
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = -606414.0143136786 = W
+
+>> 
+>> QExothermicIsPositive = 1
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 606414.0143136786 = W
+
+>> 
+>> copy /rxn
+Copied /rxn to the clipboard
+>> paste /
+Pasting /rxn
+Pasted /rxn as /rxnClone
+>> 
+>> 

@@ -50,139 +50,118 @@ r = r/3600.0                          #kmol/(s*m3)
 
 >> 
 >> pfr.DeltaP = 0.0
-Calculating step 1 in /pfr. Currently in 0. Going from 0 to 12.9
-Calculating step 2 in /pfr. Currently in 0.3225. Going from 0 to 12.9
-Calculating step 3 in /pfr. Currently in 0.645. Going from 0 to 12.9
-Calculating step 4 in /pfr. Currently in 0.9675. Going from 0 to 12.9
-Calculating step 5 in /pfr. Currently in 1.29. Going from 0 to 12.9
-Calculating step 6 in /pfr. Currently in 1.6125. Going from 0 to 12.9
-Calculating step 7 in /pfr. Currently in 1.935. Going from 0 to 12.9
-Calculating step 8 in /pfr. Currently in 2.2575. Going from 0 to 12.9
-Calculating step 9 in /pfr. Currently in 2.58. Going from 0 to 12.9
-Calculating step 10 in /pfr. Currently in 2.9025. Going from 0 to 12.9
-Calculating step 11 in /pfr. Currently in 3.225. Going from 0 to 12.9
-Calculating step 12 in /pfr. Currently in 3.5475. Going from 0 to 12.9
-Calculating step 13 in /pfr. Currently in 3.87. Going from 0 to 12.9
-Calculating step 14 in /pfr. Currently in 4.1925. Going from 0 to 12.9
-Calculating step 15 in /pfr. Currently in 4.515. Going from 0 to 12.9
-Calculating step 16 in /pfr. Currently in 4.8375. Going from 0 to 12.9
-Calculating step 17 in /pfr. Currently in 5.16. Going from 0 to 12.9
-Calculating step 18 in /pfr. Currently in 5.4825. Going from 0 to 12.9
-Calculating step 19 in /pfr. Currently in 5.805. Going from 0 to 12.9
-Calculating step 20 in /pfr. Currently in 6.1275. Going from 0 to 12.9
-Calculating step 21 in /pfr. Currently in 6.45. Going from 0 to 12.9
-Calculating step 22 in /pfr. Currently in 6.7725. Going from 0 to 12.9
-Calculating step 23 in /pfr. Currently in 7.095. Going from 0 to 12.9
-Calculating step 24 in /pfr. Currently in 7.4175. Going from 0 to 12.9
-Calculating step 25 in /pfr. Currently in 7.74. Going from 0 to 12.9
-Calculating step 26 in /pfr. Currently in 8.0625. Going from 0 to 12.9
-Calculating step 27 in /pfr. Currently in 8.385. Going from 0 to 12.9
-Calculating step 28 in /pfr. Currently in 8.7075. Going from 0 to 12.9
-Calculating step 29 in /pfr. Currently in 9.03. Going from 0 to 12.9
-Calculating step 30 in /pfr. Currently in 9.3525. Going from 0 to 12.9
-Calculating step 31 in /pfr. Currently in 9.675. Going from 0 to 12.9
-Calculating step 32 in /pfr. Currently in 9.9975. Going from 0 to 12.9
-Calculating step 33 in /pfr. Currently in 10.32. Going from 0 to 12.9
-Calculating step 34 in /pfr. Currently in 10.6425. Going from 0 to 12.9
-Calculating step 35 in /pfr. Currently in 10.965. Going from 0 to 12.9
-Calculating step 36 in /pfr. Currently in 11.2875. Going from 0 to 12.9
-Calculating step 37 in /pfr. Currently in 11.61. Going from 0 to 12.9
-Calculating step 38 in /pfr. Currently in 11.9325. Going from 0 to 12.9
-Calculating step 39 in /pfr. Currently in 12.255. Going from 0 to 12.9
-Calculating step 40 in /pfr. Currently in 12.5775. Going from 0 to 12.9
-Calculating step 41 in /pfr. Currently in 12.9. Going from 0 to 12.9
+Error processing command:
+<class 'TypeError'>
+'int' object is not subscriptable
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 409, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 408, in InnerSolve
+    op.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\KineticReactor.py", line 1389, in Solve
+    h0Base = self.GetPropertiesFromPT(0.0, 0.0, z0, ['rxnBaseH'], LIQUID_PHASE)[0]
+
+
 >> 
 >> pfr.T
 Profile: T
-[56.85000004958408, 57.86100858936027, 58.90564682542066, 59.98373249184664, 61.09456976840221, 62.2368228762013, 63.40837794989187, 64.60620005558837, 65.82619663820634, 67.06310380238148, 68.31041687371646, 69.56039026853023, 70.80413189568651, 72.03181205387045, 73.23299466961373, 74.39708008398395, 75.51382636945584, 76.57389578112429, 77.56936089798535, 78.49410624411541, 79.34407669183264, 80.11734990904216, 80.81403928395372, 81.43605843771792, 81.98679332134577, 82.47073152666411, 82.89309272951272, 83.25949291634441, 83.57566211654432, 83.84722370315507, 84.07953448617593, 84.27757918144027, 84.44591000877779, 84.58862139908825, 84.70920509656054, 84.8111464162613, 84.89709284450788, 84.96945862950332, 85.03032199751067, 85.08146332189591, 85.12440170830274, 85.12440170830291]
+[-273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15]
 >> pfr.f
 Profile: f
-[[146.7         16.3       ]
- [143.3490713   19.6509287 ]
- [139.87364426  23.12635574]
- [136.27269114  26.72730886]
- [132.54679249  30.45320751]
- [128.69859201  34.30140799]
- [124.73330872  38.26669128]
- [120.65928747  42.34071253]
- [116.48855299  46.51144701]
- [112.2373136   50.7626864 ]
- [107.92633985  55.07366015]
- [103.58112603  59.41887397]
- [ 99.23173509  63.76826491]
- [ 94.91223799  68.08776201]
- [ 90.6596949   72.3403051 ]
- [ 86.5126875   76.4873125 ]
- [ 82.50949312  80.49050688]
- [ 78.68607365  84.31392635]
- [ 75.07411124  87.92588876]
- [ 71.69933721  91.30066279]
- [ 68.58036154  94.41963846]
- [ 65.72812575  97.27187425]
- [ 63.14599581  99.85400419]
- [ 60.83041303 102.16958697]
- [ 58.77195207 104.22804793]
- [ 56.95660715 106.04339285]
- [ 55.36713657 107.63286343]
- [ 53.98433033 109.01566967]
- [ 52.78811108 110.21188892]
- [ 51.7584229  111.2415771 ]
- [ 50.87589893 112.12410107]
- [ 50.12232321 112.87767679]
- [ 49.48091641 113.51908359]
- [ 48.93648065 114.06351935]
- [ 48.47543583 114.52456417]
- [ 48.08578726 114.91421274]
- [ 47.75703495 115.24296505]
- [ 47.48005823 115.51994177]
- [ 47.24698466 115.75301534]
- [ 47.05105491 115.94894509]
- [ 46.88649076 116.11350924]
- [ 46.88649076 116.11350924]]
+[[0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]]
 >> pfr.r
 Profile: r
-[[0.00983552]
- [0.01020794]
- [0.0105872 ]
- [0.0109696 ]
- [0.01135023]
- [0.0117228 ]
- [0.01207948]
- [0.01241074]
- [0.01270537]
- [0.01295062]
- [0.0131326 ]
- [0.01323691]
- [0.01324963]
- [0.01315855]
- [0.01295455]
- [0.01263298]
- [0.01219479]
- [0.01164701]
- [0.01100271]
- [0.01028001]
- [0.00950063]
- [0.00868795]
- [0.00786505]
- [0.00705303]
- [0.00626976]
- [0.00552919]
- [0.00484118]
- [0.00421169]
- [0.00364338]
- [0.00313616]
- [0.00268793]
- [0.00229519]
- [0.00195356]
- [0.00165821]
- [0.00140423]
- [0.00118677]
- [0.0010013 ]
- [0.00084361]
- [0.00070989]
- [0.00059676]
- [0.00050123]
- [0.00050123]]
+[[0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]]
 >> 
 >> pfr.Ignored = 1
 >> 
@@ -218,276 +197,234 @@ r = k*(rxnCmp['N-BUTANE'].Concentration - rxnCmp['ISOBUTANE'].Concentration/Kc)
 r = r/3600.0                          #lbmol/(s*ft3)
 
 >> pfr.Ignored = None
-Calculating step 1 in /pfr. Currently in 0. Going from 0 to 12.9
-Calculating step 2 in /pfr. Currently in 0.3225. Going from 0 to 12.9
-Calculating step 3 in /pfr. Currently in 0.645. Going from 0 to 12.9
-Calculating step 4 in /pfr. Currently in 0.9675. Going from 0 to 12.9
-Calculating step 5 in /pfr. Currently in 1.29. Going from 0 to 12.9
-Calculating step 6 in /pfr. Currently in 1.6125. Going from 0 to 12.9
-Calculating step 7 in /pfr. Currently in 1.935. Going from 0 to 12.9
-Calculating step 8 in /pfr. Currently in 2.2575. Going from 0 to 12.9
-Calculating step 9 in /pfr. Currently in 2.58. Going from 0 to 12.9
-Calculating step 10 in /pfr. Currently in 2.9025. Going from 0 to 12.9
-Calculating step 11 in /pfr. Currently in 3.225. Going from 0 to 12.9
-Calculating step 12 in /pfr. Currently in 3.5475. Going from 0 to 12.9
-Calculating step 13 in /pfr. Currently in 3.87. Going from 0 to 12.9
-Calculating step 14 in /pfr. Currently in 4.1925. Going from 0 to 12.9
-Calculating step 15 in /pfr. Currently in 4.515. Going from 0 to 12.9
-Calculating step 16 in /pfr. Currently in 4.8375. Going from 0 to 12.9
-Calculating step 17 in /pfr. Currently in 5.16. Going from 0 to 12.9
-Calculating step 18 in /pfr. Currently in 5.4825. Going from 0 to 12.9
-Calculating step 19 in /pfr. Currently in 5.805. Going from 0 to 12.9
-Calculating step 20 in /pfr. Currently in 6.1275. Going from 0 to 12.9
-Calculating step 21 in /pfr. Currently in 6.45. Going from 0 to 12.9
-Calculating step 22 in /pfr. Currently in 6.7725. Going from 0 to 12.9
-Calculating step 23 in /pfr. Currently in 7.095. Going from 0 to 12.9
-Calculating step 24 in /pfr. Currently in 7.4175. Going from 0 to 12.9
-Calculating step 25 in /pfr. Currently in 7.74. Going from 0 to 12.9
-Calculating step 26 in /pfr. Currently in 8.0625. Going from 0 to 12.9
-Calculating step 27 in /pfr. Currently in 8.385. Going from 0 to 12.9
-Calculating step 28 in /pfr. Currently in 8.7075. Going from 0 to 12.9
-Calculating step 29 in /pfr. Currently in 9.03. Going from 0 to 12.9
-Calculating step 30 in /pfr. Currently in 9.3525. Going from 0 to 12.9
-Calculating step 31 in /pfr. Currently in 9.675. Going from 0 to 12.9
-Calculating step 32 in /pfr. Currently in 9.9975. Going from 0 to 12.9
-Calculating step 33 in /pfr. Currently in 10.32. Going from 0 to 12.9
-Calculating step 34 in /pfr. Currently in 10.6425. Going from 0 to 12.9
-Calculating step 35 in /pfr. Currently in 10.965. Going from 0 to 12.9
-Calculating step 36 in /pfr. Currently in 11.2875. Going from 0 to 12.9
-Calculating step 37 in /pfr. Currently in 11.61. Going from 0 to 12.9
-Calculating step 38 in /pfr. Currently in 11.9325. Going from 0 to 12.9
-Calculating step 39 in /pfr. Currently in 12.255. Going from 0 to 12.9
-Calculating step 40 in /pfr. Currently in 12.5775. Going from 0 to 12.9
-Calculating step 41 in /pfr. Currently in 12.9. Going from 0 to 12.9
+Error processing command:
+<class 'TypeError'>
+'int' object is not subscriptable
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 409, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 408, in InnerSolve
+    op.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\KineticReactor.py", line 1389, in Solve
+    h0Base = self.GetPropertiesFromPT(0.0, 0.0, z0, ['rxnBaseH'], LIQUID_PHASE)[0]
+
+
 >> 
 >> pfr.T
 Profile: T
-[56.85000004958408, 57.86181713831468, 58.90728401523813, 59.98621346391906, 61.09790304096754, 62.241008415949295, 63.413405033205834, 64.6120450156966, 65.8328206600849, 67.07045100265958, 68.31841297540825, 69.56894222919891, 70.81312884434476, 72.0411278087455, 73.24249193023434, 74.40661612919081, 75.5232597954377, 76.58309355975962, 77.57820490692399, 78.50249847219237, 79.35194254789388, 80.12463940155988, 80.82072619056237, 81.44213786181592, 81.99227818705299, 82.47564857994246, 82.89747853579746, 83.26339020819285, 83.57911670138651, 83.85028201358205, 84.08224176416911, 84.27997822991506, 84.44804041465403, 84.5905191263081, 84.71090228381956, 84.81267165474418, 84.89847114086075, 84.97071174609925, 85.03146875351518, 85.08251990625536, 85.1253819870733, 85.12538198707301]
+[-273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15]
 >> pfr.f
 Profile: f
-[[146.7         16.3       ]
- [143.34638649  19.65361351]
- [139.86818689  23.13181311]
- [136.26438737  26.73561263]
- [132.53558805  30.46441195]
- [128.68445893  34.31554107]
- [124.716253    38.283747  ]
- [120.63935742  42.36064258]
- [116.46584784  46.53415216]
- [112.21199147  50.78800853]
- [107.89862411  55.10137589]
- [103.55130879  59.44869121]
- [ 99.20017622  63.79982378]
- [ 94.87935879  68.12064121]
- [ 90.62596543  72.37403457]
- [ 86.47860802  76.52139198]
- [ 82.47557081  80.52442919]
- [ 78.65279709  84.34720291]
- [ 75.04192551  87.95807449]
- [ 71.6686228   91.3313772 ]
- [ 68.55141948  94.44858052]
- [ 65.70117019  97.29882981]
- [ 63.12115423  99.87884577]
- [ 60.80773285 102.19226715]
- [ 58.75141188 104.24858812]
- [ 56.93813043 106.06186957]
- [ 55.35060614 107.64939386]
- [ 53.96960195 109.03039805]
- [ 52.7750253  110.2249747 ]
- [ 51.74681471 111.25318529]
- [ 50.86560515 112.13439485]
- [ 50.11318768 112.88681232]
- [ 49.47279343 113.52720657]
- [ 48.9292369  114.0707631 ]
- [ 48.46895123 114.53104877]
- [ 48.07995502 114.92004498]
- [ 47.75176105 115.24823895]
- [ 47.4752606  115.5247394 ]
- [ 47.24259213 115.75740787]
- [ 47.04700615 115.95299385]
- [ 46.88273313 116.11726687]
- [ 46.88273313 116.11726687]]
+[[0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]]
 >> pfr.r
 Profile: r
-[[0.00984341]
- [0.01021612]
- [0.01059565]
- [0.01097827]
- [0.01135906]
- [0.01173172]
- [0.01208838]
- [0.01241949]
- [0.01271382]
- [0.01295859]
- [0.01313989]
- [0.01324331]
- [0.01325494]
- [0.01316257]
- [0.01295714]
- [0.01263405]
- [0.01219431]
- [0.01164505]
- [0.01099938]
- [0.01027553]
- [0.00949523]
- [0.0086819 ]
- [0.00785861]
- [0.00704644]
- [0.00626324]
- [0.00552291]
- [0.00483525]
- [0.0042062 ]
- [0.00363837]
- [0.00313166]
- [0.00268393]
- [0.00229166]
- [0.00195047]
- [0.00165553]
- [0.00140191]
- [0.00118479]
- [0.0009996 ]
- [0.00084216]
- [0.00070866]
- [0.00059571]
- [0.00050034]
- [0.00050034]]
+[[0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]]
 >> 
 >> copy /pfr
 Copied /pfr to the clipboard
 >> paste /
 Pasting /pfr
 Pasted /pfr as /pfrClone
-Calculating step 1 in /pfrClone. Currently in 0. Going from 0 to 12.9
-Calculating step 2 in /pfrClone. Currently in 0.3225. Going from 0 to 12.9
-Calculating step 3 in /pfrClone. Currently in 0.645. Going from 0 to 12.9
-Calculating step 4 in /pfrClone. Currently in 0.9675. Going from 0 to 12.9
-Calculating step 5 in /pfrClone. Currently in 1.29. Going from 0 to 12.9
-Calculating step 6 in /pfrClone. Currently in 1.6125. Going from 0 to 12.9
-Calculating step 7 in /pfrClone. Currently in 1.935. Going from 0 to 12.9
-Calculating step 8 in /pfrClone. Currently in 2.2575. Going from 0 to 12.9
-Calculating step 9 in /pfrClone. Currently in 2.58. Going from 0 to 12.9
-Calculating step 10 in /pfrClone. Currently in 2.9025. Going from 0 to 12.9
-Calculating step 11 in /pfrClone. Currently in 3.225. Going from 0 to 12.9
-Calculating step 12 in /pfrClone. Currently in 3.5475. Going from 0 to 12.9
-Calculating step 13 in /pfrClone. Currently in 3.87. Going from 0 to 12.9
-Calculating step 14 in /pfrClone. Currently in 4.1925. Going from 0 to 12.9
-Calculating step 15 in /pfrClone. Currently in 4.515. Going from 0 to 12.9
-Calculating step 16 in /pfrClone. Currently in 4.8375. Going from 0 to 12.9
-Calculating step 17 in /pfrClone. Currently in 5.16. Going from 0 to 12.9
-Calculating step 18 in /pfrClone. Currently in 5.4825. Going from 0 to 12.9
-Calculating step 19 in /pfrClone. Currently in 5.805. Going from 0 to 12.9
-Calculating step 20 in /pfrClone. Currently in 6.1275. Going from 0 to 12.9
-Calculating step 21 in /pfrClone. Currently in 6.45. Going from 0 to 12.9
-Calculating step 22 in /pfrClone. Currently in 6.7725. Going from 0 to 12.9
-Calculating step 23 in /pfrClone. Currently in 7.095. Going from 0 to 12.9
-Calculating step 24 in /pfrClone. Currently in 7.4175. Going from 0 to 12.9
-Calculating step 25 in /pfrClone. Currently in 7.74. Going from 0 to 12.9
-Calculating step 26 in /pfrClone. Currently in 8.0625. Going from 0 to 12.9
-Calculating step 27 in /pfrClone. Currently in 8.385. Going from 0 to 12.9
-Calculating step 28 in /pfrClone. Currently in 8.7075. Going from 0 to 12.9
-Calculating step 29 in /pfrClone. Currently in 9.03. Going from 0 to 12.9
-Calculating step 30 in /pfrClone. Currently in 9.3525. Going from 0 to 12.9
-Calculating step 31 in /pfrClone. Currently in 9.675. Going from 0 to 12.9
-Calculating step 32 in /pfrClone. Currently in 9.9975. Going from 0 to 12.9
-Calculating step 33 in /pfrClone. Currently in 10.32. Going from 0 to 12.9
-Calculating step 34 in /pfrClone. Currently in 10.6425. Going from 0 to 12.9
-Calculating step 35 in /pfrClone. Currently in 10.965. Going from 0 to 12.9
-Calculating step 36 in /pfrClone. Currently in 11.2875. Going from 0 to 12.9
-Calculating step 37 in /pfrClone. Currently in 11.61. Going from 0 to 12.9
-Calculating step 38 in /pfrClone. Currently in 11.9325. Going from 0 to 12.9
-Calculating step 39 in /pfrClone. Currently in 12.255. Going from 0 to 12.9
-Calculating step 40 in /pfrClone. Currently in 12.5775. Going from 0 to 12.9
-Calculating step 41 in /pfrClone. Currently in 12.9. Going from 0 to 12.9
+Error processing command:
+<class 'TypeError'>
+'int' object is not subscriptable
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 409, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 408, in InnerSolve
+    op.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\KineticReactor.py", line 1389, in Solve
+    h0Base = self.GetPropertiesFromPT(0.0, 0.0, z0, ['rxnBaseH'], LIQUID_PHASE)[0]
+
+
 >> pfrClone.T
 Profile: T
-[56.85000004958408, 57.86181713831468, 58.90728401523813, 59.98621346391906, 61.09790304096754, 62.241008415949295, 63.413405033205834, 64.6120450156966, 65.8328206600849, 67.07045100265958, 68.31841297540825, 69.56894222919891, 70.81312884434476, 72.0411278087455, 73.24249193023434, 74.40661612919081, 75.5232597954377, 76.58309355975962, 77.57820490692399, 78.50249847219237, 79.35194254789388, 80.12463940155988, 80.82072619056237, 81.44213786181592, 81.99227818705299, 82.47564857994246, 82.89747853579746, 83.26339020819285, 83.57911670138651, 83.85028201358205, 84.08224176416911, 84.27997822991506, 84.44804041465403, 84.5905191263081, 84.71090228381956, 84.81267165474418, 84.89847114086075, 84.97071174609925, 85.03146875351518, 85.08251990625536, 85.1253819870733, 85.12538198707301]
+[-273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15, -273.15]
 >> pfrClone.f
 Profile: f
-[[146.7         16.3       ]
- [143.34638649  19.65361351]
- [139.86818689  23.13181311]
- [136.26438737  26.73561263]
- [132.53558805  30.46441195]
- [128.68445893  34.31554107]
- [124.716253    38.283747  ]
- [120.63935742  42.36064258]
- [116.46584784  46.53415216]
- [112.21199147  50.78800853]
- [107.89862411  55.10137589]
- [103.55130879  59.44869121]
- [ 99.20017622  63.79982378]
- [ 94.87935879  68.12064121]
- [ 90.62596543  72.37403457]
- [ 86.47860802  76.52139198]
- [ 82.47557081  80.52442919]
- [ 78.65279709  84.34720291]
- [ 75.04192551  87.95807449]
- [ 71.6686228   91.3313772 ]
- [ 68.55141948  94.44858052]
- [ 65.70117019  97.29882981]
- [ 63.12115423  99.87884577]
- [ 60.80773285 102.19226715]
- [ 58.75141188 104.24858812]
- [ 56.93813043 106.06186957]
- [ 55.35060614 107.64939386]
- [ 53.96960195 109.03039805]
- [ 52.7750253  110.2249747 ]
- [ 51.74681471 111.25318529]
- [ 50.86560515 112.13439485]
- [ 50.11318768 112.88681232]
- [ 49.47279343 113.52720657]
- [ 48.9292369  114.0707631 ]
- [ 48.46895123 114.53104877]
- [ 48.07995502 114.92004498]
- [ 47.75176105 115.24823895]
- [ 47.4752606  115.5247394 ]
- [ 47.24259213 115.75740787]
- [ 47.04700615 115.95299385]
- [ 46.88273313 116.11726687]
- [ 46.88273313 116.11726687]]
+[[0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]
+ [0. 0.]]
 >> pfrClone.r
 Profile: r
-[[0.00984341]
- [0.01021612]
- [0.01059565]
- [0.01097827]
- [0.01135906]
- [0.01173172]
- [0.01208838]
- [0.01241949]
- [0.01271382]
- [0.01295859]
- [0.01313989]
- [0.01324331]
- [0.01325494]
- [0.01316257]
- [0.01295714]
- [0.01263405]
- [0.01219431]
- [0.01164505]
- [0.01099938]
- [0.01027553]
- [0.00949523]
- [0.0086819 ]
- [0.00785861]
- [0.00704644]
- [0.00626324]
- [0.00552291]
- [0.00483525]
- [0.0042062 ]
- [0.00363837]
- [0.00313166]
- [0.00268393]
- [0.00229166]
- [0.00195047]
- [0.00165553]
- [0.00140191]
- [0.00118479]
- [0.0009996 ]
- [0.00084216]
- [0.00070866]
- [0.00059571]
- [0.00050034]
- [0.00050034]]
+[[0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]
+ [0.]]
 >> 
 >> 

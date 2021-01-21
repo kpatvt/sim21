@@ -116,16 +116,16 @@ WATER              = 1.0 =
 Port: /coldOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 483.1578140137343 = K
+T                  = 483.157812082101 = K
 P                  = 101.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 18015.280000000002 = kg/h
-VolumeFlow         = 39605.77040722522 = m3/hr
+VolumeFlow         = 39605.7702469476 = m3/hr
 StdLiqVolumeFlow   = 18.07 = m3/hr
-H                  = -235523.92395022672 = kJ/kmol
-Energy             = -65423312.208396316 = W
+H                  = -235523.9239614024 = kJ/kmol
+Energy             = -65423312.211500674 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9957645169789819 = 
+ZFactor            = 0.9957645169302983 = 
 WATER              = 1.0 = 
 
 >> hotInlet.Out
@@ -148,16 +148,16 @@ WATER              = 1.0 =
 Port: /hotOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 487.48087081648595 = K
+T                  = 487.48086841401886 = K
 P                  = 101.0 = kPa
 MoleFlow           = 800.0 = kgmole/h
 MassFlow           = 14412.224 = kg/h
-VolumeFlow         = 31971.557752798668 = m3/hr
+VolumeFlow         = 31971.557593348778 = m3/hr
 StdLiqVolumeFlow   = 14.456 = m3/hr
-H                  = -235371.62849998483 = kJ/kmol
-Energy             = -52304806.33332996 = W
+H                  = -235371.6284860152 = kJ/kmol
+Energy             = -52304806.3302256 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9958717673018214 = 
+ZFactor            = 0.9958717672431537 = 
 WATER              = 1.0 = 
 
 >> exch.UA0_1
@@ -170,11 +170,11 @@ UA   = 8288.42280702 * W/K
 C:\Users\kpatv\Code\sim21\sim21\solver\EquationSolver.py:700: RuntimeWarning: invalid value encountered in double_scalars
   delta = (bound2 - bound1) / (nuVals - 1)
 Calculating Jacobian for /exch
-/exch Iteration 1 Max Error 2.986672
+/exch Iteration 1 Max Error 2.986671
 Calculating Jacobian for /exch
-/exch Iteration 2 Max Error 2.177503
+/exch Iteration 2 Max Error 2.177501
 Calculating Jacobian for /exch
-/exch Iteration 3 Max Error 0.352029
+/exch Iteration 3 Max Error 0.352028
 Calculating Jacobian for /exch
 /exch Iteration 4 Max Error 0.004621
 Calculating Jacobian for /exch
@@ -202,16 +202,16 @@ WATER              = 1.0 =
 Port: /coldOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 474.42433265913144 = K
+T                  = 474.4243297932913 = K
 P                  = 101.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 18015.280000000002 = kg/h
-VolumeFlow         = 38880.98353355117 = m3/hr
+VolumeFlow         = 38880.98329567492 = m3/hr
 StdLiqVolumeFlow   = 18.07 = m3/hr
-H                  = -235831.07997574654 = kJ/kmol
-Energy             = -65508633.32659627 = W
+H                  = -235831.08006235107 = kJ/kmol
+Energy             = -65508633.35065308 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9955371605930464 = 
+ZFactor            = 0.9955371605159989 = 
 WATER              = 1.0 = 
 
 >> hotInlet.Out
@@ -234,16 +234,16 @@ WATER              = 1.0 =
 Port: /hotOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 498.3580327193699 = K
+T                  = 498.35802708602716 = K
 P                  = 101.0 = kPa
 MoleFlow           = 800.0 = kgmole/h
 MassFlow           = 14412.224 = kg/h
-VolumeFlow         = 32693.3228370691 = m3/hr
+VolumeFlow         = 32693.322463335608 = m3/hr
 StdLiqVolumeFlow   = 14.456 = m3/hr
-H                  = -234987.68346808504 = kJ/kmol
-Energy             = -52219485.21513001 = W
+H                  = -234987.6833598294 = kJ/kmol
+Energy             = -52219485.191073194 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9961272068380226 = 
+ZFactor            = 0.9961272067108304 = 
 WATER              = 1.0 = 
 
 >> exch.UA0_1
@@ -258,22 +258,22 @@ Can't set parameter IsCounterCurrent0 to value 1
 Error processing command:
 <class 'sim21.solver.Error.SimError'>
 Can't set parameter IsCounterCurrent0 to value 1
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3597, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 292, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 387, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 388, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 362, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 363, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1992, in Equal
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1993, in Equal
     raise e
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1989, in Equal
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1990, in Equal
     lhsObj.SetValue(rhsDesc, calcStatus)
 
   File "C:\Users\kpatv\Code\sim21\sim21\unitop\UnitOperations.py", line 1976, in SetValue
@@ -308,16 +308,16 @@ WATER              = 1.0 =
 Port: /coldOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 474.42433265913144 = K
+T                  = 474.4243297932913 = K
 P                  = 101.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 18015.280000000002 = kg/h
-VolumeFlow         = 38880.98353355117 = m3/hr
+VolumeFlow         = 38880.98329567492 = m3/hr
 StdLiqVolumeFlow   = 18.07 = m3/hr
-H                  = -235831.07997574654 = kJ/kmol
-Energy             = -65508633.32659627 = W
+H                  = -235831.08006235107 = kJ/kmol
+Energy             = -65508633.35065308 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9955371605930464 = 
+ZFactor            = 0.9955371605159989 = 
 WATER              = 1.0 = 
 
 >> hotInlet.Out
@@ -340,16 +340,16 @@ WATER              = 1.0 =
 Port: /hotOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 498.3580327193699 = K
+T                  = 498.35802708602716 = K
 P                  = 101.0 = kPa
 MoleFlow           = 800.0 = kgmole/h
 MassFlow           = 14412.224 = kg/h
-VolumeFlow         = 32693.3228370691 = m3/hr
+VolumeFlow         = 32693.322463335608 = m3/hr
 StdLiqVolumeFlow   = 14.456 = m3/hr
-H                  = -234987.68346808504 = kJ/kmol
-Energy             = -52219485.21513001 = W
+H                  = -234987.6833598294 = kJ/kmol
+Energy             = -52219485.191073194 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9961272068380226 = 
+ZFactor            = 0.9961272067108304 = 
 WATER              = 1.0 = 
 
 >> 
@@ -578,7 +578,7 @@ UA   = 8288.42280702 * W/K
 >> 
 >> exch.NumberSides = 2
 Calculating Jacobian for /exch
-/exch Iteration 1 Max Error 0.356236
+/exch Iteration 1 Max Error 0.356238
 Calculating Jacobian for /exch
 /exch Iteration 2 Max Error 0.010557
 Calculating Jacobian for /exch
@@ -605,16 +605,16 @@ WATER              = 1.0 =
 Port: /coldOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 483.18632744269297 = K
+T                  = 483.18629772410395 = K
 P                  = 101.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 18015.280000000002 = kg/h
-VolumeFlow         = 39608.136312928415 = m3/hr
+VolumeFlow         = 39608.13384702575 = m3/hr
 StdLiqVolumeFlow   = 18.07 = m3/hr
-H                  = -235522.9200150833 = kJ/kmol
-Energy             = -65423033.33752315 = W
+H                  = -235522.92100439564 = kJ/kmol
+Energy             = -65423033.61233213 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9957652355367922 = 
+ZFactor            = 0.9957652347879418 = 
 WATER              = 1.0 = 
 
 >> hotInlet.Out
@@ -637,16 +637,16 @@ WATER              = 1.0 =
 Port: /hotOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 487.44526838623403 = K
+T                  = 487.4453006834737 = K
 P                  = 101.0 = kPa
 MoleFlow           = 800.0 = kgmole/h
 MassFlow           = 14412.224 = kg/h
-VolumeFlow         = 31969.194845445316 = m3/hr
+VolumeFlow         = 31969.196988991014 = m3/hr
 StdLiqVolumeFlow   = 14.456 = m3/hr
-H                  = -235372.88341891408 = kJ/kmol
-Energy             = -52305085.20420313 = W
+H                  = -235372.88218227366 = kJ/kmol
+Energy             = -52305084.92939415 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9958708977900024 = 
+ZFactor            = 0.9958708985788944 = 
 WATER              = 1.0 = 
 
 >> exch.UA0_1
@@ -666,19 +666,19 @@ Cannot cd to object Rootclone
 Error processing command:
 <class 'sim21.cli.CommandInterface.CmdError'>
 Cannot cd to object Rootclone
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3597, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 292, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 387, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 388, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 342, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 343, in ProcessCommand
     return commands[lhsDesc](self, remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 446, in Cd
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 447, in Cd
     raise CmdError('CMDCDInvalidObject', toDesc)
 
 
@@ -702,16 +702,16 @@ WATER              = 1.0 =
 Port: /coldOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 483.18632744269297 = K
+T                  = 483.18629772410395 = K
 P                  = 101.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 18015.280000000002 = kg/h
-VolumeFlow         = 39608.136312928415 = m3/hr
+VolumeFlow         = 39608.13384702575 = m3/hr
 StdLiqVolumeFlow   = 18.07 = m3/hr
-H                  = -235522.9200150833 = kJ/kmol
-Energy             = -65423033.33752315 = W
+H                  = -235522.92100439564 = kJ/kmol
+Energy             = -65423033.61233213 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9957652355367922 = 
+ZFactor            = 0.9957652347879418 = 
 WATER              = 1.0 = 
 
 >> hotInlet.Out
@@ -734,16 +734,16 @@ WATER              = 1.0 =
 Port: /hotOutlet.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 487.44526838623403 = K
+T                  = 487.4453006834737 = K
 P                  = 101.0 = kPa
 MoleFlow           = 800.0 = kgmole/h
 MassFlow           = 14412.224 = kg/h
-VolumeFlow         = 31969.194845445316 = m3/hr
+VolumeFlow         = 31969.196988991014 = m3/hr
 StdLiqVolumeFlow   = 14.456 = m3/hr
-H                  = -235372.88341891408 = kJ/kmol
-Energy             = -52305085.20420313 = W
+H                  = -235372.88218227366 = kJ/kmol
+Energy             = -52305084.92939415 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.9958708977900024 = 
+ZFactor            = 0.9958708985788944 = 
 WATER              = 1.0 = 
 
 >> exch.UA0_1

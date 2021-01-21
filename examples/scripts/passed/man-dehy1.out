@@ -126,49 +126,49 @@ Calculating disturbance 10 of 12 in jacobian of /dehy
 /dehy Inner Error 0.014424
 /dehy Inner Error 0.013670
 Step size too small - Exiting inner loop
-/dehy Iteration 1 Outer Error 0.551933
+/dehy Iteration 1 Outer Error 0.551936
 Calculating Jacobian for /dehy
 Calculating disturbance 10 of 12 in jacobian of /dehy
-/dehy Inner Error 0.101411
-/dehy Inner Error 0.101109
-/dehy Inner Error 0.099875
-/dehy Inner Error 0.099281
-/dehy Inner Error 0.097920
-/dehy Inner Error 0.097197
+/dehy Inner Error 0.101410
+/dehy Inner Error 0.101108
+/dehy Inner Error 0.099873
+/dehy Inner Error 0.099280
+/dehy Inner Error 0.097919
+/dehy Inner Error 0.097195
 Step size too small - Exiting inner loop
-/dehy Iteration 2 Outer Error 0.889047
+/dehy Iteration 2 Outer Error 0.889049
 Calculating Jacobian for /dehy
 Calculating disturbance 10 of 12 in jacobian of /dehy
-/dehy Inner Error 0.518470
+/dehy Inner Error 0.518471
 /dehy Inner Error 0.417792
-/dehy Inner Error 0.332345
-/dehy Inner Error 0.332051
-/dehy Inner Error 0.186370
+/dehy Inner Error 0.332331
+/dehy Inner Error 0.332038
+/dehy Inner Error 0.186352
 Step size too small - Exiting inner loop
-/dehy Iteration 3 Outer Error 0.473051
+/dehy Iteration 3 Outer Error 0.473026
 Calculating Jacobian for /dehy
 Calculating disturbance 10 of 12 in jacobian of /dehy
-/dehy Inner Error 0.169581
+/dehy Inner Error 0.169580
 /dehy Inner Error 0.167664
 /dehy Inner Error 0.166667
-/dehy Inner Error 0.166408
-/dehy Inner Error 0.166320
-/dehy Inner Error 0.166276
+/dehy Inner Error 0.166407
+/dehy Inner Error 0.166319
+/dehy Inner Error 0.166275
 Step size too small - Exiting inner loop
-/dehy Iteration 4 Outer Error 5.934726
+/dehy Iteration 4 Outer Error 5.934981
 Calculating Jacobian for /dehy
 Calculating disturbance 10 of 12 in jacobian of /dehy
-/dehy Inner Error 2.814754
-/dehy Inner Error 2.788109
-/dehy Inner Error 2.682294
-/dehy Inner Error 2.389619
-/dehy Inner Error 1.662571
+/dehy Inner Error 2.792706
+/dehy Inner Error 2.766460
+/dehy Inner Error 2.662299
+/dehy Inner Error 2.373143
+/dehy Inner Error 1.662526
 Step size too small - Exiting inner loop
-/dehy Iteration 5 Outer Error 11.271105
+/dehy Iteration 5 Outer Error 11.265376
 Calculating Jacobian for /dehy
 Calculating disturbance 10 of 12 in jacobian of /dehy
 Could not invert Jacobian in /dehy
-/dehy failed to converge in 5 iterations - error = 11.271105
+/dehy failed to converge in 5 iterations - error = 11.265376
 >> 
 >> Stage_0.v.Port
 Port: /dehy.VapourDraw_0_v + sim21.solver.Ports.Port_Material
@@ -240,40 +240,434 @@ Copied / to the clipboard
 >> paste /
 Pasting /
 Pasted / as /RootClone
-/RootClone.dehy Inner Error 59.532290
-/RootClone.dehy Inner Error 47.225551
-/RootClone.dehy Inner Error 47.224973
-/RootClone.dehy Inner Error 47.038395
+/RootClone.dehy Inner Error 59.534615
+/RootClone.dehy Inner Error 47.185805
 Step size too small - Exiting inner loop
-/RootClone.dehy Iteration 1 Outer Error 6.750072
+/RootClone.dehy Iteration 1 Outer Error 6.752992
 Calculating Jacobian for /RootClone.dehy
 Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-Step size too small - Exiting inner loop
-/RootClone.dehy Iteration 2 Outer Error 2.987109
-Calculating Jacobian for /RootClone.dehy
-Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-/RootClone.dehy Inner Error 2.836867
-/RootClone.dehy Inner Error 2.836688
-/RootClone.dehy Inner Error 2.836628
-/RootClone.dehy Inner Error 2.836607
-/RootClone.dehy Inner Error 2.836599
+/RootClone.dehy Inner Error 1.245341
 Inner loop is not changing significantly - exiting
-/RootClone.dehy Iteration 3 Outer Error 11.842398
+/RootClone.dehy Iteration 2 Outer Error 2.704807
 Calculating Jacobian for /RootClone.dehy
 Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-/RootClone.dehy Inner Error 0.378567
-/RootClone.dehy Inner Error 0.378377
-/RootClone.dehy Inner Error 0.378041
-/RootClone.dehy Inner Error 0.372218
-/RootClone.dehy Inner Error 0.366824
-/RootClone.dehy Inner Error 0.362189
-/RootClone.dehy Inner Error 0.362173
+/RootClone.dehy Inner Error 0.580805
+/RootClone.dehy Inner Error 0.580802
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 3 Outer Error 11.460986
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 1.179734
 Step size too small - Exiting inner loop
-/RootClone.dehy Iteration 4 Outer Error 17.678002
+/RootClone.dehy Iteration 4 Outer Error 354.594968
 Calculating Jacobian for /RootClone.dehy
 Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-Could not invert Jacobian in /RootClone.dehy
-/RootClone.dehy failed to converge in 4 iterations - error = 17.678002
+/RootClone.dehy Inner Error 0.188497
+/RootClone.dehy Inner Error 0.188276
+/RootClone.dehy Inner Error 0.187675
+/RootClone.dehy Inner Error 0.186020
+/RootClone.dehy Inner Error 0.181100
+/RootClone.dehy Inner Error 0.162832
+/RootClone.dehy Inner Error 0.140021
+/RootClone.dehy Inner Error 0.132091
+/RootClone.dehy Inner Error 0.127155
+/RootClone.dehy Inner Error 0.121709
+/RootClone.dehy Inner Error 0.082408
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 5 Outer Error 3.514757
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.168386
+/RootClone.dehy Inner Error 0.157412
+/RootClone.dehy Inner Error 0.136515
+/RootClone.dehy Inner Error 0.108650
+/RootClone.dehy Inner Error 0.089258
+/RootClone.dehy Inner Error 0.080141
+/RootClone.dehy Inner Error 0.077928
+/RootClone.dehy Inner Error 0.077925
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 6 Outer Error 2.973281
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 7 Outer Error 27.660468
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 7.773290
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 8 Outer Error 8.306545
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.325099
+/RootClone.dehy Inner Error 0.322986
+/RootClone.dehy Inner Error 0.319465
+/RootClone.dehy Inner Error 0.315624
+/RootClone.dehy Inner Error 0.312738
+/RootClone.dehy Inner Error 0.309429
+/RootClone.dehy Inner Error 0.308776
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 9 Outer Error 4.883242
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.523491
+/RootClone.dehy Inner Error 0.522293
+/RootClone.dehy Inner Error 0.517500
+/RootClone.dehy Inner Error 0.517399
+/RootClone.dehy Inner Error 0.517123
+/RootClone.dehy Inner Error 0.516261
+/RootClone.dehy Inner Error 0.506026
+/RootClone.dehy Inner Error 0.490448
+/RootClone.dehy Inner Error 0.488947
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 10 Outer Error 5.923518
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.356470
+/RootClone.dehy Inner Error 0.356460
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 11 Outer Error 633382029.960220
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.524471
+/RootClone.dehy Inner Error 0.524316
+/RootClone.dehy Inner Error 0.524242
+/RootClone.dehy Inner Error 0.524210
+/RootClone.dehy Inner Error 0.524198
+/RootClone.dehy Inner Error 0.524193
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 12 Outer Error 31.416216
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.112132
+/RootClone.dehy Inner Error 0.112131
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 13 Outer Error 2.305709
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 14 Outer Error 7.667918
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.347341
+/RootClone.dehy Inner Error 0.347341
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 15 Outer Error 1.000000
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 10.582139
+/RootClone.dehy Inner Error 10.566560
+/RootClone.dehy Inner Error 10.546665
+/RootClone.dehy Inner Error 10.529617
+/RootClone.dehy Inner Error 10.518999
+/RootClone.dehy Inner Error 10.512259
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 16 Outer Error 29.291686
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.556736
+/RootClone.dehy Inner Error 0.556732
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 17 Outer Error 10.677174
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 17.429671
+/RootClone.dehy Inner Error 7.356894
+/RootClone.dehy Inner Error 7.327155
+/RootClone.dehy Inner Error 6.763842
+/RootClone.dehy Inner Error 6.498274
+/RootClone.dehy Inner Error 6.452301
+/RootClone.dehy Inner Error 6.332603
+/RootClone.dehy Inner Error 6.265031
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 18 Outer Error 16.973404
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.420248
+/RootClone.dehy Inner Error 0.417218
+/RootClone.dehy Inner Error 0.413892
+/RootClone.dehy Inner Error 0.409214
+/RootClone.dehy Inner Error 0.408158
+/RootClone.dehy Inner Error 0.407848
+/RootClone.dehy Inner Error 0.407836
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 19 Outer Error 0.614531
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.344892
+/RootClone.dehy Inner Error 0.327317
+/RootClone.dehy Inner Error 0.315781
+/RootClone.dehy Inner Error 0.286556
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 20 Outer Error 0.113022
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.264903
+/RootClone.dehy Inner Error 0.261252
+/RootClone.dehy Inner Error 0.259851
+/RootClone.dehy Inner Error 0.259704
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 21 Outer Error 0.367709
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.246396
+/RootClone.dehy Inner Error 0.245568
+/RootClone.dehy Inner Error 0.243023
+/RootClone.dehy Inner Error 0.232300
+/RootClone.dehy Inner Error 0.216671
+/RootClone.dehy Inner Error 0.214451
+/RootClone.dehy Inner Error 0.202861
+/RootClone.dehy Inner Error 0.202094
+/RootClone.dehy Inner Error 0.200294
+/RootClone.dehy Inner Error 0.196606
+/RootClone.dehy Inner Error 0.195213
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 22 Outer Error 0.648971
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.164279
+/RootClone.dehy Inner Error 0.159452
+/RootClone.dehy Inner Error 0.156509
+/RootClone.dehy Inner Error 0.152418
+/RootClone.dehy Inner Error 0.148645
+/RootClone.dehy Inner Error 0.142502
+/RootClone.dehy Inner Error 0.136982
+/RootClone.dehy Inner Error 0.115546
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 23 Outer Error 1.304047
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.079235
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 24 Outer Error 5.114663
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.115298
+/RootClone.dehy Inner Error 0.115251
+/RootClone.dehy Inner Error 0.115149
+/RootClone.dehy Inner Error 0.115063
+/RootClone.dehy Inner Error 0.115044
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 25 Outer Error 5.898261
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.144196
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 26 Outer Error 3.750583
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.188299
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 27 Outer Error 4.303999
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.212616
+/RootClone.dehy Inner Error 0.212534
+/RootClone.dehy Inner Error 0.212505
+/RootClone.dehy Inner Error 0.212495
+/RootClone.dehy Inner Error 0.212491
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 28 Outer Error 8.136447
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.169808
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 29 Outer Error 5.134219
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 30 Outer Error 1.704334
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 31 Outer Error 376.306472
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 32 Outer Error 0.989610
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.825210
+/RootClone.dehy Inner Error 0.825131
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 33 Outer Error 31.257598
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.343671
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 34 Outer Error 9.454491
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 35 Outer Error 3880358.362716
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.968805
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 36 Outer Error 36.586685
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.214993
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 37 Outer Error 39.477604
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.267302
+/RootClone.dehy Inner Error 0.267280
+/RootClone.dehy Inner Error 0.267222
+/RootClone.dehy Inner Error 0.267077
+/RootClone.dehy Inner Error 0.266795
+/RootClone.dehy Inner Error 0.266176
+/RootClone.dehy Inner Error 0.265826
+/RootClone.dehy Inner Error 0.263325
+/RootClone.dehy Inner Error 0.261069
+/RootClone.dehy Inner Error 0.255148
+/RootClone.dehy Inner Error 0.252731
+/RootClone.dehy Inner Error 0.245847
+/RootClone.dehy Inner Error 0.229713
+/RootClone.dehy Inner Error 0.226306
+/RootClone.dehy Inner Error 0.221659
+/RootClone.dehy Inner Error 0.213664
+/RootClone.dehy Inner Error 0.184627
+/RootClone.dehy Inner Error 0.091032
+/RootClone.dehy Inner Error 0.075368
+/RootClone.dehy Inner Error 0.073651
+/RootClone.dehy Iteration 38 Outer Error 316.627678
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.118125
+/RootClone.dehy Inner Error 0.102967
+/RootClone.dehy Inner Error 0.087235
+/RootClone.dehy Inner Error 0.078859
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 39 Outer Error 44723971330.497414
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.323482
+/RootClone.dehy Inner Error 0.291019
+/RootClone.dehy Inner Error 0.272054
+/RootClone.dehy Inner Error 0.260644
+/RootClone.dehy Inner Error 0.252890
+/RootClone.dehy Inner Error 0.233332
+/RootClone.dehy Inner Error 0.220540
+/RootClone.dehy Inner Error 0.167020
+/RootClone.dehy Inner Error 0.112192
+/RootClone.dehy Inner Error 0.069900
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 40 Outer Error 329458299.460203
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.677402
+/RootClone.dehy Inner Error 0.671647
+/RootClone.dehy Inner Error 0.663521
+/RootClone.dehy Inner Error 0.659710
+/RootClone.dehy Inner Error 0.654414
+/RootClone.dehy Inner Error 0.652275
+/RootClone.dehy Inner Error 0.652209
+/RootClone.dehy Inner Error 0.651199
+/RootClone.dehy Inner Error 0.649304
+/RootClone.dehy Inner Error 0.640975
+/RootClone.dehy Inner Error 0.628416
+/RootClone.dehy Inner Error 0.598295
+/RootClone.dehy Inner Error 0.546425
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 41 Outer Error 8.230875
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.244972
+/RootClone.dehy Inner Error 0.242956
+/RootClone.dehy Inner Error 0.241397
+/RootClone.dehy Inner Error 0.239648
+/RootClone.dehy Inner Error 0.236539
+/RootClone.dehy Inner Error 0.232081
+/RootClone.dehy Inner Error 0.231878
+/RootClone.dehy Inner Error 0.227224
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 42 Outer Error 2.955105
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.172312
+/RootClone.dehy Inner Error 0.162786
+/RootClone.dehy Inner Error 0.157972
+/RootClone.dehy Inner Error 0.153202
+/RootClone.dehy Inner Error 0.152165
+/RootClone.dehy Inner Error 0.145063
+/RootClone.dehy Inner Error 0.143602
+/RootClone.dehy Inner Error 0.140884
+/RootClone.dehy Inner Error 0.138716
+/RootClone.dehy Inner Error 0.136258
+/RootClone.dehy Inner Error 0.133273
+/RootClone.dehy Inner Error 0.130831
+/RootClone.dehy Inner Error 0.128854
+/RootClone.dehy Inner Error 0.127953
+/RootClone.dehy Inner Error 0.127525
+/RootClone.dehy Inner Error 0.127397
+/RootClone.dehy Inner Error 0.127302
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 43 Outer Error 4.845665
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.213438
+/RootClone.dehy Inner Error 0.212551
+/RootClone.dehy Inner Error 0.209331
+/RootClone.dehy Inner Error 0.208055
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 44 Outer Error 0.202416
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.113405
+/RootClone.dehy Inner Error 0.113390
+/RootClone.dehy Inner Error 0.113350
+/RootClone.dehy Inner Error 0.113324
+/RootClone.dehy Inner Error 0.113261
+/RootClone.dehy Inner Error 0.113234
+/RootClone.dehy Inner Error 0.113174
+/RootClone.dehy Inner Error 0.113138
+/RootClone.dehy Inner Error 0.113021
+/RootClone.dehy Inner Error 0.112150
+/RootClone.dehy Inner Error 0.108879
+/RootClone.dehy Inner Error 0.099926
+/RootClone.dehy Inner Error 0.080732
+/RootClone.dehy Inner Error 0.055715
+/RootClone.dehy Inner Error 0.052611
+/RootClone.dehy Inner Error 0.032153
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 45 Outer Error 0.507262
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.085993
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 46 Outer Error 0.150707
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.064276
+/RootClone.dehy Inner Error 0.063168
+/RootClone.dehy Inner Error 0.062781
+/RootClone.dehy Inner Error 0.062639
+/RootClone.dehy Inner Error 0.062587
+/RootClone.dehy Inner Error 0.062568
+/RootClone.dehy Inner Error 0.062561
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 47 Outer Error 0.067872
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.046755
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 48 Outer Error 0.053852
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.064404
+/RootClone.dehy Inner Error 0.064397
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 49 Outer Error 0.101529
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.088334
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 50 Outer Error 0.057226
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy failed to converge in 51 iterations - error = 0.057226
 >> cd /RootClone.dehy
 /RootClone.dehy
 >> Stage_0.v.Port

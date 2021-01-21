@@ -151,17 +151,17 @@ N-HEXANE           = 2.1330034431767946e-09 =
 >> draw1.Out
 Port: /draw1.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.9999972533431977 = 
+VapFrac            = 0.9999972410613224 = 
 T                  = 254.45384358758437 = F
 P                  = 257.64705882352945 = psia
 MoleFlow           = 37.0 = lbmole/h
 MassFlow           = 2272.5159996639704 = lb/h
-VolumeFlow         = 0.2134906606182173 = ft3/s
+VolumeFlow         = 0.21349065841852402 = ft3/s
 StdLiqVolumeFlow   = 0.017036711724615843 = ft3/s
-H                  = -52574.15624320838 = Btu/lbmol
-Energy             = -1944916.6668906354 = Btu/hr
+H                  = -52574.15632141245 = Btu/lbmol
+Energy             = -1944916.6697836993 = Btu/hr
 MolecularWeight    = 61.41935134226947 = 
-ZFactor            = 0.6983368208692835 = 
+ZFactor            = 0.6983368136739956 = 
 ETHANE             = 0.00046091626563419017 = 
 PROPANE            = 0.04349756871723005 = 
 N-BUTANE           = 0.6894155112009361 = 

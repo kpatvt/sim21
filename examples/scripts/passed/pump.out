@@ -39,16 +39,16 @@ WATER              = 1.0 *
 Port: /pump.Waste.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 59.71519830728374 = C
+T                  = 59.715199652796514 = C
 P                  = 300.0 * kPa
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow is invalid
-H                  = -284699.64454168605 = kJ/kmol
+H                  = -284699.64454119926 = kJ/kmol
 Energy             = None
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0023584691988476347 = 
+ZFactor            = 0.002358469191730772 = 
 WATER              = 1.0 = 
 
 >> 
@@ -59,12 +59,12 @@ Connected to: None
 VapFrac            = 0.0 = 
 T                  = 20.0 * C
 P                  = 101.325 * kPa
-MoleFlow           = 0.33454829067086694 = kgmole/h
-MassFlow           = 6.026981129957056 = kg/h
-VolumeFlow         = 0.007079935730324107 = m3/hr
-StdLiqVolumeFlow   = 0.006045287612422566 = m3/hr
+MoleFlow           = 0.3345482906204202 = kgmole/h
+MassFlow           = 6.026981129048243 = kg/h
+VolumeFlow         = 0.007079935729256519 = m3/hr
+StdLiqVolumeFlow   = 0.006045287611510993 = m3/hr
 H                  = -287927.87804374425 = kJ/kmol
-Energy             = -26757.160954451243 = W
+Energy             = -26757.160950416514 = W
 MolecularWeight    = 18.01528 = 
 ZFactor            = 0.0008797576032393839 = 
 WATER              = 1.0 * 
@@ -73,16 +73,16 @@ WATER              = 1.0 *
 Port: /pump.Waste.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 59.71519830728374 = C
+T                  = 59.715199652796514 = C
 P                  = 300.0 * kPa
-MoleFlow           = 0.33454829067086694 = kgmole/h
-MassFlow           = 6.026981129957056 = kg/h
-VolumeFlow         = 0.007278976975187294 = m3/hr
-StdLiqVolumeFlow   = 0.006045287612422566 = m3/hr
-H                  = -284699.64454168605 = kJ/kmol
-Energy             = -26457.160954451243 = W
+MoleFlow           = 0.3345482906204202 = kgmole/h
+MassFlow           = 6.026981129048243 = kg/h
+VolumeFlow         = 0.00727897698154801 = m3/hr
+StdLiqVolumeFlow   = 0.006045287611510993 = m3/hr
+H                  = -284699.64454119926 = kJ/kmol
+Energy             = -26457.160950416514 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0023584691988476347 = 
+ZFactor            = 0.002358469191730772 = 
 WATER              = 1.0 = 
 
 >> InQ
@@ -99,16 +99,16 @@ Energy   = 300.0 * W
 Port: /pump.Ideal.In + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -14.719016493820618 = C
+T                  = -14.719016885072904 = C
 P                  = 101.325 * kPa
 MoleFlow           = 205.10982071 * kgmole/h
 MassFlow           = 3695.1108508404495 = kg/h
-VolumeFlow         = 4.2516783869751915 = m3/hr
+VolumeFlow         = 4.25167838604826 = m3/hr
 StdLiqVolumeFlow   = 3.7063344602297 = m3/hr
-H                  = -290754.35888231883 = kJ/kmol
-Energy             = -16565715.116945393 = W
+H                  = -290754.3590331118 = kJ/kmol
+Energy             = -16565715.125536812 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0009774888167007891 = 
+ZFactor            = 0.0009774888179675534 = 
 WATER              = 1.0 * 
 
 >> Out
@@ -130,7 +130,7 @@ WATER              = 1.0 =
 >> InQ
 Port: /pump.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 161347.39233012078 = W
+Energy   = 161347.40143735893 = W
 
 >> 
 >> Out.T =
@@ -179,22 +179,22 @@ WATER              = 1.0 *
 Port: /realPump.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 71.14321285796444 = C
+T                  = 71.14321929363149 = C
 P                  = 401.9617200113263 = kPa
 MoleFlow           = 170110.8445457579 = kgmole/h
 MassFlow           = 3064594.495528301 = kg/h
-VolumeFlow         = 3734.345484728847 = m3/hr
+VolumeFlow         = 3734.3455040055633 = m3/hr
 StdLiqVolumeFlow   = 3073.902960941845 = m3/hr
-H                  = -283766.71808195533 = kJ/kmol
-Energy             = -13408832240.80539 = W
+H                  = -283766.7176364827 = kJ/kmol
+Energy             = -13408832219.755466 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.003082510347613088 = 
+ZFactor            = 0.003082510305905506 = 
 WATER              = 1.0 = 
 
 >> InQ
 Port: /realPump.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 196627343.1638646 = W
+Energy   = 196627364.21378613 = W
 
 >> 
 >> # calculate flow from delP
@@ -220,22 +220,22 @@ WATER              = 1.0 =
 Port: /realPump.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 70.94957661292864 = C
+T                  = 70.94958310328195 = C
 P                  = 400.0 * kPa
 MoleFlow           = 169000.83427197475 = kgmole/h
 MassFlow           = 3044597.349643221 = kg/h
-VolumeFlow         = 3709.4035696945116 = m3/hr
+VolumeFlow         = 3709.4035889860857 = m3/hr
 StdLiqVolumeFlow   = 3053.8450752945837 = m3/hr
-H                  = -283782.5524679984 = kJ/kmol
-Energy             = -13322080033.03394 = W
+H                  = -283782.55201857665 = kJ/kmol
+Energy             = -13322080011.93598 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0030687174651954363 = 
+ZFactor            = 0.0030687174232733043 = 
 WATER              = 1.0 = 
 
 >> InQ
 Port: /realPump.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 194600966.8416643 = W
+Energy   = 194600987.9396248 = W
 
 >> 
 >> 
@@ -248,16 +248,16 @@ Pasted /pump /realPump as /pumpClone /realPumpClone
 Port: /pump.Waste.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 59.71519830728374 = C
+T                  = 59.715199652842955 = C
 P                  = 300.0 * kPa
 MoleFlow           = 205.10982071 = kgmole/h
 MassFlow           = 3695.1108508404495 = kg/h
-VolumeFlow         = 4.462703005712581 = m3/hr
+VolumeFlow         = 4.462703010286279 = m3/hr
 StdLiqVolumeFlow   = 3.7063344602297 = m3/hr
-H                  = -284699.64454168605 = kJ/kmol
-Energy             = -16220748.068929432 = W
+H                  = -284699.6445411993 = kJ/kmol
+Energy             = -16220748.068901699 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0023584691988476347 = 
+ZFactor            = 0.002358469191730994 = 
 WATER              = 1.0 = 
 
 >> /pumpClone.Out
@@ -280,16 +280,16 @@ WATER              = None
 Port: /realPump.OutPSensor.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 70.94957661292864 = C
+T                  = 70.94958310328195 = C
 P                  = 400.0 * kPa
 MoleFlow           = 169000.83427197475 = kgmole/h
 MassFlow           = 3044597.349643221 = kg/h
-VolumeFlow         = 3709.4035696945116 = m3/hr
+VolumeFlow         = 3709.4035889860857 = m3/hr
 StdLiqVolumeFlow   = 3053.8450752945837 = m3/hr
-H                  = -283782.5524679984 = kJ/kmol
-Energy             = -13322080033.03394 = W
+H                  = -283782.55201857665 = kJ/kmol
+Energy             = -13322080011.93598 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0030687174651954363 = 
+ZFactor            = 0.0030687174232733043 = 
 WATER              = 1.0 = 
 
 >> /realPumpClone.Out

@@ -1,0 +1,1450 @@
+>> clear
+>> 
+>> $th = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $th
+Thermo case attached to a unit operation. / to /th
+>> th + WATER
+WATER 
+>> 
+>> pipe = PipeSegment.PipeSegment()
+>> 
+>> 
+>> cd /pipe.In
+/pipe.In
+>> P = 300 kPa
+>> T = 300.0 K
+>> Fraction = 1.0
+>> MoleFlow = 1000.0
+>> 
+>> cd /pipe.Out
+/pipe.Out
+>> #P = 200.0
+>> #T = 300.0
+>> 
+>> 
+>> cd /
+/
+>> pipe.Diameter = 0.1
+>> pipe.Length = 20.0
+>> pipe.Roughness = 0.0001
+>> pipe.Elevation0 = 0.0
+>> pipe.Elevation1 = 0.0
+>> pipe.OutQ = 0
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.001366
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.001369
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> 
+>> 
+>> pipe.In
+Port: /pipe.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.850000000000023 * C
+P                  = 300.0 * kPa
+MoleFlow           = 1000.0000000000001 * kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 21.256618865240995 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -287368.55531320587 = kJ/kmol
+Energy             = -79824598.69811274 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0025565836111681732 = 
+WATER              = 1.0 * 
+
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.850238331833054 = C
+P                  = 298.90427054580596 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 21.25662508693985 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -287368.5548217255 = kJ/kmol
+Energy             = -79824598.56159043 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.002547244586552311 = 
+WATER              = 1.0 = 
+
+>> 
+>> #Calculate flow
+>> pipe.In.MoleFlow =
+>> pipe.Out.P = 280 kPa
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.027886
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.024531
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.002493
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.000041
+Calculating Jacobian for /pipe
+Converged /pipe in 5 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.854204758022718 = C
+P                  = 280.0 * kPa
+MoleFlow           = 4511.710253503262 = kgmole/h
+MassFlow           = 81279.72349573225 = kg/h
+VolumeFlow         = 95.90420847104775 = m3/hr
+StdLiqVolumeFlow   = 81.52660428080394 = m3/hr
+H                  = -287368.5553142944 = kJ/kmol
+Energy             = -360145460.42942256 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0023861237796638513 = 
+WATER              = 1.0 = 
+
+>> 
+>> #Calculate from deltaP
+>> pipe.Out.P =
+>> pipe.DeltaP = 10
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.002149
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.000059
+Calculating Jacobian for /pipe
+Converged /pipe in 3 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.852103400611952 = C
+P                  = 290.0 = kPa
+MoleFlow           = 3164.4100078591637 = kgmole/h
+MassFlow           = 57007.732326385034 = kg/h
+VolumeFlow         = 67.26483397241599 = m3/hr
+StdLiqVolumeFlow   = 57.18088884201509 = m3/hr
+H                  = -287368.5553134744 = kJ/kmol
+Energy             = -252597758.99388555 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.002471353314818237 = 
+WATER              = 1.0 = 
+
+>> 
+>> #Back to
+>> pipe.In.P =
+>> pipe.Out.P = 270
+Calculating Jacobian for /pipe
+Converged /pipe in 1 iterations
+>> pipe.In
+Port: /pipe.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.850000000000023 * C
+P                  = 280.0 = kPa
+MoleFlow           = 3164.401817995377 = kgmole/h
+MassFlow           = 57007.584783695755 = kg/h
+VolumeFlow         = 67.26464976444011 = m3/hr
+StdLiqVolumeFlow   = 57.18074085117646 = m3/hr
+H                  = -287368.8963318605 = kJ/kmol
+Energy             = -252597404.996629 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0023861506060326443 = 
+WATER              = 1.0 * 
+
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.852103387591114 = C
+P                  = 270.0 * kPa
+MoleFlow           = 3164.401817995377 = kgmole/h
+MassFlow           = 57007.584783695755 = kg/h
+VolumeFlow         = 67.26482627365374 = m3/hr
+StdLiqVolumeFlow   = 57.18074085117646 = m3/hr
+H                  = -287368.89633152797 = kJ/kmol
+Energy             = -252597404.9963367 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0023009208469780833 = 
+WATER              = 1.0 = 
+
+>> 
+>> #Negative deltaP -> Negative flow calc
+>> pipe.DeltaP = -10
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.019206
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.007026
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001001
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.000013
+Calculating Jacobian for /pipe
+Converged /pipe in 5 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.847900979051133 = C
+P                  = 270.0 * kPa
+MoleFlow           = -3164.398411305609 = kgmole/h
+MassFlow           = -57007.52341122571 = kg/h
+VolumeFlow         = -67.2645674248357 = m3/hr
+StdLiqVolumeFlow   = -57.18067929229235 = m3/hr
+H                  = -287369.23732349445 = kJ/kmol
+Energy             = 252597432.79015842 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0023009467011526614 = 
+WATER              = 1.0 = 
+
+>> 
+>> #Calculate with negative flow
+>> pipe.DeltaP.DP =
+>> pipe.Out.P =
+>> pipe.In.P = 300 kPa
+>> pipe.In.MoleFlow = -5000.0
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.015588
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.014979
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.In
+Port: /pipe.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.850000000000023 * C
+P                  = 300.0 * kPa
+MoleFlow           = -5000.0 * kgmole/h
+MassFlow           = -90076.40000000001 = kg/h
+VolumeFlow         = -106.28309432620496 = m3/hr
+StdLiqVolumeFlow   = -90.35 = m3/hr
+H                  = -287368.55531320587 = kJ/kmol
+Energy             = 399122993.4905637 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0025565836111681732 = 
+WATER              = 1.0 * 
+
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.84486642907109 = C
+P                  = 324.46760872494633 = kPa
+MoleFlow           = -5000.0 = kgmole/h
+MassFlow           = -90076.40000000001 = kg/h
+VolumeFlow         = -106.28241291190857 = m3/hr
+StdLiqVolumeFlow   = -90.35 = m3/hr
+H                  = -287368.55482070235 = kJ/kmol
+Energy             = 399122992.8065311 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.002765124824724518 = 
+WATER              = 1.0 = 
+
+>> 
+>> #Play with elevation now
+>> pipe.In.MoleFlow = 9000.0
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.037012
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.042522
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.866389069969728 = C
+P                  = 222.0436093803252 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 191.31348263286395 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287368.55483672046 = kJ/kmol
+Energy             = -718421387.0918012 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0018921788408179376 = 
+WATER              = 1.0 = 
+
+>> pipe.Elevation1 = 10
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.036624
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.050052
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.86207880966566 = C
+P                  = 138.9029932623866 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 191.31490671105868 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287370.32213978167 = kJ/kmol
+Energy             = -718425805.3494542 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0011837090831652297 = 
+WATER              = 1.0 = 
+
+>> pipe.Elevation0 = 10
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.037012
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.042522
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.86638906990504 = C
+P                  = 222.0436093776486 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 191.31348263270985 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287368.55483673717 = kJ/kmol
+Energy             = -718421387.0918429 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0018921788407940123 = 
+WATER              = 1.0 = 
+
+>> pipe.Elevation0 = 20
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.037401
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.037061
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.87069891673002 = C
+P                  = 305.1848441660803 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 191.31205878121605 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287366.787533657 = kJ/kmol
+Energy             = -718416968.8341424 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0026006229730796133 = 
+WATER              = 1.0 = 
+
+>> 
+>> 
+>> #Play with roughness
+>> pipe.Elevation1 = 0
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.037789
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.032919
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Elevation0 = 0
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.037012
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.042522
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Roughness = 0.0001
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.866389069969728 = C
+P                  = 222.0436093803252 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 191.31348263286395 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287368.55483672046 = kJ/kmol
+Energy             = -718421387.0918012 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0018921788408179376 = 
+WATER              = 1.0 = 
+
+>> pipe.Roughness = 0.000001
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.052544
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.057225
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.860339894834226 = C
+P                  = 250.83193492813578 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 191.31203792072887 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287368.55483122496 = kJ/kmol
+Energy             = -718421387.0780624 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0021375299512804147 = 
+WATER              = 1.0 = 
+
+>> pipe.Roughness = 0.0
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.052461
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.057064
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.860198418358152 = C
+P                  = 251.50522107400738 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 191.31200413430096 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287368.5548310895 = kJ/kmol
+Energy             = -718421387.0777237 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.002143268167500656 = 
+WATER              = 1.0 = 
+
+>> 
+>> 
+>> #ignore kinetic and potential energy calcs
+>> /pipe.In.T =
+>> /pipe.In.P =
+>> /pipe.In.H = -287368.56
+>> /pipe.In
+Port: /pipe.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = 9000.0 * kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287368.56 * kJ/kmol
+Energy             = -718421400.0 = W
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 * 
+
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 = 
+
+>> 
+>> /pipe.IgnoreKineticAndPotential = 1
+>> #The enthalpy should be passed directly from the In to Out
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -287368.56 = kJ/kmol
+Energy             = -718421400.0 = W
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 = 
+
+>> 
+>> #Solve
+>> /pipe.In.P = 300
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.052461
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.057064
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> 
+>> 
+>> copy /pipe
+Copied /pipe to the clipboard
+>> paste /
+Pasting /pipe
+Pasted /pipe as /pipeClone
+>> 
+>> /pipeClone.In
+Port: /pipeClone.In + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 300.0 * kPa
+MoleFlow           = 9000.0 * kgmole/h
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = -287368.56 * kJ/kmol
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 * 
+
+>> /pipeClone.Out
+Port: /pipeClone.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = None
+
+>> 
+>> 
+>> #Resolve
+>> /pipe.In.H =
+>> /pipe.In.T = 90
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.010072
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.010845
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 90.00791657195686 = C
+P                  = 257.23484427378224 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 200.72819440071822 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -282224.2269815576 = kJ/kmol
+Energy             = -705560567.453894 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0019000540885314445 = 
+WATER              = 1.0 = 
+
+>> 
+>> 
+>> 
+>> #Get rid of this
+>> IgnoreKineticAndPotential = 0
+SolveMode_OutP ('/pipeClone',)
+SolvingSection (1, '/pipeClone')
+Calculating Jacobian for /pipeClone.SolveForOutP
+/pipeClone.SolveForOutP Iteration 1 Max Error 0.052461
+Calculating Jacobian for /pipeClone.SolveForOutP
+Converged /pipeClone.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipeClone')
+Calculating Jacobian for /pipeClone.SolveForOutP
+/pipeClone.SolveForOutP Iteration 1 Max Error 0.057064
+Calculating Jacobian for /pipeClone.SolveForOutP
+Converged /pipeClone.SolveForOutP in 2 iterations
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.010072
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 0.010845
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> 
+>> 
+>> # Remove energy - Doesn't work with 1.0e7, works fine with 1e6
+>> # Difference in thermo likely accounts for this
+>> /pipe.OutQ.Energy = 1.0e6
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 1.171455
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 1.168645
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 2 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 85.13629344980956 = C
+P                  = 257.29978650659433 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 199.88256162052235 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -282624.2257562433 = kJ/kmol
+Energy             = -706560567.453894 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0019182598801261166 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[500000. 500000.]
+>> /pipe.T
+[363.15000679 360.7193894  358.28629285]
+>> 
+>> 
+>> #Solve with T out as a spec
+>> /pipe.In.MoleFlow =
+>> /pipe.Out.T = 38
+Calculating Jacobian for /pipe
+Could not invert Jacobian in /pipe
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = 38.0 * C
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 = 
+
+>> 
+>> 
+>> #Did not work, solve with other numerical method
+>> /pipe.SolutionMethod = Secant
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 1 Max Error 0.000992
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+Converged /pipe in 2 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 299.3981114168252 = kPa
+MoleFlow           = 849.131153228415 = kgmole/h
+MassFlow           = 15297.3354821328 = kg/h
+VolumeFlow         = 18.18612303338532 = m3/hr
+StdLiqVolumeFlow   = 15.343799938837458 = m3/hr
+H                  = -286463.8547308097 = kJ/kmol
+Energy             = -67568162.03495266 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.002478622662834551 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[500000. 500000.]
+>> /pipe.T
+[363.15000679 337.23272087 311.15      ]
+>> 
+>> 
+>> #Worked, now try again newton raphson but don't minimize error
+>> /pipe.SolutionMethod = NewtonRaphson
+Converged /pipe in 0 iterations
+>> /pipe.MinimizeError = 0
+Converged /pipe in 0 iterations
+>> /pipe.TryLastConverged = 0
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.000991
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.000021
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.000021
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.000021
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.000020
+Calculating Jacobian for /pipe
+/pipe Iteration 6 Max Error 0.000020
+Calculating Jacobian for /pipe
+/pipe Iteration 7 Max Error 0.000012
+Calculating Jacobian for /pipe
+Converged /pipe in 8 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 299.39810663767406 = kPa
+MoleFlow           = 849.1339919885282 = kgmole/h
+MassFlow           = 15297.386623191092 = kg/h
+VolumeFlow         = 18.18618599115276 = m3/hr
+StdLiqVolumeFlow   = 15.343851235232705 = m3/hr
+H                  = -286463.840806237 = kJ/kmol
+Energy             = -67568384.6400462 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0024786215506526488 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[500000. 500000.]
+>> /pipe.T
+[363.15000679 337.23280846 311.15017159]
+>> 
+>> 
+>> #Different solve scheme
+>> /pipe.In.T =
+>> /pipe.In.MoleFlow = 9000
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.013436
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.003238
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001584
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.001556
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.001492
+Calculating Jacobian for /pipe
+/pipe Iteration 6 Max Error 0.015146
+Calculating Jacobian for /pipe
+/pipe Iteration 7 Max Error 0.000184
+Calculating Jacobian for /pipe
+/pipe Iteration 8 Max Error 0.000052
+Calculating Jacobian for /pipe
+/pipe Iteration 9 Max Error 0.000051
+Calculating Jacobian for /pipe
+/pipe Iteration 10 Max Error 0.000018
+Calculating Jacobian for /pipe
+Converged /pipe in 11 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 253.5658905255747 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 192.75726109112438 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286464.585496893 = kJ/kmol
+Energy             = -716161463.7422324 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0020992028124893203 = 
+WATER              = 1.0 = 
+
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 253.5658905255747 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 192.75726109112438 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286464.585496893 = kJ/kmol
+Energy             = -716161463.7422324 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0020992028124893203 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[500000. 500000.]
+>> /pipe.T
+[316.06920073 313.61002034 311.15048687]
+>> 
+>> 
+>> #Flip specs around
+>> /pipe.In.P =
+>> /pipe.Out.T =
+>> /pipe.Out.P = 150
+>> /pipe.In.T = 90
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.002708
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001319
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001294
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.001165
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.000138
+Calculating Jacobian for /pipe
+Converged /pipe in 6 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 85.13656696585309 = C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 199.8872806457484 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -282625.8549331399 = kJ/kmol
+Energy             = -706564637.3328497 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0011183279997508122 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[500000. 500000.]
+>> /pipe.T
+[363.15004605 360.71954797 358.28656697]
+>> /pipe.u
+[0.24954864 0.25944229]
+>> 
+>> 
+>> #Change energy model
+>> /pipe.EnergyLossModel = LinearTemperature
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.002708
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001319
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001294
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.001155
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.000129
+Calculating Jacobian for /pipe
+Converged /pipe in 6 iterations
+>> 
+>> #Didn't finish. Add iterations
+>> /pipe.MaxNumIterations = 50
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.002708
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001319
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001294
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.001155
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.000129
+Calculating Jacobian for /pipe
+Converged /pipe in 6 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 85.13661695592896 = C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 199.88728920706768 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -282625.85083256214 = kJ/kmol
+Energy             = -706564627.0814053 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.001118327891614479 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[500255.53317842 499744.46682158]
+>> /pipe.T
+[363.15009593 360.71835308 358.28661696]
+>> 
+>> 
+>> #add sections
+>> NumberSections = 5
+SolveMode_OutP ('/pipeClone',)
+SolvingSection (1, '/pipeClone')
+Calculating Jacobian for /pipeClone.SolveForOutP
+/pipeClone.SolveForOutP Iteration 1 Max Error 0.052461
+Calculating Jacobian for /pipeClone.SolveForOutP
+Converged /pipeClone.SolveForOutP in 2 iterations
+SolvingSection (2, '/pipeClone')
+Calculating Jacobian for /pipeClone.SolveForOutP
+/pipeClone.SolveForOutP Iteration 1 Max Error 0.057064
+Calculating Jacobian for /pipeClone.SolveForOutP
+Converged /pipeClone.SolveForOutP in 2 iterations
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.002708
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001319
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001294
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.001155
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.000129
+Calculating Jacobian for /pipe
+Converged /pipe in 6 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 85.13661695592896 = C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 199.88728920706768 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -282625.85083256214 = kJ/kmol
+Energy             = -706564627.0814053 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.001118327891614479 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[500255.53317842 499744.46682158]
+>> /pipe.T
+[363.15009593 360.71835308 358.28661696]
+>> 
+>> 
+>> #all u are equal
+>> /pipe.EnergyLossModel = EqualU
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.002708
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001319
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001295
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.001271
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.001004
+Calculating Jacobian for /pipe
+/pipe Iteration 6 Max Error 0.000042
+Calculating Jacobian for /pipe
+Converged /pipe in 7 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 85.13649675210996 = C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 199.88726862042148 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -282625.8606926172 = kJ/kmol
+Energy             = -706564651.731543 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0011183281516313759 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[509719.96016 490280.03984]
+>> /pipe.T
+[363.14997578 360.67211945 358.28649675]
+>> /pipe.u
+[0.25449603 0.25449603]
+>> 
+>> #Try secant method
+>> /pipe.SolutionMethod = Secant
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 1 Max Error 0.002812
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+Converged /pipe in 2 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 85.1365210192618 = C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 199.88727277677737 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -282625.8587020576 = kJ/kmol
+Energy             = -706564646.755144 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0011183280991396982 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[509719.9415426 490280.0584574]
+>> /pipe.T
+[363.15       360.67214378 358.28652102]
+>> /pipe.u
+[0.25449226 0.25449226]
+>> 
+>> 
+>> #Now solve for energy
+>> /pipe.OutQ.Energy =
+>> /pipe.Out.T = 38
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 1 Max Error 0.084702
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 2 Max Error 0.000636
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+Converged /pipe in 3 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 192.75994563855176 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286466.36537469574 = kJ/kmol
+Energy             = -716165913.4367393 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0012418283046685128 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[7324644.81883617 3276651.23817183]
+>> /pipe.T
+[363.15       327.28383283 311.15000192]
+>> /pipe.u
+[5.216627 5.216627]
+>> 
+>> 
+>> #Change numerical method
+>> /pipe.SolutionMethod = NewtonRaphson
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.083760
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.014209
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001314
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.001291
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.001051
+Calculating Jacobian for /pipe
+/pipe Iteration 6 Max Error 0.000058
+Calculating Jacobian for /pipe
+Converged /pipe in 7 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 192.75994563855176 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286466.36537469574 = kJ/kmol
+Energy             = -716165913.4367393 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0012418283046685128 = 
+WATER              = 1.0 = 
+
+>> 
+>> /pipe.EnergyLossModel = LinearTemperature
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.001355
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001330
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.000884
+Calculating Jacobian for /pipe
+Converged /pipe in 4 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 192.75994563855176 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286466.36537469574 = kJ/kmol
+Energy             = -716165913.4367393 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0012418283046685128 = 
+WATER              = 1.0 = 
+
+>> /pipe.T
+[363.14965262 337.14959771 311.15000192]
+>> 
+>> /pipe.EnergyLossModel = LinearEnergy
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.001355
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001330
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001089
+Calculating Jacobian for /pipe
+Converged /pipe in 4 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 150.0 * kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 192.75994563855176 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286466.36537469574 = kJ/kmol
+Energy             = -716165913.4367393 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0012418283046685128 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[5300551.03922931 5300551.03922931]
+>> 
+>> 
+>> /pipe.Out.P =
+>> /pipe.In.P = 300
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.003157
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.001490
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.001442
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.000223
+Calculating Jacobian for /pipe
+Converged /pipe in 5 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 38.0 * C
+P                  = 256.9495772404568 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 192.7571943865313 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286464.5145672535 = kJ/kmol
+Energy             = -716161286.4181339 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0021272135106161216 = 
+WATER              = 1.0 = 
+
+>> 
+>> 
+>> #Now spec u and change the energy models (nothing should change since u as a spec implies all u equal)
+>> /pipe.Out.T =
+>> /pipe.U.U = 4.8846261
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.986957
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.579716
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.573048
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.476328
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.274286
+Calculating Jacobian for /pipe
+/pipe Iteration 6 Max Error 0.169832
+Calculating Jacobian for /pipe
+/pipe Iteration 7 Max Error 0.092893
+Calculating Jacobian for /pipe
+/pipe Iteration 8 Max Error 0.052390
+Calculating Jacobian for /pipe
+/pipe Iteration 9 Max Error 0.028347
+Calculating Jacobian for /pipe
+/pipe Iteration 10 Max Error 0.015430
+Calculating Jacobian for /pipe
+/pipe Iteration 11 Max Error 0.008261
+Calculating Jacobian for /pipe
+/pipe Iteration 12 Max Error 0.004414
+Calculating Jacobian for /pipe
+/pipe Iteration 13 Max Error 0.002340
+Calculating Jacobian for /pipe
+/pipe Iteration 14 Max Error 0.001236
+Calculating Jacobian for /pipe
+/pipe Iteration 15 Max Error 0.000650
+Calculating Jacobian for /pipe
+/pipe Iteration 16 Max Error 0.000340
+Calculating Jacobian for /pipe
+/pipe Iteration 17 Max Error 0.000178
+Calculating Jacobian for /pipe
+/pipe Iteration 18 Max Error 0.000092
+Calculating Jacobian for /pipe
+/pipe Iteration 19 Max Error 0.000048
+Calculating Jacobian for /pipe
+/pipe Iteration 20 Max Error 0.000025
+Calculating Jacobian for /pipe
+/pipe Iteration 21 Max Error 0.000013
+Calculating Jacobian for /pipe
+Converged /pipe in 22 iterations
+>> /pipe.u
+[4.8846261 4.8846261]
+>> /pipe.EnergyLossModel = LinearTemperature
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.986957
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.579716
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.573048
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.476328
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.274286
+Calculating Jacobian for /pipe
+/pipe Iteration 6 Max Error 0.169832
+Calculating Jacobian for /pipe
+/pipe Iteration 7 Max Error 0.092893
+Calculating Jacobian for /pipe
+/pipe Iteration 8 Max Error 0.052390
+Calculating Jacobian for /pipe
+/pipe Iteration 9 Max Error 0.028347
+Calculating Jacobian for /pipe
+/pipe Iteration 10 Max Error 0.015430
+Calculating Jacobian for /pipe
+/pipe Iteration 11 Max Error 0.008261
+Calculating Jacobian for /pipe
+/pipe Iteration 12 Max Error 0.004414
+Calculating Jacobian for /pipe
+/pipe Iteration 13 Max Error 0.002340
+Calculating Jacobian for /pipe
+/pipe Iteration 14 Max Error 0.001236
+Calculating Jacobian for /pipe
+/pipe Iteration 15 Max Error 0.000650
+Calculating Jacobian for /pipe
+/pipe Iteration 16 Max Error 0.000340
+Calculating Jacobian for /pipe
+/pipe Iteration 17 Max Error 0.000178
+Calculating Jacobian for /pipe
+/pipe Iteration 18 Max Error 0.000092
+Calculating Jacobian for /pipe
+/pipe Iteration 19 Max Error 0.000048
+Calculating Jacobian for /pipe
+/pipe Iteration 20 Max Error 0.000025
+Calculating Jacobian for /pipe
+/pipe Iteration 21 Max Error 0.000013
+Calculating Jacobian for /pipe
+Converged /pipe in 22 iterations
+>> /pipe.u
+[4.8846261 4.8846261]
+>> /pipe.EnergyLossModel = LinearEnergy
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.986957
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.579716
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.573048
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.476328
+Calculating Jacobian for /pipe
+/pipe Iteration 5 Max Error 0.274286
+Calculating Jacobian for /pipe
+/pipe Iteration 6 Max Error 0.169832
+Calculating Jacobian for /pipe
+/pipe Iteration 7 Max Error 0.092893
+Calculating Jacobian for /pipe
+/pipe Iteration 8 Max Error 0.052390
+Calculating Jacobian for /pipe
+/pipe Iteration 9 Max Error 0.028347
+Calculating Jacobian for /pipe
+/pipe Iteration 10 Max Error 0.015430
+Calculating Jacobian for /pipe
+/pipe Iteration 11 Max Error 0.008261
+Calculating Jacobian for /pipe
+/pipe Iteration 12 Max Error 0.004414
+Calculating Jacobian for /pipe
+/pipe Iteration 13 Max Error 0.002340
+Calculating Jacobian for /pipe
+/pipe Iteration 14 Max Error 0.001236
+Calculating Jacobian for /pipe
+/pipe Iteration 15 Max Error 0.000650
+Calculating Jacobian for /pipe
+/pipe Iteration 16 Max Error 0.000340
+Calculating Jacobian for /pipe
+/pipe Iteration 17 Max Error 0.000178
+Calculating Jacobian for /pipe
+/pipe Iteration 18 Max Error 0.000092
+Calculating Jacobian for /pipe
+/pipe Iteration 19 Max Error 0.000048
+Calculating Jacobian for /pipe
+/pipe Iteration 20 Max Error 0.000025
+Calculating Jacobian for /pipe
+/pipe Iteration 21 Max Error 0.000013
+Calculating Jacobian for /pipe
+Converged /pipe in 22 iterations
+>> /pipe.u
+[4.8846261 4.8846261]
+>> 
+>> 
+>> #Back to energy spec but change nergy models
+>> /pipe.U.U =
+>> /pipe.OutQ.Energy = 9931444.4
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 9.379058
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 2 Max Error 0.000028
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 3 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 7.448945
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 2 Max Error 0.000095
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 3 iterations
+>> /pipe.Out
+Port: /pipe.Out + sim21.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 41.29920423849677 = C
+P                  = 257.04480465821973 = kPa
+MoleFlow           = 9000.0 = kgmole/h
+MassFlow           = 162137.52000000002 = kg/h
+VolumeFlow         = 193.20082291072458 = m3/hr
+StdLiqVolumeFlow   = 162.63 = m3/hr
+H                  = -286196.8039395338 = kJ/kmol
+Energy             = -715492011.853894 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.0021105255193976658 = 
+WATER              = 1.0 = 
+
+>> /pipe.Energy
+[4965722.2 4965722.2]
+>> /pipe.T
+[363.15000679 338.87556351 314.4492024 ]
+>> /pipe.u
+[3.04434619 5.92578475]
+>> 
+>> 
+>> /pipe.SolutionMethod = Secant
+SolveMode_OutP ('/pipe',)
+SolvingSection (1, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 9.379058
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 2 Max Error 0.000028
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 3 iterations
+SolvingSection (2, '/pipe')
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 1 Max Error 7.448945
+Calculating Jacobian for /pipe.SolveForOutP
+/pipe.SolveForOutP Iteration 2 Max Error 0.000095
+Calculating Jacobian for /pipe.SolveForOutP
+Converged /pipe.SolveForOutP in 3 iterations
+>> /pipe.EnergyLossModel = LinearTemperature
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 1 Max Error 0.292797
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 2 Max Error 0.000311
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+Converged /pipe in 3 iterations
+>> /pipe.T
+[363.15000679 338.79960085 314.44919491]
+>> 
+>> 
+>> /pipe.EnergyLossModel = EqualU
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 1 Max Error 0.292796
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 2 Max Error 0.029473
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+/pipe Iteration 3 Max Error 0.000059
+Calculating Jacobian for /pipe
+Calculating disturbance 10 of 12 in jacobian of /pipe
+Converged /pipe in 4 iterations
+>> /pipe.SolutionMethod = NewtonRaphson
+Calculating Jacobian for /pipe
+/pipe Iteration 1 Max Error 0.292795
+Calculating Jacobian for /pipe
+/pipe Iteration 2 Max Error 0.060464
+Calculating Jacobian for /pipe
+/pipe Iteration 3 Max Error 0.002380
+Calculating Jacobian for /pipe
+/pipe Iteration 4 Max Error 0.000091
+Calculating Jacobian for /pipe
+Converged /pipe in 5 iterations
+>> /pipe.T
+[363.15000679 330.76238449 314.44926161]
+>> /pipe.u
+[4.48534325 4.48534325]
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 

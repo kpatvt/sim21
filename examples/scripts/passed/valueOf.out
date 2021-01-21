@@ -62,16 +62,16 @@ N-PENTANE          = 0.25 *
 Port: /preHeater.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 1378.8401116271248 = C
+T                  = 1660.0976729215781 = C
 P                  = 101.22500000000001 = kPa
 MoleFlow           = 10.0 = kgmole/h
 MassFlow           = 581.222 = kg/h
-VolumeFlow         = 1357.520910554649 = m3/hr
+VolumeFlow         = 1588.6176262888212 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
 H                  = 205585.1535993866 = kJ/kmol
 Energy             = 571069.8711094072 = W
 MolecularWeight    = 58.12219999999999 = 
-ZFactor            = 1.0004437718564048 = 
+ZFactor            = 1.0004271774333338 = 
 PROPANE            = 0.25 = 
 N-BUTANE           = 0.25 = 
 ISOBUTANE          = 0.25 = 
@@ -136,15 +136,15 @@ P
 >> 
 >> # a full material port values
 >> valueOf preHeater.Out.T.processValue
-1651.9901116271246
+1933.2476729215782
 >> valueOf preHeater.Out.P.processValue
 101.22500000000001
 >> valueOf preHeater.Out.molarV.processValue
-135.7520910554649
+158.8617626288821
 >> valueOf preHeater.Out.H.processValue
 205585.1535993866
 >> valueOf preHeater.Out.S.processValue
--7.370336603433165
+112.67108049926347
 >> valueOf preHeater.Out.VapFrac.processValue
 1.0
 >> valueOf preHeater.Out.MoleFlow.processValue

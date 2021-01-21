@@ -126,60 +126,60 @@ Connected to: None
 VapFrac            = 1.0 = 
 T                  = 100.00000000000004 = F
 P                  = 814.7 = psia
-MoleFlow           = 12512.380062605354 = lbmole/h
-MassFlow           = 434921.4694261215 = lb/h
-VolumeFlow         = 16.408947202249312 = ft3/s
-StdLiqVolumeFlow   = 3.0316735162033277 = ft3/s
-H                  = -87978.01347643191 = Btu/lbmol
-Energy             = -1100629227.7473645 = Btu/hr
-MolecularWeight    = 34.7592914127266 = 
-ZFactor            = 0.6403871580100433 = 
-NITROGEN           = 0.028629247930343837 = 
-CARBON DIOXIDE     = 0.38801239275637794 = 
-HYDROGEN SULFIDE   = 0.023295441436975088 = 
-METHANE            = 0.2393882674914821 = 
-ETHANE             = 0.18200206753580894 = 
-PROPANE            = 0.10038702709104806 = 
-N-BUTANE           = 0.006374075906938261 = 
-ISOBUTANE          = 0.02503996342857978 = 
-N-PENTANE          = 0.0018292607995447064 = 
-ISOPENTANE         = 0.0036821124576648548 = 
-N-HEXANE           = 0.0009605473851228425 = 
-N-HEPTANE          = 0.00032987762509191786 = 
-N-OCTANE           = 5.614055189168666e-05 = 
-N-NONANE           = 1.2141040902057668e-05 = 
-N-DECANE           = 1.434421166101452e-06 = 
-N-DODECANE         = 2.1410618299124377e-09 = 
+MoleFlow           = 12512.380062605509 = lbmole/h
+MassFlow           = 434921.4694261284 = lb/h
+VolumeFlow         = 16.408947202249347 = ft3/s
+StdLiqVolumeFlow   = 3.0316735162033748 = ft3/s
+H                  = -87978.0134764318 = Btu/lbmol
+Energy             = -1100629227.7473767 = Btu/hr
+MolecularWeight    = 34.75929141272669 = 
+ZFactor            = 0.640387158010037 = 
+NITROGEN           = 0.028629247930343483 = 
+CARBON DIOXIDE     = 0.3880123927563762 = 
+HYDROGEN SULFIDE   = 0.023295441436975442 = 
+METHANE            = 0.2393882674914792 = 
+ETHANE             = 0.18200206753580966 = 
+PROPANE            = 0.10038702709105031 = 
+N-BUTANE           = 0.006374075906938492 = 
+ISOBUTANE          = 0.025039963428580083 = 
+N-PENTANE          = 0.0018292607995449742 = 
+ISOPENTANE         = 0.0036821124576652754 = 
+N-HEXANE           = 0.0009605473851230764 = 
+N-HEPTANE          = 0.00032987762509202845 = 
+N-OCTANE           = 5.614055189170903e-05 = 
+N-NONANE           = 1.214104090206316e-05 = 
+N-DECANE           = 1.4344211661021595e-06 = 
+N-DODECANE         = 2.1410618299148526e-09 = 
 
 >> /bottoms.Out
 Port: /bottoms.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 5.630419226320758e-09 = 
+VapFrac            = 6.510853174362905e-09 = 
 T                  = 85.0 = F
 P                  = 27.7 = psia
-MoleFlow           = 14828.219937374652 = lbmole/h
-MassFlow           = 1452521.1257784432 = lb/h
-VolumeFlow         = 9.867831264720865 = ft3/s
-StdLiqVolumeFlow   = 9.537269329453592 = ft3/s
-H                  = -95187.28813341646 = Btu/lbmol
-Energy             = -1411220691.511238 = Btu/hr
-MolecularWeight    = 97.95654042852114 = 
-ZFactor            = 0.011353117852734844 = 
-NITROGEN           = 9.087867673493321e-07 = 
-CARBON DIOXIDE     = 0.0074916370628204275 = 
-HYDROGEN SULFIDE   = 0.003210759043669847 = 
-METHANE            = 0.00012221294667731183 = 
-ETHANE             = 0.007973756960736237 = 
-PROPANE            = 0.06983440818732138 = 
-N-BUTANE           = 0.03537803401524809 = 
-ISOBUTANE          = 0.0826986760882208 = 
-N-PENTANE          = 0.05175354811052455 = 
-ISOPENTANE         = 0.0730580388342716 = 
-N-HEXANE           = 0.11813978601210902 = 
-N-HEPTANE          = 0.17547304078634587 = 
-N-OCTANE           = 0.12443551739891873 = 
-N-NONANE           = 0.11248540389680747 = 
-N-DECANE           = 0.05606219489520208 = 
-N-DODECANE         = 0.08188207697435923 = 
+MoleFlow           = 14828.219937374499 = lbmole/h
+MassFlow           = 1452521.1257784367 = lb/h
+VolumeFlow         = 9.867832002420853 = ft3/s
+StdLiqVolumeFlow   = 9.537269329453542 = ft3/s
+H                  = -95187.28812718963 = Btu/lbmol
+Energy             = -1411220691.4189062 = Btu/hr
+MolecularWeight    = 97.95654042852169 = 
+ZFactor            = 0.011353118701472103 = 
+NITROGEN           = 9.087867673485641e-07 = 
+CARBON DIOXIDE     = 0.007491637062818021 = 
+HYDROGEN SULFIDE   = 0.0032107590436693317 = 
+METHANE            = 0.0001222129466772286 = 
+ETHANE             = 0.007973756960733859 = 
+PROPANE            = 0.06983440818731915 = 
+N-BUTANE           = 0.0353780340152482 = 
+ISOBUTANE          = 0.08269867608822114 = 
+N-PENTANE          = 0.05175354811052482 = 
+ISOPENTANE         = 0.07305803883427198 = 
+N-HEXANE           = 0.11813978601211 = 
+N-HEPTANE          = 0.17547304078634754 = 
+N-OCTANE           = 0.12443551739891995 = 
+N-NONANE           = 0.11248540389680861 = 
+N-DECANE           = 0.05606219489520266 = 
+N-DODECANE         = 0.08188207697436009 = 
 
 >> 

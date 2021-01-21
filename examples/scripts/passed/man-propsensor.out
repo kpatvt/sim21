@@ -23,67 +23,67 @@ WATER TRIETHYLENE GLYCOL
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -309973.6078198758 = Btu/lbmol
+H   = -309928.31060175935 = Btu/lbmol
 
 >> s.In.Fraction = 0.1 0.9
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -310721.2832819236 = Btu/lbmol
+H   = -310840.9485620199 = Btu/lbmol
 
 >> s.In.Fraction = 0.2 0.8
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -292550.6031115113 = Btu/lbmol
+H   = -292550.56856547954 = Btu/lbmol
 
 >> s.In.Fraction = 0.3 0.7
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -271900.7786088722 = Btu/lbmol
+H   = -271901.0656973391 = Btu/lbmol
 
 >> s.In.Fraction = 0.4 0.6
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -250425.6319478817 = Btu/lbmol
+H   = -250425.6305384304 = Btu/lbmol
 
 >> s.In.Fraction = 0.5 0.5
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -228554.05262497472 = Btu/lbmol
+H   = -228554.0427726251 = Btu/lbmol
 
 >> s.In.Fraction = 0.6 0.4
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -206482.5752775042 = Btu/lbmol
+H   = -206482.57368944245 = Btu/lbmol
 
 >> s.In.Fraction = 0.7 0.3
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -184347.28424155212 = Btu/lbmol
+H   = -184347.28252090892 = Btu/lbmol
 
 >> s.In.Fraction = 0.8 0.2
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -162309.76189939177 = Btu/lbmol
+H   = -162309.7017178279 = Btu/lbmol
 
 >> s.In.Fraction = 0.9 0.1
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -140718.1959770815 = Btu/lbmol
+H   = -140718.2145675819 = Btu/lbmol
 
 >> s.In.Fraction = 1.0 0.0
 >> ps.Signal
 Port: /ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -121084.88544511196 = Btu/lbmol
+H   = -121088.33686691328 = Btu/lbmol
 
 >> 
 >> copy /
@@ -94,5 +94,5 @@ Pasted / as /RootClone
 >> /RootClone.ps.Signal
 Port: /RootClone.ps.Signal + sim21.solver.Ports.Port_Signal
 Connected to: None
-H   = -121084.88544511196 = Btu/lbmol
+H   = -121088.33686691328 = Btu/lbmol
 

@@ -69,17 +69,17 @@ WATER
 >> hotInlet2.In.T = 500 K
 >> coldInlet.In.T = 413.15 K
 Calculating Jacobian for /exch
-/exch Iteration 1 Max Error 2.784199
+/exch Iteration 1 Max Error 2.784198
 Calculating Jacobian for /exch
-/exch Iteration 2 Max Error 2.119225
+/exch Iteration 2 Max Error 2.119223
 Calculating Jacobian for /exch
-/exch Iteration 3 Max Error 0.418537
+/exch Iteration 3 Max Error 0.418536
 Calculating Jacobian for /exch
-/exch Iteration 4 Max Error 0.031912
+/exch Iteration 4 Max Error 0.031935
 Calculating Jacobian for /exch
-/exch Iteration 5 Max Error 0.002105
+/exch Iteration 5 Max Error 0.002109
 Calculating Jacobian for /exch
-/exch Iteration 6 Max Error 0.000095
+/exch Iteration 6 Max Error 0.000096
 Calculating Jacobian for /exch
 Converged /exch in 7 iterations
 >> 
@@ -104,16 +104,16 @@ WATER              = 1.0 *
 Port: /coldOutlet.In + sim21.solver.Ports.Port_Material
 Connected to: /exch.side0.Out
 VapFrac            = 1.0 | 
-T                  = 483.96889191273056 | K
+T                  = 483.96886996286196 | K
 P                  = 101.0 | kPa
 MoleFlow           = 1000.0000000000001 | kgmole/h
 MassFlow           = 18015.280000000002 | kg/h
-VolumeFlow         = 39673.06869296188 | m3/hr
+VolumeFlow         = 39673.06687172439 | m3/hr
 StdLiqVolumeFlow   = 18.07 | m3/hr
-H                  = -235495.36367678 | kJ/kmol
-Energy             = -65415378.799105555 | W
+H                  = -235495.3643863883 | kJ/kmol
+Energy             = -65415378.99621898 | W
 MolecularWeight    = 18.01528 | 
-ZFactor            = 0.9957848981703001 | 
+ZFactor            = 0.9957848976203699 | 
 WATER              = 1.0 | 
 
 >> hotInlet.In
@@ -136,16 +136,16 @@ WATER              = 1.0 *
 Port: /hotOutlet.In + sim21.solver.Ports.Port_Material
 Connected to: /exch.side1.Out
 VapFrac            = 1.0 | 
-T                  = 503.4772884016946 | K
+T                  = 503.4772702332657 | K
 P                  = 101.0 | kPa
 MoleFlow           = 800.0 | kgmole/h
 MassFlow           = 14412.224 | kg/h
-VolumeFlow         = 33032.92019015506 | m3/hr
+VolumeFlow         = 33032.91898501671 | m3/hr
 StdLiqVolumeFlow   = 14.456 | m3/hr
-H                  = -234806.60183727462 | kJ/kmol
-Energy             = -52179244.85272769 | W
+H                  = -234806.602000086 | kJ/kmol
+Energy             = -52179244.88890799 | W
 MolecularWeight    = 18.01528 | 
-ZFactor            = 0.9962407115221676 | 
+ZFactor            = 0.9962407111266066 | 
 WATER              = 1.0 | 
 
 >> hotInlet2.In
@@ -168,16 +168,16 @@ WATER              = 1.0 *
 Port: /hotOutlet2.In + sim21.solver.Ports.Port_Material
 Connected to: /exch.side2.Out
 VapFrac            = 1.0 | 
-T                  = 454.43594130698403 | K
+T                  = 454.43577475121754 | K
 P                  = 101.0 | kPa
 MoleFlow           = 300.0 | kgmole/h
 MassFlow           = 5404.584 | kg/h
-VolumeFlow         = 11166.34630430712 | m3/hr
+VolumeFlow         = 11166.34215322013 | m3/hr
 StdLiqVolumeFlow   = 5.420999999999999 | m3/hr
-H                  = -236531.56784479212 | kJ/kmol
-Energy             = -19710963.98706601 | W
+H                  = -236531.56504526743 | kJ/kmol
+Energy             = -19710963.753772285 | W
 MolecularWeight    = 18.01528 | 
-ZFactor            = 0.9949570970794367 | 
+ZFactor            = 0.9949570918670444 | 
 WATER              = 1.0 | 
 
 >> exch.UA0_1
@@ -215,16 +215,16 @@ WATER              = 1.0 *
 Port: /RootClone.coldOutlet.In + sim21.solver.Ports.Port_Material
 Connected to: /RootClone.exch.side0.Out
 VapFrac            = 1.0 | 
-T                  = 483.96889191273056 | K
+T                  = 483.96886996286196 | K
 P                  = 101.0 | kPa
 MoleFlow           = 1000.0000000000001 | kgmole/h
 MassFlow           = 18015.280000000002 | kg/h
-VolumeFlow         = 39673.06869296188 | m3/hr
+VolumeFlow         = 39673.06687172439 | m3/hr
 StdLiqVolumeFlow   = 18.07 | m3/hr
-H                  = -235495.36367678 | kJ/kmol
-Energy             = -65415378.799105555 | W
+H                  = -235495.3643863883 | kJ/kmol
+Energy             = -65415378.99621898 | W
 MolecularWeight    = 18.01528 | 
-ZFactor            = 0.9957848981703001 | 
+ZFactor            = 0.9957848976203699 | 
 WATER              = 1.0 | 
 
 >> hotInlet.In
@@ -247,16 +247,16 @@ WATER              = 1.0 *
 Port: /RootClone.hotOutlet.In + sim21.solver.Ports.Port_Material
 Connected to: /RootClone.exch.side1.Out
 VapFrac            = 1.0 | 
-T                  = 503.4772884016946 | K
+T                  = 503.4772702332657 | K
 P                  = 101.0 | kPa
 MoleFlow           = 800.0 | kgmole/h
 MassFlow           = 14412.224 | kg/h
-VolumeFlow         = 33032.92019015506 | m3/hr
+VolumeFlow         = 33032.91898501671 | m3/hr
 StdLiqVolumeFlow   = 14.456 | m3/hr
-H                  = -234806.60183727462 | kJ/kmol
-Energy             = -52179244.85272769 | W
+H                  = -234806.602000086 | kJ/kmol
+Energy             = -52179244.88890799 | W
 MolecularWeight    = 18.01528 | 
-ZFactor            = 0.9962407115221676 | 
+ZFactor            = 0.9962407111266066 | 
 WATER              = 1.0 | 
 
 >> hotInlet2.In
@@ -279,16 +279,16 @@ WATER              = 1.0 *
 Port: /RootClone.hotOutlet2.In + sim21.solver.Ports.Port_Material
 Connected to: /RootClone.exch.side2.Out
 VapFrac            = 1.0 | 
-T                  = 454.43594130698403 | K
+T                  = 454.43577475121754 | K
 P                  = 101.0 | kPa
 MoleFlow           = 300.0 | kgmole/h
 MassFlow           = 5404.584 | kg/h
-VolumeFlow         = 11166.34630430712 | m3/hr
+VolumeFlow         = 11166.34215322013 | m3/hr
 StdLiqVolumeFlow   = 5.420999999999999 | m3/hr
-H                  = -236531.56784479212 | kJ/kmol
-Energy             = -19710963.98706601 | W
+H                  = -236531.56504526743 | kJ/kmol
+Energy             = -19710963.753772285 | W
 MolecularWeight    = 18.01528 | 
-ZFactor            = 0.9949570970794367 | 
+ZFactor            = 0.9949570918670444 | 
 WATER              = 1.0 | 
 
 >> exch.UA0_1

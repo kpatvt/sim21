@@ -34,16 +34,16 @@ METHANE            = 1.0 =
 Port: /v.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 22.585428355950796 = C
+T                  = 22.585428038833243 = C
 P                  = 500.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 1604.2459999999999 = kg/h
-VolumeFlow         = 486.2078801466555 = m3/hr
+VolumeFlow         = 486.2078796055188 = m3/hr
 StdLiqVolumeFlow   = 3.5540000000000003 = m3/hr
 H                  = -74698.3225992993 = kJ/kmol
 Energy             = -2074953.4055360917 = W
 MolecularWeight    = 16.04246 = 
-ZFactor            = 0.9886770602808138 = 
+ZFactor            = 0.9886770602406023 = 
 METHANE            = 1.0 = 
 
 >> 
@@ -56,15 +56,15 @@ Pasted /v as /vClone
 Port: /vClone.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 22.585428355950796 = C
+T                  = 22.585428038833243 = C
 P                  = 500.0 * kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 1604.2459999999999 = kg/h
-VolumeFlow         = 486.2078801466555 = m3/hr
+VolumeFlow         = 486.2078796055188 = m3/hr
 StdLiqVolumeFlow   = 3.5540000000000003 = m3/hr
 H                  = -74698.3225992993 = kJ/kmol
 Energy             = -2074953.4055360917 = W
 MolecularWeight    = 16.04246 = 
-ZFactor            = 0.9886770602808138 = 
+ZFactor            = 0.9886770602406023 = 
 METHANE            = 1.0 = 
 
