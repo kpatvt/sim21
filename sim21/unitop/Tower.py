@@ -12,6 +12,7 @@ import time
 
 import numpy as np
 
+from sim21.data.eqn import eval_eqn_int
 from ..solver.Error import SimError
 from ..solver.Messages import MessageHandler
 from ..solver.Variables import *
@@ -110,7 +111,27 @@ def copy_flow_matrix(numStages, flowMatrix, alphaSj, diag, upper):
 
 # ab = diagonal_form(a, upper=1, lower=1) # for tridiagonal matrix upper and lower = 1
 # x_sp = solve_banded((1,1), ab, b)
+@numba.jit(nopython=True, cache=True)
+def evaluate_enthalpy_model(stage_comp, ig_cp_coeffs, ig_h_form, ig_h_scaling, ig_h_ref_temp, mw, model, stage_temp):
+    """
+    This is an accelerated enthalpy evaluation function, should be fast
+    """
+    comp_count = stage_comp.shape[1]
+    stages = len(stage_temp)
+    calc_enthalpy = np.zeros(stages)
 
+    for i in range(stages):
+        mw_stage = 0
+        ig_enthalpy_stage = 0
+        for j in range(comp_count):
+            ref_enthalpy_mole = ig_h_form[j]
+            ref_temp = ig_h_ref_temp[j]
+            ig_enthalpy_stage += stage_comp[i][j]*(eval_eqn_int(ig_cp_coeffs[j], stage_temp[i], ref_temp) + ref_enthalpy_mole)*ig_h_scaling[j]
+            mw_stage += stage_comp[i, j]*mw[j]
+
+        calc_enthalpy[i] = (model[0, i] + model[1, i]*stage_temp[i])*mw_stage + ig_enthalpy_stage
+
+    return calc_enthalpy
 
 class Stage(object):
     """Tower equilibrium stage"""
@@ -5083,12 +5104,31 @@ class Tower(UnitOperations.UnitOperation):
         self.numCompounds = len(self.cmpNames)
         self.mw = np.zeros(self.numCompounds, np.float)
         self.ig_enthalpy_mole = [None]*self.numCompounds
+        self.ig_enthalpy_native_coeffs = []
+        self.ig_enthalpy_form_native = []
+        self.ig_enthalpy_scaling_native = []
+        self.ig_enthalpy_ref_temp = []
+
         thCaseObj = self.GetThermo()
         thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
         for i in range(self.numCompounds):
-            res = thAdmin.GetSelectedCompoundProperties(prov, case, i, ['MolecularWeight', IDEALGASENTHALPY_FUNC_VAR])
+            res = thAdmin.GetSelectedCompoundProperties(prov, case, i, ['MolecularWeight',
+                                                                        IDEALGASENTHALPY_FUNC_VAR,
+                                                                        IDEALGASCP_COEFFS_VAR,
+                                                                        IDEALGAS_ENTHALPY_FORMATION_VAR,
+                                                                        IDEALGAS_ENTHALPY_SCALING_VAR,
+                                                                        IDEALGAS_ENTHALPY_REF_TEMP_VAR])
             self.mw[i] = res[0]
             self.ig_enthalpy_mole[i] = res[1]
+            self.ig_enthalpy_native_coeffs.append(res[2])
+            self.ig_enthalpy_form_native.append(res[3])
+            self.ig_enthalpy_scaling_native.append(res[4])
+            self.ig_enthalpy_ref_temp.append(res[5])
+
+        self.ig_enthalpy_native_coeffs = np.array(self.ig_enthalpy_native_coeffs)
+        self.ig_enthalpy_form_native = np.array(self.ig_enthalpy_form_native)
+        self.ig_enthalpy_scaling_native = np.array(self.ig_enthalpy_scaling_native)
+        self.ig_enthalpy_ref_temp = np.array(self.ig_enthalpy_ref_temp)
 
         if self.debug:
             ##DEBUG CODE ##########################################
@@ -5865,15 +5905,25 @@ class Tower(UnitOperations.UnitOperation):
         t and x are arrays of termperature and mole fraction nstage long
         """
         # TODO THIS IS A VERY SLOW FUNCTION CALL - REPLACE WITH A BETTER FUNCTION
-        n = len(t)
-        m = x.shape[1]
-        calc_ig_enthalpy_mole = np.zeros(n)
-        for i in range(n):
-            calc_ig_enthalpy_mole[i] = sum([x[i, j]*self.ig_enthalpy_mole[j](t[i]) for j in range(m)])
+        # n = len(t)
+        # m = x.shape[1]
+        # calc_ig_enthalpy_mole = np.zeros(n)
+        # for i in range(n):
+        #     calc_ig_enthalpy_mole[i] = sum([x[i, j]*self.ig_enthalpy_mole[j](t[i]) for j in range(m)])
+        #
+        # hmass = model[0] + model[1] * t
+        # mw = np.add.reduce(x * self.mw, 1)
+        # result1 = hmass * mw + calc_ig_enthalpy_mole
 
-        hmass = model[0] + model[1] * t
-        mw = np.add.reduce(x * self.mw, 1)
-        return hmass * mw + calc_ig_enthalpy_mole
+        result2 = evaluate_enthalpy_model(x,
+                                          self.ig_enthalpy_native_coeffs,
+                                          self.ig_enthalpy_form_native,
+                                          self.ig_enthalpy_scaling_native,
+                                          self.ig_enthalpy_ref_temp,
+                                          self.mw, model, t)
+
+        # diff = result1 - result2
+        return result2
 
     def CalculateTemperatures(self):
         """

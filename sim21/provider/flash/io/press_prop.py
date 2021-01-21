@@ -132,7 +132,7 @@ def update_model_press_prop_2phase(provider,
     return w, u_hat, a_hat, b_hat, c_hat, d_hat, e_hat, f_hat, log_kb_hat, liq, vap
 
 
-# @njit(cache=True)
+@njit(cache=True)
 def solve_model_press_prop_2phase(feed_comp, kb_0, u, a, b, c, d, e, f, r_value, temp, temp_star, prop_target_scaled, valid):
     # Should speed this up via jiting - can be very fast
     liq_comp = np.zeros(len(feed_comp))
@@ -534,6 +534,7 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
         raise FlashConvergenceError
 
 
+@njit(cache=True)
 def eval_ig_enthalpy(ig_cp_coeffs, ig_enthalpy_form, ig_enthalpy_ref_temp, comp, temp):
     x_sum = 0
     for i in range(len(comp)):

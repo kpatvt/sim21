@@ -87,43 +87,43 @@ Inner loop converged
 Port: /overhead.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 104.8983419465015 = F
+T                  = 104.8983419465541 = F
 P                  = 75.0 = psia
-MoleFlow           = 496.0579762707487 = lbmole/h
-MassFlow           = 12629.538618521807 = lb/h
-VolumeFlow         = 10.847539004477406 = ft3/s
-StdLiqVolumeFlow   = 0.10267282801908477 = ft3/s
-H                  = -35582.49979737736 = Btu/lbmol
-Energy             = -17648014.633500718 = Btu/hr
-MolecularWeight    = 25.45980353640881 = 
-ZFactor            = 0.9744951022369146 = 
-METHANE            = 0.5484599657233253 = 
-ETHANE             = 0.25001102898303473 = 
-PROPANE            = 0.19061618198516772 = 
-N-BUTANE           = 0.009537053795347522 = 
-N-PENTANE          = 0.00016875464688114513 = 
-N-DECANE           = 0.0012070148662435838 = 
+MoleFlow           = 496.0579762706907 = lbmole/h
+MassFlow           = 12629.538618519391 = lb/h
+VolumeFlow         = 10.847539004477271 = ft3/s
+StdLiqVolumeFlow   = 0.1026728280190666 = ft3/s
+H                  = -35582.4997973758 = Btu/lbmol
+Energy             = -17648014.633497875 = Btu/hr
+MolecularWeight    = 25.459803536406906 = 
+ZFactor            = 0.9744951022369256 = 
+METHANE            = 0.5484599657233833 = 
+ETHANE             = 0.2500110289830438 = 
+PROPANE            = 0.19061618198510952 = 
+N-BUTANE           = 0.009537053795339125 = 
+N-PENTANE          = 0.00016875464688098093 = 
+N-DECANE           = 0.0012070148662433069 = 
 
 >> bottoms.Out
 Port: /bottoms.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 128.88942747253753 = F
+T                  = 128.88942747251102 = F
 P                  = 75.0 = psia
-MoleFlow           = 1503.9420237292509 = lbmole/h
-MassFlow           = 170044.76426147818 = lb/h
-VolumeFlow         = 1.1797537110151735 = ft3/s
-StdLiqVolumeFlow   = 1.0780845840738398 = ft3/s
-H                  = -102932.657689841 = Btu/lbmol
-Energy             = -154778717.3949041 = Btu/hr
-MolecularWeight    = 113.06603684085277 = 
-ZFactor            = 0.033532608198719505 = 
-METHANE            = 0.009263694423017884 = 
-ETHANE             = 0.021929060028211243 = 
-PROPANE            = 0.09670806468944347 = 
-N-BUTANE           = 0.10922566548633621 = 
-N-PENTANE          = 0.09835238697872217 = 
-N-DECANE           = 0.664521128394269 = 
+MoleFlow           = 1503.9420237293093 = lbmole/h
+MassFlow           = 170044.76426148062 = lb/h
+VolumeFlow         = 1.17975371101518 = ft3/s
+StdLiqVolumeFlow   = 1.0780845840738584 = ft3/s
+H                  = -102932.65768984052 = Btu/lbmol
+Energy             = -154778717.3949094 = Btu/hr
+MolecularWeight    = 113.06603684085002 = 
+ZFactor            = 0.03353260819871989 = 
+METHANE            = 0.009263694423019653 = 
+ETHANE             = 0.021929060028217092 = 
+PROPANE            = 0.09670806468946627 = 
+N-BUTANE           = 0.10922566548633508 = 
+N-PENTANE          = 0.09835238697871841 = 
+N-DECANE           = 0.6645211283942435 = 
 
 >> 
 >> 

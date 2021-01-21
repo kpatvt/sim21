@@ -824,11 +824,19 @@ class ThermoInterface(object):
         # get one or more double properties
         values = []
         for prop in propNames:
+            given_comp = hnd.components[cmpNo]
             if prop == MOLEWT_VAR:
                 values.append(hnd.mw[cmpNo])
             elif prop == IDEALGASENTHALPY_FUNC_VAR:
-                given_comp = hnd.components[cmpNo]
                 values.append(lambda temp: given_comp.ig_enthalpy_mole(temp)*1e-3)
+            elif prop == IDEALGASCP_COEFFS_VAR:
+                values.append(given_comp.ig_cp_mole_coeffs)
+            elif prop == IDEALGAS_ENTHALPY_FORMATION_VAR:
+                values.append(given_comp.ig_enthalpy_form_mole)
+            elif prop == IDEALGAS_ENTHALPY_SCALING_VAR:
+                values.append(1e-3)
+            elif prop == IDEALGAS_ENTHALPY_REF_TEMP_VAR:
+                values.append(given_comp.ig_temp_ref)
             else:
                 raise NotImplementedError
 

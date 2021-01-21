@@ -88,6 +88,11 @@ IDEALGASFORMATION_VAR = 'IdealGasFormation'
 IDEALGASGIBBS_VAR = 'IdealGasGibbs'
 IDEALGASENTHALPY_FUNC_VAR = 'IdealGasEnthalpy_Func'
 
+IDEALGASCP_COEFFS_VAR = 'IdealGasCpCoeffs'
+IDEALGAS_ENTHALPY_FORMATION_VAR = 'IdealGasEnthalpyOfFormation'
+IDEALGAS_ENTHALPY_SCALING_VAR = 'IdealGasEnthalpyScaling'
+IDEALGAS_ENTHALPY_REF_TEMP_VAR = 'IdealGasEnthalpyRefTemp'
+
 INTERNALENERGY_VAR = 'InternalEnergy'
 ISOTHERMALCOMPRESSIBILITY_VAR = 'IsothermalCompressibility'
 
@@ -727,7 +732,7 @@ class BasicProperty(object):
         if newValue and fixedValue:
             return None
 
-        ##Is this really needed??
+        # Is this really needed??
         # Hide passed vapour fractions while forgetting because they could calculate
         # unexpected bubble or dew points
         # if calcStatus & PASSED_V and self._type.name == VPFRAC_VAR:

@@ -11,6 +11,12 @@ Under continual development, breaking changes are to be expected.
 
 Status
 ------
+* Jan 21, 2021
+    * Signficant speed ups in the distillation simulation, now quite fast
+    * Other smaller speed-ups
+    * Runtime is about 2-3x faster over all examples
+
+
 * Jan 20, 2021
     * All example cases now converge with some massaging
     * Fixed a nasty bug that was preventing one phase results in Flash unitops
