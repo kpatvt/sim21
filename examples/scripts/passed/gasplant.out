@@ -347,17 +347,17 @@ Inner loop converged
 >> bottoms.Out
 Port: /bottoms.Out + sim21.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 3.6952664240963674e-08 = 
+VapFrac            = 3.6952666902868194e-08 = 
 T                  = 260.2382204196709 = F
 P                  = 205.0 = psia
 MoleFlow           = 43.37965154987038 = lbmole/h
 MassFlow           = 3221.728322973842 = lb/h
-VolumeFlow         = 0.028826954116595988 = ft3/s
+VolumeFlow         = 0.02882695411659686 = ft3/s
 StdLiqVolumeFlow   = 0.02295998154622425 = ft3/s
 H                  = -68620.2437264843 = Btu/lbmol
 Energy             = -2976221.69357777 = Btu/hr
-MolecularWeight    = 74.2681927555379 = 
-ZFactor            = 0.06347833909660419 = 
+MolecularWeight    = 74.26819275553787 = 
+ZFactor            = 0.0634783390966061 = 
 METHANE            = 9.868889989671362e-08 = 
 ETHANE             = 9.620388499139159e-05 = 
 PROPANE            = 0.02 = 

@@ -1,8 +1,8 @@
 +--------------------------+------------+
 | File                     | Time(secs) |
 +--------------------------+------------+
-| 00_compressorTrainRK.tst |  40.6859   |
-| volumebalance.tst        |   0.3074   |
+| 00_compressorTrainRK.tst |  22.0390   |
+| volumebalance.tst        |   0.2545   |
 |                          |            |
-| TOTAL                    |  40.9933   |
+| TOTAL                    |  22.2934   |
 +--------------------------+------------+

@@ -176,28 +176,28 @@ Pasting /
 Pasted / as /RootClone
 >> 
 >> Mixer.Out.T
-/Mixer.Out.T= 50.0101428360662 = F
+/Mixer.Out.T= 50.01014283450861 = F
 >> DewPoint.Out.T
-/DewPoint.Out.T= 15.00189217713842 = F
+/DewPoint.Out.T= 15.00189217700909 = F
 >> LTS-Feed.In.T
-/LTS-Feed.In.T= 13.551739433050894 = F
+/LTS-Feed.In.T= 13.551739432459087 = F
 >> Feed.In.T
-/Feed.In.T= 51.59096738980157 = F
+/Feed.In.T= 51.590967389029885 = F
 >> Tower_Feed.In.T
-/Tower_Feed.In.T= 50.0101428360662 | F
+/Tower_Feed.In.T= 50.01014283450861 | F
 >> 
 >> cd /RootClone
 /RootClone
 >> Mixer.Out.T
-/RootClone.Mixer.Out.T= 50.0101428360662 = F
+/RootClone.Mixer.Out.T= 50.01014283450861 = F
 >> DewPoint.Out.T
-/RootClone.DewPoint.Out.T= 15.00189217713842 = F
+/RootClone.DewPoint.Out.T= 15.00189217700909 = F
 >> LTS-Feed.In.T
-/RootClone.LTS-Feed.In.T= 13.551739433050894 = F
+/RootClone.LTS-Feed.In.T= 13.551739432459087 = F
 >> Feed.In.T
-/RootClone.Feed.In.T= 51.59096738980157 = F
+/RootClone.Feed.In.T= 51.590967389029885 = F
 >> Tower_Feed.In.T
-/RootClone.Tower_Feed.In.T= 50.0101428360662 | F
+/RootClone.Tower_Feed.In.T= 50.01014283450861 | F
 >> 
 >> cd /
 /
@@ -216,9 +216,9 @@ Controller solver for / failed to converge
 >> Feed.In.T
 /Feed.In.T= 53.00000000000001 = F
 >> DewPoint.In.T
-/DewPoint.In.T= 14.945744650455598 | F
+/DewPoint.In.T= 14.94574466493331 | F
 >> Tower_Feed.In.T
-/Tower_Feed.In.T= 51.309851505014194 | F
+/Tower_Feed.In.T= 51.30985150495373 | F
 >> 
 >> #Make sure disconnecting doesn't screw things up
 >> #TLiqCont.In ->
