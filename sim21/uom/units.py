@@ -578,7 +578,11 @@ if __name__ == '__main__':
         print((base, unit.ConvertFromBase(base)))
 
     print(('Type ID for MoleFlow', units.GetTypeID('MoleFlow')))
-    typeID = units.GetTypeID('Temperature')
-    fieldSet = units.GetUnitSet('Field')
-    print(('Field unit for Temperature', units.GetUnit(fieldSet, typeID).name))
+
+    for i in list(units.types.values()):
+        unitset_name = 'sim42'
+        unitname = i.name
+        typeID = units.GetTypeID(unitname)
+        unitset = units.GetUnitSet('sim42')
+        print(' '.join((unitname, 'unit for', unitname, units.GetUnit(unitset, typeID).name)))
     pass

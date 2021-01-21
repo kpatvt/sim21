@@ -35,7 +35,7 @@ cd /
 
 
 #This should clear the consist error message
-s2.In -> 
+s2.In ->
 
 
 #Put it back
@@ -55,12 +55,13 @@ s3.Out.P = 333
 s.Out -> s3.In
 
 
-#The consistency error messages should get stored too
-store consisterrs.s42
+# The consistency error messages should get stored too
+# Will not support this .s42 pickled file feature.
+# store consisterrs.s42
 
 #Clear and errors should go away
-clear
+# clear
 
-#recall and errors should come back
-recall consisterrs.s42
-cd /
+# recall and errors should come back
+# recall consisterrs.s42
+# cd /

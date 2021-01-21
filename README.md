@@ -1,23 +1,9 @@
-=====
 sim21
-=====
-
-
-.. image:: https://img.shields.io/pypi/v/sim21.svg
-        :target: https://pypi.python.org/pypi/sim21
-
-.. image:: https://img.shields.io/travis/kpatvt/sim21.svg
-        :target: https://travis-ci.com/kpatvt/sim21
-
-.. image:: https://readthedocs.org/projects/sim21/badge/?version=latest
-        :target: https://sim21.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
+-----
 Open source simulator for typical process/chemical/refinery engineering applications with rigorous thermodynamics.
 Revival of legacy Sim42 simulator for Python 3 with custom thermodynamics.
 
-* Learn more about legacy `Sim42 <https://web.archive.org/web/20050204025650/http://manual.sim42.org/>`_
+* Learn more about legacy Sim42 https://web.archive.org/web/20050204025650/http://manual.sim42.org/
 * Free software: MIT license
 * Documentation: https://sim21.readthedocs.io.
 
@@ -25,6 +11,15 @@ Under continual development, breaking changes are to be expected.
 
 Status
 ------
+* Jan 20, 2021
+    * All example cases now converge with some massaging
+    * Fixed a nasty bug that was preventing one phase results in Flash unitops
+
+* Jan 12, 2021
+    * Many more test cases working including PipeSegment
+    * All column examples now work with different types of specs including recoveries,
+      deg. of subcooling, etc.
+
 * Many examples with output now available with PR/SRK EOS Thermo:
     * Air Separation Unit (ASU)
     * Natural Gas Separation Train
@@ -64,9 +59,9 @@ Features
 * Thermodynamics:
     * Equation of State (EOS)
         * Peng-Robinson (PR) /Soave-Redlich-Kwong (RK)
-    * IAPWS97 implementation based on `XSteam <https://github.com/KurtJacobson/XSteam>`_
+    * IAPWS97 implementation based on https://github.com/KurtJacobson/XSteam
     * Two-phase flashes for common specifications using inside-out method
-* Builtin database of 400+ common components using `ChemSep <http://www.chemsep.com/>`_ database
+* Builtin database of 400+ common components using ChemSep: <http://www.chemsep.com/> database
 
 
 Next Steps
@@ -80,7 +75,5 @@ Credits
 
 * Kiran Pashikanti <kpatvt@gmail.com>
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+* Cookiecutter: https://github.com/audreyr/cookiecutter
+* audreyr/cookiecutter-pypackage: https://github.com/audreyr/cookiecutter-pypackage

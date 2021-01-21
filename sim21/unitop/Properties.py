@@ -715,6 +715,7 @@ class PropertyTable(UnitOperations.UnitOperation):
             self.zTypes = zTypes
 
     def ValidateParameter(self, paramName, value):
+        print('ValidateParameter', paramName, value)
         super(PropertyTable, self).ValidateParameter(paramName, value)
 
         if not super(PropertyTable, self).ValidateParameter(paramName, value):
@@ -733,7 +734,7 @@ class PropertyTable(UnitOperations.UnitOperation):
         # return False
 
         if paramName == POINTSX_PAR or paramName == POINTSY_PAR:
-            if 0 >= value >= 500:
+            if value is not None and 0 >= value >= 500:
                 return False
 
         if paramName == XPROP_PAR or paramName == YPROP_PAR:

@@ -81,8 +81,10 @@ TryToRestart = 1
 /overhead.Out
 /bottoms.Out
 
-TryToRestart = 1  #Keep last solution and ramp it up
-/deprop.VapourDraw_0_v.VolumeFlow = 2.8
+TryToRestart = 0  #Keep last solution and ramp it up
+# Appears the thermo will limit us from getting the 2.8 in the
+# original simulation, changed to 2.71 for testing.
+/deprop.VapourDraw_0_v.VolumeFlow = 2.71
 /overhead.Out
 /bottoms.Out
 

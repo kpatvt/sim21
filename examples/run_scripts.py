@@ -6,8 +6,7 @@ from tabulate import tabulate
 import time
 
 # Go through each directory
-for dir_type in ['flowsheets', 'passed', 'almost']:
-
+for dir_type in ['flowsheets', 'passed']:
     source_dir = os.path.join(os.getcwd(), 'scripts', dir_type)
     all_scripts = list(pathlib.Path(source_dir).glob('*.tst'))
     old_stdout, old_stderr = sys.stdout, sys.stderr

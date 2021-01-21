@@ -11,7 +11,6 @@ change soon
 from sim21.solver import Flowsheet, Ports
 from sim21.solver.Variables import *
 from sim21.solver.Messages import MessageHandler
-# from sim21.thermo.VMConstants import *  # this should be replaced with generic import
 from sim21.unitop import UnitOperations, Flash, Balance
 
 VALID_UNIT_OPERATIONS = ['LLStage',

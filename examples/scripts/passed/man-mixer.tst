@@ -1,5 +1,10 @@
-#adiabatic mixer example
-$thermo = VirtualMaterials.PSRK
+# adiabatic mixer example
+# Wrong thermo is used here, but demonstrates the mixer features correctly
+# The temperatures are different from reference output but same errors are reported
+#
+# $thermo = VirtualMaterials.PSRK
+$thermo = Sim21Thermo.Peng-Robinson
+
 / -> $thermo
 thermo + ETHANOL WATER
 units SI
@@ -27,7 +32,7 @@ m.In0.P = 100
 m.In1.P = 110
 m.Out.P
 
-m.In0.P = 
+m.In0.P =
 m.In1.P = 110
 m.Out.P = 100
 m.In0.P
@@ -43,16 +48,16 @@ m.In0.P
 /m.In0.P = 70
 
 /m.CalcPressureMode = LowestPInOutlet
-/m.Out.P = 
+/m.Out.P =
 #A problem in the solver does not clear the consistency error properly because of some
 #stored results in the flash. This will be addressed later
 Ignored = 1 ; Ignored = None
 
 /m.CalcPressureMode = AllPEqual
-/m.In1.P = 
-/m.In0.P = 
+/m.In1.P =
+/m.In0.P =
 /m.Out.P = 100
-/m.Out.P = 
+/m.Out.P =
 /m.In1.P = 120
 copy /m
 paste /

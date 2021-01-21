@@ -5903,6 +5903,7 @@ class Tower(UnitOperations.UnitOperation):
             if maxK[i] < 0.5:
                 try:
                     # TODO: CHECK THIS!
+                    # print('BubbleK Required')
                     pass
                     # (newT, newY, newLnK) = self.GetBubbleLnK(self.P[i], self.x[i])
                     # self.T[i] = newT

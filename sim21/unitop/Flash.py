@@ -148,7 +148,6 @@ class SimpleFlash(UnitOperations.UnitOperation):
         if results is None:
             return None
 
-
         propsNamesOut = list(results.propNames)
         zIndex = propsNamesOut.index(ZFACTOR_VAR)
         bulkProps = results.bulkProps

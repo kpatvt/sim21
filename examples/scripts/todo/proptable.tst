@@ -1,15 +1,15 @@
-optimizecode 1
-maxversions 0
+# optimizecode 1
+# maxversions 0
 units Field
 /LiquidPhases = 2
-/StdLiqVolRefT = 288.15 
+/StdLiqVolRefT = 288.15
  /StdLiqVolRefT = 60 F
 /RecycleDetails = 1
 displayproperties
 displayproperties VapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow StdGasVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
 commonproperties
 commonproperties + ZFactor P T MolecularWeight MassDensity StdLiqMolarVolVapFrac T P MoleFlow MassFlow VolumeFlow StdLiqVolumeFlow StdGasVolumeFlow Energy H S MolecularWeight MassDensity Cp ThermalConductivity Viscosity molarV ZFactor
-$VMGThermo = VirtualMaterials.Advanced_Peng-Robinson
+$VMGThermo = Sim21Thermo.Peng-Robinson
 / -> $VMGThermo
 /SolidPhases = 0
 $VMGThermo + METHANE

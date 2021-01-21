@@ -94,7 +94,7 @@ class Separator3Phase(DesignMain):
             H = port.GetPropValue(H_VAR)
             fracs = port.GetCompositionValues()
             vals = self.GetProperties(P, H, fracs, propList)
-            if vals:
+            if vals is not None:
                 den = vals[0]
 
         self._input[P_VAR].SetValue(P)
@@ -111,8 +111,9 @@ class Separator3Phase(DesignMain):
             H = port.GetPropValue(H_VAR)
             fracs = port.GetCompositionValues()
             vals = self.GetProperties(P, H, fracs, propList)
-            if vals:
+            if vals is not None:
                 den, visc = vals[0], vals[1]
+
         self._input['LLiqDensity'].SetValue(den)
         self._input['LLiqViscosity'].SetValue(visc)
         self._input['LLiqMassFlow'].SetValue(Wll)
@@ -127,8 +128,9 @@ class Separator3Phase(DesignMain):
             H = port.GetPropValue(H_VAR)
             fracs = port.GetCompositionValues()
             vals = self.GetProperties(P, H, fracs, propList)
-            if vals:
+            if vals is not None:
                 den, visc = vals[0], vals[1]
+
         self._input['HLiqDensity'].SetValue(den)
         self._input['HLiqViscosity'].SetValue(visc)
         self._input['HLiqMassFlow'].SetValue(Whl)

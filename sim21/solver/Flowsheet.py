@@ -390,6 +390,7 @@ class Flowsheet(UnitOperations.UnitOperation):
         jacobian = None
         if not maxStep:
             maxStep = .05
+
         while iter < maxIter:
             iter += 1
             # print iter
@@ -403,6 +404,7 @@ class Flowsheet(UnitOperations.UnitOperation):
                         try:
                             InfoMessage('SolvingOp', op.GetPath())
                             op.unitOpMessage = ('',)
+                            # print('Solving...', op.GetName())
                             op.Solve()
                             for port in op.GetPorts():
                                 port.UpdateConnection()

@@ -958,7 +958,6 @@ class CubicEos(Provider):
         results.scale(flow_sum_mole=flow_sum_value_mole)
         return results
 
-
     def phase(self, temp, press, n, desired_phase,
               allow_pseudo=True, valid=None, press_comp_derivs=False,
               log_phi_temp_press_derivs=False, log_phi_comp_derivs=False):

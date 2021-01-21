@@ -118,3 +118,7 @@ class PhaseByMole:
     def surf_tens(self):
         assert self.identifier == 'liq'
         return self.provider.surf_tens(self.temp, self.comp_mole)
+
+    @property
+    def ig_enthalpy_form_mole(self):
+        return dot(self.comp_mole, [c.ig_enthalpy_form_mole for c in self.provider.components])

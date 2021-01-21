@@ -1,11 +1,13 @@
-$thermo = VirtualMaterials.NRTL/Ideal/HC
+# $thermo = VirtualMaterials.NRTL/Ideal/HC
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 $thermo + HYDROGEN METHANE PROPANE WATER
 
 units SI
 
-V101 = Flash.SimpleFlash()
-V101.LiquidPhases = 1
+# Corrected name
+sep101 = Flash.SimpleFlash()
+sep101.LiquidPhases = 1
 
 sep101.In.T = 45
 sep101.In.P = 165 psia

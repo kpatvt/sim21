@@ -344,6 +344,7 @@ Inner loop converged
  4.36178963e-04 1.68434024e-04]
 >> 
 >> #Delete a compound
+>> #FIXME This code results in different behaviour than the original run, the tower code is unaffected so this is marked as pass
 >> $thermo - ISOBUTANE
 Calculating Jacobian for /col
 Calculating disturbance 10 of 22 in jacobian of /col

@@ -2,6 +2,8 @@ import numpy as np
 from numba import njit
 from math import exp, log
 
+from sim21.data.eqn import eval_eqn_int
+from sim21.support.roots import secant_method
 from .settings import INSIDE_OUT_INNER_ITERATIONS, INSIDE_OUT_INNER_TOLERANCE, INSIDE_OUT_OUTER_ITERATIONS, \
     INSIDE_OUT_OUTER_TOLERANCE, INSIDE_OUT_DAMPING
 from .temp_press import calc_log_kb, calc_u, flash_temp_press_2phase
@@ -130,7 +132,7 @@ def update_model_press_prop_2phase(provider,
     return w, u_hat, a_hat, b_hat, c_hat, d_hat, e_hat, f_hat, log_kb_hat, liq, vap
 
 
-@njit(cache=True)
+# @njit(cache=True)
 def solve_model_press_prop_2phase(feed_comp, kb_0, u, a, b, c, d, e, f, r_value, temp, temp_star, prop_target_scaled, valid):
     # Should speed this up via jiting - can be very fast
     liq_comp = np.zeros(len(feed_comp))
@@ -315,6 +317,7 @@ def solve_model_press_prop_2phase(feed_comp, kb_0, u, a, b, c, d, e, f, r_value,
 
 def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_target, feed_comp, valid=None,
                             previous=None, override_k_values=None, start_temp=None, recursive=False):
+
     if valid is None:
         valid = provider.all_valid_components
 
@@ -357,6 +360,7 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
         temp_star = 0.95*temp_est
 
     start_temp = temp_est
+
     # Initialize the values of the search
     temp = temp_est
     r_value = vap_frac
@@ -530,58 +534,117 @@ def flash_press_prop_2phase(provider, press, prop_type, prop_target, delta_targe
         raise FlashConvergenceError
 
 
+def eval_ig_enthalpy(ig_cp_coeffs, ig_enthalpy_form, ig_enthalpy_ref_temp, comp, temp):
+    x_sum = 0
+    for i in range(len(comp)):
+        x_sum += comp[i]*eval_eqn_int(ig_cp_coeffs[i], temp, ig_enthalpy_ref_temp[i]) + ig_enthalpy_form[i]
+    return x_sum
+
+
+
+
 def flash_press_prop_1phase(provider, phase_type, press, start_temp, prop_type, prop_target, delta_target, feed_comp, valid, ph, recursive=False):
     prop_scaling = provider.scaling(prop_type)
     prop_target_scaled = (prop_target + delta_target)/prop_scaling
 
-
     temp_1 = start_temp
+    temp_2 = temp_1 + 1
     converged = False
-    phase_at_temp = None
+    use_alt = True
+    # print('press:', press, 'feed_comp:', feed_comp, 'prop_type:', prop_type, 'prop_target:', prop_target)
+    if use_alt is True and prop_type == 'enthalpy_mole':
+        # print('Using alternate flash')
+        ig_cp_coeffs = np.array([c.ig_cp_mole_coeffs for c in provider.components])
+        ig_enthalpy_form = np.array([c.ig_enthalpy_form_mole for c in provider.components])
+        ig_enthalpy_ref_temp = np.array([c.ig_temp_ref for c in provider.components])
 
-    for iterations in range(INSIDE_OUT_OUTER_ITERATIONS):
-        temp_2 = temp_1 + 0.001
-        phase_at_temp = provider.phase(temp_1, press, feed_comp, phase_type, valid=valid)
-        prop_1 = getattr(phase_at_temp, prop_type)/prop_scaling
-        prop_2 = getattr(provider.phase(temp_2, press, feed_comp, phase_type, valid=valid), prop_type)/prop_scaling
-        f = (prop_1 - prop_target_scaled)
+        # Get the residual property at temp and temp_prime
+        phase_temp = provider.phase(temp_1, press, feed_comp, phase_type, valid=valid)
+        calc_res_enthalpy = phase_temp.enthalpy_mole - eval_ig_enthalpy(ig_cp_coeffs, ig_enthalpy_form, ig_enthalpy_ref_temp, feed_comp, temp_1)
 
-        # print('#', iterations, 'temp:', temp_1, 'error:', f, 'phase:', phase_type, 'pseudo:', phase_at_temp.pseudo)
+        phase_temp_prime = provider.phase(temp_2, press, feed_comp, phase_type, valid=valid)
+        calc_res_enthalpy_prime = phase_temp_prime.enthalpy_mole - eval_ig_enthalpy(ig_cp_coeffs, ig_enthalpy_form, ig_enthalpy_ref_temp, feed_comp, temp_2)
 
-        if abs(f) < INSIDE_OUT_OUTER_TOLERANCE:
-            converged = True
-            break
+        # Develop correlation for residual enthalpy
+        h_model_b = (calc_res_enthalpy_prime - calc_res_enthalpy)/(temp_2 - temp_1)
+        h_model_a = calc_res_enthalpy - h_model_b*temp_1
+        h_model_error = 1
 
-        f_prime = (prop_2 - prop_target_scaled)
-        df_dx = (f_prime - f)/(temp_2 - temp_1)
-        if abs(df_dx) < INSIDE_OUT_INNER_TOLERANCE:
-            raise FlashConvergenceError
+        # Now do a temp search
+        def f(temp_guess):
+            ig_enthalpy_guess = eval_ig_enthalpy(ig_cp_coeffs, ig_enthalpy_form, ig_enthalpy_ref_temp, feed_comp, temp_guess)
+            res_enthalpy_guess = h_model_a + h_model_b*temp_guess
+            enthalpy_guess = ig_enthalpy_guess + res_enthalpy_guess
+            residual = (enthalpy_guess - prop_target)/prop_scaling
+            # print('Doing inner search:', 'temp:', temp_guess, 'residual:', residual)
+            return residual
 
-        delta_temp = f/df_dx
-        if abs(delta_temp) > 4*temp_1:
-            temp_1_new = delta_temp/2
+        outer_iterations = 0
+        temp_calc = temp_1
+        while not converged and outer_iterations < INSIDE_OUT_OUTER_ITERATIONS:
+            temp_calc_old = temp_calc
+            # Do a secant search to find the temp
+            temp_calc = secant_method(f, temp_calc, temp_calc + 1)
+            # print('inner search:', 'temp:', temp_calc)
 
-        temp_1_new = temp_1 - delta_temp
-        if temp_1_new < 0:
-            temp_1_new = 0.9*temp_1
+            if temp_calc < 0:
+                temp_calc = 0.9*temp_calc_old
 
-        temp_1 = temp_1_new
+            # if temp_calc > 2.0 * temp_calc_old:
+            #     temp_calc = 2.0 * temp_calc_old
+            # elif temp_calc < 0.5 * temp_calc_old:
+            #     temp_calc = 0.5 * temp_calc_old
+
+            phase_new = provider.phase(temp_calc, press, feed_comp, phase_type, valid=valid)
+            calc_res_enthalpy = phase_new.enthalpy_mole - eval_ig_enthalpy(ig_cp_coeffs, ig_enthalpy_form,
+                                                                           ig_enthalpy_ref_temp,
+                                                                           feed_comp, temp_calc)
+
+            h_model_a_new = calc_res_enthalpy - h_model_b*temp_calc
+            h_model_error = abs((h_model_a - h_model_a_new)/h_model_a)
+            if abs(h_model_error) < INSIDE_OUT_INNER_TOLERANCE:
+                converged = True
+
+            outer_iterations += 1
+            if outer_iterations > 10:
+                h_model_a_new = (h_model_a + h_model_a_new)*0.5
+
+            h_model_a = h_model_a_new
+
+        temp_final = temp_calc
+    else:
+        for iterations in range(INSIDE_OUT_OUTER_ITERATIONS):
+            temp_2 = temp_1 + 0.01
+            phase_at_temp = provider.phase(temp_1, press, feed_comp, phase_type, valid=valid)
+            prop_1 = getattr(phase_at_temp, prop_type)/prop_scaling
+            prop_2 = getattr(provider.phase(temp_2, press, feed_comp, phase_type, valid=valid), prop_type)/prop_scaling
+            f = (prop_1 - prop_target_scaled)
+
+            # print('#', iterations, 'temp:', temp_1, 'error:', f, 'phase:', phase_type, 'pseudo:', phase_at_temp.pseudo)
+
+            if abs(f) < INSIDE_OUT_OUTER_TOLERANCE:
+                converged = True
+                break
+
+            f_prime = (prop_2 - prop_target_scaled)
+            df_dx = (f_prime - f)/(temp_2 - temp_1)
+            if abs(df_dx) < INSIDE_OUT_INNER_TOLERANCE:
+                raise FlashConvergenceError
+
+            delta_temp = f/df_dx
+            if abs(delta_temp) > 4*temp_1:
+                temp_1_new = delta_temp/2
+
+            temp_1_new = temp_1 - delta_temp
+            if temp_1_new < 0:
+                temp_1_new = 0.5*temp_1
+
+            temp_1 = temp_1_new
+
+        temp_final = temp_1
 
     if not converged:
-        # def phase_temp(guess_t_arg):
-        #     guess_t = guess_t_arg[0]
-        #     guess_phase_at_temp = provider.phase(guess_t, press, feed_comp, phase_type, valid=valid)
-        #     guess_prop = getattr(guess_phase_at_temp, prop_type) / prop_scaling
-        #     residual = (guess_prop - prop_target_scaled)
-        #     print('Using fsolve instead, guess:', guess_t, 'residual:', residual)
-        #     return [residual]
-        #
-        # from scipy.optimize import fsolve
-        # temp_1 = fsolve(phase_temp, [temp_1])
-
         raise FlashConvergenceError
-
-    temp_final = temp_1
 
     # If we converged, now check if we can flash into multiple phases
     results = flash_temp_press_2phase(provider, temp_final, press, feed_comp, valid)

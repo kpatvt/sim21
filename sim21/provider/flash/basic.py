@@ -85,14 +85,15 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
     deviation = 1
     fully_converged = False
     invalid_solution_count = 0
-    beta_error = 0
+    beta_error = 1
     for flash_iteration in range(__BASIC_TEMP_PRESS_FLASH_ITERATIONS):
         if deviation < __BASIC_TEMP_PRESS_TOLERANCE:
             fully_converged = True
             break
+        if beta_error < __BASIC_TEMP_PRESS_TOLERANCE:
+            break
 
         vapor_present, liquid_present = possible_rr_2phase(k_values, feed_comp, valid)
-
         if vapor_present and liquid_present:
             rr_converged, beta_guess_new, liq_comp, vap_comp = solve_rr_2phase(k_values, feed_comp, valid, beta_guess)
             beta_error = abs(beta_guess_new - beta_guess)
@@ -110,6 +111,8 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
                 # print('Breaking out, likely single phase')
                 break
 
+        # print('vapor_present', vapor_present, 'liquid_present', liquid_present, 'beta', beta_guess)
+
         # Get the new_values
         liq_phase, vap_phase = provider.phases_vle(temp, press, liq_comp, vap_comp)
         new_k_values, deviation = update_two_phase_k_values(k_values, liq_phase.log_phi, vap_phase.log_phi, valid)
@@ -119,8 +122,11 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
 
         # Update the k-values from the provider and then repeat the RR caluation
         # until K-values converge or iterations run out
+        if flash_iteration > 0.30*__BASIC_TEMP_PRESS_FLASH_ITERATIONS:
+            new_k_values = (k_values + new_k_values)*0.5
+
         k_values = new_k_values
-        # print('temp:', temp, 'press:', press, 'beta:', beta_guess, 'k-values:', k_values, 'error:', deviation)
+        # print('temp:', temp, 'press:', press, 'beta:', beta_guess, 'error:', deviation)
 
     # We have broken out of the loop, but check if we are converged or forcing a stability scripts
     # We can break out to force a stability scripts or because we didn't converge
@@ -129,6 +135,7 @@ def basic_flash_temp_press_2phase(provider, temp, press, feed_comp, valid, previ
     # For now we error out
     if not fully_converged and vapor_present and liquid_present:
         if beta_error < __BASIC_TEMP_PRESS_TOLERANCE:
+            # print('WARNING: TP Flash is possibly inaccurate')
             fully_converged = True
         else:
             # If iterations run out and provider supports log_phi derivatives, use to switch over to a full Newton approach

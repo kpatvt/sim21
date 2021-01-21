@@ -7,15 +7,14 @@ InternalEqmReactor - Internal equilibrium reactor
 EquilibriumReactor - General equilibrium reactor
 """
 import math
-from sim21.unitop import UnitOperations, Balance, Heater, Sensor, Stream
-from sim21.solver.Variables import *
-from sim21.unitop.ConvRxn import ConversionReaction
-from sim21.unitop.Pump import DataSeries, ATable, LookupTable
-from sim21.solver.Messages import MessageHandler
 
 # Common constants
-from sim21.unitop.BaseForReactors import QEXOTHERMIC_ISPOS_PAR, NURXN_PAR, REACTION, COEFF
-from sim21.unitop.BaseForReactors import RXNFFORMULA_PAR, RXNCONV, RXNEXTENT
+from sim21.unitop.BaseForReactors import QEXOTHERMIC_ISPOS_PAR, NURXN_PAR, REACTION
+from sim21.solver.Messages import MessageHandler
+from sim21.solver.Variables import *
+from sim21.unitop import UnitOperations, Balance, Sensor, Stream
+from sim21.unitop.ConvRxn import ConversionReaction
+from sim21.unitop.Pump import ATable
 
 # Particual constants and equations of this unit op
 MAXOUTERLOOPS = 50
@@ -66,14 +65,14 @@ class RxnUnknowns(object):
         return self.numberOfUnknowns
 
     def GetMyVariableValues(self):
-        all_vars = []
+        vars = []
         for i in range(self.numberOfUnknowns):
-            all_vars.append(self.myVariables[i].currentValue)
-        return all_vars
+            vars.append(self.myVariables[i].currentValue)
+        return vars
 
-    def SetMyVariableValues(self, all_vars):
+    def SetMyVariableValues(self, vars):
         for i in range(self.numberOfUnknowns):
-            self.myVariables[i].currentValue = all_vars[i]
+            self.myVariables[i].currentValue = vars[i]
 
     def CleanUp(self):
         self.numberOfUnknowns = 0
@@ -86,25 +85,25 @@ class NonLinearSolver(object):
     def __init__(self):
         self.converged = 0
         self.epsilon = 0.0001
+        self.useNumericJac = True
 
     def Solve(self, parent, uObj, numberOfEquations, max_num_iterations):
         self.converged = 0
-        self.useNumericJac = 1
+        self.useNumericJac = True
         x0 = uObj.GetMyVariableValues()
         x = x0
         # Set initial deltaX to 1.0 to ensure that convergence check works
-        deltaX = np.ones(numberOfEquations, dtype=float)
+        deltaX = np.ones(numberOfEquations, np.float)
         idex = 0
         try:
             while idex < max_num_iterations:
                 # for idex in range(max_num_iterations):
                 stepX = parent.CalculateStep(x)
-                if stepX is None:
-                    return 0
+                if stepX is None: return 0
                 rhs = parent.CalculateRHS(x)
-                if self.useNumericJac == 1:
+                if self.useNumericJac == True:
                     jacobian = parent.CalculateJacobian(x)
-                elif self.useNumericJac == 0:
+                elif self.useNumericJac == False:
                     try:
                         jacobian = parent.CalculateJacobian1(x)
                     except:
@@ -114,7 +113,7 @@ class NonLinearSolver(object):
                 # deltaX = self.GetSolutionSolver(numberOfEquations, jacobian, stepX)       # rhs)
                 self.converged = self.CheckForConvergence(numberOfEquations, rhs, stepX, deltaX)
                 if idex == max_num_iterations - 1:  # show intermidiate results
-                    if self.useNumericJac == 0:
+                    if self.useNumericJac == False:
                         try:
                             parentPath = parent.GetPath()
                             parent.InfoMessage('ShowIntermidiateResults', (parentPath,))
@@ -123,9 +122,9 @@ class NonLinearSolver(object):
                         except:
                             return 0
                     else:
-                        self.useNumericJac = 0
+                        self.useNumericJac = False
                         x = x0
-                        deltaX = np.zeros(numberOfEquations, dtype=float)
+                        deltaX = np.zeros(numberOfEquations, np.float)
                         idex = 0
                 elif self.converged:
                     uObj.SetMyVariableValues(x)
@@ -141,8 +140,8 @@ class NonLinearSolver(object):
     def CheckForConvergence(self, numberOfEquations, rhs, dItem, deltaX):
         try:
             for i in range(numberOfEquations):
-                if (abs(rhs[i]) > self.epsilon) and (abs(dItem[i]) > self.epsilon * 0.01):
-                    # and (abs(deltaX[i]) > self.epsilon * 0.01)
+                if (abs(rhs[i]) > self.epsilon) and (
+                        abs(dItem[i]) > self.epsilon * 0.01):  # and (abs(deltaX[i]) > self.epsilon * 0.01)
                     return 0
             return 1
         except:
@@ -182,11 +181,11 @@ class EquilibriumConstant(object):
         self.tblEqmCoeffs = []
 
         tbl = self.kTable
-        if not tbl:
+        if tbl is None:
             return 0
         srs0 = tbl.GetObject(SERIES_OBJ + str(0))
         srs1 = tbl.GetObject(SERIES_OBJ + str(1))
-        if (not srs0) or (not srs1):
+        if srs0 is None or srs1 is None:
             return 0
         vals0 = srs0.GetValues()
         vals1 = srs1.GetValues()
@@ -214,8 +213,7 @@ class EquilibriumConstant(object):
                 self.myUnknowns.AddUnknown("C", 1)
                 self.myUnknowns.AddUnknown("D", 0.001)
                 nuEqu = 4
-            if not self.mySolver.Solve(self, self.myUnknowns, nuEqu, MAXOUTERLOOPS):
-                return 0
+            if not self.mySolver.Solve(self, self.myUnknowns, nuEqu, MAXOUTERLOOPS): return 0
             self.tblEqmCoeffs = self.myUnknowns.GetMyVariableValues()
             if nuEqu < 4:
                 for i in range(nuEqu, 4):
@@ -255,7 +253,7 @@ class EquilibriumConstant(object):
                 logK = self.GibbsEqmConstant(temperature)
             elif calcOption == 3:
                 tbl = self.kTable
-                if not tbl:
+                if tbl is None:
                     return None
                 srs2 = tbl.GetObject(SERIES_OBJ + str(3))
                 vals2 = srs2.GetValues()
@@ -264,29 +262,27 @@ class EquilibriumConstant(object):
                 logK = None
             elif calcOption == 4:
                 tbl = self.kTable
-                if not tbl:
+                if tbl is None:
                     return None
                 srs2 = tbl.GetObject(SERIES_OBJ + str(2))
                 vals2 = srs2.GetValues()
                 self.eqmCoeffs = vals2
                 self.tblEqmCoeffs = []
                 # self.eqmCoeffs = self.kTable.GetObject(SERIES_OBJ + str(2)).GetValues()
-                logK = (self.eqmCoeffs[0] + self.eqmCoeffs[1] / temperature + self.eqmCoeffs[2] * math.log(temperature) +
-                        self.eqmCoeffs[3] * temperature)
+                logK = (self.eqmCoeffs[0] + self.eqmCoeffs[1] / temperature + self.eqmCoeffs[2] * math.log(
+                    temperature) + self.eqmCoeffs[3] * temperature)
             if logK is not None:
                 if logK > 300:
                     logK = 300
                 if logK < -300:
                     logK = -300
-
                 self.eqmConstant = math.exp(logK)
-
             return self.eqmConstant
         except:
             return None
 
     def CalculateStep(self, x):
-        rhs = np.zeros(len(x), dtype=float)
+        rhs = np.zeros(len(x), np.float)
         try:
             dum = 0
             if len(self.tableKeq) == len(self.tableTemp):
@@ -301,14 +297,15 @@ class EquilibriumConstant(object):
                         rhs[1] = rhs[1] + 2 * dum / self.tableTemp[i]
                 elif len(x) == 3:
                     for i in range(len(self.tableTemp)):
-                        dum = x[0] + x[1] / self.tableTemp[i] + x[2] * math.log(self.tableTemp[i]) - math.log(self.tableKeq[i])
+                        dum = x[0] + x[1] / self.tableTemp[i] + x[2] * math.log(self.tableTemp[i]) - math.log(
+                            self.tableKeq[i])
                         rhs[0] = rhs[0] + 2 * dum
                         rhs[1] = rhs[1] + 2 * dum / self.tableTemp[i]
                         rhs[2] = rhs[2] + 2 * dum * math.log(self.tableTemp[i])
                 else:
                     for i in range(len(self.tableTemp)):
-                        dum = x[0] + x[1] / self.tableTemp[i] + x[2] * math.log(self.tableTemp[i]) + x[3] * self.tableTemp[
-                            i] - math.log(self.tableKeq[i])
+                        dum = x[0] + x[1] / self.tableTemp[i] + x[2] * math.log(self.tableTemp[i]) + x[3] * \
+                              self.tableTemp[i] - math.log(self.tableKeq[i])
                         rhs[0] = rhs[0] + 2 * dum
                         rhs[1] = rhs[1] + 2 * dum / self.tableTemp[i]
                         rhs[2] = rhs[2] + 2 * dum * math.log(self.tableTemp[i])
@@ -319,14 +316,13 @@ class EquilibriumConstant(object):
 
     def CalculateRHS(self, x):
         try:
-            sum_vals = 0.0
+            sum = 0.0
             nEq = len(x)
 
             if len(self.tableKeq) == len(self.tableTemp):
                 for i in range(len(self.tableTemp)):
                     denom = 1.e-20
-                    if abs(math.log(self.tableKeq[i])) > denom:
-                        denom = math.log(self.tableKeq[i])
+                    if abs(math.log(self.tableKeq[i])) > denom: denom = math.log(self.tableKeq[i])
                     if nEq == 1:
                         tVal = x[0]
                     elif nEq == 2:
@@ -334,17 +330,17 @@ class EquilibriumConstant(object):
                     elif nEq == 3:
                         tVal = x[0] + x[1] / self.tableTemp[i] + x[2] * math.log(self.tableTemp[i])
                     else:
-                        tVal = x[0] + x[1] / self.tableTemp[i] + x[2] * math.log(self.tableTemp[i]) + x[3] * self.tableTemp[
-                            i]
+                        tVal = x[0] + x[1] / self.tableTemp[i] + x[2] * math.log(self.tableTemp[i]) + x[3] * \
+                               self.tableTemp[i]
                     dum = tVal - math.log(self.tableKeq[i])
-                    sum_vals += abs(dum / denom)
-                rhs = 2 * sum_vals * np.ones(nEq, dtype=float)
+                    sum += abs(dum / denom)
+                rhs = 2 * sum * np.ones(nEq, np.float)
             return rhs
         except:
             return None
 
     def CalculateJacobian(self, x):
-        j = np.zeros((len(x), len(x)), dtype=float)
+        j = np.zeros((len(x), len(x)), np.float)
         try:
             workArray1 = self.CalculateStep(x)
             # Calculate Jacobian by shifting
@@ -366,8 +362,7 @@ class EquilibriumConstant(object):
         for i in range(len(x)):
             if deltaX[i] != 0.0:
                 scaleFactor1 = 100000 / abs(deltaX[i])
-                if scaleFactor1 < scaleFactor:
-                    scaleFactor = scaleFactor1
+                if scaleFactor1 < scaleFactor: scaleFactor = scaleFactor1
         for i in range(len(x)):
             x[i] = x[i] - deltaX[i] * scaleFactor
 
@@ -377,7 +372,7 @@ class EquilibriumConstant(object):
             # rxnT = parent.outPort.GetPropValue(T_VAR)
             rxnP = parent.outPort.GetPropValue(P_VAR)
             # arbitary composition
-            x = np.zeros(nc, dtype=float)
+            x = np.zeros(nc, np.float)
             x[0] = 1.0
             # check whether it returns G or g/RT
             # check whether it has mixing rule
@@ -582,8 +577,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
             self.dpPort.SetPropValue(DELTAP_VAR, inP - outP, CALCULATED_V)
 
     def Solve(self):
-        if self.IsForgetting():
-            return 0
+        if self.IsForgetting(): return 0
         try:
             rxns = list(self.chUODict.values())
             nuRxns = len(rxns)
@@ -597,7 +591,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
             self.PropagatePressure()
             inPort.Flash()
 
-            self.kEqm = np.zeros(nuRxns, dtype=float)
+            self.kEqm = np.zeros(nuRxns, np.float)
 
             regrFailed = 1
             if outT is not None:
@@ -612,21 +606,18 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
                 calcOption = self.GetParameterValue(CALCOPTION_PAR)
                 if calcOption == 1:
                     for i in range(nuRxns):
-                        if not rxns[i].eqmConstant.CorrelateCoeffs():
-                            regrFailed = 0
-                    if regrFailed == 0:
-                        return 0
+                        if not rxns[i].eqmConstant.CorrelateCoeffs(): regrFailed = 0
+                    if regrFailed == 0: return 0
 
             xIn = inPort.GetCompositionValues()
             self.nc = len(xIn)
             # initialize the working arrays
             self.feedMolei = np.array(xIn)
-            self.productMolei = np.zeros(self.nc, dtype=float)
-            self.productMoleFrac = np.zeros(self.nc, dtype=float)
-            self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, dtype=float))
+            self.productMolei = np.zeros(self.nc, np.float)
+            self.productMoleFrac = np.zeros(self.nc, np.float)
+            self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, np.float))
 
-            if not self.ValidateOk():
-                return 0
+            if not self.ValidateOk(): return 0
 
             # check if it is a temperature or reactor heat spec
             if outT is None:
@@ -638,8 +629,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
                 outQ = self.qPort.GetPropValue(ENERGY_VAR)
                 if outQ is not None:
                     # reactor heat spec
-                    if self.SolveAtDuty(outQ):
-                        return 1
+                    if self.SolveAtDuty(outQ): return 1
                 return 0
             else:
                 # reactor temperature spec
@@ -651,8 +641,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
                 self.feedMolei = self.feedMolei * flow
 
                 for i in range(nuRxns):
-                    if self.kEqm[i] is None:
-                        return 0
+                    if self.kEqm[i] is None: return 0
 
                 solveStatus = self.mySolver.Solve(self, self.myUnknowns, nuRxns, MAXOUTERLOOPS)
                 if solveStatus == 1:
@@ -700,8 +689,8 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
             phase = LIQUID_PHASE
             tolerance = self.GetTolerance()
             outerLoop = 0
-            for iterations in range(MAXOUTERLOOPS):
-                self.kEqm = np.zeros(nuRxns, dtype=float)
+            for iter in range(MAXOUTERLOOPS):
+                self.kEqm = np.zeros(nuRxns, np.float)
                 regrFailed = 1
                 for i in range(nuRxns):
                     ki = rns[i].CalculateKeq(float(tK))
@@ -712,16 +701,14 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
 
                 if not self.mySolver.Solve(self, self.myUnknowns, nuRxns, MAXOUTERLOOPS):
                     regrFailed = 0
-                if regrFailed == 0:
-                    return 0
+                if regrFailed == 0: return 0
                 convs = self.myUnknowns.GetMyVariableValues()
                 for i in range(nuRxns):
                     rns[i].rxnExtent.SetValue(convs[i])
                     rns[i].localExt = convs[i]
 
                 self.CalculateProduct()
-                # 3.6 to convert spec unit from W(assume so) to kj/hr
-                prodMoleEnthalpy = (hin - rxnQ * 3.6) / self.ProductTotalMole
+                prodMoleEnthalpy = (hin - rxnQ * 3.6) / self.ProductTotalMole  # 3.6 to convert spec unit from W(assume so) to kj/hr
                 try:
                     prop1 = (P_VAR, rxnPressure)
                     prop2 = (T_VAR, tK)
@@ -745,36 +732,28 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
                     dT = float(tK) - float(tkProd)
                     scaleFactor = PropTypes[T_VAR].scaleFactor
                     sTolerance = scaleFactor * tolerance
-                    if abs(dT) <= sTolerance or ((tHi - tLo) <= sTolerance and abs(dT) / tK <= 0.001):
-                        break
-                    if tMax < tkProd:
-                        tMax = tkProd
-                    if tMin > tkProd:
-                        tMin = tkProd
+                    if abs(dT) <= sTolerance or ((tHi - tLo) <= sTolerance and abs(dT) / tK <= 0.001): break
+                    if tMax < tkProd: tMax = tkProd
+                    if tMin > tkProd: tMin = tkProd
                     if dT > 0:
-                        if tK < tHi:
-                            tHi = tK
+                        if tK < tHi: tHi = tK
                         if tLo == 0:
                             tLo = tkProd
                         elif tMin == tkProd:
                             tLo = tMin
                     else:
-                        if tK > tLo:
-                            tLo = tK
+                        if tK > tLo: tLo = tK
                         if tHi == 10000:
                             tHi = tkProd
                         elif tMax == tkProd:
                             tHi = tMax
                     tK = 0.5 * (tLo + tHi)
                 except:  # Change initial guess temperature and restart calculation
-                    self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, dtype=float))
+                    self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, np.float))
                     tK = (298.2 + tK) / 2
                     outerLoop += 1
-                    if outerLoop > 20:
-                        return 0
-
-            if iterations > MAXOUTERLOOPS - 2:
-                return 1
+                    if outerLoop > 20: return 0
+            if iter > MAXOUTERLOOPS - 2: return 1
             self.outPort.SetPropValue(H_VAR, moleH, CALCULATED_V)
             self.UpdateOutPort()
             return 1
@@ -800,15 +779,12 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def ValidateOk(self):
         rxns = list(self.chUODict.values())
         # all reactions must have been defined
-        if len(rxns) == 0:
-            return 0
+        if len(rxns) == 0: return 0
         for aRxn in rxns:
-            if not aRxn.ValidateOk():
-                return 0
+            if not aRxn.ValidateOk(): return 0
         # fix 020503, do not check for complete inlet stream,
         # check for inlet composiiton
-        if not self.inPort.GetCompounds().AreValuesReady():
-            return 0
+        if not self.inPort.GetCompounds().AreValuesReady(): return 0
 
         # flow must have been known
         # inPort = self.inPort
@@ -832,8 +808,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
 
     def RxnEnthalpy(self, aPort):
         h = aPort.GetPropValue(H_VAR)
-        if h is None:
-            return None
+        if h is None: return None
         try:
             p = aPort.GetPropValue(P_VAR)
             t = aPort.GetPropValue(T_VAR)
@@ -876,8 +851,8 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def CalculateStep(self, x):
         rxns = list(self.chUODict.values())
         nuRxns = len(rxns)
-        rhs = np.zeros(nuRxns, dtype=float)
-        workArray = np.zeros(self.nc, dtype=float)
+        rhs = np.zeros(nuRxns, np.float)
+        workArray = np.zeros(self.nc, np.float)
         sumX = 0
         for i in range(self.nc):
             dum = 0
@@ -916,8 +891,8 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def CalculateRHS(self, x):
         rxns = list(self.chUODict.values())
         nuRxns = len(rxns)
-        rhs = np.zeros(nuRxns, dtype=float)
-        workArray = np.zeros(self.nc, dtype=float)
+        rhs = np.zeros(nuRxns, np.float)
+        workArray = np.zeros(self.nc, np.float)
         sumX = 0
         for i in range(self.nc):
             dum = 0
@@ -954,18 +929,17 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
                 leftSideCoeff = rxns[j].SideConstCoeff(-1)
                 rightSideCoeff = rxns[j].SideConstCoeff(1)
                 tVal = rightSide * rightSideCoeff
-                if tVal > denom:
-                    denom = tVal
+                if tVal > denom: denom = tVal
                 rhs[j] = ((leftSide * leftSideCoeff / denom) - 1)
         return rhs
 
     def CalculateJacobian(self, x):
         rxns = list(self.chUODict.values())
         nuRxns = len(rxns)
-        lSideC = np.ones(nuRxns, dtype=float)
-        rSideC = np.ones(nuRxns, dtype=float)
-        workArray = np.zeros(self.nc, dtype=float)
-        jac = np.zeros((len(x), len(x)), dtype=float)
+        lSideC = np.ones(nuRxns, np.float)
+        rSideC = np.ones(nuRxns, np.float)
+        workArray = np.zeros(self.nc, np.float)
+        jac = np.zeros((len(x), len(x)), np.float)
         sumX = 0
         for i in range(self.nc):
             dum = 0
@@ -1018,7 +992,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
         return jac
 
     def CalculateJacobian1(self, x):  # called by mysolver
-        j = np.zeros((len(x), len(x)), dtype=float)
+        j = np.zeros((len(x), len(x)), np.float)
         workArray1 = self.CalculateStep(x)
         # Calculate Jacobian by shifting
         # unshifted RHS's
@@ -1035,7 +1009,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def UpdateX(self, x, deltaX):
         rxns = list(self.chUODict.values())
         scaleFactor = 1
-        workArray = np.zeros(self.nc, dtype=float)
+        workArray = np.zeros(self.nc, np.float)
         for i in range(self.nc):
             sumExtents = 0
             sumDeltas = 0
@@ -1047,18 +1021,15 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
             workArray[i] = self.feedMolei[i] + sumExtents - sumDeltas
             if (workArray[i] < 1.E-30) and (sumDeltas != 0.):
                 scaleFactor1 = 0.5 * (self.feedMolei[i] + sumExtents - 1.E-30) / sumDeltas
-                if scaleFactor1 < scaleFactor:
-                    scaleFactor = scaleFactor1
+                if scaleFactor1 < scaleFactor: scaleFactor = scaleFactor1
 
-        if scaleFactor < 0.0001:
-            scaleFactor = 0.0001
+        if scaleFactor < 0.0001: scaleFactor = 0.0001
 
-        for i in range(len(x)):
-            x[i] = x[i] - deltaX[i] * scaleFactor
+        for i in range(len(x)): x[i] = x[i] - deltaX[i] * scaleFactor
 
     def UpdateX1(self, x, deltaX):
         rxns = list(self.chUODict.values())
-        workArray = np.zeros(self.nc, dtype=float)
+        workArray = np.zeros(self.nc, np.float)
         for i in range(self.nc):
             sumExtents = 0
             sumDeltas = 0
@@ -1077,8 +1048,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
                     iRxn = iRxn + 1
                 workArray[i] = self.feedMolei[i] + sumExtents - sumDeltas
 
-        for i in range(len(x)):
-            x[i] = x[i] + deltaX[i]
+        for i in range(len(x)): x[i] = x[i] + deltaX[i]
 
 
 class EquilibriumReactor(UnitOperations.UnitOperation):
@@ -1163,7 +1133,7 @@ class EquilibriumReactor(UnitOperations.UnitOperation):
 
     def GetObject(self, name):
         obj = super(EquilibriumReactor, self).GetObject(name)
-        if not obj:
+        if obj is None:
             obj = self.itnRxn.GetObject(name)
         return obj
 

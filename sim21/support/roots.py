@@ -76,3 +76,18 @@ def solve_cubic_reals(a, b, c, d):
         #         x = x - (a*(x**3) + b*(x**2) + c*x + d)/(3*a*(x**2) + 2*b*x + c)
 
         return np.array([x])
+
+
+def secant_method(f, x0, x1, iterations=30, xtol=1e-6, f_prime_tol=1e-6):
+    """Return the root calculated using the secant method."""
+    x2 = None
+    for i in range(iterations):
+        den = float(f(x1) - f(x0))
+        if abs(den) < f_prime_tol:
+            break
+        x2 = x1 - f(x1) * (x1 - x0) / den
+        x0, x1 = x1, x2
+        xtol_calc = abs(x0 - x1)
+        if xtol_calc < xtol:
+            break
+    return x2

@@ -315,7 +315,8 @@ class PipeSegment(EquationSolver.EquationBasedOp):
         thCaseObj = self.GetThermo()
         if not thCaseObj:
             return None
-        if not self.hArray or not self.pArray:
+
+        if self.hArray is None or self.pArray is None:
             return None
 
         # See if the results are already loaded in the flash results array
@@ -762,6 +763,8 @@ class PipeSegment(EquationSolver.EquationBasedOp):
             # Load y and len profiles
             try:
                 self._yVec = np.array(self.liveProfiles['y'].GetValues(), dtype=float)
+                if np.isnan(self._yVec).any():
+                    raise
             except:
                 if y0 != y1:
                     self._yVec = EquationSolver.CreateLinearDistArray(nuSections + 1, y0, y1)
@@ -769,6 +772,8 @@ class PipeSegment(EquationSolver.EquationBasedOp):
                     self._yVec = np.ones(nuSections + 1, dtype=float) * y0
             try:
                 self._lenVec = np.array(self.liveProfiles[LENGTH_PORT].GetValues(), dtype=float)
+                if np.isnan(self._lenVec).any():
+                    raise
             except:
                 self._lenVec = np.zeros(nuSections, dtype=float) + totLen / nuSections
 

@@ -54,7 +54,11 @@ def extract_property_from_phase(prop_name, ph):
     elif prop_name == SURFACETENSION_VAR:
         new_value = float(ph.surf_tens)
     elif prop_name == RXNBASEH_VAR:
-        new_value = 0.0
+        new_value = 0 # float(-ph.ig_enthalpy_form_mole*1e-3)
+    # elif prop_name == MOLEFLOW_VAR:
+    #     new_value = float(ph.flow_sum_mole)
+    # elif prop_name == MASSFLOW_VAR:
+    #     new_value = float(ph.flow_sum_mole * ph.mw)
     else:
         print('ALERT:', prop_name)
         raise NotImplementedError
@@ -1016,7 +1020,7 @@ class ThermoInterface(object):
                 phase_comp = np.array(frac)
                 return [np.dot(hnd.mw, phase_comp/sum(phase_comp))]
             if len(propList) == 1 and RXNBASEH_VAR in propList:
-                return [0.0]
+                return 0 # [-np.dot(frac, [c.ig_enthalpy_form_mole for c in hnd.components])*1e-3]
 
             needsFlash = False
             if phase == OVERALL_PHASE:
@@ -1186,7 +1190,25 @@ class ThermoInterface(object):
                 frac_vol /= frac_vol_sum
                 return frac_vol
 
-            raise NotImplementedError
+            if prop == IDEALGASGIBBS_VAR:
+                if inProp1[0] == T_VAR:
+                    temp = prop1
+                elif inProp2[0] == T_VAR:
+                    temp = prop2
+                else:
+                    raise NotImplementedError
+
+                if inProp1[0] == P_VAR:
+                    press = prop1 * 1e3
+                elif inProp2[0] == P_VAR:
+                    press = prop2 * 1e3
+                else:
+                    raise NotImplementedError
+
+                components = hnd.components
+                return np.array([c.ig_gibbs_mole(temp, press)*1e-3 for c in components])
+            else:
+                raise NotImplementedError
         else:
             # prop1 is an array
             # prop2 can be array or scalar
@@ -1265,21 +1287,21 @@ class ThermoInterface(object):
         hnd = self.gPkgHandles[thName][0]
         return hnd.mw
 
-    def _PropertiesForIter(self, prop1, prop2, phase, frac):
-        feed = self._feed
-        hnd = self._hnd
-        vmg.SetMultipleObjectDoubleValues(hnd, feed, (self._prop1Type, self._prop2Type, seaPhaseType),
-                                          (prop1, prop2, phase))
-        vmg.SetObjectDoubleArrayValues(hnd, feed, seaComposition, frac)
-        return vmg.GetMultipleObjectDoubleValues(hnd, feed, self._propIDs)
-
-    def _ArrPropertiesForIter(self, prop1, prop2, phase, frac):
-        feed = self._feed
-        hnd = self._hnd
-        vmg.SetMultipleObjectDoubleValues(hnd, feed, (self._prop1Type, self._prop2Type, seaPhaseType),
-                                          (prop1, prop2, phase))
-        vmg.SetObjectDoubleArrayValues(hnd, feed, seaComposition, frac)
-        return vmg.GetObjectDoubleArrayValues(hnd, feed, self._propID, 0)
+    # def _PropertiesForIter(self, prop1, prop2, phase, frac):
+    #     feed = self._feed
+    #     hnd = self._hnd
+    #     vmg.SetMultipleObjectDoubleValues(hnd, feed, (self._prop1Type, self._prop2Type, seaPhaseType),
+    #                                       (prop1, prop2, phase))
+    #     vmg.SetObjectDoubleArrayValues(hnd, feed, seaComposition, frac)
+    #     return vmg.GetMultipleObjectDoubleValues(hnd, feed, self._propIDs)
+    #
+    # def _ArrPropertiesForIter(self, prop1, prop2, phase, frac):
+    #     feed = self._feed
+    #     hnd = self._hnd
+    #     vmg.SetMultipleObjectDoubleValues(hnd, feed, (self._prop1Type, self._prop2Type, seaPhaseType),
+    #                                       (prop1, prop2, phase))
+    #     vmg.SetObjectDoubleArrayValues(hnd, feed, seaComposition, frac)
+    #     return vmg.GetObjectDoubleArrayValues(hnd, feed, self._propID, 0)
 
     ####################################################################################################
 
@@ -1372,21 +1394,6 @@ class ThermoInterface(object):
             raise
             # pass
 
-        # vmg.SetObjectDoubleArrayValues(hnd, feed, seaComposition, bulkComp)
-        # vmg.SetMultipleObjectDoubleValues(hnd, feed, vmprops, given_vals)
-        # try:
-        #     phasesFracs = vmg.EquilibriumObjectFlash(hnd, initFromInput, flType, liqPhases, withSolid,
-        #                                              othersCount, feed, phasesOut, phasesFracs)
-        # except vmg.VMGwarning as e:
-        #     thThermoAdmin.InfoMessage('CMDVMGWarning', (str(e),), MessageHandler.infoMessage)
-
-        # sim42 uses the solid as the last phase
-        # if withSolid:
-        # phasesFracs = list(phasesFracs)
-        # temp = phasesFracs.pop(0)
-        # phasesFracs.append(temp)
-        # temp = phasesOut.pop(0)
-        # phasesOut.append(temp)
 
         # If propList==None get the common properties
         if not propList:
@@ -1402,8 +1409,6 @@ class ThermoInterface(object):
             # (T_VAR, P_VAR, H_VAR, S_VAR, VPFRAC_VAR, molarV_VAR, ZFACTOR_VAR, MOLE_WT, STDLIQVOL_VAR)
             new_value = extract_property_from_phase(prop_name, prov_flash_results)
             bulkProps.append(new_value)
-            # if prop_name == ZFACTOR_VAR:
-            #     print(ZFACTOR_VAR + ':', 'BULK', new_value)
 
         bulkArrProps = []
         # sim42 uses the solid as the last phase
@@ -1424,7 +1429,7 @@ class ThermoInterface(object):
                 phasesComposit.append(composit)
                 phasesFracs.append(prov_flash_results.frac_mole(i))
             else:
-                phasesComposit.append(None)
+                phasesComposit.append([None]*len(hnd.components))
                 phasesFracs.append(0)
 
             # Array props
@@ -1446,7 +1451,14 @@ class ThermoInterface(object):
                     # (T_VAR, P_VAR, H_VAR, S_VAR, VPFRAC_VAR, molarV_VAR, ZFACTOR_VAR, MOLE_WT, STDLIQVOL_VAR)
                     new_value = extract_property_from_phase(prop_name, ph)
                 else:
-                    new_value = 0.0
+                    if prop_name == T_VAR:
+                        new_value = prov_flash_results.temp
+                    elif prop_name == P_VAR:
+                        new_value = prov_flash_results.press*1e-3
+                    elif prop_name == VPFRAC_VAR and i == 'vap':
+                        new_value = 1.0
+                    else:
+                        new_value = 0.0
 
                 # if prop_name == ZFACTOR_VAR:
                 #     print(ZFACTOR_VAR + ':', i, new_value)
@@ -1455,7 +1467,8 @@ class ThermoInterface(object):
 
             phasesProps.append(props_for_phase)
 
-
+        # print('phasesOut', phasesOut)
+        # print('phaseFracs:', phasesFracs)
         return FlashResults(propsNamesOut, arrPropNamesOut,
                             bulkComp, bulkProps, bulkArrProps,
                             phasesFracs, phasesComposit, phasesProps, phasesArrProps)

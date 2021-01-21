@@ -9,8 +9,10 @@ mycstr.NumberRxn = 1
 /mycstr.CustomEquationUnitSet = British
 /mycstr.Rxn0.ReactionRateEq = """
 R = 1.987
-k = 16.96E12*exp(-32400.0/(R*T))
-r = k*rxnCmp['1,2-PROPYLENE_OXIDE'].Concentration/3600.0
+k = 16.96E12*exp(-32400.0/(R*T))
+
+r = k*rxnCmp['1,2-PROPYLENE_OXIDE'].Concentration/3600.0
+
 """
 
 units British

@@ -9,10 +9,10 @@ ConvReactor - General conversion reactor, containing:
               a heater
               an energy balance
 """
-import re
 from functools import cmp_to_key
 
 from sim21.solver.Messages import MessageHandler
+from sim21.support.kludges import cmp
 from sim21.unitop import UnitOperations, Balance, Heater, Sensor, Stream
 from sim21.solver import Error
 from sim21.solver.Variables import *
@@ -20,8 +20,6 @@ from sim21.solver.Variables import *
 # Reactor constants
 from sim21.unitop.BaseForReactors import QEXOTHERMIC_ISPOS_PAR, NURXN_PAR, REACTION, COEFF
 from sim21.unitop.BaseForReactors import RXNFFORMULA_PAR, RXNCONV, RXNEXTENT
-
-from sim21.support.kludges import cmp
 
 # Particular constants for this unit op
 BALANCEDRXN = 'BalancedRxn'
@@ -41,8 +39,7 @@ class ReactionDisplay(object):
         result = 'Reaction = ' + rxn.FormulaString() + '\nOrder = ' + \
                  str(rxn.GetParameterValue(RXNORDER_PAR)) + '\nStoichmetric coefficients:'
         maxLength = 0
-        for cmpName in rxn.cmpNames:
-            maxLength = max(maxLength, len(cmpName))
+        for cmpName in rxn.cmpNames: maxLength = max(maxLength, len(cmpName))
         for i in range(len(rxn.stoichCoeffs)):
             result += '\n   ' + rxn.cmpNames[i] + ' ' * (maxLength - len(rxn.cmpNames[i]) + 2)
             v = rxn.stoichCoeffs[i]
@@ -50,8 +47,7 @@ class ReactionDisplay(object):
                 result += '%f' % v
             else:
                 result += ' %f' % v
-            if i == rxn.baseCompIdx:
-                result += ' (Base Comp)'
+            if i == rxn.baseCompIdx: result += ' (Base Comp)'
         return result
 
     def CleanUp(self):
@@ -125,22 +121,21 @@ class ConversionReaction(UnitOperations.UnitOperation):
         for loop in range(2):
             for i in range(len(cmpNames)):
                 if i == self.baseCompIdx:
-                    cmp0 = "!'" + cmpNames[i] + "'"
+                    cmpx = "!'" + cmpNames[i] + "'"
                 else:
-                    cmp0 = "'" + cmpNames[i] + "'"
-                cmp0 = re.sub(' ', '_', cmp0)
+                    cmpx = "'" + cmpNames[i] + "'"
+                cmpx = re.sub(' ', '_', cmpx)
                 coeff = self.Coeff(i)
                 if loop == 0 and coeff > 0.0:
-                    formula += '+' + str(coeff) + '*' + cmp0
+                    formula += '+' + str(coeff) + '*' + cmpx
                 elif loop == 1 and coeff < 0:
-                    formula += str(coeff) + '*' + cmp0
+                    formula += str(coeff) + '*' + cmpx
         return self.rxnName + ':' + formula[1:]
 
     def ParseFormula(self):
         eqnStr = self.parameters[RXNFFORMULA_PAR]
         eqn = eqnStr  # keep a copy of the original equation
-        if eqnStr is None or eqnStr == '':
-            return
+        if eqnStr is None or eqnStr == '': return
 
         # reset all coeffs to zero
         cmpNames = self.GetCompoundNames()
@@ -155,11 +150,11 @@ class ConversionReaction(UnitOperations.UnitOperation):
         cmps = re.findall(r'"[^"]+"|\'[^\']+\'', eqnStr)
         for token in cmps:
             # strip out the quote
-            cmp0 = token[1:-1]
+            cmpx = token[1:-1]
             # underscore represent space
-            cmp0 = re.sub('_', ' ', cmp0)
+            cmpx = re.sub('_', ' ', cmpx)
             try:
-                idx = cmpNames.index(cmp0)
+                idx = cmpNames.index(cmpx)
                 eqnStr = re.sub(token, str(idx), eqnStr)
             except:
                 pass
@@ -174,11 +169,11 @@ class ConversionReaction(UnitOperations.UnitOperation):
             # replace all - by +- so that when i split the tokens,
             # the signs of the coeff are preserved
             eqnStr = re.sub('-', '+-', eqnStr)
-            tokens = re.split(r'\+', eqnStr)
+            tokens = re.split('\+', eqnStr)
             for token in tokens:
                 if token.strip() == '':
                     continue
-                x = re.split(r'\*', token.strip())
+                x = re.split('\*', token.strip())
                 # if coeff is missing, assume 1 or -1
                 if len(x) == 1:
                     x0 = x[0]
@@ -189,17 +184,17 @@ class ConversionReaction(UnitOperations.UnitOperation):
                         x.append(x0)
                         x[0] = '1'
                 # let underscores stand for spaces
-                cmp0 = re.sub('_', ' ', x[1].strip())
+                cmpx = re.sub('_', ' ', x[1].strip())
                 # base compound indicator
                 baseCmp = 0
-                if cmp0[0] == '!':
-                    cmp0 = cmp0[1:]
+                if cmpx[0] == '!':
+                    cmpx = cmpx[1:]
                     baseCmp = 1
                 # if the input compound name is numberic, it is the compound index
                 try:
-                    idx = int(cmp0)
+                    idx = int(cmpx)
                 except:
-                    idx = cmpNames.index(cmp0)
+                    idx = cmpNames.index(cmpx)
                 coef = float(x[0].strip())
                 self.stoichCoeffs[idx] = coef
                 if baseCmp:
@@ -275,17 +270,13 @@ class ConversionReaction(UnitOperations.UnitOperation):
             self.InfoMessage('EqnSyntax', (eqn, self.GetPath()))
 
     def ValidateOk(self):
-        if self.baseCompIdx < 0:
-            return 0
+        if self.baseCompIdx < 0: return 0
         eqn = self.parameters[RXNFFORMULA_PAR]
-        if eqn is None or eqn == '':
-            return 0
+        if eqn is None or eqn == '': return 0
         cmpNames = self.GetCompoundNames()
-        if len(cmpNames) > 0 and len(self.stoichCoeffs) == 0:
-            return 0
+        if len(cmpNames) > 0 and len(self.stoichCoeffs) == 0: return 0
         if self.rxnConv:
-            if self.rxnConv.GetValue() is None:
-                return 0
+            if self.rxnConv.GetValue() is None: return 0
         return 1
 
     def BalancedRxn(self):
@@ -352,8 +343,7 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
 
         super(IsothermalConvReactor, self).SetParameterValue(paramName, value)
 
-        if paramName == NURXN_PAR:
-            self.UpdateRxnCount()
+        if paramName == NURXN_PAR: self.UpdateRxnCount()
 
     def UpdateRxnCount(self):
         """Update the amount and names of the ports in"""
@@ -416,10 +406,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         outPort = self.outPort
         inVal = inPort.GetPropValue(var)
         outVal = outPort.GetPropValue(var)
-        if inVal is not None and outVal is None:
-            outPort.SetPropValue(var, inVal, CALCULATED_V)
-        if outVal is not None and inVal is None:
-            inPort.SetPropValue(var, outVal, CALCULATED_V)
+        if inVal is not None and outVal is None: outPort.SetPropValue(var, inVal, CALCULATED_V)
+        if outVal is not None and inVal is None: inPort.SetPropValue(var, outVal, CALCULATED_V)
 
     def Solve(self):
         # if SIMULTANEOUSRXN_PAR is not defined, assume 1
@@ -447,8 +435,7 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         return retVal
 
     def SolveSimultaneous(self):
-        if self.IsForgetting():
-            return 0
+        if self.IsForgetting(): return 0
         inPort = self.inPort
         outPort = self.outPort
         # propagate pressure
@@ -461,8 +448,7 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         self.PropagateValue(T_VAR)
 
         try:
-            if not self.ValidateOk():
-                return 0
+            if not self.ValidateOk(): return 0
             rxns = list(self.chUODict.values())
             xin = inPort.GetCompositionValues()
             self.nc = len(xin)
@@ -548,12 +534,10 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
         rxns = list(self.chUODict.values())
         # all reactions must have been defined
         for aRxn in rxns:
-            if not aRxn.ValidateOk():
-                return 0
+            if not aRxn.ValidateOk(): return 0
         # fix 020503, do not check for complete inlet stream,
         # check for inlet composiiton
-        if not self.inPort.GetCompounds().AreValuesReady():
-            return 0
+        if not self.inPort.GetCompounds().AreValuesReady(): return 0
 
         # flow must have been known
         # inPort = self.inPort
@@ -577,8 +561,7 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
 
     def RxnEnthalpy(self, aPort):
         h = aPort.GetPropValue(H_VAR)
-        if h is None:
-            return None
+        if h is None: return None
         try:
             p = aPort.GetPropValue(P_VAR)
             t = aPort.GetPropValue(T_VAR)
@@ -598,8 +581,7 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
             return None
 
     def SolveSequential(self):
-        if self.IsForgetting():
-            return 0
+        if self.IsForgetting(): return 0
         inPort = self.inPort
         outPort = self.outPort
 
@@ -633,7 +615,8 @@ class IsothermalConvReactor(UnitOperations.UnitOperation):
             self.ProductTotalMole = inPort.GetPropValue(MOLEFLOW_VAR)
 
             # sort the rxns according to reaction order
-            rxns.sort(key=cmp_to_key(lambda a, b: cmp(a.GetParameterValue(RXNORDER_PAR), b.GetParameterValue(RXNORDER_PAR))))
+            rxns.sort(
+                key=cmp_to_key(lambda a, b: cmp(a.GetParameterValue(RXNORDER_PAR), b.GetParameterValue(RXNORDER_PAR))))
 
             # react one reaction at a time accoring the the specified reaction order
             for aRxn in rxns:
@@ -743,6 +726,16 @@ class ConvReactor(UnitOperations.UnitOperation):
         self.isoRxn = self.heater = self.baln = None
         self.balEneSensor = self.eneSensor = self.eneStream = None
         super(ConvReactor, self).CleanUp()
+
+    # def AdjustOldCase(self, version):
+    #     super(ConvReactor, self).AdjustOldCase(version)
+    #     if version[0] < 69:
+    #         value = self.GetParameterValue(QEXOTHERMIC_ISPOS_PAR)
+    #         if value != 0 or value != 1:
+    #             # If the parameter is not there then assume that the balance is connected
+    #             # for QEXOTHERMIC_ISPOS_PAR = 0
+    #             # Users will have to manually change this value to make it work the other way (default)
+    #             self.parameters[QEXOTHERMIC_ISPOS_PAR] = 0
 
     def SetParameterValue(self, paramName, value):
 

@@ -1155,9 +1155,6 @@ class Port_Material(Port):
         calcStatus -- Status of all the values (FIXED_V, UNKNOWN_V, etc)
 
         """
-        if vals is None:
-            raise
-
         for i in range(len(vals)):
             self._compounds[i].SetValue(vals[i], calcStatus)
 

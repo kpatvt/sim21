@@ -1,5 +1,5 @@
 #splitter example
-$thermo = VirtualMaterials.NRTL/Ideal/HC
+$thermo = Sim21Thermo.Peng-Robinson
 / -> $thermo
 thermo + ETHANOL WATER
 units SI
@@ -12,17 +12,17 @@ s.Out1.MoleFlow = 50.0
 s.Out1.Fraction = 1.0 1.0
 s.In
 cd /s
-/s.Out0.MoleFlow = 
+/s.Out0.MoleFlow =
 /s.FlowFraction1.Fraction = .3
 Out0
-/s.FlowFraction1.Fraction = 
+/s.FlowFraction1.Fraction =
 /s.FlowFraction0.Fraction = .2
 Out0
 /s.FlowFraction0.Fraction = 3
 In
 Out0
 /s.FlowFraction0.Fraction = .1
-/s.Out1.MoleFlow = 
+/s.Out1.MoleFlow =
 /s.In.MoleFlow = 100
 Out1
 cd /s.NumberStreamsOut
@@ -36,7 +36,7 @@ Out1
 cd /s.NumberStreamsOut
 /s.NumberStreamsOut = 2
 cd /s
-/s.FlowFraction0.Fraction = 
+/s.FlowFraction0.Fraction =
 
 copy /
 paste /

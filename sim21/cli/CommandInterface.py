@@ -16,6 +16,7 @@ from sim21.solver.Variables import *
 from sim21.solver.Messages import MessageHandler
 from sim21.uom import units
 from sim21.cli.langs import English
+import sim21.design
 
 
 class CmdError(Exception):
@@ -388,7 +389,7 @@ class CommandInterface(object):
                         if not self.root:
                             return retVal  # probably logged out
 
-                        ##Don't add this code yet until it is needed#######
+                        # Don't add this code yet until it is needed#######
                         # Make sure, the forget is done properly in a solver (flowsheet)
                         # remember that self.root can be different from a flowsheet
                         # when running as an initScript.

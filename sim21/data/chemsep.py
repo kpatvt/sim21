@@ -169,6 +169,103 @@ def conv_number(v, typeofvalue=float, fallback_value=0):
         return fallback_value
 
 
+# For reference these are base units of the all data in the database
+# Will have to converted to appropriate type for internal use
+# absentropy_units J/kmol/K
+# acentricityfactor_units _
+# antoinevaporpressure_tmax_units K
+# antoinevaporpressure_tmin_units K
+# antoinevaporpressure_units Pa
+# apisrks1_units _
+# apisrks2_units _
+# chaoseaderacentricfactor_units _
+# chaoseaderliquidvolume_units m3/kmol
+# chaoseadersolubilityparameter_units J0.5/m1.5
+# charge_units _
+# costaldacentricfactor_units _
+# costaldvolume_units m3/kmol
+# criticalcompressibility_units _
+# criticalpressure_units Pa
+# criticaltemperature_units K
+# criticalvolume_units m3/kmol
+# diameterlj_units m
+# dipolemoment_units Coulomb.m
+# energylj_units K
+# fullervolume_units _
+# gibbsenergyofformation_units J/kmol
+# heatofcombustion_units
+# heatofformation_units J/kmol
+# heatoffusionatmeltingpoint_units J/kmol
+# heatofvaporization_tmax_units K
+# heatofvaporization_tmin_units K
+# heatofvaporization_units J/kmol
+# idealgasheatcapacitycp_tmax_units K
+# idealgasheatcapacitycp_tmin_units K
+# idealgasheatcapacitycp_units J/kmol/K
+# liquiddensity_tmax_units K
+# liquiddensity_tmin_units K
+# liquiddensity_units kmol/m3
+# liquidheatcapacitycp_tmax_units K
+# liquidheatcapacitycp_tmin_units K
+# liquidheatcapacitycp_units J/kmol/K
+# liquidthermalconductivity_tmax_units K
+# liquidthermalconductivity_tmin_units K
+# liquidthermalconductivity_units W/m/K
+# liquidviscosity_tmax_units K
+# liquidviscosity_tmin_units K
+# liquidviscosity_units Pa.s
+# liquidviscosityrps_tmax_units K
+# liquidviscosityrps_tmin_units K
+# liquidviscosityrps_units Pa.s
+# liquidvolumeatnormalboilingpoint_units m3/kmol
+# matthiascopemanc1_units _
+# matthiascopemanc2_units _
+# matthiascopemanc3_units _
+# molecularweight_units kg/kmol
+# normalboilingpointtemperature_units K
+# normalmeltingpointtemperature_units K
+# parachor_units kg0.25.m3/s0.5/kmol
+# racketparameter_units _
+# radiusofgyration_units m
+# relativestaticpermittivity_tmax_units K
+# relativestaticpermittivity_tmin_units K
+# relativestaticpermittivity_units _
+# rppheatcapacitycp_tmax_units K
+# rppheatcapacitycp_tmin_units K
+# rppheatcapacitycp_units J/kmol/K
+# secondvirialcoefficient_tmax_units K
+# secondvirialcoefficient_tmin_units K
+# secondvirialcoefficient_units m3/kmol
+# soliddensity_tmax_units K
+# soliddensity_tmin_units K
+# soliddensity_units kmol/m3
+# solidheatcapacitycp_tmax_units K
+# solidheatcapacitycp_tmin_units K
+# solidheatcapacitycp_units J/kmol/K
+# solubilityparameter_units J0.5/m1.5
+# specificgravity_units _
+# surfacetension_tmax_units K
+# surfacetension_tmin_units K
+# surfacetension_units N/m
+# triplepointpressure_units Pa
+# triplepointtemperature_units K
+# uniquacq_units _
+# uniquacqp_units _
+# uniquacr_units _
+# vanderwaalsarea_units m2/kmol
+# vanderwaalsvolume_units m3/kmol
+# vaporpressure_tmax_units K
+# vaporpressure_tmin_units K
+# vaporpressure_units Pa
+# vaporthermalconductivity_tmax_units K
+# vaporthermalconductivity_tmin_units K
+# vaporthermalconductivity_units W/m/K
+# vaporviscosity_tmax_units K
+# vaporviscosity_tmin_units K
+# vaporviscosity_units Pa.s
+# wilsonvolume_units m3/kmol
+
+
 @dataclass
 class ChemsepPure:
     identifier: str
@@ -186,6 +283,7 @@ class ChemsepPure:
     liq_visc_coeffs: np.ndarray
     vap_visc_coeffs: np.ndarray
     surf_tens_coeffs: np.ndarray
+    abs_entropy_mole: float       # J/kmol-K
 
     def __init__(self, name):
         cur = _CHEMSEP_DATABASE_CUR
@@ -196,12 +294,12 @@ class ChemsepPure:
         row_data = results[0]
         comp_data = {k: v for k, v in zip(col_ids, row_data)}
 
-        # the_keys = list(sorted(comp_data.keys()))
-        # for k in the_keys:
-        #     print(k, comp_data[k])
-
+        # print('identifier:', comp_data['compoundid_value'].upper())
+        # print('tmin:', comp_data['rppheatcapacitycp_tmin_value'])
+        # print('tmax:', comp_data['rppheatcapacitycp_tmax_value'])
         # print(comp_data['liquidvolumeatnormalboilingpoint_units'])
         # print(comp_data['liquidvolumeatnormalboilingpoint_value'])
+
         self.identifier = comp_data['compoundid_value'].upper()
         self.acen_fact = conv_number(comp_data['acentricityfactor_value'])
         self.crit_temp = conv_number(comp_data['criticaltemperature_value'])
@@ -211,6 +309,7 @@ class ChemsepPure:
         self.mw = conv_number(comp_data['molecularweight_value'])
         self.ig_enthalpy_form_mole = enthalpy = conv_number(comp_data['heatofformation_value'])
         self.ig_gibbs_form_mole = gibbs = conv_number(comp_data['gibbsenergyofformation_value'])
+
         self.ig_cp_mole_coeffs = np.array([conv_number(comp_data['rppheatcapacitycp_eqno_value']),
                                            conv_number(comp_data['rppheatcapacitycp_tmin_value']),
                                            conv_number(comp_data['rppheatcapacitycp_tmax_value']),
@@ -254,6 +353,7 @@ class ChemsepPure:
         self.ig_temp_ref = 298.15
         self.ig_press_ref = 101325.0
         self.ig_entropy_form_mole = (gibbs - enthalpy)/(-self.ig_temp_ref)
+        self.abs_entropy_mole = conv_number(comp_data['absentropy_value'])
 
     def ig_heat_cap_mole(self, temp):
         return eval_eqn(self.ig_cp_mole_coeffs, temp, self.crit_temp)
@@ -262,11 +362,13 @@ class ChemsepPure:
         return eval_eqn_int(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + self.ig_enthalpy_form_mole
 
     def ig_entropy_mole(self, temp, press):
-        p1 = eval_eqn_int_over_t(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + self.ig_entropy_form_mole
+        # ref = self.abs_entropy_mole
+        ref = self.ig_entropy_form_mole
+        p1 = eval_eqn_int_over_t(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + ref
         return p1 - GAS_CONSTANT * math.log(press / self.ig_press_ref)
 
     def ig_gibbs_mole(self, temp, press):
-        return self.ig_enthalpy_mole(temp) - self.ig_entropy_mole(temp, press)
+        return self.ig_enthalpy_mole(temp) - temp*self.ig_entropy_mole(temp, press)
 
     def liq_visc(self, temp):
         return eval_eqn(self.liq_visc_coeffs, temp, self.crit_temp)

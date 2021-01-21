@@ -1,5 +1,7 @@
 import numpy as np
 from numba import njit
+
+from sim21.support.roots import secant_method
 from ..basic import generate_2phase_results, generate_2phase_estimates
 from .temp_press import  calc_log_kb, calc_u
 from .settings import INSIDE_OUT_DAMPING, INSIDE_OUT_INNER_ITERATIONS, INSIDE_OUT_OUTER_ITERATIONS, \
@@ -81,7 +83,7 @@ def update_model_press_vap_frac_2phase(provider,
     return w, u_hat, a_hat, b_hat, log_kb_hat, liq, vap
 
 
-@njit(cache=True)
+# @njit(cache=True)
 def solve_model_press_vap_frac_2phase(vap_frac, feed_comp, kb_0, u, r_guess, valid):
     # Should speed this up via jiting - can be very fast
     liq_comp_new = np.zeros(len(feed_comp))
@@ -185,7 +187,14 @@ def flash_press_vap_frac_2phase(provider, press, vap_frac, feed_comp, valid=None
     # Just a dummy value
     if previous is None:
         temp_est = provider.guess_nbp(feed_comp, valid)
+        # Always find the dew point and start from there
+        def f(tguess):
+            k_values, liq_comp, vap_comp, _ = generate_2phase_estimates(provider, tguess, press, feed_comp, valid)
+            return sum([feed_comp[i]/k_values[i] for i in valid]) - 1.0
+
+        temp_est = secant_method(f, temp_est, temp_est + 1)
         k_values, liq_comp, vap_comp, _ = generate_2phase_estimates(provider, temp_est, press, feed_comp, valid)
+
         # Correction to make sure that temp_star is not close to temp_est
         # can occasionally cause a problem
         if abs(temp_est - temp_star)/temp_est < 0.05:

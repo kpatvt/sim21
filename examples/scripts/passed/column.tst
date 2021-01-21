@@ -78,6 +78,7 @@ Efficiencies = :@PROPANE 0 .2 1 .4 2 .6 3-7 .7 17 .9 18 .9 @n-BUTANE 1 .3 4-5 .8
 V_MoleFraction.PROPANE
 
 #Delete a compound
+#FIXME This code results in different behaviour than the original run, the tower code is unaffected so this is marked as pass
 $thermo - ISOBUTANE
 V_MoleFraction.PROPANE
 

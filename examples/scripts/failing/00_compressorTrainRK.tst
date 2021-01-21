@@ -1,4 +1,4 @@
-/MaxNumIterations = 50
+/MaxNumIterations = 100
 /RecycleDetails = 0
 
 $thermo = Sim21Thermo.SRK

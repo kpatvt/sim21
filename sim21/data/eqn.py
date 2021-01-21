@@ -260,10 +260,22 @@ def eval_eqn_int(coeffs, t, t_ref):
     f = coeffs[8]
 
     if eqn_no == 1 or eqn_no == 2 or eqn_no == 3 or eqn_no == 4 or eqn_no == 5 or eqn_no == 100:
-        return int_eqn_1_2_3_4_5_100(a, b, c, d, e, f, t, t_ref) + val_ref
+        if t < tmax:
+            return int_eqn_1_2_3_4_5_100(a, b, c, d, e, f, t, t_ref) + val_ref
+        else:
+            part1 = int_eqn_1_2_3_4_5_100(a, b, c, d, e, f, tmax, t_ref)
+            val_at_tmax = eval_eqn(coeffs, tmax, 0)
+            part2 = val_at_tmax*(t - tmax)
+            return part1 + part2 + val_ref
 
     if eqn_no == 107:
-        return int_eqn_107(a, b, c, d, e, f, t, t_ref) + val_ref
+        if t < tmax:
+            return int_eqn_107(a, b, c, d, e, f, t, t_ref) + val_ref
+        else:
+            part1 = int_eqn_107(a, b, c, d, e, f, tmax, t_ref)
+            val_at_tmax = eval_eqn(coeffs, tmax, 0)
+            part2 = val_at_tmax*(t - tmax)
+            return part1 + part2 + val_ref
 
     return math.nan
 

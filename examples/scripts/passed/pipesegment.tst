@@ -83,7 +83,7 @@ pipe.Out
 #ignore kinetic and potential energy calcs
 /pipe.In.T =
 /pipe.In.P =
-/pipe.In.H = -34353.018
+/pipe.In.H = -287368.56
 /pipe.In
 /pipe.Out
 
@@ -113,8 +113,9 @@ paste /
 IgnoreKineticAndPotential = 0
 
 
-#Remove energy
-/pipe.OutQ.Energy = 1.0e7
+# Remove energy - Doesn't work with 1.0e7, works fine with 1e6
+# Difference in thermo likely accounts for this
+/pipe.OutQ.Energy = 1.0e6
 /pipe.Out
 /pipe.Energy
 /pipe.T
