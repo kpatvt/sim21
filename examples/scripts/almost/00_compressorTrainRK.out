@@ -180,10 +180,10 @@ Error processing command:
   File "C:\Users\kpatv\Code\sim21\sim21\thermo\ThermoAdmin.py", line 680, in Flash
     return self.thDict[provider].Flash(thName, cmps, properties, liqPhases, propList, self, nuSolids, stdVolRefT)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1400, in Flash
+  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 1406, in Flash
     prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 99, in perform_flash
+  File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 102, in perform_flash
     prov_flash_results = hnd.flash(**flash_params)
 
   File "C:\Users\kpatv\Code\sim21\sim21\provider\base.py", line 85, in flash

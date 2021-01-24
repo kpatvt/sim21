@@ -8,6 +8,7 @@ ThermoInterface -- Main class of the interfase
 from sim21.data import chemsep, twu
 from sim21.provider.cubic import PengRobinson, SoaveRedlichKwong
 from sim21.provider.error import FlashConvergenceError
+from sim21.provider.steam97 import Steam97
 from sim21.solver.Messages import MessageHandler
 from sim21.solver.Variables import *
 from sim21.thermo import Oils
@@ -59,6 +60,8 @@ def extract_property_from_phase(prop_name, ph):
     #     new_value = float(ph.flow_sum_mole)
     # elif prop_name == MASSFLOW_VAR:
     #     new_value = float(ph.flow_sum_mole * ph.mw)
+    elif prop_name == IDEALGASCP_VAR:
+        new_value = float(ph.ig_cp_mole) * 1e-3
     else:
         print('ALERT:', prop_name)
         raise NotImplementedError
@@ -504,7 +507,8 @@ class ThermoInterface(object):
                 'PR',
                 'Soave-Redlich-Kwong',
                 'SoaveRedlichKwong',
-                'SRK']
+                'SRK',
+                'Steam97']
         return pkgs
 
     def AddPkgFromName(self, thName, pkgName):
@@ -523,6 +527,8 @@ class ThermoInterface(object):
             hnd = PengRobinson()
         elif pkgName in [i.upper() for i in ('Soave-Redlich-Kwong', 'SoaveRedlichKwong', 'SRK')]:
             hnd = SoaveRedlichKwong()
+        elif pkgName == 'Steam97'.upper():
+            hnd = Steam97()
         else:
             raise NotImplementedError
 

@@ -1062,7 +1062,7 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
   File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1599, in Minus
     lhsObj.Minus(remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 276, in Minus
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 277, in Minus
     raise SimError('TowerPARemovalError', (firstStage, pa.stage.number))
 
 
@@ -1086,7 +1086,7 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
   File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1599, in Minus
     lhsObj.Minus(remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 283, in Minus
+  File "C:\Users\kpatv\Code\sim21\sim21\unitop\Tower.py", line 284, in Minus
     raise SimError('TowerPARemovalError', (lastStage, pa.stage.number))
 
 

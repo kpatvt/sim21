@@ -34,7 +34,7 @@ DeltaTHO = 5 K
 cd /
 
 # hot side will use steam property package
-$thermo1 = VirtualMaterials.Steam95
+$thermo1 = Sim21Thermo.Steam97
 exch.HotSide -> $thermo1
 exch.HotSide.thermo1 + water
 

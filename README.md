@@ -11,11 +11,13 @@ Under continual development, breaking changes are to be expected.
 
 Status
 ------
+* Jan 23, 2021
+    * Finished implementation of a seperate steam/water Thermo using IFC-97
+    * Included example of a very simple steam cycle flowsheet
 * Jan 21, 2021
     * Signficant speed ups in the distillation simulation, now quite fast
     * Other smaller speed-ups
     * Runtime is about 2-3x faster over all examples
-
 
 * Jan 20, 2021
     * All example cases now converge with some massaging
@@ -26,6 +28,11 @@ Status
     * All column examples now work with different types of specs including recoveries,
       deg. of subcooling, etc.
 
+Highlights
+----------
+* Independent steam model with high accuracy IFC-97 Steam model
+    * Sample steam cycle included in flowsheet examples
+    
 * Many examples with output now available with PR/SRK EOS Thermo:
     * Air Separation Unit (ASU)
     * Natural Gas Separation Train
@@ -45,9 +52,6 @@ Status
     * No support for critical properties/phase envelopes yet
 
 * Tower/Distillation Column model is fully functional (Supporting Pumparounds, Bypass, Efficiencies and Side-Strippers)
-* Some reactor models (Equilibrium/PFR) work partially
-* Cleaned up some component handling - Many recycle problems work corrrectly now
-* Cleaned up some exception handling
 
 TODO
 ----

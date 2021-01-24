@@ -133,6 +133,7 @@ def evaluate_enthalpy_model(stage_comp, ig_cp_coeffs, ig_h_form, ig_h_scaling, i
 
     return calc_enthalpy
 
+
 class Stage(object):
     """Tower equilibrium stage"""
 
@@ -236,7 +237,7 @@ class Stage(object):
                         self.tower.stages[self.number + 2 + i].type = NORMAL_STAGE
 
         # Quick dirty hack to make sure that the last stage added has the correct type
-        ##Still needs to correct in case only one stages is added as a side stripper !!
+        # Still needs to correct in case only one stages is added as a side stripper !!
         if numNewStages == 1:
             tower = self.tower
             if newStage.type == NORMAL_STAGE and newStage.number + 1 < tower.numStages:
@@ -665,9 +666,9 @@ class Stage(object):
             if spec.port.GetValue() is not None:
                 if self.subCool and self.subCool.isCalculated and isinstance(spec,
                                                                              StageSpecification) and spec.type == T_VAR:
-                    ##If it is subCooled and the subCool object has a calculated value
-                    ##then it means that the sat T and the T in the liq are both known
-                    ##hence, this T should not be a counted as a spec (this should be the liq)
+                    # If it is subCooled and the subCool object has a calculated value
+                    # then it means that the sat T and the T in the liq are both known
+                    # hence, this T should not be a counted as a spec (this should be the liq)
                     pass
                 else:
                     activeSpecs.append(spec)
