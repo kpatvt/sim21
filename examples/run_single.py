@@ -10,5 +10,4 @@ def run_file(source):
     os.chdir(orig_path)
 
 
-run_file(open('scripts/flowsheets/steamcycle.tst'))
-
+run_file(open('scripts/passed/c3splitter.tst'))

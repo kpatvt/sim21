@@ -153,7 +153,7 @@ WATER              = 1.0 =
 >> # Let's say we want 5 MW of energy from the turbine,
 >> # What's it the flow required?
 >> # So we just specify the Power generated
->> exp.OutQ.Energy = 5e6 W
+>> exp.OutQ.Energy = 10e6 W
 >> 
 >> # And now the flow rates should be calculated
 >> exp.Out
@@ -162,12 +162,12 @@ Connected to: /cond.In
 VapFrac            = 0.7567930922694205 = 
 T                  = 45.8075482070235 = C
 P                  = 10.0 * kPa
-MoleFlow           = 1366.871785930291 = kgmole/h
-MassFlow           = 24624.56154517282 = kg/h
-VolumeFlow         = 273402.14899682533 = m3/hr
-StdLiqVolumeFlow   = 24.698656930944534 = m3/hr
+MoleFlow           = 2733.743571860582 = kgmole/h
+MassFlow           = 49249.12309034564 = kg/h
+VolumeFlow         = 546804.2979936507 = m3/hr
+StdLiqVolumeFlow   = 49.39731386188907 = m3/hr
 H                  = 36068.689823355315 = kJ/kmol
-Energy             = 13694798.465282053 = W
+Energy             = 27389596.930564106 = W
 MolecularWeight    = 18.015268 = 
 ZFactor            = 0.7542356834561091 = 
 WATER              = 1.0 = 
@@ -177,17 +177,17 @@ WATER              = 1.0 =
 >> boil.InQ
 Port: /boil.InQ + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 16867176.779991426 = W
+Energy   = 33734353.55998285 = W
 
 >> cond.OutQ
 Port: /cond.OutQ + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 12382772.44636128 = W
+Energy   = 24765544.89272256 = W
 
 >> p1.InQ
 Port: /p1.TotalQ.In + sim21.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 114692.04027107265 = W
+Energy   = 229384.0805421453 = W
 
 >> 
 >> # No Design specs required to a basic calc ...
@@ -201,12 +201,12 @@ Connected to: /cond.In
 VapFrac            = 0.7529697540965641 = 
 T                  = 39.000863199439436 = C
 P                  = 7.000000000000001 * kPa
-MoleFlow           = 1321.1329413232943 = kgmole/h
-MassFlow           = 23800.56400156742 = kg/h
-VolumeFlow         = 367839.3790213214 = m3/hr
-StdLiqVolumeFlow   = 23.872179976050674 = m3/hr
+MoleFlow           = 2642.2658826465886 = kgmole/h
+MassFlow           = 47601.12800313484 = kg/h
+VolumeFlow         = 735678.7580426428 = m3/hr
+StdLiqVolumeFlow   = 47.74435995210135 = m3/hr
 H                  = 35612.77533438025 = kJ/kmol
-Energy             = 13069225.173943177 = W
+Energy             = 26138450.347886354 = W
 MolecularWeight    = 18.015268 = 
 ZFactor            = 0.7509499868361998 = 
 WATER              = 1.0 | 
@@ -219,12 +219,12 @@ Connected to: /cond.In
 VapFrac            = 0.7441860990148611 = 
 T                  = 24.079941253834022 = C
 P                  = 3.0 * kPa
-MoleFlow           = 1228.3673695496861 = kgmole/h
-MassFlow           = 22129.367364892634 = kg/h
-VolumeFlow         = 751869.4703657414 = m3/hr
-StdLiqVolumeFlow   = 22.195954703261187 = m3/hr
+MoleFlow           = 2456.7347390993723 = kgmole/h
+MassFlow           = 44258.73472978527 = kg/h
+VolumeFlow         = 1503738.9407314828 = m3/hr
+StdLiqVolumeFlow   = 44.39190940652237 = m3/hr
 H                  = 34583.84839491937 = kJ/kmol
-Energy             = 11800464.133825622 = W
+Energy             = 23600928.267651245 = W
 MolecularWeight    = 18.015268 = 
 ZFactor            = 0.743034011257938 = 
 WATER              = 1.0 | 
@@ -237,12 +237,12 @@ Connected to: /cond.In
 VapFrac            = 0.7483384593929083 = 
 T                  = 31.01316398643587 = C
 P                  = 4.5 * kPa
-MoleFlow           = 1270.2565912624102 = kgmole/h
-MassFlow           = 22884.01292035878 = kg/h
-VolumeFlow         = 533141.0051411872 = m3/hr
-StdLiqVolumeFlow   = 22.95287098965793 = m3/hr
+MoleFlow           = 2540.5131825248204 = kgmole/h
+MassFlow           = 45768.02584071756 = kg/h
+VolumeFlow         = 1066282.0102823745 = m3/hr
+StdLiqVolumeFlow   = 45.90574197931586 = m3/hr
 H                  = 35067.07970752044 = kJ/kmol
-Energy             = 12373385.870778374 = W
+Energy             = 24746771.74155675 = W
 MolecularWeight    = 18.015268 = 
 ZFactor            = 0.7468310071907577 = 
 WATER              = 1.0 | 
@@ -255,12 +255,12 @@ Connected to: /cond.In
 VapFrac            = 0.7477475265196444 = 
 T                  = 30.013580571509806 = C
 P                  = 4.25 * kPa
-MoleFlow           = 1264.0911310490897 = kgmole/h
-MassFlow           = 22772.94050227247 = kg/h
-VolumeFlow         = 559515.1380153336 = m3/hr
-StdLiqVolumeFlow   = 22.84146435430438 = m3/hr
+MoleFlow           = 2528.1822620981793 = kgmole/h
+MassFlow           = 45545.88100454494 = kg/h
+VolumeFlow         = 1119030.2760306671 = m3/hr
+StdLiqVolumeFlow   = 45.68292870860876 = m3/hr
 H                  = 34997.96536782328 = kJ/kmol
-Energy             = 12289060.451730166 = W
+Energy             = 24578120.90346033 = W
 MolecularWeight    = 18.015268 = 
 ZFactor            = 0.7462961034001022 = 
 WATER              = 1.0 | 
