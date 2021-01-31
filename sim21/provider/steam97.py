@@ -14,10 +14,20 @@ from sim21.support.roots import secant_method
 class Steam97Component:
     def __init__(self):
         self.identifier = 'WATER'
+        # These are set to match the IFC-97 specification
         self.mw = xsteam2.MOLAR_MASS
         self.crit_temp = xsteam2.CRITICAL_TEMPERATURE
         self.crit_press = xsteam2.CRITICAL_PRESSURE * 1e6
-        self.acen_fact = None
+
+        # These are just dummy values, they are not really used in any calculations
+        # We call custom flash routines for Steam97, so the values here have no effect
+        self.acen_fact = 0.344
+        self.ig_temp_ref = 298.15
+        self.ig_press_ref = 101325.0
+        self.ig_cp_mole_coeffs = [100, 298.15, 2000.0, 0, 0, 0, 0, 0, 0]
+        self.ig_enthalpy_form_mole = 0
+        self.ig_gibbs_form_mole = 0
+        self.std_liq_vol_mole = 0.018069476
 
     def surf_tens(self, t):
         return xsteam2.Surface_Tension_T(t)
@@ -271,27 +281,17 @@ class Steam97(Provider):
     def all_valid_components(self):
         return self.all_comps
 
-    def setup_components(self, cleanup=False):
+    def setup_components(self, components, **kwargs):
+        cleanup = False
+        if len(components) == 0:
+            cleanup = True
+
         if not cleanup:
-            self._components = components = [Steam97Component()]
-            self.all_comps = np.arange(1)
-            self._id_list = ['WATER']
-            self._mw_list = np.array([c.mw for c in components])
-            self._std_liq_vol_mole = [0.018069476]
+            components = [Steam97Component()]
         else:
             self._components = components = []
-            self.all_comps = []
-            self._id_list = []
-            self._mw_list = []
-            self._std_liq_vol_mole = []
 
-    @property
-    def mw(self):
-        return self._mw_list
-
-    @property
-    def std_liq_vol_mole(self):
-        return self._std_liq_vol_mole
+        super().setup_components(components, **kwargs)
 
     def phase(self, temp, press, n, desired_phase,
               allow_pseudo=True, valid=None, press_comp_derivs=False,
@@ -313,25 +313,6 @@ class Steam97(Provider):
                 x = 0
 
         return generate_phase(self, temp, press, act_phase, x)
-
-    def convert_to_mole_basis(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value):
-        if frac_basis == 'mole':
-            frac_value_mole = frac_value
-        elif frac_basis == 'mass':
-            frac_value_mole = frac_value / self._mw_list
-            frac_value_mole /= np.sum(frac_value_mole)
-        else:
-            raise NotImplementedError
-
-        avg_mw = np.dot(frac_value_mole, self._mw_list)
-        if flow_sum_basis == 'mole':
-            flow_sum_value_mole = flow_sum_value
-        elif flow_sum_basis == 'mass':
-            flow_sum_value_mole = flow_sum_value / avg_mw
-        else:
-            raise NotImplementedError
-
-        return flow_sum_value_mole, frac_value_mole
 
     def flash_temp_press(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value, temp, press, previous, valid):
         flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
@@ -491,20 +472,13 @@ class Steam97(Provider):
         return results
 
     def AddCompound(self, compound_by_name, compound_obj=None):
-        if compound_by_name != 'WATER':
+        if compound_by_name != 'WATER' or (compound_obj is not None and compound_obj.identifier != 'WATER'):
             raise NotImplementedError
-        # This is really inefficient, but it's simple
-        self.setup_components()
+
+        super().AddCompound(compound_by_name, compound_obj)
 
     def GetAvCompoundNames(self):
         return ['WATER']
-
-    def DeleteCompound(self, compound):
-        compound = compound.upper()
-        idx = self._id_list.index(compound)
-        new_compounds = self._components[:]
-        new_compounds.pop(idx)
-        self.setup_components(True)
 
     def ExchangeCompound(self, cmp1Name, cmp2Name):
         raise NotImplementedError

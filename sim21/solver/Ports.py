@@ -1056,34 +1056,6 @@ class Port_Material(Port):
         """Add a compound to the port"""
         self.AppendCompounds(1, cmpIdx)
 
-        ### get the status of the current composition
-        ##nc = len(self._compounds)
-        ##zeroNewCmp = 0
-        ##if nc > 0:
-        ##st0 = self._compounds[0].GetCalcStatus()
-        ##if st0 & ESTIMATED_V or st0 & FIXED_V:
-        ##zeroNewCmp = 1
-        ##for cmp in self._compounds[1:]:
-        ##st = cmp.GetCalcStatus()
-        ##if st & NEW_V:
-        ###When adding more then 1 compounds, the earlier ones will be new & fixed
-        ##st = st - NEW_V
-        ##if st != st0:
-        ##zeroNewCmp = 0
-        ##elif cmp.GetValue() == None:
-        ##zeroNewCmp = 0
-
-        ##self._compounds.append(BasicProperty(FRAC_VAR, self))
-
-        ### If all composition is fixed or estimated, zero the new compound.
-        ##if zeroNewCmp:
-        ##self._compounds[nc].SetValue(0.0, st0)
-
-        ###arrProperties
-        ##for name, prop in self._arrProperties.items():
-        ##prop.append(BasicProperty(name, self))
-        ##self._flashResults = None
-
     def AppendCompounds(self, nuAddCmps, cmpIdx=-1):
         """ append nuCmps in one shot"""
 

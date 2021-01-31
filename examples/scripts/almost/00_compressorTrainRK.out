@@ -139,33 +139,25 @@ Changed state of port /M3.In1 to 1 (0=Normal port; 1=Recycle port)
 >> /Sep4.Liq0 -> /S17.In
 >> /S16.NewName = Compressed_Gas
 >> /S17.Out -> /M3.In1
-Iteration 1 -> max Error 12.266190 in /M3.In1.MoleFlow
-Iteration 2 -> max Error 7.106747 in /M3.In1.Energy
-Iteration 3 -> max Error 6.862363 in /M3.In1.Energy
-Iteration 4 -> max Error 6.617888 in /M3.In1.Energy
-Iteration 5 -> max Error 6.369399 in /M3.In1.Energy
-Iteration 6 -> max Error 6.120940 in /M3.In1.Energy
-Iteration 7 -> max Error 5.871674 in /M3.In1.Energy
-Iteration 8 -> max Error 5.622476 in /M3.In1.Energy
-Iteration 9 -> max Error 5.373149 in /M3.In1.Energy
-Iteration 10 -> max Error 5.123926 in /M3.In1.Energy
-Iteration 11 -> max Error 4.874753 in /M3.In1.Energy
-Iteration 12 -> max Error 4.625706 in /M3.In1.Energy
-Iteration 13 -> max Error 4.376746 in /M3.In1.Energy
-Iteration 14 -> max Error 4.127903 in /M3.In1.Energy
-Iteration 15 -> max Error 3.879174 in /M3.In1.Energy
-Iteration 16 -> max Error 3.630551 in /M3.In1.Energy
-Iteration 17 -> max Error 3.382063 in /M3.In1.Energy
+Iteration 1 -> max Error 11.647731 in /M3.In1.MoleFlow
+Iteration 2 -> max Error 7.490071 in /M3.In1.Energy
+Iteration 3 -> max Error 7.245115 in /M3.In1.Energy
+Iteration 4 -> max Error 7.000103 in /M3.In1.Energy
+Iteration 5 -> max Error 6.751820 in /M3.In1.Energy
+Iteration 6 -> max Error 6.503590 in /M3.In1.Energy
+Iteration 7 -> max Error 6.254772 in /M3.In1.Energy
+Iteration 8 -> max Error 6.006011 in /M3.In1.Energy
+Iteration 9 -> max Error 5.757204 in /M3.In1.Energy
 Error processing command:
 <class 'sim21.provider.error.FlashConvergenceError'>
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3556, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 287, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 409, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 403, in ProcessCommandString
     self.root.Solve()
 
   File "C:\Users\kpatv\Code\sim21\sim21\solver\Flowsheet.py", line 339, in Solve
@@ -186,10 +178,10 @@ Error processing command:
   File "C:\Users\kpatv\Code\sim21\sim21\thermo\Sim21Thermo.py", line 102, in perform_flash
     prov_flash_results = hnd.flash(**flash_params)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\base.py", line 85, in flash
+  File "C:\Users\kpatv\Code\sim21\sim21\provider\base.py", line 230, in flash
     return self.flash_press_prop(flow_sum_basis, flow_sum_value, frac_basis, frac_value, press, 'enthalpy',
 
-  File "C:\Users\kpatv\Code\sim21\sim21\provider\cubic.py", line 911, in flash_press_prop
+  File "C:\Users\kpatv\Code\sim21\sim21\provider\base.py", line 296, in flash_press_prop
     results = flash_press_prop_2phase(self, press, prop_flash_name, prop_value,
 
   File "C:\Users\kpatv\Code\sim21\sim21\provider\flash\io\press_prop.py", line 429, in flash_press_prop_2phase
@@ -200,95 +192,85 @@ Error processing command:
 
 
 >> /S13.Out -> /M2.In1
-Iteration 1 -> max Error 10.155589 in /M2.In1.MoleFlow
-Iteration 2 -> max Error 14.768704 in /M3.In1.Energy
-Iteration 3 -> max Error 10.135082 in /M2.In1.Energy
-Iteration 4 -> max Error 9.852113 in /M2.In1.Energy
-Iteration 5 -> max Error 9.569959 in /M2.In1.Energy
-Iteration 6 -> max Error 9.330976 in /M2.In1.Energy
-Iteration 7 -> max Error 9.091852 in /M2.In1.Energy
-Iteration 8 -> max Error 8.853545 in /M2.In1.Energy
-Iteration 9 -> max Error 8.615172 in /M2.In1.Energy
-Iteration 10 -> max Error 8.377628 in /M2.In1.Energy
-Iteration 11 -> max Error 8.140025 in /M2.In1.Energy
-Iteration 12 -> max Error 7.902897 in /M2.In1.Energy
-Iteration 13 -> max Error 7.665706 in /M2.In1.Energy
-Iteration 14 -> max Error 7.428722 in /M2.In1.Energy
-Iteration 15 -> max Error 7.191672 in /M2.In1.Energy
-Iteration 16 -> max Error 6.954694 in /M2.In1.Energy
-Iteration 17 -> max Error 6.717647 in /M2.In1.Energy
-Iteration 18 -> max Error 6.480606 in /M2.In1.Energy
-Iteration 19 -> max Error 6.243497 in /M2.In1.Energy
-Iteration 20 -> max Error 6.006360 in /M2.In1.Energy
-Iteration 21 -> max Error 5.769156 in /M2.In1.Energy
-Iteration 22 -> max Error 5.531909 in /M2.In1.Energy
-Iteration 23 -> max Error 5.294598 in /M2.In1.Energy
-Iteration 24 -> max Error 5.057236 in /M2.In1.Energy
-Iteration 25 -> max Error 4.819813 in /M2.In1.Energy
-Iteration 26 -> max Error 4.582339 in /M2.In1.Energy
-Iteration 27 -> max Error 4.344807 in /M2.In1.Energy
-Iteration 28 -> max Error 4.107225 in /M2.In1.Energy
-Iteration 29 -> max Error 3.869592 in /M2.In1.Energy
-Iteration 30 -> max Error 3.631911 in /M2.In1.Energy
-Iteration 31 -> max Error 3.394185 in /M2.In1.Energy
-Iteration 32 -> max Error 3.156419 in /M2.In1.Energy
-Iteration 33 -> max Error 2.918615 in /M2.In1.Energy
-Iteration 34 -> max Error 2.680779 in /M2.In1.Energy
-Iteration 35 -> max Error 2.442915 in /M2.In1.Energy
-Iteration 36 -> max Error 2.205032 in /M2.In1.Energy
-Iteration 37 -> max Error 1.967135 in /M2.In1.Energy
-Iteration 38 -> max Error 1.729237 in /M2.In1.Energy
-Iteration 39 -> max Error 1.491348 in /M2.In1.Energy
-Iteration 40 -> max Error 1.253485 in /M2.In1.Energy
-Iteration 41 -> max Error 1.015672 in /M2.In1.Energy
-Iteration 42 -> max Error 0.777941 in /M2.In1.Energy
-Iteration 43 -> max Error 0.540347 in /M2.In1.Energy
-Iteration 44 -> max Error 0.302990 in /M2.In1.Energy
-Iteration 45 -> max Error 0.066053 in /M2.In1.Energy
-Iteration 46 -> max Error 0.001412 in /M2.In1.Energy
-Iteration 47 -> max Error 0.000582 in /M2.In1.Energy
-Iteration 48 -> max Error 0.000298 in /M2.In1.Energy
-Iteration 49 -> max Error 0.000014 in /M3.In1.MoleFlow
+Iteration 1 -> max Error 10.009835 in /M2.In1.MoleFlow
+Iteration 2 -> max Error 12.261074 in /M3.In1.Energy
+Iteration 3 -> max Error 8.153024 in /M2.In1.Energy
+Iteration 4 -> max Error 7.870116 in /M2.In1.Energy
+Iteration 5 -> max Error 7.588294 in /M2.In1.Energy
+Iteration 6 -> max Error 7.353988 in /M2.In1.Energy
+Iteration 7 -> max Error 7.119515 in /M2.In1.Energy
+Iteration 8 -> max Error 6.885682 in /M2.In1.Energy
+Iteration 9 -> max Error 6.651778 in /M2.In1.Energy
+Iteration 10 -> max Error 6.418459 in /M2.In1.Energy
+Iteration 11 -> max Error 6.185096 in /M2.In1.Energy
+Iteration 12 -> max Error 5.952212 in /M2.In1.Energy
+Iteration 13 -> max Error 5.719277 in /M2.In1.Energy
+Iteration 14 -> max Error 5.486551 in /M2.In1.Energy
+Iteration 15 -> max Error 5.253768 in /M2.In1.Energy
+Iteration 16 -> max Error 5.021057 in /M2.In1.Energy
+Iteration 17 -> max Error 4.788288 in /M2.In1.Energy
+Iteration 18 -> max Error 4.555525 in /M2.In1.Energy
+Iteration 19 -> max Error 4.322700 in /M2.In1.Energy
+Iteration 20 -> max Error 4.089855 in /M2.In1.Energy
+Iteration 21 -> max Error 3.856956 in /M2.In1.Energy
+Iteration 22 -> max Error 3.624022 in /M2.In1.Energy
+Iteration 23 -> max Error 3.391039 in /M2.In1.Energy
+Iteration 24 -> max Error 3.158019 in /M2.In1.Energy
+Iteration 25 -> max Error 2.924956 in /M2.In1.Energy
+Iteration 26 -> max Error 2.691862 in /M2.In1.Energy
+Iteration 27 -> max Error 2.458737 in /M2.In1.Energy
+Iteration 28 -> max Error 2.225590 in /M2.In1.Energy
+Iteration 29 -> max Error 1.992429 in /M2.In1.Energy
+Iteration 30 -> max Error 1.759264 in /M2.In1.Energy
+Iteration 31 -> max Error 1.526109 in /M2.In1.Energy
+Iteration 32 -> max Error 1.292983 in /M2.In1.Energy
+Iteration 33 -> max Error 1.059911 in /M2.In1.Energy
+Iteration 34 -> max Error 0.826928 in /M2.In1.Energy
+Iteration 35 -> max Error 0.594092 in /M2.In1.Energy
+Iteration 36 -> max Error 0.361506 in /M2.In1.Energy
+Iteration 37 -> max Error 0.129406 in /M2.In1.Energy
+Iteration 38 -> max Error 0.001992 in /M2.In1.Energy
+Iteration 39 -> max Error 0.000654 in /M2.In1.Energy
+Iteration 40 -> max Error 0.000324 in /M2.In1.Energy
+Iteration 41 -> max Error 0.000104 in /M2.In1.Energy
+Iteration 42 -> max Error 0.000008 in /M2.In1.MoleFlow
 >> /S8.Out -> /M1.In1
-Iteration 1 -> max Error 7.286016 in /M1.In1.MoleFlow
-Iteration 2 -> max Error 6.500859 in /M2.In1.Energy
-Iteration 3 -> max Error 5.351253 in /M1.In1.Energy
-Iteration 4 -> max Error 5.160847 in /M1.In1.Energy
-Iteration 5 -> max Error 4.971254 in /M1.In1.Energy
-Iteration 6 -> max Error 4.808078 in /M1.In1.Energy
-Iteration 7 -> max Error 4.645148 in /M1.In1.Energy
-Iteration 8 -> max Error 4.486992 in /M1.In1.Energy
-Iteration 9 -> max Error 4.328332 in /M1.In1.Energy
-Iteration 10 -> max Error 4.164623 in /M1.In1.Energy
-Iteration 11 -> max Error 4.001309 in /M1.In1.Energy
-Iteration 12 -> max Error 3.841118 in /M1.In1.Energy
-Iteration 13 -> max Error 3.680602 in /M1.In1.Energy
-Iteration 14 -> max Error 3.518259 in /M1.In1.Energy
-Iteration 15 -> max Error 3.356134 in /M1.In1.Energy
-Iteration 16 -> max Error 3.195098 in /M1.In1.Energy
-Iteration 17 -> max Error 3.033888 in /M1.In1.Energy
-Iteration 18 -> max Error 2.872054 in /M1.In1.Energy
-Iteration 19 -> max Error 2.710329 in /M1.In1.Energy
-Iteration 20 -> max Error 2.548975 in /M1.In1.Energy
-Iteration 21 -> max Error 2.387523 in /M1.In1.Energy
-Iteration 22 -> max Error 2.225858 in /M1.In1.Energy
-Iteration 23 -> max Error 2.064241 in /M1.In1.Energy
-Iteration 24 -> max Error 1.902748 in /M1.In1.Energy
-Iteration 25 -> max Error 1.741201 in /M1.In1.Energy
-Iteration 26 -> max Error 1.579573 in /M1.In1.Energy
-Iteration 27 -> max Error 1.417966 in /M1.In1.Energy
-Iteration 28 -> max Error 1.256398 in /M1.In1.Energy
-Iteration 29 -> max Error 1.094797 in /M1.In1.Energy
-Iteration 30 -> max Error 0.933164 in /M1.In1.Energy
-Iteration 31 -> max Error 0.771542 in /M1.In1.Energy
-Iteration 32 -> max Error 0.609934 in /M1.In1.Energy
-Iteration 33 -> max Error 0.448306 in /M1.In1.Energy
-Iteration 34 -> max Error 0.286668 in /M1.In1.Energy
-Iteration 35 -> max Error 0.125027 in /M1.In1.Energy
-Iteration 36 -> max Error 0.001501 in /M1.In1.Energy
-Iteration 37 -> max Error 0.000789 in /M1.In1.Energy
-Iteration 38 -> max Error 0.000436 in /M1.In1.Energy
-Iteration 39 -> max Error 0.000103 in /M1.In1.Energy
-Iteration 40 -> max Error 0.000017 in /M2.In1.MoleFlow
+Iteration 1 -> max Error 6.890315 in /M1.In1.MoleFlow
+Iteration 2 -> max Error 5.788654 in /M2.In1.Energy
+Iteration 3 -> max Error 4.748741 in /M1.In1.Energy
+Iteration 4 -> max Error 4.563023 in /M1.In1.Energy
+Iteration 5 -> max Error 4.377965 in /M1.In1.Energy
+Iteration 6 -> max Error 4.211176 in /M1.In1.Energy
+Iteration 7 -> max Error 4.045065 in /M1.In1.Energy
+Iteration 8 -> max Error 3.889250 in /M1.In1.Energy
+Iteration 9 -> max Error 3.732558 in /M1.In1.Energy
+Iteration 10 -> max Error 3.567227 in /M1.In1.Energy
+Iteration 11 -> max Error 3.402680 in /M1.In1.Energy
+Iteration 12 -> max Error 3.243638 in /M1.In1.Energy
+Iteration 13 -> max Error 3.083956 in /M1.In1.Energy
+Iteration 14 -> max Error 2.920946 in /M1.In1.Energy
+Iteration 15 -> max Error 2.758439 in /M1.In1.Energy
+Iteration 16 -> max Error 2.598034 in /M1.In1.Energy
+Iteration 17 -> max Error 2.437252 in /M1.In1.Energy
+Iteration 18 -> max Error 2.275229 in /M1.In1.Energy
+Iteration 19 -> max Error 2.113503 in /M1.In1.Energy
+Iteration 20 -> max Error 1.952586 in /M1.In1.Energy
+Iteration 21 -> max Error 1.791457 in /M1.In1.Energy
+Iteration 22 -> max Error 1.629857 in /M1.In1.Energy
+Iteration 23 -> max Error 1.468435 in /M1.In1.Energy
+Iteration 24 -> max Error 1.307337 in /M1.In1.Energy
+Iteration 25 -> max Error 1.146114 in /M1.In1.Energy
+Iteration 26 -> max Error 0.984714 in /M1.In1.Energy
+Iteration 27 -> max Error 0.823435 in /M1.In1.Energy
+Iteration 28 -> max Error 0.662299 in /M1.In1.Energy
+Iteration 29 -> max Error 0.501084 in /M1.In1.Energy
+Iteration 30 -> max Error 0.339816 in /M1.In1.Energy
+Iteration 31 -> max Error 0.178687 in /M1.In1.Energy
+Iteration 32 -> max Error 0.017662 in /M1.In1.Energy
+Iteration 33 -> max Error 0.001100 in /M1.In1.Energy
+Iteration 34 -> max Error 0.000499 in /M1.In1.Energy
+Iteration 35 -> max Error 0.000391 in /M1.In1.Energy
+Iteration 36 -> max Error 0.000119 in /M2.In1.Energy
+Iteration 37 -> max Error 0.000009 in /M2.In1.MoleFlow
 >> /S3.NewName = Condensate
 >> 

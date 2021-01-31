@@ -187,38 +187,36 @@ Calculating disturbance 20 of 52 in jacobian of /T1
 Calculating disturbance 30 of 52 in jacobian of /T1
 Calculating disturbance 40 of 52 in jacobian of /T1
 Calculating disturbance 50 of 52 in jacobian of /T1
-/T1 Inner Error 0.044751
-/T1 Inner Error 0.023329
-/T1 Inner Error 0.006277
-/T1 Inner Error 0.002910
-/T1 Inner Error 0.000398
-/T1 Inner Error 0.000052
-/T1 Inner Error 0.000014
+/T1 Inner Error 0.040891
+/T1 Inner Error 0.021126
+/T1 Inner Error 0.005520
+/T1 Inner Error 0.002174
+/T1 Inner Error 0.000284
+/T1 Inner Error 0.000042
+/T1 Inner Error 0.000008
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.055715
+/T1 Inner Error 0.050223
+/T1 Inner Error 0.015695
+/T1 Inner Error 0.008875
+/T1 Inner Error 0.000212
+/T1 Inner Error 0.000073
+/T1 Inner Error 0.000017
 /T1 Inner Error 0.000001
 Inner loop converged
-/T1 Iteration 1 Outer Error 0.063333
-/T1 Inner Error 0.066089
-/T1 Inner Error 0.016299
-/T1 Inner Error 0.007415
-/T1 Inner Error 0.000350
-/T1 Inner Error 0.000036
-/T1 Inner Error 0.000011
+/T1 Iteration 2 Outer Error 0.000108
+/T1 Inner Error 0.003119
+/T1 Inner Error 0.000387
+/T1 Inner Error 0.000117
+/T1 Inner Error 0.000025
 /T1 Inner Error 0.000003
 Inner loop converged
-/T1 Iteration 2 Outer Error 0.000118
-/T1 Inner Error 0.003899
-/T1 Inner Error 0.000447
-/T1 Inner Error 0.000136
-/T1 Inner Error 0.000033
-/T1 Inner Error 0.000007
-Inner loop converged
-/T1 Iteration 3 Outer Error 0.000004
-/T1 Inner Error 0.000086
-/T1 Inner Error 0.000035
-/T1 Inner Error 0.000009
+/T1 Iteration 3 Outer Error 0.000003
+/T1 Inner Error 0.000041
+/T1 Inner Error 0.000004
 Inner loop converged
 >> /T1.TryToRestart = 1
-/T1 Inner Error 0.000003
+/T1 Inner Error 0.000001
 Inner loop converged
 /T1 Iteration 1 Outer Error 0.000000
 /T1 Inner Error 0.000000
@@ -236,37 +234,35 @@ Calculating disturbance 20 of 53 in jacobian of /T1
 Calculating disturbance 30 of 53 in jacobian of /T1
 Calculating disturbance 40 of 53 in jacobian of /T1
 Calculating disturbance 50 of 53 in jacobian of /T1
-/T1 Inner Error 0.045666
-/T1 Inner Error 0.020698
-/T1 Inner Error 0.009542
-/T1 Inner Error 0.004551
-/T1 Inner Error 0.001055
-/T1 Inner Error 0.000247
-/T1 Inner Error 0.000031
-/T1 Inner Error 0.000012
-/T1 Inner Error 0.000001
+/T1 Inner Error 0.041437
+/T1 Inner Error 0.019136
+/T1 Inner Error 0.007545
+/T1 Inner Error 0.003167
+/T1 Inner Error 0.000673
+/T1 Inner Error 0.000138
+/T1 Inner Error 0.000016
+/T1 Inner Error 0.000002
 Inner loop converged
-/T1 Iteration 1 Outer Error 0.056567
-/T1 Inner Error 0.088179
-/T1 Inner Error 0.044166
-/T1 Inner Error 0.029630
-/T1 Inner Error 0.005215
-/T1 Inner Error 0.000751
-/T1 Inner Error 0.000090
-/T1 Inner Error 0.000011
-/T1 Inner Error 0.000004
+/T1 Iteration 1 Outer Error 0.049970
+/T1 Inner Error 0.074547
+/T1 Inner Error 0.030523
+/T1 Inner Error 0.012567
+/T1 Inner Error 0.001803
+/T1 Inner Error 0.000261
+/T1 Inner Error 0.000053
+/T1 Inner Error 0.000008
 Inner loop converged
-/T1 Iteration 2 Outer Error 0.000199
-/T1 Inner Error 0.003659
-/T1 Inner Error 0.000459
-/T1 Inner Error 0.000131
-/T1 Inner Error 0.000022
-/T1 Inner Error 0.000003
-Inner loop converged
-/T1 Iteration 3 Outer Error 0.000004
-/T1 Inner Error 0.000060
-/T1 Inner Error 0.000033
+/T1 Iteration 2 Outer Error 0.000147
+/T1 Inner Error 0.002702
+/T1 Inner Error 0.000516
+/T1 Inner Error 0.000128
+/T1 Inner Error 0.000030
 /T1 Inner Error 0.000007
+Inner loop converged
+/T1 Iteration 3 Outer Error 0.000003
+/T1 Inner Error 0.000066
+/T1 Inner Error 0.000031
+/T1 Inner Error 0.000008
 Inner loop converged
 >> 
 >> #Energy, distillate, draw and bottoms streams for T1
@@ -452,17 +448,17 @@ Calculating disturbance 20 of 52 in jacobian of /T2
 Calculating disturbance 30 of 52 in jacobian of /T2
 Calculating disturbance 40 of 52 in jacobian of /T2
 Calculating disturbance 50 of 52 in jacobian of /T2
-/T2 Inner Error 0.001368
-/T2 Inner Error 0.000120
-/T2 Inner Error 0.000001
+/T2 Inner Error 0.001502
+/T2 Inner Error 0.000126
+/T2 Inner Error 0.000002
 Inner loop converged
-/T2 Iteration 1 Outer Error 0.055205
-/T2 Inner Error 0.000748
-/T2 Inner Error 0.000022
-/T2 Inner Error 0.000001
+/T2 Iteration 1 Outer Error 0.051045
+/T2 Inner Error 0.000829
+/T2 Inner Error 0.000024
+/T2 Inner Error 0.000002
 Inner loop converged
-/T2 Iteration 2 Outer Error 0.000067
-/T2 Inner Error 0.000054
+/T2 Iteration 2 Outer Error 0.000059
+/T2 Inner Error 0.000060
 /T2 Inner Error 0.000003
 Inner loop converged
 >> /T2.TryToRestart = 1
@@ -484,18 +480,18 @@ Calculating disturbance 20 of 53 in jacobian of /T2
 Calculating disturbance 30 of 53 in jacobian of /T2
 Calculating disturbance 40 of 53 in jacobian of /T2
 Calculating disturbance 50 of 53 in jacobian of /T2
-/T2 Inner Error 0.001974
-/T2 Inner Error 0.000213
-/T2 Inner Error 0.000009
+/T2 Inner Error 0.001746
+/T2 Inner Error 0.000162
+/T2 Inner Error 0.000005
 Inner loop converged
-/T2 Iteration 1 Outer Error 0.055978
-/T2 Inner Error 0.001284
-/T2 Inner Error 0.000076
-/T2 Inner Error 0.000006
+/T2 Iteration 1 Outer Error 0.051710
+/T2 Inner Error 0.000968
+/T2 Inner Error 0.000036
+/T2 Inner Error 0.000003
 Inner loop converged
-/T2 Iteration 2 Outer Error 0.000064
-/T2 Inner Error 0.000068
-/T2 Inner Error 0.000006
+/T2 Iteration 2 Outer Error 0.000056
+/T2 Inner Error 0.000044
+/T2 Inner Error 0.000003
 Inner loop converged
 >> /T2.TryToRestart = 1
 /T2 Inner Error 0.000000
@@ -533,29 +529,30 @@ Inner loop converged
 Inner loop converged
 >> /T2.LiquidDraw_0_condenserL -> /S5.In
 Iteration 1 -> max Error 0.021332 in /S5.In.P
-/T1 Inner Error 0.048534
-/T1 Inner Error 0.015000
-/T1 Inner Error 0.005875
-/T1 Inner Error 0.002325
-/T1 Inner Error 0.000859
-/T1 Inner Error 0.000132
+/T1 Inner Error 0.037330
+/T1 Inner Error 0.010396
+/T1 Inner Error 0.005187
+/T1 Inner Error 0.002272
+/T1 Inner Error 0.000888
+/T1 Inner Error 0.000192
 /T1 Inner Error 0.000048
-/T1 Inner Error 0.000014
+/T1 Inner Error 0.000015
 /T1 Inner Error 0.000002
 Inner loop converged
-/T1 Iteration 1 Outer Error 0.019315
-/T1 Inner Error 0.043893
-/T1 Inner Error 0.034888
-/T1 Inner Error 0.005293
-/T1 Inner Error 0.000596
-/T1 Inner Error 0.000087
-/T1 Inner Error 0.000010
-Inner loop converged
-/T1 Iteration 2 Outer Error 0.000073
-/T1 Inner Error 0.000331
-/T1 Inner Error 0.000082
-/T1 Inner Error 0.000019
+/T1 Iteration 1 Outer Error 0.018729
+/T1 Inner Error 0.039108
+/T1 Inner Error 0.010549
+/T1 Inner Error 0.001278
+/T1 Inner Error 0.000167
+/T1 Inner Error 0.000051
+/T1 Inner Error 0.000018
 /T1 Inner Error 0.000002
+Inner loop converged
+/T1 Iteration 2 Outer Error 0.000071
+/T1 Inner Error 0.000342
+/T1 Inner Error 0.000074
+/T1 Inner Error 0.000020
+/T1 Inner Error 0.000001
 Inner loop converged
 Iteration 2 -> max Error 0.000000 in 
 >> 
@@ -564,11 +561,11 @@ Iteration 2 -> max Error 0.000000 in
 /T1 Inner Error 0.000000
 Inner loop converged
 /T1 Iteration 1 Outer Error 0.000000
-/T1 Inner Error 0.000006
+/T1 Inner Error 0.000003
 Inner loop converged
 Iteration 1 -> max Error 0.000000 in 
 >> /T1.TryToSolve = 1
-/T1 Inner Error 0.000001
+/T1 Inner Error 0.000000
 Inner loop converged
 /T1 Iteration 1 Outer Error 0.000000
 /T1 Inner Error 0.000000
@@ -577,137 +574,134 @@ Iteration 1 -> max Error 0.000000 in
 >> /T2.TryToRestart = 1
 Iteration 1 -> max Error 0.000000 in 
 >> /T2.TryToSolve = 1
-/T2 Inner Error 0.029562
-/T2 Inner Error 0.009241
-/T2 Inner Error 0.002217
-/T2 Inner Error 0.000786
-/T2 Inner Error 0.000232
+/T2 Inner Error 0.027708
+/T2 Inner Error 0.008577
+/T2 Inner Error 0.002100
+/T2 Inner Error 0.000758
+/T2 Inner Error 0.000236
 /T2 Inner Error 0.000068
-/T2 Inner Error 0.000021
+/T2 Inner Error 0.000020
 /T2 Inner Error 0.000008
 Inner loop converged
-/T2 Iteration 1 Outer Error 0.003409
-/T2 Inner Error 0.018805
-/T2 Inner Error 0.008283
-/T2 Inner Error 0.004078
-/T2 Inner Error 0.000972
-/T2 Inner Error 0.000240
-/T2 Inner Error 0.000050
-/T2 Inner Error 0.000010
-/T2 Inner Error 0.000003
-Inner loop converged
-/T2 Iteration 2 Outer Error 0.000004
-/T2 Inner Error 0.000197
-/T2 Inner Error 0.000045
+/T2 Iteration 1 Outer Error 0.003731
+/T2 Inner Error 0.016362
+/T2 Inner Error 0.007617
+/T2 Inner Error 0.003302
+/T2 Inner Error 0.000795
+/T2 Inner Error 0.000186
+/T2 Inner Error 0.000039
 /T2 Inner Error 0.000008
 Inner loop converged
-Iteration 1 -> max Error 54.438739 in /S5.In.molarV
-/T1 Inner Error 0.056755
-/T1 Inner Error 0.015672
-/T1 Inner Error 0.007926
-/T1 Inner Error 0.001869
-/T1 Inner Error 0.000423
-/T1 Inner Error 0.000169
-/T1 Inner Error 0.000029
-/T1 Inner Error 0.000002
+/T2 Iteration 2 Outer Error 0.000003
+/T2 Inner Error 0.000191
+/T2 Inner Error 0.000044
+/T2 Inner Error 0.000007
 Inner loop converged
-/T1 Iteration 1 Outer Error 0.020379
-/T1 Inner Error 0.057081
-/T1 Inner Error 0.007385
-/T1 Inner Error 0.003172
-/T1 Inner Error 0.000372
-/T1 Inner Error 0.000071
-/T1 Inner Error 0.000008
+Iteration 1 -> max Error 54.436698 in /S5.In.molarV
+/T1 Inner Error 0.034129
+/T1 Inner Error 0.008778
+/T1 Inner Error 0.003660
+/T1 Inner Error 0.000503
+/T1 Inner Error 0.000149
+/T1 Inner Error 0.000037
+/T1 Inner Error 0.000007
 Inner loop converged
-/T1 Iteration 2 Outer Error 0.000008
-/T1 Inner Error 0.000141
-/T1 Inner Error 0.000022
-/T1 Inner Error 0.000005
+/T1 Iteration 1 Outer Error 0.019818
+/T1 Inner Error 0.043305
+/T1 Inner Error 0.008301
+/T1 Inner Error 0.001864
+/T1 Inner Error 0.000370
+/T1 Inner Error 0.000083
+/T1 Inner Error 0.000024
+/T1 Inner Error 0.000006
 Inner loop converged
-/T2 Inner Error 0.001995
-/T2 Inner Error 0.000349
-/T2 Inner Error 0.000049
+/T1 Iteration 2 Outer Error 0.000007
+/T1 Inner Error 0.000283
+/T1 Inner Error 0.000020
+/T1 Inner Error 0.000004
+Inner loop converged
+/T2 Inner Error 0.001636
+/T2 Inner Error 0.000271
+/T2 Inner Error 0.000048
 /T2 Inner Error 0.000010
-Inner loop converged
-/T2 Iteration 1 Outer Error 0.000188
-/T2 Inner Error 0.001689
-/T2 Inner Error 0.000336
-/T2 Inner Error 0.000063
-/T2 Inner Error 0.000013
 /T2 Inner Error 0.000002
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000171
+/T2 Inner Error 0.001189
+/T2 Inner Error 0.000235
+/T2 Inner Error 0.000053
+/T2 Inner Error 0.000010
 Inner loop converged
 /T2 Iteration 2 Outer Error 0.000001
 /T2 Inner Error 0.000007
 Inner loop converged
-Iteration 2 -> max Error 0.087109 in /S5.In.H
-/T1 Inner Error 0.000424
-/T1 Inner Error 0.000063
-/T1 Inner Error 0.000015
-/T1 Inner Error 0.000002
+Iteration 2 -> max Error 0.082634 in /S5.In.H
+/T1 Inner Error 0.000516
+/T1 Inner Error 0.000021
+/T1 Inner Error 0.000009
 Inner loop converged
-/T1 Iteration 1 Outer Error 0.000031
-/T1 Inner Error 0.000542
-/T1 Inner Error 0.000068
-/T1 Inner Error 0.000011
-/T1 Inner Error 0.000001
+/T1 Iteration 1 Outer Error 0.000028
+/T1 Inner Error 0.000126
+/T1 Inner Error 0.000040
+/T1 Inner Error 0.000008
 Inner loop converged
-/T2 Inner Error 0.000206
-/T2 Inner Error 0.000044
+/T2 Inner Error 0.000173
+/T2 Inner Error 0.000043
 /T2 Inner Error 0.000007
 Inner loop converged
-/T2 Iteration 1 Outer Error 0.000054
-/T2 Inner Error 0.000099
-/T2 Inner Error 0.000028
-/T2 Inner Error 0.000004
-Inner loop converged
-Iteration 3 -> max Error 0.055734 in /S5.In.H
-/T1 Inner Error 0.000760
-/T1 Inner Error 0.000059
-/T1 Inner Error 0.000002
-Inner loop converged
-/T1 Iteration 1 Outer Error 0.000030
-/T1 Inner Error 0.000063
-/T1 Inner Error 0.000021
-/T1 Inner Error 0.000002
-Inner loop converged
-/T2 Inner Error 0.000145
-/T2 Inner Error 0.000020
-/T2 Inner Error 0.000003
-Inner loop converged
-/T2 Iteration 1 Outer Error 0.000053
-/T2 Inner Error 0.000309
-/T2 Inner Error 0.000053
-/T2 Inner Error 0.000006
-Inner loop converged
-Iteration 4 -> max Error 0.026543 in /S5.In.H
-/T1 Inner Error 0.000291
-/T1 Inner Error 0.000028
-/T1 Inner Error 0.000001
-Inner loop converged
-/T1 Iteration 1 Outer Error 0.000027
-/T1 Inner Error 0.000243
-/T1 Inner Error 0.000018
-/T1 Inner Error 0.000002
-Inner loop converged
-/T2 Inner Error 0.000256
+/T2 Iteration 1 Outer Error 0.000050
+/T2 Inner Error 0.000081
 /T2 Inner Error 0.000026
 /T2 Inner Error 0.000004
 Inner loop converged
-/T2 Iteration 1 Outer Error 0.000048
-/T2 Inner Error 0.000242
-/T2 Inner Error 0.000038
+Iteration 3 -> max Error 0.050719 in /S5.In.H
+/T1 Inner Error 0.000244
+/T1 Inner Error 0.000059
+/T1 Inner Error 0.000011
+/T1 Inner Error 0.000001
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000025
+/T1 Inner Error 0.000152
+/T1 Inner Error 0.000013
+/T1 Inner Error 0.000002
+Inner loop converged
+/T2 Inner Error 0.000118
+/T2 Inner Error 0.000014
+/T2 Inner Error 0.000002
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000044
+/T2 Inner Error 0.000255
+/T2 Inner Error 0.000042
+/T2 Inner Error 0.000006
+Inner loop converged
+Iteration 4 -> max Error 0.023647 in /S5.In.H
+/T1 Inner Error 0.000066
+/T1 Inner Error 0.000010
+/T1 Inner Error 0.000001
+Inner loop converged
+/T1 Iteration 1 Outer Error 0.000022
+/T1 Inner Error 0.000281
+/T1 Inner Error 0.000028
+/T1 Inner Error 0.000003
+Inner loop converged
+/T2 Inner Error 0.000171
+/T2 Inner Error 0.000020
+/T2 Inner Error 0.000003
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000039
+/T2 Inner Error 0.000212
+/T2 Inner Error 0.000036
 /T2 Inner Error 0.000005
 Inner loop converged
-Iteration 5 -> max Error 0.001109 in /S5.In.H
-/T1 Inner Error 0.000004
+Iteration 5 -> max Error 0.000874 in /S5.In.H
+/T1 Inner Error 0.000006
 Inner loop converged
 /T1 Iteration 1 Outer Error 0.000001
-/T1 Inner Error 0.000004
+/T1 Inner Error 0.000006
 Inner loop converged
+/T2 Inner Error 0.000008
+Inner loop converged
+/T2 Iteration 1 Outer Error 0.000001
 /T2 Inner Error 0.000009
 Inner loop converged
-/T2 Iteration 1 Outer Error 0.000002
-/T2 Inner Error 0.000010
-/T2 Inner Error 0.000001
-Inner loop converged
-Iteration 6 -> max Error 0.000030 in /S5.In.Fraction.ETHYLBENZENE
+Iteration 6 -> max Error 0.000017 in /S5.In.Fraction.ETHYLBENZENE

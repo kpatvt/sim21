@@ -128,22 +128,22 @@ There is no object named Out
 Error processing command:
 <class 'sim21.cli.CommandInterface.CmdError'>
 There is no object named Out
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3556, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 287, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 388, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 382, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 351, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 345, in ProcessCommand
     lhsObj = self.GetObject(self.currentObj, lhsDesc)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2182, in GetObject
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2171, in GetObject
     return self.GetObject(obj, remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2187, in GetObject
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2176, in GetObject
     raise CmdError('CMDNoSuchName', remaining)
 
 
@@ -240,22 +240,22 @@ There is no object named Out
 Error processing command:
 <class 'sim21.cli.CommandInterface.CmdError'>
 There is no object named Out
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3598, in run
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3556, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 293, in ProcessCommandStream
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 287, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 388, in ProcessCommandString
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 382, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 351, in ProcessCommand
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 345, in ProcessCommand
     lhsObj = self.GetObject(self.currentObj, lhsDesc)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2182, in GetObject
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2171, in GetObject
     return self.GetObject(obj, remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2187, in GetObject
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 2176, in GetObject
     raise CmdError('CMDNoSuchName', remaining)
 
 

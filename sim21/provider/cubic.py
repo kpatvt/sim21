@@ -5,26 +5,12 @@ from numba import njit
 
 from sim21.data import chemsep
 from sim21.data.chemsep_consts import GAS_CONSTANT
-from sim21.provider.flash.basic import basic_flash_temp_press_2phase
-from sim21.provider.flash.io import flash_press_prop_2phase, flash_press_vap_frac_2phase, flash_temp_vap_frac_2phase, \
-    flash_temp_prop_2phase
 from sim21.support.roots import solve_cubic_reals, mid
 from sim21.provider.generic import press_derivs, log_phi_derivs, residual_derivs, calc_ig_props
 from sim21.provider.phase import PhaseByMole
 from sim21.provider.base import Provider, MIN_COMPOSITION
 
-# The flash routines
-# from ypsim.thermo.flash.basic import basic_flash_temp_press_2phase
-# from ypsim.thermo.flash.io import flash_press_prop_2phase
-# from .flash.basic import basic_flash_temp_press_2phase
-# from .flash.io import flash_press_vap_frac_2phase
-# from .flash.io import flash_temp_vap_frac_2phase
-# from .flash.io import flash_press_prop_2phase
-# from .flash.io import flash_temp_prop_2phase
-# from .flash.io import flash_prop_vap_frac_2phase
-
-SQRT_2 = math.sqrt(2)
-
+#
 
 @njit(cache=True)
 def parameters(eos, n_count, valid_comps, gas_const, crit_temp, crit_press, omega, temp):
@@ -130,6 +116,7 @@ def volume(eos, n_sum, gas_const, temp, press, desired_phase, D_sum, B_sum):
     R = gas_const
     a_mix = D_sum
     b_mix = B_sum
+    SQRT_2 = math.sqrt(2)
 
     # Express cubic eos in Z form
     coeff_A = (a_mix / (n_sum ** 2)) * press / ((R * temp) ** 2)
@@ -183,6 +170,7 @@ def derivs_primary(eos, n_count, n_sum, valid_comps,
                    gas_const, temp, vol,
                    B, B_sum, D, D_sum, D_T_sum, D_T_T_sum,
                    wrt_composition=True):
+    SQRT_2 = math.sqrt(2)
     _f, _f_V, _f_V_V, _f_B_V, _f_B, _f_B_B, = 0, 0, 0, 0, 0, 0
     F, F_n, F_n_V, F_n_B = 0, 0, 0, 0
     F_T, F_T_T, F_T_V = 0, 0, 0
@@ -311,6 +299,7 @@ def identify_phase(eos, r, a_mix, da_dtemp_mix, b_mix, temp, vol, press):
         and temperature without reference to saturation properties: Applications in phase equilibria calculations" by
         G. Venkatarathnam et. al. (2011)
     """
+    SQRT_2 = math.sqrt(2)
     # Primary method
     use_poling_method = True
     # Should be False, only used as a fallback
@@ -398,6 +387,7 @@ def pseudo_root_search_mathias(eos, r, temp, a_mix, b_mix,
 
     # Only the rho changes for these equations, so no new mixing terms need to be calculated
     # Should converge very quickly
+    SQRT_2 = math.sqrt(2)
 
     converged = False
     if eos == 0:
@@ -564,6 +554,9 @@ def calc_phase(eos, gas_const, temp, press, n, valid_comps, desired_phase, allow
                mw_list, crit_temp, crit_press, omega, k_ij, l_ij,
                ig_temp_ref, ig_press_ref, ig_cp_coeffs, ig_h_form, ig_s_form,
                press_comp_derivs, log_phi_temp_press_derivs, log_phi_comp_derivs):
+
+    # valid_comps = np.where(n > MIN_COMPOSITION)[0]
+
     # is_pseudo = False
     log_press_factor = 0
     press_eos = press
@@ -734,114 +727,39 @@ def calc_phase(eos, gas_const, temp, press, n, valid_comps, desired_phase, allow
     return vals
 
 
-@njit(cache=True)
-def calc_wilson_k_values(temp, press, tc_list, pc_list, omega_list):
-    k_values = np.empty(len(tc_list))
-    for i in range(len(k_values)):
-        pc = pc_list[i]
-        tc = tc_list[i]
-        omega = omega_list[i]
-        k_values[i] = (pc / press) * math.exp(5.37 * (1 + omega) * (1 - tc / temp))
-
-    return k_values
-
-
-@njit(cache=True)
-def estimate_nbp_value(feed_comp, tc_list, valid):
-    temp = 0
-    for i in valid:
-        temp += feed_comp[i] * tc_list[i]
-    return 0.7 * temp
-
-
 class CubicEos(Provider):
     def __init__(self, eos, components=None, k_ij=None, l_ij=None):
         super().__init__()
-        self._components = None
-        self.all_comps = None
-        self._id_list = None
-        self._mw_list = None
-        self._tc_list = None
-        self._pc_list = None
-        self._omega_list = None
-        self._ig_temp_ref = None
-        self._ig_press_ref = None
-        self._ig_cp_coeffs = None
-        self._ig_h_form = h = None
-        self._ig_g_form = g = None
-        self._vap_visc = None
-        self._liq_visc = None
-        self._surf_tens = None
-        self._ig_s_form = None
-        self._std_liq_vol = None
         self._source_k_ij = None
         self._source_l_ij = None
         self._k_ij = None
         self._l_ij = None
-        self._eos = eos
+        self._eos = 'pr'
+        self._eos_code = 1
         if components:
             c = [i for i in components]
-            self.setup_components(eos, c, k_ij, l_ij)
+            self.setup_components(c, eos=eos, k_ij=k_ij, l_ij=l_ij)
 
-    @property
-    def components(self):
-        return self._components
+    def setup_components(self, components, **kwargs):
+        super().setup_components(components, **kwargs)
+        eos = kwargs.get('eos', None)
+        k_ij = kwargs.get('k_ij', None)
+        l_ij = kwargs.get('l_ij', None)
 
-    @property
-    def all_valid_components(self):
-        return self.all_comps
-
-    @property
-    def supported_flashes(self):
-        return [{'temp', 'press'}]
-
-    def setup_components(self, eos, components, k_ij, l_ij):
         if eos == 'srk':
             self._eos_code = 0
         elif eos == 'pr':
             self._eos_code = 1
+        elif eos is None:
+            pass
         else:
             raise NotImplementedError
 
-        self._components = components
-        self.all_comps = np.arange(0, len(components))
-        self._id_list = [c.identifier for c in components]
-        self._mw_list = np.array([c.mw for c in components])
-        self._tc_list = np.array([c.crit_temp for c in components])
-        self._pc_list = np.array([c.crit_press for c in components])
-        self._omega_list = np.array([c.acen_fact for c in components])
-        self._ig_temp_ref = np.array([c.ig_temp_ref for c in components])
-        self._ig_press_ref = np.array([c.ig_press_ref for c in components])
-        self._ig_cp_coeffs = np.array([c.ig_cp_mole_coeffs for c in components])
-        self._ig_h_form = h = np.array([c.ig_enthalpy_form_mole for c in components])
-        self._ig_g_form = g = np.array([c.ig_gibbs_form_mole for c in components])
-        self._vap_visc = [c.vap_visc for c in components]
-        self._liq_visc = [c.liq_visc for c in components]
-        self._surf_tens = [c.surf_tens for c in components]
-        self._ig_s_form = (g - h) / -298.15
-        self._std_liq_vol = np.array([c.std_liq_vol_mole for c in components])
         self._source_k_ij = k_ij
         self._source_l_ij = l_ij
         self._k_ij = np.zeros((len(components), len(components)))
         self._l_ij = np.zeros((len(components), len(components)))
         self.update_interactions(k_ij, l_ij)
-
-    @property
-    def mw(self):
-        return self._mw_list
-
-    @property
-    def std_liq_vol_mole(self):
-        return self._std_liq_vol
-
-    def vap_visc(self, temp, comp_mole):
-        return np.dot(comp_mole, [comp_visc(temp) for comp_visc in self._vap_visc])
-
-    def liq_visc(self, temp, comp_mole):
-        return np.dot(comp_mole, [comp_visc(temp) for comp_visc in self._liq_visc])
-
-    def surf_tens(self, temp, comp_mole):
-        return np.dot(comp_mole, [comp_surf_tens(temp) for comp_surf_tens in self._surf_tens])
 
     def update_interactions(self, k_ij, l_ij):
         if k_ij is not None:
@@ -853,110 +771,6 @@ class CubicEos(Provider):
             for (i_identifier, j_identifier), value in l_ij:
                 i, j = self._id_list.index(i_identifier), self._id_list.index(j_identifier)
                 self._l_ij[i, j] = self._l_ij[j, i] = value
-
-    def scaling(self, prop_type):
-        if prop_type in ('enthalpy_mole', 'ig_enthalpy_mole', 'res_enthalpy_mole',
-                         'gibbs_mole', 'ig_gibbs_mole', 'res_gibbs_mole',
-                         'int_energy_mole', 'ig_int_energy_mole', 'res_int_energy_mole',
-                         'helmholtz_mole', 'ig_helmholtz_mole', 'res_helmholtz_mole'):
-            return GAS_CONSTANT * 298.15
-
-        elif prop_type in ('entropy_mole', 'ig_entropy_mole', 'res_entropy_mole'):
-            return GAS_CONSTANT
-        else:
-            raise NotImplementedError
-
-    def convert_to_mole_basis(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value):
-        if frac_basis == 'mole':
-            frac_value_mole = frac_value
-        elif frac_basis == 'mass':
-            frac_value_mole = frac_value / self._mw_list
-            frac_value_mole /= np.sum(frac_value_mole)
-        else:
-            raise NotImplementedError
-
-        avg_mw = np.dot(frac_value_mole, self._mw_list)
-        if flow_sum_basis == 'mole':
-            flow_sum_value_mole = flow_sum_value
-        elif flow_sum_basis == 'mass':
-            flow_sum_value_mole = flow_sum_value / avg_mw
-        else:
-            raise NotImplementedError
-
-        return flow_sum_value_mole, frac_value_mole
-
-    def flash_temp_press(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value, temp, press, previous, valid):
-        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
-                                                                          frac_basis, frac_value)
-        prev_k = None
-        if previous is not None and previous.contains('vap', 'liq'):
-            prev_k = previous.k_values_vle
-
-        results = basic_flash_temp_press_2phase(self, temp, press, frac_value_mole, valid, previous_k_values=prev_k)
-        results.scale(flow_sum_mole=flow_sum_value_mole)
-        return results
-
-    def flash_press_prop(self, flow_sum_basis, flow_sum_value,
-                         frac_basis, frac_value, press,
-                         prop_name, prop_basis, prop_value, previous, valid):
-
-        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
-                                                                          frac_basis, frac_value)
-
-        prop_flash_name = prop_name + '_' + prop_basis
-        start_temp = None
-        if previous is not None:
-            start_temp = previous.temp
-
-        results = flash_press_prop_2phase(self, press, prop_flash_name, prop_value,
-                                          0, frac_value, valid=valid,
-                                          previous=previous, start_temp=start_temp)
-
-        results.scale(flow_sum_mole=flow_sum_value_mole)
-        return results
-
-    def flash_temp_prop(self, flow_sum_basis, flow_sum_value,
-                         frac_basis, frac_value, temp,
-                         prop_name, prop_basis, prop_value, previous, valid):
-
-        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
-                                                                          frac_basis, frac_value)
-
-        prop_flash_name = prop_name + '_' + prop_basis
-        start_press = None
-        if previous is not None:
-            start_press = previous.press
-
-        results = flash_temp_prop_2phase(self, temp, prop_flash_name, prop_value, 0,
-                                         frac_value_mole, valid=valid, previous=previous,
-                                         start_press=start_press)
-
-        results.scale(flow_sum_mole=flow_sum_value_mole)
-        return results
-
-    def flash_press_vap_frac(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value, press,
-                             vap_frac_basis, vap_frac_value, previous, valid):
-
-        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
-                                                                          frac_basis, frac_value)
-        if vap_frac_basis != 'mole':
-            raise NotImplementedError
-
-        results = flash_press_vap_frac_2phase(self, press, vap_frac_value, frac_value_mole, valid=valid, previous=previous)
-        results.scale(flow_sum_mole=flow_sum_value_mole)
-        return results
-
-    def flash_temp_vap_frac(self, flow_sum_basis, flow_sum_value, frac_basis, frac_value, temp,
-                             vap_frac_basis, vap_frac_value, previous, valid):
-
-        flow_sum_value_mole, frac_value_mole = self.convert_to_mole_basis(flow_sum_basis, flow_sum_value,
-                                                                          frac_basis, frac_value)
-        if vap_frac_basis != 'mole':
-            raise NotImplementedError
-
-        results = flash_temp_vap_frac_2phase(self, temp, vap_frac_value, frac_value_mole, valid=valid, previous=previous)
-        results.scale(flow_sum_mole=flow_sum_value_mole)
-        return results
 
     def phase(self, temp, press, n, desired_phase,
               allow_pseudo=True, valid=None, press_comp_derivs=False,
@@ -1036,73 +850,6 @@ class CubicEos(Provider):
                             log_phi_comp_derivs)
 
         return liq_ph, vap_ph
-
-    def guess_k_value_vle(self, temp, press):
-        return calc_wilson_k_values(temp, press, self._tc_list, self._pc_list, self._omega_list)
-
-    def guess_nbp(self, feed_comp, valid):
-        return estimate_nbp_value(feed_comp, self._tc_list, valid)
-
-    def ig_props(self, temp, press, feed_comp, valid=None):
-        if valid is None:
-            valid = np.where(feed_comp > MIN_COMPOSITION)[0]
-
-        calc_mw, \
-        calc_ig_cp, \
-        calc_ig_enthalpy, \
-        calc_ig_entropy, \
-        calc_ig_gibbs = calc_ig_props(GAS_CONSTANT, temp, press, feed_comp, 1,
-                                      valid, self._tc_list, self._mw_list,
-                                      self._ig_cp_coeffs, self._ig_h_form, self._ig_s_form,
-                                      self._ig_temp_ref, self._ig_press_ref)
-
-        calc_ig_helmholtz = calc_ig_gibbs - GAS_CONSTANT * temp
-        calc_ig_int_energy = calc_ig_helmholtz + temp * calc_ig_entropy
-        vol = GAS_CONSTANT * temp / press
-        return vol, calc_mw, calc_ig_cp, calc_ig_enthalpy, calc_ig_entropy, calc_ig_int_energy, calc_ig_gibbs, calc_ig_helmholtz
-
-    def AddCompound(self, compound_by_name, compound_obj=None):
-        # print('AddCompound:', compound)
-        if compound_obj is None:
-            compound_obj = chemsep.pure(compound_by_name)
-        else:
-            pass
-
-        if self._components is None:
-            new_components = [compound_obj]
-        else:
-            new_components = self._components[:]
-            new_components.append(compound_obj)
-
-        # This is really inefficient, but it's simple
-        self.setup_components(self._eos, new_components, None, None)
-
-    def GetAvCompoundNames(self):
-        return chemsep.available()
-
-    def DeleteCompound(self, compound):
-        compound = compound.upper()
-        idx = self._id_list.index(compound)
-        new_compounds = self._components[:]
-        new_compounds.pop(idx)
-        self.setup_components(self._eos, new_compounds, None, None)
-
-    def ExchangeCompound(self, cmp1Name, cmp2Name):
-        cmp1Name = cmp1Name.upper()
-        cmp2Name = cmp2Name.upper()
-        idx_1 = self._id_list.index(cmp1Name)
-        idx_2 = self._id_list.index(cmp2Name)
-        new_compounds = self._components[:]
-        new_compounds[idx_1], new_compounds[idx_2] = new_compounds[idx_2], new_compounds[idx_1]
-        self.setup_components(self._eos, new_compounds, None, None)
-
-    def MoveCompound(self, cmp1Name, cmp2Name):
-        cmp1Name = cmp1Name.upper()
-        cmp2Name = cmp2Name.upper()
-        new_compounds = self._components[:]
-        item_1 = new_compounds.pop(self._id_list.index(cmp1Name))
-        new_compounds.insert(self._id_list.index(cmp2Name), item_1)
-        self.setup_components(self._eos, new_compounds, None, None)
 
 
 class SoaveRedlichKwong(CubicEos):

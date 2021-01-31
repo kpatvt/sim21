@@ -197,16 +197,10 @@ class CommandInterface(object):
         """
         if global variable netServer is defined, then use its open function
         """
-        if netServer:
-            if mode == 'w' and keepVersions and self.maxCaseVersions != 0:
-                return netServer.open(self.root, name, mode)
-            else:
-                return netServer.open(self.root, name, mode)
+        if mode == 'w' and keepVersions and self.maxCaseVersions != 0:
+            return open(name, mode)
         else:
-            if mode == 'w' and keepVersions and self.maxCaseVersions != 0:
-                return open(name, mode)
-            else:
-                return open(name, mode)
+            return open(name, mode)
 
     def GetNextTerm(self, text):
         """
@@ -1303,9 +1297,6 @@ class CommandInterface(object):
             # f.flush()
             f.close()
 
-            if netServer:
-                netServer.switchedRoot(oldRoot, self.root)
-
             # make any necessary changes for different versions
             # self.root.adjustVersion(revertFunction)
 
@@ -1409,8 +1400,6 @@ class CommandInterface(object):
         InitPropTypes(PropTypes)
         self.__init__(infoCallBack=infoCallBack)
         self.output = out
-        if netServer:
-            netServer.switchedRoot(oldRoot, self.root)
         self.root.InfoMessage('CMDNotifyClear')
 
     def Units(self, unitSet):
@@ -2723,10 +2712,8 @@ class CommandInterface(object):
         """
         if not objDesc:
             objDesc = '.'
-        if netServer:
-            files = netServer.listdir(self.root, objDesc)
-        else:
-            files = os.listdir(objDesc)
+
+        files = os.listdir(objDesc)
 
         result = ''
         files.sort()
@@ -2750,34 +2737,19 @@ class CommandInterface(object):
         """
         create the directory name
         """
-        if netServer:
-            try:
-                return netServer.mkdir(self.root, name)
-            except:
-                return None
-        else:
-            try:
-                return os.mkdir(name)
-            except:
-                return None
+        return os.mkdir(name)
 
     def DeleteFile(self, name):
         """
         delete file name
         """
-        if netServer:
-            return netServer.remove(self.root, name)
-        else:
-            return os.remove(name)
+        return os.remove(name)
 
     def DeleteDirectory(self, name):
         """
         delete the file directory name
         """
-        if netServer:
-            return netServer.rmdir(self.root, name)
-        else:
-            return os.rmdir(name)
+        return os.rmdir(name)
 
     def Tree(self, objDesc, level=1):
         try:
@@ -3542,20 +3514,6 @@ globalLock = None
 
 # base path above which files cannot be opened
 globalBasePath = None
-
-# if netServer is assigned, it should be to an object which supports the
-# following methods
-
-# open(rootOp, name, mode)
-# this mimics the system open, with possible security etc checks.  The CI root is used as
-# the key so that it can be traced back to a common ancestor and thus session when new CIs
-# are created in a session (i.e. scriptops)
-
-# switchedRootOp( oldRootOp, newRootOp)
-# tells the net server when the CI has acquired a new root flowsheet, such as during a
-# recall or clear operation
-netServer = None
-
 
 def run(inp=sys.stdin, out=sys.stdout, err=sys.stderr, cwd=None):
     MessageHandler.IgnoreMessage('SolvingOp')

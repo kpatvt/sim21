@@ -39,16 +39,16 @@ PROPANE OXYGEN NITROGEN CARBON DIOXIDE WATER
 Port: /r.RxnHeater.Out + sim21.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 1854.4547155988835 = C
+T                  = 1854.4222608664213 = C
 P                  = 101.325 = kPa
 MoleFlow           = 1.032258064516129 = kgmole/h
 MassFlow           = 29.303549032258065 = kg/h
-VolumeFlow         = 180.24127710278773 = m3/hr
+VolumeFlow         = 180.23785769989559 = m3/hr
 StdLiqVolumeFlow   = 0.036171761290322575 = m3/hr
-H                  = -3279.1816587767667 = kJ/kmol
-Energy             = -940.2671423015818 = W
+H                  = -3280.6327148010073 = kJ/kmol
+Energy             = -940.6832157135505 = W
 MolecularWeight    = 28.387813124999997 = 
-ZFactor            = 1.000132302805552 = 
+ZFactor            = 1.0001285851214905 = 
 PROPANE            = 0.0 = 
 OXYGEN             = 0.03125 = 
 NITROGEN           = 0.75 = 

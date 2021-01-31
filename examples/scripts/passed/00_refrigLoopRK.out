@@ -42,31 +42,31 @@ Port: /Chiller.Out + sim21.solver.Ports.Port_Material
 Connected to: /Compressor.Ideal.In
 VapFrac            = 1.0 * 
 T                  = -19.99999999999997 * C
-P                  = 185.9069959260533 = kPa
-MoleFlow           = 2.2025215652748344 = kgmole/h
-MassFlow           = 37.51008756784437 = kg/h
-VolumeFlow         = 24.354788973792342 = m3/hr
-StdLiqVolumeFlow   = 0.054974938269259865 = m3/hr
-H                  = -47614.11379189864 = kJ/kmol
-Energy             = -29130.864566140743 = W
+P                  = 188.81409998710538 = kPa
+MoleFlow           = 2.214885544905873 = kgmole/h
+MassFlow           = 37.72065257023037 = kg/h
+VolumeFlow         = 24.08419355372925 = m3/hr
+StdLiqVolumeFlow   = 0.05528354320085059 = m3/hr
+H                  = -47616.27382774328 = kJ/kmol
+Energy             = -29295.7212787079 = W
 MolecularWeight    = 17.03052 = 
-ZFactor            = 0.9766699326476956 = 
+ZFactor            = 0.9754457615178855 = 
 AMMONIA            = 1.0 * 
 
 >> Compressor.Out
 Port: /Compressor.Waste.Out + sim21.solver.Ports.Port_Material
 Connected to: /Condenser.In
 VapFrac            = 1.0 | 
-T                  = 249.2457770352014 | C
-P                  = 2680.2954498908084 | kPa
-MoleFlow           = 2.2025215652748344 = kgmole/h
-MassFlow           = 37.51008756784437 = kg/h
-VolumeFlow         = 3.4572043745142986 = m3/hr
-StdLiqVolumeFlow   = 0.054974938269259865 = m3/hr
-H                  = -37717.67125818439 = kJ/kmol
-Energy             = -23076.106760582752 = W
+T                  = 245.05602910884636 | C
+P                  = 2646.583523682509 | kPa
+MoleFlow           = 2.214885544905873 = kgmole/h
+MassFlow           = 37.72065257023037 = kg/h
+VolumeFlow         = 3.466493029342006 = m3/hr
+StdLiqVolumeFlow   = 0.05528354320085059 = m3/hr
+H                  = -37935.45619889536 = kJ/kmol
+Energy             = -23339.63710398423 = W
 MolecularWeight    = 17.03052 | 
-ZFactor            = 0.9686206221110706 | 
+ZFactor            = 0.9613643213296844 | 
 AMMONIA            = 1.0 = 
 
 >> Condenser.Out
@@ -74,30 +74,30 @@ Port: /Condenser.Out + sim21.solver.Ports.Port_Material
 Connected to: /JT.In
 VapFrac            = 0.0 * 
 T                  = 60.0 * C
-P                  = 2660.2954498908084 = kPa
-MoleFlow           = 2.2025215652748344 = kgmole/h
-MassFlow           = 37.51008756784437 = kg/h
-VolumeFlow         = 0.08848660861892761 = m3/hr
-StdLiqVolumeFlow   = 0.054974938269259865 = m3/hr
-H                  = -63959.01618358436 = kJ/kmol
-Energy             = -39130.86456614075 = W
+P                  = 2626.583523682509 = kPa
+MoleFlow           = 2.214885544905873 = kgmole/h
+MassFlow           = 37.72065257023037 = kg/h
+VolumeFlow         = 0.07840019159253866 = m3/hr
+StdLiqVolumeFlow   = 0.05528354320085059 = m3/hr
+H                  = -63869.93536921581 = kJ/kmol
+Energy             = -39295.7212787079 = W
 MolecularWeight    = 17.03052 = 
-ZFactor            = 0.038584533162784214 = 
+ZFactor            = 0.033564721512769236 = 
 AMMONIA            = 1.0 * 
 
 >> JT.Out
 Port: /JT.Out + sim21.solver.Ports.Port_Material
 Connected to: /Chiller.In
-VapFrac            = 0.2990262566094427 | 
-T                  = -17.723255194953566 | C
-P                  = 205.9069959260533 | kPa
-MoleFlow           = 2.202521565274834 | kgmole/h
-MassFlow           = 37.510087567844366 | kg/h
-VolumeFlow         = 6.6715001727226735 | m3/hr
-StdLiqVolumeFlow   = 0.05497493826925986 | m3/hr
-H                  = -63959.01618358436 = kJ/kmol
-Energy             = -39130.86456614074 | W
+VapFrac            = 0.29032586234191116 | 
+T                  = -17.717970937701267 | C
+P                  = 208.81409998710538 | kPa
+MoleFlow           = 2.214885544905873 | kgmole/h
+MassFlow           = 37.72065257023037 | kg/h
+VolumeFlow         = 6.411585907188101 | m3/hr
+StdLiqVolumeFlow   = 0.05528354320085059 | m3/hr
+H                  = -63869.93536921581 = kJ/kmol
+Energy             = -39295.7212787079 | W
 MolecularWeight    = 17.03052 | 
-ZFactor            = 0.29367966831605785 | 
+ZFactor            = 0.2846193740381616 | 
 AMMONIA            = 1.0 = 
 

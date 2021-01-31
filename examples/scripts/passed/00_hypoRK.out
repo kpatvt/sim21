@@ -31,10 +31,10 @@ MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow is invalid
-H                  = -246768.39688976735 = kJ/kmol
+H                  = -246770.62257899466 = kJ/kmol
 Energy             = None
 MolecularWeight    = 61.610152 = 
-ZFactor            = 0.9991376074499476 = 
+ZFactor            = 0.9988051534493969 = 
 METHANE            = 0.1 * 
 WATER              = 0.2 * 
 CARBON DIOXIDE     = 0.3 * 
@@ -54,10 +54,10 @@ MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow is invalid
-H                  = -246768.39688976732 = kJ/kmol
+H                  = -246770.62257899463 = kJ/kmol
 Energy             = None
 MolecularWeight    = 61.610152 = 
-ZFactor            = 0.9991376074499476 = 
+ZFactor            = 0.9988051534493969 = 
 WATER              = 0.2 * 
 CARBON DIOXIDE     = 0.3 * 
 HYPO1*             = 0.4 * 
@@ -77,10 +77,10 @@ MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow is invalid
-H                  = -246768.39688976726 = kJ/kmol
+H                  = -246770.62257899457 = kJ/kmol
 Energy             = None
 MolecularWeight    = 61.610152 = 
-ZFactor            = 0.9991376074499476 = 
+ZFactor            = 0.9988051534493969 = 
 HYPO1*             = 0.4 * 
 WATER              = 0.2 * 
 CARBON DIOXIDE     = 0.3 * 
