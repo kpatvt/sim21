@@ -343,7 +343,29 @@ class Provider:
         results.scale(flow_sum_mole=flow_sum_value_mole)
         return results
 
+    def phase(self, temp, press, n, desired_phase,
+              allow_pseudo=True, valid=None, press_comp_derivs=False,
+              log_phi_temp_press_derivs=False, log_phi_comp_derivs=False):
 
+        raise NotImplementedError
+
+    def phases_vle(self, temp, press, liq_comp, vap_comp,
+                   allow_pseudo=True, valid=None, press_comp_derivs=False,
+                   log_phi_temp_press_derivs=False, log_phi_comp_derivs=False):
+
+        liq_ph = self.phase(temp, press, liq_comp, 'liq',
+                            allow_pseudo, valid,
+                            press_comp_derivs,
+                            log_phi_temp_press_derivs,
+                            log_phi_comp_derivs)
+
+        vap_ph = self.phase(temp, press, vap_comp, 'vap',
+                            allow_pseudo, valid,
+                            press_comp_derivs,
+                            log_phi_temp_press_derivs,
+                            log_phi_comp_derivs)
+
+        return liq_ph, vap_ph
 
     def AddCompound(self, compound_by_name, compound_obj=None):
         # print('AddCompound:', compound)

@@ -1,7 +1,7 @@
 #Heater example
 #distillation tower condenser is used to preheat distillation tower feed
 
-$thermo = VirtualMaterials.NRTL/Ideal/HC
+$thermo = Sim21Thermo.IdealVapLiq
 / -> $thermo
 thermo + ETHANOL WATER
 
@@ -24,4 +24,4 @@ heater.In.Fraction = 0.1 0.9
 heater.DeltaP = 0.0
 cond.OutQ -> heater.InQ
 heater.Out
-		
+

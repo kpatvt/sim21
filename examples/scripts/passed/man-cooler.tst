@@ -1,5 +1,5 @@
 #Cooler Example - Distillation Tower Condenser Duty
-$thermo = VirtualMaterials.NRTL/Ideal/HC
+$thermo = Sim21Thermo.IdealVapLiqNRTL
 / -> $thermo
 thermo + ETHANOL WATER
 

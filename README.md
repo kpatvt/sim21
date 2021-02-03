@@ -11,6 +11,9 @@ Under continual development, breaking changes are to be expected.
 
 Status
 ------
+* Feb 2, 2021
+    * Implemented Activity Coefficient Models: NRTL, Wilson with some sample interations
+
 * Jan 23, 2021
     * Finished implementation of a seperate steam/water Thermo using IFC-97
     * Included example of a very simple steam cycle flowsheet
@@ -32,7 +35,7 @@ Highlights
 ----------
 * Independent steam model with high accuracy IFC-97 Steam model
     * Sample steam cycle included in flowsheet examples
-    
+
 * Many examples with output now available with PR/SRK EOS Thermo:
     * Air Separation Unit (ASU)
     * Natural Gas Separation Train

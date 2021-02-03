@@ -1,7 +1,7 @@
 import math
 from numba import njit
 from sim21.data.chemsep_consts import GAS_CONSTANT
-
+import numpy as np
 
 @njit(cache=True)
 def eqn_1_2_3_4_5_100(a, b, c, d, e, f, t):
@@ -18,6 +18,21 @@ def int_eqn_1_2_3_4_5_100(a, b, c, d, e, f, t, t_ref):
     res = a * (t - t_ref) + (b / 2) * (t ** 2 - t_ref ** 2) + (c / 3) * (t ** 3 - t_ref ** 3)
     res += (d / 4) * (t ** 4 - t_ref ** 4) + (e / 5) * (t ** 5 - t_ref ** 5)
     return res
+
+
+@njit(cache=True)
+def int_eqn_16(a, b, c, d, e, f, t, t_ref):
+    n = 24
+    h = (t - t_ref)/(n - 1)
+    t_cur = t
+    f_x_sum = 0.5*(a + math.exp(b / t + c + d * t + e * (t ** 2)))
+    f_x_sum += 0.5*(a + math.exp(b / t_ref + c + d * t_ref + e * (t_ref ** 2)))
+    for i in range(1, n-1):
+        t_cur += h
+        f_x_sum += a + math.exp(b / t_cur + c + d * t_cur + e * (t_cur ** 2))
+
+    return -h*f_x_sum
+
 
 
 @njit(cache=True)
@@ -268,6 +283,9 @@ def eval_eqn_int(coeffs, t, t_ref):
             part2 = val_at_tmax*(t - tmax)
             return part1 + part2 + val_ref
 
+    if eqn_no == 16:
+        return int_eqn_16(a, b, c, d, e, f, t, t_ref)
+
     if eqn_no == 107:
         if t < tmax:
             return int_eqn_107(a, b, c, d, e, f, t, t_ref) + val_ref
@@ -331,3 +349,11 @@ def calc_ig_props(x, valid_comps, mw, ig_cp_mole_coeffs, t, t_ref, p, p_ref, h_r
     ig_entropy_mole_sum = ig_entropy_mole_sum + ig_entropy_comp_sum
     ig_gibbs_mole_sum = ig_enthalpy_mole_sum - t_ref*ig_entropy_mole_sum
     return mw_sum, ig_cp_mole_sum, ig_enthalpy_mole_sum, ig_entropy_mole_sum,  ig_gibbs_mole_sum
+
+
+def rackett_liq_vol_mole(temp, crit_temp, crit_press, zra):
+    tr = temp/crit_temp
+    tau = 1.0 + (1.0 - tr)**(2.0/7.0)
+    fact1 = GAS_CONSTANT*crit_temp/crit_press
+    fact2 = zra**tau
+    return fact1*fact2

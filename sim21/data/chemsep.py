@@ -4,8 +4,10 @@ import sqlite3
 from dataclasses import dataclass
 from importlib import resources
 import numpy as np
-from sim21.data.eqn import eval_eqn, eval_eqn_int_over_t, eval_eqn_int
+from sim21.data.eqn import eval_eqn, eval_eqn_int_over_t, eval_eqn_int, rackett_liq_vol_mole
 from sim21.data.chemsep_consts import GAS_CONSTANT
+from functools import lru_cache
+
 
 with resources.path('sim21.data', 'chemsepv812.db') as db_path:
     _CHEMSEP_DATABASE_CON = sqlite3.connect(db_path)
@@ -254,9 +256,6 @@ def conv_number(v, typeofvalue=float, fallback_value=0):
 # uniquacr_units _
 # vanderwaalsarea_units m2/kmol
 # vanderwaalsvolume_units m3/kmol
-# vaporpressure_tmax_units K
-# vaporpressure_tmin_units K
-# vaporpressure_units Pa
 # vaporthermalconductivity_tmax_units K
 # vaporthermalconductivity_tmin_units K
 # vaporthermalconductivity_units W/m/K
@@ -268,22 +267,24 @@ def conv_number(v, typeofvalue=float, fallback_value=0):
 
 @dataclass
 class ChemsepPure:
-    identifier: str
-    acen_fact: float              # Unit less
-    crit_temp: float              # K
-    crit_press: float             # Pa
-    crit_compress_fact: float     # Unit less
-    crit_vol_mole: float          # m3/kmol
-    ig_enthalpy_form_mole: float  # J/kmol
-    ig_entropy_form_mole: float   # J/kmol-K
-    ig_gibbs_form_mole: float     # J/kmol
-    ig_heat_cap_mole_coeffs: np.ndarray   # J/kmol
-    ig_temp_ref: float            # K
-    ig_press_ref: float           # Pa
-    liq_visc_coeffs: np.ndarray
-    vap_visc_coeffs: np.ndarray
-    surf_tens_coeffs: np.ndarray
-    abs_entropy_mole: float       # J/kmol-K
+    # identifier: str
+    # acen_fact: float              # Unit less
+    # crit_temp: float              # K
+    # crit_press: float             # Pa
+    # crit_compress_fact: float     # Unit less
+    # crit_vol_mole: float          # m3/kmol
+    # ig_enthalpy_form_mole: float  # J/kmol
+    # ig_entropy_form_mole: float   # J/kmol-K
+    # ig_gibbs_form_mole: float     # J/kmol
+    # ig_heat_cap_mole_coeffs: np.ndarray   # J/kmol
+    # ig_temp_ref: float            # K
+    # ig_press_ref: float           # Pa
+    # liq_visc_coeffs: np.ndarray
+    # vap_visc_coeffs: np.ndarray
+    # surf_tens_coeffs: np.ndarray
+    # vap_press_coeffs: np.ndarray
+    # abs_entropy_mole: float       # J/kmol-K
+    # nbp_temp: float
 
     def __init__(self, name):
         cur = _CHEMSEP_DATABASE_CUR
@@ -293,14 +294,8 @@ class ChemsepPure:
         col_ids = results[0].keys()
         row_data = results[0]
         comp_data = {k: v for k, v in zip(col_ids, row_data)}
-
-        # print('identifier:', comp_data['compoundid_value'].upper())
-        # print('tmin:', comp_data['rppheatcapacitycp_tmin_value'])
-        # print('tmax:', comp_data['rppheatcapacitycp_tmax_value'])
-        # print(comp_data['liquidvolumeatnormalboilingpoint_units'])
-        # print(comp_data['liquidvolumeatnormalboilingpoint_value'])
-
-        self.identifier = comp_data['compoundid_value'].upper()
+        self.identifier = comp_data['compoundid_value'].upper().strip()
+        self.casn = comp_data['cas_value'].upper().strip()
         self.acen_fact = conv_number(comp_data['acentricityfactor_value'])
         self.crit_temp = conv_number(comp_data['criticaltemperature_value'])
         self.crit_press = conv_number(comp_data['criticalpressure_value'])
@@ -319,6 +314,27 @@ class ChemsepPure:
                                            conv_number(comp_data['rppheatcapacitycp_d_value']),
                                            conv_number(comp_data['rppheatcapacitycp_e_value']),
                                            0.0])
+
+        self.liq_cp_mole_coeffs = np.array([conv_number(comp_data['liquidheatcapacitycp_eqno_value']),
+                                            conv_number(comp_data['liquidheatcapacitycp_tmin_value']),
+                                            conv_number(comp_data['liquidheatcapacitycp_tmax_value']),
+                                            conv_number(comp_data['liquidheatcapacitycp_a_value']),
+                                            conv_number(comp_data['liquidheatcapacitycp_b_value']),
+                                            conv_number(comp_data['liquidheatcapacitycp_c_value']),
+                                            conv_number(comp_data['liquidheatcapacitycp_d_value']),
+                                            conv_number(comp_data['liquidheatcapacitycp_e_value']),
+                                            0.0])
+
+        self.liq_dens_coeffs = np.array([conv_number(comp_data['liquiddensity_eqno_value']),
+                                         conv_number(comp_data['liquiddensity_tmin_value']),
+                                         conv_number(comp_data['liquiddensity_tmax_value']),
+                                         conv_number(comp_data['liquiddensity_a_value']),
+                                         conv_number(comp_data['liquiddensity_b_value']),
+                                         conv_number(comp_data['liquiddensity_c_value']),
+                                         conv_number(comp_data['liquiddensity_d_value']),
+                                         conv_number(comp_data['liquiddensity_e_value']),
+                                         0.0])
+
         self.liq_visc_coeffs = np.array([conv_number(comp_data['liquidviscosity_eqno_value']),
                                          conv_number(comp_data['liquidviscosity_tmin_value']),
                                          conv_number(comp_data['liquidviscosity_tmax_value']),
@@ -349,17 +365,60 @@ class ChemsepPure:
                                           conv_number(comp_data['surfacetension_e_value']),
                                           0.0])
 
+        self.vap_press_coeffs = np.array([conv_number(comp_data['vaporpressure_eqno_value']),
+                                          conv_number(comp_data['vaporpressure_tmin_value']),
+                                          conv_number(comp_data['vaporpressure_tmax_value']),
+                                          conv_number(comp_data['vaporpressure_a_value']),
+                                          conv_number(comp_data['vaporpressure_b_value']),
+                                          conv_number(comp_data['vaporpressure_c_value']),
+                                          conv_number(comp_data['vaporpressure_d_value']),
+                                          conv_number(comp_data['vaporpressure_e_value']),
+                                          0.0])
+
+        self.heat_vap_coeffs = np.array([conv_number(comp_data['heatofvaporization_eqno_value']),
+                                         conv_number(comp_data['heatofvaporization_tmin_value']),
+                                         conv_number(comp_data['heatofvaporization_tmax_value']),
+                                         conv_number(comp_data['heatofvaporization_a_value']),
+                                         conv_number(comp_data['heatofvaporization_b_value']),
+                                         conv_number(comp_data['heatofvaporization_c_value']),
+                                         conv_number(comp_data['heatofvaporization_d_value']),
+                                         conv_number(comp_data['heatofvaporization_e_value']),
+                                         0.0])
+
         self.std_liq_vol_mole = conv_number(comp_data['liquidvolumeatnormalboilingpoint_value'])
         self.ig_temp_ref = 298.15
         self.ig_press_ref = 101325.0
         self.ig_entropy_form_mole = (gibbs - enthalpy)/(-self.ig_temp_ref)
         self.abs_entropy_mole = conv_number(comp_data['absentropy_value'])
+        self.nbp_temp = conv_number(comp_data['normalboilingpointtemperature_value'])
+        self.liq_vol_mole_at_nbp_temp = conv_number(comp_data['liquidvolumeatnormalboilingpoint_value'])
+        self.zra = conv_number(comp_data['racketparameter_value'])
+        if self.zra == 0:
+            self.zra = self.crit_compress_fact
 
     def ig_heat_cap_mole(self, temp):
         return eval_eqn(self.ig_cp_mole_coeffs, temp, self.crit_temp)
 
     def ig_enthalpy_mole(self, temp):
         return eval_eqn_int(self.ig_cp_mole_coeffs, temp, self.ig_temp_ref) + self.ig_enthalpy_form_mole
+
+    def liq_cp_mole(self, temp):
+        return eval_eqn(self.liq_cp_mole_coeffs, temp, self.crit_temp)
+
+    def liq_enthalpy_mole(self, temp):
+        # Not exactly right method
+        # h_ig_to_nbp = self.ig_enthalpy_mole(self.nbp_temp)
+        # h_vap = self.heat_vap(self.nbp_temp)
+        # h_liq = eval_eqn_int(self.liq_cp_mole_coeffs, self.nbp_temp, temp)
+        # h1 = (h_ig_to_nbp - h_vap - h_liq)
+
+        # Theoretically more correct
+        h2 = self.ig_enthalpy_mole(temp) - self.heat_vap(temp)
+        return h2
+
+    def liq_entropy_mole(self, temp, press):
+        s1 = self.ig_entropy_mole(temp, press) - self.heat_vap(temp)/temp
+        return s1
 
     def ig_entropy_mole(self, temp, press):
         # ref = self.abs_entropy_mole
@@ -373,11 +432,32 @@ class ChemsepPure:
     def liq_visc(self, temp):
         return eval_eqn(self.liq_visc_coeffs, temp, self.crit_temp)
 
+    def liq_dens_mole(self, temp):
+        # kmol/m3
+        return eval_eqn(self.liq_dens_coeffs, temp, self.crit_temp)
+
+    def liq_vol_mole(self, temp):
+        # m3/kmol
+        return 1/eval_eqn(self.liq_dens_coeffs, temp, self.crit_temp)
+
+    def rackett_liq_vol_mole(self, temp):
+        # print('temp:', temp, 'crit_temp:', self.crit_temp, 'crit_press:', self.crit_press, 'self.zra:', self.zra)
+        return rackett_liq_vol_mole(temp, self.crit_temp, self.crit_press, self.zra)
+
+    def rackett_liq_dens_mole(self, temp):
+        return 1/self.rackett_liq_vol_mole(temp)
+
     def vap_visc(self, temp):
         return eval_eqn(self.vap_visc_coeffs, temp, self.crit_temp)
 
     def surf_tens(self, temp):
         return eval_eqn(self.surf_tens_coeffs, temp, self.crit_temp)
+
+    def vap_press(self, temp):
+        return eval_eqn(self.vap_press_coeffs, temp, self.crit_temp)
+
+    def heat_vap(self, temp):
+        return eval_eqn(self.heat_vap_coeffs, temp, self.crit_temp)
 
 
 def pure(names):
@@ -388,8 +468,21 @@ def pure(names):
     return [ChemsepPure(i) for i in names]
 
 
-def available():
+def available(match=None):
     cur = _CHEMSEP_DATABASE_CUR
-    cur.execute('SELECT UPPER(compoundid_value) FROM pure')
+    if match is None:
+        cur.execute('SELECT UPPER(compoundid_value) FROM pure')
+    else:
+        s = "SELECT UPPER(compoundid_value) FROM pure WHERE UPPER(compoundid_value) LIKE \'%{0}%\'".format(str(match).upper())
+        cur.execute(s)
     results = cur.fetchall()
     return [i[0] for i in results]
+
+
+@lru_cache
+def casn_to_identifier():
+    cur = _CHEMSEP_DATABASE_CUR
+    cur.execute('SELECT cas_value, UPPER(compoundid_value) FROM pure')
+    results = cur.fetchall()
+    return {i[0]: i[1] for i in results}
+

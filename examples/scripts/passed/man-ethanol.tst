@@ -1,5 +1,5 @@
 #ethanol distillation
-$thermo = VirtualMaterials.PSRK
+$thermo = Sim21Thermo.IdealVapLiqNRTL
 / -> $thermo
 thermo + Ethanol Water
 

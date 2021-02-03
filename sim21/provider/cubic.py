@@ -1,16 +1,12 @@
 import math
-
 import numpy as np
 from numba import njit
-
-from sim21.data import chemsep
 from sim21.data.chemsep_consts import GAS_CONSTANT
 from sim21.support.roots import solve_cubic_reals, mid
 from sim21.provider.generic import press_derivs, log_phi_derivs, residual_derivs, calc_ig_props
 from sim21.provider.phase import PhaseByMole
 from sim21.provider.base import Provider, MIN_COMPOSITION
 
-#
 
 @njit(cache=True)
 def parameters(eos, n_count, valid_comps, gas_const, crit_temp, crit_press, omega, temp):
@@ -729,7 +725,7 @@ def calc_phase(eos, gas_const, temp, press, n, valid_comps, desired_phase, allow
 
 class CubicEos(Provider):
     def __init__(self, eos, components=None, k_ij=None, l_ij=None):
-        super().__init__()
+        super().__init__(components)
         self._source_k_ij = None
         self._source_l_ij = None
         self._k_ij = None
@@ -832,24 +828,6 @@ class CubicEos(Provider):
                            del_press_del_comp=del_press_del_comp,
                            del_vol_del_comp=del_vol_del_comp,
                            flow_mole=frac_mole, flow_sum_mole=1)
-
-    def phases_vle(self, temp, press, liq_comp, vap_comp,
-                   allow_pseudo=True, valid=None, press_comp_derivs=False,
-                   log_phi_temp_press_derivs=False, log_phi_comp_derivs=False):
-
-        liq_ph = self.phase(temp, press, liq_comp, 'liq',
-                            allow_pseudo, valid,
-                            press_comp_derivs,
-                            log_phi_temp_press_derivs,
-                            log_phi_comp_derivs)
-
-        vap_ph = self.phase(temp, press, vap_comp, 'vap',
-                            allow_pseudo, valid,
-                            press_comp_derivs,
-                            log_phi_temp_press_derivs,
-                            log_phi_comp_derivs)
-
-        return liq_ph, vap_ph
 
 
 class SoaveRedlichKwong(CubicEos):
