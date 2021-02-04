@@ -9,12 +9,12 @@ coldInlet = Stream.Stream_Material()
 hotInlet = Stream.Stream_Material()
 
 # hot side will use steam property package
-hotInlet.thermo1 = Sim21Thermo.Steam97
-hotInlet.thermo1 + water
+hotInlet.thermo = Sim21Thermo.Steam97
+hotInlet.thermo + water
 
 # create hot outlet and assign the hot inlet thermo
 hotOutlet = Stream.Stream_Material()
-hotOutlet.thermo = hotInlet.thermo1
+hotOutlet.thermo = hotInlet.thermo
 cd hotInlet.In
 T = 200
 P = 150

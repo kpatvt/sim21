@@ -1,6 +1,6 @@
 # Cross connecter thermo test
 units SI
-$thermo = VirtualMaterials.RK
+$thermo = Sim21Thermo.PR
 / -> $thermo
 thermo + PROPANE ISOBUTANE n-BUTANE n-PENTANE WATER
 # lets have some streams for this test
@@ -34,13 +34,13 @@ DeltaTHO = 5 K
 cd /
 
 # hot side will use steam property package
-$thermo1 = VirtualMaterials.IdealLiquid/Ideal/HC
+$thermo1 = Sim21Thermo.IdealVapLiq
 exch.HotSide -> $thermo1
 exch.HotSide.thermo1 + water
 
 # create hot outlet and assign the hot inlet thermo
 hotOutlet = Stream.Stream_Material()
-hotOutlet.thermo1 = exch.HotSide.thermo1
+hotOutlet -> $thermo1
 
 # create CrossConnector
 xc = CrossConnector.CrossConnector()
@@ -62,6 +62,3 @@ coldOutlet.Out
 hotInlet.Out
 hotOutlet.Out
 exch.ColdSide.InQ
-
-
-

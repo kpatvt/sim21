@@ -10,4 +10,4 @@ def run_file(source):
     os.chdir(orig_path)
 
 
-run_file(open('scripts/passed/man-ethanol-wilson.tst'))
+run_file(open('scripts/todo/thcase.tst'))

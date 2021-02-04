@@ -167,8 +167,6 @@ UA   = 8288.42280702 * W/K
 
 >> 
 >> exch.IsCounterCurrent1 = 0
-C:\Users\kpatv\Code\sim21\sim21\solver\EquationSolver.py:700: RuntimeWarning: invalid value encountered in double_scalars
-  delta = (bound2 - bound1) / (nuVals - 1)
 Calculating Jacobian for /exch
 /exch Iteration 1 Max Error 2.986671
 Calculating Jacobian for /exch

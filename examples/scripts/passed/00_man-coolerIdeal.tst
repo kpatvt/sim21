@@ -1,5 +1,4 @@
-
-thermo = VirtualMaterials.IdealLiquid/Ideal/HC
+thermo = Sim21Thermo.IdealVapLiq
 thermo + ETHANOL WATER
 topVap = Stream.Stream_Material()
 topVap.In.P = 101.325

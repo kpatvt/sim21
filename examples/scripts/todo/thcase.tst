@@ -8,7 +8,7 @@ s2_Lev1 = Flowsheet.SubFlowsheet()
 
 
 #Now create a first thermo case
-$thermo = VirtualMaterials.RK
+$thermo = Sim21Thermo.SRK
 / -> $thermo
 thermo + METHANE ETHANE PROPANE
 
@@ -24,7 +24,7 @@ s3_Lev1.thermo
 
 
 #Create a thermo case in the root with the same name
-$thermo = Sim21Thermo.Peng-Robinson
+$thermo = Sim21Thermo.PengRobinson
 / -> $thermo
 thermo + WATER
 
@@ -36,9 +36,9 @@ s3_Lev1.thermo
 
 
 #Now create separate thermo cases named thermo in one of the childs
-s1_Lev1.thermo2 = VirtualMaterials.Advanced_Peng-Robinson
+s1_Lev1.thermo2 = Sim21Thermo.PR
 s1_Lev1.thermo2 + METHANE n-HEXANE
-s2_Lev1.thermo = VirtualMaterials.IdealLiquid/Ideal/HC
+s2_Lev1.thermo = Sim21Thermo.IdealVapLiq
 s2_Lev1.thermo + n-BUTANE
 
 #See...
@@ -96,11 +96,11 @@ s3_Lev1.thermo
 /s3_Lev1.s2_Lev2.thermo
 
 
-/s3_Lev1.thermo = VirtualMaterials.SRK
+/s3_Lev1.thermo = Sim21Thermo.SRK
 /s3_Lev1.thermo + HYDROGEN
 
 
-/thermo = VirtualMaterials.Wilson/Ideal/HC
+/thermo = Sim21Thermo.IdealVapLiqWilson
 /thermo
 s1_Lev1.thermo2
 s2_Lev1.thermo

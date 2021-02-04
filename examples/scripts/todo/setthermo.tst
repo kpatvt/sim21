@@ -1,18 +1,18 @@
 #Test the creation of the thermo cases and preserving compounds
 
-$thermo1 = VirtualMaterials.RK
+$thermo1 = Sim21Thermo.SRK
  . -> $thermo1
 /thermo1 + METHANE ETHANE PROPANE ISOBUTANE
 
-$thermo2 = VirtualMaterials.RK
+$thermo2 = Sim21Thermo.SRK
 $thermo2 + ISOBUTANE PROPANE METHANE ETHANE
 
-$thermo3 = VirtualMaterials.Advanced_Peng-Robinson
+$thermo3 = Sim21Thermo.PR
 $thermo3 + PROPANE ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-OCTANE
 
-$thermo4 = VirtualMaterials.RK
+$thermo4 = Sim21Thermo.SRK
 
-thermo5 = VirtualMaterials.RK
+thermo5 = Sim21Thermo.SRK
 $thermo5 + NITROGEN CARBON_DIOXIDE HYDROGEN_SULFIDE
 
 /s = Stream.Stream_Material()

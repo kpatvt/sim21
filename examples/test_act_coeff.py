@@ -5,6 +5,7 @@ import numpy as np
 from sim21.provider.wilson import wilson_model_log_gamma
 from sim21.provider.nrtl import nrtl_model_log_gamma
 
+
 def pull_data(data_source):
     actual_data = []
     for line in data_source.split('\n'):
