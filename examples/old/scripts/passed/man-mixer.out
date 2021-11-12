@@ -1,0 +1,222 @@
+>> # adiabatic mixer example
+>> # Wrong thermo is used here, but demonstrates the mixer features correctly
+>> # The temperatures are different from reference output but same errors are reported
+>> #
+>> # $thermo = VirtualMaterials.PSRK
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> 
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + ETHANOL WATER
+ETHANOL WATER 
+>> units SI
+>> 
+>> m = Mixer.Mixer()
+>> 
+>> m.In0.P = 1 atm
+>> m.In0.T = 25 C
+>> m.In0.MoleFlow = 1.0
+>> m.In0.Fraction = 1.0 0.0
+>> 
+>> m.In1.P = 1 atm
+>> m.In1.T = 25 C
+>> m.In1.MoleFlow = 1.0
+>> m.In1.Fraction = 0.0 1.0
+>> 
+>> m.Out
+Port: /m.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -2.7848993410570984 = C
+P                  = 101.325 = kPa
+MoleFlow           = 2.0 = kgmole/h
+MassFlow           = 64.08372 = kg/h
+VolumeFlow         = 0.0820649106358856 = m3/hr
+StdLiqVolumeFlow   = 0.07675 = m3/hr
+H                  = -283024.11533223523 = kJ/kmol
+Energy             = -157235.61962901958 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.0018495211475302309 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> 
+>> #Play with pressures
+>> m.In0.P = 100
+>> m.In1.P = 80
+>> m.Out.P
+/m.Out.P= 80.0 = kPa
+>> 
+>> m.In0.P = 100
+>> m.In1.P = 110
+>> m.Out.P
+/m.Out.P= 100.0 = kPa
+>> 
+>> m.In0.P =
+>> m.In1.P = 110
+>> m.Out.P = 100
+>> m.In0.P
+/m.In0.P= 100.0 = kPa
+>> 
+>> m.Out.P = 80
+>> m.In0.P
+/m.In0.P= 80.0 = kPa
+>> 
+>> 
+>> 
+>> /m.CalcPressureMode = DontCalculate
+>> /m.In0.P = 130
+>> /m.In0.P = 100
+>> /m.In0.P = 70
+>> 
+>> /m.CalcPressureMode = LowestPInOutlet
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/m.Out.P: 70 Vs 80
+
+ConsistencyError: /m.Out - P 70.0 vs 80.0
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /m.Out - P 70.0 vs 80.0
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> /m.Out.P =
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/m.Out.P: 80 Vs 70
+
+ConsistencyError: /m.Out - P 80.0 vs 70.0
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /m.Out - P 80.0 vs 70.0
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> #A problem in the solver does not clear the consistency error properly because of some
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/m.Out.P: 80 Vs 70
+
+>> #stored results in the flash. This will be addressed later
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/m.Out.P: 80 Vs 70
+
+>> Ignored = 1 ; Ignored = None
+>> 
+>> /m.CalcPressureMode = AllPEqual
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/m.In1.P: 70 Vs 110
+
+ConsistencyError: /m.In1 - P 70.0 vs 110.0
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /m.In1 - P 70.0 vs 110.0
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> /m.In1.P =
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/m.In1.P: 110 Vs 70
+
+ConsistencyError: /m.In1 - P 110.0 vs 70.0
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /m.In1 - P 110.0 vs 70.0
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> /m.In0.P =
+>> /m.Out.P = 100
+>> /m.Out.P =
+>> /m.In1.P = 120
+>> copy /m
+Copied /m to the clipboard
+>> paste /
+Pasting /m
+Pasted /m as /mClone
+>> /m.Out
+Port: /m.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -2.7852289656476046 = C
+P                  = 120.0 = kPa
+MoleFlow           = 2.0 = kgmole/h
+MassFlow           = 64.08372 = kg/h
+VolumeFlow         = 0.08206446144843255 = m3/hr
+StdLiqVolumeFlow   = 0.07675 = m3/hr
+H                  = -283023.5536050522 = kJ/kmol
+Energy             = -157235.3075583623 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.002190393224521525 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> /mClone.Out
+Port: /mClone.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -2.7852289656476046 = C
+P                  = 120.0 = kPa
+MoleFlow           = 2.0 = kgmole/h
+MassFlow           = 64.08372 = kg/h
+VolumeFlow         = 0.08206446144843255 = m3/hr
+StdLiqVolumeFlow   = 0.07675 = m3/hr
+H                  = -283023.5536050522 = kJ/kmol
+Energy             = -157235.3075583623 = W
+MolecularWeight    = 32.04186 = 
+ZFactor            = 0.002190393224521525 = 
+ETHANOL            = 0.5 = 
+WATER              = 0.5 = 
+
+>> 

@@ -11,6 +11,12 @@ Under continual development, breaking changes are to be expected.
 
 Status
 ------
+* Nov 11, 2021
+    * Not dead yet - Just busy with other things
+    * Code requires a significant rewrite
+      * Most of the current code moved to a separate 'old' package.
+      * All tests still pass
+
 * Feb 2, 2021
     * Implemented Activity Coefficient Models: NRTL, Wilson with some sample interations
 

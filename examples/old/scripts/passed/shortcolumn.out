@@ -1,0 +1,137 @@
+>> # Simple distilation column test
+>> units SI
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE n-BUTANE ISOBUTANE n-PENTANE
+PROPANE n-BUTANE ISOBUTANE n-PENTANE 
+>> 
+>> col = Tower.Tower()
+>> col.Stage_0 + 20  # twenty two stages`
+>> 
+>> cd col.Stage_10
+/col.Stage_10
+>> f = Tower.Feed()
+>> f.Port.T = 30
+>> f.Port.P = 720
+>> f.Port.MoleFlow = 10
+>> f.Port.Fraction = .4 .05 .4 .15
+>> f.Port
+Port: /col.Feed_10_f + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 30.0 * C
+P                  = 720.0 * kPa
+MoleFlow           = 10.0 * kgmole/h
+MassFlow           = 546.15555 = kg/h
+VolumeFlow         = 0.9655645670839446 = m3/hr
+StdLiqVolumeFlow   = 0.93999 = m3/hr
+H                  = -143034.62168443223 = kJ/kmol
+Energy             = -397318.39356786734 = W
+MolecularWeight    = 54.615555 = 
+ZFactor            = 0.027581765327025335 = 
+PROPANE            = 0.4 * 
+N-BUTANE           = 0.05 * 
+ISOBUTANE          = 0.4 * 
+N-PENTANE          = 0.15 * 
+
+>> 
+>> cd ../Stage_0
+/col.Stage_0
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 700
+>> 
+>> l.Port.MoleFlow = 5
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> 
+>> reflux = Tower.StageSpecification('Reflux')
+>> reflux.Value = 1
+>> 
+>> cd ../Stage_21
+/col.Stage_21
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 720
+>> reb = Tower.EnergyFeed(1)
+>> 
+>> cd ..
+/col
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /col
+Calculating disturbance 10 of 22 in jacobian of /col
+Calculating disturbance 20 of 22 in jacobian of /col
+/col Inner Error 0.023985
+/col Inner Error 0.005666
+/col Inner Error 0.003543
+/col Inner Error 0.000256
+/col Inner Error 0.000028
+/col Inner Error 0.000003
+Inner loop converged
+/col Iteration 1 Outer Error 0.024536
+/col Inner Error 0.046431
+/col Inner Error 0.010417
+/col Inner Error 0.002218
+/col Inner Error 0.000272
+/col Inner Error 0.000040
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 2 Outer Error 0.000759
+/col Inner Error 0.000160
+/col Inner Error 0.000012
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000019
+/col Inner Error 0.000032
+/col Inner Error 0.000004
+Inner loop converged
+>> 
+>> # since there was little output here, I will put some profile stuff here
+>> L_MassFraction.PROPANE
+[0.74459982 0.55374142 0.4435768  0.38718542 0.35973487 0.34643686
+ 0.33955565 0.33487453 0.32916242 0.31817595 0.29596742 0.25601346
+ 0.21133091 0.16606201 0.12443773 0.08935136 0.06182774 0.04139844
+ 0.02681564 0.01663661 0.00955241 0.00460214]
+>> V_MoleFraction.ISOBUTANE
+[0.09543393 0.20006882 0.28044426 0.32827819 0.35233628 0.36290303
+ 0.36658816 0.36668776 0.36421962 0.35820044 0.3451615  0.39428573
+ 0.45613609 0.52739595 0.60169805 0.67160813 0.73119933 0.77735714
+ 0.80911736 0.82527872 0.81930842 0.76655074]
+>> L_MassFlow
+[234.95883832 238.79752727 242.19827909 244.30429187 245.33784233
+ 245.68111791 245.49975976 244.61037748 242.28552553 237.12767539
+ 817.35735217 826.44745696 837.97271671 851.33134073 865.3381312
+ 878.60917101 890.03145154 898.94385363 904.80949944 906.20069522
+ 899.49089663 311.19671168]
+>> L_Viscosity
+[0.00012015 0.0001242  0.00012576 0.00012624 0.00012634 0.00012631
+ 0.00012625 0.00012621 0.00012627 0.00012655 0.00012717 0.00012696
+ 0.00012655 0.00012591 0.00012511 0.00012426 0.00012345 0.00012275
+ 0.00012216 0.00012161 0.00012096 0.00011968]
+>> L_StdVolFraction.PROPANE
+[0.73404966 0.54027427 0.43028587 0.37452319 0.34754053 0.33455265
+ 0.32793203 0.32360882 0.31861656 0.30922231 0.2901159  0.25041908
+ 0.20621989 0.1616525  0.12086256 0.08662155 0.05985338 0.04003949
+ 0.025929   0.0161049  0.00929278 0.0045425 ]
+>> V_StdVolFraction.PROPANE
+[0.8689986  0.73404966 0.63587555 0.57863735 0.54907619 0.53466696
+ 0.52778566 0.52444985 0.52265329 0.52124515 0.51914426 0.46374372
+ 0.3967875  0.32322143 0.25022163 0.18457073 0.13040748 0.08872006
+ 0.05826177 0.03679631 0.0219767  0.01175067]
+>> L_VolumeFlow
+[0.43447615 0.43930448 0.44484914 0.44858669 0.45049036 0.45112831
+ 0.45074604 0.44891198 0.44406604 0.43319911 1.48331698 1.50148104
+ 1.52493885 1.55265164 1.58223108 1.61069482 1.63551753 1.655118
+ 1.6682247  1.67169253 1.65747325 0.5713642 ]
+>> L_StdLiqVolumeFlow
+[0.4046706  0.41556114 0.42393099 0.42882861 0.43117543 0.43196024
+ 0.43160908 0.42978279 0.42499298 0.41427731 1.41578309 1.43457418
+ 1.45805781 1.48490569 1.51271979 1.53880405 1.56103431 1.57812136
+ 1.58881012 1.58943809 1.56991524 0.5353194 ]
+>> V_StdLiqVolumeFlow
+[7.56936094e-42 8.09341194e-01 8.20231741e-01 8.28601592e-01
+ 8.33499211e-01 8.35846023e-01 8.36630840e-01 8.36279682e-01
+ 8.34453391e-01 8.29663579e-01 8.18947910e-01 8.80463682e-01
+ 8.99254776e-01 9.22738411e-01 9.49586284e-01 9.77400383e-01
+ 1.00348465e+00 1.02571491e+00 1.04280196e+00 1.05349072e+00
+ 1.05411869e+00 1.03459584e+00]

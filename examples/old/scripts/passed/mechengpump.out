@@ -1,0 +1,165 @@
+>> units SI
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + propane isobutane n-butane isopentane n-pentane n-hexane
+propane isobutane n-butane isopentane n-pentane n-hexane 
+>> 
+>> Feed = Stream.Stream_Material()
+>> Feed.In.T = 20
+>> Feed.In.P = 3000
+>> Feed.In.MoleFlow = 100
+>> Feed.In.Fraction = 1 2 3 4 5 6
+>> 
+>> 
+>> pump = Flowsheet.SubFlowsheet('read mechengpump.sop')
+Processing mechengpump.sop
+>> read mechengpump.sop
+>> inlet = Stream.Stream_Material()
+>> inlet.flow = Stream.SensorPort('MassFlow')
+>> inlet.molarV = Stream.SensorPort('molarV')
+>> inlet.p = Stream.SensorPort('P')
+>> inlet.mw = Stream.SensorPort('MolecularWeight')
+>> 
+>> outlet = Stream.Stream_Material()
+>> outlet.p = Stream.SensorPort('P')
+>> outlet.molarV = Stream.SensorPort('molarV')
+>> outlet.mw = Stream.SensorPort('MolecularWeight')
+>> 
+>> power = Stream.Stream_Energy()
+>> power.Q = Stream.SensorPort('Energy')
+>> 
+>> pump = Heater.Heater()
+>> inlet.Out -> pump.In
+>> outlet.In -> pump.Out
+>> power.Out -> pump.InQ
+>> 
+>> 
+>> powerEqn = Equation.Equation()
+>> cd powerEqn
+/pump.powerEqn
+>> Equation = Signal P(pIn, pOut) MassFlow(f)
+Signal Fraction(eff) Energy(Q)
+Signal molarV(v, vOut) MolecularWeight(mw, mwOut)
+vOut = v  # will cause inconsistancy if too different
+mwOut = mw  # should be known, but not calced until flash
+Q * eff = f*(pOut - pIn)*v/mw/3.6
+>> /inlet.flow -> f
+>> /inlet.p -> pIn
+>> /outlet.p -> pOut
+>> /inlet.molarV -> v
+>> /inlet.mw -> mw
+>> /outlet.molarV -> vOut
+>> /outlet.mw -> mwOut
+>> /power.Q -> Q
+>> cd ..
+/pump
+>> 
+>> inlet.In @ In
+>> outlet.Out @ Out
+>> power.In @ InQ
+>> pump.DeltaP @ DeltaP
+>> powerEqn.eff @ Efficiency
+>> 
+
+>> Feed.Out -> pump.In
+>> pump.Out.P = 5000
+>> pump.Efficiency = .75
+>> 
+>> pump.Out
+Port: /pump.outlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 21.071718344532826 = C
+P                  = 5000.0 * kPa
+MoleFlow           = 100.00000000000003 = kgmole/h
+MassFlow           = 7148.084761904763 = kg/h
+VolumeFlow         = 11.04571064110809 = m3/hr
+StdLiqVolumeFlow   = 11.507190476190479 = m3/hr
+H                  = -173904.02902930442 = kJ/kmol
+Energy             = -4830667.473036235 = W
+MolecularWeight    = 71.48084761904761 = 
+ZFactor            = 0.2249921639718749 = 
+PROPANE            = 0.047619047619047616 = 
+ISOBUTANE          = 0.09523809523809523 = 
+N-BUTANE           = 0.14285714285714285 = 
+ISOPENTANE         = 0.19047619047619047 = 
+N-PENTANE          = 0.23809523809523808 = 
+N-HEXANE           = 0.2857142857142857 = 
+
+>> pump.InQ
+Port: /pump.power.In + sim21.old.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 8182.0078823022895 = W
+
+>> 
+>> # try Efficiency / Q test
+>> pump.Out.P = None
+>> pump.InQ = 8000
+>> pump.Out
+Port: /pump.outlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 21.04804937395255 = C
+P                  = 4955.510215849101 = kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 7148.084761904763 = kg/h
+VolumeFlow         = 11.045710641108087 = m3/hr
+StdLiqVolumeFlow   = 11.507190476190477 = m3/hr
+H                  = -173910.58131306738 = kJ/kmol
+Energy             = -4830849.480918538 = W
+MolecularWeight    = 71.48084761904761 = 
+ZFactor            = 0.22302470593611537 = 
+PROPANE            = 0.047619047619047616 = 
+ISOBUTANE          = 0.09523809523809523 = 
+N-BUTANE           = 0.14285714285714285 = 
+ISOPENTANE         = 0.19047619047619047 = 
+N-PENTANE          = 0.23809523809523808 = 
+N-HEXANE           = 0.2857142857142857 = 
+
+>> 
+>> # backwards
+>> Feed.In.P = None
+>> Feed.In.T = None
+>> pump.Out.P = 5000
+>> pump.Out.T = 20
+>> Feed.In
+Port: /Feed.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 18.95846928288927 = C
+P                  = 3034.757126842489 = kPa
+MoleFlow           = 100.0 * kgmole/h
+MassFlow           = 7148.084761904763 = kg/h
+VolumeFlow         = 10.991007928346164 = m3/hr
+StdLiqVolumeFlow   = 11.507190476190479 = m3/hr
+H                  = -174360.83908859323 = kJ/kmol
+Energy             = -4843356.641349812 = W
+MolecularWeight    = 71.48084761904761 = 
+ZFactor            = 0.13779251557012284 = 
+PROPANE            = 0.047619047619047616 * 
+ISOBUTANE          = 0.09523809523809523 * 
+N-BUTANE           = 0.14285714285714285 * 
+ISOPENTANE         = 0.19047619047619047 * 
+N-PENTANE          = 0.23809523809523808 * 
+N-HEXANE           = 0.2857142857142857 * 
+
+>> 
+>> # compare to isentropic pump
+>> spump = Pump.Pump()
+>> Feed.clone = Stream.ClonePort(0)
+>> Feed.clone -> spump.In
+>> spump.Out.P = 5000
+>> spump.Efficiency = .75
+>> spump.InQ
+Port: /spump.TotalQ.In + sim21.old.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 51741.17864458387 = W
+
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone

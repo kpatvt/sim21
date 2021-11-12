@@ -1,0 +1,398 @@
+>> # Nitrogen Rejection Unit (from old Hysim manual)
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Nitrogen Methane Ethane PROPANE
+Nitrogen Methane Ethane PROPANE 
+>> thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE
+ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE 
+>> 
+>> hp_feed = Stream.Stream_Material()
+>> hp_ovhd = Stream.Stream_Material()
+>> hp_btms = Stream.Stream_Material()
+>> 
+>> cd hp_feed.In
+/hp_feed.In
+>> T = -215
+>> P = 380
+>> MoleFlow = 1000
+>> Fraction = .5454 .4153 .0347 .0036 .0004 .0003 .0002 .0001
+>> cd /
+/
+>> 
+>> hp_column = Tower.Tower()
+>> hp_column.Stage_0 + 8  # ten stages`
+>> 
+>> cd hp_column.Stage_0
+/hp_column.Stage_0
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 370
+>> 
+>> l.Port -> /hp_ovhd.In
+>> /hp_ovhd.In.Fraction.NITROGEN = .99
+>> 
+>> l.estF = Tower.Estimate('MoleFlow')
+>> l.estF.Value = 200
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> 
+>> estReflux = Tower.Estimate('Reflux')
+>> estReflux.Value = 3
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = -250
+>> 
+>> cd ../Stage_9
+/hp_column.Stage_9
+>> f = Tower.Feed()
+>> f.Port -> /hp_feed.Out
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 377
+>> l.Port -> /hp_btms.In
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = -230
+>> 
+>> cd ..
+/hp_column
+>> 
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /hp_column
+Calculating disturbance 10 of 10 in jacobian of /hp_column
+/hp_column Inner Error 0.039983
+/hp_column Inner Error 0.032712
+/hp_column Inner Error 0.009385
+/hp_column Inner Error 0.005678
+/hp_column Inner Error 0.003157
+/hp_column Inner Error 0.001609
+/hp_column Inner Error 0.000547
+/hp_column Inner Error 0.000359
+/hp_column Inner Error 0.000174
+/hp_column Inner Error 0.000110
+/hp_column Inner Error 0.000049
+/hp_column Inner Error 0.000017
+/hp_column Inner Error 0.000009
+Inner loop converged
+/hp_column Iteration 1 Outer Error 0.205653
+/hp_column Inner Error 0.047332
+/hp_column Inner Error 0.046576
+/hp_column Inner Error 0.021243
+/hp_column Inner Error 0.013706
+/hp_column Inner Error 0.009577
+/hp_column Inner Error 0.006217
+/hp_column Inner Error 0.001036
+/hp_column Inner Error 0.000627
+/hp_column Inner Error 0.000095
+/hp_column Inner Error 0.000037
+/hp_column Inner Error 0.000005
+Inner loop converged
+/hp_column Iteration 2 Outer Error 0.335368
+/hp_column Inner Error 0.016669
+/hp_column Inner Error 0.010283
+/hp_column Inner Error 0.002316
+/hp_column Inner Error 0.000329
+/hp_column Inner Error 0.000031
+/hp_column Inner Error 0.000012
+/hp_column Inner Error 0.000002
+Inner loop converged
+/hp_column Iteration 3 Outer Error 0.025646
+/hp_column Inner Error 0.003724
+/hp_column Inner Error 0.001483
+/hp_column Inner Error 0.000480
+/hp_column Inner Error 0.000093
+/hp_column Inner Error 0.000016
+/hp_column Inner Error 0.000004
+Inner loop converged
+/hp_column Iteration 4 Outer Error 0.009108
+/hp_column Inner Error 0.001293
+/hp_column Inner Error 0.000337
+/hp_column Inner Error 0.000121
+/hp_column Inner Error 0.000015
+/hp_column Inner Error 0.000001
+Inner loop converged
+/hp_column Iteration 5 Outer Error 0.000956
+/hp_column Inner Error 0.000161
+/hp_column Inner Error 0.000015
+/hp_column Inner Error 0.000002
+Inner loop converged
+/hp_column Iteration 6 Outer Error 0.000592
+/hp_column Inner Error 0.000043
+/hp_column Inner Error 0.000005
+Inner loop converged
+/hp_column Iteration 7 Outer Error 0.000234
+/hp_column Inner Error 0.000018
+/hp_column Inner Error 0.000003
+Inner loop converged
+/hp_column Iteration 8 Outer Error 0.000088
+/hp_column Inner Error 0.000002
+Inner loop converged
+>> 
+>> cd /
+/
+>> hp_ovhd.Out
+Port: /hp_ovhd.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -242.73815248407976 = F
+P                  = 370.0 = psia
+MoleFlow           = 75.42342076906917 = lbmole/h
+MassFlow           = 2103.8373863540423 = lb/h
+VolumeFlow         = 0.01826422021454878 = ft3/s
+StdLiqVolumeFlow   = 0.011694800309562464 = ft3/s
+H                  = -4183.655913633957 = Btu/lbmol
+Energy             = -315492.577861686 = Btu/hr
+MolecularWeight    = 27.89368766415269 = 
+ZFactor            = 0.1385509486654317 = 
+NITROGEN           = 0.99 = 
+METHANE            = 0.010000221533517916 = 
+ETHANE             = 5.840636912027848e-10 = 
+PROPANE            = 2.686229834903538e-09 = 
+ISOBUTANE          = 5.626179771554862e-09 = 
+N-BUTANE           = 2.085730988165954e-09 = 
+ISOPENTANE         = 1.1764222519316118e-10 = 
+N-PENTANE          = 2.823230517212779e-11 = 
+
+>> hp_btms.Out
+Port: /hp_btms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = -215.48736427925917 = F
+P                  = 377.0 = psia
+MoleFlow           = 924.576579230931 = lbmole/h
+MassFlow           = 21101.57470774668 = lb/h
+VolumeFlow         = 0.1736265373556192 = ft3/s
+StdLiqVolumeFlow   = 0.14733013985778465 = ft3/s
+H                  = -20767.36660421161 = Btu/lbmol
+Energy             = -19197791.91201194 = Btu/hr
+MolecularWeight    = 22.82296045753085 = 
+ZFactor            = 0.09726038078650083 = 
+NITROGEN           = 0.5091312516030984 = 
+METHANE            = 0.448362805629703 = 
+ETHANE             = 0.03753069322263346 = 
+PROPANE            = 0.0038936740106372382 = 
+ISOBUTANE          = 0.00043263001101217407 = 
+N-BUTANE           = 0.00032447268233484354 = 
+ISOPENTANE         = 0.0002163152253903969 = 
+N-PENTANE          = 0.00010815761519051636 = 
+
+>> 
+>> # now add exchanger for overheads
+>> e1 = Heater.HeatExchanger()
+>> e1.DeltaPC = 0.5
+>> e1.DeltaPH = 0.5
+>> hp_ovhd.Out -> e1.InH
+>> e1.OutH.T = -270
+>> 
+>> # valve
+>> v1 = Valve.Valve()
+>> e1.OutH -> v1.In
+>> v1.Out.P = 29.3919
+>> 
+>> e2 = Heater.HeatExchanger()
+>> e2.DeltaPH = .5
+>> e2.DeltaPC = .5
+>> hp_btms.Out -> e2.InH
+>> e2.OutH.T = -230
+>> 
+>> # another valve
+>> v2 = Valve.Valve()
+>> e2.OutH -> /v2.In
+>> v2.Out.P = 29.3919
+>> 
+>> lp_column = Tower.Tower()
+>> lp_column.Stage_0 + 4  # six stages
+>> 
+>> cd lp_column.Stage_0
+/lp_column.Stage_0
+>> f = Tower.Feed()
+>> f.Port -> /v1.Out
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port -> /e1.InC
+>> v.Port.P = 29.392
+>> 
+>> cd ../Stage_3
+/lp_column.Stage_3
+>> f = Tower.Feed()
+>> f.Port -> /v2.Out
+>> 
+>> cd ../Stage_5
+/lp_column.Stage_5
+>> reb = Tower.EnergyFeed(1)
+>> reb.Port -> /hp_column.Stage_0.cond.Port
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port -> /e2.InC
+>> l.Port.P = 36.74
+>> 
+>> cd ..
+/lp_column
+>> TryToSolve = 1
+Calculating Jacobian for /lp_column
+/lp_column Inner Error 0.002929
+/lp_column Inner Error 0.000970
+/lp_column Inner Error 0.000076
+/lp_column Inner Error 0.000017
+/lp_column Inner Error 0.000001
+Inner loop converged
+/lp_column Iteration 1 Outer Error 0.033530
+/lp_column Inner Error 0.007951
+/lp_column Inner Error 0.003227
+/lp_column Inner Error 0.000828
+/lp_column Inner Error 0.000353
+/lp_column Inner Error 0.000025
+/lp_column Inner Error 0.000008
+Inner loop converged
+/lp_column Iteration 2 Outer Error 0.112317
+/lp_column Inner Error 0.002817
+/lp_column Inner Error 0.001387
+/lp_column Inner Error 0.000641
+/lp_column Inner Error 0.000196
+/lp_column Inner Error 0.000008
+Inner loop converged
+/lp_column Iteration 3 Outer Error 0.074753
+/lp_column Inner Error 0.004464
+/lp_column Inner Error 0.001356
+/lp_column Inner Error 0.000021
+/lp_column Inner Error 0.000010
+Inner loop converged
+/lp_column Iteration 4 Outer Error 0.019535
+/lp_column Inner Error 0.002490
+/lp_column Inner Error 0.000743
+/lp_column Inner Error 0.000002
+Inner loop converged
+/lp_column Iteration 5 Outer Error 0.005911
+/lp_column Inner Error 0.000497
+/lp_column Inner Error 0.000104
+/lp_column Inner Error 0.000001
+Inner loop converged
+/lp_column Iteration 6 Outer Error 0.002625
+/lp_column Inner Error 0.000088
+/lp_column Inner Error 0.000009
+Inner loop converged
+/lp_column Iteration 7 Outer Error 0.001015
+/lp_column Inner Error 0.000011
+/lp_column Inner Error 0.000001
+Inner loop converged
+/lp_column Iteration 8 Outer Error 0.000394
+/lp_column Inner Error 0.000002
+Inner loop converged
+/lp_column Iteration 9 Outer Error 0.000167
+/lp_column Inner Error 0.000001
+Inner loop converged
+/lp_column Iteration 10 Outer Error 0.000070
+/lp_column Inner Error 0.000001
+Inner loop converged
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+/RootClone.hp_column Inner Error 0.000000
+Inner loop converged
+/RootClone.hp_column Iteration 1 Outer Error 0.000031
+/RootClone.hp_column Inner Error 0.000001
+Inner loop converged
+/RootClone.lp_column Inner Error 0.000003
+Inner loop converged
+/RootClone.lp_column Iteration 1 Outer Error 0.000089
+/RootClone.lp_column Inner Error 0.000001
+Inner loop converged
+>> 
+>> /e1.OutC
+Port: /e1.ColdSide.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = -286.47359803466725 = F
+P                  = 28.892 = psia
+MoleFlow           = 429.99334365817856 = lbmole/h
+MassFlow           = 11929.328691682687 = lb/h
+VolumeFlow         = 7.317060594442049 = ft3/s
+StdLiqVolumeFlow   = 0.06668959420752817 = ft3/s
+H                  = -3303.2306049304234 = Btu/lbmol
+Energy             = -1420128.3223468484 = Btu/hr
+MolecularWeight    = 27.743054095944718 = 
+ZFactor            = 0.9522475527814828 = 
+NITROGEN           = 0.9774164923926837 = 
+METHANE            = 0.022583502028461596 = 
+ETHANE             = 2.748379722017024e-09 = 
+PROPANE            = 1.450987960506582e-09 = 
+ISOBUTANE          = 9.879615342593837e-10 = 
+N-BUTANE           = 3.659487644158244e-10 = 
+ISOPENTANE         = 2.0627021775266357e-11 = 
+N-PENTANE          = 4.94982507807048e-12 = 
+
+>> /RootClone.e1.OutC
+Port: /RootClone.e1.ColdSide.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = -286.47438503040155 = F
+P                  = 28.892 = psia
+MoleFlow           = 429.97697986807697 = lbmole/h
+MassFlow           = 11928.773453129475 = lb/h
+VolumeFlow         = 7.316738288344821 = ft3/s
+StdLiqVolumeFlow   = 0.06668708262004185 = ft3/s
+H                  = -3303.8748330565936 = Btu/lbmol
+Energy             = -1420351.234747136 = Btu/hr
+MolecularWeight    = 27.742818601860233 = 
+ZFactor            = 0.9522461730274755 = 
+NITROGEN           = 0.9773968202469547 = 
+METHANE            = 0.022603174173673402 = 
+ETHANE             = 2.7496148651420373e-09 = 
+PROPANE            = 1.4506970288274495e-09 = 
+ISOBUTANE          = 9.876489977609241e-10 = 
+N-BUTANE           = 3.65840712161765e-10 = 
+ISOPENTANE         = 2.0621620193654607e-11 = 
+N-PENTANE          = 4.9486104141250255e-12 = 
+
+>> /e2.OutC
+Port: /e2.ColdSide.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.11686626128050637 = 
+T                  = -269.49091438138487 = F
+P                  = 36.24 = psia
+MoleFlow           = 570.0066563418214 = lbmole/h
+MassFlow           = 11276.083402418035 = lb/h
+VolumeFlow         = 1.0609168078257107 = ft3/s
+StdLiqVolumeFlow   = 0.09233534595981895 = ft3/s
+H                  = -31420.992834454963 = Btu/lbmol
+Energy             = -17907163.271847922 = Btu/hr
+MolecularWeight    = 19.78237144595026 = 
+ZFactor            = 0.11897700531818106 = 
+NITROGEN           = 0.21950167260832196 = 
+METHANE            = 0.7115517683227925 = 
+ETHANE             = 0.0608764800062372 = 
+PROPANE            = 0.006315714625490165 = 
+ISOBUTANE          = 0.0007017454458341382 = 
+N-BUTANE           = 0.0005263093672796109 = 
+ISOPENTANE         = 0.00035087307999887626 = 
+N-PENTANE          = 0.00017543654404561846 = 
+
+>> /RootClone.e2.OutC
+Port: /RootClone.e2.ColdSide.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.11687358856829388 = 
+T                  = -269.4952167785119 = F
+P                  = 36.24 = psia
+MoleFlow           = 570.0230201319231 = lbmole/h
+MassFlow           = 11276.6386387148 = lb/h
+VolumeFlow         = 1.060984425824774 = ft3/s
+StdLiqVolumeFlow   = 0.09233785754789244 = ft3/s
+H                  = -31419.775499176936 = Btu/lbmol
+Energy             = -17906983.559473448 = Btu/hr
+MolecularWeight    = 19.782777608007827 = 
+ZFactor            = 0.11898386440757872 = 
+NITROGEN           = 0.2195382689204063 = 
+METHANE            = 0.7115171512766532 = 
+ETHANE             = 0.06087473240940011 = 
+PROPANE            = 0.006315533318988613 = 
+ISOBUTANE          = 0.0007017253009204794 = 
+N-BUTANE           = 0.000526294258480101 = 
+ISOPENTANE         = 0.00035086300740431715 = 
+N-PENTANE          = 0.00017543150774694684 = 
+

@@ -1,0 +1,181 @@
+>> # A simple recycle test
+>> 
+>> # set up thermo - the name can be anything, I just use
+>> # 'thermo' for convenience.  Essentially the rhs causes
+>> # a thermo package to be created and assigned to the unit op
+>> # owning the name thermo - in the case the base flowsheet
+>> 
+>> # Also note that for now spaces are needed around the operators (= + etc)
+>> # A further also is that case is always significant
+>> 
+>> # Changed for testing purposes, the thermo is not relevant for this example
+>> # $thermo = VirtualMaterials.IdealLiquid/Ideal/HC
+>> 
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> 
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + METHANOL ETHANOL
+METHANOL ETHANOL 
+>> units SI
+>> 
+>> # Add a stream
+>> # for now creating a unit op requires module.class(), but this
+>> # will be stream lined in the future
+>> stream = Stream.Stream_Material()
+>> 
+>> # Make the stream In port current to save typing
+>> # You can use cd (named because it is similar to change directory in
+>> # Unix and DOS) to sub objects in this case first to the unit op stream
+>> # and then to its port In.  This is just a typing convenience as everything
+>> # could be done from the top level with full names i.e. stream.In.T = 360.15
+>> cd stream.In
+/stream.In
+>> 
+>> # Mole fractions can be enter indivually (Fraction.METHANOL = .25) or all
+>> # together as below.
+>> Fraction = .5 .5
+>> VapFrac = 0.4
+>> T = 300 K
+>> MoleFlow = 3000
+>> 
+>> # Now create a recycle stream
+>> cd /  # return to top level - only place a slash is used
+/
+>> recycle = Stream.Stream_Material()
+>> cd recycle.In
+/recycle.In
+>> 
+>> # Estimate the values in the stream
+>> # Estimates use the ~= operator in place of the normal = which
+>> # fixes values
+>> T ~= 460.15 K
+Changed state of port /recycle.In to 1 (0=Normal port; 1=Recycle port)
+>> P ~= 715
+>> MoleFlow ~= 300
+>> Fraction      # any object without an operator displays itself - here to get order
+METHANOL                    = None
+ETHANOL                     = None
+
+>> Fraction ~= 0 .5
+>> .             # a dot represents the current obj for display purposes
+Port: /recycle.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 187.0 ~ C
+P                  = 715.0 ~ kPa
+MoleFlow           = 300.0 ~ kgmole/h
+MassFlow           = 13820.532000000001 = kg/h
+VolumeFlow         = 1495.287927601016 = m3/hr
+StdLiqVolumeFlow   = 17.604 = m3/hr
+H                  = -223295.38378669453 = kJ/kmol
+Energy             = -18607948.64889121 = W
+MolecularWeight    = 46.06844 = 
+ZFactor            = 0.9314852937191855 = 
+METHANOL           = 0.0 ~ 
+ETHANOL            = 1.0 ~ 
+
+>> 
+>> # add a mixer to combine the first stream with the recycle
+>> cd /
+/
+>> mixer = Mixer.Mixer()
+>> 
+>> # ports are connected with the -> operator.  They would be disconnected
+>> # by having an empty rhs.  Similarly "stream.In.T =" would remove any value
+>> # for the stream In port Temperature
+>> stream.Out -> mixer.In0
+>> recycle.Out -> mixer.In1
+>> mixer.Out
+Port: /mixer.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.4801931709693419 = 
+T                  = 27.569581203729513 = C
+P                  = 12.759832578420506 = kPa
+MoleFlow           = 3300.0 = kgmole/h
+MassFlow           = 130985.62101881637 = kg/h
+VolumeFlow         = 309457.8453416632 = m3/hr
+StdLiqVolumeFlow   = 166.719 = m3/hr
+H                  = -241282.53243684204 = kJ/kmol
+Energy             = -221175654.7337719 = W
+MolecularWeight    = 39.692721818181816 = 
+ZFactor            = 0.4785602698506414 = 
+METHANOL           = 0.45454545454545453 = 
+ETHANOL            = 0.5454545454545454 = 
+
+>> 
+>> # add a separator
+>> flash = Flash.SimpleFlash()
+>> mixer.Out -> flash.In
+>> 
+>> # split the liquid from the flash
+>> splitter = Split.Splitter()
+>> flash.Liq0 -> splitter.In
+>> 
+>> # set the flow in one of the splitter outlets
+>> splitter.Out1.MoleFlow = 200
+>> 
+>> # close the recycle
+>> splitter.Out1 -> recycle.In
+Iteration 1 -> max Error 1.594304 in /recycle.In.T
+Iteration 2 -> max Error 0.055414 in /recycle.In.Fraction.ETHANOL
+Iteration 3 -> max Error 0.008587 in /recycle.In.Fraction.METHANOL
+Iteration 4 -> max Error 0.000417 in /recycle.In.Fraction.METHANOL
+Iteration 5 -> max Error 0.000000 in /recycle.In.Fraction.ETHANOL
+>> 
+>> # All done - check some streams
+>> recycle.Out
+Port: /recycle.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /mixer.In1
+VapFrac            = 0.0 = 
+T                  = 26.85011261575312 = C
+P                  = 12.759832578420506 = kPa
+MoleFlow           = 200.0 = kgmole/h
+MassFlow           = 7999.259886220296 = kg/h
+VolumeFlow         = 11.234663178086409 = m3/hr
+StdLiqVolumeFlow   = 10.181880275708998 = m3/hr
+H                  = -262169.04257270374 = kJ/kmol
+Energy             = -14564946.809594652 = W
+MolecularWeight    = 39.996299431101484 = 
+ZFactor            = 0.000287355447165627 = 
+METHANOL           = 0.43290243016462493 = 
+ETHANOL            = 0.5670975698353752 = 
+
+>> splitter.Liq0
+None
+>> #splitter.Liq0.Out
+>> splitter.Out0
+Port: /splitter.Out0 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 26.850112245626576 = C
+P                  = 12.759832578420506 = kPa
+MoleFlow           = 1799.9809967145986 = kgmole/h
+MassFlow           = 71992.57670751242 = kg/h
+VolumeFlow         = 101.11089876189219 = m3/hr
+StdLiqVolumeFlow   = 91.63595221068722 = m3/hr
+H                  = -262169.039385367 = kJ/kmol
+Energy             = -131083135.78349493 = W
+MolecularWeight    = 39.99629820476789 = 
+ZFactor            = 0.000287355440803605 = 
+METHANOL           = 0.43290251759389026 = 
+ETHANOL            = 0.5670974824061097 = 
+
+>> flash.In
+Port: /flash.In + sim21.old.solver.Ports.Port_Material
+Connected to: /mixer.Out
+VapFrac            = 0.37500593852668795 | 
+T                  = 26.850112245626576 | C
+P                  = 12.759832578420506 | kPa
+MoleFlow           = 3200.0 | kgmole/h
+MassFlow           = 125164.34890503666 | kg/h
+VolumeFlow         = 233835.5224103164 | m3/hr
+StdLiqVolumeFlow   = 159.29688027570901 | m3/hr
+H                  = -244274.2345062848 | kJ/kmol
+Energy             = -217132652.89447534 | W
+MolecularWeight    = 39.11397183944384 | 
+ZFactor            = 0.37380911049134324 | 
+METHANOL           = 0.495806401885289 | 
+ETHANOL            = 0.504193598114711 | 
+

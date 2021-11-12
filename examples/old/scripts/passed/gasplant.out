@@ -1,0 +1,464 @@
+>> # hysim 1.5 tutorial problem
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane Propane
+Methane Ethane Propane 
+>> thermo + isoButane n-Butane isoPentane n-Pentane n-Hexane
+isoButane n-Butane isoPentane n-Pentane n-Hexane 
+>> thermo + n-Heptane n-Octane
+n-Heptane n-Octane 
+>> 
+>> Feed = Stream.Stream_Material()
+>> Feed.In.T = 60
+>> Feed.In.P = 600
+>> Feed.In.MoleFlow = 144
+>> Feed.In.Fraction = 70 20 10 9 8 7 6 7 4 3
+>> 
+>> # Inlet separator
+>> Sep = Flash.SimpleFlash()
+>> Feed.Out -> Sep.In
+>> 
+>> Gas-Gas = Heater.HeatExchanger()
+>> cd Gas-Gas
+/Gas-Gas
+>> DeltaPH = 10
+>> DeltaPC = 10
+>> DeltaTHI = 10
+>> cd ..
+/
+>> 
+>> Sep.Vap -> Gas-Gas.InH
+>> 
+>> Chiller = Heater.HeatExchanger()
+>> cd Chiller
+/Chiller
+>> DeltaPH = 10
+>> DeltaPC = .1
+>> DeltaTCI = 5  # 5 degree approach on the hot end
+>> cd ..
+/
+>> 
+>> Gas-Gas.OutH -> Chiller.InH
+>> 
+>> # create a nested Flowsheet for the LTS and dewpoint calc
+>> # this prevents the controller solver from resolving everything during
+>> # its iterations
+>> 
+>> ContFS = Flowsheet.Flowsheet()
+>> cd ContFS
+/ContFS
+>> 
+>> LTS = Flash.SimpleFlash()
+>> 
+>> #LTS-Feed = Sensor.PropertySensor()
+>> #LTS-Feed.SignalType = T
+>> LTS-Feed = Stream.Stream_Material()
+>> LTS-Feed.Signal = Stream.SensorPort('T')
+>> 
+>> LTS-Vap = Stream.Stream_Material()
+>> LTS-Vap.DPFeed = Stream.ClonePort(0)   # outgoing clone for dew point
+>> 
+>> /Chiller.OutH -> LTS-Feed.In
+>> LTS-Feed.Out -> LTS.In
+>> 
+>> LTS.Vap -> LTS-Vap.In
+>> LTS-Vap.Out -> /Gas-Gas.InC
+>> 
+>> # dew point check - use mole balance to copy material of the sales gas
+>> DP = Balance.BalanceOp()
+>> cd DP
+/ContFS.DP
+>> NumberStreamsInMat = 1
+>> NumberStreamsOutMat = 1
+>> BalanceType = 2 # Mole balance
+>> cd ..
+/ContFS
+>> 
+>> LTS-Vap.DPFeed -> DP.In0
+>> DP.Out0.P = 815
+>> DP.Out0.VapFrac = 1.
+>> DewPoint = Sensor.PropertySensor()
+>> DewPoint.SignalType = T
+>> DP.Out0 -> DewPoint.In
+>> 
+>> DPControl = Controller.Controller()
+>> DPControl.In -> DewPoint.Signal
+>> DPControl.Out -> LTS-Feed.Signal
+ControllerConnect ('/ContFS.DPControl.Out', '/ContFS.LTS-Feed.Signal')
+ControllerConnect ('/ContFS.DPControl.Out', '/ContFS.LTS-Feed.Signal')
+ControllerConnect ('/ContFS.DPControl.Out', '/ContFS.LTS-Feed.Signal')
+>> DPControl.Out = 0
+>> DPControl.Target = 15
+>> DPControl.StepSize = 10
+Controller solver for /ContFS calculating derivative 0
+Controller solver for /ContFS error - 0.020169
+Controller solver for /ContFS error - 0.000091
+>> 
+>> # return to root flowsheet
+>> cd /
+/
+>> 
+>> # mix flash liquid streams
+>> Mixer = Mixer.Mixer()
+>> Sep.Liq0 -> Mixer.In0
+>> ContFS.LTS.Liq0 -> Mixer.In1
+>> 
+>> deprop = Tower.Tower()
+>> deprop.Stage_0 + 10  # twelve stages`
+>> 
+>> cd deprop.Stage_0
+/deprop.Stage_0
+>> v = Tower.VapourDraw()
+>> v.Port.P = 200
+>> reflux = Tower.RefluxRatioSpec()
+>> reflux.Port = 1.0
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> estT = Tower.Estimate('T')
+>> estT.Value = 40
+>> 
+>> cd ../Stage_5
+/deprop.Stage_5
+>> f = Tower.Feed()
+>> /Mixer.Out -> f.Port
+>> 
+>> cd ../Stage_11
+/deprop.Stage_11
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 205
+>> l.Port.Fraction.PROPANE = .02
+>> 
+>> reb = Tower.EnergyFeed(1)
+>> estT = Tower.Estimate('T')
+>> estT.Value = 200
+>> 
+>> cd ..
+/deprop
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_11.l.Port
+>> 
+>> 
+>> 
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 12 in jacobian of /deprop
+/deprop Inner Error 0.009569
+/deprop Inner Error 0.006870
+/deprop Inner Error 0.001180
+/deprop Inner Error 0.000140
+/deprop Inner Error 0.000006
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.076544
+/deprop Inner Error 0.026464
+/deprop Inner Error 0.021464
+/deprop Inner Error 0.006670
+/deprop Inner Error 0.000600
+/deprop Inner Error 0.000005
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.012083
+/deprop Inner Error 0.001629
+/deprop Inner Error 0.000987
+/deprop Inner Error 0.000156
+/deprop Inner Error 0.000012
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.001827
+/deprop Inner Error 0.000609
+/deprop Inner Error 0.000015
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000395
+/deprop Inner Error 0.000106
+/deprop Inner Error 0.000006
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000081
+/deprop Inner Error 0.000002
+Inner loop converged
+>> 
+>> /overhead.Out
+Port: /overhead.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 16.421345799614528 = F
+P                  = 200.0 = psia
+MoleFlow           = 35.583907740900045 = lbmole/h
+MassFlow           = 954.1022643071334 = lb/h
+VolumeFlow         = 0.21920862429188331 = ft3/s
+StdLiqVolumeFlow   = 0.007561027723315235 = ft3/s
+H                  = -37309.46134739259 = Btu/lbmol
+Energy             = -1327393.1771631518 = Btu/hr
+MolecularWeight    = 26.812745437653085 = 
+ZFactor            = 0.8681201702724994 = 
+METHANE            = 0.45654639311389783 = 
+ETHANE             = 0.3275263508136492 = 
+PROPANE            = 0.20746444640257003 = 
+ISOBUTANE          = 0.007553934389227174 = 
+N-BUTANE           = 0.00090425329502877 = 
+ISOPENTANE         = 3.873570049730878e-06 = 
+N-PENTANE          = 7.471041944622691e-07 = 
+N-HEXANE           = 8.452953568836996e-10 = 
+N-HEPTANE          = 2.2663524538653382e-10 = 
+N-OCTANE           = 2.3945221033892625e-10 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 260.33665444871093 = F
+P                  = 205.0 = psia
+MoleFlow           = 43.34464690126341 = lbmole/h
+MassFlow           = 3219.7749390553568 = lb/h
+VolumeFlow         = 0.028810587843369 = ft3/s
+StdLiqVolumeFlow   = 0.022944196206915842 = ft3/s
+H                  = -68624.17566895223 = Btu/lbmol
+Energy             = -2973990.469984568 = Btu/hr
+MolecularWeight    = 74.28310458705124 = 
+ZFactor            = 0.06348485469176458 = 
+METHANE            = 1.0200507841656692e-07 = 
+ETHANE             = 9.88812163257697e-05 = 
+PROPANE            = 0.02 = 
+ISOBUTANE          = 0.18617335408732524 = 
+N-BUTANE           = 0.1747777643636358 = 
+ISOPENTANE         = 0.15913154839985028 = 
+N-PENTANE          = 0.13709249144085336 = 
+N-HEXANE           = 0.16124956078370936 = 
+N-HEPTANE          = 0.09226444814849115 = 
+N-OCTANE           = 0.06921070220761043 = 
+
+>> 
+>> 
+>> # add refrigeration
+>> # fix the chiller cold outlet as boiling refrigerant
+>> cd /Chiller.OutC
+/Chiller.ColdSide.Out
+>> VapFrac = 1
+>> Fraction = 0 0 1 0 0 0 0 0 0 0
+>> cd /
+/
+>> Chiller.DeltaTHI = 30
+>> 
+>> # add valve
+>> V-100 = Valve.Valve()
+>> V-100.Out -> Chiller.InC
+>> 
+>> # add condensor
+>> E-103 = Heater.Cooler()
+>> E-103.Out -> V-100.In
+>> 
+>> # Condensor outlet is bubble point liquid at air cooler kind of T
+>> E-103.Out.T = 120
+>> E-103.Out.VapFrac = 0
+>> E-103.DeltaP = 5
+>> 
+>> V-100.Out
+Port: /V-100.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /Chiller.ColdSide.In
+VapFrac            = 0.4465958736347321 = 
+T                  = 2.8924722974254666 = F
+P                  = 40.57273444226806 | psia
+MoleFlow           = 5.41233335432402 | lbmole/h
+MassFlow           = 238.6601949055973 | lb/h
+VolumeFlow         = 0.07723002766556064 | ft3/s
+StdLiqVolumeFlow   = 0.0018030739972704506 | ft3/s
+H                  = -50589.25546444542 = Btu/lbmol
+Energy             = -273759.87124862854 | Btu/hr
+MolecularWeight    = 44.09562 = 
+ZFactor            = 0.4198572705363683 = 
+METHANE            = 0.0 | 
+ETHANE             = 0.0 | 
+PROPANE            = 1.0 | 
+ISOBUTANE          = 0.0 | 
+N-BUTANE           = 0.0 | 
+ISOPENTANE         = 0.0 | 
+N-PENTANE          = 0.0 | 
+N-HEXANE           = 0.0 | 
+N-HEPTANE          = 0.0 | 
+N-OCTANE           = 0.0 | 
+
+>> 
+>> # compressor isn't needed to calculate flows, but add it for completeness
+>> K-100 = Compressor.Compressor()
+>> K-100.Efficiency = .75
+>> 
+>> Chiller.OutC -> K-100.In
+>> 
+>> K-100.Out -> E-103.In
+>> K-100.Out
+Port: /K-100.Waste.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /E-103.In
+VapFrac            = 1.0 = 
+T                  = 142.36857790603747 = F
+P                  = 248.4207280202569 | psia
+MoleFlow           = 5.41233335432402 = lbmole/h
+MassFlow           = 238.6601949055973 = lb/h
+VolumeFlow         = 0.029672510661852787 = ft3/s
+StdLiqVolumeFlow   = 0.0018030739972704506 = ft3/s
+H                  = -44654.78070302507 = Btu/lbmol
+Energy             = -241645.9167794534 = Btu/hr
+MolecularWeight    = 44.09562 = 
+ZFactor            = 0.7588735212119333 = 
+METHANE            = 0.0 = 
+ETHANE             = 0.0 = 
+PROPANE            = 1.0 = 
+ISOBUTANE          = 0.0 = 
+N-BUTANE           = 0.0 = 
+ISOPENTANE         = 0.0 = 
+N-PENTANE          = 0.0 = 
+N-HEXANE           = 0.0 = 
+N-HEPTANE          = 0.0 = 
+N-OCTANE           = 0.0 = 
+
+>> E-103.OutQ
+Port: /E-103.OutQ + sim21.old.solver.Ports.Port_Energy
+Connected to: None
+Energy   = 32113.95446917512 = Btu/hr
+
+>> 
+>> 
+>> # try making some changes
+>> cd /
+/
+>> Feed.In.T = 55
+Controller solver for /ContFS error - 0.000011
+/deprop Inner Error 0.000704
+/deprop Inner Error 0.000064
+/deprop Inner Error 0.000057
+Inner loop is not changing significantly - exiting
+/deprop Iteration 1 Outer Error 0.002717
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 12 in jacobian of /deprop
+/deprop Inner Error 0.000104
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.000360
+/deprop Inner Error 0.000011
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000073
+/deprop Inner Error 0.000002
+Inner loop converged
+>> bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 3.695266818143888e-08 = 
+T                  = 260.2382204196703 = F
+P                  = 205.0 = psia
+MoleFlow           = 43.37965154987041 = lbmole/h
+MassFlow           = 3221.7283229738437 = lb/h
+VolumeFlow         = 0.028826954116597216 = ft3/s
+StdLiqVolumeFlow   = 0.02295998154622427 = ft3/s
+H                  = -68620.24372648432 = Btu/lbmol
+Energy             = -2976221.693577773 = Btu/hr
+MolecularWeight    = 74.26819275553788 = 
+ZFactor            = 0.0634783390966069 = 
+METHANE            = 9.868889989670301e-08 = 
+ETHANE             = 9.620388499138561e-05 = 
+PROPANE            = 0.02 = 
+ISOBUTANE          = 0.18676170853530022 = 
+N-BUTANE           = 0.1747983331626454 = 
+ISOPENTANE         = 0.15895196838365286 = 
+N-PENTANE          = 0.13694167131484675 = 
+N-HEXANE           = 0.16110630288556776 = 
+N-HEPTANE          = 0.09218895503145137 = 
+N-OCTANE           = 0.06915476401129789 = 
+
+>> ContFS.DewPoint.In.T
+/ContFS.DewPoint.In.T= 14.997993802912976 | F
+>> 
+>> ContFS.DPControl.Target = 10
+Controller solver for /ContFS error - 0.000240
+Controller solver for /ContFS error - 0.000001
+/deprop Inner Error 0.000068
+/deprop Inner Error 0.000007
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.000137
+/deprop Inner Error 0.000027
+/deprop Inner Error 0.000003
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.000040
+/deprop Inner Error 0.000004
+Inner loop converged
+>> ContFS.DewPoint.In.T
+/ContFS.DewPoint.In.T= 9.999894450136328 | F
+>> bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 7.709517127320198e-08 = 
+T                  = 260.0442475877778 = F
+P                  = 205.0 = psia
+MoleFlow           = 43.50384334086638 = lbmole/h
+MassFlow           = 3229.3722594311052 = lb/h
+VolumeFlow         = 0.02889442170227615 = ft3/s
+StdLiqVolumeFlow   = 0.023018385678474806 = ft3/s
+H                  = -68606.72073944671 = Btu/lbmol
+Energy             = -2984154.1284847497 = Btu/hr
+MolecularWeight    = 74.23188416085333 = 
+ZFactor            = 0.063462367601491 = 
+METHANE            = 9.804662421241764e-08 = 
+ETHANE             = 9.59288825552669e-05 = 
+PROPANE            = 0.02 = 
+ISOBUTANE          = 0.1874205617966353 = 
+N-BUTANE           = 0.17522024212591486 = 
+ISOPENTANE         = 0.1588798322292861 = 
+N-PENTANE          = 0.13679014207396484 = 
+N-HEXANE           = 0.16070443761845782 = 
+N-HEPTANE          = 0.091930865077055 = 
+N-OCTANE           = 0.06895790577466708 = 
+
+>> 
+>> 
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+/RootClone.deprop Inner Error 0.000000
+Inner loop converged
+/RootClone.deprop Iteration 1 Outer Error 0.000005
+/RootClone.deprop Inner Error 0.000000
+Inner loop converged
+>> cd /RootClone
+/RootClone
+>> ContFS.DewPoint.In.T
+/RootClone.ContFS.DewPoint.In.T= 9.999894450136328 | F
+>> bottoms.Out
+Port: /RootClone.bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 260.04420422179805 = F
+P                  = 205.0 = psia
+MoleFlow           = 43.503860249503276 = lbmole/h
+MassFlow           = 3229.373254443081 = lb/h
+VolumeFlow         = 0.028894405238177854 = ft3/s
+StdLiqVolumeFlow   = 0.02301839354041526 = ft3/s
+H                  = -68606.71995700234 = Btu/lbmol
+Energy             = -2984155.2543021776 = Btu/hr
+MolecularWeight    = 74.23187818097026 = 
+ZFactor            = 0.06346231059850344 = 
+METHANE            = 9.80404034200323e-08 = 
+ETHANE             = 9.592546117276586e-05 = 
+PROPANE            = 0.02 = 
+ISOBUTANE          = 0.1874208080086426 = 
+N-BUTANE           = 0.1752202208872892 = 
+ISOPENTANE         = 0.15887977070539464 = 
+N-PENTANE          = 0.13679008895099948 = 
+N-HEXANE           = 0.16070437515753275 = 
+N-HEPTANE          = 0.091930829346325 = 
+N-OCTANE           = 0.06895787897283699 = 
+
+>> # Feed.In.T = 55
+>> # bottoms.Out
+>> # ContFS.DewPoint.In.T
+>> cd /
+/
+>> 
+>> 
+>> 

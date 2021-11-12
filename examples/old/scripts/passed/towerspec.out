@@ -1,0 +1,703 @@
+>> # Depeopanizer test (from old Hysim manual)
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane PROPANE
+Methane Ethane PROPANE 
+>> thermo + ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane
+ISOBUTANE n-BUTANE ISOPENTANE n-PENTANE n-Hexane 
+>> thermo + n-Heptane n-Octane
+n-Heptane n-Octane 
+>> 
+>> deprop = Tower.Tower()
+>> deprop.Stage_0 + 18  # twenty stages`
+>> 
+>> cd deprop.Stage_0
+/deprop.Stage_0
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.P = 200
+>> v.Port.Fraction.ISOBUTANE = .01
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> 
+>> estT = Tower.Estimate('T')
+>> estT.Value = 25
+>> 
+>> cd ../Stage_9
+/deprop.Stage_9
+>> f = Tower.Feed()
+>> f.Port.T = 50
+>> f.Port.P = 480
+>> f.Port.MoleFlow = 1000
+>> f.Port.Fraction = .1702 .1473 .1132 .1166 .1066 .0963 .0829 .0694 .0558 .0417
+>> f.Port
+Port: /deprop.Feed_9_f + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0012160707513159594 = 
+T                  = 49.99999999999999 * F
+P                  = 480.0 * psia
+MoleFlow           = 1000.0000000000001 * lbmole/h
+MassFlow           = 54388.326918000006 = lb/h
+VolumeFlow         = 0.41581234564493885 = ft3/s
+StdLiqVolumeFlow   = 0.39667686847159 = ft3/s
+H                  = -62299.579667023754 = Btu/lbmol
+Energy             = -62289103.30841242 = Btu/hr
+MolecularWeight    = 54.388326918 = 
+ZFactor            = 0.13136681933415006 = 
+METHANE            = 0.17020000000000002 * 
+ETHANE             = 0.14730000000000001 * 
+PROPANE            = 0.11320000000000001 * 
+ISOBUTANE          = 0.11660000000000001 * 
+N-BUTANE           = 0.10660000000000001 * 
+ISOPENTANE         = 0.09630000000000001 * 
+N-PENTANE          = 0.08290000000000002 * 
+N-HEXANE           = 0.06940000000000002 * 
+N-HEPTANE          = 0.05580000000000001 * 
+N-OCTANE           = 0.04170000000000001 * 
+
+>> 
+>> cd ../Stage_19
+/deprop.Stage_19
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 205
+>> l.spec = Tower.MoleRecoverySpec()
+>> l.spec + PROPANE
+>> l.spec.Port.Fraction = .1
+>> 
+>> reb = Tower.EnergyFeed(1)
+>> estT = Tower.Estimate('T')
+>> estT.Value = 250
+>> 
+>> cd ..
+/deprop
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_19.l.Port
+>> 
+>> 
+>> TryToRestart = 0 # so each test starts from scratch
+>> TryToSolve = 1  # start calculation
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.024454
+/deprop Inner Error 0.006961
+/deprop Inner Error 0.006276
+/deprop Inner Error 0.002766
+/deprop Inner Error 0.002760
+Inner loop is not changing significantly - exiting
+/deprop Iteration 1 Outer Error 0.108301
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.019582
+/deprop Inner Error 0.011396
+/deprop Inner Error 0.001111
+/deprop Inner Error 0.000189
+/deprop Inner Error 0.000030
+/deprop Inner Error 0.000006
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.003302
+/deprop Inner Error 0.001570
+/deprop Inner Error 0.000315
+/deprop Inner Error 0.000014
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000855
+/deprop Inner Error 0.000243
+/deprop Inner Error 0.000037
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000109
+/deprop Inner Error 0.000009
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000025
+/deprop Inner Error 0.000003
+Inner loop converged
+>> 
+>> /overhead.Out
+Port: /overhead.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 24.64177717015445 = F
+P                  = 200.0 = psia
+MoleFlow           = 423.88160064515023 = lbmole/h
+MassFlow           = 11913.794272506391 = lb/h
+VolumeFlow         = 2.6359825216527617 = ft3/s
+StdLiqVolumeFlow   = 0.09319027267175964 = ft3/s
+H                  = -37825.92156513195 = Btu/lbmol
+Energy             = -16031015.934090985 = Btu/hr
+MolecularWeight    = 28.10641920813676 = 
+ZFactor            = 0.8614678357371659 = 
+METHANE            = 0.4015272182200273 = 
+ETHANE             = 0.34749484064159875 = 
+PROPANE            = 0.24034932953792232 = 
+ISOBUTANE          = 0.01 = 
+N-BUTANE           = 0.000628010241070438 = 
+ISOPENTANE         = 1.3447225381475097e-07 = 
+N-PENTANE          = 5.952244361719424e-09 = 
+N-HEXANE           = 1.5048740158130129e-09 = 
+N-HEPTANE          = 1.1548230002235481e-09 = 
+N-OCTANE           = 4.977951651393456e-10 = 
+
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 2.1766642778429226e-07 = 
+T                  = 256.72070648039596 = F
+P                  = 205.0 = psia
+MoleFlow           = 576.1183993548498 = lbmole/h
+MassFlow           = 42474.5268211292 = lb/h
+VolumeFlow         = 0.37945970133953827 = ft3/s
+StdLiqVolumeFlow   = 0.30348654835413785 = ft3/s
+H                  = -68471.970683983 = Btu/lbmol
+Energy             = -39441328.54300159 = Btu/hr
+MolecularWeight    = 73.72534338584289 = 
+ZFactor            = 0.06322574596125559 = 
+METHANE            = 6.648001344309015e-11 = 
+ETHANE             = 5.7813340303294365e-06 = 
+PROPANE            = 0.019649331620294756 = 
+ISOBUTANE          = 0.19503107360563343 = 
+N-BUTANE           = 0.18456934917001153 = 
+ISOPENTANE         = 0.16715304199193184 = 
+N-PENTANE          = 0.14389402867498488 = 
+N-HEXANE           = 0.12046134863914655 = 
+N-HEPTANE          = 0.0968550901567766 = 
+N-OCTANE           = 0.07238095474071018 = 
+
+>> 
+>> cd Stage_19.l
+/deprop.Stage_19.l
+>> delete spec
+>> spec = Tower.ComponentMoleFlowSpec()
+>> spec + PROPANE
+>> spec.Port.MoleFlow = 10
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.645877
+/deprop Inner Error 0.029087
+/deprop Inner Error 0.008646
+/deprop Inner Error 0.006367
+Step size too small - Exiting inner loop
+/deprop Iteration 1 Outer Error 0.096318
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.232883
+/deprop Inner Error 0.057213
+/deprop Inner Error 0.010300
+/deprop Inner Error 0.000459
+/deprop Inner Error 0.000029
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.014278
+/deprop Inner Error 0.236434
+/deprop Inner Error 0.027637
+/deprop Inner Error 0.001278
+/deprop Inner Error 0.000112
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000824
+/deprop Inner Error 0.004294
+/deprop Inner Error 0.000191
+/deprop Inner Error 0.000004
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000196
+/deprop Inner Error 0.000347
+/deprop Inner Error 0.000037
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000019
+/deprop Inner Error 0.000015
+/deprop Inner Error 0.000003
+Inner loop converged
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.3741480791664325e-08 = 
+T                  = 257.32482169173363 = F
+P                  = 205.0 = psia
+MoleFlow           = 574.7892872917025 = lbmole/h
+MassFlow           = 42415.806574088754 = lb/h
+VolumeFlow         = 0.37917025081103223 = ft3/s
+StdLiqVolumeFlow   = 0.3030426331935883 = ft3/s
+H                  = -68491.65635687884 = Btu/lbmol
+Energy             = -39361650.135724604 = Btu/hr
+MolecularWeight    = 73.79366232800007 = 
+ZFactor            = 0.0632702516046198 = 
+METHANE            = 6.226815392888394e-11 = 
+ETHANE             = 5.1311474081992695e-06 = 
+PROPANE            = 0.01739766868363165 = 
+ISOBUTANE          = 0.19545927782666672 = 
+N-BUTANE           = 0.18500432779805692 = 
+ISOPENTANE         = 0.16753955873213264 = 
+N-PENTANE          = 0.1442267615520431 = 
+N-HEXANE           = 0.1207398969831483 = 
+N-HEPTANE          = 0.09707905264417141 = 
+N-OCTANE           = 0.072548324570473 = 
+
+>> 
+>> delete spec
+>> Port.MassFlow = 43000
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.012760
+/deprop Inner Error 0.007229
+/deprop Inner Error 0.005773
+/deprop Inner Error 0.001441
+/deprop Inner Error 0.000418
+/deprop Inner Error 0.000080
+/deprop Inner Error 0.000019
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.137410
+/deprop Inner Error 0.006406
+/deprop Inner Error 0.002757
+/deprop Inner Error 0.000782
+/deprop Inner Error 0.000293
+/deprop Inner Error 0.000057
+/deprop Inner Error 0.000012
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.009994
+/deprop Inner Error 0.000957
+/deprop Inner Error 0.000214
+/deprop Inner Error 0.000044
+/deprop Inner Error 0.000006
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.001248
+/deprop Inner Error 0.000066
+/deprop Inner Error 0.000012
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000146
+/deprop Inner Error 0.000007
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000022
+/deprop Inner Error 0.000003
+Inner loop converged
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 251.50348756396124 = F
+P                  = 205.0 = psia
+MoleFlow           = 588.0046481082744 = lbmole/h
+MassFlow           = 43000.0 = lb/h
+VolumeFlow         = 0.3821479742603677 = ft3/s
+StdLiqVolumeFlow   = 0.3074592254658598 = ft3/s
+H                  = -68293.94759601334 = Btu/lbmol
+Energy             = -40150405.75681522 = Btu/hr
+MolecularWeight    = 73.12867103846133 = 
+ZFactor            = 0.06284420477454569 = 
+METHANE            = 1.035367663004587e-10 = 
+ETHANE             = 1.2569084830386886e-05 = 
+PROPANE            = 0.03929038346803019 = 
+ISOBUTANE          = 0.19128961027198949 = 
+N-BUTANE           = 0.18080674965718055 = 
+ISOPENTANE         = 0.1637741193582656 = 
+N-PENTANE          = 0.14098527604953742 = 
+N-HEXANE           = 0.11802627705646368 = 
+N-HEPTANE          = 0.09489720844366412 = 
+N-OCTANE           = 0.07091780650650173 = 
+
+>> 
+>> Port.MassFlow = None
+>> spec = Tower.ComponentMassFlowSpec()
+>> spec + PROPANE
+>> spec.Port.MassFlow = 450
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 31.534008
+/deprop Inner Error 1.391182
+/deprop Inner Error 0.247349
+/deprop Inner Error 0.007587
+Step size too small - Exiting inner loop
+/deprop Iteration 1 Outer Error 0.097158
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 10.778707
+/deprop Inner Error 2.826102
+/deprop Inner Error 0.488381
+/deprop Inner Error 0.016622
+/deprop Inner Error 0.000842
+/deprop Inner Error 0.000115
+/deprop Inner Error 0.000010
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.014257
+/deprop Inner Error 9.667704
+/deprop Inner Error 0.727571
+/deprop Inner Error 0.135238
+/deprop Inner Error 0.004709
+/deprop Inner Error 0.000010
+/deprop Inner Error 0.000005
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000826
+/deprop Inner Error 0.222090
+/deprop Inner Error 0.002224
+/deprop Inner Error 0.000186
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000195
+/deprop Inner Error 0.018547
+/deprop Inner Error 0.000240
+/deprop Inner Error 0.000009
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000019
+/deprop Inner Error 0.002280
+/deprop Inner Error 0.000023
+/deprop Inner Error 0.000003
+Inner loop converged
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.4153147502585654e-08 = 
+T                  = 257.23071165656677 = F
+P                  = 205.0 = psia
+MoleFlow           = 574.9957135757606 = lbmole/h
+MassFlow           = 42424.92600096531 = lb/h
+VolumeFlow         = 0.37921490528995616 = ft3/s
+StdLiqVolumeFlow   = 0.30311157468285094 = ft3/s
+H                  = -68488.60273601543 = Btu/lbmol
+Energy             = -39374030.712647825 = Btu/hr
+MolecularWeight    = 73.78303003204014 = 
+ZFactor            = 0.06326328957033718 = 
+METHANE            = 6.29317979425439e-11 = 
+ETHANE             = 5.2313374415806495e-06 = 
+PROPANE            = 0.017748124190714136 = 
+ISOBUTANE          = 0.19539268663183443 = 
+N-BUTANE           = 0.18493653236712732 = 
+ISOPENTANE         = 0.16747941103314623 = 
+N-PENTANE          = 0.1441749834346452 = 
+N-HEXANE           = 0.12069655077539308 = 
+N-HEPTANE          = 0.09704420079656989 = 
+N-OCTANE           = 0.07252227937019645 = 
+
+>> 
+>> delete spec
+>> spec = Tower.MassRecoverySpec()
+>> spec + PROPANE ETHANE
+>> spec.Port.Fraction = .1
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.047349
+/deprop Inner Error 0.021536
+/deprop Inner Error 0.013876
+/deprop Inner Error 0.004587
+/deprop Inner Error 0.000497
+/deprop Inner Error 0.000185
+/deprop Inner Error 0.000027
+/deprop Inner Error 0.000008
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.133383
+/deprop Inner Error 0.017381
+/deprop Inner Error 0.008574
+/deprop Inner Error 0.002186
+/deprop Inner Error 0.000399
+/deprop Inner Error 0.000116
+/deprop Inner Error 0.000014
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.009596
+/deprop Inner Error 0.001596
+/deprop Inner Error 0.000468
+/deprop Inner Error 0.000190
+/deprop Inner Error 0.000013
+/deprop Inner Error 0.000007
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.001235
+/deprop Inner Error 0.000290
+/deprop Inner Error 0.000021
+/deprop Inner Error 0.000007
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000153
+/deprop Inner Error 0.000010
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000016
+/deprop Inner Error 0.000002
+Inner loop converged
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 4.044153316535503e-08 = 
+T                  = 252.25580891944577 = F
+P                  = 205.0 = psia
+MoleFlow           = 586.2449853299354 = lbmole/h
+MassFlow           = 42922.19212859338 = lb/h
+VolumeFlow         = 0.3817386593856676 = ft3/s
+StdLiqVolumeFlow   = 0.3068709924382179 = ft3/s
+H                  = -68320.51234192561 = Btu/lbmol
+Energy             = -40045822.47810727 = Btu/hr
+MolecularWeight    = 73.21545293511032 = 
+ZFactor            = 0.06289878495135723 = 
+METHANE            = 9.770937006631391e-11 = 
+ETHANE             = 1.1411144921680853e-05 = 
+PROPANE            = 0.03643501914217985 = 
+ISOBUTANE          = 0.19183455717312992 = 
+N-BUTANE           = 0.18135159227590208 = 
+ISOPENTANE         = 0.1642657001812891 = 
+N-PENTANE          = 0.14140845494697832 = 
+N-HEXANE           = 0.11838054265392726 = 
+N-HEPTANE          = 0.09518205023196324 = 
+N-OCTANE           = 0.0711306721519992 = 
+
+>> 
+>> delete spec
+>> spec = Tower.MoleRatioSpec()
+>> spec + ETHANE PROPANE / ISOBUTANE n-BUTANE
+>> spec.Port.Fraction = 0.05
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.191029
+/deprop Inner Error 0.015001
+/deprop Inner Error 0.009700
+/deprop Inner Error 0.005915
+Step size too small - Exiting inner loop
+/deprop Iteration 1 Outer Error 0.103370
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.010493
+/deprop Inner Error 0.009926
+/deprop Inner Error 0.009343
+/deprop Inner Error 0.008255
+/deprop Inner Error 0.005106
+/deprop Inner Error 0.000323
+/deprop Inner Error 0.000011
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.007898
+/deprop Inner Error 0.000982
+/deprop Inner Error 0.000238
+/deprop Inner Error 0.000119
+/deprop Inner Error 0.000005
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000873
+/deprop Inner Error 0.000071
+/deprop Inner Error 0.000012
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000118
+/deprop Inner Error 0.000065
+/deprop Inner Error 0.000006
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000014
+/deprop Inner Error 0.000006
+Inner loop converged
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 256.89826641508864 = F
+P                  = 205.0 = psia
+MoleFlow           = 575.7267486150644 = lbmole/h
+MassFlow           = 42457.22287774874 = lb/h
+VolumeFlow         = 0.379373472278803 = ft3/s
+StdLiqVolumeFlow   = 0.30335573369355756 = ft3/s
+H                  = -68477.77846198402 = Btu/lbmol
+Energy             = -39417859.0854847 = Btu/hr
+MolecularWeight    = 73.74544083504681 = 
+ZFactor            = 0.06323870542754267 = 
+METHANE            = 6.524974356431684e-11 = 
+ETHANE             = 5.588317984758027e-06 = 
+PROPANE            = 0.018987013726072727 = 
+ISOBUTANE          = 0.19515711427631915 = 
+N-BUTANE           = 0.18469714961228473 = 
+ISOPENTANE         = 0.16726675175614275 = 
+N-PENTANE          = 0.14399191574235143 = 
+N-HEXANE           = 0.12054329509862625 = 
+N-HEPTANE          = 0.09692097794039174 = 
+N-OCTANE           = 0.07243019346457655 = 
+
+>> 
+>> delete spec
+>> spec = Tower.MassRatioSpec()
+>> spec + ETHANE PROPANE / ISOBUTANE n-BUTANE
+>> spec.Port.Fraction = 0.05
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.323992
+/deprop Inner Error 0.065317
+/deprop Inner Error 0.020550
+Step size too small - Exiting inner loop
+/deprop Iteration 1 Outer Error 0.111424
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.070960
+/deprop Inner Error 0.003991
+/deprop Inner Error 0.003580
+/deprop Inner Error 0.000178
+/deprop Inner Error 0.000021
+/deprop Inner Error 0.000003
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.016535
+/deprop Inner Error 0.006205
+/deprop Inner Error 0.002989
+/deprop Inner Error 0.000382
+/deprop Inner Error 0.000026
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.001111
+/deprop Inner Error 0.002168
+/deprop Inner Error 0.000204
+/deprop Inner Error 0.000001
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000228
+/deprop Inner Error 0.000206
+/deprop Inner Error 0.000022
+/deprop Inner Error 0.000000
+Inner loop converged
+/deprop Iteration 5 Outer Error 0.000022
+/deprop Inner Error 0.000001
+Inner loop converged
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.8541747422798925e-08 = 
+T                  = 255.32165263889024 = F
+P                  = 205.0 = psia
+MoleFlow           = 579.2340532319897 = lbmole/h
+MassFlow           = 42612.228476445074 = lb/h
+VolumeFlow         = 0.38014561828262544 = ft3/s
+StdLiqVolumeFlow   = 0.3045275909695369 = ft3/s
+H                  = -68425.64789382771 = Btu/lbmol
+Energy             = -39627800.403874345 = Btu/hr
+MolecularWeight    = 73.56651122497101 = 
+ZFactor            = 0.06312260616563814 = 
+METHANE            = 7.597748185963268e-11 = 
+ETHANE             = 7.364292422882395e-06 = 
+PROPANE            = 0.02488056465500266 = 
+ISOBUTANE          = 0.19403626014105188 = 
+N-BUTANE           = 0.18356270416017104 = 
+ISOPENTANE         = 0.16625393797273413 = 
+N-PENTANE          = 0.14312003416940772 = 
+N-HEXANE           = 0.11981339671725749 = 
+N-HEPTANE          = 0.09633411442604028 = 
+N-OCTANE           = 0.07199162338993445 = 
+
+>> 
+>> delete spec
+>> cd ..
+/deprop.Stage_19
+>> spec = Tower.ReboilRatioSpec()
+>> spec.Port = 2
+Calculating Jacobian for /deprop
+Calculating disturbance 10 of 20 in jacobian of /deprop
+Calculating disturbance 20 of 20 in jacobian of /deprop
+/deprop Inner Error 0.191631
+/deprop Inner Error 0.067452
+/deprop Inner Error 0.026506
+/deprop Inner Error 0.007195
+/deprop Inner Error 0.005170
+/deprop Inner Error 0.003844
+/deprop Inner Error 0.000810
+/deprop Inner Error 0.000225
+/deprop Inner Error 0.000030
+/deprop Inner Error 0.000012
+/deprop Inner Error 0.000003
+Inner loop converged
+/deprop Iteration 1 Outer Error 0.053136
+/deprop Inner Error 0.013606
+/deprop Inner Error 0.007246
+/deprop Inner Error 0.001428
+/deprop Inner Error 0.000553
+/deprop Inner Error 0.000249
+/deprop Inner Error 0.000020
+/deprop Inner Error 0.000006
+Inner loop converged
+/deprop Iteration 2 Outer Error 0.008939
+/deprop Inner Error 0.001360
+/deprop Inner Error 0.001150
+/deprop Inner Error 0.000257
+/deprop Inner Error 0.000023
+/deprop Inner Error 0.000004
+Inner loop converged
+/deprop Iteration 3 Outer Error 0.000982
+/deprop Inner Error 0.000379
+/deprop Inner Error 0.000214
+/deprop Inner Error 0.000044
+/deprop Inner Error 0.000002
+Inner loop converged
+/deprop Iteration 4 Outer Error 0.000090
+/deprop Inner Error 0.000022
+/deprop Inner Error 0.000004
+Inner loop converged
+>> /bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 4.522366718094666e-06 = 
+T                  = 260.94395939067175 = F
+P                  = 205.0 = psia
+MoleFlow           = 567.0362561178601 = lbmole/h
+MassFlow           = 42073.76373223297 = lb/h
+VolumeFlow         = 0.377565138490658 = ft3/s
+StdLiqVolumeFlow   = 0.30045710930482405 = ft3/s
+H                  = -68605.3618956788 = Btu/lbmol
+Energy             = -38895185.80615616 = Btu/hr
+MolecularWeight    = 74.19942424896335 = 
+ZFactor            = 0.06354309712069875 = 
+METHANE            = 1.2117684678455617e-07 = 
+ETHANE             = 1.320243446420147e-06 = 
+PROPANE            = 0.00399118768562058 = 
+ISOBUTANE          = 0.19799552111393745 = 
+N-BUTANE           = 0.1876453278873499 = 
+ISOPENTANE         = 0.16983032761225425 = 
+N-PENTANE          = 0.14619876024881626 = 
+N-HEXANE           = 0.12239076055505543 = 
+N-HEPTANE          = 0.09840640353941948 = 
+N-OCTANE           = 0.07354026993725343 = 
+
+>> spec.Port = None
+>> 
+>> # SPECIAL PROPERTIES NOT YET SUPPORTED!
+>> # cd l
+>> # viscosity = Tower.PropertySpec('Viscosity')
+>> # viscosity.Port = 0.078
+>> # /bottoms.Out
+>> 
+>> # viscosity.Port = None
+>> # speedofsound = Tower.PropertySpec('SpeedOfSound')
+>> # speedofsound.Port = 400 m/s
+>> # /bottoms.Out
+>> # viscosity.Port
+>> 
+>> 
+>> #Test some special properties
+>> # speedofsound.Port = None
+>> # rvpd323 = Tower.SpecialPropertySpec("ReidVaporPressure_D323")
+>> # rvpd323.Port = 33.027
+>> # /bottoms.Out
+>> # viscosity.Port
+>> # speedofsound.Port
+>> 
+>> # rvpd323.Port = None
+>> # kinvisc = Tower.SpecialPropertySpec("KinematicViscosity")
+>> # kinvisc.Port = 3.1
+>> # /bottoms.Out
+>> # viscosity.Port
+>> # speedofsound.Port
+>> # rvpd323.Port
+>> 
+>> # copy /deprop /overhead /bottoms
+>> # paste /
+>> # cd /depropClone.Stage_19.l
+>> # /bottomsClone.Out
+>> # viscosity.Port
+>> # speedofsound.Port
+>> # rvpd323.Port

@@ -1,0 +1,190 @@
+>> # Perry Ex04
+>> 
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> 
+>> thermo + ETHANE PROPANE N-BUTANE N-PENTANE N-HEXANE
+ETHANE PROPANE N-BUTANE N-PENTANE N-HEXANE 
+>> 
+>> col = Tower.Tower()
+>> col.Stage_0
+Stage_0
+>> col.Stage_0 + 16  # 18 stage
+>> 
+>> 
+>> cd col.Stage_0
+/col.Stage_0
+>> 
+>> cond = Tower.EnergyFeed(0)
+>> 
+>> v = Tower.VapourDraw()
+>> 
+>> v.Port.P = 250
+>> 
+>> reflux = Tower.StageSpecification('Reflux')
+>> reflux.Value = 6.52
+>> 
+>> cd /
+/
+>> 
+>> 
+>> cd col.Stage_13
+/col.Stage_13
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.MoleFlow = 37
+>> 
+>> cd /
+/
+>> 
+>> 
+>> cd col.Stage_9
+/col.Stage_9
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 213.9
+>> f.Port.P = 260
+>> f.Port.MoleFlow = 100
+>> f.Port.Fraction = 0.03 0.2 0.37 0.35 0.05
+>> 
+>> cd /
+/
+>> 
+>> 
+>> cd col.Stage_17
+/col.Stage_17
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 260
+>> l.Port.MoleFlow = 40
+>> 
+>> reb = Tower.EnergyFeed(1)
+>> 
+>> cd ..
+/col
+>> 
+>> TryToSolve = 1  # start calculation - turned off by default
+Calculating Jacobian for /col
+Calculating disturbance 10 of 19 in jacobian of /col
+/col Inner Error 0.017931
+/col Inner Error 0.001642
+/col Inner Error 0.000414
+/col Inner Error 0.000028
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 1 Outer Error 1.000544
+/col Inner Error 0.035262
+/col Inner Error 0.008382
+/col Inner Error 0.000313
+/col Inner Error 0.000039
+/col Inner Error 0.000009
+Inner loop converged
+/col Iteration 2 Outer Error 0.369019
+/col Inner Error 0.187870
+/col Inner Error 0.017111
+/col Inner Error 0.007964
+/col Inner Error 0.000356
+/col Inner Error 0.000115
+/col Inner Error 0.000005
+Inner loop converged
+/col Iteration 3 Outer Error 0.049666
+/col Inner Error 0.038934
+/col Inner Error 0.007087
+/col Inner Error 0.001217
+/col Inner Error 0.000094
+/col Inner Error 0.000017
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 4 Outer Error 0.001232
+/col Inner Error 0.020297
+/col Inner Error 0.000382
+/col Inner Error 0.000180
+/col Inner Error 0.000017
+/col Inner Error 0.000002
+Inner loop converged
+/col Iteration 5 Outer Error 0.000104
+/col Inner Error 0.000560
+/col Inner Error 0.000193
+/col Inner Error 0.000008
+Inner loop converged
+/col Iteration 6 Outer Error 0.000007
+/col Inner Error 0.000104
+/col Inner Error 0.000009
+Inner loop converged
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_17.l.Port
+>> 
+>> /draw1 = Stream.Stream_Material()
+>> /draw1.In -> Stage_13.v.Port
+>> 
+>> 
+>> cd /
+/
+>> 
+>> overhead.Out
+Port: /overhead.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 125.13939906434828 = F
+P                  = 250.00000000000003 = psia
+MoleFlow           = 23.00002239979146 = lbmole/h
+MassFlow           = 995.8942417828326 = lb/h
+VolumeFlow         = 0.11864937469896587 = ft3/s
+StdLiqVolumeFlow   = 0.007472229546571122 = ft3/s
+H                  = -44528.631946763824 = Btu/lbmol
+Energy             = -1023987.3085330644 = Btu/hr
+MolecularWeight    = 43.29970728916223 = 
+ZFactor            = 0.7397738814869623 = 
+ETHANE             = 0.12969158754523458 = 
+PROPANE            = 0.7973940639903645 = 
+N-BUTANE           = 0.07288027535447247 = 
+N-PENTANE          = 3.407097692526444e-05 = 
+N-HEXANE           = 2.1330034431764596e-09 = 
+
+>> draw1.Out
+Port: /draw1.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.9999972410613237 = 
+T                  = 254.45384358758355 = F
+P                  = 257.64705882352945 = psia
+MoleFlow           = 37.0 = lbmole/h
+MassFlow           = 2272.515999663967 = lb/h
+VolumeFlow         = 0.21349065841852402 = ft3/s
+StdLiqVolumeFlow   = 0.017036711724615825 = ft3/s
+H                  = -52574.15632141241 = Btu/lbmol
+Energy             = -1944916.6697836982 = Btu/hr
+MolecularWeight    = 61.41935134226939 = 
+ZFactor            = 0.6983368136739964 = 
+ETHANE             = 0.00046091626563416437 = 
+PROPANE            = 0.04349756871722884 = 
+N-BUTANE           = 0.689415511200945 = 
+N-PENTANE          = 0.25376808300973736 = 
+N-HEXANE           = 0.012857920806454705 = 
+
+>> bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0415297029672734e-07 = 
+T                  = 295.170693615592 = F
+P                  = 260.0 = psia
+MoleFlow           = 40.0 = lbmole/h
+MassFlow           = 2810.316229357203 = lb/h
+VolumeFlow         = 0.028563014866241215 = ft3/s
+StdLiqVolumeFlow   = 0.02018403012143746 = ft3/s
+H                  = -62955.47678001298 = Btu/lbmol
+Energy             = -2517795.6050039125 = Btu/hr
+MolecularWeight    = 70.2579057339301 = 
+ZFactor            = 0.08250841139131118 = 
+ETHANE             = 9.171496623416454e-07 = 
+PROPANE            = 0.001262731001562145 = 
+N-BUTANE           = 0.2453847448413685 = 
+N-PENTANE          = 0.6402451565062693 = 
+N-HEXANE           = 0.11310645050113756 = 
+

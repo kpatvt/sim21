@@ -1,0 +1,369 @@
+>> # Heat exchanger test
+>> # Requires updating the Enthalpy scaling factor
+>> units SI
+>> 
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE ISOBUTANE n-BUTANE n-PENTANE
+PROPANE ISOBUTANE n-BUTANE n-PENTANE 
+>> 
+>> # lets have some streams for this test
+>> hotInlet = Stream.Stream_Material()
+>> coldInlet = Stream.Stream_Material()
+>> hotOutlet = Stream.Stream_Material()
+>> coldOutlet = Stream.Stream_Material()
+>> 
+>> cd hotInlet.In
+/hotInlet.In
+>> Fraction = .25 .25 .25 .25
+>> T = 375 K
+>> P = 500
+>> MoleFlow = 800
+>> 
+>> cd /coldInlet.In
+/coldInlet.In
+>> Fraction
+PROPANE                     = None
+ISOBUTANE                   = None
+N-BUTANE                    = None
+N-PENTANE                   = None
+
+>> Fraction = .95 0 .05 0
+>> P = 300
+>> MoleFlow = 1000
+>> 
+>> cd /
+/
+>> exch = Heater.HeatExchangerUA()
+>> exch
+Operation: exch = sim21.old.unitop.Heater.HeatExchangerUA
+Port: In0 = sim21.old.solver.Ports.Port_Material (/exch.side0.In)
+Port: In1 = sim21.old.solver.Ports.Port_Material (/exch.side1.In)
+Port: Out0 = sim21.old.solver.Ports.Port_Material (/exch.side0.Out)
+Port: Out1 = sim21.old.solver.Ports.Port_Material (/exch.side1.Out)
+Port: DeltaP0 = sim21.old.solver.Ports.Port_Signal (/exch.side0.DeltaP)
+Port: DeltaT0 = sim21.old.solver.Ports.Port_Signal (/exch.side0.DeltaT)
+Port: DeltaP1 = sim21.old.solver.Ports.Port_Signal (/exch.side1.DeltaP)
+Port: DeltaT1 = sim21.old.solver.Ports.Port_Signal (/exch.side1.DeltaT)
+Port: UA0_1 = sim21.old.solver.Ports.Port_Signal (/exch.heatTransfer0_1.UA)
+Port: DeltaT0_1_In = sim21.old.solver.Ports.Port_Signal (/exch.heatTransfer0_1.DeltaT_In)
+Port: DeltaT0_1_Out = sim21.old.solver.Ports.Port_Signal (/exch.heatTransfer0_1.DeltaT_Out)
+Child: heatTransfer0_1 = sim21.old.unitop.Heater._HeatTransfer
+Child: side0 = sim21.old.unitop.Heater._Side
+Child: side1 = sim21.old.unitop.Heater._Side
+Parameter: Ignored = None
+Parameter: AvSolutionMethods = NewtonRaphson Secant Broyden
+Parameter: MaxNumIterations = 20
+Parameter: MaxError = 1e-05
+Parameter: DampingFactor = 1.0
+Parameter: SolutionMethod = NewtonRaphson
+Parameter: MinimizeError = True
+Parameter: TryToRestart = False
+Parameter: TryLastConverged = True
+Parameter: MonitorConvergence = 1
+Parameter: FreqJacobianMsg = 10
+Parameter: NumberSegments = 1
+Parameter: NumberSides = 2
+Parameter: IsCounterCurrent0 = False
+Parameter: IsCounterCurrent1 = True
+Parameter: ReferenceSide = 0
+Parameter: TrackPhaseChange = 0
+Parameter: BaseForSegments = Energy
+>> cd exch
+/exch
+>> DeltaP1 = 10
+>> DeltaP0 = 50
+>> 
+>> 
+>> cd /
+/
+>> coldInlet.Out -> exch.In1
+>> exch.Out1 -> coldOutlet.In
+>> hotInlet.Out -> exch.In0
+>> exch.Out0 -> hotOutlet.In
+>> 
+>> 
+>> #spec UA and coldInlet.T
+>> exch.UA0_1 = 52710.6781154
+>> coldInlet.In.T = -8 C
+Calculating Jacobian for /exch
+/exch Iteration 1 Max Error 45.805051
+Calculating Jacobian for /exch
+/exch Iteration 2 Max Error 28.403461
+Calculating Jacobian for /exch
+/exch Iteration 3 Max Error 20.290598
+Calculating Jacobian for /exch
+/exch Iteration 4 Max Error 11.305699
+Calculating Jacobian for /exch
+/exch Iteration 5 Max Error 1.451584
+Calculating Jacobian for /exch
+/exch Iteration 6 Max Error 0.025404
+Calculating Jacobian for /exch
+/exch Iteration 7 Max Error 0.000061
+Calculating Jacobian for /exch
+Converged /exch in 8 iterations
+>> 
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = -8.0 = C
+P                  = 300.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 44796.94899999999 = kg/h
+VolumeFlow         = 6810.176993296487 = m3/hr
+StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
+H                  = -108533.28317177521 = kJ/kmol
+Energy             = -30148134.214382004 = W
+MolecularWeight    = 44.79694899999999 = 
+ZFactor            = 0.9267313127379517 = 
+PROPANE            = 0.95 = 
+ISOBUTANE          = 0.0 = 
+N-BUTANE           = 0.05 = 
+N-PENTANE          = 0.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 80.63780498022311 = C
+P                  = 290.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 44796.94899999999 = kg/h
+VolumeFlow         = 9830.403989311522 = m3/hr
+StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
+H                  = -101519.53847791624 = kJ/kmol
+Energy             = -28199871.79942118 = W
+MolecularWeight    = 44.79694899999999 = 
+ZFactor            = 0.9691529454379569 = 
+PROPANE            = 0.95 = 
+ISOBUTANE          = 0.0 = 
+N-BUTANE           = 0.05 = 
+N-PENTANE          = 0.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 101.85000000000002 = C
+P                  = 500.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 46497.759999999995 = kg/h
+VolumeFlow         = 4618.402120927509 = m3/hr
+StdLiqVolumeFlow   = 78.986 = m3/hr
+H                  = -120485.45490832145 = kJ/kmol
+Energy             = -26774545.535182543 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.9257768326971205 = 
+PROPANE            = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-BUTANE           = 0.25 = 
+N-PENTANE          = 0.25 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.8568183475103183 = 
+T                  = 51.059677770763074 = C
+P                  = 450.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 46497.759999999995 = kg/h
+VolumeFlow         = 3708.3635085614915 = m3/hr
+StdLiqVolumeFlow   = 78.986 = m3/hr
+H                  = -129252.63577564518 = kJ/kmol
+Energy             = -28722807.95014337 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.7738284025718175 = 
+PROPANE            = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-BUTANE           = 0.25 = 
+N-PENTANE          = 0.25 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 52710.6781154 * W/K
+
+>> 
+>> 
+>> ###See if it forgets
+>> exch.UA0_1.UA =
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = -8.0 = C
+P                  = 300.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 44796.94899999999 = kg/h
+VolumeFlow         = 6810.176993296487 = m3/hr
+StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
+H                  = -108533.28317177521 = kJ/kmol
+Energy             = -30148134.214382004 = W
+MolecularWeight    = 44.79694899999999 = 
+ZFactor            = 0.9267313127379517 = 
+PROPANE            = 0.95 = 
+ISOBUTANE          = 0.0 = 
+N-BUTANE           = 0.05 = 
+N-PENTANE          = 0.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 290.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 44796.94899999999 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+PROPANE            = 0.95 = 
+ISOBUTANE          = 0.0 = 
+N-BUTANE           = 0.05 = 
+N-PENTANE          = 0.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 101.85000000000002 = C
+P                  = 500.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 46497.759999999995 = kg/h
+VolumeFlow         = 4618.402120927509 = m3/hr
+StdLiqVolumeFlow   = 78.986 = m3/hr
+H                  = -120485.45490832145 = kJ/kmol
+Energy             = -26774545.535182543 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.9257768326971205 = 
+PROPANE            = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-BUTANE           = 0.25 = 
+N-PENTANE          = 0.25 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 450.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 46497.759999999995 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 78.986 = m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+PROPANE            = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-BUTANE           = 0.25 = 
+N-PENTANE          = 0.25 = 
+
+>> 
+>> 
+>> #Spec UA again nowspect coldOutlet.T
+>> exch.UA0_1 = 52710.6781154
+Converged /exch in 0 iterations
+>> coldInlet.In.T =
+>> coldOutlet.In.T = 80 C
+Calculating Jacobian for /exch
+/exch Iteration 1 Max Error 0.976275
+Calculating Jacobian for /exch
+/exch Iteration 2 Max Error 0.001229
+Calculating Jacobian for /exch
+Converged /exch in 3 iterations
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 0.9929789257804125 | 
+T                  = -9.166833481884282 | C
+P                  = 300.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 44796.94899999999 = kg/h
+VolumeFlow         = 6726.76248093006 | m3/hr
+StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
+H                  = -108743.79814415573 | kJ/kmol
+Energy             = -30206610.595598817 | W
+MolecularWeight    = 44.796949 | 
+ZFactor            = 0.9194263135020639 | 
+PROPANE            = 0.95 = 
+ISOBUTANE          = 0.0 = 
+N-BUTANE           = 0.05 = 
+N-PENTANE          = 0.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 80.0 = C
+P                  = 290.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 44796.94899999999 = kg/h
+VolumeFlow         = 9811.009952485492 = m3/hr
+StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
+H                  = -101575.0931609153 = kJ/kmol
+Energy             = -28215303.65580981 = W
+MolecularWeight    = 44.79694899999999 = 
+ZFactor            = 0.968987820972917 = 
+PROPANE            = 0.95 = 
+ISOBUTANE          = 0.0 = 
+N-BUTANE           = 0.05 = 
+N-PENTANE          = 0.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 101.85000000000002 = C
+P                  = 500.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 46497.759999999995 = kg/h
+VolumeFlow         = 4618.402120927509 = m3/hr
+StdLiqVolumeFlow   = 78.986 = m3/hr
+H                  = -120485.45490832145 = kJ/kmol
+Energy             = -26774545.535182543 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.9257768326971205 = 
+PROPANE            = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-BUTANE           = 0.25 = 
+N-PENTANE          = 0.25 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.8486348012983939 = 
+T                  = 50.863563686461816 = C
+P                  = 450.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 46497.759999999995 = kg/h
+VolumeFlow         = 3671.6785103267575 = m3/hr
+StdLiqVolumeFlow   = 78.986 = m3/hr
+H                  = -129446.33613737198 = kJ/kmol
+Energy             = -28765852.474971548 = W
+MolecularWeight    = 58.1222 = 
+ZFactor            = 0.7666370404667737 = 
+PROPANE            = 0.25 = 
+ISOBUTANE          = 0.25 = 
+N-BUTANE           = 0.25 = 
+N-PENTANE          = 0.25 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 52710.6781154 * W/K
+
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 

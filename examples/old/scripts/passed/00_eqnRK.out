@@ -1,0 +1,103 @@
+>> units SI
+>> $thermo = Sim21Thermo.SRK
+pkgName: SRK
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane Propane
+Methane Ethane Propane 
+>> 
+>> Feed = Stream.Stream_Material()
+>> Feed.In.T = 20
+>> Feed.In.P = 3000
+>> Feed.In.MoleFlow = 100
+>> Feed.In.Fraction = 70 20 10
+>> 
+>> valve = Valve.Valve()
+>> Feed.Out -> valve.In
+>> Outlet = Stream.Stream_Material()
+>> valve.Out -> Outlet.In
+>> 
+>> Feed.pPort = Stream.SensorPort('P')
+>> Outlet.pPort = Stream.SensorPort('P')
+>> Feed.flowPort = Stream.SensorPort('MoleFlow')
+>> 
+>> cv_eqn = Equation.Equation()
+>> cd cv_eqn
+/cv_eqn
+>> Equation = Signal P(pIn, pOut) MoleFlow(f)
+Signal Generic(cv)
+
+pIn-pOut = 0.05*f^2
+>> 
+>> cd /
+/
+>> cv_eqn.pIn -> Feed.pPort
+>> cv_eqn.pOut -> Outlet.pPort
+>> cv_eqn.f -> Feed.flowPort
+>> Outlet.Out
+Port: /Outlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 16.228065279897237 = C
+P                  = 2500.0 = kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 2165.3092000000006 = kg/h
+VolumeFlow         = 85.18456246092929 = m3/hr
+StdLiqVolumeFlow   = 4.1595 = m3/hr
+H                  = -80631.12334226654 = kJ/kmol
+Energy             = -2239753.4261740707 = W
+MolecularWeight    = 21.653092 = 
+ZFactor            = 0.8851178760344601 = 
+METHANE            = 0.7 = 
+ETHANE             = 0.2 = 
+PROPANE            = 0.1 = 
+
+>> Feed.In.MoleFlow = 200
+>> Outlet.Out.P
+/Outlet.Out.P= 1000.0 = kPa
+>> 
+>> # now try changing the equation so that cv is a variable
+>> cv_eqn.Equation = Signal P(pIn, pOut) MoleFlow(f)
+Signal Generic(cv)
+
+pIn-pOut = cv*f^2
+>> 
+>> # try back calculating cv
+>> Outlet.Out.P = 2500
+>> cv_eqn.cv
+Port: /cv_eqn.S_cv.In + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+Generic   = 0.0125 = 
+
+>> 
+>> # change feed flow again
+>> Feed.In.MoleFlow = 100
+>> cv_eqn.cv
+Port: /cv_eqn.S_cv.In + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+Generic   = 0.05 = 
+
+>> 
+>> # more than one expression is allowed in an Equation op
+>> cv_eqn.Equation = Signal P(pIn, pOut) MoleFlow(f)
+Signal Generic(cv) DP(deltaP)
+
+deltaP = pIn - pOut
+deltaP = cv*f^2
+>> 
+>> cv_eqn.cv
+Port: /cv_eqn.S_cv.In + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+Generic   = 0.05 = 
+
+>> Outlet.Out.P = None
+>> cv_eqn.deltaP = 400
+>> 
+>> cv_eqn.cv
+Port: /cv_eqn.S_cv.In + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+Generic   = 0.04 = 
+
+>> Outlet.Out.P
+/Outlet.Out.P= 2600.0 = kPa
+>> 

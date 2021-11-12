@@ -34,7 +34,7 @@ setup(
     description="Open source simulator for typical process/chemical/refinery engineering applications with rigorous thermodynamics",
     entry_points={
         'console_scripts': [
-            'sim21=sim21.cli:main',
+            'sim21=sim21.old.cli:main',
         ],
     },
     install_requires=requirements,

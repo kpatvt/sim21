@@ -1,0 +1,751 @@
+>> # Heat exchanger test
+>> units SI
+>> 
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + WATER
+WATER 
+>> 
+>> 
+>> # lets have some streams for this test
+>> hotInlet = Stream.Stream_Material()
+>> coldInlet = Stream.Stream_Material()
+>> hotOutlet = Stream.Stream_Material()
+>> coldOutlet = Stream.Stream_Material()
+>> 
+>> 
+>> cd hotInlet.In
+/hotInlet.In
+>> Fraction = 1.0
+>> T = 300 C
+>> P = 101
+>> MoleFlow = 800
+>> 
+>> 
+>> cd /coldInlet.In
+/coldInlet.In
+>> Fraction
+WATER                       = None
+
+>> Fraction = 1.0
+>> #VapFrac = 0
+>> P = 101
+>> MoleFlow = 1000
+>> 
+>> cd /
+/
+>> exch = Heater.MultiSidedHeatExchangerOp()
+>> exch
+Operation: exch = sim21.old.unitop.Heater.MultiSidedHeatExchangerOp
+Port: In0 = sim21.old.solver.Ports.Port_Material (/exch.side0.In)
+Port: In1 = sim21.old.solver.Ports.Port_Material (/exch.side1.In)
+Port: Out0 = sim21.old.solver.Ports.Port_Material (/exch.side0.Out)
+Port: Out1 = sim21.old.solver.Ports.Port_Material (/exch.side1.Out)
+Port: DeltaP0 = sim21.old.solver.Ports.Port_Signal (/exch.side0.DeltaP)
+Port: DeltaT0 = sim21.old.solver.Ports.Port_Signal (/exch.side0.DeltaT)
+Port: DeltaP1 = sim21.old.solver.Ports.Port_Signal (/exch.side1.DeltaP)
+Port: DeltaT1 = sim21.old.solver.Ports.Port_Signal (/exch.side1.DeltaT)
+Port: UA0_1 = sim21.old.solver.Ports.Port_Signal (/exch.heatTransfer0_1.UA)
+Port: DeltaT0_1_In = sim21.old.solver.Ports.Port_Signal (/exch.heatTransfer0_1.DeltaT_In)
+Port: DeltaT0_1_Out = sim21.old.solver.Ports.Port_Signal (/exch.heatTransfer0_1.DeltaT_Out)
+Child: heatTransfer0_1 = sim21.old.unitop.Heater._HeatTransfer
+Child: side0 = sim21.old.unitop.Heater._Side
+Child: side1 = sim21.old.unitop.Heater._Side
+Parameter: Ignored = None
+Parameter: AvSolutionMethods = NewtonRaphson Secant Broyden
+Parameter: MaxNumIterations = 20
+Parameter: MaxError = 1e-05
+Parameter: DampingFactor = 1.0
+Parameter: SolutionMethod = NewtonRaphson
+Parameter: MinimizeError = True
+Parameter: TryToRestart = False
+Parameter: TryLastConverged = True
+Parameter: MonitorConvergence = 1
+Parameter: FreqJacobianMsg = 10
+Parameter: NumberSegments = 1
+Parameter: NumberSides = 2
+Parameter: IsCounterCurrent0 = False
+Parameter: IsCounterCurrent1 = True
+Parameter: ReferenceSide = 0
+Parameter: TrackPhaseChange = 0
+Parameter: BaseForSegments = Energy
+>> 
+>> cd exch
+/exch
+>> DeltaP0 = 0.0
+>> DeltaP1 = 0.0
+>> 
+>> cd /
+/
+>> coldInlet.Out -> exch.In1
+>> exch.Out1 -> coldOutlet.In
+>> hotInlet.Out -> exch.In0
+>> exch.Out0 -> hotOutlet.In
+>> 
+>> 
+>> #spec UA and coldInlet.T
+>> exch.UA0_1 = 8288.42280702
+>> coldInlet.In.T = 413.15 K
+Calculating Jacobian for /exch
+/exch Iteration 1 Max Error 0.075675
+Calculating Jacobian for /exch
+/exch Iteration 2 Max Error 0.000217
+Calculating Jacobian for /exch
+Converged /exch in 3 iterations
+>> 
+>> units sim42
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = 413.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 33787.53338549287 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -237968.04547811794 = kJ/kmol
+Energy             = -66102234.85503277 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9934269087429596 = 
+WATER              = 1.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 483.157812082101 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 39605.7702469476 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -235523.9239614024 = kJ/kmol
+Energy             = -65423312.211500674 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9957645169302983 = 
+WATER              = 1.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 573.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 37649.695332520314 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -232316.4765901208 = kJ/kmol
+Energy             = -51625883.686693504 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9974482464289851 = 
+WATER              = 1.0 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 487.48086841401886 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 31971.557593348778 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -235371.6284860152 = kJ/kmol
+Energy             = -52304806.3302256 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9958717672431537 = 
+WATER              = 1.0 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 8288.42280702 * W/K
+
+>> 
+>> exch.IsCounterCurrent1 = 0
+Calculating Jacobian for /exch
+/exch Iteration 1 Max Error 2.986671
+Calculating Jacobian for /exch
+/exch Iteration 2 Max Error 2.177501
+Calculating Jacobian for /exch
+/exch Iteration 3 Max Error 0.352028
+Calculating Jacobian for /exch
+/exch Iteration 4 Max Error 0.004621
+Calculating Jacobian for /exch
+/exch Iteration 5 Max Error 0.000114
+Calculating Jacobian for /exch
+Converged /exch in 6 iterations
+>> 
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = 413.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 33787.53338549287 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -237968.04547811794 = kJ/kmol
+Energy             = -66102234.85503277 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9934269087429596 = 
+WATER              = 1.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 474.4243297932913 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 38880.98329567492 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -235831.08006235107 = kJ/kmol
+Energy             = -65508633.35065308 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9955371605159989 = 
+WATER              = 1.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 573.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 37649.695332520314 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -232316.4765901208 = kJ/kmol
+Energy             = -51625883.686693504 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9974482464289851 = 
+WATER              = 1.0 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 498.35802708602716 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 32693.322463335608 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -234987.6833598294 = kJ/kmol
+Energy             = -52219485.191073194 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9961272067108304 = 
+WATER              = 1.0 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 8288.42280702 * W/K
+
+>> 
+>> #This should not be accepted
+>> exch.IsCounterCurrent0 = 1
+Can't set parameter IsCounterCurrent0 to value 1
+Error processing command:
+<class 'sim21.old.solver.Error.SimError'>
+Can't set parameter IsCounterCurrent0 to value 1
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1986, in Equal
+    raise e
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1983, in Equal
+    lhsObj.SetValue(rhsDesc, calcStatus)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\UnitOperations.py", line 1974, in SetValue
+    self.unitOp.SetParameterValue(self.name, value)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\Heater.py", line 2745, in SetParameterValue
+    super(MultiSidedHeatExchangerOp, self).SetParameterValue(paramName, value)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\UnitOperations.py", line 1243, in SetParameterValue
+    raise Error.SimError('CantSetParameter', (paramName, str(value)))
+
+
+>> exch.IsCounterCurrent0
+/exch.IsCounterCurrent0 = False 
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = 413.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 33787.53338549287 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -237968.04547811794 = kJ/kmol
+Energy             = -66102234.85503277 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9934269087429596 = 
+WATER              = 1.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 474.4243297932913 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 38880.98329567492 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -235831.08006235107 = kJ/kmol
+Energy             = -65508633.35065308 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9955371605159989 = 
+WATER              = 1.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 573.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 37649.695332520314 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -232316.4765901208 = kJ/kmol
+Energy             = -51625883.686693504 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9974482464289851 = 
+WATER              = 1.0 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 498.35802708602716 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 32693.322463335608 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -234987.6833598294 = kJ/kmol
+Energy             = -52219485.191073194 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9961272067108304 = 
+WATER              = 1.0 = 
+
+>> 
+>> exch.ReferenceSide = 1
+Converged /exch in 0 iterations
+>> exch.ReferenceSide
+/exch.ReferenceSide = 1 
+>> exch.IsCounterCurrent0
+/exch.IsCounterCurrent0 = False 
+>> exch.IsCounterCurrent1
+/exch.IsCounterCurrent1 = False 
+>> 
+>> exch.IsCounterCurrent0 = 1
+Calculating Jacobian for /exch
+/exch Iteration 1 Max Error 0.075867
+Calculating Jacobian for /exch
+/exch Iteration 2 Max Error 0.000231
+Calculating Jacobian for /exch
+Converged /exch in 3 iterations
+>> exch.IsCounterCurrent0
+/exch.IsCounterCurrent0 = True 
+>> exch.IsCounterCurrent1
+/exch.IsCounterCurrent1 = False 
+>> 
+>> exch.ReferenceSide = 0
+Converged /exch in 0 iterations
+>> exch.ReferenceSide
+/exch.ReferenceSide = 0 
+>> exch.IsCounterCurrent0
+/exch.IsCounterCurrent0 = False 
+>> exch.IsCounterCurrent1
+/exch.IsCounterCurrent1 = True 
+>> 
+>> exch.NumberSides = 5
+>> exch.ReferenceSide = 4
+>> exch.ReferenceSide
+/exch.ReferenceSide = 4 
+>> exch.IsCounterCurrent0
+/exch.IsCounterCurrent0 = True 
+>> exch.IsCounterCurrent1
+/exch.IsCounterCurrent1 = False 
+>> exch.IsCounterCurrent2
+/exch.IsCounterCurrent2 = False 
+>> exch.IsCounterCurrent3
+/exch.IsCounterCurrent3 = False 
+>> exch.IsCounterCurrent4
+/exch.IsCounterCurrent4 = False 
+>> 
+>> exch.IsCounterCurrent0 = 1
+>> exch.IsCounterCurrent3 = 1
+>> exch.IsCounterCurrent0
+/exch.IsCounterCurrent0 = True 
+>> exch.IsCounterCurrent1
+/exch.IsCounterCurrent1 = False 
+>> exch.IsCounterCurrent2
+/exch.IsCounterCurrent2 = False 
+>> exch.IsCounterCurrent3
+/exch.IsCounterCurrent3 = True 
+>> exch.IsCounterCurrent4
+/exch.IsCounterCurrent4 = False 
+>> 
+>> 
+>> exch.NumberSides = 3
+>> exch.ReferenceSide
+/exch.ReferenceSide = 0 
+>> exch.IsCounterCurrent0
+/exch.IsCounterCurrent0 = False 
+>> exch.IsCounterCurrent1
+/exch.IsCounterCurrent1 = True 
+>> exch.IsCounterCurrent2
+/exch.IsCounterCurrent2 = True 
+>> exch.IsCounterCurrent3
+None
+>> exch.IsCounterCurrent4
+None
+>> 
+>> hold
+>> #Reconnect to different sides
+>> coldInlet.Out -> exch.In0
+>> exch.Out0 -> coldOutlet.In
+>> hotInlet.Out -> exch.In1
+>> exch.Out1 -> hotOutlet.In
+>> go
+>> 
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 413.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 33787.53338549287 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -237968.04547811794 = kJ/kmol
+Energy             = -66102234.85503277 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9934269087429596 = 
+WATER              = 1.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = 573.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 37649.695332520314 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -232316.4765901208 = kJ/kmol
+Energy             = -51625883.686693504 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9974482464289851 = 
+WATER              = 1.0 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 8288.42280702 * W/K
+
+>> 
+>> 
+>> exch.NumberSegments = 3
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 413.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 33787.53338549287 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -237968.04547811794 = kJ/kmol
+Energy             = -66102234.85503277 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9934269087429596 = 
+WATER              = 1.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = 573.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 37649.695332520314 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -232316.4765901208 = kJ/kmol
+Energy             = -51625883.686693504 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9974482464289851 = 
+WATER              = 1.0 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = 1.0 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 8288.42280702 * W/K
+
+>> 
+>> exch.NumberSides = 2
+Calculating Jacobian for /exch
+/exch Iteration 1 Max Error 0.356238
+Calculating Jacobian for /exch
+/exch Iteration 2 Max Error 0.010557
+Calculating Jacobian for /exch
+/exch Iteration 3 Max Error 0.000106
+Calculating Jacobian for /exch
+Converged /exch in 4 iterations
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 413.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 33787.53338549287 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -237968.04547811794 = kJ/kmol
+Energy             = -66102234.85503277 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9934269087429596 = 
+WATER              = 1.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 483.18629772410395 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 39608.13384702575 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -235522.92100439564 = kJ/kmol
+Energy             = -65423033.61233213 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9957652347879418 = 
+WATER              = 1.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = 573.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 37649.695332520314 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -232316.4765901208 = kJ/kmol
+Energy             = -51625883.686693504 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9974482464289851 = 
+WATER              = 1.0 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 487.4453006834737 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 31969.196988991014 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -235372.88218227366 = kJ/kmol
+Energy             = -52305084.92939415 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9958708985788944 = 
+WATER              = 1.0 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 8288.42280702 * W/K
+
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+Converged /RootClone.exch in 0 iterations
+>> cd /Rootclone
+Cannot cd to object Rootclone
+Error processing command:
+<class 'sim21.cli.CommandInterface.CmdError'>
+Cannot cd to object Rootclone
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 334, in ProcessCommand
+    return commands[lhsDesc](self, remaining)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 438, in Cd
+    raise CmdError('CMDCDInvalidObject', toDesc)
+
+
+>> coldInlet.Out
+Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side0.In
+VapFrac            = 1.0 = 
+T                  = 413.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 33787.53338549287 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -237968.04547811794 = kJ/kmol
+Energy             = -66102234.85503277 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9934269087429596 = 
+WATER              = 1.0 = 
+
+>> coldOutlet.Out
+Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 483.18629772410395 = K
+P                  = 101.0 = kPa
+MoleFlow           = 1000.0000000000001 = kgmole/h
+MassFlow           = 18015.280000000002 = kg/h
+VolumeFlow         = 39608.13384702575 = m3/hr
+StdLiqVolumeFlow   = 18.07 = m3/hr
+H                  = -235522.92100439564 = kJ/kmol
+Energy             = -65423033.61233213 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9957652347879418 = 
+WATER              = 1.0 = 
+
+>> hotInlet.Out
+Port: /hotInlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /exch.side1.In
+VapFrac            = 1.0 = 
+T                  = 573.15 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 37649.695332520314 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -232316.4765901208 = kJ/kmol
+Energy             = -51625883.686693504 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9974482464289851 = 
+WATER              = 1.0 = 
+
+>> hotOutlet.Out
+Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 487.4453006834737 = K
+P                  = 101.0 = kPa
+MoleFlow           = 800.0 = kgmole/h
+MassFlow           = 14412.224 = kg/h
+VolumeFlow         = 31969.196988991014 = m3/hr
+StdLiqVolumeFlow   = 14.456 = m3/hr
+H                  = -235372.88218227366 = kJ/kmol
+Energy             = -52305084.92939415 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 0.9958708985788944 = 
+WATER              = 1.0 = 
+
+>> exch.UA0_1
+Port: /exch.heatTransfer0_1.UA + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+UA   = 8288.42280702 * W/K
+

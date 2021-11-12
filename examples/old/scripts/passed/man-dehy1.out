@@ -1,0 +1,358 @@
+>> #dehydration plant
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + WATER NITROGEN CARBON_DIOXIDE METHANE ETHANE PROPANE ISOBUTANE N-BUTANE ISOPENTANE
+WATER NITROGEN CARBON DIOXIDE METHANE ETHANE PROPANE ISOBUTANE N-BUTANE ISOPENTANE 
+>> thermo + N-PENTANE N-HEXANE N-OCTANE BENZENE TOLUENE ETHYLBENZENE O-XYLENE TRIETHYLENE_GLYCOL
+N-PENTANE N-HEXANE N-OCTANE BENZENE TOLUENE ETHYLBENZENE O-XYLENE TRIETHYLENE GLYCOL 
+>> 
+>> units Field
+>> 
+>> #define feed to dehydration plant
+>> Feed = Stream.Stream_Material()
+>> Feed.In.MoleFlow = 100
+>> Feed.In.Fraction = 0.0022 0.0041 0.0186 0.8954 0.0469 0.0161 0.0043 0.0053 0.0021 0.0016 0.0022 .0016 0.000256 0.00018 0.000100 0.000095 0.0
+>> 
+>> Feed.In.T = 120
+>> Feed.In.P = 1000
+>> Feed.In
+Port: /Feed.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 120.0 * F
+P                  = 1000.0000000000001 * psia
+MoleFlow           = 100.0 * lbmole/h
+MassFlow           = 1869.294769037123 = lb/h
+VolumeFlow         = 0.14955095083301054 = ft3/s
+StdLiqVolumeFlow   = 0.017135317803793328 = ft3/s
+H                  = -35707.89719799 = Btu/lbmol
+Energy             = -3570189.2522865357 = Btu/hr
+MolecularWeight    = 18.692947690371227 = 
+ZFactor            = 0.8654549948775475 = 
+WATER              = 0.002197734136105675 * 
+NITROGEN           = 0.004095777253651485 * 
+CARBON DIOXIDE     = 0.018580843150711613 * 
+METHANE            = 0.8944777933950098 * 
+ETHANE             = 0.04685169590152553 * 
+PROPANE            = 0.016083417996046075 * 
+ISOBUTANE          = 0.004295571266024729 * 
+N-BUTANE           = 0.005294541327890944 * 
+ISOPENTANE         = 0.0020978371299190533 * 
+N-PENTANE          = 0.0015983520989859455 * 
+N-HEXANE           = 0.002197734136105675 * 
+N-OCTANE           = 0.0015983520989859455 * 
+BENZENE            = 0.0002557363358377513 * 
+TOLUENE            = 0.00017981461113591887 * 
+ETHYLBENZENE       = 9.989700618662159e-05 * 
+O-XYLENE           = 9.490215587729052e-05 * 
+TRIETHYLENE GLYCOL = 0.0 * 
+
+>> 
+>> Lean = Stream.Stream_Material()
+>> Lean.In.T = 130.0022
+>> Lean.In.P = 1000
+>> Lean.In.MoleFlow = 5
+>> Lean.In.Fraction = 0.14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.86
+>> Lean.In
+Port: /Lean.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 130.00220000000002 * F
+P                  = 1000.0000000000001 * psia
+MoleFlow           = 5.0 * lbmole/h
+MassFlow           = 658.3545959999999 = lb/h
+VolumeFlow         = 0.00316594395022758 = ft3/s
+StdLiqVolumeFlow   = 0.0026225736931686327 = ft3/s
+H                  = -311915.4218923394 = Btu/lbmol
+Energy             = -1559314.849440553 = Btu/hr
+MolecularWeight    = 131.6709192 = 
+ZFactor            = 0.36021243264730557 = 
+WATER              = 0.14 * 
+NITROGEN           = 0.0 * 
+CARBON DIOXIDE     = 0.0 * 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+ISOBUTANE          = 0.0 * 
+N-BUTANE           = 0.0 * 
+ISOPENTANE         = 0.0 * 
+N-PENTANE          = 0.0 * 
+N-HEXANE           = 0.0 * 
+N-OCTANE           = 0.0 * 
+BENZENE            = 0.0 * 
+TOLUENE            = 0.0 * 
+ETHYLBENZENE       = 0.0 * 
+O-XYLENE           = 0.0 * 
+TRIETHYLENE GLYCOL = 0.86 * 
+
+>> 
+>> dehy = Tower.Tower()
+>> dehy.Stage_0 + 10
+>> 
+>> cd dehy.Stage_0
+/dehy.Stage_0
+>> v = Tower.VapourDraw()
+>> v.Port.P = 995
+>> estT = Tower.Estimate('T')
+>> estT.Value = 130
+>> lFeed = Tower.Feed()
+>> /Lean.Out -> lFeed.Port
+>> 
+>> cd ../Stage_11
+/dehy.Stage_11
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 1000
+>> estT = Tower.Estimate('T')
+>> estT.Value = 120
+>> vFeed = Tower.Feed()
+>> /Feed.Out -> vFeed.Port
+>> 
+>> cd ..
+/dehy
+>> /dryGas = Stream.Stream_Material()
+>> /Rich = Stream.Stream_Material()
+>> 
+>> /dryGas.In -> Stage_0.v.Port
+>> /Rich.In -> Stage_11.l.Port
+>> 
+>> InitKPower = 0  # says to use combined feed composition and est T and P on each stage to get initial Ks
+>> TryToSolve = 1
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.039810
+/dehy Inner Error 0.028940
+/dehy Inner Error 0.014424
+/dehy Inner Error 0.013670
+Step size too small - Exiting inner loop
+/dehy Iteration 1 Outer Error 0.551936
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.101410
+/dehy Inner Error 0.101108
+/dehy Inner Error 0.099873
+/dehy Inner Error 0.099280
+/dehy Inner Error 0.097919
+/dehy Inner Error 0.097195
+Step size too small - Exiting inner loop
+/dehy Iteration 2 Outer Error 0.889049
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.518471
+/dehy Inner Error 0.417792
+/dehy Inner Error 0.332331
+/dehy Inner Error 0.332038
+/dehy Inner Error 0.186352
+Step size too small - Exiting inner loop
+/dehy Iteration 3 Outer Error 0.473026
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.169580
+/dehy Inner Error 0.167664
+/dehy Inner Error 0.166667
+/dehy Inner Error 0.166407
+/dehy Inner Error 0.166319
+/dehy Inner Error 0.166275
+Step size too small - Exiting inner loop
+/dehy Iteration 4 Outer Error 5.934967
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 2.793908
+/dehy Inner Error 2.767918
+/dehy Inner Error 2.664811
+/dehy Inner Error 2.378297
+/dehy Inner Error 1.666754
+Step size too small - Exiting inner loop
+/dehy Iteration 5 Outer Error 11.284709
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+Could not invert Jacobian in /dehy
+/dehy failed to converge in 5 iterations - error = 11.284709
+>> 
+>> Stage_0.v.Port
+Port: /dehy.VapourDraw_0_v + sim21.old.solver.Ports.Port_Material
+Connected to: /dryGas.In
+VapFrac            = None
+T                  = None
+P                  = 995.0 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = None
+NITROGEN           = None
+CARBON DIOXIDE     = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-OCTANE           = None
+BENZENE            = None
+TOLUENE            = None
+ETHYLBENZENE       = None
+O-XYLENE           = None
+TRIETHYLENE GLYCOL = None
+
+>> Stage_11.l.Port
+Port: /dehy.LiquidDraw_11_l + sim21.old.solver.Ports.Port_Material
+Connected to: /Rich.In
+VapFrac            = None
+T                  = None
+P                  = 1000.0000000000001 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = None
+NITROGEN           = None
+CARBON DIOXIDE     = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-OCTANE           = None
+BENZENE            = None
+TOLUENE            = None
+ETHYLBENZENE       = None
+O-XYLENE           = None
+TRIETHYLENE GLYCOL = None
+
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+/RootClone.dehy Inner Error 47.220273
+/RootClone.dehy Inner Error 47.144269
+/RootClone.dehy Inner Error 46.961136
+/RootClone.dehy Inner Error 46.953931
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 1 Outer Error 6.762748
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 2 Outer Error 4.385084
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.706363
+/RootClone.dehy Inner Error 0.706324
+/RootClone.dehy Inner Error 0.705961
+/RootClone.dehy Inner Error 0.705955
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 3 Outer Error 11.852816
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.310424
+/RootClone.dehy Inner Error 0.297356
+/RootClone.dehy Inner Error 0.281411
+/RootClone.dehy Inner Error 0.276252
+/RootClone.dehy Inner Error 0.262586
+/RootClone.dehy Inner Error 0.246626
+/RootClone.dehy Inner Error 0.243537
+/RootClone.dehy Inner Error 0.208278
+/RootClone.dehy Inner Error 0.204115
+/RootClone.dehy Inner Error 0.181041
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 4 Outer Error 7.167651
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.138455
+/RootClone.dehy Inner Error 0.135236
+/RootClone.dehy Inner Error 0.125239
+/RootClone.dehy Inner Error 0.124496
+Step size too small - Exiting inner loop
+/RootClone.dehy Iteration 5 Outer Error 3.573950
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+/RootClone.dehy Inner Error 0.259547
+Inner loop is not changing significantly - exiting
+/RootClone.dehy Iteration 6 Outer Error 1.763236
+Calculating Jacobian for /RootClone.dehy
+Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
+Could not invert Jacobian in /RootClone.dehy
+/RootClone.dehy failed to converge in 6 iterations - error = 1.763236
+>> cd /RootClone.dehy
+/RootClone.dehy
+>> Stage_0.v.Port
+Port: /RootClone.dehy.VapourDraw_0_v + sim21.old.solver.Ports.Port_Material
+Connected to: /RootClone.dryGas.In
+VapFrac            = None
+T                  = None
+P                  = 995.0 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = None
+NITROGEN           = None
+CARBON DIOXIDE     = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-OCTANE           = None
+BENZENE            = None
+TOLUENE            = None
+ETHYLBENZENE       = None
+O-XYLENE           = None
+TRIETHYLENE GLYCOL = None
+
+>> Stage_11.l.Port
+Port: /RootClone.dehy.LiquidDraw_11_l + sim21.old.solver.Ports.Port_Material
+Connected to: /RootClone.Rich.In
+VapFrac            = None
+T                  = None
+P                  = 1000.0000000000001 * psia
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+WATER              = None
+NITROGEN           = None
+CARBON DIOXIDE     = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+ISOBUTANE          = None
+N-BUTANE           = None
+ISOPENTANE         = None
+N-PENTANE          = None
+N-HEXANE           = None
+N-OCTANE           = None
+BENZENE            = None
+TOLUENE            = None
+ETHYLBENZENE       = None
+O-XYLENE           = None
+TRIETHYLENE GLYCOL = None
+
+>> 

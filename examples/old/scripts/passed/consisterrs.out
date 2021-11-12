@@ -1,0 +1,307 @@
+>> #Play with consistency errors
+>> 
+>> 
+>> s = Stream.Stream_Material()
+>> s2 = Stream.Stream_Material()
+>> s3 = Stream.Stream_Material()
+>> 
+>> s.In.T = 11
+>> s.In.P = 11
+>> s.In.MoleFlow = 3
+>> 
+>> s2.In.T = 22
+>> s2.In.P = 222
+>> 
+>> #Create a Consist error
+>> s.Out -> s2.In
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> s.In.MoleFlow =
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+/s2.In.P: 11 Vs 222
+
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> s.In.MoleFlow = 4
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+/s.Out.P: 222 Vs 11
+
+ConsistencyError: /s2.In - T 284.15 vs 295.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s2.In - T 284.15 vs 295.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> 
+>> #Get rid of Consist error
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+/s.Out.P: 222 Vs 11
+
+>> s.Out ->
+>> 
+>> #Shouldn't make a difference the order of connections
+>> s2.In -> s.Out
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> s.Out ->
+>> 
+>> 
+>> #A solve will not be triggered in both sides, but the const error should still be passed on
+>> s.In.MoleFlow =
+>> s2.In -> s.Out
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s.Out - T 295.15 vs 284.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> 
+>> #Anythins should still pass the message of consist errors
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+
+>> cd /s
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+
+/s
+>> cd /
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+
+/
+>> 
+>> 
+>> #This should clear the consist error message
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s.Out.P: 222 Vs 11
+
+>> s2.In ->
+>> 
+>> 
+>> #Put it back
+>> s.Out -> s2.In
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+
+ConsistencyError: /s2.In - T 284.15 vs 295.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s2.In - T 284.15 vs 295.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> 
+>> #Reconnect. Consist error message should go away
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+
+>> s.Out -> s3.In
+>> 
+>> #Put it back
+>> s.Out -> s2.In
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+
+ConsistencyError: /s2.In - T 284.15 vs 295.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s2.In - T 284.15 vs 295.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> 
+>> s3.Out.T = 33
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+
+>> s3.Out.P = 333
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+
+>> 
+>> 
+>> #Reconnect, but now a new consist error should get created
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s2.In.P: 11 Vs 222
+
+>> s.Out -> s3.In
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+ConsistencyError: /s3.In - T 284.15 vs 306.15
+Error processing command:
+<class 'sim21.old.solver.Error.ConsistencyError'>
+ConsistencyError: /s3.In - T 284.15 vs 306.15
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+    self.root.Solve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+    self.InnerSolve()
+
+  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+    raise Error.ConsistencyError(self._consistencyErrorStack[0])
+
+
+>> 
+>> 
+>> # The consistency error messages should get stored too
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+>> # Will not support this .s42 pickled file feature.
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+>> # store consisterrs.s42
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+>> 
+>> #Clear and errors should go away
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+>> # clear
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+>> 
+>> # recall and errors should come back
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+>> # recall consisterrs.s42
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+
+>> # cd /
+The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
+/s3.In.P: 11 Vs 333
+

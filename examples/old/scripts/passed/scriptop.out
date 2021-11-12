@@ -1,0 +1,170 @@
+>> units SI
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane Propane
+Methane Ethane Propane 
+>> 
+>> Feed = Stream.Stream_Material()
+>> Feed.In.T = 20
+>> Feed.In.P = 3000
+>> Feed.In.MoleFlow = 100
+>> Feed.In.Fraction = 70 20 10
+>> 
+>> 
+>> valve = Flowsheet.SubFlowsheet('read cv_valve.sop')
+Processing cv_valve.sop
+>> read cv_valve.sop
+>> inlet = Stream.Stream_Material()
+>> 
+>> valve = Valve.Valve()
+>> inlet.Out -> valve.In
+>> outlet = Stream.Stream_Material()
+>> valve.Out -> outlet.In
+>> 
+>> inlet.portP = Stream.SensorPort('P')
+>> outlet.portP = Stream.SensorPort('P')
+>> inlet.flowPort = Stream.SensorPort('MoleFlow')
+>> 
+>> cv_eqn = Equation.Equation()
+>> cd cv_eqn
+/valve.cv_eqn
+>> Equation = Signal P(pIn, pOut) MoleFlow(f)
+Signal Generic(cv) DP(deltaP)
+
+pIn-pOut = cv*f^2
+deltaP = pIn-pOut
+>> 
+>> cd ..
+/valve
+>> cv_eqn.pIn -> inlet.portP
+>> cv_eqn.pOut -> outlet.portP
+>> cv_eqn.f -> inlet.flowPort
+>> 
+>> inlet.In @ In
+>> outlet.Out @ Out
+>> cv_eqn.cv @ Cv
+>> cv_eqn.deltaP @ DeltaP
+
+>> Feed.Out -> valve.In
+>> Outlet = Stream.Stream_Material()
+>> valve.Out -> Outlet.In
+>> valve.Cv = 0.05
+>> 
+>> Outlet.Out
+Port: /Outlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 16.228065279897237 = C
+P                  = 2500.0 = kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 2165.3092000000006 = kg/h
+VolumeFlow         = 85.18456246092929 = m3/hr
+StdLiqVolumeFlow   = 4.1595 = m3/hr
+H                  = -80631.12334226654 = kJ/kmol
+Energy             = -2239753.4261740707 = W
+MolecularWeight    = 21.653092 = 
+ZFactor            = 0.8851178760344601 = 
+METHANE            = 0.7 = 
+ETHANE             = 0.2 = 
+PROPANE            = 0.1 = 
+
+>> Feed.In.MoleFlow = 200
+>> Outlet.Out
+Port: /Outlet.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 4.158064272963543 = C
+P                  = 1000.0 = kPa
+MoleFlow           = 200.0 = kgmole/h
+MassFlow           = 4330.6184 = kg/h
+VolumeFlow         = 437.17093905713006 = m3/hr
+StdLiqVolumeFlow   = 8.318999999999999 = m3/hr
+H                  = -80631.12334226654 = kJ/kmol
+Energy             = -4479506.852348141 = W
+MolecularWeight    = 21.653092 = 
+ZFactor            = 0.9480355094341084 = 
+METHANE            = 0.7 = 
+ETHANE             = 0.2 = 
+PROPANE            = 0.1 = 
+
+>> 
+>> hx = Heater.HeatExchanger('read heatexdp.sop')
+Processing heatexdp.sop
+>> read heatexdp.sop
+>> # need to stick in streams to get flow and delta p from
+>> coldIn = Stream.Stream_Material()
+>> coldIn.portF = Stream.SensorPort('MoleFlow')
+>> 
+>> coldIn.Out -> ColdSide.In
+>> 
+>> # change the alias to the interposed stream
+>> coldIn.In @ InC
+>> 
+>> deltaPSig = Stream.Stream_Signal()
+>> deltaPSig.In -> ColdSide.DeltaP
+>> deltaPSig.clone = Stream.ClonePort()
+>> deltaPSig.Out @ DeltaPC
+>> 
+>> cv_eqn = Equation.Equation()
+>> cd cv_eqn
+/hx.cv_eqn
+>> Equation = Signal MoleFlow(f)
+Signal Generic(cv) DP(deltaP)
+
+deltaP = cv*f^2
+>> 
+>> cd ..
+/hx
+>> cv_eqn.deltaP -> deltaPSig.clone
+>> cv_eqn.f -> coldIn.portF
+>> 
+>> cv_eqn.cv @ CvC
+
+>> 
+>> hx.InC -> Outlet.Out
+>> hx.InC.P
+/hx.coldIn.In.P= 1000.0 | kPa
+>> hx.OutC.P
+/hx.ColdSide.Out.P= None
+>> hx.CvC = .01
+>> hx.OutC.P
+/hx.ColdSide.Out.P= 600.0 = kPa
+>> hx.CvC = None
+>> hx.OutC.P = 800
+>> hx.CvC
+Port: /hx.cv_eqn.S_cv.In + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+Generic   = 0.005 = 
+
+>> 
+>> copy /valve /Outlet /Feed /hx
+Copied /valve /Outlet /Feed /hx to the clipboard
+>> paste /
+Pasting /valve /Outlet /Feed /hx
+Pasted /valve /Outlet /Feed /hx as /valveClone /OutletClone /FeedClone /hxClone
+>> 
+>> OutletClone.Out
+Port: /OutletClone.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /hxClone.coldIn.In
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = 200.0 = kgmole/h
+MassFlow           = 4330.618400000001 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 8.319 = m3/hr
+H                  = -80631.12334226654 = kJ/kmol
+Energy             = -4479506.852348141 = W
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.7 = 
+ETHANE             = 0.2 = 
+PROPANE            = 0.1 = 
+
+>> hxClone.CvC
+Port: /hxClone.cv_eqn.S_cv.In + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+Generic   = None
+

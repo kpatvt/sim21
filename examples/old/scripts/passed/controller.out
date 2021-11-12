@@ -1,0 +1,225 @@
+>> # hysim 1.5 tutorial problem
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane Propane
+Methane Ethane Propane 
+>> thermo + isoButane n-Butane isoPentane n-Pentane n-Hexane
+isoButane n-Butane isoPentane n-Pentane n-Hexane 
+>> thermo + n-Heptane n-Octane
+n-Heptane n-Octane 
+>> 
+>> Feed = Sensor.PropertySensor()
+>> Feed.SignalType = T
+>> Feed.In.T = 60
+>> Feed.In.P = 600
+>> Feed.In.MoleFlow = 144
+>> Feed.In.Fraction = 70 20 10 9 8 7 6 5 4 3
+>> 
+>> # Inlet separator
+>> Sep = Flash.SimpleFlash()
+>> Feed.Out -> Sep.In
+>> 
+>> Gas-Gas = Heater.HeatExchanger()
+>> cd Gas-Gas
+/Gas-Gas
+>> DeltaPH = 10
+>> DeltaPC = 10
+>> DeltaTHI = 10
+>> cd ..
+/
+>> 
+>> Sep.Vap -> Gas-Gas.InH
+>> 
+>> Chiller = Heater.HeatExchanger()
+>> cd Chiller
+/Chiller
+>> DeltaPH = 10
+>> DeltaPC = .1
+>> DeltaTCI = 5  # 5 degree approach on the hot end
+>> cd ..
+/
+>> 
+>> Gas-Gas.OutH -> Chiller.InH
+>> 
+>> LTS = Flash.SimpleFlash()
+>> 
+>> LTS-Feed = Sensor.PropertySensor()
+>> LTS-Feed.SignalType = T
+>> LTS-Feed.In.T = 0
+>> 
+>> Chiller.OutH -> LTS-Feed.In
+>> LTS-Feed.Out -> LTS.In
+>> 
+>> LTS.Vap -> Gas-Gas.InC
+>> 
+>> # dew point check - use mole balance to copy material of the sales gas
+>> DP = Balance.BalanceOp()
+>> cd DP
+/DP
+>> NumberStreamsInMat = 1
+>> NumberStreamsOutMat = 1
+>> BalanceType = 2 # Mole balance
+>> cd ..
+/
+>> 
+>> Gas-Gas.OutC -> DP.In0
+>> DP.Out0.P = 815
+>> DP.Out0.VapFrac = 1.
+>> DewPoint = Sensor.PropertySensor()
+>> DewPoint.SignalType = T
+>> DP.Out0 -> DewPoint.In
+>> 
+>> # mix flash liquid streams
+>> Mixer = Mixer.Mixer()
+>> Sep.Liq0 -> Mixer.In0
+>> LTS.Liq0 -> Mixer.In1
+>> 
+>> Tower_Feed = Sensor.PropertySensor()
+>> Tower_Feed.SignalType = T
+>> Mixer.Out -> Tower_Feed.In
+>> 
+>> Mixer.Out
+Port: /Mixer.Out + sim21.old.solver.Ports.Port_Material
+Connected to: /Tower_Feed.In
+VapFrac            = 0.014500871145639471 = 
+T                  = 56.22327118609449 = F
+P                  = 580.0 = psia
+MoleFlow           = 78.67816287776871 = lbmole/h
+MassFlow           = 4092.1608111359023 = lb/h
+VolumeFlow         = 0.03416656317515388 = ft3/s
+StdLiqVolumeFlow   = 0.030001304508956647 = ft3/s
+H                  = -60266.93593101679 = Btu/lbmol
+Energy             = -4740894.433766085 = Btu/hr
+MolecularWeight    = 52.01139250662629 = 
+ZFactor            = 0.1637764123244329 = 
+METHANE            = 0.20843582162416702 = 
+ETHANE             = 0.15292416695736746 = 
+PROPANE            = 0.10890649288686108 = 
+ISOBUTANE          = 0.10939441681056075 = 
+N-BUTANE           = 0.0994315170132001 = 
+ISOPENTANE         = 0.08940392442367405 = 
+N-PENTANE          = 0.07689228970276822 = 
+N-HEXANE           = 0.06439387339321741 = 
+N-HEPTANE          = 0.05155094294188805 = 
+N-OCTANE           = 0.038666554246295795 = 
+
+>> DewPoint.Out
+Port: /DewPoint.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 1.2347813297228925 = F
+P                  = 815.0000000000001 = psia
+MoleFlow           = 65.32183712223129 = lbmole/h
+MassFlow           = 1247.6948913993087 = lb/h
+VolumeFlow         = 0.07715422316571703 = ft3/s
+StdLiqVolumeFlow   = 0.011274889443232437 = ft3/s
+H                  = -34823.30354255161 = Btu/lbmol
+Energy             = -2274339.6425477783 = Btu/hr
+MolecularWeight    = 19.10073179761619 = 
+ZFactor            = 0.7006221291778665 = 
+METHANE            = 0.8356557374145296 = 
+ETHANE             = 0.1262961666186588 = 
+PROPANE            = 0.024069780549518815 = 
+ISOBUTANE          = 0.007957657692140354 = 
+N-BUTANE           = 0.004433233637442872 = 
+ISOPENTANE         = 0.0009867300801355882 = 
+N-PENTANE          = 0.0005321795972990826 = 
+N-HEXANE           = 6.170794066538353e-05 = 
+N-HEPTANE          = 6.193072675348567e-06 = 
+N-OCTANE           = 6.133969340952101e-07 = 
+
+>> LTS-Feed.In.T
+/LTS-Feed.In.T= 0.0 * F
+>> Feed.In.T
+/Feed.In.T= 60.00000000000003 * F
+>> 
+>> hold  # keep things in limbo while controllers are set up
+>> 
+>> #remove previous fixed values
+>> LTS-Feed.In.T = None
+>> Feed.In.T = None
+>> 
+>> DPControl = Controller.Controller()
+>> DPControl.In -> DewPoint.Signal
+>> DPControl.Out -> LTS-Feed.Signal
+ControllerConnect ('/DPControl.Out', '/LTS-Feed.Signal')
+ControllerConnect ('/DPControl.Out', '/LTS-Feed.Signal')
+ControllerConnect ('/DPControl.Out', '/LTS-Feed.Signal')
+>> DPControl.Out = 0
+>> DPControl.Target = 15
+>> DPControl.StepSize = 10
+>> 
+>> TLiqCont = Controller.Controller()
+>> TLiqCont.In -> Tower_Feed.Signal
+>> TLiqCont.Out -> Feed.Signal
+ControllerConnect ('/TLiqCont.Out', '/Feed.Signal')
+ControllerConnect ('/TLiqCont.Out', '/Feed.Signal')
+ControllerConnect ('/TLiqCont.Out', '/Feed.Signal')
+>> TLiqCont.Out = 60
+>> TLiqCont.Target = 50
+>> TLiqCont.StepSize = 10
+>> 
+>> go
+Controller solver for / calculating derivative 0
+Controller solver for / calculating derivative 1
+Controller solver for / error - 0.025647
+Controller solver for / error - 0.001221
+Controller solver for / error - 0.000067
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+>> 
+>> Mixer.Out.T
+/Mixer.Out.T= 50.0101428360662 = F
+>> DewPoint.Out.T
+/DewPoint.Out.T= 15.00189217713842 = F
+>> LTS-Feed.In.T
+/LTS-Feed.In.T= 13.551739433050894 = F
+>> Feed.In.T
+/Feed.In.T= 51.59096738980157 = F
+>> Tower_Feed.In.T
+/Tower_Feed.In.T= 50.0101428360662 | F
+>> 
+>> cd /RootClone
+/RootClone
+>> Mixer.Out.T
+/RootClone.Mixer.Out.T= 50.0101428360662 = F
+>> DewPoint.Out.T
+/RootClone.DewPoint.Out.T= 15.00189217713842 = F
+>> LTS-Feed.In.T
+/RootClone.LTS-Feed.In.T= 13.551739433050894 = F
+>> Feed.In.T
+/RootClone.Feed.In.T= 51.59096738980157 = F
+>> Tower_Feed.In.T
+/RootClone.Tower_Feed.In.T= 50.0101428360662 | F
+>> 
+>> cd /
+/
+>> 
+>> # now let's make it fail
+>> TLiqCont.Minimum = 53
+>> TLiqCont.Out = 60
+Controller solver for / error - 0.007520
+Controller solver for / error - 0.007520
+Controller solver for / calculating derivative 0
+Controller solver for / calculating derivative 1
+Controller solver for / error - 0.007578
+Controller solver for / failed to converge
+>> hold  # so it doesn't try and solve on each command
+>> 
+>> Feed.In.T
+/Feed.In.T= 53.00000000000001 = F
+>> DewPoint.In.T
+/DewPoint.In.T= 14.945744650455598 | F
+>> Tower_Feed.In.T
+/Tower_Feed.In.T= 51.309851505014194 | F
+>> 
+>> #Make sure disconnecting doesn't screw things up
+>> #TLiqCont.In ->
+>> #Tower_Feed.Signal =  10.0

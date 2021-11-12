@@ -1,0 +1,89 @@
+>> $thermo = Sim21Thermo.SRK
+pkgName: SRK
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + methane water 'Carbon dioxide'
+methane water Carbon dioxide 
+>> 
+>> thermo.hypo1 = HypoCompound NormalBoilingPoint = 100 C
+MolecularWeight =  108.0
+LiquidDensity@298 = 880.0 kg/m3
+hypoName: hypo1*
+hypoDesc: (['Name', 'CreationInfo'], ['hypo1*', '\nNormalBoilingPoint = 373.15\nMolecularWeight = 108.0\nLiquidDensity@298 = 880.0'], [], [], ['NormalBoilingPoint', 'MolecularWeight', 'LiquidDensity@298'], [373.15, 108.0, 880.0])
+>> thermo.hypo2 = HypoCompound NormalBoilingPoint = 373.15
+MolecularWeight =  18
+LiquidDensity@298 = 980.0
+hypoName: hypo2*
+hypoDesc: (['Name', 'CreationInfo'], ['hypo2*', '\nNormalBoilingPoint = 373.15\nMolecularWeight = 18\nLiquidDensity@298 = 980.0'], [], [], ['NormalBoilingPoint', 'MolecularWeight', 'LiquidDensity@298'], [373.15, 18.0, 980.0])
+>> thermo.hypo1*
+>> 
+>> strm = Stream.Stream_Material()
+>> strm.In.Fraction = 0.1 0.2 0.3 0.4 0.0
+>> strm.In.P = 100
+>> strm.In.T = 300
+>> strm.In
+Port: /strm.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 300.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = -246770.62257899466 = kJ/kmol
+Energy             = None
+MolecularWeight    = 61.610152 = 
+ZFactor            = 0.9988051534493969 = 
+METHANE            = 0.1 * 
+WATER              = 0.2 * 
+CARBON DIOXIDE     = 0.3 * 
+HYPO1*             = 0.4 * 
+HYPO2*             = 0.0 * 
+
+>> 
+>> # move methane last
+>> thermo.METHANE >> $
+>> strm.In
+Port: /strm.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 300.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = -246770.62257899463 = kJ/kmol
+Energy             = None
+MolecularWeight    = 61.610152 = 
+ZFactor            = 0.9988051534493969 = 
+WATER              = 0.2 * 
+CARBON DIOXIDE     = 0.3 * 
+HYPO1*             = 0.4 * 
+HYPO2*             = 0.0 * 
+METHANE            = 0.1 * 
+
+>> 
+>> # move hypo1 first
+>> thermo.hypo1* >> WATER
+>> strm.In
+Port: /strm.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 300.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow is invalid
+H                  = -246770.62257899457 = kJ/kmol
+Energy             = None
+MolecularWeight    = 61.610152 = 
+ZFactor            = 0.9988051534493969 = 
+HYPO1*             = 0.4 * 
+WATER              = 0.2 * 
+CARBON DIOXIDE     = 0.3 * 
+HYPO2*             = 0.0 * 
+METHANE            = 0.1 * 
+

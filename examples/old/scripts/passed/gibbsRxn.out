@@ -1,0 +1,131 @@
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> # Peng-Robinson
+>> thermo + METHANE WATER CARBON_MONOXIDE CARBON_DIOXIDE HYDROGEN
+METHANE WATER CARBON MONOXIDE CARBON DIOXIDE HYDROGEN 
+>> 
+>> units SI
+>> 
+>> # A Equilibrum reactor - isothermal, no pressure drop
+>> rxn = EquiliReactor.EquilibriumReactor()
+>> cd /rxn
+/rxn
+>> In.P = 100
+>> In.T = 1000 K
+>> In.MoleFlow = 5
+>> In.Fraction = 0.4 0.6 0 0 0
+>> #In.Fraction = 1.95862592784202e-002 9.93197945149974e-002 0.175637702766885 3.57267224820499e-002 0.669729520957648
+>> Out.P = 100
+>> Out.T = 1000 K
+>> 'OutQ = 100000
+None
+>> 
+>> NumberRxn = 2
+>> 
+>> Rxn0.Formula = Shift:1*3+1*4-!2-1*1
+>> Rxn1.Formula = reforming:1*2+3*4-1*1-!0
+>> 
+>> CalculationOption = 2
+Converged /rxn.itnRxn
+>> 
+>> In
+Port: /rxn.itnRxn.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 726.85 * C
+P                  = 100.0 * kPa
+MoleFlow           = 5.0 * kgmole/h
+MassFlow           = 86.13076 = kg/h
+VolumeFlow         = 415.7037661118343 = m3/hr
+StdLiqVolumeFlow   = 0.12529 = m3/hr
+H                  = -143914.94038798084 = kJ/kmol
+Energy             = -199881.86164997338 = W
+MolecularWeight    = 17.226152 = 
+ZFactor            = 0.9999534190080175 = 
+METHANE            = 0.4 * 
+WATER              = 0.6 * 
+CARBON MONOXIDE    = 0.0 * 
+CARBON DIOXIDE     = 0.0 * 
+HYDROGEN           = 0.0 * 
+
+>> Out
+Port: /rxn.itnRxn.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 726.85 * C
+P                  = 100.0 * kPa
+MoleFlow           = 8.660691445360609 = kgmole/h
+MassFlow           = 86.13076 = kg/h
+VolumeFlow         = 720.2155014030773 = m3/hr
+StdLiqVolumeFlow   = 0.2597835654118915 = m3/hr
+H                  = -36794.92668750244 = kJ/kmol
+Energy             = -88519.30744308977 = W
+MolecularWeight    = 9.945021196447177 = 
+ZFactor            = 1.0001743514188797 = 
+METHANE            = 0.01958899914516371 = 
+WATER              = 0.09818941665079407 = 
+CARBON MONOXIDE    = 0.17447564039272526 = 
+CARBON DIOXIDE     = 0.036863804526628234 = 
+HYDROGEN           = 0.6708821392846888 = 
+
+>> OutQ
+Port: /rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
+Connected to: None
+Energy   = -111362.5542068836 = W
+
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+>> cd /RootClone.rxn
+/RootClone.rxn
+>> In
+Port: /RootClone.rxn.itnRxn.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = 726.85 * C
+P                  = 100.0 * kPa
+MoleFlow           = 5.0 * kgmole/h
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.4 * 
+WATER              = 0.6 * 
+CARBON MONOXIDE    = 0.0 * 
+CARBON DIOXIDE     = 0.0 * 
+HYDROGEN           = 0.0 * 
+
+>> Out
+Port: /RootClone.rxn.itnRxn.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = 726.85 * C
+P                  = 100.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+WATER              = None
+CARBON MONOXIDE    = None
+CARBON DIOXIDE     = None
+HYDROGEN           = None
+
+>> OutQ
+Port: /RootClone.rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
+Connected to: None
+Energy   = None
+
+>> 

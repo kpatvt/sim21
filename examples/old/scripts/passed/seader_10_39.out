@@ -1,0 +1,165 @@
+>> # Seader example problem, 10_39 (from 2nd Ed.)
+>> 
+>> units Field
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + METHANE ETHANE PROPANE N-BUTANE N-PENTANE N-DODECANE
+METHANE ETHANE PROPANE N-BUTANE N-PENTANE N-DODECANE 
+>> 
+>> col = Tower.Tower()
+>> col.Stage_0
+Stage_0
+>> col.Stage_0 + 6  # eight stage
+>> 
+>> 
+>> cd col.Stage_0
+/col.Stage_0
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 90
+>> f.Port.P = 400
+>> f.Port.MoleFlow = 250
+>> f.Port.Fraction = 0 0 0 0 0 1
+>> 
+>> v = Tower.VapourDraw()
+>> v.Port.P = 400
+>> #v.Port.T = 120.0
+>> 
+>> cd /
+/
+>> 
+>> 
+>> 
+>> cd col.Stage_3
+/col.Stage_3
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 90
+>> f.Port.P = 400
+>> f.Port.MoleFlow = 165
+>> f.Port.Fraction = 13 3 4 5 5 135
+>> 
+>> cd /
+/
+>> 
+>> 
+>> 
+>> cd col.Stage_6
+/col.Stage_6
+>> 
+>> duty1 = Tower.EnergyFeed(0)
+>> duty1.Port.Energy = 1.250e6
+>> 
+>> cd /
+/
+>> 
+>> 
+>> cd col.Stage_7
+/col.Stage_7
+>> 
+>> f = Tower.Feed()
+>> f.Port.T = 90
+>> f.Port.P = 400
+>> f.Port.MoleFlow = 450
+>> f.Port.Fraction = 360 40 25 15 10 0
+>> 
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 400
+>> 
+>> cd ..
+/col
+>> 
+>> # Damping factor can help with solution, not required
+>> # DampingFactor = 0.9
+>> TryToSolve = 1  # start calculation - turned off by default
+Calculating Jacobian for /col
+/col Inner Error 0.021128
+/col Inner Error 0.009345
+/col Inner Error 0.009021
+/col Inner Error 0.003823
+/col Inner Error 0.001962
+/col Inner Error 0.000585
+/col Inner Error 0.000361
+/col Inner Error 0.000312
+/col Inner Error 0.000170
+/col Inner Error 0.000100
+/col Inner Error 0.000070
+/col Inner Error 0.000018
+/col Inner Error 0.000005
+Inner loop converged
+/col Iteration 1 Outer Error 0.016281
+/col Inner Error 0.004190
+/col Inner Error 0.003272
+/col Inner Error 0.002923
+/col Inner Error 0.000948
+/col Inner Error 0.000103
+/col Inner Error 0.000004
+Inner loop converged
+/col Iteration 2 Outer Error 0.000666
+/col Inner Error 0.002066
+/col Inner Error 0.000417
+/col Inner Error 0.000030
+/col Inner Error 0.000001
+Inner loop converged
+/col Iteration 3 Outer Error 0.000037
+/col Inner Error 0.000085
+/col Inner Error 0.000022
+/col Inner Error 0.000001
+Inner loop converged
+>> 
+>> 
+>> /overhead = Stream.Stream_Material()
+>> /overhead.In -> Stage_0.v.Port
+>> 
+>> /bottoms = Stream.Stream_Material()
+>> /bottoms.In -> Stage_7.l.Port
+>> 
+>> cd ..
+/
+>> 
+>> overhead.Out
+Port: /overhead.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.9999999986255784 = 
+T                  = 94.98239014556185 = F
+P                  = 400.0 = psia
+MoleFlow           = 304.40150753993873 = lbmole/h
+MassFlow           = 5011.028934466377 = lb/h
+VolumeFlow         = 1.1887584780063998 = ft3/s
+StdLiqVolumeFlow   = 0.048593967864975 = ft3/s
+H                  = -32228.08600695164 = Btu/lbmol
+Energy             = -9808628.25964817 = Btu/hr
+MolecularWeight    = 16.461905773606944 = 
+ZFactor            = 0.9447612389598538 = 
+METHANE            = 0.9715365744960036 = 
+ETHANE             = 0.02759336473148882 = 
+PROPANE            = 0.0007927951817028424 = 
+N-BUTANE           = 1.5441205869395878e-05 = 
+N-PENTANE          = 2.440805418545575e-07 = 
+N-DODECANE         = 6.158030439324064e-05 = 
+
+>> bottoms.Out
+Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 71.98255860661183 = F
+P                  = 400.0 = psia
+MoleFlow           = 560.5984924600615 = lbmole/h
+MassFlow           = 71368.12404553364 = lb/h
+VolumeFlow         = 0.4918457040327081 = ft3/s
+StdLiqVolumeFlow   = 0.43711191942737354 = ft3/s
+H                  = -117361.99424152196 = Btu/lbmol
+Energy             = -65781893.23551559 = Btu/hr
+MolecularWeight    = 127.30702098814166 = 
+ZFactor            = 0.22143444474208548 = 
+METHANE            = 0.13782199405171078 = 
+ETHANE             = 0.06172071213712811 = 
+PROPANE            = 0.05129994521626026 = 
+N-BUTANE           = 0.03566777282241736 = 
+N-PENTANE          = 0.0267569854419181 = 
+N-DODECANE         = 0.6867325903305653 = 
+
+>> 
+>> 

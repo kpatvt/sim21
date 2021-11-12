@@ -1,0 +1,139 @@
+>> #ethanol distillation
+>> $thermo = Sim21Thermo.IdealVapLiq
+pkgName: IdealVapLiq
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Ethanol Water
+Ethanol Water 
+>> 
+>> units SI
+>> 
+>> Feed = Stream.Stream_Material()
+>> Feed.In.MoleFlow = 34.43
+>> Feed.In.Fraction = 0.3 0.7
+>> Feed.In.VapFrac = 0.0
+>> Feed.In.P = 101.325
+>> Feed.In
+Port: /Feed.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 * 
+T                  = 90.88404199751949 = C
+P                  = 101.325 * kPa
+MoleFlow           = 34.43 * kgmole/h
+MassFlow           = 910.0271800399998 = kg/h
+VolumeFlow         = 1.1104281015731092 = m3/hr
+StdLiqVolumeFlow   = 1.04161079 = m3/hr
+H                  = -276968.40497408214 = kJ/kmol
+Energy             = -2648895.050904902 = W
+MolecularWeight    = 26.431227999999997 = 
+ZFactor            = 0.00107967700225674 = 
+ETHANOL            = 0.3 * 
+WATER              = 0.7 * 
+
+>> 
+>> Steam = Stream.Stream_Material()
+>> Steam.In.P = 24.7 psia
+>> Steam.In.Fraction = 0 1
+>> Steam.In.MoleFlow = 51.1
+>> Steam.In.VapFrac = 1.0
+>> Steam.In
+Port: /Steam.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 * 
+T                  = 114.17782830225161 = C
+P                  = 170.30049789999998 * kPa
+MoleFlow           = 51.1 * kgmole/h
+MassFlow           = 920.580808 = kg/h
+VolumeFlow         = 966.3131025631951 = m3/hr
+StdLiqVolumeFlow   = 0.923377 = m3/hr
+H                  = -238792.3262471364 = kJ/kmol
+Energy             = -3389524.408674631 = W
+MolecularWeight    = 18.01528 = 
+ZFactor            = 1.0 = 
+ETHANOL            = 0.0 * 
+WATER              = 1.0 * 
+
+>> 
+>> dist = Tower.Tower()
+>> dist.MaxOuterLoops = 40
+>> dist.Stage_0 + 12
+>> cd dist.Stage_0
+/dist.Stage_0
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 101.325
+>> l.Port.MoleFlow = 12.91
+>> #reflux = Tower.RefluxRatioSpec()
+>> #reflux.Port = 3.0
+>> cond = Tower.EnergyFeed(0)
+>> estT = Tower.Estimate('T')
+>> estT.Value = 78
+>> 
+>> cd ../Stage_11
+/dist.Stage_11
+>> f = Tower.Feed()
+>> /Feed.Out -> f.Port
+>> 
+>> cd ../Stage_13
+/dist.Stage_13
+>> l = Tower.LiquidDraw()
+>> l.Port.P = 101.325
+>> f = Tower.Feed()
+>> /Steam.Out -> f.Port
+>> estT = Tower.Estimate('T')
+>> estT.Value = 100
+>> 
+>> cd ..
+/dist
+>> /distillate = Stream.Stream_Material()
+>> /stillage   = Stream.Stream_Material()
+>> /distillate.In -> Stage_0.l.Port
+>> /stillage.In -> Stage_13.l.Port
+>> 
+>> TryToSolve = 1
+Calculating Jacobian for /dist
+Calculating disturbance 10 of 14 in jacobian of /dist
+/dist Inner Error 0.004415
+/dist Inner Error 0.001142
+/dist Inner Error 0.000041
+/dist Inner Error 0.000009
+Inner loop converged
+/dist Iteration 1 Outer Error 0.001855
+/dist Inner Error 0.000424
+/dist Inner Error 0.000123
+/dist Inner Error 0.000009
+Inner loop converged
+/dist Iteration 2 Outer Error 0.000003
+/dist Inner Error 0.000066
+/dist Inner Error 0.000004
+Inner loop converged
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+/RootClone.dist Inner Error 0.000000
+Inner loop converged
+/RootClone.dist Iteration 1 Outer Error 0.000000
+/RootClone.dist Inner Error 0.000011
+/RootClone.dist Inner Error 0.000001
+Inner loop converged
+>> cd /RootClone
+/RootClone
+>> dist.Stage_0.l.Port
+Port: /RootClone.dist.LiquidDraw_0_l + sim21.old.solver.Ports.Port_Material
+Connected to: /RootClone.distillate.In
+VapFrac            = 9.545633581161837e-08 = 
+T                  = 84.66015115500403 = C
+P                  = 101.325 * kPa
+MoleFlow           = 12.91 * kgmole/h
+MassFlow           = 459.9757162380161 = kg/h
+VolumeFlow         = 0.6026786610537226 = m3/hr
+StdLiqVolumeFlow   = 0.5624676890015182 = m3/hr
+H                  = -273636.1942932614 = kJ/kmol
+Energy             = -981289.7967572234 = W
+MolecularWeight    = 35.62941256684865 = 
+ZFactor            = 0.0015899715097510265 = 
+ETHANOL            = 0.6278840803263748 = 
+WATER              = 0.37211591967362534 = 
+

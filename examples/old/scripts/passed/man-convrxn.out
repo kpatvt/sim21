@@ -1,0 +1,83 @@
+>> # conversion reactor example
+>> # calculation of propane adiabatic flame temperature
+>> 
+>> # This example highlights a slightly tricky issue with the Ig Cp correlations
+>> # Once the Cp correlations are extended out of their range, the values can go negative or be unrealistic
+>> 
+>> # This causes an unusual maxima in the enthalpy as a function of T at high temperatures, which causes
+>> # enthalpy searches to fail since the enthalpy is no longer a monotonic function of T.
+>> 
+>> # The current fix in the thermo is to essentially extrapolate outside the valid range for each component
+>> # Is that the best answer aside from getting more IG Cp data at high temperatures? Not sure.
+>> # Without good quality IG Cp data, the calculations at high temp are suspect
+>> 
+>> $thermo = Sim21Thermo.SRK
+pkgName: SRK
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + PROPANE OXYGEN NITROGEN CARBON_DIOXIDE WATER
+PROPANE OXYGEN NITROGEN CARBON DIOXIDE WATER 
+>> 
+>> units SI
+>> 
+>> #create reactor
+>> r = ConvRxn.ConvReactor()
+>> cd /r
+/r
+>> In.P = 1 atm
+>> In.T = 25 C
+>> In.MoleFlow = 1
+>> In.Fraction = 1 6 24 0 0
+>> DeltaP = 0
+>> OutQ = 0
+>> 
+>> #create reaction
+>> NumberRxn = 1
+>> Rxn0.Formula = PropaneAFT:4*WATER+3*"CARBON DIOXIDE"-!PROPANE-5*OXYGEN
+>> 
+>> Out
+Port: /r.RxnHeater.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 1854.4222608664213 = C
+P                  = 101.325 = kPa
+MoleFlow           = 1.032258064516129 = kgmole/h
+MassFlow           = 29.303549032258065 = kg/h
+VolumeFlow         = 180.23785769989559 = m3/hr
+StdLiqVolumeFlow   = 0.036171761290322575 = m3/hr
+H                  = -3280.6327148010073 = kJ/kmol
+Energy             = -940.6832157135505 = W
+MolecularWeight    = 28.387813124999997 = 
+ZFactor            = 1.0001285851214905 = 
+PROPANE            = 0.0 = 
+OXYGEN             = 0.03125 = 
+NITROGEN           = 0.75 = 
+CARBON DIOXIDE     = 0.09375 = 
+WATER              = 0.125 = 
+
+>> 
+>> copy /r
+Copied /r to the clipboard
+>> paste /
+Pasting /r
+Pasted /r as /rClone
+>> /rClone.Out
+Port: /rClone.RxnHeater.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+PROPANE            = None
+OXYGEN             = None
+NITROGEN           = None
+CARBON DIOXIDE     = None
+WATER              = None
+

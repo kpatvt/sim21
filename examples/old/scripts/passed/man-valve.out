@@ -1,0 +1,70 @@
+>> #valve example
+>> $thermo = Sim21Thermo.Peng-Robinson
+pkgName: Peng-Robinson
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + METHANE
+METHANE 
+>> units SI
+>> 
+>> v = Valve.Valve()
+>> v.In.T = 50
+>> v.In.P = 7000.0
+>> v.In.MoleFlow = 100.0
+>> v.In.Fraction = 1.0
+>> 
+>> v.Out
+Port: /v.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = None
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 1604.2459999999999 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 3.5540000000000003 = m3/hr
+H                  = -74698.3225992993 = kJ/kmol
+Energy             = -2074953.4055360917 = W
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 1.0 = 
+
+>> v.Out.P = 500.0
+>> v.Out
+Port: /v.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 22.585428038833243 = C
+P                  = 500.0 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 1604.2459999999999 = kg/h
+VolumeFlow         = 486.2078796055188 = m3/hr
+StdLiqVolumeFlow   = 3.5540000000000003 = m3/hr
+H                  = -74698.3225992993 = kJ/kmol
+Energy             = -2074953.4055360917 = W
+MolecularWeight    = 16.04246 = 
+ZFactor            = 0.9886770602406023 = 
+METHANE            = 1.0 = 
+
+>> 
+>> copy /v
+Copied /v to the clipboard
+>> paste /
+Pasting /v
+Pasted /v as /vClone
+>> /vClone.Out
+Port: /vClone.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 1.0 = 
+T                  = 22.585428038833243 = C
+P                  = 500.0 * kPa
+MoleFlow           = 100.0 = kgmole/h
+MassFlow           = 1604.2459999999999 = kg/h
+VolumeFlow         = 486.2078796055188 = m3/hr
+StdLiqVolumeFlow   = 3.5540000000000003 = m3/hr
+H                  = -74698.3225992993 = kJ/kmol
+Energy             = -2074953.4055360917 = W
+MolecularWeight    = 16.04246 = 
+ZFactor            = 0.9886770602406023 = 
+METHANE            = 1.0 = 
+

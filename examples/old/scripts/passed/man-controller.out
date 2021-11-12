@@ -1,0 +1,194 @@
+>> units SI
+>> $thermo = Sim21Thermo.SRK
+pkgName: SRK
+>> / -> $thermo
+Thermo case attached to a unit operation. / to /thermo
+>> thermo + Methane Ethane Propane n-Butane n-Pentane n-Hexane n-Heptane n-Octane n-Nonane n-Decane
+Methane Ethane Propane n-Butane n-Pentane n-Hexane n-Heptane n-Octane n-Nonane n-Decane 
+>> 
+>> S1 = Stream.Stream_Material()
+>> S1.In.T = 25
+>> S1.In.P = 200
+>> S1.In.MoleFlow = 1000
+>> S1.In.Fraction = 100 10 7 5 4 3 2 1 1 1
+>> S1.In
+Port: /S1.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.9600646014069988 = 
+T                  = 25.0 * C
+P                  = 200.0 * kPa
+MoleFlow           = 1000.0000000000001 * kgmole/h
+MassFlow           = 27138.11373134328 = kg/h
+VolumeFlow         = 11790.748306918533 = m3/hr
+StdLiqVolumeFlow   = 50.23701492537314 = m3/hr
+H                  = -89667.12046073984 = kJ/kmol
+Energy             = -24907533.461316627 = W
+MolecularWeight    = 27.13811373134328 = 
+ZFactor            = 0.951266856675584 = 
+METHANE            = 0.746268656716418 * 
+ETHANE             = 0.07462686567164178 * 
+PROPANE            = 0.05223880597014925 * 
+N-BUTANE           = 0.03731343283582089 * 
+N-PENTANE          = 0.029850746268656716 * 
+N-HEXANE           = 0.022388059701492536 * 
+N-HEPTANE          = 0.014925373134328358 * 
+N-OCTANE           = 0.007462686567164179 * 
+N-NONANE           = 0.007462686567164179 * 
+N-DECANE           = 0.007462686567164179 * 
+
+>> 
+>> Sep = Flash.SimpleFlash()
+>> 
+>> S2 = Stream.Stream_Material()
+>> S3 = Stream.Stream_Material()
+>> 
+>> S1.Out -> Sep.In
+>> Sep.Vap -> S2.In
+>> Sep.Liq0 -> S3.In
+>> 
+>> S1.In
+Port: /S1.In + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.9600646014069988 = 
+T                  = 25.0 * C
+P                  = 200.0 * kPa
+MoleFlow           = 1000.0000000000001 * kgmole/h
+MassFlow           = 27138.11373134328 = kg/h
+VolumeFlow         = 11790.748306918533 = m3/hr
+StdLiqVolumeFlow   = 50.23701492537314 = m3/hr
+H                  = -89667.12046073984 = kJ/kmol
+Energy             = -24907533.461316627 = W
+MolecularWeight    = 27.13811373134328 = 
+ZFactor            = 0.951266856675584 = 
+METHANE            = 0.746268656716418 * 
+ETHANE             = 0.07462686567164178 * 
+PROPANE            = 0.05223880597014925 * 
+N-BUTANE           = 0.03731343283582089 * 
+N-PENTANE          = 0.029850746268656716 * 
+N-HEXANE           = 0.022388059701492536 * 
+N-HEPTANE          = 0.014925373134328358 * 
+N-OCTANE           = 0.007462686567164179 * 
+N-NONANE           = 0.007462686567164179 * 
+N-DECANE           = 0.007462686567164179 * 
+
+>> S2.In
+Port: /S2.In + sim21.old.solver.Ports.Port_Material
+Connected to: /Sep.Vap
+VapFrac            = 1.0 | 
+T                  = 25.0 | C
+P                  = 200.0 | kPa
+MoleFlow           = 960.0645298738427 | kgmole/h
+MassFlow           = 22856.151699751525 | kg/h
+VolumeFlow         = 11784.327485978103 | m3/hr
+StdLiqVolumeFlow   = 44.03572541001883 | m3/hr
+H                  = -83569.85731575385 | kJ/kmol
+Energy             = -22286793.270964816 | W
+MolecularWeight    = 23.8068910875761 | 
+ZFactor            = 0.990296965256948 | 
+METHANE            = 0.7769371526854948 | 
+ETHANE             = 0.07751898635866543 | 
+PROPANE            = 0.053882045547487566 | 
+N-BUTANE           = 0.03755483876174843 | 
+N-PENTANE          = 0.02780736130201809 | 
+N-HEXANE           = 0.01689076048632256 | 
+N-HEPTANE          = 0.006972117318115321 | 
+N-OCTANE           = 0.001615807547196216 | 
+N-NONANE           = 0.0006113319458080026 | 
+N-DECANE           = 0.00020959804714353356 | 
+
+>> S3.In
+Port: /S3.In + sim21.old.solver.Ports.Port_Material
+Connected to: /Sep.Liq0
+VapFrac            = 0.0 | 
+T                  = 25.0 | C
+P                  = 200.0 | kPa
+MoleFlow           = 39.9354701261574 | kgmole/h
+MassFlow           = 4281.962031591764 | kg/h
+VolumeFlow         = 6.417959716098061 | m3/hr
+StdLiqVolumeFlow   = 6.201289515354325 | m3/hr
+H                  = -236247.86867391504 | kJ/kmol
+Energy             = -2620741.5838320805 | W
+MolecularWeight    = 107.2220263856895 | 
+ZFactor            = 0.012965798121116034 | 
+METHANE            = 0.008985858455222352 | 
+ETHANE             = 0.005099138091264194 | 
+PROPANE            = 0.012734675248670986 | 
+N-BUTANE           = 0.03150993869759668 | 
+N-PENTANE          = 0.07897453074270608 | 
+N-HEXANE           = 0.15454531163606092 | 
+N-HEPTANE          = 0.20612479515284382 | 
+N-OCTANE           = 0.14802397556168304 | 
+N-NONANE           = 0.17217196713333788 | 
+N-DECANE           = 0.18182980928061399 | 
+
+>> 
+>> S3.FlowSig = Stream.SensorPort("MoleFlow")
+>> 
+>> S1.TempSig = Stream.SensorPort("T")
+>> 
+>> S3.FlowSig
+Port: /S3.FlowSig + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+MoleFlow   = 39.9354701261574 = kgmole/h
+
+>> S1.TempSig
+Port: /S1.TempSig + sim21.old.solver.Ports.Port_Signal
+Connected to: None
+T   = 25.0 = C
+
+>> 
+>> ctr = Controller.Controller()
+>> ctr.In -> S3.FlowSig
+>> 
+>> # before connecting the Outlet, we should get rid of the value downstream of the controlled
+>> # port.  The controller changes the fixed values in this port and everything else must be
+>> # calculated from it or an inconsistancy will occur
+>> S1.In.T = None
+>> 
+>> ctr.Out -> S1.TempSig
+ControllerConnect ('/ctr.Out', '/S1.TempSig')
+ControllerConnect ('/ctr.Out', '/S1.TempSig')
+ControllerConnect ('/ctr.Out', '/S1.TempSig')
+>> ctr.Out = 25
+>> # note that you could not have assigned ctr.Out until the connection was made as the type of
+>> # signal was not known
+>> 
+>> ctr.Target = 300
+>> ctr.StepSize = 30
+Controller solver for / calculating derivative 0
+Controller solver for / error - 0.224352
+Controller solver for / error - 0.183035
+Controller solver for / error - 0.136391
+Controller solver for / error - 0.080134
+Controller solver for / error - 0.000148
+Controller solver for / error - 0.000061
+>> 
+>> ctr.In
+Port: /ctr.In + sim21.old.solver.Ports.Port_Signal
+Connected to: /S3.FlowSig
+MoleFlow   = 299.93853001524 | kgmole/h
+
+>> ctr.Out
+Port: /ctr.Out + sim21.old.solver.Ports.Port_Signal
+Connected to: /S1.TempSig
+T   = -124.94467348727039 * C
+
+>> 
+>> copy /
+Copied / to the clipboard
+>> paste /
+Pasting /
+Pasted / as /RootClone
+>> 
+>> cd /RootClone
+/RootClone
+>> ctr.In
+Port: /RootClone.ctr.In + sim21.old.solver.Ports.Port_Signal
+Connected to: /RootClone.S3.FlowSig
+MoleFlow   = 299.93853001524 | kgmole/h
+
+>> ctr.Out
+Port: /RootClone.ctr.Out + sim21.old.solver.Ports.Port_Signal
+Connected to: /RootClone.S1.TempSig
+T   = -124.94467348727039 * C
+
