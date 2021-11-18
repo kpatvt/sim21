@@ -1,12 +1,12 @@
 +------------------------+------------+
 | File                   | Time(secs) |
 +------------------------+------------+
-| asu.tst                |   3.1680   |
-| cascade_ref.tst        |   0.4973   |
-| luyben_nat_gas_sep.tst |   1.7169   |
-| simple_refloop.tst     |   0.1280   |
-| steamcycle.tst         |   0.2186   |
-| tealarc.tst            |   0.0272   |
+| asu.tst                |   3.1900   |
+| cascade_ref.tst        |   0.5000   |
+| luyben_nat_gas_sep.tst |   1.9579   |
+| simple_refloop.tst     |   0.1250   |
+| steamcycle.tst         |   0.2188   |
+| tealarc.tst            |   0.0330   |
 |                        |            |
-| TOTAL                  |   5.7560   |
+| TOTAL                  |   6.0247   |
 +------------------------+------------+

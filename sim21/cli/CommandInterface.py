@@ -2059,7 +2059,6 @@ class CommandInterface(object):
 
             return
 
-
         elif not isinstance(lhsObj, Ports.Port):
             raise CmdError('CMDConnectNonPort', lhsObj.GetPath())
 
@@ -2222,7 +2221,8 @@ class CommandInterface(object):
 
         result = obj.type + ': ' + obj.returnMessage
         result += '\nTotal %s points: pointType, P %s, T %s' % (obj.pointCount, unitP.name, unitT.name)
-        if obj.type == 'TH': result += ', H %s' % unitH.name
+        if obj.type == 'TH':
+            result += ', H %s' % unitH.name
         for i in range(obj.pointCount):
             p = unitP.ConvertFromSim42(obj.pValues[i])
             t = unitT.ConvertFromSim42(obj.tValues[i])
@@ -2236,7 +2236,8 @@ class CommandInterface(object):
     def RenderBasicObject(self, obj):
         """produce representation of obj with units"""
         v = obj.GetValue()
-        if v is None: return 'None'
+        if v is None:
+            return 'None'
 
         unit = self.units.GetCurrentUnit(obj.GetType().unitType)
         if unit: v = unit.ConvertFromSim42(v)
