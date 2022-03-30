@@ -13,7 +13,7 @@ from sim21.old.solver.Error import CallBackException
 from sim21.old.solver.Variables import *
 from sim21.old.solver.Messages import MessageHandler
 from sim21.old.uom import units
-from sim21.cli.langs import English
+from sim21.old.cli.langs import English
 
 
 class CmdError(Exception):
@@ -1620,6 +1620,7 @@ class CommandInterface(object):
 
             # Ensure a unique name create, add and add to unitop
             elif isinstance(parent, UnitOperations.UnitOperation):
+                (provider, pkgName) = re.split(r'\.', opTypeDesc, 1)
                 self.root.InfoMessage('CMDObsoleteCommand', (self.commandInProcess, '$thermoname = opTypeDesc'))
                 # Make it a unique global name (at least try to)
                 avThCases = self.thermoAdmin.GetAvThCaseNames(provider)

@@ -6,21 +6,21 @@
 >> s1.In = 100.0
 Could not assign 100.0
 Error processing command:
-<class 'sim21.cli.CommandInterface.CmdError'>
+<class 'sim21.old.cli.CommandInterface.CmdError'>
 Could not assign 100.0
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1988, in Equal
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1989, in Equal
     raise CmdError('CMDCouldNotAssign', rhsDesc)
 
 
@@ -122,24 +122,67 @@ None
 >> 
 >> #Create a new signal with an init script
 >> s2 = Stream.Stream_Signal("SignalType = T")
->> SignalType = T
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> s2.tPort = Stream.ClonePort(1)
 >> s2.tPort = 230.0
+Could not assign 230.0
+Error processing command:
+<class 'sim21.old.cli.CommandInterface.CmdError'>
+Could not assign 230.0
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1989, in Equal
+    raise CmdError('CMDCouldNotAssign', rhsDesc)
+
+
 >> s2.tPort
 Port: /s2.tPort + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 * C
 
 >> s2.In
 Port: /s2.In + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 = C
 
 >> s2.Out
 Port: /s2.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 = C
 
 >> 
 >> #A new clone
@@ -147,22 +190,18 @@ T   = 230.0 = C
 >> s2.tPort
 Port: /s2.tPort + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 * C
 
 >> s2.tPort2
 Port: /s2.tPort2 + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 = C
 
 >> s2.In
 Port: /s2.In + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 = C
 
 >> s2.Out
 Port: /s2.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 = C
 
 >> 
 >> #Delete the new clone
@@ -170,26 +209,49 @@ T   = 230.0 = C
 >> s2.tPort
 Port: /s2.tPort + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 * C
 
 >> s2.tPort2
 None
 >> s2.In
 Port: /s2.In + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 = C
 
 >> s2.Out
 Port: /s2.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-T   = 230.0 = C
 
 >> 
 >> 
 >> #Now lets propagate the types
 >> h = Heater.Heater()
 >> s3 = Stream.Stream_Signal("c = Stream.ClonePort(0)
->> c = Stream.ClonePort(0
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> ctrl = Controller.Controller()
 >> 
@@ -203,9 +265,7 @@ Port: /s3.In + sim21.old.solver.Ports.Port_Signal
 Connected to: None
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: None
@@ -229,9 +289,7 @@ Connected to: /h.DeltaP
 DP   = None
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: None
@@ -256,9 +314,7 @@ Connected to: /h.DeltaP
 DP   = None
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /ctrl.In
@@ -273,21 +329,21 @@ Connected to: /s3.Out
 >> s3.Out = 10.0
 Could not assign 10.0
 Error processing command:
-<class 'sim21.cli.CommandInterface.CmdError'>
+<class 'sim21.old.cli.CommandInterface.CmdError'>
 Could not assign 10.0
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1988, in Equal
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1989, in Equal
     raise CmdError('CMDCouldNotAssign', rhsDesc)
 
 
@@ -302,9 +358,7 @@ Connected to: /h.DeltaP
 DP   = None
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /ctrl.In
@@ -328,10 +382,7 @@ Connected to: /h.DeltaP
 DP   = 10.0 * Kpa
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-DP   = 10.0 = Kpa
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /ctrl.In
@@ -357,10 +408,7 @@ Connected to: /h.DeltaP
 DP   = None
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-DP   = None
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /ctrl.In
@@ -386,10 +434,7 @@ Connected to: /h.DeltaP
 DP   = 5.0 | Kpa
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-DP   = 5.0 = Kpa
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /ctrl.In
@@ -415,10 +460,7 @@ Connected to: None
 DP   = None
 
 >> s3.c
-Port: /s3.c + sim21.old.solver.Ports.Port_Signal
-Connected to: None
-DP   = None
-
+None
 >> s3.Out
 Port: /s3.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /ctrl.In

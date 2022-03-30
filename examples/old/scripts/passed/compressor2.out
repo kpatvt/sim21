@@ -32,7 +32,33 @@ n-BUTANE
 ISOPENTANE 
 >> 
 >> /CP1 = Compressor.CompressorWithCurve("IgnoreCurve = 1")
->> IgnoreCurve = 1
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> '/CP1.In.Fraction' =   .003690036900369  .3690036900369  .3690036900369  .18450184501845  .03690036900369  .03690036900369
 >> '/CP1.In.T' =  80

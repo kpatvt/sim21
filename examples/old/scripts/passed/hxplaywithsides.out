@@ -167,7 +167,7 @@ UA   = 8288.42280702 * W/K
 
 >> 
 >> exch.IsCounterCurrent1 = 0
-C:\Users\kpatv\Code\sim21\sim21\old\solver\EquationSolver.py:699: RuntimeWarning: invalid value encountered in double_scalars
+C:\Users\Kiran\Projects\sim21\sim21\old\solver\EquationSolver.py:699: RuntimeWarning: invalid value encountered in double_scalars
   delta = (bound2 - bound1) / (nuVals - 1)
 Calculating Jacobian for /exch
 /exch Iteration 1 Max Error 2.986671
@@ -258,31 +258,31 @@ Can't set parameter IsCounterCurrent0 to value 1
 Error processing command:
 <class 'sim21.old.solver.Error.SimError'>
 Can't set parameter IsCounterCurrent0 to value 1
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1986, in Equal
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1987, in Equal
     raise e
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1983, in Equal
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1984, in Equal
     lhsObj.SetValue(rhsDesc, calcStatus)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\UnitOperations.py", line 1974, in SetValue
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 1974, in SetValue
     self.unitOp.SetParameterValue(self.name, value)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\Heater.py", line 2745, in SetParameterValue
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\Heater.py", line 2745, in SetParameterValue
     super(MultiSidedHeatExchangerOp, self).SetParameterValue(paramName, value)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\UnitOperations.py", line 1243, in SetParameterValue
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 1243, in SetParameterValue
     raise Error.SimError('CantSetParameter', (paramName, str(value)))
 
 
@@ -664,21 +664,21 @@ Converged /RootClone.exch in 0 iterations
 >> cd /Rootclone
 Cannot cd to object Rootclone
 Error processing command:
-<class 'sim21.cli.CommandInterface.CmdError'>
+<class 'sim21.old.cli.CommandInterface.CmdError'>
 Cannot cd to object Rootclone
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 334, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 334, in ProcessCommand
     return commands[lhsDesc](self, remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 438, in Cd
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 438, in Cd
     raise CmdError('CMDCDInvalidObject', toDesc)
 
 

@@ -1047,22 +1047,22 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
 Error processing command:
 <class 'sim21.old.solver.Error.SimError'>
 Cannot remove a stage with a feed from a pump around unless the pump around is removed too. Feed is in stage 10, pump around from stage 7
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1585, in Minus
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1585, in Minus
     lhsObj.Minus(remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\Tower.py", line 272, in Minus
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\Tower.py", line 272, in Minus
     raise SimError('TowerPARemovalError', (firstStage, pa.stage.number))
 
 
@@ -1071,22 +1071,22 @@ Cannot remove a stage with a feed from a pump around unless the pump around is r
 Error processing command:
 <class 'sim21.old.solver.Error.SimError'>
 Cannot remove a stage with a feed from a pump around unless the pump around is removed too. Feed is in stage 10, pump around from stage 7
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1585, in Minus
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1585, in Minus
     lhsObj.Minus(remaining)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\Tower.py", line 279, in Minus
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\Tower.py", line 279, in Minus
     raise SimError('TowerPARemovalError', (lastStage, pa.stage.number))
 
 

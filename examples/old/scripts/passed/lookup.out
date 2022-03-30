@@ -122,19 +122,19 @@ ConsistencyError: /lkp.Signal1 - T 276.15 vs 277.15
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /lkp.Signal1 - T 276.15 vs 277.15
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 

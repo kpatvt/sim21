@@ -1,4 +1,4 @@
-from sim21.cli.CommandInterface import run
+from sim21.old.cli.CommandInterface import run
 import sys
 import os
 import pathlib

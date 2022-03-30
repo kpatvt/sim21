@@ -1,5 +1,5 @@
 import os
-from sim21.cli import CommandInterface
+from sim21.old.cli import CommandInterface
 
 
 def run_file(source):
@@ -10,4 +10,4 @@ def run_file(source):
     os.chdir(orig_path)
 
 
-run_file(open('scripts/flowsheets/asu.tst'))
+run_file(open('scripts/passed/seader_10_4.tst'))

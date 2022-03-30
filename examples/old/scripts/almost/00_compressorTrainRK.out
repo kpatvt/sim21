@@ -35,7 +35,33 @@ hypoDesc: (['Name', 'CreationInfo'], ['BP500*', '\nMolecularWeight = 500.00\nNor
 >> '/Inlet_Gas.In.MoleFlow' = 70775
 >> 
 >> M1 = Mixer.Mixer("NumberStreamsIn = 2")
->> NumberStreamsIn = 2
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> /Inlet_Gas.Out -> /M1.In0
 >> '/M1.In1.T' ~= 25
@@ -46,7 +72,33 @@ Changed state of port /M1.In1 to 1 (0=Normal port; 1=Recycle port)
 >> S1 = Stream.Stream_Material()
 >> /M1.Out -> /S1.In
 >> Sep1 = Flash.SimpleFlash("LiquidPhases = 1")
->> LiquidPhases = 1
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> /S1.Out -> /Sep1.In
 >> S2 = Stream.Stream_Material()
@@ -68,7 +120,33 @@ Changed state of port /M1.In1 to 1 (0=Normal port; 1=Recycle port)
 >> '/S5.In.T' = 20
 >> '/S5.In.T' = 60
 >> M2 = Mixer.Mixer("NumberStreamsIn = 2")
->> NumberStreamsIn = 2
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> /S5.Out -> /M2.In0
 >> '/M2.In1.T' ~= 25
@@ -79,7 +157,33 @@ Changed state of port /M2.In1 to 1 (0=Normal port; 1=Recycle port)
 >> S6 = Stream.Stream_Material()
 >> /M2.Out -> /S6.In
 >> Sep2 = Flash.SimpleFlash("LiquidPhases = 1")
->> LiquidPhases = 1
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> /S6.Out -> /Sep2.In
 >> S7 = Stream.Stream_Material()
@@ -100,7 +204,33 @@ Changed state of port /M2.In1 to 1 (0=Normal port; 1=Recycle port)
 >> '/S10.In.T' = 60
 >> CP3 = Compressor.Compressor()
 >> M3 = Mixer.Mixer("NumberStreamsIn = 2")
->> NumberStreamsIn = 2
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> /S10.Out -> /M3.In0
 >> '/M3.In1.T' ~= 25
@@ -111,7 +241,33 @@ Changed state of port /M3.In1 to 1 (0=Normal port; 1=Recycle port)
 >> S11 = Stream.Stream_Material()
 >> /M3.Out -> /S11.In
 >> Sep3 = Flash.SimpleFlash("LiquidPhases = 1")
->> LiquidPhases = 1
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> /S11.Out -> /Sep3.In
 >> S12 = Stream.Stream_Material()
@@ -130,7 +286,33 @@ Changed state of port /M3.In1 to 1 (0=Normal port; 1=Recycle port)
 >> '/S15.In.T' = 60
 >> '/C3.DeltaP.DP' = 100
 >> Sep4 = Flash.SimpleFlash("LiquidPhases = 1")
->> LiquidPhases = 1
+Error processing command:
+<class 'TypeError'>
+'module' object is not callable
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+    interface.ProcessCommandStream(inp, out, err)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+    cmdResult = self.ProcessCommandString(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+    cmdResult = self.ProcessCommand(cmd)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+    return operators[operator](self, lhsObj, dequote(remaining))
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+    self.CreateObject(parentObj, createName, rhsDesc)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+    parent.AddObject(newObj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+    self.AddUnitOperation(obj, name)
+
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+    cmdproc = CommandInterface(uOp)
+
 
 >> /S15.Out -> /Sep4.In
 >> S16 = Stream.Stream_Material()
@@ -151,43 +333,43 @@ Iteration 9 -> max Error 5.757204 in /M3.In1.Energy
 Error processing command:
 <class 'sim21.old.provider.error.FlashConvergenceError'>
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
     op.Solve()
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\unitop\Flash.py", line 141, in Solve
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\Flash.py", line 141, in Solve
     results = thAdmin.Flash(prov, case, flashPort.GetCompounds(), flashPort.GetProperties(),
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\thermo\ThermoAdmin.py", line 678, in Flash
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\thermo\ThermoAdmin.py", line 678, in Flash
     return self.thDict[provider].Flash(thName, cmps, properties, liqPhases, propList, self, nuSolids, stdVolRefT)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\thermo\Sim21Thermo.py", line 1412, in Flash
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\thermo\Sim21Thermo.py", line 1412, in Flash
     prov_flash_results = perform_flash(hnd, bulkComp, given_vars, given_vals)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\thermo\Sim21Thermo.py", line 102, in perform_flash
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\thermo\Sim21Thermo.py", line 102, in perform_flash
     prov_flash_results = hnd.flash(**flash_params)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\provider\base.py", line 230, in flash
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\provider\base.py", line 230, in flash
     return self.flash_press_prop(flow_sum_basis, flow_sum_value, frac_basis, frac_value, press, 'enthalpy',
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\provider\base.py", line 296, in flash_press_prop
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\provider\base.py", line 296, in flash_press_prop
     results = flash_press_prop_2phase(self, press, prop_flash_name, prop_value,
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\provider\flash\io\press_prop.py", line 428, in flash_press_prop_2phase
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\provider\flash\io\press_prop.py", line 428, in flash_press_prop_2phase
     return flash_press_prop_1phase(provider, 'vap',
 
-  File "C:\Users\kpatv\Code\sim21\sim21\old\provider\flash\io\press_prop.py", line 647, in flash_press_prop_1phase
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\provider\flash\io\press_prop.py", line 647, in flash_press_prop_1phase
     raise FlashConvergenceError
 
 

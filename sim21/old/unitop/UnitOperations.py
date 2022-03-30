@@ -993,7 +993,7 @@ class UnitOperation(object):
         #         pass
 
         if uOp.initScript is not None and isinstance(uOp.initScript, str):
-            from sim21.cli.CommandInterface import CommandInterface
+            from sim21.old.cli import CommandInterface
             cmdproc = CommandInterface(uOp)
             inString = io.StringIO(uOp.initScript)
             outString = io.StringIO()

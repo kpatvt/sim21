@@ -1158,45 +1158,45 @@ PROPANE            = 0.4999728078710293 =
 >> /col.Stage_0.v = Tower.VapourDraw()
 Could not assign Tower.VapourDraw()
 Error processing command:
-<class 'sim21.cli.CommandInterface.CmdError'>
+<class 'sim21.old.cli.CommandInterface.CmdError'>
 Could not assign Tower.VapourDraw()
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1988, in Equal
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1989, in Equal
     raise CmdError('CMDCouldNotAssign', rhsDesc)
 
 
 >> /col.Stage_0.v.MoleFlow = 0.0
 Could not assign 0.0
 Error processing command:
-<class 'sim21.cli.CommandInterface.CmdError'>
+<class 'sim21.old.cli.CommandInterface.CmdError'>
 Could not assign 0.0
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 3560, in run
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1806, in Equal
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
     self.CreateObject(parentObj, createName, rhsDesc)
 
-  File "C:\Users\kpatv\Code\sim21\sim21\cli\CommandInterface.py", line 1679, in CreateObject
+  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1680, in CreateObject
     raise CmdError('CMDCouldNotAssign', opTypeDesc)
 
 
