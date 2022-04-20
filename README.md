@@ -88,11 +88,3 @@ Next Steps
 
 * Fully implement basic thermodynamic provider with component database
 * Massive code cleanup (Use snake_case instead of CamelCase, Exception Handling)
-
-Credits
--------
-
-* Kiran Pashikanti <kpatvt@gmail.com>
-
-* Cookiecutter: https://github.com/audreyr/cookiecutter
-* audreyr/cookiecutter-pypackage: https://github.com/audreyr/cookiecutter-pypackage

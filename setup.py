@@ -31,7 +31,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description="Open source simulator for typical process/chemical/refinery engineering applications with rigorous thermodynamics",
+    description="Simulator for typical process/chemical/refinery engineering applications with rigorous thermodynamics",
     entry_points={
         'console_scripts': [
             'sim21=sim21.old.cli:main',

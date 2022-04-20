@@ -687,3 +687,408 @@ N-HEPTANE          = 0.31579 *
 N-OCTANE           = 0.15789 * 
 N-NONANE           = 0.26316 * 
 
+>> /mixer1.Out
+Port: /mixer1.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 33.34747399999998 * C
+P                  = 100.0 = kPa
+MoleFlow           = 972.2935527381751 = kgmole/h
+MassFlow           = 103140.42752171433 = kg/h
+VolumeFlow         = 154.83426960770473 = m3/hr
+StdLiqVolumeFlow   = 150.0 * m3/hr
+H                  = -232262.25397515818 = kJ/kmol
+Energy             = -62729747.80124525 = W
+MolecularWeight    = 106.0795139814 = 
+ZFactor            = 0.0062489722936076575 = 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25784 * 
+N-HEPTANE          = 0.32313 * 
+N-OCTANE           = 0.16119 * 
+N-NONANE           = 0.25784 * 
+
+>> 
+>> 
+>> 
+>> /mixer1.In1.VolumeFlow =
+>> /mixer1.In1.StdLiqVolumeFlow = 40
+>> /mixer1.In0
+Port: /mixer1.In0 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 30.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = 124.72768072266506 = kgmole/h
+MassFlow           = 13372.708223323907 = kg/h
+VolumeFlow         = 20.0 * m3/hr
+StdLiqVolumeFlow   = 19.40419710922681 = m3/hr
+H                  = -235100.25552620436 = kJ/kmol
+Energy             = -8145419.335858163 = W
+MolecularWeight    = 107.21524 = 
+ZFactor            = 0.0063617323152194705 = 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25 * 
+N-HEPTANE          = 0.25 * 
+N-OCTANE           = 0.25 * 
+N-NONANE           = 0.25 * 
+
+>> /mixer1.In1
+Port: /mixer1.In1 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 110.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = 40.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+N-NONANE           = None
+
+>> /mixer1.In2
+Port: /mixer1.In2 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 40.0 * C
+P                  = 105.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = -230771.0854515631 = kJ/kmol
+Energy             = None
+MolecularWeight    = 106.1078472986 = 
+ZFactor            = 0.006467500276323923 = 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.26316 * 
+N-HEPTANE          = 0.31579 * 
+N-OCTANE           = 0.15789 * 
+N-NONANE           = 0.26316 * 
+
+>> /mixer1.Out
+Port: /mixer1.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 33.34747399999998 * C
+P                  = 100.0 = kPa
+MoleFlow           = 972.2935527381751 = kgmole/h
+MassFlow           = 103140.42752171433 = kg/h
+VolumeFlow         = 154.83426960770473 = m3/hr
+StdLiqVolumeFlow   = 150.0 * m3/hr
+H                  = -232262.25397515818 = kJ/kmol
+Energy             = -62729747.80124525 = W
+MolecularWeight    = 106.0795139814 = 
+ZFactor            = 0.0062489722936076575 = 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25784 * 
+N-HEPTANE          = 0.32313 * 
+N-OCTANE           = 0.16119 * 
+N-NONANE           = 0.25784 * 
+
+>> 
+>> 
+>> /mixer1.In0.VolumeFlow =
+>> /mixer1.In0.StdLiqVolumeFlow = 20
+>> /mixer1.In0
+Port: /mixer1.In0 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 30.0 * C
+P                  = 100.0 * kPa
+MoleFlow           = 128.55742499477736 = kgmole/h
+MassFlow           = 13783.315174597054 = kg/h
+VolumeFlow         = 20.61409692698894 = m3/hr
+StdLiqVolumeFlow   = 20.0 * m3/hr
+H                  = -235100.25552620436 = kJ/kmol
+Energy             = -8395523.185017502 = W
+MolecularWeight    = 107.21524 = 
+ZFactor            = 0.0063617323152194705 = 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25 * 
+N-HEPTANE          = 0.25 * 
+N-OCTANE           = 0.25 * 
+N-NONANE           = 0.25 * 
+
+>> /mixer1.In1
+Port: /mixer1.In1 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 110.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = 40.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+N-NONANE           = None
+
+>> /mixer1.In2
+Port: /mixer1.In2 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 40.0 * C
+P                  = 105.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = -230771.0854515631 = kJ/kmol
+Energy             = None
+MolecularWeight    = 106.1078472986 = 
+ZFactor            = 0.006467500276323923 = 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.26316 * 
+N-HEPTANE          = 0.31579 * 
+N-OCTANE           = 0.15789 * 
+N-NONANE           = 0.26316 * 
+
+>> /mixer1.Out
+Port: /mixer1.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = 0.0 = 
+T                  = 33.34747399999998 * C
+P                  = 100.0 = kPa
+MoleFlow           = 972.2935527381751 = kgmole/h
+MassFlow           = 103140.42752171433 = kg/h
+VolumeFlow         = 154.83426960770473 = m3/hr
+StdLiqVolumeFlow   = 150.0 * m3/hr
+H                  = -232262.25397515818 = kJ/kmol
+Energy             = -62729747.80124525 = W
+MolecularWeight    = 106.0795139814 = 
+ZFactor            = 0.0062489722936076575 = 
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25784 * 
+N-HEPTANE          = 0.32313 * 
+N-OCTANE           = 0.16119 * 
+N-NONANE           = 0.25784 * 
+
+>> 
+>> 
+>> #Deleting temperatures should still be able to balance moles
+>> /mixer1.Out.T =
+>> /mixer1.In2.T =
+>> /mixer1.In0.T =
+>> /mixer1.In0
+Port: /mixer1.In0 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 100.0 * kPa
+MoleFlow           = 128.55742499477736 = kgmole/h
+MassFlow           = 13783.315174597054 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 20.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25 * 
+N-HEPTANE          = 0.25 * 
+N-OCTANE           = 0.25 * 
+N-NONANE           = 0.25 * 
+
+>> /mixer1.In1
+Port: /mixer1.In1 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 110.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = 40.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+N-NONANE           = None
+
+>> /mixer1.In2
+Port: /mixer1.In2 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 105.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.26316 * 
+N-HEPTANE          = 0.31579 * 
+N-OCTANE           = 0.15789 * 
+N-NONANE           = 0.26316 * 
+
+>> /mixer1.Out
+Port: /mixer1.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 100.0 = kPa
+MoleFlow           = 972.2935527381751 = kgmole/h
+MassFlow           = 103140.42752171433 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 150.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25784 * 
+N-HEPTANE          = 0.32313 * 
+N-OCTANE           = 0.16119 * 
+N-NONANE           = 0.25784 * 
+
+>> 
+>> 
+>> #Changing specs should work
+>> /mixer1.In0.StdLiqVolumeFlow =
+>> /mixer1.In2.StdLiqVolumeFlow = 90
+>> /mixer1.Out.StdLiqVolumeFlow =
+>> /mixer1.In0.StdLiqVolumeFlow = 20
+>> /mixer1.In0
+Port: /mixer1.In0 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 100.0 * kPa
+MoleFlow           = 128.55742499477736 = kgmole/h
+MassFlow           = 13783.315174597054 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 20.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25 * 
+N-HEPTANE          = 0.25 * 
+N-OCTANE           = 0.25 * 
+N-NONANE           = 0.25 * 
+
+>> /mixer1.In1
+Port: /mixer1.In1 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 110.0 * kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = 40.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = None
+ETHANE             = None
+PROPANE            = None
+N-HEXANE           = None
+N-HEPTANE          = None
+N-OCTANE           = None
+N-NONANE           = None
+
+>> /mixer1.In2
+Port: /mixer1.In2 + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 105.0 * kPa
+MoleFlow           = 583.2476522010572 = kgmole/h
+MassFlow           = 61887.152817016744 = kg/h
+VolumeFlow         = None
+StdLiqVolumeFlow   = 90.0 * m3/hr
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.26316 * 
+N-HEPTANE          = 0.31579 * 
+N-OCTANE           = 0.15789 * 
+N-NONANE           = 0.26316 * 
+
+>> /mixer1.Out
+Port: /mixer1.Out + sim21.old.solver.Ports.Port_Material
+Connected to: None
+VapFrac            = None
+T                  = None
+P                  = 100.0 = kPa
+MoleFlow           = None
+MassFlow           = None
+VolumeFlow         = None
+StdLiqVolumeFlow   = None
+H                  = None
+Energy             = None
+MolecularWeight    = None
+ZFactor            = None
+METHANE            = 0.0 * 
+ETHANE             = 0.0 * 
+PROPANE            = 0.0 * 
+N-HEXANE           = 0.25784 * 
+N-HEPTANE          = 0.32313 * 
+N-OCTANE           = 0.16119 * 
+N-NONANE           = 0.25784 * 
+
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 
+>> 

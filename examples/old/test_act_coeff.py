@@ -337,4 +337,4 @@ def test_3comp_vle():
     plt.show()
 
 
-test_3comp_vle()
+test_2comp_vle()

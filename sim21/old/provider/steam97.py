@@ -30,13 +30,13 @@ class Steam97Component:
         self.std_liq_vol_mole = 0.018069476
 
     def surf_tens(self, t):
-        return xsteam2.Surface_Tension_T(t)
+        return xsteam2.surface_tension_t(t)
 
     def vap_visc(self, t, p):
-        return xsteam2.my_pT(t, p / 1e6)
+        return xsteam2.my_pt(t, p / 1e6)
 
     def liq_visc(self, t, p):
-        return xsteam2.my_pT(t, p / 1e6)
+        return xsteam2.my_pt(t, p / 1e6)
 
 
 @dataclass
@@ -122,7 +122,7 @@ class PhaseByMoleSteam97:
 
     @property
     def visc(self):
-        return xsteam2.my_pT(self.press / 1e6, self.temp)
+        return xsteam2.my_pt(self.press / 1e6, self.temp)
 
     @property
     def dens_mass(self):
@@ -131,7 +131,7 @@ class PhaseByMoleSteam97:
     @property
     def surf_tens(self):
         assert self.identifier == 'liq'
-        return xsteam2.Surface_Tension_T(self.temp)
+        return xsteam2.surface_tension_t(self.temp)
 
     @property
     def ig_enthalpy_form_mole(self):
@@ -146,20 +146,20 @@ def generate_phase(provider, temp, press, act_phase, x):
     gc = mw * xsteam2.GAS_CONSTANT_MASS * 1e3
 
     if act_phase in ['vap', 'liq']:
-        vol_mass = xsteam2.v_pT(press_mpa, temp)     # m3/kg
+        vol_mass = xsteam2.v_pt(press_mpa, temp)     # m3/kg
         vol_mole = vol_mass * mw
         dens_mass = 1/vol_mass  # kg/m3
         dens_mole = dens_mass / xsteam2.MOLAR_MASS  # kg/m3 * kmol/MW kg
         vol_mole = 1 / dens_mole  # m3/kmol
 
         z_factor = press * vol_mole / (gc * temp)
-        enthalpy_mole = xsteam2.h_pT(press_mpa, temp) * 1e3 * mw  # kJ/kg * 1000 = J/kg * MW kg/kmol = J/kmol
-        entropy_mole = xsteam2.s_pT(press_mpa, temp) * 1e3 * mw  # kJ/kg-K * 1000 = J/kg-K * MW kg/kmol = J/kmol-K
+        enthalpy_mole = xsteam2.h_pt(press_mpa, temp) * 1e3 * mw  # kJ/kg * 1000 = J/kg * MW kg/kmol = J/kmol
+        entropy_mole = xsteam2.s_pt(press_mpa, temp) * 1e3 * mw  # kJ/kg-K * 1000 = J/kg-K * MW kg/kmol = J/kmol-K
         gibbs_mole = enthalpy_mole - temp * entropy_mole  # g = h - t*s
-        int_energy_mole = xsteam2.u_pT(press_mpa, temp) * 1e3 * mw  # kJ/kg * 1000 = J/kg * MW kg/kmol = J/kmol
+        int_energy_mole = xsteam2.u_pt(press_mpa, temp) * 1e3 * mw  # kJ/kg * 1000 = J/kg * MW kg/kmol = J/kmol
         helmholtz_mole = int_energy_mole - temp * entropy_mole  # a = u - t*s
-        cp_mole = xsteam2.Cp_pT(press_mpa, temp) * 1e3 * mw  # J/kmol-K
-        cv_mole = xsteam2.Cv_pT(press_mpa, temp) * 1e3 * mw  # J/kmol-K
+        cp_mole = xsteam2.cp_pt(press_mpa, temp) * 1e3 * mw  # J/kmol-K
+        cv_mole = xsteam2.cv_pt(press_mpa, temp) * 1e3 * mw  # J/kmol-K
 
     else:
         if x <= 0:
@@ -180,8 +180,8 @@ def generate_phase(provider, temp, press, act_phase, x):
         gibbs_mole = enthalpy_mole - temp * entropy_mole
         int_energy_mole = xsteam2.u_px(press_mpa, x) * 1e3 * mw
         helmholtz_mole = int_energy_mole - temp * entropy_mole
-        cp_mole = xsteam2.Cp_px(press_mpa, x) * 1e3 * mw
-        cv_mole = xsteam2.Cv_px(press_mpa, x) * 1e3 * mw
+        cp_mole = xsteam2.cp_px(press_mpa, x) * 1e3 * mw
+        cv_mole = xsteam2.cv_px(press_mpa, x) * 1e3 * mw
 
     h, s, g, u, a, cv, cp = xsteam2.ig_props(press_mpa, temp)
     ig_enthalpy_mole = h * 1e3 * mw
@@ -253,7 +253,7 @@ def determine_phase(temp, press):
     if press_mpa > xsteam2.CRITICAL_PRESSURE:
         return 'vap'
 
-    sat_temp = xsteam2.Tsat_p(press_mpa)
+    sat_temp = xsteam2.tsat_p(press_mpa)
     if math.isclose(temp, sat_temp, abs_tol=1e-6):
         act_phase = 'vap_liq'
     elif temp > sat_temp:
@@ -340,8 +340,8 @@ class Steam97(Provider):
         press_mpa = press/1e6
         h_given = prop_value / (1e3 * mw)
         prop_name = prop_name + '_' + prop_basis
-        supported_props = {'enthalpy_mole': (xsteam2.T_ph, xsteam2.hL_p, xsteam2.hV_p),
-                           'entropy_mole': (xsteam2.T_ps, xsteam2.sL_p, xsteam2.sV_p)}
+        supported_props = {'enthalpy_mole': (xsteam2.t_ph, xsteam2.hl_p, xsteam2.hv_p),
+                           'entropy_mole': (xsteam2.t_ps, xsteam2.sl_p, xsteam2.sv_p)}
 
         if prop_name in supported_props:
             # Get the functions to calculate the relevant properties
@@ -381,8 +381,8 @@ class Steam97(Provider):
         mw = xsteam2.MOLAR_MASS
         h_given = prop_value / (1e3 * mw)
 
-        supported_props = {'enthalpy_mole': (xsteam2.h_pT, xsteam2.hL_T, xsteam2.hV_T),
-                           'entropy_mole': (xsteam2.s_pT, xsteam2.sL_T, xsteam2.sV_T)}
+        supported_props = {'enthalpy_mole': (xsteam2.h_pt, xsteam2.hl_t, xsteam2.hv_t),
+                           'entropy_mole': (xsteam2.s_pt, xsteam2.sl_t, xsteam2.sv_t)}
 
         prop_given_pT, sat_liq_prop, sat_vap_prop = supported_props[prop_name]
 
@@ -394,7 +394,7 @@ class Steam97(Provider):
                 hL = sat_liq_prop(temp)
                 hV = sat_vap_prop(temp)
                 x = (h_given - hL)/(hV - hL)
-                p_sat_mpa = xsteam2.psat_T(temp)
+                p_sat_mpa = xsteam2.psat_t(temp)
                 # It's all vapor
                 if x > 1:
                     new_press_mpa = secant_method(search_for_press, p_sat_mpa, p_sat_mpa - 0.01, xtol=1e-6)
@@ -408,7 +408,7 @@ class Steam97(Provider):
                     return AggregateByMole(self, [ph], [1])
                 else:
                     # Return a mixture
-                    press = xsteam2.psat_T(temp) * 1e6
+                    press = xsteam2.psat_t(temp) * 1e6
                     vap_ph = generate_phase(self, temp, press, 'vap_liq', 1)
                     liq_ph = generate_phase(self, temp, press, 'vap_liq', 0)
                     return AggregateByMole(self, [vap_ph, liq_ph], [x, 1-x])
@@ -437,7 +437,7 @@ class Steam97(Provider):
             raise FlashConvergenceError
 
         # Let's determine the correspond temp
-        temp = xsteam2.Tsat_p(press_mpa)
+        temp = xsteam2.tsat_p(press_mpa)
         if math.isnan(temp) or temp < 0:
             raise FlashConvergenceError
 
@@ -461,7 +461,7 @@ class Steam97(Provider):
             raise FlashConvergenceError
 
         # Let's determine the correspond temp
-        press_mpa = xsteam2.psat_T(temp)
+        press_mpa = xsteam2.psat_t(temp)
         if math.isnan(press_mpa) or press_mpa < 0:
             raise FlashConvergenceError
 

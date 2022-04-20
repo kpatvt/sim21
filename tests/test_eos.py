@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sim21.old.data.chemsep import pure
-from sim21.old.data import GAS_CONSTANT
+from sim21.old.data.chemsep_consts import GAS_CONSTANT
 from sim21.old.provider.cubic import PengRobinson
 from sim21.old.provider.flash.basic import basic_flash_temp_press_2phase
 from sim21.old.provider.flash.io import flash_press_vap_frac_2phase, flash_temp_vap_frac_2phase, flash_press_prop_2phase, \
