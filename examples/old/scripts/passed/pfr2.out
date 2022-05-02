@@ -53,22 +53,22 @@ r = r/3600.0                          #kmol/(s*m3)
 Error processing command:
 <class 'TypeError'>
 'int' object is not subscriptable
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
     op.Solve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\KineticReactor.py", line 1388, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\KineticReactor.py", line 1388, in Solve
     h0Base = self.GetPropertiesFromPT(0.0, 0.0, z0, ['rxnBaseH'], LIQUID_PHASE)[0]
 
 
@@ -200,22 +200,22 @@ r = r/3600.0                          #lbmol/(s*ft3)
 Error processing command:
 <class 'TypeError'>
 'int' object is not subscriptable
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
     op.Solve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\KineticReactor.py", line 1388, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\KineticReactor.py", line 1388, in Solve
     h0Base = self.GetPropertiesFromPT(0.0, 0.0, z0, ['rxnBaseH'], LIQUID_PHASE)[0]
 
 
@@ -318,22 +318,22 @@ Pasted /pfr as /pfrClone
 Error processing command:
 <class 'TypeError'>
 'int' object is not subscriptable
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 404, in InnerSolve
     op.Solve()
 
-  File "C:\Users\Kiran\Projects\sim21\sim21\old\unitop\KineticReactor.py", line 1388, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\KineticReactor.py", line 1388, in Solve
     h0Base = self.GetPropertiesFromPT(0.0, 0.0, z0, ['rxnBaseH'], LIQUID_PHASE)[0]
 
 
