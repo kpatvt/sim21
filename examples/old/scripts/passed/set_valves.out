@@ -69,7 +69,7 @@ P                  = 3439.5142056503846 = kPa
 MoleFlow           = 500.00000000000006 * kgmole/h
 MassFlow           = 10826.546000000002 = kg/h
 VolumeFlow         = 316.9401634292207 = m3/hr
-StdLiqVolumeFlow   = 20.7975 = m3/hr
+StdLiqVolumeFlow   = 20.797500000000003 = m3/hr
 H                  = -80287.85197366892 = kJ/kmol
 Energy             = -11151090.551898463 = W
 MolecularWeight    = 21.653092 = 
@@ -87,7 +87,7 @@ P                  = 1000.0 | kPa
 MoleFlow           = 500.00000000000006 = kgmole/h
 MassFlow           = 10826.546000000002 = kg/h
 VolumeFlow         = 1128.8870794968898 = m3/hr
-StdLiqVolumeFlow   = 20.7975 = m3/hr
+StdLiqVolumeFlow   = 20.797500000000003 = m3/hr
 H                  = -80287.85197366892 = kJ/kmol
 Energy             = -11151090.551898463 = W
 MolecularWeight    = 21.653092 = 
@@ -105,7 +105,7 @@ P                  = 3000.0 * kPa
 MoleFlow           = 500.00000000000006 * kgmole/h
 MassFlow           = 10826.546000000002 = kg/h
 VolumeFlow         = 370.5432254620563 = m3/hr
-StdLiqVolumeFlow   = 20.7975 = m3/hr
+StdLiqVolumeFlow   = 20.797500000000003 = m3/hr
 H                  = -80138.25067760507 = kJ/kmol
 Energy             = -11130312.594111817 = W
 MolecularWeight    = 21.653092 = 
@@ -123,7 +123,7 @@ P                  = 3000.0 * kPa
 MoleFlow           = 500.00000000000006 * kgmole/h
 MassFlow           = 10826.546000000002 = kg/h
 VolumeFlow         = 370.5432254620563 = m3/hr
-StdLiqVolumeFlow   = 20.7975 = m3/hr
+StdLiqVolumeFlow   = 20.797500000000003 = m3/hr
 H                  = -80138.25067760507 = kJ/kmol
 Energy             = -11130312.594111817 = W
 MolecularWeight    = 21.653092 = 
@@ -147,7 +147,7 @@ P                  = 3000.0 * kPa
 MoleFlow           = 500.00000000000006 * kgmole/h
 MassFlow           = 10826.546000000002 | kg/h
 VolumeFlow         = 370.5432254620563 | m3/hr
-StdLiqVolumeFlow   = 20.7975 | m3/hr
+StdLiqVolumeFlow   = 20.797500000000003 | m3/hr
 H                  = -80138.25067760507 | kJ/kmol
 Energy             = -11130312.594111817 | W
 MolecularWeight    = 21.653092 | 

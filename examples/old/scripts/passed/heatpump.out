@@ -125,40 +125,40 @@ Inner loop converged
 >> /liq_prod.Out
 Port: /liq_prod.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 7.147963813634522e-06 = 
-T                  = 81.62455747775897 = F
+VapFrac            = 7.14796327596122e-06 = 
+T                  = 81.6245574777519 = F
 P                  = 60.0 = psia
-MoleFlow           = 991.2411002041167 = lbmole/h
-MassFlow           = 56561.18456709969 = lb/h
-VolumeFlow         = 0.4380585821079934 = ft3/s
-StdLiqVolumeFlow   = 0.44958429953058193 = ft3/s
-H                  = -65177.02419752332 = Btu/lbmol
-Energy             = -64595280.940647095 = Btu/hr
-MolecularWeight    = 57.06097584830027 = 
-ZFactor            = 0.01643261268042233 = 
-PROPANE            = 0.07565808239921913 = 
-ISOBUTANE          = 0.8736157858509296 = 
-N-BUTANE           = 0.050726125831687396 = 
-ISOPENTANE         = 5.9181639723581284e-09 = 
+MoleFlow           = 991.2411002069988 = lbmole/h
+MassFlow           = 56561.18456726719 = lb/h
+VolumeFlow         = 0.4380585820966873 = ft3/s
+StdLiqVolumeFlow   = 0.4495842995319403 = ft3/s
+H                  = -65177.02419753528 = Btu/lbmol
+Energy             = -64595280.94084676 = Btu/hr
+MolecularWeight    = 57.06097584830335 = 
+ZFactor            = 0.016432612679950644 = 
+PROPANE            = 0.0756580823989991 = 
+ISOBUTANE          = 0.8736157858524611 = 
+N-BUTANE           = 0.050726125830375814 = 
+ISOPENTANE         = 5.9181639721553865e-09 = 
 
 >> /btm_prod.Out
 Port: /btm_prod.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 114.64077174902842 = F
+T                  = 114.64077174907466 = F
 P                  = 68.0 = psia
-MoleFlow           = 2008.7588997958833 = lbmole/h
-MassFlow           = 116963.82063290033 = lb/h
-VolumeFlow         = 0.9160197788536233 = ft3/s
-StdLiqVolumeFlow   = 0.9044231771168486 = ft3/s
-H                  = -62646.2453176164 = Btu/lbmol
-Energy             = -125820041.24008079 = Btu/hr
-MolecularWeight    = 58.226908488014864 = 
-ZFactor            = 0.01811236339717726 = 
-PROPANE            = 2.28955464237868e-06 = 
-ISOBUTANE          = 0.15135521107502573 = 
-N-BUTANE           = 0.8411752049453032 = 
-ISOPENTANE         = 0.007467294425028739 = 
+MoleFlow           = 2008.7588997930068 = lbmole/h
+MassFlow           = 116963.8206327331 = lb/h
+VolumeFlow         = 0.9160197788523177 = ft3/s
+StdLiqVolumeFlow   = 0.9044231771154927 = ft3/s
+H                  = -62646.24531760905 = Btu/lbmol
+Energy             = -125820041.23988582 = Btu/hr
+MolecularWeight    = 58.22690848801501 = 
+ZFactor            = 0.018112363397175923 = 
+PROPANE            = 2.2895546422934013e-06 = 
+ISOBUTANE          = 0.15135521107323407 = 
+N-BUTANE           = 0.8411752049470842 = 
+ISOPENTANE         = 0.007467294425039419 = 
 
 >> 
 >> cd /
@@ -204,37 +204,37 @@ Inner loop converged
 Port: /btm_prod.In + sim21.old.solver.Ports.Port_Material
 Connected to: /c4split.LiquidDraw_39_l
 VapFrac            = 0.0 | 
-T                  = 114.64077174902842 | F
+T                  = 114.64077174907466 | F
 P                  = 68.0 | psia
-MoleFlow           = 2008.7588997958833 | lbmole/h
-MassFlow           = 116963.82063290033 | lb/h
-VolumeFlow         = 0.9160197788536233 | ft3/s
-StdLiqVolumeFlow   = 0.9044231771168486 | ft3/s
-H                  = -62646.2453176164 | Btu/lbmol
-Energy             = -125820041.24008079 | Btu/hr
-MolecularWeight    = 58.226908488014864 | 
-ZFactor            = 0.01811236339717726 | 
-PROPANE            = 2.28955464237868e-06 | 
-ISOBUTANE          = 0.15135521107502573 | 
-N-BUTANE           = 0.8411752049453032 | 
-ISOPENTANE         = 0.007467294425028739 | 
+MoleFlow           = 2008.7588997930068 | lbmole/h
+MassFlow           = 116963.8206327331 | lb/h
+VolumeFlow         = 0.9160197788523177 | ft3/s
+StdLiqVolumeFlow   = 0.9044231771154927 | ft3/s
+H                  = -62646.24531760905 | Btu/lbmol
+Energy             = -125820041.23988582 | Btu/hr
+MolecularWeight    = 58.22690848801501 | 
+ZFactor            = 0.018112363397175923 | 
+PROPANE            = 2.2895546422934013e-06 | 
+ISOBUTANE          = 0.15135521107323407 | 
+N-BUTANE           = 0.8411752049470842 | 
+ISOPENTANE         = 0.007467294425039419 | 
 
 >> /RootClone.btm_prod.In
 Port: /RootClone.btm_prod.In + sim21.old.solver.Ports.Port_Material
 Connected to: /RootClone.c4split.LiquidDraw_39_l
-VapFrac            = 2.218613357788951e-06 | 
-T                  = 114.64381354671055 | F
+VapFrac            = 2.2186106194462795e-06 | 
+T                  = 114.64381354670338 | F
 P                  = 68.0 | psia
-MoleFlow           = 2008.460794949329 | lbmole/h
-MassFlow           = 116946.49429848512 | lb/h
-VolumeFlow         = 0.9159813055016945 | ft3/s
-StdLiqVolumeFlow   = 0.9042849782148622 | ft3/s
-H                  = -62645.74630781923 | Btu/lbmol
-Energy             = -125800367.15808867 | Btu/hr
-MolecularWeight    = 58.226924116502644 | 
-ZFactor            = 0.0181141949330954 | 
-PROPANE            = 2.283679567149824e-06 | 
-ISOBUTANE          = 0.15123582050879855 | 
-N-BUTANE           = 0.8412934930565231 | 
-ISOPENTANE         = 0.007468402755111215 | 
+MoleFlow           = 2008.4607949492581 | lbmole/h
+MassFlow           = 116946.49429848103 | lb/h
+VolumeFlow         = 0.915981305381559 | ft3/s
+StdLiqVolumeFlow   = 0.9042849782148356 | ft3/s
+H                  = -62645.74630784289 | Btu/lbmol
+Energy             = -125800367.15813176 | Btu/hr
+MolecularWeight    = 58.22692411650265 | 
+ZFactor            = 0.018114194930720494 | 
+PROPANE            = 2.283679567160319e-06 | 
+ISOBUTANE          = 0.15123582050894674 | 
+N-BUTANE           = 0.8412934930563746 | 
+ISOPENTANE         = 0.007468402755111483 | 
 

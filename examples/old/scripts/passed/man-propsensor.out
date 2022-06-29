@@ -29,31 +29,31 @@ H   = -309928.31060175935 = Btu/lbmol
 >> ps.Signal
 Port: /ps.Signal + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-H   = -310840.9485620199 = Btu/lbmol
+H   = -310840.94856201886 = Btu/lbmol
 
 >> s.In.Fraction = 0.2 0.8
 >> ps.Signal
 Port: /ps.Signal + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-H   = -292550.56856547954 = Btu/lbmol
+H   = -292550.56856548047 = Btu/lbmol
 
 >> s.In.Fraction = 0.3 0.7
 >> ps.Signal
 Port: /ps.Signal + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-H   = -271901.0656973391 = Btu/lbmol
+H   = -271901.06569734064 = Btu/lbmol
 
 >> s.In.Fraction = 0.4 0.6
 >> ps.Signal
 Port: /ps.Signal + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-H   = -250425.6305384304 = Btu/lbmol
+H   = -250425.6305384316 = Btu/lbmol
 
 >> s.In.Fraction = 0.5 0.5
 >> ps.Signal
 Port: /ps.Signal + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-H   = -228554.0427726251 = Btu/lbmol
+H   = -228554.04277262636 = Btu/lbmol
 
 >> s.In.Fraction = 0.6 0.4
 >> ps.Signal
@@ -65,13 +65,13 @@ H   = -206482.57368944245 = Btu/lbmol
 >> ps.Signal
 Port: /ps.Signal + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-H   = -184347.28252090892 = Btu/lbmol
+H   = -184347.2825209085 = Btu/lbmol
 
 >> s.In.Fraction = 0.8 0.2
 >> ps.Signal
 Port: /ps.Signal + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-H   = -162309.7017178279 = Btu/lbmol
+H   = -162309.70171783757 = Btu/lbmol
 
 >> s.In.Fraction = 0.9 0.1
 >> ps.Signal

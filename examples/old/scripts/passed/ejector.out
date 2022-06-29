@@ -81,12 +81,12 @@ T                  = 333.4425049230943 = K
 P                  = 81107.27339941134 = Pa
 MoleFlow           = 49.895168539699995 = kgmole/h
 MassFlow           = 898.8754318898866 = kg/h
-VolumeFlow         = 0.00030169974866456117 = m3/s
+VolumeFlow         = 0.0003016997486645349 = m3/s
 StdLiqVolumeFlow   = 0.0002504460265312164 = m3/s
 H                  = -284656211.028542 = J/kmol
 Energy             = -3945269.340317086 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0006368301437778556 = 
+ZFactor            = 0.0006368301437778001 = 
 WATER              = 1.0 = 
 
 >> ejector.NozzleDiameter
@@ -139,16 +139,16 @@ WATER              = 1.0 *
 Port: /ejector.Discharge + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 333.44250492432997 = K
+T                  = 333.44250492349255 = K
 P                  = 81107.2733997 * Pa
 MoleFlow           = 49.895168539699995 = kgmole/h
 MassFlow           = 898.8754318898866 = kg/h
-VolumeFlow         = 0.0003016997486645266 = m3/s
+VolumeFlow         = 0.00030169974866453157 = m3/s
 StdLiqVolumeFlow   = 0.0002504460265312164 = m3/s
 H                  = -284656211.028542 = J/kmol
 Energy             = -3945269.340317086 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0006368301437776892 = 
+ZFactor            = 0.000636830143779299 = 
 WATER              = 1.0 = 
 
 >> ejector.NozzleDiameter
@@ -204,16 +204,16 @@ WATER              = 1.0 *
 Port: /ejectorClone.Discharge + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 333.44250492432997 = K
+T                  = 333.44250492349255 = K
 P                  = 81107.2733997 * Pa
 MoleFlow           = 49.895168539699995 = kgmole/h
 MassFlow           = 898.8754318898866 = kg/h
-VolumeFlow         = 0.0003016997486645266 = m3/s
+VolumeFlow         = 0.00030169974866453157 = m3/s
 StdLiqVolumeFlow   = 0.0002504460265312164 = m3/s
 H                  = -284656211.028542 = J/kmol
 Energy             = -3945269.340317086 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0006368301437776892 = 
+ZFactor            = 0.000636830143779299 = 
 WATER              = 1.0 = 
 
 >> ejectorClone.NozzleDiameter

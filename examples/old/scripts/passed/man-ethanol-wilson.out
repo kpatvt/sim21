@@ -253,16 +253,16 @@ Inner loop converged
 Port: /RootClone.dist.LiquidDraw_0_l + sim21.old.solver.Ports.Port_Material
 Connected to: /RootClone.distillate.In
 VapFrac            = 0.0 = 
-T                  = 78.48786449810143 = C
+T                  = 78.48786449810149 = C
 P                  = 101.325 * kPa
 MoleFlow           = 12.91 * kgmole/h
-MassFlow           = 521.7748654055573 = kg/h
-VolumeFlow         = 0.6950622459845668 = m3/hr
-StdLiqVolumeFlow   = 0.6519286783408245 = m3/hr
+MassFlow           = 521.7748654055558 = kg/h
+VolumeFlow         = 0.6950622459845646 = m3/hr
+StdLiqVolumeFlow   = 0.6519286783408224 = m3/hr
 H                  = -272427.33868673583 = kJ/kmol
 Energy             = -976954.7062349332 = W
-MolecularWeight    = 40.41633349384642 = 
-ZFactor            = 0.0018658823240712064 = 
-ETHANOL            = 0.7985215745337217 = 
-WATER              = 0.20147842546627834 = 
+MolecularWeight    = 40.41633349384631 = 
+ZFactor            = 0.0018658823240712003 = 
+ETHANOL            = 0.7985215745337177 = 
+WATER              = 0.20147842546628225 = 
 

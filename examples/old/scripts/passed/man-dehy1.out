@@ -155,20 +155,303 @@ Calculating disturbance 10 of 12 in jacobian of /dehy
 /dehy Inner Error 0.166319
 /dehy Inner Error 0.166275
 Step size too small - Exiting inner loop
-/dehy Iteration 4 Outer Error 5.934967
+/dehy Iteration 4 Outer Error 5.934970
 Calculating Jacobian for /dehy
 Calculating disturbance 10 of 12 in jacobian of /dehy
-/dehy Inner Error 2.793908
-/dehy Inner Error 2.767918
-/dehy Inner Error 2.664811
-/dehy Inner Error 2.378297
-/dehy Inner Error 1.666754
+/dehy Inner Error 2.793511
+/dehy Inner Error 2.767416
+/dehy Inner Error 2.663887
+/dehy Inner Error 2.376335
+/dehy Inner Error 1.665019
 Step size too small - Exiting inner loop
-/dehy Iteration 5 Outer Error 11.284709
+/dehy Iteration 5 Outer Error 11.276765
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+Step size too small - Exiting inner loop
+/dehy Iteration 6 Outer Error 6.758775
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.424811
+/dehy Inner Error 0.424684
+/dehy Inner Error 0.424099
+/dehy Inner Error 0.420155
+/dehy Inner Error 0.411931
+/dehy Inner Error 0.404852
+/dehy Inner Error 0.368398
+Step size too small - Exiting inner loop
+/dehy Iteration 7 Outer Error 1.360468
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.216988
+/dehy Inner Error 0.215032
+/dehy Inner Error 0.215023
+Inner loop is not changing significantly - exiting
+/dehy Iteration 8 Outer Error 2.244489
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.264494
+/dehy Inner Error 0.262199
+/dehy Inner Error 0.259917
+/dehy Inner Error 0.258731
+/dehy Inner Error 0.257099
+Step size too small - Exiting inner loop
+/dehy Iteration 9 Outer Error 14074461.066920
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 14.231096
+/dehy Inner Error 13.398677
+/dehy Inner Error 12.794497
+/dehy Inner Error 12.334775
+/dehy Inner Error 11.991032
+/dehy Inner Error 11.746421
+/dehy Inner Error 11.587649
+/dehy Inner Error 11.496933
+/dehy Inner Error 11.448049
+Step size too small - Exiting inner loop
+/dehy Iteration 10 Outer Error 2241373965565.212891
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.306453
+Inner loop is not changing significantly - exiting
+/dehy Iteration 11 Outer Error 8.692514
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.676439
+Step size too small - Exiting inner loop
+/dehy Iteration 12 Outer Error 4.797074
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.177434
+/dehy Inner Error 0.173719
+/dehy Inner Error 0.171298
+/dehy Inner Error 0.168742
+/dehy Inner Error 0.166219
+/dehy Inner Error 0.163311
+/dehy Inner Error 0.159476
+/dehy Inner Error 0.155009
+/dehy Inner Error 0.145970
+/dehy Inner Error 0.139060
+/dehy Inner Error 0.126812
+/dehy Inner Error 0.116563
+Step size too small - Exiting inner loop
+/dehy Iteration 13 Outer Error 0.761736
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.154927
+/dehy Inner Error 0.154711
+/dehy Inner Error 0.154248
+/dehy Inner Error 0.153873
+/dehy Inner Error 0.153855
+/dehy Inner Error 0.153657
+/dehy Inner Error 0.153171
+Step size too small - Exiting inner loop
+/dehy Iteration 14 Outer Error 0.822689
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.140999
+/dehy Inner Error 0.139893
+/dehy Inner Error 0.137764
+/dehy Inner Error 0.134233
+/dehy Inner Error 0.131404
+/dehy Inner Error 0.130459
+Step size too small - Exiting inner loop
+/dehy Iteration 15 Outer Error 0.422906
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.139616
+/dehy Inner Error 0.139271
+/dehy Inner Error 0.139128
+/dehy Inner Error 0.139079
+/dehy Inner Error 0.139061
+/dehy Inner Error 0.139054
+Inner loop is not changing significantly - exiting
+/dehy Iteration 16 Outer Error 1.041317
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+Step size too small - Exiting inner loop
+/dehy Iteration 17 Outer Error 0.699027
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.072971
+Inner loop is not changing significantly - exiting
+/dehy Iteration 18 Outer Error 0.257629
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.129909
+Inner loop is not changing significantly - exiting
+/dehy Iteration 19 Outer Error 0.229214
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+Step size too small - Exiting inner loop
+/dehy Iteration 20 Outer Error 0.291196
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+Step size too small - Exiting inner loop
+/dehy Iteration 21 Outer Error 0.090922
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.119921
+Inner loop is not changing significantly - exiting
+/dehy Iteration 22 Outer Error 0.083729
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.123163
+Inner loop is not changing significantly - exiting
+/dehy Iteration 23 Outer Error 0.047704
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.121967
+/dehy Inner Error 0.121888
+/dehy Inner Error 0.121673
+/dehy Inner Error 0.121090
+/dehy Inner Error 0.119507
+/dehy Inner Error 0.115124
+/dehy Inner Error 0.104295
+/dehy Inner Error 0.086369
+/dehy Inner Error 0.054507
+/dehy Inner Error 0.052024
+/dehy Inner Error 0.020750
+/dehy Inner Error 0.009756
+/dehy Inner Error 0.008246
+/dehy Inner Error 0.007696
+/dehy Inner Error 0.003899
+/dehy Inner Error 0.003080
+/dehy Inner Error 0.003038
+/dehy Inner Error 0.002988
+/dehy Inner Error 0.002172
+/dehy Inner Error 0.001849
+/dehy Iteration 24 Outer Error 1.118041
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.077054
+/dehy Inner Error 0.069354
+/dehy Inner Error 0.065192
+/dehy Inner Error 0.058739
+/dehy Inner Error 0.040393
+/dehy Inner Error 0.034251
+/dehy Inner Error 0.021893
+/dehy Inner Error 0.020643
+/dehy Inner Error 0.020476
+/dehy Inner Error 0.019865
+/dehy Inner Error 0.019454
+/dehy Inner Error 0.019181
+/dehy Inner Error 0.019014
+/dehy Inner Error 0.018700
+Step size too small - Exiting inner loop
+/dehy Iteration 25 Outer Error 0.680200
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.078953
+/dehy Inner Error 0.078033
+/dehy Inner Error 0.076970
+/dehy Inner Error 0.075956
+/dehy Inner Error 0.074091
+/dehy Inner Error 0.072517
+/dehy Inner Error 0.072127
+/dehy Inner Error 0.072011
+Step size too small - Exiting inner loop
+/dehy Iteration 26 Outer Error 1.545492
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.144662
+Inner loop is not changing significantly - exiting
+/dehy Iteration 27 Outer Error 0.969169
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.087868
+/dehy Inner Error 0.077266
+/dehy Inner Error 0.050960
+/dehy Inner Error 0.029457
+/dehy Inner Error 0.026505
+/dehy Inner Error 0.025862
+/dehy Inner Error 0.020405
+Step size too small - Exiting inner loop
+/dehy Iteration 28 Outer Error 0.380041
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.138471
+/dehy Inner Error 0.138435
+/dehy Inner Error 0.138384
+/dehy Inner Error 0.137896
+/dehy Inner Error 0.134878
+/dehy Inner Error 0.128447
+/dehy Inner Error 0.127341
+/dehy Inner Error 0.116541
+/dehy Inner Error 0.107144
+/dehy Inner Error 0.103208
+/dehy Inner Error 0.103064
+/dehy Inner Error 0.098706
+Step size too small - Exiting inner loop
+/dehy Iteration 29 Outer Error 1.157118
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.132102
+/dehy Inner Error 0.128568
+/dehy Inner Error 0.128193
+Step size too small - Exiting inner loop
+/dehy Iteration 30 Outer Error 0.834102
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.234233
+/dehy Inner Error 0.231050
+/dehy Inner Error 0.219621
+/dehy Inner Error 0.217827
+Step size too small - Exiting inner loop
+/dehy Iteration 31 Outer Error 0.835110
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.271698
+/dehy Inner Error 0.220906
+/dehy Inner Error 0.199031
+/dehy Inner Error 0.186069
+/dehy Inner Error 0.174819
+/dehy Inner Error 0.156739
+Step size too small - Exiting inner loop
+/dehy Iteration 32 Outer Error 1.009234
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 0.630264
+/dehy Inner Error 0.622852
+/dehy Inner Error 0.583294
+/dehy Inner Error 0.498683
+/dehy Inner Error 0.461337
+/dehy Inner Error 0.434809
+/dehy Inner Error 0.402687
+/dehy Inner Error 0.389271
+/dehy Inner Error 0.362715
+/dehy Inner Error 0.288465
+/dehy Inner Error 0.260539
+/dehy Inner Error 0.230990
+/dehy Inner Error 0.203435
+/dehy Inner Error 0.171807
+/dehy Inner Error 0.143176
+/dehy Inner Error 0.131692
+/dehy Inner Error 0.121447
+/dehy Inner Error 0.119339
+Step size too small - Exiting inner loop
+/dehy Iteration 33 Outer Error 11.613958
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+/dehy Inner Error 50.381628
+/dehy Inner Error 50.334098
+/dehy Inner Error 50.301794
+/dehy Inner Error 50.277079
+/dehy Inner Error 50.246724
+/dehy Inner Error 50.235300
+/dehy Inner Error 50.214569
+/dehy Inner Error 50.111657
+/dehy Inner Error 49.714176
+/dehy Inner Error 49.585174
+Step size too small - Exiting inner loop
+/dehy Iteration 34 Outer Error 1.000000
+Calculating Jacobian for /dehy
+Calculating disturbance 10 of 12 in jacobian of /dehy
+Step size too small - Exiting inner loop
+/dehy Iteration 35 Outer Error 29.737526
 Calculating Jacobian for /dehy
 Calculating disturbance 10 of 12 in jacobian of /dehy
 Could not invert Jacobian in /dehy
-/dehy failed to converge in 5 iterations - error = 11.284709
+/dehy failed to converge in 35 iterations - error = 29.737526
 >> 
 >> Stage_0.v.Port
 Port: /dehy.VapourDraw_0_v + sim21.old.solver.Ports.Port_Material
@@ -240,55 +523,16 @@ Copied / to the clipboard
 >> paste /
 Pasting /
 Pasted / as /RootClone
-/RootClone.dehy Inner Error 47.220273
-/RootClone.dehy Inner Error 47.144269
-/RootClone.dehy Inner Error 46.961136
-/RootClone.dehy Inner Error 46.953931
 Step size too small - Exiting inner loop
-/RootClone.dehy Iteration 1 Outer Error 6.762748
+/RootClone.dehy Iteration 1 Outer Error 4.783268
 Calculating Jacobian for /RootClone.dehy
 Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
 Step size too small - Exiting inner loop
-/RootClone.dehy Iteration 2 Outer Error 4.385084
-Calculating Jacobian for /RootClone.dehy
-Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-/RootClone.dehy Inner Error 0.706363
-/RootClone.dehy Inner Error 0.706324
-/RootClone.dehy Inner Error 0.705961
-/RootClone.dehy Inner Error 0.705955
-Inner loop is not changing significantly - exiting
-/RootClone.dehy Iteration 3 Outer Error 11.852816
-Calculating Jacobian for /RootClone.dehy
-Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-/RootClone.dehy Inner Error 0.310424
-/RootClone.dehy Inner Error 0.297356
-/RootClone.dehy Inner Error 0.281411
-/RootClone.dehy Inner Error 0.276252
-/RootClone.dehy Inner Error 0.262586
-/RootClone.dehy Inner Error 0.246626
-/RootClone.dehy Inner Error 0.243537
-/RootClone.dehy Inner Error 0.208278
-/RootClone.dehy Inner Error 0.204115
-/RootClone.dehy Inner Error 0.181041
-Step size too small - Exiting inner loop
-/RootClone.dehy Iteration 4 Outer Error 7.167651
-Calculating Jacobian for /RootClone.dehy
-Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-/RootClone.dehy Inner Error 0.138455
-/RootClone.dehy Inner Error 0.135236
-/RootClone.dehy Inner Error 0.125239
-/RootClone.dehy Inner Error 0.124496
-Step size too small - Exiting inner loop
-/RootClone.dehy Iteration 5 Outer Error 3.573950
-Calculating Jacobian for /RootClone.dehy
-Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
-/RootClone.dehy Inner Error 0.259547
-Inner loop is not changing significantly - exiting
-/RootClone.dehy Iteration 6 Outer Error 1.763236
+/RootClone.dehy Iteration 2 Outer Error 32073375156255498245599395840.000000
 Calculating Jacobian for /RootClone.dehy
 Calculating disturbance 10 of 12 in jacobian of /RootClone.dehy
 Could not invert Jacobian in /RootClone.dehy
-/RootClone.dehy failed to converge in 6 iterations - error = 1.763236
+/RootClone.dehy failed to converge in 2 iterations - error = 32073375156255498245599395840.000000
 >> cd /RootClone.dehy
 /RootClone.dehy
 >> Stage_0.v.Port

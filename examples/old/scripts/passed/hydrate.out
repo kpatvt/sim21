@@ -29,7 +29,7 @@ P                  = 2000.0 * kPa
 MoleFlow           = 100.0 * kgmole/h
 MassFlow           = 2008.5084759999997 = kg/h
 VolumeFlow         = 123.98620781717635 = m3/hr
-StdLiqVolumeFlow   = 3.9156916400000004 = m3/hr
+StdLiqVolumeFlow   = 3.9156916400000013 = m3/hr
 H                  = -70908.0888768902 = kJ/kmol
 Energy             = -1969669.1354691721 = W
 MolecularWeight    = 20.085084759999997 = 
@@ -53,7 +53,7 @@ P                  = 2000.0 = kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 2008.5084759999997 = kg/h
 VolumeFlow         = 123.98620781717635 = m3/hr
-StdLiqVolumeFlow   = 3.9156916400000004 = m3/hr
+StdLiqVolumeFlow   = 3.9156916400000013 = m3/hr
 H                  = -70908.0888768902 = kJ/kmol
 Energy             = -1969669.1354691721 = W
 MolecularWeight    = 20.085084759999997 = 
@@ -88,7 +88,7 @@ P                  = 2000.0 * kPa
 MoleFlow           = 100.0 * kgmole/h
 MassFlow           = 2008.5084759999997 = kg/h
 VolumeFlow         = 123.98620781717635 = m3/hr
-StdLiqVolumeFlow   = 3.9156916400000004 = m3/hr
+StdLiqVolumeFlow   = 3.9156916400000013 = m3/hr
 H                  = -70908.0888768902 = kJ/kmol
 Energy             = -1969669.1354691721 = W
 MolecularWeight    = 20.085084759999997 = 
@@ -112,7 +112,7 @@ P                  = 2000.0 = kPa
 MoleFlow           = 100.0 = kgmole/h
 MassFlow           = 2008.5084759999997 = kg/h
 VolumeFlow         = 123.98620781717635 = m3/hr
-StdLiqVolumeFlow   = 3.9156916400000004 = m3/hr
+StdLiqVolumeFlow   = 3.9156916400000013 = m3/hr
 H                  = -70908.0888768902 = kJ/kmol
 Energy             = -1969669.1354691721 = W
 MolecularWeight    = 20.085084759999997 = 

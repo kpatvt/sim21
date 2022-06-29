@@ -17,28 +17,28 @@ Methane Ethane Propane
 Error processing command:
 <class 'TypeError'>
 'module' object is not callable
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 1807, in Equal
     self.CreateObject(parentObj, createName, rhsDesc)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 1730, in CreateObject
     parent.AddObject(newObj, name)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+  File "/home/theadmin/Projects/sim21/sim21/old/unitop/UnitOperations.py", line 198, in AddObject
     self.AddUnitOperation(obj, name)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+  File "/home/theadmin/Projects/sim21/sim21/old/unitop/UnitOperations.py", line 997, in AddUnitOperation
     cmdproc = CommandInterface(uOp)
 
 
@@ -47,19 +47,19 @@ Port type mismatch connecting to valve.In
 Error processing command:
 <class 'sim21.old.cli.CommandInterface.CmdError'>
 Port type mismatch connecting to valve.In
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 2089, in Connect
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 2089, in Connect
     raise CmdError('CMDConnectTypeMismatch', rhsDesc)
 
 
@@ -69,19 +69,19 @@ Cannot connect to Out
 Error processing command:
 <class 'sim21.old.cli.CommandInterface.CmdError'>
 Cannot connect to Out
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 2064, in Connect
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 2064, in Connect
     raise CmdError('CMDConnectNonPort', lhsObj.GetPath())
 
 
@@ -129,28 +129,28 @@ PROPANE            = None
 Error processing command:
 <class 'TypeError'>
 'module' object is not callable
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 1807, in Equal
     self.CreateObject(parentObj, createName, rhsDesc)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 1730, in CreateObject
     parent.AddObject(newObj, name)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
+  File "/home/theadmin/Projects/sim21/sim21/old/unitop/UnitOperations.py", line 198, in AddObject
     self.AddUnitOperation(obj, name)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
+  File "/home/theadmin/Projects/sim21/sim21/old/unitop/UnitOperations.py", line 997, in AddUnitOperation
     cmdproc = CommandInterface(uOp)
 
 

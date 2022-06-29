@@ -10,4 +10,4 @@ def run_file(source):
     os.chdir(orig_path)
 
 
-run_file(open('scripts/passed/seader_10_4.tst'))
+run_file(open('scripts/flowsheets/luyben_nat_gas_sep.tst'))

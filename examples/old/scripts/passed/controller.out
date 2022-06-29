@@ -84,52 +84,52 @@ n-Heptane n-Octane
 >> Mixer.Out
 Port: /Mixer.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /Tower_Feed.In
-VapFrac            = 0.014500871145639471 = 
-T                  = 56.22327118609449 = F
+VapFrac            = 0.014500871146056138 = 
+T                  = 56.223271186780025 = F
 P                  = 580.0 = psia
-MoleFlow           = 78.67816287776871 = lbmole/h
-MassFlow           = 4092.1608111359023 = lb/h
-VolumeFlow         = 0.03416656317515388 = ft3/s
-StdLiqVolumeFlow   = 0.030001304508956647 = ft3/s
-H                  = -60266.93593101679 = Btu/lbmol
-Energy             = -4740894.433766085 = Btu/hr
-MolecularWeight    = 52.01139250662629 = 
-ZFactor            = 0.1637764123244329 = 
-METHANE            = 0.20843582162416702 = 
-ETHANE             = 0.15292416695736746 = 
-PROPANE            = 0.10890649288686108 = 
-ISOBUTANE          = 0.10939441681056075 = 
-N-BUTANE           = 0.0994315170132001 = 
-ISOPENTANE         = 0.08940392442367405 = 
-N-PENTANE          = 0.07689228970276822 = 
-N-HEXANE           = 0.06439387339321741 = 
-N-HEPTANE          = 0.05155094294188805 = 
-N-OCTANE           = 0.038666554246295795 = 
+MoleFlow           = 78.67816287749834 = lbmole/h
+MassFlow           = 4092.1608111267715 = lb/h
+VolumeFlow         = 0.034166563175150225 = ft3/s
+StdLiqVolumeFlow   = 0.0300013045088856 = ft3/s
+H                  = -60266.93593106006 = Btu/lbmol
+Energy             = -4740894.433753197 = Btu/hr
+MolecularWeight    = 52.01139250668898 = 
+ZFactor            = 0.16377641232476056 = 
+METHANE            = 0.2084358216237413 = 
+ETHANE             = 0.15292416695685274 = 
+PROPANE            = 0.10890649288665483 = 
+ISOBUTANE          = 0.1093944168106001 = 
+N-BUTANE           = 0.0994315170133183 = 
+ISOPENTANE         = 0.08940392442391329 = 
+N-PENTANE          = 0.07689228970299297 = 
+N-HEXANE           = 0.06439387339343319 = 
+N-HEPTANE          = 0.05155094294206458 = 
+N-OCTANE           = 0.038666554246428606 = 
 
 >> DewPoint.Out
 Port: /DewPoint.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 1.2347813297228925 = F
+T                  = 1.2347813320039733 = F
 P                  = 815.0000000000001 = psia
-MoleFlow           = 65.32183712223129 = lbmole/h
-MassFlow           = 1247.6948913993087 = lb/h
-VolumeFlow         = 0.07715422316571703 = ft3/s
-StdLiqVolumeFlow   = 0.011274889443232437 = ft3/s
-H                  = -34823.30354255161 = Btu/lbmol
-Energy             = -2274339.6425477783 = Btu/hr
-MolecularWeight    = 19.10073179761619 = 
-ZFactor            = 0.7006221291778665 = 
-METHANE            = 0.8356557374145296 = 
-ETHANE             = 0.1262961666186588 = 
-PROPANE            = 0.024069780549518815 = 
-ISOBUTANE          = 0.007957657692140354 = 
-N-BUTANE           = 0.004433233637442872 = 
-ISOPENTANE         = 0.0009867300801355882 = 
-N-PENTANE          = 0.0005321795972990826 = 
-N-HEXANE           = 6.170794066538353e-05 = 
-N-HEPTANE          = 6.193072675348567e-06 = 
-N-OCTANE           = 6.133969340952101e-07 = 
+MoleFlow           = 65.32183712250168 = lbmole/h
+MassFlow           = 1247.6948914084398 = lb/h
+VolumeFlow         = 0.07715422316680956 = ft3/s
+StdLiqVolumeFlow   = 0.011274889443303487 = ft3/s
+H                  = -34823.30354255745 = Btu/lbmol
+Energy             = -2274339.642557574 = Btu/hr
+MolecularWeight    = 19.100731797676904 = 
+ZFactor            = 0.7006221291814198 = 
+METHANE            = 0.8356557374124463 = 
+ETHANE             = 0.12629616661938903 = 
+PROPANE            = 0.024069780550118384 = 
+ISOBUTANE          = 0.00795765769251283 = 
+N-BUTANE           = 0.00443323363769371 = 
+ISOPENTANE         = 0.0009867300802133946 = 
+N-PENTANE          = 0.0005321795973444474 = 
+N-HEXANE           = 6.170794067175263e-05 = 
+N-HEPTANE          = 6.193072676063246e-06 = 
+N-OCTANE           = 6.133969341714794e-07 = 
 
 >> LTS-Feed.In.T
 /LTS-Feed.In.T= 0.0 * F
@@ -176,28 +176,28 @@ Pasting /
 Pasted / as /RootClone
 >> 
 >> Mixer.Out.T
-/Mixer.Out.T= 50.0101428360662 = F
+/Mixer.Out.T= 50.01014283521512 = F
 >> DewPoint.Out.T
-/DewPoint.Out.T= 15.00189217713842 = F
+/DewPoint.Out.T= 15.001892177114682 = F
 >> LTS-Feed.In.T
-/LTS-Feed.In.T= 13.551739433050894 = F
+/LTS-Feed.In.T= 13.55173943252897 = F
 >> Feed.In.T
-/Feed.In.T= 51.59096738980157 = F
+/Feed.In.T= 51.59096738772522 = F
 >> Tower_Feed.In.T
-/Tower_Feed.In.T= 50.0101428360662 | F
+/Tower_Feed.In.T= 50.01014283521512 | F
 >> 
 >> cd /RootClone
 /RootClone
 >> Mixer.Out.T
-/RootClone.Mixer.Out.T= 50.0101428360662 = F
+/RootClone.Mixer.Out.T= 50.01014283521512 = F
 >> DewPoint.Out.T
-/RootClone.DewPoint.Out.T= 15.00189217713842 = F
+/RootClone.DewPoint.Out.T= 15.001892177114682 = F
 >> LTS-Feed.In.T
-/RootClone.LTS-Feed.In.T= 13.551739433050894 = F
+/RootClone.LTS-Feed.In.T= 13.55173943252897 = F
 >> Feed.In.T
-/RootClone.Feed.In.T= 51.59096738980157 = F
+/RootClone.Feed.In.T= 51.59096738772522 = F
 >> Tower_Feed.In.T
-/RootClone.Tower_Feed.In.T= 50.0101428360662 | F
+/RootClone.Tower_Feed.In.T= 50.01014283521512 | F
 >> 
 >> cd /
 /
@@ -216,9 +216,9 @@ Controller solver for / failed to converge
 >> Feed.In.T
 /Feed.In.T= 53.00000000000001 = F
 >> DewPoint.In.T
-/DewPoint.In.T= 14.945744650455598 | F
+/DewPoint.In.T= 14.945744568214517 | F
 >> Tower_Feed.In.T
-/Tower_Feed.In.T= 51.309851505014194 | F
+/Tower_Feed.In.T= 51.30985149970235 | F
 >> 
 >> #Make sure disconnecting doesn't screw things up
 >> #TLiqCont.In ->

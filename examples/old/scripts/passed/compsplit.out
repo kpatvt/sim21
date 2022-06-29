@@ -43,7 +43,7 @@ P                  = None
 MoleFlow           = 7.000000000000002 = kgmole/h
 MassFlow           = 350.74908000000005 = kg/h
 VolumeFlow         = None
-StdLiqVolumeFlow   = 0.6032480000000003 = m3/hr
+StdLiqVolumeFlow   = 0.6032480000000002 = m3/hr
 H                  = None
 Energy             = None
 MolecularWeight    = None
@@ -247,7 +247,7 @@ N-HEXANE           = 0.006702412868632708 =
 >> s.InQ0
 Port: /s.FeedBalance.InQ0 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 3841.614732078975 = W
+Energy   = 3841.614732078917 = W
 
 >> 
 >> thermo - N-HEXANE
@@ -260,7 +260,7 @@ P                  = 101.325 | kPa
 MoleFlow           = 10.0 | kgmole/h
 MassFlow           = 536.9275368421052 | kg/h
 VolumeFlow         = 217.32583264583673 | m3/hr
-StdLiqVolumeFlow   = 0.9186105263157893 | m3/hr
+StdLiqVolumeFlow   = 0.9186105263157894 | m3/hr
 H                  = -122926.56244559908 | kJ/kmol
 Energy             = -341462.6734599974 | W
 MolecularWeight    = 53.69275368421052 | 
@@ -311,7 +311,7 @@ P                  = 101.325 | kPa
 MoleFlow           = 10.0 | kgmole/h
 MassFlow           = 536.9275368421052 | kg/h
 VolumeFlow         = 217.32583264583673 | m3/hr
-StdLiqVolumeFlow   = 0.9186105263157893 | m3/hr
+StdLiqVolumeFlow   = 0.9186105263157894 | m3/hr
 H                  = -122926.56244559908 | kJ/kmol
 Energy             = -341462.6734599974 | W
 MolecularWeight    = 53.69275368421052 | 

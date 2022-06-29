@@ -1,5 +1,5 @@
 numba~=0.55.1
-numpy~=1.21.5
+numpy>=1.21.5
 scipy>=1.7.3
 dataclasses>=0.6
 matplotlib~=3.5.1

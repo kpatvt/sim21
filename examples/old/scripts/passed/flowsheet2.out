@@ -44,17 +44,17 @@ PROPANE n-BUTANE ISOBUTANE n-PENTANE
 >> mixer.Out  # have a look at the combined outlet
 Port: /mixer.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.5016269369746641 = 
-T                  = 60.72014736920602 = C
+VapFrac            = 0.5016269369734438 = 
+T                  = 60.720147369182826 = C
 P                  = 715.0 = kPa
 MoleFlow           = 6000.0 = kgmole/h
 MassFlow           = 348733.2 = kg/h
-VolumeFlow         = 10377.315141275436 = m3/hr
+VolumeFlow         = 10377.315141251234 = m3/hr
 StdLiqVolumeFlow   = 592.395 = m3/hr
 H                  = -135251.87476101628 = kJ/kmol
 Energy             = -225419791.26836044 = W
-MolecularWeight    = 58.12219999999999 = 
-ZFactor            = 0.4454798074146165 = 
+MolecularWeight    = 58.1222 = 
+ZFactor            = 0.4454798074136086 = 
 PROPANE            = 0.25 = 
 N-BUTANE           = 0.25 = 
 ISOBUTANE          = 0.25 = 
@@ -70,39 +70,39 @@ N-PENTANE          = 0.25 =
 Port: /flash.Vap + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 60.72014736920602 = C
+T                  = 60.720147369182826 = C
 P                  = 715.0 = kPa
-MoleFlow           = 3009.7616218479848 = kgmole/h
-MassFlow           = 165696.5681118717 = kg/h
-VolumeFlow         = 10046.924729906139 = m3/hr
-StdLiqVolumeFlow   = 284.3327743744336 = m3/hr
-H                  = -121301.22419380723 = kJ/kmol
-Energy             = -101413269.2393609 = W
-MolecularWeight    = 55.05305367344491 = 
-ZFactor            = 0.8597957942464054 = 
-PROPANE            = 0.35325818995011193 = 
-N-BUTANE           = 0.2402921245974565 = 
-ISOBUTANE          = 0.27200080800437526 = 
-N-PENTANE          = 0.13444887744805617 = 
+MoleFlow           = 3009.761621840663 = kgmole/h
+MassFlow           = 165696.56811144392 = kg/h
+VolumeFlow         = 10046.924729881168 = m3/hr
+StdLiqVolumeFlow   = 284.33277437370486 = m3/hr
+H                  = -121301.22419379758 = kJ/kmol
+Energy             = -101413269.23910612 = W
+MolecularWeight    = 55.0530536734367 = 
+ZFactor            = 0.8597957942464199 = 
+PROPANE            = 0.3532581899504509 = 
+N-BUTANE           = 0.24029212459736243 = 
+ISOBUTANE          = 0.27200080800437637 = 
+N-PENTANE          = 0.1344488774478102 = 
 
 >> flash.Liq0
 Port: /flash.Liq0 + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 60.72014736920602 = C
+T                  = 60.720147369182826 = C
 P                  = 715.0 = kPa
-MoleFlow           = 2990.2383781520152 = kgmole/h
-MassFlow           = 183036.63188812826 = kg/h
-VolumeFlow         = 330.3904113692987 = m3/hr
-StdLiqVolumeFlow   = 308.0622256255663 = m3/hr
-H                  = -149293.83542628027 = kJ/kmol
-Energy             = -124006710.08699283 = W
-MolecularWeight    = 61.211384759647814 = 
-ZFactor            = 0.028458754646562112 = 
-PROPANE            = 0.14606763811071088 = 
-N-BUTANE           = 0.2597712580474319 = 
-ISOBUTANE          = 0.22785554888699627 = 
-N-PENTANE          = 0.366305554954861 = 
+MoleFlow           = 2990.238378159337 = kgmole/h
+MassFlow           = 183036.6318885561 = kg/h
+VolumeFlow         = 330.3904113700674 = m3/hr
+StdLiqVolumeFlow   = 308.0622256262951 = m3/hr
+H                  = -149293.8354262726 = kJ/kmol
+Energy             = -124006710.0872901 = W
+MolecularWeight    = 61.21138475964101 = 
+ZFactor            = 0.028458754646560613 = 
+PROPANE            = 0.14606763811087703 = 
+N-BUTANE           = 0.2597712580474788 = 
+ISOBUTANE          = 0.22785554888710335 = 
+N-PENTANE          = 0.3663055549545409 = 
 
 >> # now lets add a couple of components
 >> thermo + n-HEXANE n-DODECANE
@@ -157,19 +157,19 @@ ConsistencyError: /stream1.In - Fraction 0.8 vs 1.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /stream1.In - Fraction 0.8 vs 1.0
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -204,19 +204,19 @@ ConsistencyError: /stream1.In - Fraction 0.6666666666666666 vs 1.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /stream1.In - Fraction 0.6666666666666666 vs 1.0
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
+  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
+  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -300,21 +300,21 @@ The following consistency errors in flowsheet / have not been resolved (only lis
 Port: /flash.Vap + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 71.6434066173324 = C
+T                  = 71.64340661803698 = C
 P                  = 715.0 = kPa
-MoleFlow           = 3870.6830040007435 = kgmole/h
-MassFlow           = 201258.07672852813 = kg/h
-VolumeFlow         = 13776.823968468829 = m3/hr
-StdLiqVolumeFlow   = 345.69964038408847 = m3/hr
-H                  = -115209.2049224012 = kJ/kmol
-Energy             = -123871753.16599363 = W
-MolecularWeight    = 51.9954944697118 = 
-ZFactor            = 0.8877167370908772 = 
-PROPANE            = 0.522363458220496 = 
-N-BUTANE           = 0.2099539229031504 = 
-ISOBUTANE          = 0.2261476299637614 = 
-N-HEXANE           = 0.04111816560726744 = 
-N-DODECANE         = 0.00041682330532474127 = 
+MoleFlow           = 3870.6830040414116 = kgmole/h
+MassFlow           = 201258.07673090496 = kg/h
+VolumeFlow         = 13776.823968648261 = m3/hr
+StdLiqVolumeFlow   = 345.69964038810275 = m3/hr
+H                  = -115209.20492242847 = kJ/kmol
+Energy             = -123871753.16732444 = W
+MolecularWeight    = 51.99549446977956 = 
+ZFactor            = 0.8877167370912978 = 
+PROPANE            = 0.5223634582182539 = 
+N-BUTANE           = 0.20995392290393858 = 
+ISOBUTANE          = 0.226147629964007 = 
+N-HEXANE           = 0.041118165608446916 = 
+N-DODECANE         = 0.00041682330535346666 = 
 
 >> flash.Liq0
 The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
@@ -325,19 +325,19 @@ The following consistency errors in flowsheet / have not been resolved (only lis
 Port: /flash.Liq0 + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 71.6434066173324 = C
+T                  = 71.64340661803698 = C
 P                  = 715.0 = kPa
-MoleFlow           = 2129.3169959992565 = kgmole/h
-MassFlow           = 197970.78727147187 = kg/h
-VolumeFlow         = 330.5325008194889 = m3/hr
-StdLiqVolumeFlow   = 295.90435961591163 = m3/hr
-H                  = -201148.43980838294 = kJ/kmol
-Energy             = -118974664.33408979 = W
-MolecularWeight    = 92.97384449729014 = 
-ZFactor            = 0.03871566767234297 = 
-PROPANE            = 0.1775670983067689 = 
-N-BUTANE           = 0.18190570954125254 = 
-ISOBUTANE          = 0.15246870847046623 = 
-N-HEXANE           = 0.20703569081379555 = 
-N-DODECANE         = 0.2810227928677168 = 
+MoleFlow           = 2129.3169959585884 = kgmole/h
+MassFlow           = 197970.78726909502 = kg/h
+VolumeFlow         = 330.53250081539977 = m3/hr
+StdLiqVolumeFlow   = 295.90435961189723 = m3/hr
+H                  = -201148.4398093395 = kJ/kmol
+Energy             = -118974664.33238326 = W
+MolecularWeight    = 92.97384449794961 = 
+ZFactor            = 0.03871566767252432 = 
+PROPANE            = 0.17756709830425904 = 
+N-BUTANE           = 0.1819057095392842 = 
+ISOBUTANE          = 0.1524687084686124 = 
+N-HEXANE           = 0.20703569081482037 = 
+N-DODECANE         = 0.28102279287302395 = 
 

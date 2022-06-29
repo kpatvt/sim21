@@ -106,20 +106,20 @@ Iteration 4 -> max Error 0.000000 in /flash.In.Fraction.N-NONANE
 Port: /recycle.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /mixer.In1
 VapFrac            = 0.0 = 
-T                  = 86.99958016124117 = C
+T                  = 86.99958015877422 = C
 P                  = 715.0 = kPa
 MoleFlow           = 200.0 = kgmole/h
-MassFlow           = 18891.410547905 = kg/h
-VolumeFlow         = 31.52748080805229 = m3/hr
-StdLiqVolumeFlow   = 28.234518765609334 = m3/hr
-H                  = -200543.6543758979 = kJ/kmol
-Energy             = -11141314.131994328 = W
-MolecularWeight    = 94.45705273952501 = 
-ZFactor            = 0.03763987896377069 = 
-PROPANE            = 0.10168099097775644 = 
-N-BUTANE           = 0.19421126783601028 = 
-ISOBUTANE          = 0.16568584085195645 = 
-N-NONANE           = 0.5384219003342768 = 
+MassFlow           = 18891.410547648407 = kg/h
+VolumeFlow         = 31.527480807611845 = m3/hr
+StdLiqVolumeFlow   = 28.234518765315226 = m3/hr
+H                  = -200543.6543743605 = kJ/kmol
+Energy             = -11141314.131908918 = W
+MolecularWeight    = 94.45705273824204 = 
+ZFactor            = 0.03763987896350268 = 
+PROPANE            = 0.101680990982413 = 
+N-BUTANE           = 0.19421126784248838 = 
+ISOBUTANE          = 0.16568584085818416 = 
+N-NONANE           = 0.5384219003169145 = 
 
 >> splitter.Liq0
 None
@@ -128,22 +128,22 @@ There is no object named Out
 Error processing command:
 <class 'sim21.old.cli.CommandInterface.CmdError'>
 There is no object named Out
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 342, in ProcessCommand
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 342, in ProcessCommand
     lhsObj = self.GetObject(self.currentObj, lhsDesc)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 2175, in GetObject
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 2175, in GetObject
     return self.GetObject(obj, remaining)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 2180, in GetObject
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 2180, in GetObject
     raise CmdError('CMDNoSuchName', remaining)
 
 
@@ -151,39 +151,39 @@ There is no object named Out
 Port: /splitter.Out0 + sim21.old.solver.Ports.Port_Material
 Connected to: /balance.In0
 VapFrac            = 0.0 = 
-T                  = 86.99958016124117 = C
+T                  = 86.99958015877422 = C
 P                  = 715.0 = kPa
-MoleFlow           = 1344.535913397088 = kgmole/h
-MassFlow           = 127000.89968193418 = kg/h
-VolumeFlow         = 211.94915102681873 = m3/hr
-StdLiqVolumeFlow   = 189.81162238922886 = m3/hr
-H                  = -200543.6543758979 = kJ/kmol
-Energy             = -74899484.86452438 = W
-MolecularWeight    = 94.45705273952501 = 
-ZFactor            = 0.03763987896377069 = 
-PROPANE            = 0.10168099097775644 = 
-N-BUTANE           = 0.19421126783601028 = 
-ISOBUTANE          = 0.16568584085195645 = 
-N-NONANE           = 0.5384219003342768 = 
+MoleFlow           = 1344.5359135076753 = kgmole/h
+MassFlow           = 127000.89969065494 = kg/h
+VolumeFlow         = 211.94915104129046 = m3/hr
+StdLiqVolumeFlow   = 189.81162240286355 = m3/hr
+H                  = -200543.6543743605 = kJ/kmol
+Energy             = -74899484.87011065 = W
+MolecularWeight    = 94.45705273824204 = 
+ZFactor            = 0.03763987896350268 = 
+PROPANE            = 0.101680990982413 = 
+N-BUTANE           = 0.19421126784248838 = 
+ISOBUTANE          = 0.16568584085818416 = 
+N-NONANE           = 0.5384219003169145 = 
 
 >> flash.In
 Port: /flash.In + sim21.old.solver.Ports.Port_Material
 Connected to: /mixer.Out
-VapFrac            = 0.516912529820028 = 
-T                  = 86.99958016124117 ~ C
+VapFrac            = 0.5169125298021487 = 
+T                  = 86.99958015877422 ~ C
 P                  = 715.0 = kPa
-MoleFlow           = 3197.217913397088 = kgmole/h
-MassFlow           = 235136.97007760257 = kg/h
-VolumeFlow         = 6438.340562504403 = m3/hr
-StdLiqVolumeFlow   = 372.47242271103784 = m3/hr
-H                  = -157518.13245290215 = kJ/kmol
-Energy             = -139894387.43424276 = W
-MolecularWeight    = 73.54424266557618 = 
-ZFactor            = 0.48082899839815224 = 
-PROPANE            = 0.24072211300273882 ~ 
-N-BUTANE           = 0.24651021395922565 ~ 
-ISOBUTANE          = 0.2447258461439796 ~ 
-N-NONANE           = 0.268041826894056 ~ 
+MoleFlow           = 3197.2179135076753 = kgmole/h
+MassFlow           = 235136.9700857399 = kg/h
+VolumeFlow         = 6438.340562465776 = m3/hr
+StdLiqVolumeFlow   = 372.4724227239262 = m3/hr
+H                  = -157518.13245364197 = kJ/kmol
+Energy             = -139894387.43973857 = W
+MolecularWeight    = 73.54424266557751 = 
+ZFactor            = 0.4808289983819298 = 
+PROPANE            = 0.24072211300272817 ~ 
+N-BUTANE           = 0.2465102139592245 ~ 
+ISOBUTANE          = 0.24472584614397452 ~ 
+N-NONANE           = 0.2680418268940728 ~ 
 
 >> stream.Out
 Port: /stream.Out + sim21.old.solver.Ports.Port_Material
@@ -191,12 +191,12 @@ Connected to: /mixer.In0
 VapFrac            = 0.551407770688256 = 
 T                  = 87.0 = C
 P                  = 715.0 = kPa
-MoleFlow           = 2997.217132842683 = kgmole/h
-MassFlow           = 216245.55952969752 = kg/h
-VolumeFlow         = 6406.8469290488865 = m3/hr
-StdLiqVolumeFlow   = 344.2378807498142 = m3/hr
+MoleFlow           = 2997.2171329590255 = kgmole/h
+MassFlow           = 216245.55953809147 = kg/h
+VolumeFlow         = 6406.846929297581 = m3/hr
+StdLiqVolumeFlow   = 344.23788076317646 = m3/hr
 H                  = -154647.01913427297 = kJ/kmol
-Energy             = -128752970.91452587 = W
+Energy             = -128752970.91952367 = W
 MolecularWeight    = 72.14878 = 
 ZFactor            = 0.5104045993111413 = 
 PROPANE            = 0.25 = 
@@ -218,20 +218,20 @@ Iteration 5 -> max Error 0.000003 in /flash.In.Fraction.N-NONANE
 Port: /recycle.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /mixer.In1
 VapFrac            = 0.0 = 
-T                  = 126.8498916856114 = C
+T                  = 126.84989168459111 = C
 P                  = 715.0 = kPa
 MoleFlow           = 200.0 = kgmole/h
-MassFlow           = 21862.025276336506 = kg/h
-VolumeFlow         = 37.40203262598633 = m3/hr
-StdLiqVolumeFlow   = 31.621952319918833 = m3/hr
-H                  = -213999.65787409575 = kJ/kmol
-Energy             = -11888869.881894207 = W
-MolecularWeight    = 109.31012638168252 = 
-ZFactor            = 0.04020473390348117 = 
-PROPANE            = 0.05629071461888557 = 
-N-BUTANE           = 0.1100124103505599 = 
-ISOBUTANE          = 0.09256835199013412 = 
-N-NONANE           = 0.7411285230404204 = 
+MassFlow           = 21862.025276283246 = kg/h
+VolumeFlow         = 37.402032625857615 = m3/hr
+StdLiqVolumeFlow   = 31.62195231985825 = m3/hr
+H                  = -213999.65787397354 = kJ/kmol
+Energy             = -11888869.88188742 = W
+MolecularWeight    = 109.31012638141624 = 
+ZFactor            = 0.04020473390344537 = 
+PROPANE            = 0.05629071461962695 = 
+N-BUTANE           = 0.11001241035215306 = 
+ISOBUTANE          = 0.09256835199144821 = 
+N-NONANE           = 0.7411285230367718 = 
 
 >> splitter.Liq0
 None
@@ -240,22 +240,22 @@ There is no object named Out
 Error processing command:
 <class 'sim21.old.cli.CommandInterface.CmdError'>
 There is no object named Out
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 342, in ProcessCommand
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 342, in ProcessCommand
     lhsObj = self.GetObject(self.currentObj, lhsDesc)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 2175, in GetObject
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 2175, in GetObject
     return self.GetObject(obj, remaining)
 
-  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 2180, in GetObject
+  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 2180, in GetObject
     raise CmdError('CMDNoSuchName', remaining)
 
 
@@ -263,39 +263,39 @@ There is no object named Out
 Port: /splitter.Out0 + sim21.old.solver.Ports.Port_Material
 Connected to: /balance.In0
 VapFrac            = 0.0 = 
-T                  = 126.8498916856114 = C
+T                  = 126.84989168459111 = C
 P                  = 715.0 = kPa
-MoleFlow           = 593.0758713062759 = kgmole/h
-MassFlow           = 64829.1984464155 = kg/h
-VolumeFlow         = 110.911215441413 = m3/hr
-StdLiqVolumeFlow   = 93.77108462270687 = m3/hr
-H                  = -213999.65787409575 = kJ/kmol
-Energy             = -35255009.32025674 = W
-MolecularWeight    = 109.31012638168252 = 
-ZFactor            = 0.04020473390348117 = 
-PROPANE            = 0.05629071461888557 = 
-N-BUTANE           = 0.1100124103505599 = 
-ISOBUTANE          = 0.09256835199013412 = 
-N-NONANE           = 0.7411285230404204 = 
+MoleFlow           = 593.0758713220511 = kgmole/h
+MassFlow           = 64829.19844798195 = kg/h
+VolumeFlow         = 110.91121544398143 = m3/hr
+StdLiqVolumeFlow   = 93.77108462502142 = m3/hr
+H                  = -213999.65787397354 = kJ/kmol
+Energy             = -35255009.32117435 = W
+MolecularWeight    = 109.31012638141624 = 
+ZFactor            = 0.04020473390344537 = 
+PROPANE            = 0.05629071461962695 = 
+N-BUTANE           = 0.11001241035215306 = 
+ISOBUTANE          = 0.09256835199144821 = 
+N-NONANE           = 0.7411285230367718 = 
 
 >> flash.In
 Port: /flash.In + sim21.old.solver.Ports.Port_Material
 Connected to: /mixer.Out
-VapFrac            = 0.675734102459335 = 
-T                  = 126.8498916856114 ~ C
+VapFrac            = 0.6757341024549764 = 
+T                  = 126.84989168459111 ~ C
 P                  = 715.0 = kPa
-MoleFlow           = 2445.757871306276 = kgmole/h
-MassFlow           = 183891.1930856644 = kg/h
-VolumeFlow         = 7144.181872808429 = m3/hr
-StdLiqVolumeFlow   = 289.5534102114909 = m3/hr
-H                  = -149788.8691501007 = kJ/kmol
-Energy             = -101763140.4883124 = W
-MolecularWeight    = 75.18781611339489 = 
-ZFactor            = 0.6279875374584101 = 
-PROPANE            = 0.2341586627008152 ~ 
-N-BUTANE           = 0.23855184789584313 ~ 
-ISOBUTANE          = 0.23712522514989007 ~ 
-N-NONANE           = 0.29016426425345154 ~ 
+MoleFlow           = 2445.757871322051 = kgmole/h
+MassFlow           = 183891.1930868653 = kg/h
+VolumeFlow         = 7144.181872792055 = m3/hr
+StdLiqVolumeFlow   = 289.55341021337745 = m3/hr
+H                  = -149788.86915040083 = kJ/kmol
+Energy             = -101763140.48917265 = W
+MolecularWeight    = 75.18781611340094 = 
+ZFactor            = 0.6279875374545221 = 
+PROPANE            = 0.23415866270071958 ~ 
+N-BUTANE           = 0.23855184789587894 ~ 
+ISOBUTANE          = 0.23712522514988285 ~ 
+N-NONANE           = 0.29016426425351866 ~ 
 
 >> stream.Out
 Port: /stream.Out + sim21.old.solver.Ports.Port_Material
@@ -303,12 +303,12 @@ Connected to: /mixer.In0
 VapFrac            = 0.7359174890688774 = 
 T                  = 126.85000000000002 = C
 P                  = 715.0 = kPa
-MoleFlow           = 2245.7644856826114 = kgmole/h
-MassFlow           = 162029.1678093279 = kg/h
-VolumeFlow         = 7106.845220237517 = m3/hr
-StdLiqVolumeFlow   = 257.9316655918621 = m3/hr
+MoleFlow           = 2245.764485699994 = kgmole/h
+MassFlow           = 162029.16781058203 = kg/h
+VolumeFlow         = 7106.845220292526 = m3/hr
+StdLiqVolumeFlow   = 257.93166559385855 = m3/hr
 H                  = -144070.03251214366 = kJ/kmol
-Energy             = -89874267.35191984 = W
+Energy             = -89874267.35261548 = W
 MolecularWeight    = 72.14878 = 
 ZFactor            = 0.6803376613656175 = 
 PROPANE            = 0.25 = 
@@ -337,42 +337,42 @@ Changed state of port /flash.In to 0 (0=Normal port; 1=Recycle port)
 >> /flash.In
 Port: /flash.In + sim21.old.solver.Ports.Port_Material
 Connected to: /mixer.Out
-VapFrac            = 0.675734102459335 = 
-T                  = 126.8498916856114 * C
+VapFrac            = 0.6757341024549764 = 
+T                  = 126.84989168459111 * C
 P                  = 715.0 = kPa
-MoleFlow           = 2445.757871306276 = kgmole/h
-MassFlow           = 183891.1930856644 = kg/h
-VolumeFlow         = 7144.181872808429 = m3/hr
-StdLiqVolumeFlow   = 289.5534102114909 = m3/hr
-H                  = -149788.8691501007 = kJ/kmol
-Energy             = -101763140.4883124 = W
-MolecularWeight    = 75.18781611339489 = 
-ZFactor            = 0.6279875374584101 = 
-PROPANE            = 0.2341586627008152 * 
-N-BUTANE           = 0.23855184789584313 * 
-ISOBUTANE          = 0.23712522514989007 * 
-N-NONANE           = 0.29016426425345154 * 
+MoleFlow           = 2445.757871322051 = kgmole/h
+MassFlow           = 183891.1930868653 = kg/h
+VolumeFlow         = 7144.181872792055 = m3/hr
+StdLiqVolumeFlow   = 289.55341021337745 = m3/hr
+H                  = -149788.86915040083 = kJ/kmol
+Energy             = -101763140.48917265 = W
+MolecularWeight    = 75.18781611340094 = 
+ZFactor            = 0.6279875374545221 = 
+PROPANE            = 0.23415866270071958 * 
+N-BUTANE           = 0.23855184789587894 * 
+ISOBUTANE          = 0.23712522514988285 * 
+N-NONANE           = 0.29016426425351866 * 
 
 >> /flash.In.State = 1
 Changed state of port /flash.In to 1 (0=Normal port; 1=Recycle port)
 >> /flash.In
 Port: /flash.In + sim21.old.solver.Ports.Port_Material
 Connected to: /mixer.Out
-VapFrac            = 0.675734102459335 = 
-T                  = 126.8498916856114 ~ C
+VapFrac            = 0.6757341024549764 = 
+T                  = 126.84989168459111 ~ C
 P                  = 715.0 = kPa
-MoleFlow           = 2445.757871306276 = kgmole/h
-MassFlow           = 183891.1930856644 = kg/h
-VolumeFlow         = 7144.181872808429 = m3/hr
-StdLiqVolumeFlow   = 289.5534102114909 = m3/hr
-H                  = -149788.8691501007 = kJ/kmol
-Energy             = -101763140.4883124 = W
-MolecularWeight    = 75.18781611339489 = 
-ZFactor            = 0.6279875374584101 = 
-PROPANE            = 0.2341586627008152 ~ 
-N-BUTANE           = 0.23855184789584313 ~ 
-ISOBUTANE          = 0.23712522514989007 ~ 
-N-NONANE           = 0.29016426425345154 ~ 
+MoleFlow           = 2445.757871322051 = kgmole/h
+MassFlow           = 183891.1930868653 = kg/h
+VolumeFlow         = 7144.181872792055 = m3/hr
+StdLiqVolumeFlow   = 289.55341021337745 = m3/hr
+H                  = -149788.86915040083 = kJ/kmol
+Energy             = -101763140.48917265 = W
+MolecularWeight    = 75.18781611340094 = 
+ZFactor            = 0.6279875374545221 = 
+PROPANE            = 0.23415866270071958 ~ 
+N-BUTANE           = 0.23855184789587894 ~ 
+ISOBUTANE          = 0.23712522514988285 ~ 
+N-NONANE           = 0.29016426425351866 ~ 
 
 >> 
 >> 
