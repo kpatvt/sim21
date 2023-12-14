@@ -26,7 +26,7 @@ P                  = 1137.6349050000001 = kPa
 MoleFlow           = 36230.56812977424 = kgmole/h
 MassFlow           = 749796.754796521 = kg/h
 VolumeFlow         = 81284.39898323505 = m3/hr
-StdLiqVolumeFlow   = 1669.7628234873894 = m3/hr
+StdLiqVolumeFlow   = 1669.7628234873896 = m3/hr
 H                  = -60632.683170169454 = kJ/kmol
 Energy             = -610210155.1355113 = W
 MolecularWeight    = 20.69514207204327 = 
@@ -80,9 +80,9 @@ Solving design object /sep101.Horizontal
 Input. Contains
 VapMassFlow	= 749796.754796521
 LLiqMassFlow	= 102346.24520347899
-VapDensity	= 9.224363048633771
+VapDensity	= 9.224363048632785
 LLiqDensity	= 837.1243924906569
-LLiqViscosity	= 0.0005936852555946671
+LLiqViscosity	= 0.000593685255594667
 P	= 1137.6349050000001
 HoldupTime	= 1500.0
 SurgeTime	= 300.0
@@ -106,9 +106,9 @@ VesselWallThickness	= 0.042524535868250585
 Input. Contains
 VapMassFlow	= 749796.754796521
 LLiqMassFlow	= 102346.24520347899
-VapDensity	= 9.224363048633771
+VapDensity	= 9.224363048632785
 LLiqDensity	= 837.1243924906569
-LLiqViscosity	= 0.0005936852555946671
+LLiqViscosity	= 0.000593685255594667
 P	= 1137.6349050000001
 HoldupTime	= 1400.0
 SurgeTime	= 500.0

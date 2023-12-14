@@ -144,8 +144,8 @@ MoleFlow           = 21.1497 = kgmole/h
 MassFlow           = 482.742113997 = kg/h
 VolumeFlow         = 416.61968074101856 = m3/hr
 StdLiqVolumeFlow   = 0.728603358054 = m3/hr
-H                  = -126053.53254348296 = kJ/kmol
-Energy             = -740553.999231917 = W
+H                  = -126053.53254348255 = kJ/kmol
+Energy             = -740553.9992319146 = W
 MolecularWeight    = 22.82501 = 
 ZFactor            = 0.8156795423745542 = 
 HYDROGEN           = 0.0 = 
@@ -193,7 +193,7 @@ P                  = 101.325 = kPa
 MoleFlow           = 10.043478260869566 = kgmole/h
 MassFlow           = 259.3006 = kg/h
 VolumeFlow         = 200.75155656713142 = m3/hr
-StdLiqVolumeFlow   = 0.3936814565217392 = m3/hr
+StdLiqVolumeFlow   = 0.3936814565217393 = m3/hr
 H                  = -154488.80906223177 = kJ/kmol
 Energy             = -431001.38760115387 = W
 MolecularWeight    = 25.817808658008662 = 
@@ -212,7 +212,7 @@ PROPANE            = 0.09090909090909091 =
 >> OutQ
 Port: /rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 127243.37187145313 = W
+Energy   = 127243.3718711952 = W
 
 >> 
 >> # test 5 : adibatic reaction-----------------------------------------------------
@@ -222,16 +222,16 @@ Energy   = 127243.37187145313 = W
 Port: /rxn.RxnHeater.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 734.87144243983 = C
+T                  = 734.8714424383993 = C
 P                  = 101.325 = kPa
 MoleFlow           = 10.043478260869566 = kgmole/h
 MassFlow           = 259.3006 = kg/h
-VolumeFlow         = 830.8887484130406 = m3/hr
-StdLiqVolumeFlow   = 0.3936814565217392 = m3/hr
-H                  = -108879.49654726934 = kJ/kmol
-Energy             = -303758.01572970074 = W
+VolumeFlow         = 830.8887484118609 = m3/hr
+StdLiqVolumeFlow   = 0.3936814565217393 = m3/hr
+H                  = -108879.4965473618 = kJ/kmol
+Energy             = -303758.01572995866 = W
 MolecularWeight    = 25.81780865800866 = 
-ZFactor            = 1.000164397347377 = 
+ZFactor            = 1.0001643973473766 = 
 HYDROGEN           = 0.09090909090909091 = 
 WATER              = 0.1861471861471861 = 
 CARBON MONOXIDE    = 0.09090909090909091 = 
@@ -434,7 +434,7 @@ Energy   = -10591.727711856132 = W
 >> OutQ
 Port: /rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -41059.04685258935 = W
+Energy   = -41059.04685259203 = W
 
 >> 
 >> 
@@ -444,7 +444,7 @@ Energy   = -41059.04685258935 = W
 >> OutQ
 Port: /rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 606414.0143135742 = W
+Energy   = 606414.0143136786 = W
 
 >> 
 >> 
@@ -453,14 +453,14 @@ Energy   = 606414.0143135742 = W
 >> OutQ
 Port: /rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -606414.0143135742 = W
+Energy   = -606414.0143136786 = W
 
 >> 
 >> QExothermicIsPositive = 1
 >> OutQ
 Port: /rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 606414.0143135742 = W
+Energy   = 606414.0143136786 = W
 
 >> 
 >> copy /rxn

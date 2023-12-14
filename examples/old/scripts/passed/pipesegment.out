@@ -64,16 +64,16 @@ WATER              = 1.0 *
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.850238331875175 = C
-P                  = 298.9042705458071 = kPa
+T                  = 26.850238331833054 = C
+P                  = 298.90427054580596 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 18015.280000000002 = kg/h
-VolumeFlow         = 21.25662508694507 = m3/hr
+VolumeFlow         = 21.25662508693985 = m3/hr
 StdLiqVolumeFlow   = 18.07 = m3/hr
-H                  = -287368.5548217174 = kJ/kmol
-Energy             = -79824598.56158815 = W
+H                  = -287368.5548217255 = kJ/kmol
+Energy             = -79824598.56159043 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0025472445865525888 = 
+ZFactor            = 0.002547244586552311 = 
 WATER              = 1.0 = 
 
 >> 
@@ -96,12 +96,12 @@ Connected to: None
 VapFrac            = 0.0 = 
 T                  = 26.854204758022718 = C
 P                  = 280.0 * kPa
-MoleFlow           = 4511.710253503267 = kgmole/h
-MassFlow           = 81279.72349573234 = kg/h
-VolumeFlow         = 95.90420847104787 = m3/hr
-StdLiqVolumeFlow   = 81.52660428080404 = m3/hr
+MoleFlow           = 4511.710253503262 = kgmole/h
+MassFlow           = 81279.72349573225 = kg/h
+VolumeFlow         = 95.90420847104775 = m3/hr
+StdLiqVolumeFlow   = 81.52660428080394 = m3/hr
 H                  = -287368.5553142944 = kJ/kmol
-Energy             = -360145460.42942303 = W
+Energy             = -360145460.42942256 = W
 MolecularWeight    = 18.01528 = 
 ZFactor            = 0.0023861237796638513 = 
 WATER              = 1.0 = 
@@ -122,12 +122,12 @@ Connected to: None
 VapFrac            = 0.0 = 
 T                  = 26.852103400611952 = C
 P                  = 290.0 = kPa
-MoleFlow           = 3164.41000785921 = kgmole/h
-MassFlow           = 57007.73232638587 = kg/h
-VolumeFlow         = 67.26483397241697 = m3/hr
-StdLiqVolumeFlow   = 57.180888842015925 = m3/hr
+MoleFlow           = 3164.4100078591637 = kgmole/h
+MassFlow           = 57007.732326385034 = kg/h
+VolumeFlow         = 67.26483397241599 = m3/hr
+StdLiqVolumeFlow   = 57.18088884201509 = m3/hr
 H                  = -287368.5553134744 = kJ/kmol
-Energy             = -252597758.99388924 = W
+Energy             = -252597758.99388555 = W
 MolecularWeight    = 18.01528 = 
 ZFactor            = 0.002471353314818237 = 
 WATER              = 1.0 = 
@@ -144,12 +144,12 @@ Connected to: None
 VapFrac            = 0.0 = 
 T                  = 26.850000000000023 * C
 P                  = 280.0 = kPa
-MoleFlow           = 3164.40181799539 = kgmole/h
-MassFlow           = 57007.584783695995 = kg/h
-VolumeFlow         = 67.26464976444039 = m3/hr
-StdLiqVolumeFlow   = 57.180740851176694 = m3/hr
+MoleFlow           = 3164.401817995377 = kgmole/h
+MassFlow           = 57007.584783695755 = kg/h
+VolumeFlow         = 67.26464976444011 = m3/hr
+StdLiqVolumeFlow   = 57.18074085117646 = m3/hr
 H                  = -287368.8963318605 = kJ/kmol
-Energy             = -252597404.99663004 = W
+Energy             = -252597404.996629 = W
 MolecularWeight    = 18.01528 = 
 ZFactor            = 0.0023861506060326443 = 
 WATER              = 1.0 * 
@@ -158,16 +158,16 @@ WATER              = 1.0 *
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.852103387610043 = C
+T                  = 26.852103387591114 = C
 P                  = 270.0 * kPa
-MoleFlow           = 3164.40181799539 = kgmole/h
-MassFlow           = 57007.584783695995 = kg/h
-VolumeFlow         = 67.2648262736534 = m3/hr
-StdLiqVolumeFlow   = 57.180740851176694 = m3/hr
+MoleFlow           = 3164.401817995377 = kgmole/h
+MassFlow           = 57007.584783695755 = kg/h
+VolumeFlow         = 67.26482627365374 = m3/hr
+StdLiqVolumeFlow   = 57.18074085117646 = m3/hr
 H                  = -287368.89633152797 = kJ/kmol
-Energy             = -252597404.99633774 = W
+Energy             = -252597404.9963367 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0023009208469779163 = 
+ZFactor            = 0.0023009208469780833 = 
 WATER              = 1.0 = 
 
 >> 
@@ -187,16 +187,16 @@ Converged /pipe in 5 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.84790097907171 = C
+T                  = 26.847900979051133 = C
 P                  = 270.0 * kPa
-MoleFlow           = -3164.3984113054667 = kgmole/h
-MassFlow           = -57007.52341122315 = kg/h
-VolumeFlow         = -67.26456742483406 = m3/hr
-StdLiqVolumeFlow   = -57.18067929228978 = m3/hr
-H                  = -287369.2373234945 = kJ/kmol
-Energy             = 252597432.79014713 = W
+MoleFlow           = -3164.398411305609 = kgmole/h
+MassFlow           = -57007.52341122571 = kg/h
+VolumeFlow         = -67.2645674248357 = m3/hr
+StdLiqVolumeFlow   = -57.18067929229235 = m3/hr
+H                  = -287369.23732349445 = kJ/kmol
+Energy             = 252597432.79015842 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.002300946701152551 = 
+ZFactor            = 0.0023009467011526614 = 
 WATER              = 1.0 = 
 
 >> 
@@ -236,16 +236,16 @@ WATER              = 1.0 *
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.844866429123613 = C
-P                  = 324.4676087249571 = kPa
+T                  = 26.84486642907109 = C
+P                  = 324.46760872494633 = kPa
 MoleFlow           = -5000.0 = kgmole/h
 MassFlow           = -90076.40000000001 = kg/h
-VolumeFlow         = -106.28241291191941 = m3/hr
+VolumeFlow         = -106.28241291190857 = m3/hr
 StdLiqVolumeFlow   = -90.35 = m3/hr
-H                  = -287368.5548207015 = kJ/kmol
-Energy             = 399122992.8065299 = W
+H                  = -287368.55482070235 = kJ/kmol
+Energy             = 399122992.8065311 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.002765124824724408 = 
+ZFactor            = 0.002765124824724518 = 
 WATER              = 1.0 = 
 
 >> 
@@ -266,16 +266,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.866389069951424 = C
-P                  = 222.04360938292226 = kPa
+T                  = 26.866389069969728 = C
+P                  = 222.0436093803252 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 191.31348263280913 = m3/hr
+VolumeFlow         = 191.31348263286395 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -287368.55483672913 = kJ/kmol
-Energy             = -718421387.0918229 = W
+H                  = -287368.55483672046 = kJ/kmol
+Energy             = -718421387.0918012 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0018921788408396423 = 
+ZFactor            = 0.0018921788408179376 = 
 WATER              = 1.0 = 
 
 >> pipe.Elevation1 = 10
@@ -294,16 +294,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.862078810174808 = C
-P                  = 138.90299327008003 = kPa
+T                  = 26.86207880966566 = C
+P                  = 138.9029932623866 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 191.31490671123916 = m3/hr
+VolumeFlow         = 191.31490671105868 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -287370.322139747 = kJ/kmol
-Energy             = -718425805.3493675 = W
+H                  = -287370.32213978167 = kJ/kmol
+Energy             = -718425805.3494542 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0011837090832299 = 
+ZFactor            = 0.0011837090831652297 = 
 WATER              = 1.0 = 
 
 >> pipe.Elevation0 = 10
@@ -322,16 +322,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.866389069945456 = C
-P                  = 222.04360936960103 = kPa
+T                  = 26.86638906990504 = C
+P                  = 222.0436093776486 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 191.31348263279958 = m3/hr
+VolumeFlow         = 191.31348263270985 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -287368.55483671883 = kJ/kmol
-Energy             = -718421387.091797 = W
+H                  = -287368.55483673717 = kJ/kmol
+Energy             = -718421387.0918429 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0018921788407260665 = 
+ZFactor            = 0.0018921788407940123 = 
 WATER              = 1.0 = 
 
 >> pipe.Elevation0 = 20
@@ -350,16 +350,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.870698916906008 = C
-P                  = 305.1848441639516 = kPa
+T                  = 26.87069891673002 = C
+P                  = 305.1848441660803 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 191.3120587812498 = m3/hr
+VolumeFlow         = 191.31205878121605 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -287366.78753363993 = kJ/kmol
-Energy             = -718416968.8340998 = W
+H                  = -287366.787533657 = kJ/kmol
+Energy             = -718416968.8341424 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.002600622973060407 = 
+ZFactor            = 0.0026006229730796133 = 
 WATER              = 1.0 = 
 
 >> 
@@ -394,16 +394,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.866389069951424 = C
-P                  = 222.04360938292226 = kPa
+T                  = 26.866389069969728 = C
+P                  = 222.0436093803252 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 191.31348263280913 = m3/hr
+VolumeFlow         = 191.31348263286395 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -287368.55483672913 = kJ/kmol
-Energy             = -718421387.0918229 = W
+H                  = -287368.55483672046 = kJ/kmol
+Energy             = -718421387.0918012 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0018921788408396423 = 
+ZFactor            = 0.0018921788408179376 = 
 WATER              = 1.0 = 
 
 >> pipe.Roughness = 0.000001
@@ -422,16 +422,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.860339894774086 = C
-P                  = 250.83193493025033 = kPa
+T                  = 26.860339894834226 = C
+P                  = 250.83193492813578 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 191.31203792071727 = m3/hr
+VolumeFlow         = 191.31203792072887 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -287368.554831238 = kJ/kmol
-Energy             = -718421387.078095 = W
+H                  = -287368.55483122496 = kJ/kmol
+Energy             = -718421387.0780624 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0021375299512987334 = 
+ZFactor            = 0.0021375299512804147 = 
 WATER              = 1.0 = 
 
 >> pipe.Roughness = 0.0
@@ -450,16 +450,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 26.860198418443815 = C
-P                  = 251.50522107807902 = kPa
+T                  = 26.860198418358152 = C
+P                  = 251.50522107400738 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 191.31200413433552 = m3/hr
+VolumeFlow         = 191.31200413430096 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -287368.5548310887 = kJ/kmol
-Energy             = -718421387.0777217 = W
+H                  = -287368.5548310895 = kJ/kmol
+Energy             = -718421387.0777237 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.002143268167535129 = 
+ZFactor            = 0.002143268167500656 = 
 WATER              = 1.0 = 
 
 >> 
@@ -593,16 +593,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 90.00791657176188 = C
-P                  = 257.2348442714821 = kPa
+T                  = 90.00791657195686 = C
+P                  = 257.23484427378224 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 200.72819440069296 = m3/hr
+VolumeFlow         = 200.72819440071822 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
 H                  = -282224.2269815576 = kJ/kmol
 Energy             = -705560567.453894 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.001900054088515235 = 
+ZFactor            = 0.0019000540885314445 = 
 WATER              = 1.0 = 
 
 >> 
@@ -652,16 +652,16 @@ Converged /pipe.SolveForOutP in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 85.13629344962902 = C
-P                  = 257.2997865054488 = kPa
+T                  = 85.13629344980956 = C
+P                  = 257.29978650659433 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 199.88256162044385 = m3/hr
+VolumeFlow         = 199.88256162052235 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -282624.2257562614 = kJ/kmol
+H                  = -282624.2257562433 = kJ/kmol
 Energy             = -706560567.453894 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.00191825988011779 = 
+ZFactor            = 0.0019182598801261166 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
@@ -706,15 +706,15 @@ Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
 T                  = 38.0 * C
-P                  = 299.39811141683845 = kPa
-MoleFlow           = 849.1311532220229 = kgmole/h
-MassFlow           = 15297.335482017646 = kg/h
-VolumeFlow         = 18.186123033249146 = m3/hr
-StdLiqVolumeFlow   = 15.343799938721954 = m3/hr
-H                  = -286463.8547308405 = kJ/kmol
-Energy             = -67568162.03445128 = W
+P                  = 299.3981114168252 = kPa
+MoleFlow           = 849.131153228415 = kgmole/h
+MassFlow           = 15297.3354821328 = kg/h
+VolumeFlow         = 18.18612303338532 = m3/hr
+StdLiqVolumeFlow   = 15.343799938837458 = m3/hr
+H                  = -286463.8547308097 = kJ/kmol
+Energy             = -67568162.03495266 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0024786226628374375 = 
+ZFactor            = 0.002478622662834551 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
@@ -750,21 +750,21 @@ Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
 T                  = 38.0 * C
-P                  = 299.3981066404956 = kPa
-MoleFlow           = 849.1339899245436 = kgmole/h
-MassFlow           = 15297.386586007835 = kg/h
-VolumeFlow         = 18.186185945382324 = m3/hr
-StdLiqVolumeFlow   = 15.343851197936502 = m3/hr
-H                  = -286463.84081635927 = kJ/kmol
-Energy             = -67568384.47819568 = W
+P                  = 299.39810663767406 = kPa
+MoleFlow           = 849.1339919885282 = kgmole/h
+MassFlow           = 15297.386623191092 = kg/h
+VolumeFlow         = 18.18618599115276 = m3/hr
+StdLiqVolumeFlow   = 15.343851235232705 = m3/hr
+H                  = -286463.840806237 = kJ/kmol
+Energy             = -67568384.6400462 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.002478621551456062 = 
+ZFactor            = 0.0024786215506526488 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
 [500000. 500000.]
 >> /pipe.T
-[363.15000679 337.23280839 311.15017147]
+[363.15000679 337.23280846 311.15017159]
 >> 
 >> 
 >> #Different solve scheme
@@ -797,15 +797,15 @@ Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
 T                  = 38.0 * C
-P                  = 253.56589052583996 = kPa
+P                  = 253.5658905255747 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 192.75726109134428 = m3/hr
+VolumeFlow         = 192.75726109112438 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -286464.58549672127 = kJ/kmol
-Energy             = -716161463.7418032 = W
+H                  = -286464.585496893 = kJ/kmol
+Energy             = -716161463.7422324 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0020992028124794393 = 
+ZFactor            = 0.0020992028124893203 = 
 WATER              = 1.0 = 
 
 >> /pipe.Out
@@ -813,15 +813,15 @@ Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
 T                  = 38.0 * C
-P                  = 253.56589052583996 = kPa
+P                  = 253.5658905255747 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 192.75726109134428 = m3/hr
+VolumeFlow         = 192.75726109112438 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -286464.58549672127 = kJ/kmol
-Energy             = -716161463.7418032 = W
+H                  = -286464.585496893 = kJ/kmol
+Energy             = -716161463.7422324 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0020992028124794393 = 
+ZFactor            = 0.0020992028124893203 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
@@ -851,16 +851,16 @@ Converged /pipe in 6 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 85.1365669676548 = C
+T                  = 85.13656696585309 = C
 P                  = 150.0 * kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 199.88728064619795 = m3/hr
+VolumeFlow         = 199.8872806457484 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -282625.8549329744 = kJ/kmol
-Energy             = -706564637.332436 = W
+H                  = -282625.8549331399 = kJ/kmol
+Energy             = -706564637.3328497 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0011183279997477036 = 
+ZFactor            = 0.0011183279997508122 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
@@ -904,20 +904,20 @@ Converged /pipe in 6 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 85.1366169597797 = C
+T                  = 85.13661695592896 = C
 P                  = 150.0 * kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 199.88728920786664 = m3/hr
+VolumeFlow         = 199.88728920706768 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -282625.85083227314 = kJ/kmol
-Energy             = -706564627.0806828 = W
+H                  = -282625.85083256214 = kJ/kmol
+Energy             = -706564627.0814053 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0011183278916069297 = 
+ZFactor            = 0.001118327891614479 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
-[500255.53304437 499744.46695563]
+[500255.53317842 499744.46682158]
 >> /pipe.T
 [363.15009593 360.71835308 358.28661696]
 >> 
@@ -951,20 +951,20 @@ Converged /pipe in 6 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 85.1366169597797 = C
+T                  = 85.13661695592896 = C
 P                  = 150.0 * kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 199.88728920786664 = m3/hr
+VolumeFlow         = 199.88728920706768 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -282625.85083227314 = kJ/kmol
-Energy             = -706564627.0806828 = W
+H                  = -282625.85083256214 = kJ/kmol
+Energy             = -706564627.0814053 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0011183278916069297 = 
+ZFactor            = 0.001118327891614479 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
-[500255.53304437 499744.46695563]
+[500255.53317842 499744.46682158]
 >> /pipe.T
 [363.15009593 360.71835308 358.28661696]
 >> 
@@ -989,20 +989,20 @@ Converged /pipe in 7 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 85.13649675071298 = C
+T                  = 85.13649675210996 = C
 P                  = 150.0 * kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 199.88726862012828 = m3/hr
+VolumeFlow         = 199.88726862042148 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -282625.8606927658 = kJ/kmol
-Energy             = -706564651.7319145 = W
+H                  = -282625.8606926172 = kJ/kmol
+Energy             = -706564651.731543 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.001118328151634096 = 
+ZFactor            = 0.0011183281516313759 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
-[509719.96016237 490280.03983763]
+[509719.96016 490280.03984]
 >> /pipe.T
 [363.14997578 360.67211945 358.28649675]
 >> /pipe.u
@@ -1020,20 +1020,20 @@ Converged /pipe in 2 iterations
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 85.13652101974719 = C
+T                  = 85.1365210192618 = C
 P                  = 150.0 * kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 199.88727277667115 = m3/hr
+VolumeFlow         = 199.88727277677737 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -282625.8587020793 = kJ/kmol
-Energy             = -706564646.7551982 = W
+H                  = -282625.8587020576 = kJ/kmol
+Energy             = -706564646.755144 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0011183280991375888 = 
+ZFactor            = 0.0011183280991396982 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
-[509719.94155791 490280.05844209]
+[509719.9415426 490280.0584574]
 >> /pipe.T
 [363.15       360.67214378 358.28652102]
 >> /pipe.u
@@ -1069,7 +1069,7 @@ ZFactor            = 0.0012418283046685128 =
 WATER              = 1.0 = 
 
 >> /pipe.Energy
-[7324644.81875204 3276651.23815864]
+[7324644.81883617 3276651.23817183]
 >> /pipe.T
 [363.15       327.28383283 311.15000192]
 >> /pipe.u
@@ -1135,7 +1135,7 @@ ZFactor            = 0.0012418283046685128 =
 WATER              = 1.0 = 
 
 >> /pipe.T
-[363.14965263 337.14959772 311.15000192]
+[363.14965262 337.14959771 311.15000192]
 >> 
 >> /pipe.EnergyLossModel = LinearEnergy
 Calculating Jacobian for /pipe
@@ -1163,7 +1163,7 @@ ZFactor            = 0.0012418283046685128 =
 WATER              = 1.0 = 
 
 >> /pipe.Energy
-[5300551.03962048 5300551.03962048]
+[5300551.03922931 5300551.03922931]
 >> 
 >> 
 >> /pipe.Out.P =
@@ -1183,15 +1183,15 @@ Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
 T                  = 38.0 * C
-P                  = 256.9495772404469 = kPa
+P                  = 256.9495772404568 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 192.75719438656606 = m3/hr
+VolumeFlow         = 192.7571943865313 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -286464.514567259 = kJ/kmol
-Energy             = -716161286.4181474 = W
+H                  = -286464.5145672535 = kJ/kmol
+Energy             = -716161286.4181339 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.0021272135106168433 = 
+ZFactor            = 0.0021272135106161216 = 
 WATER              = 1.0 = 
 
 >> 
@@ -1349,30 +1349,30 @@ SolvingSection (1, '/pipe')
 Calculating Jacobian for /pipe.SolveForOutP
 /pipe.SolveForOutP Iteration 1 Max Error 9.379058
 Calculating Jacobian for /pipe.SolveForOutP
-/pipe.SolveForOutP Iteration 2 Max Error 0.000029
+/pipe.SolveForOutP Iteration 2 Max Error 0.000028
 Calculating Jacobian for /pipe.SolveForOutP
 Converged /pipe.SolveForOutP in 3 iterations
 SolvingSection (2, '/pipe')
 Calculating Jacobian for /pipe.SolveForOutP
 /pipe.SolveForOutP Iteration 1 Max Error 7.448945
 Calculating Jacobian for /pipe.SolveForOutP
-/pipe.SolveForOutP Iteration 2 Max Error 0.000097
+/pipe.SolveForOutP Iteration 2 Max Error 0.000095
 Calculating Jacobian for /pipe.SolveForOutP
 Converged /pipe.SolveForOutP in 3 iterations
 >> /pipe.Out
 Port: /pipe.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 41.29920423828071 = C
-P                  = 257.04480465820467 = kPa
+T                  = 41.29920423849677 = C
+P                  = 257.04480465821973 = kPa
 MoleFlow           = 9000.0 = kgmole/h
 MassFlow           = 162137.52000000002 = kg/h
-VolumeFlow         = 193.20082291071498 = m3/hr
+VolumeFlow         = 193.20082291072458 = m3/hr
 StdLiqVolumeFlow   = 162.63 = m3/hr
-H                  = -286196.8039395461 = kJ/kmol
+H                  = -286196.8039395338 = kJ/kmol
 Energy             = -715492011.853894 = W
 MolecularWeight    = 18.01528 = 
-ZFactor            = 0.002110525519398887 = 
+ZFactor            = 0.0021105255193976658 = 
 WATER              = 1.0 = 
 
 >> /pipe.Energy
@@ -1389,14 +1389,14 @@ SolvingSection (1, '/pipe')
 Calculating Jacobian for /pipe.SolveForOutP
 /pipe.SolveForOutP Iteration 1 Max Error 9.379058
 Calculating Jacobian for /pipe.SolveForOutP
-/pipe.SolveForOutP Iteration 2 Max Error 0.000029
+/pipe.SolveForOutP Iteration 2 Max Error 0.000028
 Calculating Jacobian for /pipe.SolveForOutP
 Converged /pipe.SolveForOutP in 3 iterations
 SolvingSection (2, '/pipe')
 Calculating Jacobian for /pipe.SolveForOutP
 /pipe.SolveForOutP Iteration 1 Max Error 7.448945
 Calculating Jacobian for /pipe.SolveForOutP
-/pipe.SolveForOutP Iteration 2 Max Error 0.000097
+/pipe.SolveForOutP Iteration 2 Max Error 0.000095
 Calculating Jacobian for /pipe.SolveForOutP
 Converged /pipe.SolveForOutP in 3 iterations
 >> /pipe.EnergyLossModel = LinearTemperature

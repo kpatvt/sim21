@@ -1455,7 +1455,7 @@ class Feed(StageObject):
         moles = self.TotalFlow()
 
         if moles == 0.0:
-            return np.zeros(self.stage.tower.numCompounds, np.float)
+            return np.zeros(self.stage.tower.numCompounds, float)
 
         comp_values = self.port.GetCompositionValues()
         none_count = 0
@@ -1465,7 +1465,7 @@ class Feed(StageObject):
                 none_count += 1
 
         if none_count == len(comp_values):
-            return np.zeros(self.stage.tower.numCompounds, np.float)
+            return np.zeros(self.stage.tower.numCompounds, float)
 
         x = np.array(comp_values)
         return (x / np.sum(x)) * moles
@@ -2466,7 +2466,7 @@ class WaterDraw(Draw):
         stageNo = stage.number
 
         # calculate total component feed to stage
-        f = np.zeros(tower.numCompounds, np.float)
+        f = np.zeros(tower.numCompounds, float)
 
         # add any feeds
         stage.TotalFeed(f)
@@ -2551,7 +2551,7 @@ class WaterDraw(Draw):
         newFlow = totalFeed * results.phaseFractions[2]
 
         try:
-            self.oldFlows, self.oldFlow = np.array(self.moleFlows, np.float), self.flow
+            self.oldFlows, self.oldFlow = np.array(self.moleFlows, float), self.flow
         except:
             pass
         self.f = f
@@ -2675,7 +2675,7 @@ class WaterDraw(Draw):
             self.convRes['wEnthalpy'] = self.wEnthalpy
             self.convRes['wCp'] = self.wCp
             self.convRes['baseT'] = self.baseT
-            self.convRes['moleFlows'] = np.array(self.moleFlows, np.float)
+            self.convRes['moleFlows'] = np.array(self.moleFlows, float)
 
             return 1
 
@@ -2704,7 +2704,7 @@ class WaterDraw(Draw):
             for key in self.convRes:
                 tempDict[key] = self.__dict__[key]
                 if key == 'moleFlows':
-                    self.__dict__[key] = np.array(self.convRes[key], np.float)
+                    self.__dict__[key] = np.array(self.convRes[key], float)
                 else:
                     self.__dict__[key] = self.convRes[key]
 
@@ -4478,21 +4478,21 @@ class Tower(UnitOperations.UnitOperation):
         self.ClearConvResults()
         try:
             # The keys of convRes must exactly match the names of the attributes in the tower
-            self.convRes['flowMatrix'] = np.array(self.flowMatrix, np.float)
-            self.convRes['T'] = np.array(self.T, np.float)
-            self.convRes['V'] = np.array(self.V, np.float)
-            self.convRes['L'] = np.array(self.L, np.float)
-            self.convRes['l'] = np.array(self.l, np.float)
-            self.convRes['v'] = np.array(self.v, np.float)
+            self.convRes['flowMatrix'] = np.array(self.flowMatrix, float)
+            self.convRes['T'] = np.array(self.T, float)
+            self.convRes['V'] = np.array(self.V, float)
+            self.convRes['L'] = np.array(self.L, float)
+            self.convRes['l'] = np.array(self.l, float)
+            self.convRes['v'] = np.array(self.v, float)
 
-            self.convRes['A'] = np.array(self.A, np.float)
-            self.convRes['B'] = np.array(self.B, np.float)
-            self.convRes['alpha'] = np.array(self.alpha, np.float)
+            self.convRes['A'] = np.array(self.A, float)
+            self.convRes['B'] = np.array(self.B, float)
+            self.convRes['alpha'] = np.array(self.alpha, float)
 
-            self.convRes['hlModel'] = np.array(self.hlModel, np.float)
-            self.convRes['hvModel'] = np.array(self.hvModel, np.float)
-            self.convRes['jacobian'] = np.array(self.jacobian, np.float)
-            self.convRes['logSFactors'] = np.array(self.logSFactors, np.float)
+            self.convRes['hlModel'] = np.array(self.hlModel, float)
+            self.convRes['hvModel'] = np.array(self.hvModel, float)
+            self.convRes['jacobian'] = np.array(self.jacobian, float)
+            self.convRes['logSFactors'] = np.array(self.logSFactors, float)
 
             if self.waterDraws:
                 for wd in self.waterDraws:
@@ -4531,7 +4531,7 @@ class Tower(UnitOperations.UnitOperation):
             try:
                 for key in self.convRes:
                     tempDict[key] = self.__dict__[key]
-                    self.__dict__[key] = np.array(self.convRes[key], np.float)
+                    self.__dict__[key] = np.array(self.convRes[key], float)
             except:
                 if key != 'jacobian':
                     raise
@@ -4611,14 +4611,14 @@ class Tower(UnitOperations.UnitOperation):
                             'A', 'B', 'logSFactors']:
                 var = self.__dict__[varName]
                 if var:
-                    newVar = np.zeros(len(var) - nuStagesRem, np.float)
+                    newVar = np.zeros(len(var) - nuStagesRem, float)
                     newVar[0: firstStage] = var[0:firstStage]
                     newVar[firstStage:] = var[lastStage + 1:]
                     self.__dict__[varName] = newVar
                 if convRes:
                     var = convRes.get(varName, None)
                     if var:
-                        newVar = np.zeros(len(var) - nuStagesRem, np.float)
+                        newVar = np.zeros(len(var) - nuStagesRem, float)
                         newVar[0: firstStage] = var[0:firstStage]
                         newVar[firstStage:] = var[lastStage + 1:]
                         convRes[varName] = newVar
@@ -4627,7 +4627,7 @@ class Tower(UnitOperations.UnitOperation):
                 var = self.__dict__[varName]
                 if var:
                     dims = np.shape(var)
-                    newVar = np.zeros((dims[0] - nuStagesRem, dims[1]), np.float)
+                    newVar = np.zeros((dims[0] - nuStagesRem, dims[1]), float)
                     newVar[0:firstStage][:] = var[0:firstStage][:]
                     newVar[firstStage:][:] = var[lastStage + 1:][:]
                     self.__dict__[varName] = newVar
@@ -4635,7 +4635,7 @@ class Tower(UnitOperations.UnitOperation):
                     var = convRes.get(varName, None)
                     if var:
                         dims = np.shape(var)
-                        newVar = np.zeros((dims[0] - nuStagesRem, dims[1]), np.float)
+                        newVar = np.zeros((dims[0] - nuStagesRem, dims[1]), float)
                         newVar[0:firstStage][:] = var[0:firstStage][:]
                         newVar[firstStage:][:] = var[lastStage + 1:][:]
                         convRes[varName] = newVar
@@ -4644,7 +4644,7 @@ class Tower(UnitOperations.UnitOperation):
                 var = self.__dict__[varName]
                 if var:
                     dims = np.shape(var)
-                    newVar = np.zeros((dims[0], dims[1] - nuStagesRem), np.float)
+                    newVar = np.zeros((dims[0], dims[1] - nuStagesRem), float)
                     newVar[:, 0:firstStage] = var[:, 0:firstStage]
                     newVar[:, firstStage:] = var[:, lastStage + 1:]
                     self.__dict__[varName] = newVar
@@ -4652,7 +4652,7 @@ class Tower(UnitOperations.UnitOperation):
                     var = convRes.get(varName, None)
                     if var:
                         dims = np.shape(var)
-                        newVar = np.zeros((dims[0], dims[1] - nuStagesRem), np.float)
+                        newVar = np.zeros((dims[0], dims[1] - nuStagesRem), float)
                         newVar[:, 0:firstStage] = var[:, 0:firstStage]
                         newVar[:, firstStage:] = var[:, lastStage + 1:]
                         convRes[varName] = newVar
@@ -4677,7 +4677,7 @@ class Tower(UnitOperations.UnitOperation):
             for varName in ['T', 'L', 'V', 'A', 'B', 'logSFactors']:
                 var = self.__dict__[varName]
                 if var:
-                    newVar = np.zeros(len(var) + 1, np.float)
+                    newVar = np.zeros(len(var) + 1, float)
                     newVar[0: nuNewStage] = var[0:nuNewStage]
                     newVar[nuNewStage] = var[nuNewStage - 1]
                     newVar[nuNewStage + 1:] = var[nuNewStage:]
@@ -4685,7 +4685,7 @@ class Tower(UnitOperations.UnitOperation):
                 if convRes:
                     var = convRes.get(varName, None)
                     if var:
-                        newVar = np.zeros(len(var) + 1, np.float)
+                        newVar = np.zeros(len(var) + 1, float)
                         newVar[0: nuNewStage] = var[0:nuNewStage]
                         newVar[nuNewStage] = var[nuNewStage - 1]
                         newVar[nuNewStage + 1:] = var[nuNewStage:]
@@ -4695,7 +4695,7 @@ class Tower(UnitOperations.UnitOperation):
                 var = self.__dict__[varName]
                 if var:
                     dims = np.shape(var)
-                    newVar = np.zeros((dims[0] + 1, dims[1]), np.float)
+                    newVar = np.zeros((dims[0] + 1, dims[1]), float)
                     newVar[0:nuNewStage][:] = var[0:nuNewStage][:]
                     newVar[nuNewStage][:] = var[nuNewStage - 1][:]
                     newVar[nuNewStage + 1:][:] = var[nuNewStage:][:]
@@ -4704,7 +4704,7 @@ class Tower(UnitOperations.UnitOperation):
                     var = convRes.get(varName, None)
                     if var:
                         dims = np.shape(var)
-                        newVar = np.zeros((dims[0] + 1, dims[1]), np.float)
+                        newVar = np.zeros((dims[0] + 1, dims[1]), float)
                         newVar[0:nuNewStage][:] = var[0:nuNewStage][:]
                         newVar[nuNewStage][:] = var[nuNewStage - 1][:]
                         newVar[nuNewStage + 1:][:] = var[nuNewStage:][:]
@@ -4714,7 +4714,7 @@ class Tower(UnitOperations.UnitOperation):
                 var = self.__dict__[varName]
                 if var:
                     dims = np.shape(var)
-                    newVar = np.zeros((dims[0], dims[1] + 1), np.float)
+                    newVar = np.zeros((dims[0], dims[1] + 1), float)
                     newVar[:, 0:nuNewStage] = var[:, 0:nuNewStage]
                     newVar[:, nuNewStage] = var[:, nuNewStage - 1]
                     newVar[:, nuNewStage + 1:] = var[:, nuNewStage:]
@@ -4723,7 +4723,7 @@ class Tower(UnitOperations.UnitOperation):
                     var = convRes.get(varName, None)
                     if var:
                         dims = np.shape(var)
-                        newVar = np.zeros((dims[0], dims[1] + 1), np.float)
+                        newVar = np.zeros((dims[0], dims[1] + 1), float)
                         newVar[:, 0:nuNewStage] = var[:, 0:nuNewStage]
                         newVar[:, nuNewStage] = var[:, nuNewStage - 1]
                         newVar[:, nuNewStage + 1:] = var[:, nuNewStage:]
@@ -4831,7 +4831,7 @@ class Tower(UnitOperations.UnitOperation):
                 if self.stages[0].IsSubCooled():
                     subCoolDT = self.stages[0].GetDegreesSubCooled()
                     if subCoolDT:
-                        tempT = np.array(self.T, np.float)
+                        tempT = np.array(self.T, float)
                         tempT[0] = tempT[0] - subCoolDT
                         return tempT
             return self.__dict__[name]
@@ -5098,7 +5098,7 @@ class Tower(UnitOperations.UnitOperation):
         outerError = 1.0  # must fail first time
         self.cmpNames = self.GetCompoundNames()
         self.numCompounds = len(self.cmpNames)
-        self.mw = np.zeros(self.numCompounds, np.float)
+        self.mw = np.zeros(self.numCompounds, float)
         self.ig_enthalpy_mole = [None]*self.numCompounds
         self.ig_enthalpy_native_coeffs = []
         self.ig_enthalpy_form_native = []
@@ -5203,8 +5203,8 @@ class Tower(UnitOperations.UnitOperation):
 
             self.errors = self.InnerErrors()
             totalError = np.sum(np.absolute(self.errors))
-            oldErrors = np.zeros(self.numInnerEqns, np.float)
-            oldLogSFactors = np.zeros(self.numInnerEqns + totCond + totReb, np.float)
+            oldErrors = np.zeros(self.numInnerEqns, float)
+            oldLogSFactors = np.zeros(self.numInnerEqns + totCond + totReb, float)
             oldT = np.array(self.T)
             outerLoopCount = 0
             self.outerError = outerError = 1.0  # must fail first time
@@ -5214,9 +5214,9 @@ class Tower(UnitOperations.UnitOperation):
 
             while 1:  # outer loop
                 innerLoopCount = 0
-                outerOldT = np.array(self.T, np.float)
+                outerOldT = np.array(self.T, float)
                 if self.convRepLevel & 2:
-                    outerOldT = np.array(self.T, np.float)
+                    outerOldT = np.array(self.T, float)
 
                 if self.debug:
                     ##DEBUG CODE ##########################################
@@ -5279,7 +5279,7 @@ class Tower(UnitOperations.UnitOperation):
                         txt = '    ***************\n    Entered InnerLoop %i\n    Stage       T            lnS            lnR              L              V             xw             xhc             yw            yhc\n' % innerLoopCount
                         debug_file.write(txt)
                         wIdx = self.waterIdx
-                        drawRatios = -3271 * np.ones(self.numStages, np.float)
+                        drawRatios = -3271 * np.ones(self.numStages, float)
                         drawRatios[:len(self.logSFactors[self.numStages:])] = self.logSFactors[self.numStages:]
                         for i in range(self.numStages):
                             txt = '    %5i %7.6g %14.7g %14.7g %14.7g %14.7g %14.8g %14.8g %14.8g %14.8g\n' % (
@@ -5597,15 +5597,15 @@ class Tower(UnitOperations.UnitOperation):
         drawRatios = np.exp(logSFactors[self.numStages:])
 
         # calculate the draw ratio terms
-        RvTerm = np.ones(self.numStages, np.float)  # 1 + sum(Rvjn)
-        RlTerm = np.ones(self.numStages, np.float)  # 1 + sum(Rljn)
+        RvTerm = np.ones(self.numStages, float)  # 1 + sum(Rvjn)
+        RlTerm = np.ones(self.numStages, float)  # 1 + sum(Rljn)
 
         # pump around terms, obviously not efficient, but expedient
-        paVTerm = np.zeros((self.numStages, self.numStages), np.float)
-        paLTerm = np.zeros((self.numStages, self.numStages), np.float)
+        paVTerm = np.zeros((self.numStages, self.numStages), float)
+        paLTerm = np.zeros((self.numStages, self.numStages), float)
 
-        # paVTerm = np.empty((self.numStages, self.numStages), np.float)
-        # paLTerm = np.empty((self.numStages, self.numStages), np.float)
+        # paVTerm = np.empty((self.numStages, self.numStages), float)
+        # paLTerm = np.empty((self.numStages, self.numStages), float)
 
         # index of non basis draws - order counts
         ratioCount = 0
@@ -5643,14 +5643,14 @@ class Tower(UnitOperations.UnitOperation):
             raise SimError('EqnNumbMismatch', self.GetPath())
 
         if self.useEff:
-            effOffset = np.zeros(self.numStages, np.float)  # need this predefined
-            effOffsetPA = np.zeros((self.numStages, self.numStages), np.float)
+            effOffset = np.zeros(self.numStages, float)  # need this predefined
+            effOffsetPA = np.zeros((self.numStages, self.numStages), float)
             eff = self.eff
 
-        rhs = np.zeros(self.numStages, np.float)
+        rhs = np.zeros(self.numStages, float)
         for i in range(self.numCompounds):
             # create solution matrix
-            flowMatrix = np.zeros((self.numStages, self.numStages), np.float)
+            flowMatrix = np.zeros((self.numStages, self.numStages), float)
 
             if self.useEff:
                 alphaSj = 1.0 / (eff[:, i] * self.alpha[:, i] * Sj)
@@ -5667,7 +5667,7 @@ class Tower(UnitOperations.UnitOperation):
             else:
                 alphaSj = 1.0 / (self.alpha[:, i] * Sj)
                 diag = RvTerm + RlTerm * alphaSj
-                upper = -np.ones(self.numStages, np.float)
+                upper = -np.ones(self.numStages, float)
 
             rhs[:] = self.f[:, i]
             for wdraw in self.waterDraws:
@@ -5993,20 +5993,20 @@ class Tower(UnitOperations.UnitOperation):
         if hasattr(self, 'doplots'):
             if self.doplots:
                 wIdx = self.waterIdx
-                lnKArray = np.zeros((10, lnK.shape[0], lnK.shape[1]), np.float)
+                lnKArray = np.zeros((10, lnK.shape[0], lnK.shape[1]), float)
                 for i in range(10):
                     lnKArray[i] = self.GetLnK(T + float(i), self.P, self.x, self.y)
 
-                xtemp = np.array(self.x, np.float)
+                xtemp = np.array(self.x, float)
                 xtemp[:, wIdx] *= 1.1
                 xtemp = np.clip(np.transpose(np.transpose(xtemp) / np.add.reduce(xtemp, 1)), tiniestValue, largestValue)
-                lnKArray2 = np.zeros((10, lnK.shape[0], lnK.shape[1]), np.float)
+                lnKArray2 = np.zeros((10, lnK.shape[0], lnK.shape[1]), float)
                 for i in range(10):
                     lnKArray2[i] = self.GetLnK(T + float(i), self.P, xtemp, self.y)
 
-                lnKArray3 = np.zeros((10, lnK.shape[0], lnK.shape[1]), np.float)
+                lnKArray3 = np.zeros((10, lnK.shape[0], lnK.shape[1]), float)
                 for i in range(10):
-                    xtemp2 = np.array(self.x, np.float)
+                    xtemp2 = np.array(self.x, float)
                     xtemp2[:, wIdx] *= 1.0 + 2.0 * i / 10.0
                     xtemp2 = np.clip(np.transpose(np.transpose(xtemp2) / np.add.reduce(xtemp2, 1)), tiniestValue,
                                      largestValue)
@@ -6160,7 +6160,7 @@ class Tower(UnitOperations.UnitOperation):
             hv = self.ModelEnthalpy(self.T, self.y, self.hvModel)
 
         # basic heat balance
-        errors = np.zeros(self.numInnerEqns, np.float)
+        errors = np.zeros(self.numInnerEqns, float)
         errors[:self.numStages] = self.fQ
         scale = np.absolute(self.fQ)  # scale factor
 
@@ -6301,7 +6301,7 @@ class Tower(UnitOperations.UnitOperation):
         self.SolveFlowMatrix(self.logSFactors)
         self.CalculateTemperatures()
         baseErrors = self.InnerErrors()
-        jacobian = np.zeros((self.numInnerEqns, self.numInnerEqns), np.float)
+        jacobian = np.zeros((self.numInnerEqns, self.numInnerEqns), float)
         numInnerEqns = self.numInnerEqns
         path = self.GetPath()
         delta = 0.00001
@@ -6378,13 +6378,13 @@ class Tower(UnitOperations.UnitOperation):
         if phase == TOWER_LIQ_PHASE:
             phase = LIQUID_PHASE
             try:
-                frac = np.array(self.x, np.float)
+                frac = np.array(self.x, float)
             except:
                 return None
         elif phase == TOWER_VAP_PHASE:
             phase = VAPOUR_PHASE
             try:
-                frac = np.array(self.y, np.float)
+                frac = np.array(self.y, float)
             except:
                 return None
         else:
@@ -6392,7 +6392,7 @@ class Tower(UnitOperations.UnitOperation):
 
         # Zero out the water if necessary
         if frac is not None and waterFree:
-            frac = np.array(frac, np.float)
+            frac = np.array(frac, float)
             frac[:, idxWater] *= 0.0
             frac = np.transpose(np.transpose(frac) / np.add.reduce(frac, 1))
 
@@ -6414,7 +6414,7 @@ class Tower(UnitOperations.UnitOperation):
                 return self.V - self.v[:, idxWater]
 
         elif property == MASSFLOW_VAR:
-            mwts = np.ones(self.numStages, np.float)
+            mwts = np.ones(self.numStages, float)
             thCaseObj = self.GetThermo()
             thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
             var1, var2 = (T_VAR, 0.0), (P_VAR, 0.0)
@@ -6429,7 +6429,7 @@ class Tower(UnitOperations.UnitOperation):
                 return (self.V - self.v[:, idxWater]) * mwts
 
         elif property == STDVOLFLOW_VAR:
-            stdMolVol = np.ones(self.numStages, np.float)
+            stdMolVol = np.ones(self.numStages, float)
             thCaseObj = self.GetThermo()
             thAdmin, prov, case = thCaseObj.thermoAdmin, thCaseObj.provider, thCaseObj.case
             refT = self.GetStdVolRefT()
@@ -6455,7 +6455,7 @@ class Tower(UnitOperations.UnitOperation):
             else:
                 molVol = self.storedProfiles.get((phase, MOLARV_VAR), None)
             if not molVol or len(molVol) != self.numStages:
-                molVol = np.ones(self.numStages, np.float)
+                molVol = np.ones(self.numStages, float)
 
                 for i in range(self.numStages):
                     moleFracs = frac[i]
@@ -6991,7 +6991,7 @@ def BuildEfficienciesMatrix(inputString, numberElements, cmpNames, defaultValue=
         # Split data per compounds and dimension an array with defaul values
         if inputString[0] == ':': inputString = inputString[1:]
         cmpDataTokens = inputString.split('@')
-        eff = np.ones((numberElements, numCompounds), np.float) * defaultValue
+        eff = np.ones((numberElements, numCompounds), float) * defaultValue
         genericEff = None
         for cmpToken in cmpDataTokens:
             if not cmpToken: continue
@@ -7061,7 +7061,7 @@ def ParseInputArray(inputString, numberElements, defaultValue=1.0):
       in this case the leading colon can be omitted.
     """
     if isinstance(inputString, float) or isinstance(inputString, int):
-        return np.ones(numberElements, np.float) * inputString
+        return np.ones(numberElements, float) * inputString
 
     # hack to get it going
     inputString = re.sub('_', ' ', inputString)
@@ -7070,8 +7070,8 @@ def ParseInputArray(inputString, numberElements, defaultValue=1.0):
         inputString = inputString[1:]
     tokens = inputString.split()
     if len(tokens) == 1:
-        return np.ones(numberElements, np.float) * float(tokens[0])
-    returnValues = np.ones(numberElements, np.float) * defaultValue
+        return np.ones(numberElements, float) * float(tokens[0])
+    returnValues = np.ones(numberElements, float) * defaultValue
 
     while tokens:
         indexString = tokens.pop(0)
@@ -7476,17 +7476,17 @@ class InitializeTower(object):
 
         if not initMode:
             # If starting from scratch
-            tower.flowMatrix = np.zeros((tower.numStages, tower.numStages), np.float)
-            tower.T = np.zeros(tower.numStages, np.float)
-            tower.V = np.zeros(tower.numStages, np.float)
-            tower.L = np.zeros(tower.numStages, np.float)
-            tower.v = np.zeros((tower.numStages, tower.numCompounds), np.float)
-            tower.l = np.zeros((tower.numStages, tower.numCompounds), np.float)
-            tower.alpha = np.ones((tower.numStages, tower.numCompounds), np.float)
+            tower.flowMatrix = np.zeros((tower.numStages, tower.numStages), float)
+            tower.T = np.zeros(tower.numStages, float)
+            tower.V = np.zeros(tower.numStages, float)
+            tower.L = np.zeros(tower.numStages, float)
+            tower.v = np.zeros((tower.numStages, tower.numCompounds), float)
+            tower.l = np.zeros((tower.numStages, tower.numCompounds), float)
+            tower.alpha = np.ones((tower.numStages, tower.numCompounds), float)
             # Can not init logSFactors yet
 
         # Pressure is calculated here
-        tower.P = np.zeros(tower.numStages, np.float)
+        tower.P = np.zeros(tower.numStages, float)
 
         # Either the sub cool DT or the subcooled T must be known
         tower.isSubCool = False
@@ -7497,8 +7497,8 @@ class InitializeTower(object):
         tower.stageType = np.zeros(tower.numStages)
 
         # Feeds and draws
-        tower.f = np.zeros((tower.numStages, tower.numCompounds), np.float)
-        tower.fQ = np.zeros(tower.numStages, np.float)
+        tower.f = np.zeros((tower.numStages, tower.numCompounds), float)
+        tower.fQ = np.zeros(tower.numStages, float)
         tower.feeds = []
         tower.draws = []
         tower.waterDraws = []
@@ -7518,7 +7518,7 @@ class InitializeTower(object):
 
         # Either the sub cool DT or the subcooled T must be known
         if tower.stages[0].IsSubCooled():
-            infovector = np.zeros(tower.numStages, np.float)
+            infovector = np.zeros(tower.numStages, float)
             tower.isSubCool = True
             tower.subCoolDT = tower.stages[0].GetDegreesSubCooled()
             if tower.subCoolDT is None:
@@ -7754,7 +7754,7 @@ class InitializeTower(object):
 
             else:
                 # if k power is 0, use T, P flash on combined feeds for initial K values
-                tower.alpha = np.ones((tower.numStages, tower.numCompounds), np.float)
+                tower.alpha = np.ones((tower.numStages, tower.numCompounds), float)
                 feedComp = np.add.reduce(tower.f, 0) / np.add.reduce(tower.f.flat)
                 compounds = CompoundList(None)
                 for i in range(tower.numCompounds):
@@ -7819,13 +7819,13 @@ class InitializeTower(object):
                                 break
 
                         if not hasVapDraw:
-                            tower.eff[stage.number] = np.ones(tower.numCompounds, np.float)
+                            tower.eff[stage.number] = np.ones(tower.numCompounds, float)
                         else:
                             if np.min(eff[stage.number]) < 1.0:
                                 try:
                                     if draw.flow is not None and draw.flow < 1.0E-4:
                                         # Low vap flow, then set top eff to 1.0
-                                        tower.eff[stage.number] = np.ones(tower.numCompounds, np.float)
+                                        tower.eff[stage.number] = np.ones(tower.numCompounds, float)
                                         ##Don't use this one for now
                                         tower.InfoMessage('TowerEffSetToOne', ())
                                         # stagesToCheck.append(stage.number)
@@ -7929,7 +7929,7 @@ class InitializeTower(object):
             # Initialize stripping factors
             totCond = tower.stages[0].totCond
             totReb = tower.stages[-1].totReb
-            tower.logSFactors = np.ones(tower.numInnerEqns + totCond + totReb, np.float)
+            tower.logSFactors = np.ones(tower.numInnerEqns + totCond + totReb, float)
             tower.L = np.clip(tower.L, smallestAllowedFlow, largestAllowedFlow)
             tower.V = np.clip(tower.V, smallestAllowedFlow, largestAllowedFlow)
             tower.logSFactors[:tower.numStages] = np.log(tower.V / tower.L)  # assume initial Kb = 1

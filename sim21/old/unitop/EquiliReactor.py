@@ -93,7 +93,7 @@ class NonLinearSolver(object):
         x0 = uObj.GetMyVariableValues()
         x = x0
         # Set initial deltaX to 1.0 to ensure that convergence check works
-        deltaX = np.ones(numberOfEquations, np.float)
+        deltaX = np.ones(numberOfEquations, float)
         idex = 0
         try:
             while idex < max_num_iterations:
@@ -124,7 +124,7 @@ class NonLinearSolver(object):
                     else:
                         self.useNumericJac = False
                         x = x0
-                        deltaX = np.zeros(numberOfEquations, np.float)
+                        deltaX = np.zeros(numberOfEquations, float)
                         idex = 0
                 elif self.converged:
                     uObj.SetMyVariableValues(x)
@@ -282,7 +282,7 @@ class EquilibriumConstant(object):
             return None
 
     def CalculateStep(self, x):
-        rhs = np.zeros(len(x), np.float)
+        rhs = np.zeros(len(x), float)
         try:
             dum = 0
             if len(self.tableKeq) == len(self.tableTemp):
@@ -334,13 +334,13 @@ class EquilibriumConstant(object):
                                self.tableTemp[i]
                     dum = tVal - math.log(self.tableKeq[i])
                     sum += abs(dum / denom)
-                rhs = 2 * sum * np.ones(nEq, np.float)
+                rhs = 2 * sum * np.ones(nEq, float)
             return rhs
         except:
             return None
 
     def CalculateJacobian(self, x):
-        j = np.zeros((len(x), len(x)), np.float)
+        j = np.zeros((len(x), len(x)), float)
         try:
             workArray1 = self.CalculateStep(x)
             # Calculate Jacobian by shifting
@@ -372,7 +372,7 @@ class EquilibriumConstant(object):
             # rxnT = parent.outPort.GetPropValue(T_VAR)
             rxnP = parent.outPort.GetPropValue(P_VAR)
             # arbitary composition
-            x = np.zeros(nc, np.float)
+            x = np.zeros(nc, float)
             x[0] = 1.0
             # check whether it returns G or g/RT
             # check whether it has mixing rule
@@ -591,7 +591,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
             self.PropagatePressure()
             inPort.Flash()
 
-            self.kEqm = np.zeros(nuRxns, np.float)
+            self.kEqm = np.zeros(nuRxns, float)
 
             regrFailed = 1
             if outT is not None:
@@ -613,9 +613,9 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
             self.nc = len(xIn)
             # initialize the working arrays
             self.feedMolei = np.array(xIn)
-            self.productMolei = np.zeros(self.nc, np.float)
-            self.productMoleFrac = np.zeros(self.nc, np.float)
-            self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, np.float))
+            self.productMolei = np.zeros(self.nc, float)
+            self.productMoleFrac = np.zeros(self.nc, float)
+            self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, float))
 
             if not self.ValidateOk(): return 0
 
@@ -690,7 +690,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
             tolerance = self.GetTolerance()
             outerLoop = 0
             for iter in range(MAXOUTERLOOPS):
-                self.kEqm = np.zeros(nuRxns, np.float)
+                self.kEqm = np.zeros(nuRxns, float)
                 regrFailed = 1
                 for i in range(nuRxns):
                     ki = rns[i].CalculateKeq(float(tK))
@@ -749,7 +749,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
                             tHi = tMax
                     tK = 0.5 * (tLo + tHi)
                 except:  # Change initial guess temperature and restart calculation
-                    self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, np.float))
+                    self.myUnknowns.SetMyVariableValues(np.zeros(nuRxns, float))
                     tK = (298.2 + tK) / 2
                     outerLoop += 1
                     if outerLoop > 20: return 0
@@ -851,8 +851,8 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def CalculateStep(self, x):
         rxns = list(self.chUODict.values())
         nuRxns = len(rxns)
-        rhs = np.zeros(nuRxns, np.float)
-        workArray = np.zeros(self.nc, np.float)
+        rhs = np.zeros(nuRxns, float)
+        workArray = np.zeros(self.nc, float)
         sumX = 0
         for i in range(self.nc):
             dum = 0
@@ -891,8 +891,8 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def CalculateRHS(self, x):
         rxns = list(self.chUODict.values())
         nuRxns = len(rxns)
-        rhs = np.zeros(nuRxns, np.float)
-        workArray = np.zeros(self.nc, np.float)
+        rhs = np.zeros(nuRxns, float)
+        workArray = np.zeros(self.nc, float)
         sumX = 0
         for i in range(self.nc):
             dum = 0
@@ -936,10 +936,10 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def CalculateJacobian(self, x):
         rxns = list(self.chUODict.values())
         nuRxns = len(rxns)
-        lSideC = np.ones(nuRxns, np.float)
-        rSideC = np.ones(nuRxns, np.float)
-        workArray = np.zeros(self.nc, np.float)
-        jac = np.zeros((len(x), len(x)), np.float)
+        lSideC = np.ones(nuRxns, float)
+        rSideC = np.ones(nuRxns, float)
+        workArray = np.zeros(self.nc, float)
+        jac = np.zeros((len(x), len(x)), float)
         sumX = 0
         for i in range(self.nc):
             dum = 0
@@ -992,7 +992,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
         return jac
 
     def CalculateJacobian1(self, x):  # called by mysolver
-        j = np.zeros((len(x), len(x)), np.float)
+        j = np.zeros((len(x), len(x)), float)
         workArray1 = self.CalculateStep(x)
         # Calculate Jacobian by shifting
         # unshifted RHS's
@@ -1009,7 +1009,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
     def UpdateX(self, x, deltaX):
         rxns = list(self.chUODict.values())
         scaleFactor = 1
-        workArray = np.zeros(self.nc, np.float)
+        workArray = np.zeros(self.nc, float)
         for i in range(self.nc):
             sumExtents = 0
             sumDeltas = 0
@@ -1029,7 +1029,7 @@ class InternalEqmReactor(UnitOperations.UnitOperation):
 
     def UpdateX1(self, x, deltaX):
         rxns = list(self.chUODict.values())
-        workArray = np.zeros(self.nc, np.float)
+        workArray = np.zeros(self.nc, float)
         for i in range(self.nc):
             sumExtents = 0
             sumDeltas = 0

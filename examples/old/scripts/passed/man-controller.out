@@ -77,24 +77,24 @@ Connected to: /Sep.Vap
 VapFrac            = 1.0 | 
 T                  = 25.0 | C
 P                  = 200.0 | kPa
-MoleFlow           = 960.0645298738583 | kgmole/h
-MassFlow           = 22856.15169975294 | kg/h
-VolumeFlow         = 11784.327485978474 | m3/hr
-StdLiqVolumeFlow   = 44.035725410020945 | m3/hr
-H                  = -83569.8573157551 | kJ/kmol
-Energy             = -22286793.27096551 | W
-MolecularWeight    = 23.80689108757719 | 
-ZFactor            = 0.9902969652569478 | 
-METHANE            = 0.7769371526854824 | 
-ETHANE             = 0.07751898635866428 | 
-PROPANE            = 0.053882045547487 | 
-N-BUTANE           = 0.03755483876174873 | 
-N-PENTANE          = 0.0278073613020202 | 
-N-HEXANE           = 0.016890760486327063 | 
-N-HEPTANE          = 0.006972117318119763 | 
-N-OCTANE           = 0.001615807547197901 | 
-N-NONANE           = 0.0006113319458088272 | 
-N-DECANE           = 0.0002095980471438639 | 
+MoleFlow           = 960.0645298738427 | kgmole/h
+MassFlow           = 22856.151699751525 | kg/h
+VolumeFlow         = 11784.327485978103 | m3/hr
+StdLiqVolumeFlow   = 44.03572541001883 | m3/hr
+H                  = -83569.85731575385 | kJ/kmol
+Energy             = -22286793.270964816 | W
+MolecularWeight    = 23.8068910875761 | 
+ZFactor            = 0.990296965256948 | 
+METHANE            = 0.7769371526854948 | 
+ETHANE             = 0.07751898635866543 | 
+PROPANE            = 0.053882045547487566 | 
+N-BUTANE           = 0.03755483876174843 | 
+N-PENTANE          = 0.02780736130201809 | 
+N-HEXANE           = 0.01689076048632256 | 
+N-HEPTANE          = 0.006972117318115321 | 
+N-OCTANE           = 0.001615807547196216 | 
+N-NONANE           = 0.0006113319458080026 | 
+N-DECANE           = 0.00020959804714353356 | 
 
 >> S3.In
 Port: /S3.In + sim21.old.solver.Ports.Port_Material
@@ -102,24 +102,24 @@ Connected to: /Sep.Liq0
 VapFrac            = 0.0 | 
 T                  = 25.0 | C
 P                  = 200.0 | kPa
-MoleFlow           = 39.935470126141965 | kgmole/h
-MassFlow           = 4281.962031590351 | kg/h
-VolumeFlow         = 6.417959716095847 | m3/hr
-StdLiqVolumeFlow   = 6.201289515352205 | m3/hr
-H                  = -236247.8686739253 | kJ/kmol
-Energy             = -2620741.5838311813 | W
-MolecularWeight    = 107.22202638569559 | 
-ZFactor            = 0.012965798121116368 | 
-METHANE            = 0.008985858455224826 | 
-ETHANE             = 0.005099138091264324 | 
-PROPANE            = 0.01273467524866915 | 
-N-BUTANE           = 0.03150993869758734 | 
-N-PENTANE          = 0.0789745307426752 | 
-N-HEXANE           = 0.15454531163600593 | 
-N-HEPTANE          = 0.20612479515281393 | 
-N-OCTANE           = 0.14802397556169902 | 
-N-NONANE           = 0.17217196713338423 | 
-N-DECANE           = 0.18182980928067613 | 
+MoleFlow           = 39.9354701261574 | kgmole/h
+MassFlow           = 4281.962031591764 | kg/h
+VolumeFlow         = 6.417959716098061 | m3/hr
+StdLiqVolumeFlow   = 6.201289515354325 | m3/hr
+H                  = -236247.86867391504 | kJ/kmol
+Energy             = -2620741.5838320805 | W
+MolecularWeight    = 107.2220263856895 | 
+ZFactor            = 0.012965798121116034 | 
+METHANE            = 0.008985858455222352 | 
+ETHANE             = 0.005099138091264194 | 
+PROPANE            = 0.012734675248670986 | 
+N-BUTANE           = 0.03150993869759668 | 
+N-PENTANE          = 0.07897453074270608 | 
+N-HEXANE           = 0.15454531163606092 | 
+N-HEPTANE          = 0.20612479515284382 | 
+N-OCTANE           = 0.14802397556168304 | 
+N-NONANE           = 0.17217196713333788 | 
+N-DECANE           = 0.18182980928061399 | 
 
 >> 
 >> S3.FlowSig = Stream.SensorPort("MoleFlow")
@@ -129,7 +129,7 @@ N-DECANE           = 0.18182980928067613 |
 >> S3.FlowSig
 Port: /S3.FlowSig + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-MoleFlow   = 39.935470126141965 = kgmole/h
+MoleFlow   = 39.9354701261574 = kgmole/h
 
 >> S1.TempSig
 Port: /S1.TempSig + sim21.old.solver.Ports.Port_Signal
@@ -166,12 +166,12 @@ Controller solver for / error - 0.000061
 >> ctr.In
 Port: /ctr.In + sim21.old.solver.Ports.Port_Signal
 Connected to: /S3.FlowSig
-MoleFlow   = 299.9385300150312 | kgmole/h
+MoleFlow   = 299.93853001524 | kgmole/h
 
 >> ctr.Out
 Port: /ctr.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /S1.TempSig
-T   = -124.94467348884396 * C
+T   = -124.94467348727039 * C
 
 >> 
 >> copy /
@@ -185,10 +185,10 @@ Pasted / as /RootClone
 >> ctr.In
 Port: /RootClone.ctr.In + sim21.old.solver.Ports.Port_Signal
 Connected to: /RootClone.S3.FlowSig
-MoleFlow   = 299.9385300150312 | kgmole/h
+MoleFlow   = 299.93853001524 | kgmole/h
 
 >> ctr.Out
 Port: /RootClone.ctr.Out + sim21.old.solver.Ports.Port_Signal
 Connected to: /RootClone.S1.TempSig
-T   = -124.94467348884396 * C
+T   = -124.94467348727039 * C
 

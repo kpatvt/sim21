@@ -40,17 +40,17 @@ n-Heptane n-Octane
 >> f.Port
 Port: /deprop.Feed_5_f + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.001216070751314247 = 
+VapFrac            = 0.0012160707513159594 = 
 T                  = 49.99999999999999 * F
 P                  = 480.0 * psia
 MoleFlow           = 1000.0000000000001 * lbmole/h
 MassFlow           = 54388.326918000006 = lb/h
-VolumeFlow         = 0.4158123456449343 = ft3/s
-StdLiqVolumeFlow   = 0.3966768684715899 = ft3/s
-H                  = -62299.579667023776 = Btu/lbmol
-Energy             = -62289103.308412455 = Btu/hr
+VolumeFlow         = 0.41581234564493885 = ft3/s
+StdLiqVolumeFlow   = 0.39667686847159 = ft3/s
+H                  = -62299.579667023754 = Btu/lbmol
+Energy             = -62289103.30841242 = Btu/hr
 MolecularWeight    = 54.388326918 = 
-ZFactor            = 0.13136681933414865 = 
+ZFactor            = 0.13136681933415006 = 
 METHANE            = 0.17020000000000002 * 
 ETHANE             = 0.14730000000000001 * 
 PROPANE            = 0.11320000000000001 * 

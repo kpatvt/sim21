@@ -149,44 +149,44 @@ Inner loop converged
 >> overhead_col1.Out
 Port: /overhead_col1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 3.135089522684482e-06 = 
-T                  = 62.211857859053794 = C
+VapFrac            = 3.135093628471864e-06 = 
+T                  = 62.21185785865231 = C
 P                  = 1722.525 = kPa
 MoleFlow           = 3993.34 = kgmole/h
-MassFlow           = 194989.87527464807 = kg/h
-VolumeFlow         = 425.8149867188198 = m3/hr
-StdLiqVolumeFlow   = 338.22170247286294 = m3/hr
-H                  = -126872.48323777138 = kJ/kmol
-Energy             = -140734711.72575608 = W
-MolecularWeight    = 48.828768579597515 = 
-ZFactor            = 0.06587222544114255 = 
-ETHANE             = 0.0013498844300442964 = 
-PROPANE            = 0.6598590534871285 = 
-ISOBUTANE          = 0.3063843605051698 = 
-N-BUTANE           = 0.03240648449427104 = 
-ISOPENTANE         = 2.1112365783200878e-07 = 
-N-PENTANE          = 5.95972872326175e-09 = 
+MassFlow           = 194989.87527408372 = kg/h
+VolumeFlow         = 425.8149867352011 = m3/hr
+StdLiqVolumeFlow   = 338.2217024717307 = m3/hr
+H                  = -126872.48323746807 = kJ/kmol
+Energy             = -140734711.72541967 = W
+MolecularWeight    = 48.82876857945618 = 
+ZFactor            = 0.06587222544375552 = 
+ETHANE             = 0.0013498844300717176 = 
+PROPANE            = 0.6598590534971498 = 
+ISOBUTANE          = 0.3063843604986208 = 
+N-BUTANE           = 0.03240648449077128 = 
+ISOPENTANE         = 2.1112365776709266e-07 = 
+N-PENTANE          = 5.959728721883826e-09 = 
 
 >> bottoms_col1.Out
 Port: /bottoms_col1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 2.707048372181556e-06 = 
-T                  = 97.38003483587784 = C
+VapFrac            = 2.707053692932829e-06 = 
+T                  = 97.38003483626983 = C
 P                  = 1773.1875 = kPa
-MoleFlow           = 8039.659834285234 = kgmole/h
-MassFlow           = 474314.6178622186 = kg/h
-VolumeFlow         = 1033.5844446602227 = m3/hr
-StdLiqVolumeFlow   = 813.9322330056367 = m3/hr
-H                  = -140957.32838708814 = kJ/kmol
-Energy             = -314791380.93939614 = W
-MolecularWeight    = 58.99685156323379 = 
-ZFactor            = 0.07399550690591913 = 
-ETHANE             = 7.793289884358207e-05 = 
-PROPANE            = 0.16920042658419537 = 
-ISOBUTANE          = 0.384140396013532 = 
-N-BUTANE           = 0.214868229154595 = 
-ISOPENTANE         = 0.1541759396237996 = 
-N-PENTANE          = 0.0775370757250345 = 
+MoleFlow           = 8039.659834281935 = kgmole/h
+MassFlow           = 474314.617862622 = kg/h
+VolumeFlow         = 1033.5844447094578 = m3/hr
+StdLiqVolumeFlow   = 813.9322330064899 = m3/hr
+H                  = -140957.3283871027 = kJ/kmol
+Energy             = -314791380.9392995 = W
+MolecularWeight    = 58.99685156330819 = 
+ZFactor            = 0.07399550690939599 = 
+ETHANE             = 7.793289882943799e-05 = 
+PROPANE            = 0.16920042657901477 = 
+ISOBUTANE          = 0.3841403960168185 = 
+N-BUTANE           = 0.2148682291564081 = 
+ISOPENTANE         = 0.15417593962386286 = 
+N-PENTANE          = 0.07753707572506643 = 
 
 >> 
 >> col1.Stage_0.reflux =
@@ -222,7 +222,7 @@ Calculating disturbance 50 of 50 in jacobian of /col1
 /col1 Inner Error 0.000005
 Inner loop converged
 /col1 Iteration 2 Outer Error 0.041944
-/col1 Inner Error 0.042931
+/col1 Inner Error 0.042932
 /col1 Inner Error 0.016424
 /col1 Inner Error 0.007203
 /col1 Inner Error 0.004579
@@ -230,14 +230,14 @@ Inner loop converged
 /col1 Inner Error 0.001004
 /col1 Inner Error 0.000997
 Inner loop is not changing significantly - exiting
-/col1 Iteration 3 Outer Error 0.011947
+/col1 Iteration 3 Outer Error 0.011946
 Calculating Jacobian for /col1
 Calculating disturbance 10 of 50 in jacobian of /col1
 Calculating disturbance 20 of 50 in jacobian of /col1
 Calculating disturbance 30 of 50 in jacobian of /col1
 Calculating disturbance 40 of 50 in jacobian of /col1
 Calculating disturbance 50 of 50 in jacobian of /col1
-/col1 Inner Error 0.023770
+/col1 Inner Error 0.023772
 Step size too small - Exiting inner loop
 /col1 Iteration 4 Outer Error 0.000486
 Calculating Jacobian for /col1
@@ -246,8 +246,8 @@ Calculating disturbance 20 of 50 in jacobian of /col1
 Calculating disturbance 30 of 50 in jacobian of /col1
 Calculating disturbance 40 of 50 in jacobian of /col1
 Calculating disturbance 50 of 50 in jacobian of /col1
-/col1 Inner Error 0.026005
-/col1 Inner Error 0.025998
+/col1 Inner Error 0.026006
+/col1 Inner Error 0.025999
 Inner loop is not changing significantly - exiting
 /col1 Iteration 5 Outer Error 0.000025
 Calculating Jacobian for /col1
@@ -260,12 +260,12 @@ Calculating disturbance 50 of 50 in jacobian of /col1
 /col1 Inner Error 0.026074
 /col1 Inner Error 0.026010
 /col1 Inner Error 0.025948
-/col1 Inner Error 0.025783
-/col1 Inner Error 0.025116
-/col1 Inner Error 0.021461
-/col1 Inner Error 0.003392
+/col1 Inner Error 0.025782
+/col1 Inner Error 0.025113
+/col1 Inner Error 0.021435
+/col1 Inner Error 0.003394
 /col1 Inner Error 0.002112
-/col1 Inner Error 0.000452
+/col1 Inner Error 0.000451
 /col1 Inner Error 0.000257
 /col1 Inner Error 0.000029
 /col1 Inner Error 0.000005
@@ -281,145 +281,128 @@ Inner loop converged
 >> 
 >> col1.TryToSolve = 1
 /col1 Inner Error 0.000764
-/col1 Inner Error 0.000513
-/col1 Inner Error 0.000513
+/col1 Inner Error 0.000515
+/col1 Inner Error 0.000515
 Inner loop is not changing significantly - exiting
-/col1 Iteration 1 Outer Error 0.013585
+/col1 Iteration 1 Outer Error 0.013565
 Calculating Jacobian for /col1
 Calculating disturbance 10 of 50 in jacobian of /col1
 Calculating disturbance 20 of 50 in jacobian of /col1
 Calculating disturbance 30 of 50 in jacobian of /col1
 Calculating disturbance 40 of 50 in jacobian of /col1
 Calculating disturbance 50 of 50 in jacobian of /col1
-/col1 Inner Error 0.010646
+/col1 Inner Error 0.010624
 Inner loop is not changing significantly - exiting
-/col1 Iteration 2 Outer Error 0.010914
+/col1 Iteration 2 Outer Error 0.010875
 Calculating Jacobian for /col1
 Calculating disturbance 10 of 50 in jacobian of /col1
 Calculating disturbance 20 of 50 in jacobian of /col1
 Calculating disturbance 30 of 50 in jacobian of /col1
 Calculating disturbance 40 of 50 in jacobian of /col1
 Calculating disturbance 50 of 50 in jacobian of /col1
-/col1 Inner Error 0.032478
-/col1 Inner Error 0.032343
-/col1 Inner Error 0.032152
-/col1 Inner Error 0.019838
-/col1 Inner Error 0.010341
-/col1 Inner Error 0.007854
-/col1 Inner Error 0.005140
-/col1 Inner Error 0.004464
-/col1 Inner Error 0.003659
-/col1 Inner Error 0.003085
-/col1 Inner Error 0.002711
-/col1 Inner Error 0.001873
-/col1 Inner Error 0.000908
-/col1 Inner Error 0.000512
-/col1 Inner Error 0.000494
-/col1 Inner Error 0.000487
-Inner loop is not changing significantly - exiting
-/col1 Iteration 3 Outer Error 0.032687
-Calculating Jacobian for /col1
-Calculating disturbance 10 of 50 in jacobian of /col1
-Calculating disturbance 20 of 50 in jacobian of /col1
-Calculating disturbance 30 of 50 in jacobian of /col1
-Calculating disturbance 40 of 50 in jacobian of /col1
-Calculating disturbance 50 of 50 in jacobian of /col1
-/col1 Inner Error 0.009758
-/col1 Inner Error 0.005510
-/col1 Inner Error 0.003320
-/col1 Inner Error 0.002895
-/col1 Inner Error 0.002796
-/col1 Inner Error 0.001163
-/col1 Inner Error 0.001129
-/col1 Inner Error 0.000985
-/col1 Inner Error 0.000945
-/col1 Inner Error 0.000514
+/col1 Inner Error 0.032222
+/col1 Inner Error 0.031917
+/col1 Inner Error 0.031332
+/col1 Inner Error 0.029619
+/col1 Inner Error 0.020037
+/col1 Inner Error 0.010251
+/col1 Inner Error 0.006933
+/col1 Inner Error 0.006545
+/col1 Inner Error 0.004750
+/col1 Inner Error 0.003604
+/col1 Inner Error 0.003042
+/col1 Inner Error 0.002422
+/col1 Inner Error 0.001717
 Step size too small - Exiting inner loop
-/col1 Iteration 4 Outer Error 0.008099
+/col1 Iteration 3 Outer Error 0.027847
 Calculating Jacobian for /col1
 Calculating disturbance 10 of 50 in jacobian of /col1
 Calculating disturbance 20 of 50 in jacobian of /col1
 Calculating disturbance 30 of 50 in jacobian of /col1
 Calculating disturbance 40 of 50 in jacobian of /col1
 Calculating disturbance 50 of 50 in jacobian of /col1
-/col1 Inner Error 0.002470
-/col1 Inner Error 0.001876
-/col1 Inner Error 0.001518
-/col1 Inner Error 0.001404
-/col1 Inner Error 0.000665
-/col1 Inner Error 0.000167
-/col1 Inner Error 0.000141
-/col1 Inner Error 0.000021
-/col1 Inner Error 0.000003
-Inner loop converged
-/col1 Iteration 5 Outer Error 0.006374
-/col1 Inner Error 0.002807
-/col1 Inner Error 0.002541
-/col1 Inner Error 0.002032
-/col1 Inner Error 0.000359
-/col1 Inner Error 0.000140
-Step size too small - Exiting inner loop
-/col1 Iteration 6 Outer Error 0.000119
+/col1 Inner Error 0.002801
+/col1 Inner Error 0.002010
+/col1 Inner Error 0.001691
+/col1 Inner Error 0.001565
+/col1 Inner Error 0.000890
+/col1 Inner Error 0.000510
+/col1 Inner Error 0.000510
+Inner loop is not changing significantly - exiting
+/col1 Iteration 4 Outer Error 0.005580
 Calculating Jacobian for /col1
 Calculating disturbance 10 of 50 in jacobian of /col1
 Calculating disturbance 20 of 50 in jacobian of /col1
 Calculating disturbance 30 of 50 in jacobian of /col1
 Calculating disturbance 40 of 50 in jacobian of /col1
 Calculating disturbance 50 of 50 in jacobian of /col1
-/col1 Inner Error 0.000492
-/col1 Inner Error 0.000087
-/col1 Inner Error 0.000003
-Inner loop converged
-/col1 Iteration 7 Outer Error 0.000276
-/col1 Inner Error 0.000196
-/col1 Inner Error 0.000035
-/col1 Inner Error 0.000001
-Inner loop converged
-/col1 Iteration 8 Outer Error 0.000015
+/col1 Inner Error 0.002120
+/col1 Inner Error 0.001448
+/col1 Inner Error 0.001238
+/col1 Inner Error 0.000582
+/col1 Inner Error 0.000105
+/col1 Inner Error 0.000018
 /col1 Inner Error 0.000009
+Inner loop converged
+/col1 Iteration 5 Outer Error 0.002350
+/col1 Inner Error 0.000562
+/col1 Inner Error 0.000469
+/col1 Inner Error 0.000213
+/col1 Inner Error 0.000012
+/col1 Inner Error 0.000011
+Inner loop is not changing significantly - exiting
+/col1 Iteration 6 Outer Error 0.000040
+Calculating Jacobian for /col1
+Calculating disturbance 10 of 50 in jacobian of /col1
+Calculating disturbance 20 of 50 in jacobian of /col1
+Calculating disturbance 30 of 50 in jacobian of /col1
+Calculating disturbance 40 of 50 in jacobian of /col1
+Calculating disturbance 50 of 50 in jacobian of /col1
+/col1 Inner Error 0.000021
+/col1 Inner Error 0.000001
 Inner loop converged
 >> 
 >> overhead_col1.Out
 Port: /overhead_col1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 49.93480218930887 = C
+T                  = 49.93479779238419 = C
 P                  = 1722.525 = kPa
-MoleFlow           = 4000.971022859548 = kgmole/h
-MassFlow           = 176346.52334838588 = kg/h
-VolumeFlow         = 390.24655971676845 = m3/hr
-StdLiqVolumeFlow   = 299.39171112754286 = m3/hr
-H                  = -117464.16254133287 = kJ/kmol
-Energy             = -130547419.59787133 = W
-MolecularWeight    = 44.07593021887772 = 
-ZFactor            = 0.06254440948439534 = 
-ETHANE             = 0.0015039103446989493 = 
-PROPANE            = 0.9983957159468697 = 
+MoleFlow           = 4000.9705232346387 = kgmole/h
+MassFlow           = 176346.50132348208 = kg/h
+VolumeFlow         = 390.24649903279135 = m3/hr
+StdLiqVolumeFlow   = 299.39167373330497 = m3/hr
+H                  = -117464.1631892064 = kJ/kmol
+Energy             = -130547404.01567726 = W
+MolecularWeight    = 44.07593021617125 = 
+ZFactor            = 0.06254440842010674 = 
+ETHANE             = 0.0015039105325011391 = 
+PROPANE            = 0.9983958500602672 = 
 ISOBUTANE          = 0.0001 = 
-N-BUTANE           = 2.0344249971605888e-07 = 
-ISOPENTANE         = 6.698717894616763e-09 = 
-N-PENTANE          = 6.2473398028172154e-09 = 
+N-BUTANE           = 2.0332908363149532e-07 = 
+ISOPENTANE         = 6.709678743684107e-09 = 
+N-PENTANE          = 6.261869579381994e-09 = 
 
 >> bottoms_col1.Out
 Port: /bottoms_col1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 7.443108407151346e-09 = 
-T                  = 107.5633578922442 = C
+VapFrac            = 7.196533236445703e-08 = 
+T                  = 107.56335719063532 = C
 P                  = 1773.1875 = kPa
-MoleFlow           = 8032.028977140501 = kgmole/h
-MassFlow           = 492957.96910470683 = kg/h
-VolumeFlow         = 1102.3528509937282 = m3/hr
-StdLiqVolumeFlow   = 852.7622199182364 = m3/hr
-H                  = -144341.35254999987 = kJ/kmol
-Energy             = -322042757.30034775 = W
-MolecularWeight    = 61.3740277217236 = 
-ZFactor            = 0.07688076995822887 = 
-ETHANE             = 6.449484333259747e-15 = 
+MoleFlow           = 8032.029476765347 = kgmole/h
+MassFlow           = 492957.9980189178 = kg/h
+VolumeFlow         = 1102.3534845038437 = m3/hr
+StdLiqVolumeFlow   = 852.7622719862443 = m3/hr
+H                  = -144341.35160453548 = kJ/kmol
+Energy             = -322042775.22327226 = W
+MolecularWeight    = 61.374027503873556 = 
+ZFactor            = 0.076880809500149 = 
+ETHANE             = 6.455512622655159e-15 = 
 PROPANE            = 0.0001 = 
-ISOBUTANE          = 0.5367827196894632 = 
-N-BUTANE           = 0.2311840232494151 = 
-ISOPENTANE         = 0.15432251664200788 = 
-N-PENTANE          = 0.0776107399453406 = 
+ISOBUTANE          = 0.5367827531608739 = 
+N-BUTANE           = 0.23118400892533897 = 
+ISOPENTANE         = 0.15432250703706082 = 
+N-PENTANE          = 0.07761073511040022 = 
 
 >> 
 >> 
@@ -431,23 +414,23 @@ N-PENTANE          = 0.0776107399453406 =
 >> v1.Out
 Port: /v1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.4125536177738436 = 
-T                  = 67.44660520748664 = C
+VapFrac            = 0.41255366536939964 = 
+T                  = 67.44660458174025 = C
 P                  = 739.67 * kPa
-MoleFlow           = 8032.028977140501 = kgmole/h
-MassFlow           = 492957.96910470683 = kg/h
-VolumeFlow         = 11204.680891566411 = m3/hr
-StdLiqVolumeFlow   = 852.7622199182364 = m3/hr
-H                  = -144341.35254999987 = kJ/kmol
-Energy             = -322042757.30034775 = W
-MolecularWeight    = 61.37402772172359 = 
-ZFactor            = 0.3643659038965487 = 
-ETHANE             = 6.449484333259747e-15 = 
+MoleFlow           = 8032.029476765347 = kgmole/h
+MassFlow           = 492957.9980189178 = kg/h
+VolumeFlow         = 11204.682752797644 = m3/hr
+StdLiqVolumeFlow   = 852.7622719862443 = m3/hr
+H                  = -144341.35160453548 = kJ/kmol
+Energy             = -322042775.22327226 = W
+MolecularWeight    = 61.374027503873556 = 
+ZFactor            = 0.36436594242644754 = 
+ETHANE             = 6.455512622655159e-15 = 
 PROPANE            = 0.0001 = 
-ISOBUTANE          = 0.5367827196894632 = 
-N-BUTANE           = 0.2311840232494151 = 
-ISOPENTANE         = 0.15432251664200788 = 
-N-PENTANE          = 0.0776107399453406 = 
+ISOBUTANE          = 0.5367827531608739 = 
+N-BUTANE           = 0.23118400892533897 = 
+ISOPENTANE         = 0.15432250703706082 = 
+N-PENTANE          = 0.07761073511040022 = 
 
 >> 
 >> 
@@ -525,43 +508,43 @@ Inner loop converged
 Port: /overhead_col2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 55.40080612045364 = C
+T                  = 55.40080509743882 = C
 P                  = 719.0 = kPa
 MoleFlow           = 6000.0 = kgmole/h
-MassFlow           = 348721.9484094395 = kg/h
-VolumeFlow         = 649.3793849109757 = m3/hr
-StdLiqVolumeFlow   = 619.581628729365 = m3/hr
-H                  = -148246.83896154878 = kJ/kmol
-Energy             = -247078064.93591464 = W
-MolecularWeight    = 58.12032424690415 = 
-ZFactor            = 0.02848652115205863 = 
-ETHANE             = 6.449529047089916e-15 = 
-PROPANE            = 0.00013386804115990387 = 
-ISOBUTANE          = 0.7183067966114286 = 
-N-BUTANE           = 0.28155916098590483 = 
-ISOPENTANE         = 1.6759766783036707e-07 = 
-N-PENTANE          = 6.763832205097108e-09 = 
+MassFlow           = 348721.94840878533 = kg/h
+VolumeFlow         = 649.3793854384508 = m3/hr
+StdLiqVolumeFlow   = 619.5816307124536 = m3/hr
+H                  = -148246.83976071 = kJ/kmol
+Energy             = -247078066.26784995 = W
+MolecularWeight    = 58.12032424679531 = 
+ZFactor            = 0.028486521263896555 = 
+ETHANE             = 6.455557355772349e-15 = 
+PROPANE            = 0.0001338680488506898 = 
+ISOBUTANE          = 0.7183068818467442 = 
+N-BUTANE           = 0.28155907574297995 = 
+ISOPENTANE         = 1.6759758916038485e-07 = 
+N-PENTANE          = 6.7638296493656076e-09 = 
 
 >> bottoms_col2.Out
 Port: /bottoms_col2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 1.471036238653234e-06 = 
-T                  = 100.54774597352156 = C
+VapFrac            = 1.471024796493411e-06 = 
+T                  = 100.5477347685437 = C
 P                  = 750.0 = kPa
-MoleFlow           = 2032.0689775350536 = kgmole/h
-MassFlow           = 144238.34553118786 = kg/h
-VolumeFlow         = 269.011966682201 = m3/hr
-StdLiqVolumeFlow   = 233.18472177380548 = m3/hr
-H                  = -161110.28765266194 = kJ/kmol
-Energy             = -90940893.75020085 = W
-MolecularWeight    = 70.98102826524703 = 
-ZFactor            = 0.03195506856563088 = 
-ETHANE             = 6.4493523216727576e-15 = 
-PROPANE            = 2.908179763256273e-12 = 
-ISOBUTANE          = 0.0008081979113681718 = 
-N-BUTANE           = 0.08244457894154705 = 
-ISOPENTANE         = 0.6099802389608567 = 
-N-PENTANE          = 0.30676698418331344 = 
+MoleFlow           = 2032.0694768832204 = kgmole/h
+MassFlow           = 144238.37442997252 = kg/h
+VolumeFlow         = 269.01201764028434 = m3/hr
+StdLiqVolumeFlow   = 233.18477183016725 = m3/hr
+H                  = -161110.28346733327 = kJ/kmol
+Energy             = -90940913.73499201 = W
+MolecularWeight    = 70.9810250441654 = 
+ZFactor            = 0.031955067724478876 = 
+ETHANE             = 6.4553804340482625e-15 = 
+PROPANE            = 2.9081862883633316e-12 = 
+ISOBUTANE          = 0.0008082002373852097 = 
+N-BUTANE           = 0.08244480625679859 = 
+ISOPENTANE         = 0.6099800861752931 = 
+N-PENTANE          = 0.3067669073276084 = 
 
 >> 
 >> col2.TryToSolve = 0
@@ -573,7 +556,7 @@ N-PENTANE          = 0.30676698418331344 =
 >> 
 >> col2.DampingFactor = 1.0
 >> col2.TryToSolve = 1
-/col2 Inner Error 0.081365
+/col2 Inner Error 0.081366
 Step size too small - Exiting inner loop
 /col2 Iteration 1 Outer Error 0.000001
 Calculating Jacobian for /col2
@@ -581,7 +564,7 @@ Calculating disturbance 10 of 31 in jacobian of /col2
 Calculating disturbance 20 of 31 in jacobian of /col2
 Calculating disturbance 30 of 31 in jacobian of /col2
 /col2 Inner Error 0.081161
-/col2 Inner Error 0.081159
+/col2 Inner Error 0.081160
 Inner loop is not changing significantly - exiting
 /col2 Iteration 2 Outer Error 0.000014
 Calculating Jacobian for /col2
@@ -596,7 +579,7 @@ Calculating disturbance 30 of 31 in jacobian of /col2
 /col2 Inner Error 0.082669
 /col2 Inner Error 0.082389
 /col2 Inner Error 0.081943
-/col2 Inner Error 0.080666
+/col2 Inner Error 0.080667
 /col2 Inner Error 0.071390
 /col2 Inner Error 0.034514
 /col2 Inner Error 0.024491
@@ -614,7 +597,7 @@ Calculating disturbance 10 of 31 in jacobian of /col2
 Calculating disturbance 20 of 31 in jacobian of /col2
 Calculating disturbance 30 of 31 in jacobian of /col2
 /col2 Inner Error 0.059941
-/col2 Inner Error 0.014057
+/col2 Inner Error 0.014056
 /col2 Inner Error 0.004249
 /col2 Inner Error 0.002320
 /col2 Inner Error 0.000832
@@ -625,16 +608,16 @@ Calculating disturbance 30 of 31 in jacobian of /col2
 /col2 Inner Error 0.000005
 Inner loop converged
 /col2 Iteration 4 Outer Error 0.009038
-/col2 Inner Error 0.011302
-/col2 Inner Error 0.008989
-/col2 Inner Error 0.002934
+/col2 Inner Error 0.011300
+/col2 Inner Error 0.008987
+/col2 Inner Error 0.002930
 /col2 Inner Error 0.000694
 /col2 Inner Error 0.000361
-/col2 Inner Error 0.000343
-/col2 Inner Error 0.000056
-/col2 Inner Error 0.000055
+/col2 Inner Error 0.000321
+/col2 Inner Error 0.000057
+/col2 Inner Error 0.000051
 Inner loop is not changing significantly - exiting
-/col2 Iteration 5 Outer Error 0.000057
+/col2 Iteration 5 Outer Error 0.000056
 Calculating Jacobian for /col2
 Calculating disturbance 10 of 31 in jacobian of /col2
 Calculating disturbance 20 of 31 in jacobian of /col2
@@ -646,44 +629,44 @@ Inner loop converged
 >> overhead_col2.Out
 Port: /overhead_col2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 3.7867903685188414e-08 = 
-T                  = 55.63250581505406 = C
+VapFrac            = 3.755085469005903e-08 = 
+T                  = 55.63250545235451 = C
 P                  = 719.0 = kPa
-MoleFlow           = 6167.255839385535 = kgmole/h
-MassFlow           = 358444.0859351507 = kg/h
-VolumeFlow         = 667.362842874208 = m3/hr
-StdLiqVolumeFlow   = 636.3944385778366 = m3/hr
-H                  = -148066.73787221438 = kJ/kmol
-Energy             = -253657070.48921707 = W
-MolecularWeight    = 58.120515067016385 = 
-ZFactor            = 0.02846138708439425 = 
-ETHANE             = 6.447547364254244e-15 = 
-PROPANE            = 0.0001302366754373864 = 
-ISOBUTANE          = 0.6990755660875208 = 
-N-BUTANE           = 0.30078408519168337 = 
+MoleFlow           = 6167.2563035252 = kgmole/h
+MassFlow           = 358444.11291128566 = kg/h
+VolumeFlow         = 667.3628872541888 = m3/hr
+StdLiqVolumeFlow   = 636.3944871923389 = m3/hr
+H                  = -148066.73816030196 = kJ/kmol
+Energy             = -253657090.07264927 = W
+MolecularWeight    = 58.12051506703238 = 
+ZFactor            = 0.028461386866521936 = 
+ETHANE             = 6.452853918339281e-15 = 
+PROPANE            = 0.0001302366731240722 = 
+ISOBUTANE          = 0.6990755960949274 = 
+N-BUTANE           = 0.3007840550693844 = 
 ISOPENTANE         = 1e-05 = 
-N-PENTANE          = 1.1238397190324099e-07 = 
+N-PENTANE          = 1.1238281228044234e-07 = 
 
 >> bottoms_col2.Out
 Port: /bottoms_col2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 3.217383496892932e-05 = 
-T                  = 104.6589645996687 = C
+VapFrac            = 2.916164426376736e-05 = 
+T                  = 104.65896330023219 = C
 P                  = 750.0 = kPa
-MoleFlow           = 1864.7731377549908 = kgmole/h
-MassFlow           = 134513.8775343793 = kg/h
-VolumeFlow         = 252.13036738471087 = m3/hr
-StdLiqVolumeFlow   = 216.36777508228383 = m3/hr
-H                  = -162575.13739226124 = kJ/kmol
-Energy             = -84212708.07664324 = W
-MolecularWeight    = 72.13417804610259 = 
-ZFactor            = 0.03228151972180952 = 
-ETHANE             = 6.455890371458353e-15 = 
-PROPANE            = 5.369022545686835e-13 = 
-ISOBUTANE          = 4.102048132317635e-05 = 
+MoleFlow           = 1864.773173240131 = kgmole/h
+MassFlow           = 134513.87999247265 = kg/h
+VolumeFlow         = 252.11172526107717 = m3/hr
+StdLiqVolumeFlow   = 216.36777911452376 = m3/hr
+H                  = -162575.19821732375 = kJ/kmol
+Energy             = -84212741.18607281 = W
+MolecularWeight    = 72.13417799161977 = 
+ZFactor            = 0.03227913237368352 = 
+ETHANE             = 6.464305483720968e-15 = 
+PROPANE            = 5.37033089469985e-13 = 
+ISOBUTANE          = 4.102434445312362e-05 = 
 N-BUTANE           = 0.001 = 
-ISOPENTANE         = 0.6646713375028912 = 
-N-PENTANE          = 0.33428785880270795 = 
+ISOPENTANE         = 0.6646713213081953 = 
+N-PENTANE          = 0.3342878508404634 = 
 
 >> 
 >> 
@@ -756,44 +739,44 @@ Inner loop converged
 >> overhead_col3.Out
 Port: /overhead_col3.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 2.302953491218109e-06 = 
-T                  = 50.84237465190307 = C
+VapFrac            = 2.3029575923615816e-06 = 
+T                  = 50.842374413766834 = C
 P                  = 668.0 = kPa
 MoleFlow           = 3000.0 = kgmole/h
-MassFlow           = 174355.33475944586 = kg/h
-VolumeFlow         = 321.7731282526702 = m3/hr
-StdLiqVolumeFlow   = 311.30743768083846 = m3/hr
-H                  = -149937.64572666408 = kJ/kmol
-Energy             = -124948038.1055534 = W
-MolecularWeight    = 58.11844476428224 = 
-ZFactor            = 0.026597205354275812 = 
-ETHANE             = 6.447533779247137e-15 = 
-PROPANE            = 0.0002677228288102926 = 
-ISOBUTANE          = 0.8494850794358006 = 
-N-BUTANE           = 0.15024718664988598 = 
-ISOPENTANE         = 2.941828148891162e-09 = 
-N-PENTANE          = 8.143668422040969e-09 = 
+MassFlow           = 174355.33475879364 = kg/h
+VolumeFlow         = 321.7731283621028 = m3/hr
+StdLiqVolumeFlow   = 311.3074379188933 = m3/hr
+H                  = -149937.64591719225 = kJ/kmol
+Energy             = -124948038.26432687 = W
+MolecularWeight    = 58.118444764066005 = 
+ZFactor            = 0.02659720538287042 = 
+ETHANE             = 6.452840322916067e-15 = 
+PROPANE            = 0.0002677228442258043 = 
+ISOBUTANE          = 0.8494850999893232 = 
+N-BUTANE           = 0.15024716608103217 = 
+ISOPENTANE         = 2.9418278879200542e-09 = 
+N-PENTANE          = 8.143584455287576e-09 = 
 
 >> bottoms_col3.Out
 Port: /bottoms_col3.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 57.38886955613367 = C
+T                  = 57.38886880728518 = C
 P                  = 719.0 = kPa
-MoleFlow           = 3167.2514758463813 = kgmole/h
-MassFlow           = 184088.49757359488 = kg/h
-VolumeFlow         = 342.3289302657021 = m3/hr
-StdLiqVolumeFlow   = 325.0865480962671 = m3/hr
-H                  = -146726.36822332928 = kJ/kmol
-Energy             = -129088696.19469978 = W
-MolecularWeight    = 58.122475437024235 = 
-ZFactor            = 0.028276992955176102 = 
-ETHANE             = 6.447560227652135e-15 = 
-PROPANE            = 1.0495589544010542e-08 = 
-ISOBUTANE          = 0.5566084455372086 = 
-N-BUTANE           = 0.44337186368509063 = 
-ISOPENTANE         = 1.946916225185751e-05 = 
-N-PENTANE          = 2.111198529819546e-07 = 
+MoleFlow           = 3167.251939988189 = kgmole/h
+MassFlow           = 184088.52455050655 = kg/h
+VolumeFlow         = 342.3289805895519 = m3/hr
+StdLiqVolumeFlow   = 325.08659647293666 = m3/hr
+H                  = -146726.36879093086 = kJ/kmol
+Energy             = -129088715.6112495 = W
+MolecularWeight    = 58.12247543697358 = 
+ZFactor            = 0.028276993032255726 = 
+ETHANE             = 6.4528667930850986e-15 = 
+PROPANE            = 1.0495597557371025e-08 = 
+ISOBUTANE          = 0.556608505538213 = 
+N-BUTANE           = 0.4433718036876563 = 
+ISOPENTANE         = 1.9469160866753728e-05 = 
+N-PENTANE          = 2.111176600600928e-07 = 
 
 >> 
 >> 
@@ -843,7 +826,7 @@ Calculating disturbance 60 of 81 in jacobian of /col3
 Calculating disturbance 70 of 81 in jacobian of /col3
 Calculating disturbance 80 of 81 in jacobian of /col3
 /col3 Inner Error 0.023859
-/col3 Inner Error 0.009887
+/col3 Inner Error 0.009886
 /col3 Inner Error 0.004985
 Step size too small - Exiting inner loop
 /col3 Iteration 3 Outer Error 0.001557
@@ -856,7 +839,7 @@ Calculating disturbance 50 of 81 in jacobian of /col3
 Calculating disturbance 60 of 81 in jacobian of /col3
 Calculating disturbance 70 of 81 in jacobian of /col3
 Calculating disturbance 80 of 81 in jacobian of /col3
-/col3 Inner Error 0.002936
+/col3 Inner Error 0.002935
 /col3 Inner Error 0.001447
 /col3 Inner Error 0.001123
 /col3 Inner Error 0.000828
@@ -884,41 +867,41 @@ Inner loop converged
 Port: /overhead_col3.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 49.14466481018377 = C
+T                  = 49.14466481032139 = C
 P                  = 668.0 = kPa
-MoleFlow           = 4312.426772340946 = kgmole/h
-MassFlow           = 250636.46627127094 = kg/h
-VolumeFlow         = 463.3125270177794 = m3/hr
-StdLiqVolumeFlow   = 450.01950006512084 = m3/hr
-H                  = -151328.770345629 = kJ/kmol
-Energy             = -181276177.9622014 = W
-MolecularWeight    = 58.119587222774875 = 
-ZFactor            = 0.02678190531402408 = 
-ETHANE             = 6.450194430893563e-15 = 
-PROPANE            = 0.00018624220275365846 = 
-ISOBUTANE          = 0.9997137527998402 = 
+MoleFlow           = 4312.427282160867 = kgmole/h
+MassFlow           = 250636.49590247718 = kg/h
+VolumeFlow         = 463.31258179190127 = m3/hr
+StdLiqVolumeFlow   = 450.0195532683531 = m3/hr
+H                  = -151328.77034597972 = kJ/kmol
+Energy             = -181276199.39329427 = W
+MolecularWeight    = 58.1195872229215 = 
+ZFactor            = 0.026781905314058663 = 
+ETHANE             = 6.4556493123381246e-15 = 
+PROPANE            = 0.00018624219164377776 = 
+ISOBUTANE          = 0.9997137528818895 = 
 N-BUTANE           = 0.0001 = 
-ISOPENTANE         = 7.502726873863227e-09 = 
-N-PENTANE          = 1.4878243154715776e-28 = 
+ISOPENTANE         = 7.502888545882399e-09 = 
+N-PENTANE          = 1.4878153685744338e-28 = 
 
 >> bottoms_col3.Out
 Port: /bottoms_col3.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 64.85416899056253 = C
+T                  = 64.8541689903895 = C
 P                  = 719.0 = kPa
-MoleFlow           = 1854.829067044374 = kgmole/h
-MassFlow           = 107807.61966390985 = kg/h
-VolumeFlow         = 200.00602752386996 = m3/hr
-StdLiqVolumeFlow   = 186.3749383524993 = m3/hr
-H                  = -141370.23460370488 = kJ/kmol
-Energy             = -72838227.87717615 = W
-MolecularWeight    = 58.122671020946626 = 
-ZFactor            = 0.02758746780353033 = 
-ETHANE             = 6.44139299956955e-15 = 
-PROPANE            = 2.5358415827790305e-08 = 
+MoleFlow           = 1854.8290213644327 = kgmole/h
+MassFlow           = 107807.61700885769 = kg/h
+VolumeFlow         = 200.00602259807647 = m3/hr
+StdLiqVolumeFlow   = 186.37493376253914 = m3/hr
+H                  = -141370.2346037376 = kJ/kmol
+Energy             = -72838226.08336413 = W
+MolecularWeight    = 58.12267102094017 = 
+ZFactor            = 0.027587467803526503 = 
+ETHANE             = 6.4463546982099266e-15 = 
+PROPANE            = 2.535800500932629e-08 = 
 ISOBUTANE          = 0.0001 = 
-N-BUTANE           = 0.9998663522382364 = 
-ISOPENTANE         = 3.323228242856745e-05 = 
-N-PENTANE          = 3.7367362796582515e-07 = 
+N-BUTANE           = 0.9998663522291853 = 
+ISOPENTANE         = 3.323228537531993e-05 = 
+N-PENTANE          = 3.7366980962048174e-07 = 
 

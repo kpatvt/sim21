@@ -64,29 +64,29 @@ Connected to: None
 VapFrac            = 1.0 = 
 T                  = 80.0 * C
 P                  = 90.0 = kPa
-MoleFlow           = 3.179958545587172 = kgmole/h
-MassFlow           = 83.97626299142712 = kg/h
-VolumeFlow         = 103.50827272243926 = m3/hr
-StdLiqVolumeFlow   = 0.11435072841070026 = m3/hr
-H                  = -139177.41123399723 = kJ/kmol
-Energy             = -122938.44394618043 = W
-MolecularWeight    = 26.407974125310837 = 
+MoleFlow           = 3.1799585455871626 = kgmole/h
+MassFlow           = 83.97626299142713 = kg/h
+VolumeFlow         = 103.50827272243895 = m3/hr
+StdLiqVolumeFlow   = 0.11435072841069976 = m3/hr
+H                  = -139177.41123399787 = kJ/kmol
+Energy             = -122938.44394618065 = W
+MolecularWeight    = 26.40797412531092 = 
 ZFactor            = 0.9977063049383761 = 
-HYDROGEN           = 0.0030255038282381943 = 
-WATER              = 0.14112854453284704 = 
-CARBON MONOXIDE    = 6.090142939820674e-07 = 
-CARBON DIOXIDE     = 0.2147174071060678 = 
-METHANE            = 0.21320495969909567 = 
-OXYGEN             = 0.14264099193981916 = 
-NITROGEN           = 0.14264099193981916 = 
-AMMONIA            = 0.14264099193981916 = 
+HYDROGEN           = 0.003025503828232128 = 
+WATER              = 0.1411285445328505 = 
+CARBON MONOXIDE    = 6.090142939820692e-07 = 
+CARBON DIOXIDE     = 0.21471740710606688 = 
+METHANE            = 0.2132049596990978 = 
+OXYGEN             = 0.14264099193981958 = 
+NITROGEN           = 0.14264099193981958 = 
+AMMONIA            = 0.14264099193981958 = 
 ETHANE             = 0.0 = 
 PROPANE            = 0.0 = 
 
 >> OutQ
 Port: /rxn.EneStream.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 15589.119419484841 = W
+Energy   = 15589.119419485052 = W
 
 >> 
 >> # Test 2 : Testing Outlet Q spec  ----------------------------------
@@ -96,24 +96,24 @@ Energy   = 15589.119419484841 = W
 Port: /rxn.itnRxn.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 245.10954933449307 = C
+T                  = 245.109549285835 = C
 P                  = 90.0 = kPa
-MoleFlow           = 3.1847458248652147 = kgmole/h
-MassFlow           = 83.97626299142712 = kg/h
-VolumeFlow         = 152.40093286678785 = m3/hr
-StdLiqVolumeFlow   = 0.11458881989806279 = m3/hr
-H                  = -132650.32486979818 = kJ/kmol
-Energy             = -117349.32452669558 = W
-MolecularWeight    = 26.368277912722025 = 
-ZFactor            = 0.999479428436906 = 
-HYDROGEN           = 0.005930562571643703 = 
-WATER              = 0.13950998518838525 = 
-CARBON MONOXIDE    = 9.738220175718812e-05 = 
-CARBON DIOXIDE     = 0.21504946705158584 = 
-METHANE            = 0.21213287686664256 = 
-OXYGEN             = 0.14242657537332853 = 
-NITROGEN           = 0.14242657537332853 = 
-AMMONIA            = 0.14242657537332853 = 
+MoleFlow           = 3.184745824934378 = kgmole/h
+MassFlow           = 83.97626299142715 = kg/h
+VolumeFlow         = 152.40093285576575 = m3/hr
+StdLiqVolumeFlow   = 0.11458881990158311 = m3/hr
+H                  = -132650.32486691742 = kJ/kmol
+Energy             = -117349.3245266956 = W
+MolecularWeight    = 26.368277912149384 = 
+ZFactor            = 0.9994794284367535 = 
+HYDROGEN           = 0.005930562614228946 = 
+WATER              = 0.13950998516435842 = 
+CARBON MONOXIDE    = 9.738220247491078e-05 = 
+CARBON DIOXIDE     = 0.21504946705705422 = 
+METHANE            = 0.2121328768511772 = 
+OXYGEN             = 0.14242657537023543 = 
+NITROGEN           = 0.14242657537023543 = 
+AMMONIA            = 0.14242657537023543 = 
 ETHANE             = 0.0 = 
 PROPANE            = 0.0 = 
 
@@ -179,18 +179,18 @@ MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow   = None
-H                  = -139177.41123399822 = kJ/kmol
+H                  = -139177.4112339969 = kJ/kmol
 Energy             = None
-MolecularWeight    = 26.407974125310957 = 
+MolecularWeight    = 26.4079741253108 = 
 ZFactor            = 0.9977063049383761 = 
-HYDROGEN           = 0.0030255038282293594 = 
-WATER              = 0.1411285445328521 = 
-CARBON MONOXIDE    = 6.090142939901413e-07 = 
-CARBON DIOXIDE     = 0.2147174071060665 = 
-METHANE            = 0.2132049596990988 = 
-OXYGEN             = 0.14264099193981977 = 
-NITROGEN           = 0.14264099193981977 = 
-AMMONIA            = 0.14264099193981977 = 
+HYDROGEN           = 0.0030255038282412977 = 
+WATER              = 0.14112854453284526 = 
+CARBON MONOXIDE    = 6.090142939901377e-07 = 
+CARBON DIOXIDE     = 0.2147174071060682 = 
+METHANE            = 0.21320495969909453 = 
+OXYGEN             = 0.1426409919398189 = 
+NITROGEN           = 0.1426409919398189 = 
+AMMONIA            = 0.1426409919398189 = 
 ETHANE             = 0.0 = 
 PROPANE            = 0.0 = 
 
@@ -243,24 +243,24 @@ Energy   = -10000.0 * W
 Port: /rxn.itnRxn.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 464.2622500441523 = C
+T                  = 464.26224966808104 = C
 P                  = 90.0 * kPa
-MoleFlow           = 3.409154423718179 = kgmole/h
-MassFlow           = 83.97626299142712 = kg/h
-VolumeFlow         = 232.26349316245876 = m3/hr
-StdLiqVolumeFlow   = 0.12210015716554554 = m3/hr
-H                  = -107920.47603840618 = kJ/kmol
+MoleFlow           = 3.409154424204265 = kgmole/h
+MassFlow           = 83.97626299142713 = kg/h
+VolumeFlow         = 232.26349307707957 = m3/hr
+StdLiqVolumeFlow   = 0.12210015718038152 = m3/hr
+H                  = -107920.4760230186 = kJ/kmol
 Energy             = -102199.3245266956 = W
-MolecularWeight    = 24.632578215638233 = 
-ZFactor            = 1.000074275013806 = 
-HYDROGEN           = 0.10425085706387414 = 
-WATER              = 0.0974413195398183 = 
-CARBON MONOXIDE    = 0.033030888344741514 = 
-CARBON DIOXIDE     = 0.20086650385648933 = 
-METHANE            = 0.165256519496923 = 
-OXYGEN             = 0.1330513038993846 = 
-NITROGEN           = 0.1330513038993846 = 
-AMMONIA            = 0.1330513038993846 = 
+MolecularWeight    = 24.632578212126056 = 
+ZFactor            = 1.000074275013615 = 
+HYDROGEN           = 0.10425085725154491 = 
+WATER              = 0.09744131946597229 = 
+CARBON MONOXIDE    = 0.0330308884226619 = 
+CARBON DIOXIDE     = 0.2008665038165105 = 
+METHANE            = 0.16525651940206898 = 
+OXYGEN             = 0.1330513038804138 = 
+NITROGEN           = 0.1330513038804138 = 
+AMMONIA            = 0.1330513038804138 = 
 ETHANE             = 0.0 = 
 PROPANE            = 0.0 = 
 

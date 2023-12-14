@@ -23,18 +23,18 @@ Connected to: None
 VapFrac            = 1.0 = 
 T                  = 0.0 = C
 P                  = 101.325 = kPa
-MoleFlow           = 6.553553965871418 = kgmole/h
-MassFlow           = 361.09133823208333 = kg/h
-VolumeFlow         = 142.24690439803422 = m3/hr
-StdLiqVolumeFlow   = 0.6206691581014192 = m3/hr
-H                  = -126256.38303284263 = kJ/kmol
-Energy             = -229841.11659485183 = W
-MolecularWeight    = 55.09855264983226 = 
-ZFactor            = 0.9683830215776932 = 
-PROPANE            = 0.3400077588538441 = 
-N-BUTANE           = 0.2518945321964085 = 
-ISOBUTANE          = 0.28365549423907677 = 
-N-PENTANE          = 0.12444221471067077 = 
+MoleFlow           = 6.553553965869458 = kgmole/h
+MassFlow           = 361.09133823196436 = kg/h
+VolumeFlow         = 142.24690439799193 = m3/hr
+StdLiqVolumeFlow   = 0.6206691581012177 = m3/hr
+H                  = -126256.38303284015 = kJ/kmol
+Energy             = -229841.11659477858 = W
+MolecularWeight    = 55.09855264983058 = 
+ZFactor            = 0.968383021577695 = 
+PROPANE            = 0.34000775885390744 = 
+N-BUTANE           = 0.25189453219639285 = 
+ISOBUTANE          = 0.28365549423908387 = 
+N-PENTANE          = 0.12444221471061584 = 
 
 >> Liq0  # Liquid stream
 Port: /flash.Liq0 + sim21.old.solver.Ports.Port_Material
@@ -42,33 +42,33 @@ Connected to: None
 VapFrac            = 0.0 = 
 T                  = 0.0 = C
 P                  = 101.325 = kPa
-MoleFlow           = 3.4464460341285816 = kgmole/h
-MassFlow           = 220.1306617679167 = kg/h
-VolumeFlow         = 0.3416033501651709 = m3/hr
-StdLiqVolumeFlow   = 0.36665584189858086 = m3/hr
-H                  = -163024.20655361313 = kJ/kmol
-Energy             = -156070.59170657187 = W
-MolecularWeight    = 63.87178548222234 = 
-ZFactor            = 0.00442213362058147 = 
-PROPANE            = 0.07884667302067479 = 
-N-BUTANE           = 0.24639747181116584 = 
-ISOBUTANE          = 0.1860027415024845 = 
-N-PENTANE          = 0.48875311366567487 = 
+MoleFlow           = 3.4464460341305414 = kgmole/h
+MassFlow           = 220.1306617680356 = kg/h
+VolumeFlow         = 0.34160335016534377 = m3/hr
+StdLiqVolumeFlow   = 0.36665584189878225 = m3/hr
+H                  = -163024.2065536107 = kJ/kmol
+Energy             = -156070.5917066583 = W
+MolecularWeight    = 63.87178548222052 = 
+ZFactor            = 0.004422133620581192 = 
+PROPANE            = 0.07884667302070265 = 
+N-BUTANE           = 0.24639747181119873 = 
+ISOBUTANE          = 0.18600274150252652 = 
+N-PENTANE          = 0.48875311366557217 = 
 
 >> In
 Port: /flash.In + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.6553553965871418 = 
+VapFrac            = 0.6553553965869459 = 
 T                  = 0.0 * C
 P                  = 101.325 * kPa
 MoleFlow           = 10.0 * kgmole/h
-MassFlow           = 581.2220000000001 = kg/h
-VolumeFlow         = 142.5885077481994 = m3/hr
+MassFlow           = 581.222 = kg/h
+VolumeFlow         = 142.58850774815727 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
-H                  = -138928.21498851254 = kJ/kmol
-Energy             = -385911.70830142376 = W
-MolecularWeight    = 58.12220000000001 = 
-ZFactor            = 0.6361591036422078 = 
+H                  = -138928.21498851728 = kJ/kmol
+Energy             = -385911.7083014369 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.63615910364202 = 
 PROPANE            = 0.25 * 
 N-BUTANE           = 0.25 * 
 ISOBUTANE          = 0.25 * 
@@ -86,17 +86,17 @@ N-PENTANE          = 0.25 *
 >> s.Out
 Port: /s.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /flash.In
-VapFrac            = 0.6553553965871418 | 
+VapFrac            = 0.6553553965869459 | 
 T                  = 0.0 | C
 P                  = 101.325 | kPa
 MoleFlow           = 10.0 | kgmole/h
-MassFlow           = 581.2220000000001 | kg/h
-VolumeFlow         = 142.5885077481994 | m3/hr
+MassFlow           = 581.222 | kg/h
+VolumeFlow         = 142.58850774815727 | m3/hr
 StdLiqVolumeFlow   = 0.987325 | m3/hr
-H                  = -138928.21498851254 | kJ/kmol
-Energy             = -385911.70830142376 | W
-MolecularWeight    = 58.12220000000001 | 
-ZFactor            = 0.6361591036422078 | 
+H                  = -138928.21498851728 | kJ/kmol
+Energy             = -385911.7083014369 | W
+MolecularWeight    = 58.12219999999999 | 
+ZFactor            = 0.63615910364202 | 
 PROPANE            = 0.25 | 
 N-BUTANE           = 0.25 | 
 ISOBUTANE          = 0.25 | 
@@ -105,17 +105,17 @@ N-PENTANE          = 0.25 |
 >> flash.In
 Port: /flash.In + sim21.old.solver.Ports.Port_Material
 Connected to: /s.Out
-VapFrac            = 0.6553553965871418 = 
+VapFrac            = 0.6553553965869459 = 
 T                  = 0.0 * C
 P                  = 101.325 * kPa
 MoleFlow           = 10.0 * kgmole/h
-MassFlow           = 581.2220000000001 = kg/h
-VolumeFlow         = 142.5885077481994 = m3/hr
+MassFlow           = 581.222 = kg/h
+VolumeFlow         = 142.58850774815727 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
-H                  = -138928.21498851254 = kJ/kmol
-Energy             = -385911.70830142376 = W
-MolecularWeight    = 58.12220000000001 = 
-ZFactor            = 0.6361591036422078 = 
+H                  = -138928.21498851728 = kJ/kmol
+Energy             = -385911.7083014369 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.63615910364202 = 
 PROPANE            = 0.25 * 
 N-BUTANE           = 0.25 * 
 ISOBUTANE          = 0.25 * 
@@ -197,17 +197,17 @@ Changed state of port /flash.In to 0 (0=Normal port; 1=Recycle port)
 >> s.Out
 Port: /s.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /flash.In
-VapFrac            = 0.6553553965871418 | 
+VapFrac            = 0.6553553965869459 | 
 T                  = 0.0 | C
 P                  = 101.325 | kPa
 MoleFlow           = 10.0 | kgmole/h
-MassFlow           = 581.2220000000001 | kg/h
-VolumeFlow         = 142.5885077481994 | m3/hr
+MassFlow           = 581.222 | kg/h
+VolumeFlow         = 142.58850774815727 | m3/hr
 StdLiqVolumeFlow   = 0.987325 | m3/hr
-H                  = -138928.21498851254 | kJ/kmol
-Energy             = -385911.70830142376 | W
-MolecularWeight    = 58.12220000000001 | 
-ZFactor            = 0.6361591036422078 | 
+H                  = -138928.21498851728 | kJ/kmol
+Energy             = -385911.7083014369 | W
+MolecularWeight    = 58.12219999999999 | 
+ZFactor            = 0.63615910364202 | 
 PROPANE            = 0.25 | 
 N-BUTANE           = 0.25 | 
 ISOBUTANE          = 0.25 | 
@@ -289,17 +289,17 @@ N-PENTANE          = None
 >> flash.In
 Port: /flash.In + sim21.old.solver.Ports.Port_Material
 Connected to: /s.Out
-VapFrac            = 0.6553553965871418 = 
+VapFrac            = 0.6553553965869459 = 
 T                  = 0.0 * C
 P                  = 101.325 * kPa
 MoleFlow           = 10.0 * kgmole/h
-MassFlow           = 581.2220000000001 = kg/h
-VolumeFlow         = 142.5885077481994 = m3/hr
+MassFlow           = 581.222 = kg/h
+VolumeFlow         = 142.58850774815727 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
-H                  = -138928.21498851254 = kJ/kmol
-Energy             = -385911.70830142376 = W
-MolecularWeight    = 58.12220000000001 = 
-ZFactor            = 0.6361591036422078 = 
+H                  = -138928.21498851728 = kJ/kmol
+Energy             = -385911.7083014369 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.63615910364202 = 
 PROPANE            = 0.25 * 
 N-BUTANE           = 0.25 * 
 ISOBUTANE          = 0.25 * 
@@ -316,17 +316,17 @@ Pasted /flash /s as /flashClone /sClone
 >> /flashClone.In
 Port: /flashClone.In + sim21.old.solver.Ports.Port_Material
 Connected to: /sClone.Out
-VapFrac            = 0.6553553965871418 = 
+VapFrac            = 0.6553553965869459 = 
 T                  = 0.0 * C
 P                  = 101.325 * kPa
 MoleFlow           = 10.0 * kgmole/h
-MassFlow           = 581.2220000000001 = kg/h
-VolumeFlow         = 142.5885077481994 = m3/hr
+MassFlow           = 581.222 = kg/h
+VolumeFlow         = 142.58850774815727 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
-H                  = -138928.21498851254 = kJ/kmol
-Energy             = -385911.70830142376 = W
-MolecularWeight    = 58.12220000000001 = 
-ZFactor            = 0.6361591036422078 = 
+H                  = -138928.21498851728 = kJ/kmol
+Energy             = -385911.7083014369 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.63615910364202 = 
 PROPANE            = 0.25 * 
 N-BUTANE           = 0.25 * 
 ISOBUTANE          = 0.25 * 
@@ -335,17 +335,17 @@ N-PENTANE          = 0.25 *
 >> /sClone.Out
 Port: /sClone.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /flashClone.In
-VapFrac            = 0.6553553965871418 | 
+VapFrac            = 0.6553553965869459 | 
 T                  = 0.0 | C
 P                  = 101.325 | kPa
 MoleFlow           = 10.0 | kgmole/h
-MassFlow           = 581.2220000000001 | kg/h
-VolumeFlow         = 142.5885077481994 | m3/hr
+MassFlow           = 581.222 | kg/h
+VolumeFlow         = 142.58850774815727 | m3/hr
 StdLiqVolumeFlow   = 0.987325 | m3/hr
-H                  = -138928.21498851254 | kJ/kmol
-Energy             = -385911.70830142376 | W
-MolecularWeight    = 58.12220000000001 | 
-ZFactor            = 0.6361591036422078 | 
+H                  = -138928.21498851728 | kJ/kmol
+Energy             = -385911.7083014369 | W
+MolecularWeight    = 58.12219999999999 | 
+ZFactor            = 0.63615910364202 | 
 PROPANE            = 0.25 | 
 N-BUTANE           = 0.25 | 
 ISOBUTANE          = 0.25 | 

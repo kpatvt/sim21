@@ -28,16 +28,16 @@ ETHANOL WATER
 Port: /m.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -2.7848993410478897 = C
+T                  = -2.7848993410570984 = C
 P                  = 101.325 = kPa
 MoleFlow           = 2.0 = kgmole/h
 MassFlow           = 64.08372 = kg/h
-VolumeFlow         = 0.08206491063587115 = m3/hr
+VolumeFlow         = 0.0820649106358856 = m3/hr
 StdLiqVolumeFlow   = 0.07675 = m3/hr
-H                  = -283024.1153322349 = kJ/kmol
-Energy             = -157235.61962901938 = W
+H                  = -283024.11533223523 = kJ/kmol
+Energy             = -157235.61962901958 = W
 MolecularWeight    = 32.04186 = 
-ZFactor            = 0.0018495211475298425 = 
+ZFactor            = 0.0018495211475302309 = 
 ETHANOL            = 0.5 = 
 WATER              = 0.5 = 
 
@@ -78,19 +78,20 @@ ConsistencyError: /m.Out - P 70.0 vs 80.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /m.Out - P 70.0 vs 80.0
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -102,19 +103,20 @@ ConsistencyError: /m.Out - P 80.0 vs 70.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /m.Out - P 80.0 vs 70.0
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -136,19 +138,20 @@ ConsistencyError: /m.In1 - P 70.0 vs 110.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /m.In1 - P 70.0 vs 110.0
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -160,19 +163,20 @@ ConsistencyError: /m.In1 - P 110.0 vs 70.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /m.In1 - P 110.0 vs 70.0
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 

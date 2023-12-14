@@ -35,29 +35,33 @@ ISOPENTANE
 Error processing command:
 <class 'TypeError'>
 'module' object is not callable
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 379, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 379, in ProcessCommandString
     cmdResult = self.ProcessCommand(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 354, in ProcessCommand
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 354, in ProcessCommand
     return operators[operator](self, lhsObj, dequote(remaining))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 1807, in Equal
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1807, in Equal
     self.CreateObject(parentObj, createName, rhsDesc)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 1730, in CreateObject
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 1730, in CreateObject
     parent.AddObject(newObj, name)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/unitop/UnitOperations.py", line 198, in AddObject
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 198, in AddObject
     self.AddUnitOperation(obj, name)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/unitop/UnitOperations.py", line 997, in AddUnitOperation
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\unitop\UnitOperations.py", line 997, in AddUnitOperation
     cmdproc = CommandInterface(uOp)
+              ^^^^^^^^^^^^^^^^^^^^^
 
 
 >> '/CP1.In.Fraction' =   .003690036900369  .3690036900369  .3690036900369  .18450184501845  .03690036900369  .03690036900369
@@ -75,7 +79,7 @@ P                  = 100.0 * kPa
 MoleFlow           = 100.0 * kgmole/h
 MassFlow           = 3002.4561180811806 = kg/h
 VolumeFlow         = 2922.1876882959823 = m3/hr
-StdLiqVolumeFlow   = 5.202940959409594 = m3/hr
+StdLiqVolumeFlow   = 5.2029409594095934 = m3/hr
 H                  = -85821.47106628661 = kJ/kmol
 Energy             = -2383929.751841295 = W
 MolecularWeight    = 30.024561180811805 = 
@@ -135,7 +139,7 @@ P                  = 100.0 * kPa
 MoleFlow           = 100.0 * kgmole/h
 MassFlow           = 3002.4561180811806 = kg/h
 VolumeFlow         = 2922.1876882959823 = m3/hr
-StdLiqVolumeFlow   = 5.202940959409594 = m3/hr
+StdLiqVolumeFlow   = 5.2029409594095934 = m3/hr
 H                  = -85821.47106628661 = kJ/kmol
 Energy             = -2383929.751841295 = W
 MolecularWeight    = 30.024561180811805 = 
@@ -253,7 +257,7 @@ P                  = 100.0 * kPa
 MoleFlow           = 100.41489499599525 = kgmole/h
 MassFlow           = 3014.913158272053 = kg/h
 VolumeFlow         = 2934.311698788312 = m3/hr
-StdLiqVolumeFlow   = 5.224527701094773 = m3/hr
+StdLiqVolumeFlow   = 5.224527701094772 = m3/hr
 H                  = -85821.47106628661 = kJ/kmol
 Energy             = -2393820.5570897264 = W
 MolecularWeight    = 30.024561180811805 = 
@@ -274,7 +278,7 @@ P                  = 300.0 * kPa
 MoleFlow           = 100.41489499599524 = kgmole/h
 MassFlow           = 3014.9131582720524 = kg/h
 VolumeFlow         = 1162.4356472096808 = m3/hr
-StdLiqVolumeFlow   = 5.224527701094772 = m3/hr
+StdLiqVolumeFlow   = 5.224527701094771 = m3/hr
 H                  = -81452.58909895003 = kJ/kmol
 Energy             = -2271959.217089726 = W
 MolecularWeight    = 30.024561180811805 = 

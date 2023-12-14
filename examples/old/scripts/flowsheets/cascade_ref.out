@@ -67,16 +67,16 @@ PROPYLENE          = 1.0 =
 Port: /c3_htr.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 * 
-T                  = -30.000270167583523 = C
+T                  = -30.000270167583267 = C
 P                  = 215.29880568242876 = kPa
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow is invalid
-H                  = 16688.065458427307 = kJ/kmol
+H                  = 16688.06545842732 = kJ/kmol
 Energy             = None
 MolecularWeight    = 42.07974 = 
-ZFactor            = 0.9440039399723813 = 
+ZFactor            = 0.9440039399723816 = 
 METHANE            = 0.0 = 
 ETHYLENE           = 0.0 = 
 PROPYLENE          = 1.0 = 
@@ -90,16 +90,16 @@ PROPYLENE          = 1.0 =
 Port: /c3_compr1.Waste.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 11.931848248222138 = C
+T                  = 11.931848248222195 = C
 P                  = 530.0 * kPa
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow is invalid
-H                  = 18814.121833787343 = kJ/kmol
+H                  = 18814.121833787347 = kJ/kmol
 Energy             = None
 MolecularWeight    = 42.07974 = 
-ZFactor            = 0.9070601033548835 = 
+ZFactor            = 0.9070601033548837 = 
 METHANE            = 0.0 = 
 ETHYLENE           = 0.0 = 
 PROPYLENE          = 1.0 = 
@@ -114,13 +114,13 @@ PROPYLENE          = 1.0 =
 Port: /c3_compr2.Waste.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /c3_cond.In
 VapFrac            = 1.0 | 
-T                  = 61.94769940502334 | C
+T                  = 61.9476994050234 | C
 P                  = 1478.777467834266 | kPa
 MoleFlow           = None
 MassFlow           = None
 VolumeFlow         = None
 StdLiqVolumeFlow is invalid
-H                  = 21296.63830759805 = kJ/kmol
+H                  = 21296.638307598056 = kJ/kmol
 Energy             = None
 MolecularWeight    = 42.07974 | 
 ZFactor            = 0.8263313627732234 | 
@@ -144,12 +144,12 @@ Connected to: /c3_vlv.In
 VapFrac            = 0.0 * 
 T                  = 35.0 * C
 P                  = 1478.777467834266 = kPa
-MoleFlow           = 0.3347513019324788 = kgmole/h
-MassFlow           = 14.086247749980204 = kg/h
-VolumeFlow         = 0.028117040705271268 = m3/hr
-StdLiqVolumeFlow   = 0.027865100074421858 = m3/hr
+MoleFlow           = 0.3347513019324783 = kgmole/h
+MassFlow           = 14.086247749980187 = kg/h
+VolumeFlow         = 0.028117040705271226 = m3/hr
+StdLiqVolumeFlow   = 0.027865100074421816 = m3/hr
 H                  = 5933.813035157747 = kJ/kmol
-Energy             = 551.7643441508249 = W
+Energy             = 551.7643441508241 = W
 MolecularWeight    = 42.07974 = 
 ZFactor            = 0.0484790166858286 = 
 METHANE            = 0.0 * 
@@ -484,12 +484,12 @@ Energy   = 865.06382109897 = W
 >> c3_compr1.TotalQ.Out
 Port: /c3_compr1.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: /c3_compr1.Mix.InQ0
-Energy   = 1025.8414269585433 = W
+Energy   = 1025.8414269585364 = W
 
 >> c3_compr2.TotalQ.Out
 Port: /c3_compr2.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: /c3_compr2.Mix.InQ0
-Energy   = 1197.8366479161673 = W
+Energy   = 1197.8366479161696 = W
 
 >> 
 >> # Change the Duty at C1 level
@@ -521,12 +521,12 @@ Energy   = 1730.12764219794 = W
 >> c3_compr1.TotalQ.Out
 Port: /c3_compr1.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: /c3_compr1.Mix.InQ0
-Energy   = 2051.6828539170865 = W
+Energy   = 2051.682853917073 = W
 
 >> c3_compr2.TotalQ.Out
 Port: /c3_compr2.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: /c3_compr2.Mix.InQ0
-Energy   = 2395.6732958323346 = W
+Energy   = 2395.673295832339 = W
 
 >> 
 >> # 2x the Duty! - not surprising, how about we change the efficiencies of the compressors at the C1 level
@@ -561,7 +561,7 @@ Energy   = 1597.189498353564 = W
 >> c3_compr1.TotalQ.Out
 Port: /c3_compr1.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: /c3_compr1.Mix.InQ0
-Energy   = 1894.0373116433511 = W
+Energy   = 1894.0373116433398 = W
 
 >> c3_compr2.TotalQ.Out
 Port: /c3_compr2.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
@@ -607,10 +607,10 @@ Energy   = 1730.12764219794 = W
 >> c3_compr1.TotalQ.Out
 Port: /c3_compr1.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: /c3_compr1.Mix.InQ0
-Energy   = 1823.7180923707435 = W
+Energy   = 1823.7180923707315 = W
 
 >> c3_compr2.TotalQ.Out
 Port: /c3_compr2.TotalQ.Out + sim21.old.solver.Ports.Port_Energy
 Connected to: /c3_compr2.Mix.InQ0
-Energy   = 2075.496698184312 = W
+Energy   = 2075.4966981843004 = W
 

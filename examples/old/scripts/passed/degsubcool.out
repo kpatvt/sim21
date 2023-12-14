@@ -280,21 +280,21 @@ Inner loop converged
 >> /col.LiquidDraw_0_l
 Port: /col.LiquidDraw_0_l + sim21.old.solver.Ports.Port_Material
 Connected to: /s_liqdraw_0.In
-VapFrac            = 1.7996253424659925e-09 = 
-T                  = 19.14560361671954 = C
+VapFrac            = 1.7992876999816318e-09 = 
+T                  = 19.145603616719598 = C
 P                  = 700.0 * kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = 234.9603320081782 = kg/h
-VolumeFlow         = 0.4344788636950841 = m3/hr
-StdLiqVolumeFlow   = 0.40467326505520423 = m3/hr
-H                  = -128550.5223577934 = kJ/kmol
-Energy             = -178542.3921636019 = W
-MolecularWeight    = 46.99206640163564 = 
-ZFactor            = 0.025028811144892894 = 
-PROPANE            = 0.793504404379503 = 
-N-BUTANE           = 0.006421941212178353 = 
-ISOBUTANE          = 0.20007227060577445 = 
-N-PENTANE          = 1.383802544267144e-06 = 
+MassFlow           = 234.9603320081781 = kg/h
+VolumeFlow         = 0.43447886369019 = m3/hr
+StdLiqVolumeFlow   = 0.404673265055204 = m3/hr
+H                  = -128550.5223577988 = kJ/kmol
+Energy             = -178542.39216360945 = W
+MolecularWeight    = 46.99206640163562 = 
+ZFactor            = 0.02502881114461096 = 
+PROPANE            = 0.7935044043795045 = 
+N-BUTANE           = 0.006421941212178254 = 
+ISOBUTANE          = 0.200072270605773 = 
+N-PENTANE          = 1.3838025442671103e-06 = 
 
 >> 
 >> 
@@ -326,30 +326,30 @@ Inner loop converged
 Port: /col.LiquidDraw_0_l + sim21.old.solver.Ports.Port_Material
 Connected to: /s_liqdraw_0.In
 VapFrac            = 0.0 = 
-T                  = 17.136190964480647 = C
+T                  = 17.136190964483433 = C
 P                  = 700.0 * kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = 234.93971187905825 = kg/h
-VolumeFlow         = 0.4313866057510949 = m3/hr
-StdLiqVolumeFlow   = 0.40463241867172234 = m3/hr
-H                  = -128788.22707096832 = kJ/kmol
-Energy             = -178872.5375985671 = W
-MolecularWeight    = 46.98794237581165 = 
-ZFactor            = 0.02502269776225385 = 
-PROPANE            = 0.7937983500085328 = 
-N-BUTANE           = 0.006293092249971755 = 
-ISOBUTANE          = 0.19990724337446258 = 
-N-PENTANE          = 1.3143670328750684e-06 = 
+MassFlow           = 234.93971187905845 = kg/h
+VolumeFlow         = 0.43138660575109133 = m3/hr
+StdLiqVolumeFlow   = 0.40463241867172267 = m3/hr
+H                  = -128788.22707096825 = kJ/kmol
+Energy             = -178872.537598567 = W
+MolecularWeight    = 46.987942375811684 = 
+ZFactor            = 0.025022697762253406 = 
+PROPANE            = 0.7937983500085303 = 
+N-BUTANE           = 0.006293092249972073 = 
+ISOBUTANE          = 0.1999072433744648 = 
+N-PENTANE          = 1.3143670328751395e-06 = 
 
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.019747408528928645 = W
+Energy   = 0.019747401674976572 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.005137764863320626 = W
+Energy   = 0.005137760454090312 = W
 
 >> 
 >> 
@@ -374,30 +374,30 @@ Inner loop converged
 Port: /col.LiquidDraw_0_l + sim21.old.solver.Ports.Port_Material
 Connected to: /s_liqdraw_0.In
 VapFrac            = 0.0 = 
-T                  = 15.127438156321944 = C
+T                  = 15.127438156322683 = C
 P                  = 700.0 * kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = 234.92058067850303 = kg/h
-VolumeFlow         = 0.4284000628676855 = m3/hr
-StdLiqVolumeFlow   = 0.4045945955052144 = m3/hr
-H                  = -129024.24320597475 = kJ/kmol
-Energy             = -179200.33778607607 = W
-MolecularWeight    = 46.9841161357006 = 
-ZFactor            = 0.025022616652730194 = 
-PROPANE            = 0.7940710714295443 = 
-N-BUTANE           = 0.006169738777369625 = 
-ISOBUTANE          = 0.19975793896837826 = 
-N-PENTANE          = 1.250824707724384e-06 = 
+MassFlow           = 234.92058067850294 = kg/h
+VolumeFlow         = 0.42840006286768767 = m3/hr
+StdLiqVolumeFlow   = 0.40459459550521404 = m3/hr
+H                  = -129024.2432059745 = kJ/kmol
+Energy             = -179200.3377860757 = W
+MolecularWeight    = 46.98411613570058 = 
+ZFactor            = 0.025022616652730256 = 
+PROPANE            = 0.7940710714295464 = 
+N-BUTANE           = 0.006169738777369811 = 
+ISOBUTANE          = 0.1997579389683761 = 
+N-PENTANE          = 1.2508247077245152e-06 = 
 
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.051024514650634956 = W
+Energy   = 0.05102451415586984 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.027529079372470733 = W
+Energy   = 0.027529080682143103 = W
 
 >> 
 >> /col.DegSubCool_0_degsubcool.DT = 0
@@ -421,30 +421,30 @@ Inner loop converged
 Port: /col.LiquidDraw_0_l + sim21.old.solver.Ports.Port_Material
 Connected to: /s_liqdraw_0.In
 VapFrac            = 0.0 = 
-T                  = 19.145617288700805 = C
+T                  = 19.145617288702 = C
 P                  = 700.0 * kPa
 MoleFlow           = 5.0 * kgmole/h
-MassFlow           = 234.96036400779332 = kg/h
-VolumeFlow         = 0.43447888872935386 = m3/hr
-StdLiqVolumeFlow   = 0.4046733316195553 = m3/hr
-H                  = -128550.5360431172 = kJ/kmol
-Energy             = -178542.4111709961 = W
-MolecularWeight    = 46.992072801558656 = 
-ZFactor            = 0.02502881141631963 = 
-PROPANE            = 0.7935039481256579 = 
-N-BUTANE           = 0.006421977872745396 = 
-ISOBUTANE          = 0.200072690181803 = 
-N-PENTANE          = 1.3838197937621404e-06 = 
+MassFlow           = 234.96036400779286 = kg/h
+VolumeFlow         = 0.4344788887293508 = m3/hr
+StdLiqVolumeFlow   = 0.4046733316195545 = m3/hr
+H                  = -128550.53604311694 = kJ/kmol
+Energy             = -178542.41117099574 = W
+MolecularWeight    = 46.99207280155857 = 
+ZFactor            = 0.025028811416319352 = 
+PROPANE            = 0.7935039481256633 = 
+N-BUTANE           = 0.0064219778727450764 = 
+ISOBUTANE          = 0.20007269018179785 = 
+N-PENTANE          = 1.383819793762074e-06 = 
 
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -0.17837000612780685 = W
+Energy   = -0.1783700012092595 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -0.10652045175811509 = W
+Energy   = -0.10652044989546994 = W
 
 >> 
 >> 
@@ -467,17 +467,17 @@ Inner loop converged
 >> /col.DegSubCool_0_degsubcool
 Port: /col.DegSubCool_0_degsubcool + sim21.old.solver.Ports.Port_Signal
 Connected to: None
-DT   = 1.140150440894672 = C
+DT   = 1.1401504408916026 = C
 
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.04154089938674588 = W
+Energy   = 0.04154090535303112 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.02861617952294182 = W
+Energy   = 0.028616179988603108 = W
 
 >> 
 >> 
@@ -518,28 +518,28 @@ Connected to: /s_liqdraw_0.In
 VapFrac            = 0.0 = 
 T                  = 18.0 * C
 P                  = 700.0 * kPa
-MoleFlow           = 5.206230241363894 = kgmole/h
-MassFlow           = 246.7266907407029 = kg/h
-VolumeFlow         = 0.4525466835942692 = m3/hr
-StdLiqVolumeFlow   = 0.4257030953164511 = m3/hr
-H                  = -129655.53151690013 = kJ/kmol
-Energy             = -187504.59698427637 = W
-MolecularWeight    = 47.39066067044838 = 
-ZFactor            = 0.02513547383178044 = 
-PROPANE            = 0.7650878345976605 = 
-N-BUTANE           = 0.007620743371338652 = 
-ISOBUTANE          = 0.22728954064157939 = 
-N-PENTANE          = 1.881389421484192e-06 = 
+MoleFlow           = 5.206230241363655 = kgmole/h
+MassFlow           = 246.72669074068915 = kg/h
+VolumeFlow         = 0.4525466835942444 = m3/hr
+StdLiqVolumeFlow   = 0.4257030953164266 = m3/hr
+H                  = -129655.53151689905 = kJ/kmol
+Energy             = -187504.59698426622 = W
+MolecularWeight    = 47.39066067044792 = 
+ZFactor            = 0.025135473831780216 = 
+PROPANE            = 0.765087834597693 = 
+N-BUTANE           = 0.007620743371337749 = 
+ISOBUTANE          = 0.22728954064154772 = 
+N-PENTANE          = 1.8813894214845934e-06 = 
 
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.020132756028033327 = W
+Energy   = 0.020132751582423225 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -0.004620777974196244 = W
+Energy   = -0.004620777326636016 = W
 
 >> 
 >> 
@@ -978,19 +978,20 @@ ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -1000,7 +1001,7 @@ The following consistency errors in flowsheet / have not been resolved (only lis
 
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -31007.498192263585 = W
+Energy   = -31007.498192271058 = W
 
 >> /stagebalance.OutQ1
 The following consistency errors in flowsheet / have not been resolved (only lists one per unit operation):
@@ -1008,7 +1009,7 @@ The following consistency errors in flowsheet / have not been resolved (only lis
 
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = -31007.528363809768 = W
+Energy   = -31007.52836380848 = W
 
 >> 
 >> #Solve fine again
@@ -1067,19 +1068,20 @@ ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
 Error processing command:
 <class 'sim21.old.solver.Error.ConsistencyError'>
 ConsistencyError: /col.VapourDraw_0_vap - MoleFlow 0.0 vs 1.0
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 3562, in run
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 3562, in run
     interface.ProcessCommandStream(inp, out, err)
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 284, in ProcessCommandStream
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 284, in ProcessCommandStream
     cmdResult = self.ProcessCommandString(cmd)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  File "/home/theadmin/Projects/sim21/sim21/old/cli/CommandInterface.py", line 400, in ProcessCommandString
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\cli\CommandInterface.py", line 400, in ProcessCommandString
     self.root.Solve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 335, in Solve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 335, in Solve
     self.InnerSolve()
 
-  File "/home/theadmin/Projects/sim21/sim21/old/solver/Flowsheet.py", line 558, in InnerSolve
+  File "C:\Users\TheAdmin\Projects\sim21\sim21\old\solver\Flowsheet.py", line 558, in InnerSolve
     raise Error.ConsistencyError(self._consistencyErrorStack[0])
 
 
@@ -1166,12 +1168,12 @@ Inner loop converged
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.06351715326309204 = W
+Energy   = 0.06351715063647134 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.027541495714103803 = W
+Energy   = 0.027541478302737232 = W
 
 >> 
 >> 
@@ -1270,12 +1272,12 @@ Inner loop converged
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.05452745184447849 = W
+Energy   = 0.05452745284856064 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.024952127314463723 = W
+Energy   = 0.024952119296358433 = W
 
 >> 
 >> 
@@ -1321,12 +1323,12 @@ Inner loop converged
 >> /bal.OutQ1
 Port: /bal.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.05452745184447849 = W
+Energy   = 0.05452745284856064 = W
 
 >> /stagebalance.OutQ1
 Port: /stagebalance.OutQ1 + sim21.old.solver.Ports.Port_Energy
 Connected to: None
-Energy   = 0.024952127314463723 = W
+Energy   = 0.024952119296358433 = W
 
 >> 
 >> copy /

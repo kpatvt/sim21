@@ -42,17 +42,17 @@ DP   = None
 >> In
 Port: /preHeater.In + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.014570217650956193 = 
+VapFrac            = 0.014570217650956967 = 
 T                  = -16.826000000000022 * C
 P                  = 101.325 * kPa
 MoleFlow           = 10.0 * kgmole/h
 MassFlow           = 581.222 = kg/h
-VolumeFlow         = 3.8593869944862504 = m3/hr
+VolumeFlow         = 3.8593869944863037 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
-H                  = -154414.84640061163 = kJ/kmol
-Energy             = -428930.12889058783 = W
+H                  = -154414.84640061343 = kJ/kmol
+Energy             = -428930.12889059284 = W
 MolecularWeight    = 58.1222 = 
-ZFactor            = 0.018348961297259228 = 
+ZFactor            = 0.01834896129725948 = 
 PROPANE            = 0.25 * 
 N-BUTANE           = 0.25 * 
 ISOBUTANE          = 0.25 * 
@@ -62,16 +62,16 @@ N-PENTANE          = 0.25 *
 Port: /preHeater.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 1660.0976729215859 = C
+T                  = 1660.0976729215781 = C
 P                  = 101.22500000000001 = kPa
 MoleFlow           = 10.0 = kgmole/h
 MassFlow           = 581.222 = kg/h
-VolumeFlow         = 1588.6176262888273 = m3/hr
+VolumeFlow         = 1588.6176262888212 = m3/hr
 StdLiqVolumeFlow   = 0.987325 = m3/hr
-H                  = 205585.15359938837 = kJ/kmol
-Energy             = 571069.8711094122 = W
+H                  = 205585.1535993866 = kJ/kmol
+Energy             = 571069.8711094072 = W
 MolecularWeight    = 58.12219999999999 = 
-ZFactor            = 1.0004271774333335 = 
+ZFactor            = 1.0004271774333338 = 
 PROPANE            = 0.25 = 
 N-BUTANE           = 0.25 = 
 ISOBUTANE          = 0.25 = 
@@ -136,15 +136,15 @@ P
 >> 
 >> # a full material port values
 >> valueOf preHeater.Out.T.processValue
-1933.247672921586
+1933.2476729215782
 >> valueOf preHeater.Out.P.processValue
 101.22500000000001
 >> valueOf preHeater.Out.molarV.processValue
-158.86176262888273
+158.8617626288821
 >> valueOf preHeater.Out.H.processValue
-205585.15359938837
+205585.1535993866
 >> valueOf preHeater.Out.S.processValue
-112.67108049926755
+112.67108049926347
 >> valueOf preHeater.Out.VapFrac.processValue
 1.0
 >> valueOf preHeater.Out.MoleFlow.processValue
@@ -152,7 +152,7 @@ P
 >> valueOf preHeater.Out.MassFlow.processValue
 581.222
 >> valueOf preHeater.Out.Energy.processValue
-571069.8711094122
+571069.8711094072
 >> valueOf preHeater.Out.Fraction.processValue
 [0.25, 0.25, 0.25, 0.25]
 >> 

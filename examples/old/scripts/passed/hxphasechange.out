@@ -67,34 +67,34 @@ Converged /Hx1 in 5 iterations
 >> /Hx1.UA0_1.UA = None
 >> /Hx1.Out1.T = 125
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 47.490468141270114 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 47.49046814100825 = W/K
 >> 
 >> #As the number of segments increases, the ua converges to a single
 >> #ua but the hx becomes slower
 >> /Hx1.NumberSegments = 10
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 51.60134090845781 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 51.60134090889888 = W/K
 >> /Hx1.NumberSegments = 50
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 53.46156344355175 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 53.46156344367232 = W/K
 >> 
 >> 
 >> #Now back to 5 segments
 >> /Hx1.NumberSegments = 5
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 47.490468141270114 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 47.49046814100825 = W/K
 >> 
 >> #Track phase change
 >> #The UA is already the converged one with 100 segments
 >> /Hx1.TrackPhaseChange = 1
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 53.16167525129487 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 53.161675250885864 = W/K
 >> /Hx1.NumberSegments = 3
 >> /Hx1.UA0_1.UA
 /Hx1.heatTransfer0_1.UA.UA= 53.218141222033694 = W/K
 >> /Hx1.NumberSegments = 10
 >> /Hx1.UA0_1.UA
-/Hx1.heatTransfer0_1.UA.UA= 53.28334303051827 = W/K
+/Hx1.heatTransfer0_1.UA.UA= 53.28334303056107 = W/K
 >> 
 >> #Lets get a bunch of profiles
 >> /Hx1.side0.T

@@ -89,15 +89,15 @@ Parameter: BaseForSegments = Energy
 >> exch.UA0_1 = 52710.6781154
 >> coldInlet.In.T = -8 C
 Calculating Jacobian for /exch
-/exch Iteration 1 Max Error 45.805046
+/exch Iteration 1 Max Error 45.805051
 Calculating Jacobian for /exch
 /exch Iteration 2 Max Error 28.403461
 Calculating Jacobian for /exch
 /exch Iteration 3 Max Error 20.290598
 Calculating Jacobian for /exch
-/exch Iteration 4 Max Error 11.305701
+/exch Iteration 4 Max Error 11.305699
 Calculating Jacobian for /exch
-/exch Iteration 5 Max Error 1.451585
+/exch Iteration 5 Max Error 1.451584
 Calculating Jacobian for /exch
 /exch Iteration 6 Max Error 0.025404
 Calculating Jacobian for /exch
@@ -128,16 +128,16 @@ N-PENTANE          = 0.0 =
 Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 80.63780497354668 = C
+T                  = 80.63780498022311 = C
 P                  = 290.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 44796.94899999999 = kg/h
-VolumeFlow         = 9830.403989108536 = m3/hr
+VolumeFlow         = 9830.403989311522 = m3/hr
 StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
-H                  = -101519.53847849817 = kJ/kmol
-Energy             = -28199871.79958283 = W
+H                  = -101519.53847791624 = kJ/kmol
+Energy             = -28199871.79942118 = W
 MolecularWeight    = 44.79694899999999 = 
-ZFactor            = 0.9691529454362341 = 
+ZFactor            = 0.9691529454379569 = 
 PROPANE            = 0.95 = 
 ISOBUTANE          = 0.0 = 
 N-BUTANE           = 0.05 = 
@@ -165,17 +165,17 @@ N-PENTANE          = 0.25 =
 >> hotOutlet.Out
 Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.8568183479428765 = 
-T                  = 51.05967778264659 = C
+VapFrac            = 0.8568183475103183 = 
+T                  = 51.059677770763074 = C
 P                  = 450.0 = kPa
 MoleFlow           = 800.0 = kgmole/h
 MassFlow           = 46497.759999999995 = kg/h
-VolumeFlow         = 3708.363510525475 = m3/hr
+VolumeFlow         = 3708.3635085614915 = m3/hr
 StdLiqVolumeFlow   = 78.986 = m3/hr
-H                  = -129252.63577491776 = kJ/kmol
-Energy             = -28722807.949981723 = W
-MolecularWeight    = 58.12220000000001 = 
-ZFactor            = 0.7738284029532805 = 
+H                  = -129252.63577564518 = kJ/kmol
+Energy             = -28722807.95014337 = W
+MolecularWeight    = 58.12219999999999 = 
+ZFactor            = 0.7738284025718175 = 
 PROPANE            = 0.25 = 
 ISOBUTANE          = 0.25 = 
 N-BUTANE           = 0.25 = 
@@ -274,7 +274,7 @@ Converged /exch in 0 iterations
 >> coldInlet.In.T =
 >> coldOutlet.In.T = 80 C
 Calculating Jacobian for /exch
-/exch Iteration 1 Max Error 0.976274
+/exch Iteration 1 Max Error 0.976275
 Calculating Jacobian for /exch
 /exch Iteration 2 Max Error 0.001229
 Calculating Jacobian for /exch
@@ -282,17 +282,17 @@ Converged /exch in 3 iterations
 >> coldInlet.Out
 Port: /coldInlet.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /exch.side1.In
-VapFrac            = 0.9929789250232268 | 
-T                  = -9.166833491412092 | C
+VapFrac            = 0.9929789257804125 | 
+T                  = -9.166833481884282 | C
 P                  = 300.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 44796.94899999999 = kg/h
-VolumeFlow         = 6726.762475595494 | m3/hr
+VolumeFlow         = 6726.76248093006 | m3/hr
 StdLiqVolumeFlow   = 76.15050000000002 = m3/hr
-H                  = -108743.79814413776 | kJ/kmol
-Energy             = -30206610.595593825 | W
+H                  = -108743.79814415573 | kJ/kmol
+Energy             = -30206610.595598817 | W
 MolecularWeight    = 44.796949 | 
-ZFactor            = 0.9194263128061101 | 
+ZFactor            = 0.9194263135020639 | 
 PROPANE            = 0.95 = 
 ISOBUTANE          = 0.0 = 
 N-BUTANE           = 0.05 = 
@@ -339,17 +339,17 @@ N-PENTANE          = 0.25 =
 >> hotOutlet.Out
 Port: /hotOutlet.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.8486348017104666 = 
-T                  = 50.863563697896325 = C
+VapFrac            = 0.8486348012983939 = 
+T                  = 50.863563686461816 = C
 P                  = 450.0 = kPa
 MoleFlow           = 800.0 = kgmole/h
 MassFlow           = 46497.759999999995 = kg/h
-VolumeFlow         = 3671.678512197365 = m3/hr
+VolumeFlow         = 3671.6785103267575 = m3/hr
 StdLiqVolumeFlow   = 78.986 = m3/hr
-H                  = -129446.33613734953 = kJ/kmol
-Energy             = -28765852.474966563 = W
+H                  = -129446.33613737198 = kJ/kmol
+Energy             = -28765852.474971548 = W
 MolecularWeight    = 58.1222 = 
-ZFactor            = 0.7666370408302969 = 
+ZFactor            = 0.7666370404667737 = 
 PROPANE            = 0.25 = 
 ISOBUTANE          = 0.25 = 
 N-BUTANE           = 0.25 = 

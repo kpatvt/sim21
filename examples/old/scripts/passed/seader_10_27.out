@@ -156,75 +156,75 @@ Inner loop converged
 Port: /overhead.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 47.66006701103847 = F
+T                  = 47.660067017590414 = F
 P                  = 20.0 = psia
 MoleFlow           = 14.08 = lbmole/h
-MassFlow           = 826.1143788321053 = lb/h
-VolumeFlow         = 0.005886760693290191 = ft3/s
-StdLiqVolumeFlow   = 0.0063313681381995035 = ft3/s
-H                  = -64781.77240825828 = Btu/lbmol
-Energy             = -911973.9712747621 = Btu/hr
-MolecularWeight    = 58.67289542082799 = 
-ZFactor            = 0.005529033989323251 = 
-N-BUTANE           = 0.9607391099499355 = 
-N-PENTANE          = 0.039260881812496935 = 
-N-HEXANE           = 4.916449734903626e-09 = 
-N-OCTANE           = 3.3211177613804724e-09 = 
+MassFlow           = 826.1143788635231 = lb/h
+VolumeFlow         = 0.0058867606934935235 = ft3/s
+StdLiqVolumeFlow   = 0.006331368138346413 = ft3/s
+H                  = -64781.77240984914 = Btu/lbmol
+Energy             = -911973.9712971576 = Btu/hr
+MolecularWeight    = 58.67289542305937 = 
+ZFactor            = 0.005529033989442821 = 
+N-BUTANE           = 0.9607391097908523 = 
+N-PENTANE          = 0.03926088197158011 = 
+N-HEXANE           = 4.91644975754617e-09 = 
+N-OCTANE           = 3.3211177741016764e-09 = 
 
 >> draw1.Out
 Port: /draw1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 2.597489827413584e-08 = 
-T                  = 115.61527297396228 = F
+VapFrac            = 2.598758843346574e-08 = 
+T                  = 115.61527297414328 = F
 P                  = 21.724137931034484 = psia
 MoleFlow           = 19.53 = lbmole/h
-MassFlow           = 1403.242969648622 = lb/h
-VolumeFlow         = 0.010125551607643475 = ft3/s
-StdLiqVolumeFlow   = 0.009986485645287679 = ft3/s
-H                  = -72754.55020993474 = Btu/lbmol
-Energy             = -1420657.426269213 = Btu/hr
-MolecularWeight    = 71.85063848687257 = 
-ZFactor            = 0.0065676783982495076 = 
-N-BUTANE           = 0.02838711769168767 = 
-N-PENTANE          = 0.9644847777949719 = 
-N-HEXANE           = 0.007126331594525816 = 
-N-OCTANE           = 1.7729188146484432e-06 = 
+MassFlow           = 1403.24296964965 = lb/h
+VolumeFlow         = 0.010125551626077646 = ft3/s
+StdLiqVolumeFlow   = 0.00998648564529297 = ft3/s
+H                  = -72754.55020983117 = Btu/lbmol
+Energy             = -1420657.4262671908 = Btu/hr
+MolecularWeight    = 71.85063848692522 = 
+ZFactor            = 0.006567678410204289 = 
+N-BUTANE           = 0.028387117691338414 = 
+N-PENTANE          = 0.9644847777919197 = 
+N-HEXANE           = 0.0071263315979260096 = 
+N-OCTANE           = 1.7729188159045284e-06 = 
 
 >> draw2.Out
 Port: /draw2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 197.78323578924284 = F
+T                  = 197.7832357788958 = F
 P                  = 24.137931034482758 = psia
 MoleFlow           = 24.780000000000005 = lbmole/h
-MassFlow           = 2166.703612023731 = lb/h
-VolumeFlow         = 0.016148574727453294 = ft3/s
-StdLiqVolumeFlow   = 0.014667468441994657 = ft3/s
-H                  = -80272.54554908359 = Btu/lbmol
-Energy             = -1988819.1806666174 = Btu/hr
-MolecularWeight    = 87.43759531976313 = 
-ZFactor            = 0.008026093258628686 = 
-N-BUTANE           = 6.222442316856801e-08 = 
-N-PENTANE          = 0.005755585607392135 = 
-N-HEXANE           = 0.946372055258685 = 
-N-OCTANE           = 0.04787229690949971 = 
+MassFlow           = 2166.7036119911345 = lb/h
+VolumeFlow         = 0.016148574727086 = ft3/s
+StdLiqVolumeFlow   = 0.014667468441829392 = ft3/s
+H                  = -80272.54554867597 = Btu/lbmol
+Energy             = -1988819.1806565179 = Btu/hr
+MolecularWeight    = 87.43759531844768 = 
+ZFactor            = 0.008026093258572451 = 
+N-BUTANE           = 6.222442321746756e-08 = 
+N-PENTANE          = 0.005755585610262023 = 
+N-HEXANE           = 0.9463720553012707 = 
+N-OCTANE           = 0.04787229686404406 = 
 
 >> bottoms.Out
 Port: /bottoms.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = 288.5977759747545 = F
+T                  = 288.5977759533636 = F
 P                  = 25.0 = psia
-MoleFlow           = 39.409593015557455 = lbmole/h
-MassFlow           = 4468.260963269903 = lb/h
-VolumeFlow         = 0.03423255177232181 = ft3/s
-StdLiqVolumeFlow   = 0.028506732302212862 = ft3/s
-H                  = -92830.1331788486 = Btu/lbmol
-Energy             = -3657782.5683903485 = Btu/hr
-MolecularWeight    = 113.38003316871122 = 
-ZFactor            = 0.009735458674506368 = 
-N-BUTANE           = 2.5695871987570483e-13 = 
-N-PENTANE          = 2.3159335007345784e-06 = 
-N-HEXANE           = 0.03024151226658313 = 
-N-OCTANE           = 0.9697561717996591 = 
+MoleFlow           = 39.409593021611656 = lbmole/h
+MassFlow           = 4468.260963831371 = lb/h
+VolumeFlow         = 0.03423255177614358 = ft3/s
+StdLiqVolumeFlow   = 0.028506732305959084 = ft3/s
+H                  = -92830.13317825878 = Btu/lbmol
+Energy             = -3657782.5689290254 = Btu/hr
+MolecularWeight    = 113.38003316554048 = 
+ZFactor            = 0.009735458674375972 = 
+N-BUTANE           = 2.5695872052681573e-13 = 
+N-PENTANE          = 2.3159335083453456e-06 = 
+N-HEXANE           = 0.030241512379597997 = 
+N-OCTANE           = 0.9697561716866366 = 
 

@@ -210,37 +210,37 @@ Inner loop converged
 Port: /ovhd_liq_col1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -177.72922269850739 = C
+T                  = -177.72922269850784 = C
 P                  = 560.0 = kPa
-MoleFlow           = 3011.5503115362576 = kgmole/h
-MassFlow           = 84363.76715838084 = kg/h
-VolumeFlow         = 106.20924372189255 = m3/hr
-StdLiqVolumeFlow   = 104.92241100773597 = m3/hr
-H                  = -10977.45937134537 = kJ/kmol
-Energy             = -9183103.1082366 = W
+MoleFlow           = 3011.5503115354477 = kgmole/h
+MassFlow           = 84363.76715835815 = kg/h
+VolumeFlow         = 106.20924372186347 = m3/hr
+StdLiqVolumeFlow   = 104.92241100770777 = m3/hr
+H                  = -10977.459371345401 = kJ/kmol
+Energy             = -9183103.108234156 = W
 MolecularWeight    = 28.013401037019797 = 
 ZFactor            = 0.024893335098079058 = 
 NITROGEN           = 0.9999998943517581 = 
-OXYGEN             = 5.5844776603082055e-09 = 
+OXYGEN             = 5.584477660292431e-09 = 
 ARGON              = 1e-07 = 
 
 >> btm_liq_col1.Out
 Port: /btm_liq_col1.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -174.61366604122543 = C
+T                  = -174.61366604122594 = C
 P                  = 570.0 = kPa
-MoleFlow           = 7554.991397538204 = kgmole/h
-MassFlow           = 221636.2336961272 = kg/h
-VolumeFlow         = 246.72176649379287 = m3/hr
-StdLiqVolumeFlow   = 247.17814249652955 = m3/hr
-H                  = -11217.25657820063 = kJ/kmol
-Energy             = -23540632.48674572 = W
-MolecularWeight    = 29.33639789032022 = 
-ZFactor            = 0.022720493592059854 = 
-NITROGEN           = 0.6939825757400796 = 
-OXYGEN             = 0.29301032320890497 = 
-ARGON              = 0.013007101051015458 = 
+MoleFlow           = 7554.99139753901 = kgmole/h
+MassFlow           = 221636.23369614978 = kg/h
+VolumeFlow         = 246.72176649382095 = m3/hr
+StdLiqVolumeFlow   = 247.17814249655763 = m3/hr
+H                  = -11217.256578200613 = kJ/kmol
+Energy             = -23540632.486748192 = W
+MolecularWeight    = 29.336397890320082 = 
+ZFactor            = 0.02272049359206013 = 
+NITROGEN           = 0.6939825757401124 = 
+OXYGEN             = 0.2930103232088737 = 
+ARGON              = 0.013007101051014068 = 
 
 >> 
 >> jt_n2 = Valve.Valve()
@@ -254,38 +254,38 @@ ARGON              = 0.013007101051015458 =
 >> jt_n2.Out
 Port: /jt_n2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.17857704862973078 = 
-T                  = -194.4295191890991 = C
+VapFrac            = 0.17857704862983703 = 
+T                  = -194.42951918910813 = C
 P                  = 120.0 * kPa
-MoleFlow           = 3011.5503115362576 = kgmole/h
-MassFlow           = 84363.76715838084 = kg/h
-VolumeFlow         = 2872.98041631216 = m3/hr
-StdLiqVolumeFlow   = 104.92241100773597 = m3/hr
-H                  = -10977.45937134537 = kJ/kmol
-Energy             = -9183103.1082366 = W
+MoleFlow           = 3011.5503115354477 = kgmole/h
+MassFlow           = 84363.76715835815 = kg/h
+VolumeFlow         = 2872.98041631267 = m3/hr
+StdLiqVolumeFlow   = 104.92241100770777 = m3/hr
+H                  = -10977.459371345401 = kJ/kmol
+Energy             = -9183103.108234156 = W
 MolecularWeight    = 28.013401193460002 = 
-ZFactor            = 0.1749048553405145 = 
+ZFactor            = 0.17490485534061279 = 
 NITROGEN           = 0.9999998943517581 = 
-OXYGEN             = 5.584477660308206e-09 = 
+OXYGEN             = 5.584477660292432e-09 = 
 ARGON              = 1e-07 = 
 
 >> jt_rl.Out
 Port: /jt_rl.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
-VapFrac            = 0.17112315682943824 = 
-T                  = -191.23951229705324 = C
+VapFrac            = 0.17112315682946966 = 
+T                  = -191.2395122970519 = C
 P                  = 130.0 * kPa
-MoleFlow           = 7554.991397538204 = kgmole/h
-MassFlow           = 221636.2336961272 = kg/h
-VolumeFlow         = 6639.329979105278 = m3/hr
-StdLiqVolumeFlow   = 247.17814249652955 = m3/hr
-H                  = -11217.25657820063 = kJ/kmol
-Energy             = -23540632.48674572 = W
-MolecularWeight    = 29.336397890320224 = 
-ZFactor            = 0.16774899819117858 = 
-NITROGEN           = 0.6939825757400796 = 
-OXYGEN             = 0.29301032320890497 = 
-ARGON              = 0.013007101051015458 = 
+MoleFlow           = 7554.99139753901 = kgmole/h
+MassFlow           = 221636.23369614978 = kg/h
+VolumeFlow         = 6639.3299791073105 = m3/hr
+StdLiqVolumeFlow   = 247.17814249655763 = m3/hr
+H                  = -11217.256578200613 = kJ/kmol
+Energy             = -23540632.486748192 = W
+MolecularWeight    = 29.336397890320075 = 
+ZFactor            = 0.16774899819120934 = 
+NITROGEN           = 0.6939825757401124 = 
+OXYGEN             = 0.2930103232088737 = 
+ARGON              = 0.013007101051014068 = 
 
 >> 
 >> fl1 = Flash.SimpleFlash()
@@ -294,37 +294,37 @@ ARGON              = 0.013007101051015458 =
 Port: /fl1.Vap + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = -191.23951229705324 = C
+T                  = -191.2395122970519 = C
 P                  = 130.0 = kPa
-MoleFlow           = 1292.833977765987 = kgmole/h
-MassFlow           = 36950.02533544049 = kg/h
-VolumeFlow         = 6459.050433745093 = m3/hr
-StdLiqVolumeFlow   = 43.89316897095491 = m3/hr
-H                  = -6364.749666884409 = kJ/kmol
-Energy             = -2285712.3970341417 = W
-MolecularWeight    = 28.58064219451443 = 
-ZFactor            = 0.9536644059307245 = 
-NITROGEN           = 0.8715884232474139 = 
-OXYGEN             = 0.12143342844525044 = 
-ARGON              = 0.006978148307335598 = 
+MoleFlow           = 1292.833977766362 = kgmole/h
+MassFlow           = 36950.02533545088 = kg/h
+VolumeFlow         = 6459.05043374709 = m3/hr
+StdLiqVolumeFlow   = 43.89316897096818 = m3/hr
+H                  = -6364.749666884372 = kJ/kmol
+Energy             = -2285712.3970347918 = W
+MolecularWeight    = 28.580642194514173 = 
+ZFactor            = 0.9536644059307269 = 
+NITROGEN           = 0.8715884232474735 = 
+OXYGEN             = 0.12143342844519323 = 
+ARGON              = 0.006978148307333215 = 
 
 >> fl1.Liq0
 Port: /fl1.Liq0 + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -191.23951229705324 = C
+T                  = -191.2395122970519 = C
 P                  = 130.0 = kPa
-MoleFlow           = 6262.1574197722175 = kgmole/h
-MassFlow           = 184686.20836068672 = kg/h
-VolumeFlow         = 180.27954536018436 = m3/hr
-StdLiqVolumeFlow   = 203.28497352557463 = m3/hr
-H                  = -12219.06796438953 = kJ/kmol
-Energy             = -21254924.198861916 = W
-MolecularWeight    = 29.492425051078417 = 
-ZFactor            = 0.00549530914028068 = 
-NITROGEN           = 0.6573155201367795 = 
-OXYGEN             = 0.3284326903710036 = 
-ARGON              = 0.014251789492216975 = 
+MoleFlow           = 6262.157419772648 = kgmole/h
+MassFlow           = 184686.20836069883 = kg/h
+VolumeFlow         = 180.27954536021977 = m3/hr
+StdLiqVolumeFlow   = 203.28497352558944 = m3/hr
+H                  = -12219.06796438896 = kJ/kmol
+Energy             = -21254924.198862385 = W
+MolecularWeight    = 29.492425051078325 = 
+ZFactor            = 0.00549530914028129 = 
+NITROGEN           = 0.6573155201367984 = 
+OXYGEN             = 0.32843269037098555 = 
+ARGON              = 0.014251789492216064 = 
 
 >> 
 >> exp1 = Compressor.Expander()
@@ -630,13 +630,13 @@ Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
 /col3 Inner Error 0.621855
-/col3 Inner Error 0.619116
+/col3 Inner Error 0.619115
 /col3 Inner Error 0.618974
 /col3 Inner Error 0.618930
 /col3 Inner Error 0.615252
-/col3 Inner Error 0.611002
-/col3 Inner Error 0.223954
-/col3 Inner Error 0.198499
+/col3 Inner Error 0.611000
+/col3 Inner Error 0.223957
+/col3 Inner Error 0.198497
 Step size too small - Exiting inner loop
 /col3 Iteration 3 Outer Error 0.003466
 Calculating Jacobian for /col3
@@ -652,7 +652,7 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.408335
+/col3 Inner Error 0.408342
 Inner loop is not changing significantly - exiting
 /col3 Iteration 4 Outer Error 0.002882
 Calculating Jacobian for /col3
@@ -668,7 +668,7 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.531851
+/col3 Inner Error 0.531853
 Step size too small - Exiting inner loop
 /col3 Iteration 5 Outer Error 0.000012
 Calculating Jacobian for /col3
@@ -684,27 +684,27 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.534685
-/col3 Inner Error 0.534663
-/col3 Inner Error 0.534130
-/col3 Inner Error 0.533926
-/col3 Inner Error 0.533758
-/col3 Inner Error 0.533715
-/col3 Inner Error 0.533286
-/col3 Inner Error 0.532125
-/col3 Inner Error 0.530630
-/col3 Inner Error 0.524649
-/col3 Inner Error 0.276683
-/col3 Inner Error 0.199307
-/col3 Inner Error 0.104257
-/col3 Inner Error 0.095305
-/col3 Inner Error 0.059666
-/col3 Inner Error 0.027640
-/col3 Inner Error 0.024115
-/col3 Inner Error 0.008065
-/col3 Inner Error 0.002897
-/col3 Inner Error 0.001164
-/col3 Iteration 6 Outer Error 0.005631
+/col3 Inner Error 0.534687
+/col3 Inner Error 0.534665
+/col3 Inner Error 0.534132
+/col3 Inner Error 0.533929
+/col3 Inner Error 0.533760
+/col3 Inner Error 0.533718
+/col3 Inner Error 0.533289
+/col3 Inner Error 0.532130
+/col3 Inner Error 0.530639
+/col3 Inner Error 0.524700
+/col3 Inner Error 0.276703
+/col3 Inner Error 0.199317
+/col3 Inner Error 0.104351
+/col3 Inner Error 0.095337
+/col3 Inner Error 0.059794
+/col3 Inner Error 0.027707
+/col3 Inner Error 0.024268
+/col3 Inner Error 0.008100
+/col3 Inner Error 0.002921
+/col3 Inner Error 0.001159
+/col3 Iteration 6 Outer Error 0.005632
 Calculating Jacobian for /col3
 Calculating disturbance 10 of 121 in jacobian of /col3
 Calculating disturbance 20 of 121 in jacobian of /col3
@@ -718,18 +718,18 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.009180
-/col3 Inner Error 0.004030
-/col3 Inner Error 0.001110
+/col3 Inner Error 0.009182
+/col3 Inner Error 0.004032
+/col3 Inner Error 0.001111
 /col3 Inner Error 0.000432
 /col3 Inner Error 0.000018
 /col3 Inner Error 0.000008
 Inner loop converged
 /col3 Iteration 7 Outer Error 0.003243
-/col3 Inner Error 0.044688
-/col3 Inner Error 0.009718
-/col3 Inner Error 0.003785
-/col3 Inner Error 0.003392
+/col3 Inner Error 0.044677
+/col3 Inner Error 0.009711
+/col3 Inner Error 0.003783
+/col3 Inner Error 0.003386
 Step size too small - Exiting inner loop
 /col3 Iteration 8 Outer Error 0.000018
 Calculating Jacobian for /col3
@@ -745,10 +745,10 @@ Calculating disturbance 90 of 121 in jacobian of /col3
 Calculating disturbance 100 of 121 in jacobian of /col3
 Calculating disturbance 110 of 121 in jacobian of /col3
 Calculating disturbance 120 of 121 in jacobian of /col3
-/col3 Inner Error 0.001241
-/col3 Inner Error 0.001182
-/col3 Inner Error 0.000485
-/col3 Inner Error 0.000019
+/col3 Inner Error 0.001229
+/col3 Inner Error 0.001168
+/col3 Inner Error 0.000484
+/col3 Inner Error 0.000018
 /col3 Inner Error 0.000001
 Inner loop converged
 Calculating Jacobian for /col2
@@ -794,16 +794,16 @@ Inner loop converged
 /col2 Inner Error 0.000001
 Inner loop converged
 Iteration 1 -> max Error 0.017335 in /vap_draw2_col2.In.Fraction.ARGON
-/col3 Inner Error 0.006518
-/col3 Inner Error 0.000668
+/col3 Inner Error 0.006505
+/col3 Inner Error 0.000669
 /col3 Inner Error 0.000119
 /col3 Inner Error 0.000010
 Inner loop converged
-/col3 Iteration 1 Outer Error 0.000244
-/col3 Inner Error 0.010276
-/col3 Inner Error 0.006163
-/col3 Inner Error 0.002039
-/col3 Inner Error 0.000140
+/col3 Iteration 1 Outer Error 0.000243
+/col3 Inner Error 0.010265
+/col3 Inner Error 0.006146
+/col3 Inner Error 0.002027
+/col3 Inner Error 0.000138
 /col3 Inner Error 0.000001
 Inner loop converged
 /col3 Iteration 2 Outer Error 0.000002
@@ -833,14 +833,14 @@ Inner loop converged
 /col2 Inner Error 0.000001
 Inner loop converged
 Iteration 2 -> max Error 0.003567 in /vap_draw2_col2.In.Fraction.ARGON
-/col3 Inner Error 0.000943
+/col3 Inner Error 0.000942
 /col3 Inner Error 0.000099
 /col3 Inner Error 0.000021
-/col3 Inner Error 0.000001
+/col3 Inner Error 0.000000
 Inner loop converged
 /col3 Iteration 1 Outer Error 0.000011
-/col3 Inner Error 0.001115
-/col3 Inner Error 0.000263
+/col3 Inner Error 0.001113
+/col3 Inner Error 0.000262
 /col3 Inner Error 0.000002
 Inner loop converged
 /col2 Inner Error 0.000222
@@ -858,11 +858,11 @@ Inner loop converged
 /col2 Inner Error 0.000003
 Inner loop converged
 Iteration 3 -> max Error 0.000695 in /vap_draw2_col2.In.Fraction.OXYGEN
-/col3 Inner Error 0.000168
+/col3 Inner Error 0.000167
 /col3 Inner Error 0.000010
 Inner loop converged
 /col3 Iteration 1 Outer Error 0.000002
-/col3 Inner Error 0.000228
+/col3 Inner Error 0.000227
 /col3 Inner Error 0.000039
 /col3 Inner Error 0.000000
 Inner loop converged
@@ -988,7 +988,7 @@ Inner loop converged
 /col2 Iteration 1 Outer Error 0.000034
 /col2 Inner Error 0.000001
 Inner loop converged
-Iteration 12 -> max Error 0.001758 in /vap_draw2_col2.In.VapFrac
+Iteration 12 -> max Error 0.001757 in /vap_draw2_col2.In.VapFrac
 /col3 Inner Error 0.000001
 Inner loop converged
 /col3 Iteration 1 Outer Error 0.000000
@@ -1030,19 +1030,19 @@ Iteration 15 -> max Error 0.000078 in /vap_draw2_col2.In.VapFrac
 Port: /ovhd_vap_col2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = -194.42951724912885 = C
+T                  = -194.42951724911222 = C
 P                  = 120.0 = kPa
-MoleFlow           = 2036.1923007903288 = kgmole/h
-MassFlow           = 57040.67073559845 = kg/h
-VolumeFlow         = 10587.74657057691 = m3/hr
-StdLiqVolumeFlow   = 70.94093904912424 = m3/hr
-H                  = -6468.640632914154 = kJ/kmol
-Energy             = -3658721.1814775774 = W
+MoleFlow           = 2036.1923007626115 = kgmole/h
+MassFlow           = 57040.670734821986 = kg/h
+VolumeFlow         = 10587.746570435304 = m3/hr
+StdLiqVolumeFlow   = 70.94093904815857 = m3/hr
+H                  = -6468.640632913644 = kJ/kmol
+Energy             = -3658721.1814274853 = W
 MolecularWeight    = 28.01340044719885 = 
-ZFactor            = 0.9533317535291513 = 
+ZFactor            = 0.9533317535291764 = 
 NITROGEN           = 0.9999999406414614 = 
-OXYGEN             = 6.539039940059899e-09 = 
-ARGON              = 5.281949874073886e-08 = 
+OXYGEN             = 6.539039939195936e-09 = 
+ARGON              = 5.281949873941781e-08 = 
 
 >> 
 >> # Purified Oxygen Product
@@ -1050,19 +1050,19 @@ ARGON              = 5.281949874073886e-08 =
 Port: /btm_liq_col2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -180.27997908426542 = C
+T                  = -180.27997908427193 = C
 P                  = 135.0 = kPa
-MoleFlow           = 1743.8165363591952 = kgmole/h
-MassFlow           = 55938.65556186948 = kg/h
-VolumeFlow         = 43.926913018397954 = m3/hr
-StdLiqVolumeFlow   = 48.5870884956553 = m3/hr
-H                  = -12716.87093482005 = kJ/kmol
-Energy             = -6159969.396356895 = W
-MolecularWeight    = 32.07829172136438 = 
-ZFactor            = 0.004404067153418234 = 
-NITROGEN           = 2.467621996029996e-08 = 
+MoleFlow           = 1743.816536372826 = kgmole/h
+MassFlow           = 55938.65556230554 = kg/h
+VolumeFlow         = 43.926913018740464 = m3/hr
+StdLiqVolumeFlow   = 48.587088496035314 = m3/hr
+H                  = -12716.87093482047 = kJ/kmol
+Energy             = -6159969.396405248 = W
+MolecularWeight    = 32.0782917213637 = 
+ZFactor            = 0.004404067153418456 = 
+NITROGEN           = 2.4676250642315747e-08 = 
 OXYGEN             = 0.99 = 
-ARGON              = 0.009999977339761872 = 
+ARGON              = 0.009999977339691222 = 
 
 >> 
 >> # Pure Argon Product
@@ -1070,19 +1070,19 @@ ARGON              = 0.009999977339761872 =
 Port: /ovhd_liq_col3.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 0.0 = 
-T                  = -184.33399872046238 = C
+T                  = -184.3339987204568 = C
 P                  = 120.0 = kPa
-MoleFlow           = 11.216943151578613 = kgmole/h
-MassFlow           = 448.0943558531076 = kg/h
-VolumeFlow         = 0.2828554314113004 = m3/hr
-StdLiqVolumeFlow   = 0.3264130316899657 = m3/hr
-H                  = -10771.315514378173 = kJ/kmol
-Energy             = -33561.453831249084 = W
-MolecularWeight    = 39.947992050671566 = 
-ZFactor            = 0.004097753674638604 = 
-NITROGEN           = 3.2149769940216115e-12 = 
+MoleFlow           = 11.216943154292267 = kgmole/h
+MassFlow           = 448.0943559614992 = kg/h
+VolumeFlow         = 0.28285543147971726 = m3/hr
+StdLiqVolumeFlow   = 0.3264130317689395 = m3/hr
+H                  = -10771.315514377926 = kJ/kmol
+Energy             = -33561.453839367656 = W
+MolecularWeight    = 39.94799205066757 = 
+ZFactor            = 0.004097753674638161 = 
+NITROGEN           = 3.315009611650681e-12 = 
 OXYGEN             = 1e-06 = 
-ARGON              = 0.9999989999972534 = 
+ARGON              = 0.9999989999971536 = 
 
 >> 
 >> # Liquid recycle back to Col2
@@ -1090,37 +1090,37 @@ ARGON              = 0.9999989999972534 =
 Port: /btm_liq_col3.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /col2.Feed_56_f
 VapFrac            = 0.0 = 
-T                  = -180.78059701144923 = C
+T                  = -180.7805970114648 = C
 P                  = 130.0 = kPa
-MoleFlow           = 798.7830591164227 = kgmole/h
-MassFlow           = 25845.90817381019 = kg/h
-VolumeFlow         = 20.087718461889093 = m3/hr
-StdLiqVolumeFlow   = 22.291051212966366 = m3/hr
-H                  = -12667.99115564423 = kJ/kmol
-Energy             = -2810826.868934801 = W
-MolecularWeight    = 32.35660531199524 = 
-ZFactor            = 0.004256795608603758 = 
-NITROGEN           = 3.2149767708483008e-12 = 
-OXYGEN             = 0.9549885130423604 = 
-ARGON              = 0.04501148695442461 = 
+MoleFlow           = 798.7830591137077 = kgmole/h
+MassFlow           = 25845.908173696484 = kg/h
+VolumeFlow         = 20.087718461819787 = m3/hr
+StdLiqVolumeFlow   = 22.291051212887144 = m3/hr
+H                  = -12667.991155652846 = kJ/kmol
+Energy             = -2810826.8689271593 = W
+MolecularWeight    = 32.35660531196007 = 
+ZFactor            = 0.00425679560860426 = 
+NITROGEN           = 3.315009385676284e-12 = 
+OXYGEN             = 0.954988513046282 = 
+ARGON              = 0.045011486950403044 = 
 
 >> 
 >> # Vapor recycle to Col3
 >> vap_draw2_col2.Out
 Port: /vap_draw2_col2.Out + sim21.old.solver.Ports.Port_Material
 Connected to: /col3.Feed_120_f
-VapFrac            = 1.0000781064491666 = 
-T                  = -180.60902636445536 = C
+VapFrac            = 1.0000781067832172 = 
+T                  = -180.60902636444888 = C
 P                  = 132.21428571428572 = kPa
 MoleFlow           = 810.0000022680001 = kgmole/h
-MassFlow           = 26294.002529663292 = kg/h
-VolumeFlow         = 4537.284061303357 = m3/hr
-StdLiqVolumeFlow   = 22.617464244656304 = m3/hr
-H                  = -5954.242495442783 = kJ/kmol
-Energy             = -1339704.5652257993 = W
-MolecularWeight    = 32.46173960232348 = 
-ZFactor            = 0.9625450900814384 = 
-NITROGEN           = 3.214976773938833e-12 = 
-OXYGEN             = 0.941763771543256 = 
-ARGON              = 0.058236228453529056 = 
+MassFlow           = 26294.002529658024 = kg/h
+VolumeFlow         = 4537.284062812453 = m3/hr
+StdLiqVolumeFlow   = 22.61746424465609 = m3/hr
+H                  = -5954.242493204392 = kJ/kmol
+Energy             = -1339704.5647221613 = W
+MolecularWeight    = 32.461739602352395 = 
+ZFactor            = 0.9625450904015126 = 
+NITROGEN           = 3.3150093888055993e-12 = 
+OXYGEN             = 0.9417637715439238 = 
+ARGON              = 0.05823622845276136 = 
 

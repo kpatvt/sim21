@@ -87,7 +87,7 @@ P                  = 150.0 | kPa
 MoleFlow           = 500.00000000000006 | kgmole/h
 MassFlow           = 9711.491442307693 | kg/h
 VolumeFlow         = 13024.584486476775 | m3/hr
-StdLiqVolumeFlow   = 10.533990384615386 | m3/hr
+StdLiqVolumeFlow   = 10.533990384615384 | m3/hr
 H                  = -230883.94845195542 | kJ/kmol
 Energy             = -32067215.06277159 | W
 MolecularWeight    = 19.422982884615386 | 
@@ -107,7 +107,7 @@ P                  = 150.0 = kPa
 MoleFlow           = 500.00000000000006 = kgmole/h
 MassFlow           = 9711.491442307693 = kg/h
 VolumeFlow         = 13024.584486476775 = m3/hr
-StdLiqVolumeFlow   = 10.533990384615386 = m3/hr
+StdLiqVolumeFlow   = 10.533990384615384 = m3/hr
 H                  = -230883.94845195542 = kJ/kmol
 Energy             = -32067215.06277159 = W
 MolecularWeight    = 19.422982884615386 = 
@@ -142,12 +142,12 @@ T                  = 17.58937227428953 = C
 P                  = 300.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 57476.180858044165 = kg/h
-VolumeFlow         = 97.28522780232169 = m3/hr
-StdLiqVolumeFlow   = 102.95869400630913 = m3/hr
-H                  = -154289.02937192682 = kJ/kmol
-Energy             = -42858063.714424126 = W
+VolumeFlow         = 97.28522780232213 = m3/hr
+StdLiqVolumeFlow   = 102.95869400630914 = m3/hr
+H                  = -154289.02937192676 = kJ/kmol
+Energy             = -42858063.7144241 = W
 MolecularWeight    = 57.47618085804416 = 
-ZFactor            = 0.012073414791184123 = 
+ZFactor            = 0.012073414791184178 = 
 PROPANE            = 0.04731861198738171 = 
 ISOBUTANE          = 0.9463722397476341 = 
 N-BUTANE           = 0.005047318611987382 = 
@@ -158,16 +158,16 @@ WATER              = 0.0 =
 Port: /coldOutlet.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 61.92187729156842 = C
+T                  = 61.92187729156882 = C
 P                  = 290.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 57476.180858044165 = kg/h
-VolumeFlow         = 9085.549541436169 = m3/hr
-StdLiqVolumeFlow   = 102.95869400630913 = m3/hr
-H                  = -130225.67297983357 = kJ/kmol
-Energy             = -36173798.04995377 = W
+VolumeFlow         = 9085.549541436183 = m3/hr
+StdLiqVolumeFlow   = 102.95869400630914 = m3/hr
+H                  = -130225.6729798335 = kJ/kmol
+Energy             = -36173798.04995375 = W
 MolecularWeight    = 57.47618085804416 = 
-ZFactor            = 0.9457514913552596 = 
+ZFactor            = 0.94575149135526 = 
 PROPANE            = 0.04731861198738171 = 
 ISOBUTANE          = 0.9463722397476341 = 
 N-BUTANE           = 0.005047318611987382 = 
@@ -183,7 +183,7 @@ P                  = 150.0 = kPa
 MoleFlow           = 500.00000000000006 = kgmole/h
 MassFlow           = 9711.491442307693 = kg/h
 VolumeFlow         = 13024.584486476775 = m3/hr
-StdLiqVolumeFlow   = 10.533990384615386 = m3/hr
+StdLiqVolumeFlow   = 10.533990384615384 = m3/hr
 H                  = -230883.94845195542 = kJ/kmol
 Energy             = -32067215.06277159 = W
 MolecularWeight    = 19.422982884615386 = 
@@ -262,12 +262,12 @@ T                  = 17.58937227428953 = C
 P                  = 300.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 57476.180858044165 = kg/h
-VolumeFlow         = 97.28522780232169 = m3/hr
-StdLiqVolumeFlow   = 102.95869400630913 = m3/hr
-H                  = -154289.02937192682 = kJ/kmol
-Energy             = -42858063.714424126 = W
+VolumeFlow         = 97.28522780232213 = m3/hr
+StdLiqVolumeFlow   = 102.95869400630914 = m3/hr
+H                  = -154289.02937192676 = kJ/kmol
+Energy             = -42858063.7144241 = W
 MolecularWeight    = 57.47618085804416 = 
-ZFactor            = 0.012073414791184123 = 
+ZFactor            = 0.012073414791184178 = 
 PROPANE            = 0.04731861198738171 = 
 ISOBUTANE          = 0.9463722397476341 = 
 N-BUTANE           = 0.005047318611987382 = 
@@ -278,16 +278,16 @@ WATER              = 0.0 =
 Port: /RootClone.coldOutlet.Out + sim21.old.solver.Ports.Port_Material
 Connected to: None
 VapFrac            = 1.0 = 
-T                  = 61.92187729156842 = C
+T                  = 61.92187729156882 = C
 P                  = 290.0 = kPa
 MoleFlow           = 1000.0000000000001 = kgmole/h
 MassFlow           = 57476.180858044165 = kg/h
-VolumeFlow         = 9085.549541436169 = m3/hr
-StdLiqVolumeFlow   = 102.95869400630913 = m3/hr
-H                  = -130225.67297983357 = kJ/kmol
-Energy             = -36173798.04995377 = W
+VolumeFlow         = 9085.549541436183 = m3/hr
+StdLiqVolumeFlow   = 102.95869400630914 = m3/hr
+H                  = -130225.6729798335 = kJ/kmol
+Energy             = -36173798.04995375 = W
 MolecularWeight    = 57.47618085804416 = 
-ZFactor            = 0.9457514913552596 = 
+ZFactor            = 0.94575149135526 = 
 PROPANE            = 0.04731861198738171 = 
 ISOBUTANE          = 0.9463722397476341 = 
 N-BUTANE           = 0.005047318611987382 = 
@@ -303,7 +303,7 @@ P                  = 150.0 = kPa
 MoleFlow           = 500.00000000000006 = kgmole/h
 MassFlow           = 9711.491442307693 = kg/h
 VolumeFlow         = 13024.584486476775 = m3/hr
-StdLiqVolumeFlow   = 10.533990384615386 = m3/hr
+StdLiqVolumeFlow   = 10.533990384615384 = m3/hr
 H                  = -230883.94845195542 = kJ/kmol
 Energy             = -32067215.06277159 = W
 MolecularWeight    = 19.422982884615386 = 
